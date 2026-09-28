@@ -56,7 +56,7 @@ object CourseCatalog {
                     e("a1-country-write", Skill.WRITING, "Kendi cevabını yaz", "Complete: I'm from ___.", "Türkiye", "Kendi ülkenin adını yaz. Örnek cevap Türkiye.", sample = "I'm from Türkiye.")),
                 lesson("A1", "U1-L3", "Can you spell it?", "Ask for and give a name's spelling.",
                     e("a1-spell-dialogue", Skill.LISTENING, "Dinle ve harfleri seç", "How do you spell L-E-A?", "Lea", "İsim harf harf söylenir.", listOf("Lee", "Lea", "Lia"), audio = "L E A. Lea."),
-                    e("a1-spell-phrase", Skill.SPEAKING, "İfadeyi tekrar et", "Say: How do you spell your name?", "How do you spell your name?", "'How do you spell…?' yazılışı sormak için kullanılır.", audio = "How do you spell your name?", sample = "How do you spell your name?"))))),
+                    e("a1-spell-phrase", Skill.SPEAKING, "İfadeyi tekrar et", "Say: How do you spell your name?", "How do you spell your name?", "'How do you spell…?' yazılışı sormak için kullanılır.", audio = "How do you spell your name?", sample = "How do you spell your name?")))),
             LearningUnit("A1-U2", "People & Everyday Life", "Describe people and talk about simple routines.", listOf(
                 lesson("A1", "U2-L1", "This is my family", "Name close family members and describe one person.",
                     e("a1-family-vocab", Skill.VOCABULARY, "Doğru kelimeyi seç", "Your mother's daughter is your…", "sister", "Mother's daughter (you or another girl) is a sister.", listOf("sister", "uncle", "grandfather")),
