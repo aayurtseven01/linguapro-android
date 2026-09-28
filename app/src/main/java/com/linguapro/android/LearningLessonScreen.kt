@@ -44,7 +44,7 @@ fun LearningLessonScreen(
     lesson: LearningLesson,
     exerciseIndex: Int,
     onBack: () -> Unit,
-    onDone: () -> Unit
+    onDone: (Int) -> Unit
 ) {
     val index = rememberSaveable(lesson.id) { mutableIntStateOf(exerciseIndex) }
     val exercise = lesson.exercises.getOrNull(index.intValue)
@@ -53,6 +53,7 @@ fun LearningLessonScreen(
     var submitted by rememberSaveable(lesson.id, index.intValue) { mutableStateOf(false) }
     var result by rememberSaveable(lesson.id, index.intValue) { mutableStateOf<Boolean?>(null) }
     var speechText by rememberSaveable(lesson.id, index.intValue) { mutableStateOf("") }
+    var correctCount by rememberSaveable(lesson.id) { mutableIntStateOf(0) }
     var ttsReady by remember { mutableStateOf(false) }
     val context = LocalContext.current
     val tts = remember { mutableStateOf<TextToSpeech?>(null) }
@@ -80,6 +81,7 @@ fun LearningLessonScreen(
                 speechText = recognized
                 answer = recognized
                 result = matchesTarget(recognized, exercise?.acceptedAnswers.orEmpty())
+                if (result == true) correctCount++
                 submitted = true
             }
         }
@@ -212,7 +214,9 @@ fun LearningLessonScreen(
         Spacer(Modifier.height(16.dp))
         LessonButton(if (submitted && index.intValue == lesson.exercises.lastIndex) "Dersi tamamla" else if (submitted) "Sonraki etkinlik" else "Yanıtı kontrol et") {
             if (submitted) {
-                if (index.intValue >= lesson.exercises.lastIndex) onDone() else index.intValue++
+                if (index.intValue >= lesson.exercises.lastIndex) {
+                    onDone((correctCount * 100 / lesson.exercises.size.coerceAtLeast(1)).coerceIn(0, 100))
+                } else index.intValue++
             } else {
                 val typedAnswer = if (exercise.options.isNotEmpty()) exercise.options.getOrNull(selected).orEmpty() else answer
                 if (typedAnswer.isBlank()) return@LessonButton
@@ -221,6 +225,7 @@ fun LearningLessonScreen(
                     result = null
                 } else {
                     result = matchesTarget(typedAnswer, exercise.acceptedAnswers)
+                    if (result == true) correctCount++
                     submitted = true
                 }
             }
