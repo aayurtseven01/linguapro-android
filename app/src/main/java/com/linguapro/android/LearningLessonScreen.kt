@@ -98,7 +98,7 @@ fun LearningLessonScreen(
     }
 
     if (exercise == null) {
-        LessonColumn { LessonButton("Dersi tamamla", onDone) }
+        LessonColumn { LessonButton("Dersi tamamla") { onDone(0) } }
         return
     }
 
