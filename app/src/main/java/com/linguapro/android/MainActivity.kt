@@ -410,7 +410,7 @@ private fun HomeScreen(name: String, level: String, completed: Int, progress: Le
         Spacer(Modifier.height(14.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
             Column { Text("Merhaba, $name!", fontSize = 26.sp, fontWeight = FontWeight.Bold); Text("İngilizce yolculuğuna devam et", color = Muted, fontSize = 13.sp) }
-            Icon(Icons.Default.NotificationsNone, null, tint = Gold, modifier = Modifier.size(26.dp))
+            IconButton(onClick = onProfile) { Icon(Icons.Default.AccountCircle, "Profili aç", tint = Gold, modifier = Modifier.size(30.dp)) }
         }
         Spacer(Modifier.height(18.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
