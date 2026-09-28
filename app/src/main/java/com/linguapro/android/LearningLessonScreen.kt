@@ -205,15 +205,24 @@ fun LearningLessonScreen(
                         Text(if (isWriting) "Yanıtın kaydedildi" else if (correct) "Doğru yanıt" else "Bir kez daha düşün", fontWeight = FontWeight.Bold)
                         Text(exercise.explanationTr, color = LessonMuted, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 4.dp))
                         if (!isWriting && !correct) Text("Örnek yanıt: ${exercise.acceptedAnswers.firstOrNull().orEmpty()}", color = LessonGold, fontSize = 12.sp, modifier = Modifier.padding(top = 5.dp))
-                        if (isWriting) Text("Bu sürüm açık uçlu metin için henüz otomatik dilbilgisi puanı üretmiyor.", color = LessonMuted, fontSize = 11.sp, modifier = Modifier.padding(top = 5.dp))
+                        if (isWriting) {
+                            Text("Açık uçlu yazı henüz otomatik puanlanmıyor. Yanıtını aşağıdaki örnekle karşılaştır.", color = LessonMuted, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 5.dp))
+                            if (exercise.sampleAnswer.isNullOrBlank().not()) Text("Örnek yanıt: ${exercise.sampleAnswer}", color = LessonGold, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 6.dp))
+                        }
                     }
                 }
             }
         }
         Spacer(Modifier.height(16.dp))
-        LessonButton(if (submitted && index.intValue == lesson.exercises.lastIndex) "Dersi tamamla" else if (submitted) "Sonraki etkinlik" else "Yanıtı kontrol et") {
+        LessonButton(if (submitted && result == false) "Tekrar dene" else if (submitted && index.intValue == lesson.exercises.lastIndex) "Dersi tamamla" else if (submitted) "Sonraki etkinlik" else "Yanıtı kontrol et") {
             if (submitted) {
-                if (index.intValue >= lesson.exercises.lastIndex) {
+                if (result == false) {
+                    selected = -1
+                    answer = ""
+                    speechText = ""
+                    result = null
+                    submitted = false
+                } else if (index.intValue >= lesson.exercises.lastIndex) {
                     onDone((correctCount * 100 / lesson.exercises.size.coerceAtLeast(1)).coerceIn(0, 100))
                 } else index.intValue++
             } else {
