@@ -43,9 +43,10 @@ fun LearningLessonScreen(
     lesson: LearningLesson,
     exerciseIndex: Int,
     onBack: () -> Unit,
+    onExerciseResult: (exerciseId: String, correct: Boolean) -> Unit,
     onDone: (Int) -> Unit
 ) {
-    val index = rememberSaveable(lesson.id) { mutableIntStateOf(exerciseIndex) }
+    val index = rememberSaveable(lesson.id, exerciseIndex) { mutableIntStateOf(exerciseIndex) }
     val exercise = lesson.exercises.getOrNull(index.intValue)
     var selected by rememberSaveable(lesson.id, index.intValue) { mutableIntStateOf(-1) }
     var answer by rememberSaveable(lesson.id, index.intValue) { mutableStateOf("") }
@@ -79,8 +80,10 @@ fun LearningLessonScreen(
             if (recognized.isNotBlank()) {
                 speechText = recognized
                 answer = recognized
-                result = AnswerChecker.matches(recognized, exercise?.acceptedAnswers.orEmpty())
-                if (result == true) correctCount++
+                val isCorrect = AnswerChecker.matches(recognized, exercise?.acceptedAnswers.orEmpty())
+                result = isCorrect
+                exercise?.let { onExerciseResult(it.id, isCorrect) }
+                if (isCorrect) correctCount++
                 submitted = true
             }
         }
@@ -232,8 +235,10 @@ fun LearningLessonScreen(
                     submitted = true
                     result = null
                 } else {
-                    result = AnswerChecker.matches(typedAnswer, exercise.acceptedAnswers)
-                    if (result == true) correctCount++
+                    val isCorrect = AnswerChecker.matches(typedAnswer, exercise.acceptedAnswers)
+                    result = isCorrect
+                    onExerciseResult(exercise.id, isCorrect)
+                    if (isCorrect) correctCount++
                     submitted = true
                 }
             }

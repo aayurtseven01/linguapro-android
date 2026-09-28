@@ -106,9 +106,12 @@ private fun LinguaApp() {
     var accountUid by rememberSaveable { mutableStateOf(signedInUser?.uid.orEmpty()) }
     val progressStore = remember(context, accountUid) { LearningProgressStore(context, accountUid) }
     var learningProgress by remember(accountUid) { mutableStateOf(progressStore.read()) }
+    val mistakeBook = remember(context, accountUid) { MistakeBookStore(context, accountUid) }
+    var mistakeIds by remember(accountUid) { mutableStateOf(mistakeBook.read()) }
     var level by rememberSaveable { mutableStateOf("A1") }
     var completed by rememberSaveable { mutableIntStateOf(0) }
     var selectedLessonId by rememberSaveable { mutableStateOf("") }
+    var selectedExerciseIndex by rememberSaveable { mutableIntStateOf(0) }
     val activeLesson = remember(level, completed, selectedLessonId) {
         CourseCatalog.allLessons().firstOrNull { it.id == selectedLessonId }
             ?: CourseCatalog.lessonAt(level, completed)
@@ -159,21 +162,23 @@ private fun LinguaApp() {
             })
             Screen.PlacementResult -> placementSummary?.let { summary -> PlacementResultScreen(summary, onContinue = { go(Screen.Home) }) }
                 ?: WelcomeScreen(onStart = { go(Screen.Register) }, onLogin = { go(Screen.Login) })
-            Screen.Home -> HomeScreen(name = userName, level = level, completed = completed, progress = learningProgress, onStartLesson = { selectedLessonId = ""; go(Screen.Lesson) }, onLocked = { go(Screen.Locked) }, onPractice = { go(Screen.Practice) }, onProgress = { go(Screen.Progress) }, onProfile = { go(Screen.Profile) })
-            Screen.Practice -> PracticeScreen(level, onBack = { go(Screen.Home) }, onSelectLesson = { id -> selectedLessonId = id; go(Screen.Lesson) })
+            Screen.Home -> HomeScreen(name = userName, level = level, completed = completed, progress = learningProgress, onStartLesson = { selectedLessonId = ""; selectedExerciseIndex = 0; go(Screen.Lesson) }, onLocked = { go(Screen.Locked) }, onPractice = { go(Screen.Practice) }, onProgress = { go(Screen.Progress) }, onProfile = { go(Screen.Profile) })
+            Screen.Practice -> PracticeScreen(level, mistakeIds, onBack = { go(Screen.Home) }, onSelectLesson = { id -> selectedLessonId = id; selectedExerciseIndex = 0; go(Screen.Lesson) }, onReviewExercise = { lessonId, exerciseIndex -> selectedLessonId = lessonId; selectedExerciseIndex = exerciseIndex; go(Screen.Lesson) })
             Screen.Progress -> ProgressScreen(level, completed, learningProgress, onBack = { go(Screen.Home) })
             Screen.Profile -> ProfileScreen(userName, accountEmail, level, completed, learningProgress, onBack = { go(Screen.Home) }, onSignOut = {
                 accounts.signOut(); accountUid = ""; accountEmail = ""; userName = "Öğrenci"; level = "A1"; completed = 0; selectedLessonId = ""; go(Screen.Welcome)
             })
             Screen.Lesson -> LearningLessonScreen(
                 lesson = activeLesson,
-                exerciseIndex = 0,
+                exerciseIndex = selectedExerciseIndex,
                 onBack = { go(Screen.Home) },
+                onExerciseResult = { exerciseId, correct -> mistakeIds = mistakeBook.record(exerciseId, correct) },
                 onDone = { score ->
                     val countsTowardCourse = selectedLessonId.isBlank()
                     if (accountUid.isNotBlank()) accounts.recordLesson(accountUid, activeLesson.id, score, countsTowardCourse) { }
                     if (countsTowardCourse) completed++
                     selectedLessonId = ""
+                    selectedExerciseIndex = 0
                     learningProgress = progressStore.recordLesson(score)
                     go(Screen.Home)
                 }
@@ -442,11 +447,15 @@ private fun HomeScreen(name: String, level: String, completed: Int, progress: Le
 }
 
 @Composable
-private fun PracticeScreen(level: String, onBack: () -> Unit, onSelectLesson: (String) -> Unit) {
+private fun PracticeScreen(level: String, mistakeIds: Set<String>, onBack: () -> Unit, onSelectLesson: (String) -> Unit, onReviewExercise: (String, Int) -> Unit) {
     var selectedSkill by rememberSaveable { mutableStateOf("Tümü") }
     val lessons = CourseCatalog.units(level).flatMap { it.lessons }
     val skills = listOf("Tümü") + Skill.values().map(::skillLabel)
     val visibleLessons = lessons.filter { lesson -> selectedSkill == "Tümü" || lesson.exercises.any { skillLabel(it.skill) == selectedSkill } }
+    val reviewItems = remember(mistakeIds) {
+        CourseCatalog.allLessons().flatMap { lesson -> lesson.exercises.mapIndexed { index, exercise -> Triple(lesson, index, exercise) } }
+            .filter { (_, _, exercise) -> exercise.id in mistakeIds }
+    }
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         BackRow("Pratik merkezi", onBack)
         Text("$level seviyesinde kısa bir çalışma seç.", color = Muted, modifier = Modifier.padding(start = 8.dp, top = 2.dp, bottom = 14.dp))
@@ -454,6 +463,22 @@ private fun PracticeScreen(level: String, onBack: () -> Unit, onSelectLesson: (S
             skills.forEach { skill ->
                 FilterChip(selected = selectedSkill == skill, onClick = { selectedSkill = skill }, label = { Text(skill) })
             }
+        }
+        if (reviewItems.isNotEmpty()) {
+            Text("Tekrar etmen gerekenler  •  ${reviewItems.size}", fontSize = 17.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 15.dp, bottom = 5.dp))
+            reviewItems.forEach { (lesson, exerciseIndex, exercise) ->
+                Surface(onClick = { onReviewExercise(lesson.id, exerciseIndex) }, color = Color(0xFF2A2638), shape = RoundedCornerShape(15.dp), modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
+                    Row(Modifier.padding(13.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Icon(Icons.Default.Replay, null, tint = Gold)
+                        Column(Modifier.weight(1f).padding(start = 10.dp)) {
+                            Text(exercise.prompt, fontWeight = FontWeight.SemiBold, fontSize = 13.sp, lineHeight = 18.sp)
+                            Text("${lesson.id.substringBefore('-')} • ${lesson.title} • ${skillLabel(exercise.skill)}", color = Muted, fontSize = 10.sp, modifier = Modifier.padding(top = 4.dp))
+                        }
+                        Icon(Icons.Default.ChevronRight, null, tint = Muted)
+                    }
+                }
+            }
+            Spacer(Modifier.height(8.dp))
         }
         Spacer(Modifier.height(12.dp))
         visibleLessons.forEachIndexed { index, lesson ->
