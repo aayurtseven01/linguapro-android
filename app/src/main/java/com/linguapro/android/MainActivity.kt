@@ -87,6 +87,15 @@ private fun LinguaApp() {
     var completed by rememberSaveable { mutableIntStateOf(0) }
     val screen = Screen.valueOf(screenName)
     val go: (Screen) -> Unit = { screenName = it.name }
+    LaunchedEffect(accountUid) {
+        if (accountUid.isNotBlank()) accounts.loadProfile(accountUid) { profile ->
+            if (profile != null) {
+                if (profile.displayName.isNotBlank()) userName = profile.displayName
+                if (profile.cefrLevel in levels) level = profile.cefrLevel
+                completed = profile.completedLessons
+            }
+        }
+    }
     Surface(color = Navy) {
         when (screen) {
             Screen.Welcome -> WelcomeScreen(onStart = { go(Screen.Register) }, onLogin = { go(Screen.Login) })
@@ -236,21 +245,21 @@ private fun PlanScreen(plan: String, onPlan: (String) -> Unit, onBack: () -> Uni
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp)) {
         BackRow("Üyelik planını seç", onBack)
         Spacer(Modifier.height(18.dp))
-        Text("7 gün ücretsiz dene,\nsonra istediğin an iptal et.", fontSize = 27.sp, fontWeight = FontWeight.Bold, lineHeight = 33.sp)
-        Text("Seviyene özel İngilizce programı", color = Muted, modifier = Modifier.padding(top = 8.dp, bottom = 20.dp))
-        PlanCard("Yıllık", "₺49,90 / ay", "7 gün ücretsiz • yıllık ücret deneme sonunda alınır", "En iyi tercih • %60 tasarruf", plan == "Yıllık") { onPlan("Yıllık") }
+        Text("Seviyene özel programını seç.", fontSize = 27.sp, fontWeight = FontWeight.Bold, lineHeight = 33.sp)
+        Text("Plan taslağı • demo modunda ödeme alınmaz", color = Muted, modifier = Modifier.padding(top = 8.dp, bottom = 20.dp))
+        PlanCard("Yıllık", "Fiyat Google Play'den yüklenecek", "Deneme süresi ve yenileme koşulları Play Console'da yapılandırılır", "", plan == "Yıllık") { onPlan("Yıllık") }
         Spacer(Modifier.height(12.dp))
-        PlanCard("Aylık", "₺129,90 / ay", "7 gün ücretsiz • aylık ücret deneme sonunda alınır", "", plan == "Aylık") { onPlan("Aylık") }
+        PlanCard("Aylık", "Fiyat Google Play'den yüklenecek", "Satın alma şu an etkin değil", "", plan == "Aylık") { onPlan("Aylık") }
         Spacer(Modifier.height(18.dp))
         FeatureLine(Icons.Default.MenuBook, "A1’den C1’e seviyene özel içerik")
         FeatureLine(Icons.Default.BusinessCenter, "İş, seyahat ve günlük yaşam İngilizcesi")
         FeatureLine(Icons.Default.Mic, "Konuşma pratiği ve telaffuz geri bildirimi")
         Spacer(Modifier.height(16.dp))
-        PrimaryButton("Ücretsiz Denemeyi Başlat", onStart)
+        PrimaryButton("Demo programına devam et", onStart)
         Spacer(Modifier.height(10.dp))
-        Text("Devam ederek seçili planın deneme bitiminde yenileneceğini kabul edersin. İstediğin zaman mağaza abonelik ayarlarından iptal edebilirsin.", color = Muted, fontSize = 11.sp, lineHeight = 16.sp, textAlign = TextAlign.Center)
+        Text("Bu adım satın alma başlatmaz ve deneme süresi başlatılmış sayılmaz.", color = Muted, fontSize = 11.sp, lineHeight = 16.sp, textAlign = TextAlign.Center)
         Spacer(Modifier.height(16.dp))
-        InfoCard("Abonelik satın alımı bu prototipte simüle edilir. Gerçek deneme ve ücretlendirme için Google Play Billing kurulmalıdır.")
+        InfoCard("Gerçek abonelik için Play Console ürünleri, Billing akışı ve sunucu tarafı satın alma doğrulaması gerekir. Fiyat/deneme şartları Play'den gösterilmelidir.")
         Spacer(Modifier.height(20.dp))
     }
 }

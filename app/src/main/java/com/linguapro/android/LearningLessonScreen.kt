@@ -29,7 +29,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import java.text.Normalizer
 import java.util.Locale
 
 private val LessonNavy = Color(0xFF071D32)
@@ -80,7 +79,7 @@ fun LearningLessonScreen(
             if (recognized.isNotBlank()) {
                 speechText = recognized
                 answer = recognized
-                result = matchesTarget(recognized, exercise?.acceptedAnswers.orEmpty())
+                result = AnswerChecker.matches(recognized, exercise?.acceptedAnswers.orEmpty())
                 if (result == true) correctCount++
                 submitted = true
             }
@@ -224,7 +223,7 @@ fun LearningLessonScreen(
                     submitted = true
                     result = null
                 } else {
-                    result = matchesTarget(typedAnswer, exercise.acceptedAnswers)
+                    result = AnswerChecker.matches(typedAnswer, exercise.acceptedAnswers)
                     if (result == true) correctCount++
                     submitted = true
                 }
@@ -240,28 +239,6 @@ private fun engineLanguageSetup(engine: TextToSpeech?) {
 
 private fun speak(engine: TextToSpeech?, text: String) {
     if (text.isNotBlank()) engine?.speak(text, TextToSpeech.QUEUE_FLUSH, null, "linguapro-lesson-audio")
-}
-
-private fun normalize(value: String): String = Normalizer.normalize(value.lowercase(Locale.ROOT), Normalizer.Form.NFD)
-    .replace(Regex("\\p{Mn}+"), "")
-    .replace(Regex("[^a-z0-9']+"), " ")
-    .trim()
-
-private fun matchesTarget(response: String, accepted: List<String>): Boolean {
-    val normalizedResponse = normalize(response)
-    if (normalizedResponse.isBlank()) return false
-    return accepted.any { target ->
-        val normalizedTarget = normalize(target)
-        if (normalizedResponse == normalizedTarget) true
-        else {
-            val responseWords = normalizedResponse.split(Regex("\\s+")).toSet()
-            val targetWords = normalizedTarget.split(Regex("\\s+")).toSet()
-            val overlap = responseWords.intersect(targetWords).size.toFloat()
-            val recall = overlap / targetWords.size.coerceAtLeast(1)
-            val precision = overlap / responseWords.size.coerceAtLeast(1)
-            precision >= 0.72f && recall >= 0.72f
-        }
-    }
 }
 
 private fun skillLabel(skill: Skill): String = when (skill) {

@@ -77,6 +77,21 @@ class FirebaseAccountRepository(context: Context) {
 
     fun signOut() { if (isConfigured) auth().signOut() }
 
+    fun loadProfile(uid: String, callback: (AccountProfile?) -> Unit) {
+        if (!isConfigured) { callback(null); return }
+        store().collection("users").document(uid).get()
+            .addOnSuccessListener { snapshot ->
+                if (!snapshot.exists()) callback(null)
+                else callback(AccountProfile(
+                    displayName = snapshot.getString("displayName").orEmpty(),
+                    email = snapshot.getString("email").orEmpty(),
+                    cefrLevel = snapshot.getString("cefrLevel") ?: "A1",
+                    completedLessons = (snapshot.getLong("completedLessons") ?: 0L).toInt().coerceAtLeast(0)
+                ))
+            }
+            .addOnFailureListener { callback(null) }
+    }
+
     fun savePlacement(uid: String, level: String, skillMastery: Map<String, Int>, callback: (String?) -> Unit) {
         store().collection("users").document(uid).update(
             mapOf("cefrLevel" to level, "skillMastery" to skillMastery, "onboardingComplete" to true, "updatedAt" to FieldValue.serverTimestamp())
@@ -106,6 +121,13 @@ class FirebaseAccountRepository(context: Context) {
 
     private fun safeMessage(error: Throwable): String = error.localizedMessage?.take(240) ?: "Beklenmeyen bir hata oluştu."
 }
+
+data class AccountProfile(
+    val displayName: String,
+    val email: String,
+    val cefrLevel: String,
+    val completedLessons: Int
+)
 
 data class AccountResult(
     val uid: String? = null,
