@@ -241,7 +241,7 @@ private fun speak(engine: TextToSpeech?, text: String) {
     if (text.isNotBlank()) engine?.speak(text, TextToSpeech.QUEUE_FLUSH, null, "linguapro-lesson-audio")
 }
 
-private fun skillLabel(skill: Skill): String = when (skill) {
+fun skillLabel(skill: Skill): String = when (skill) {
     Skill.LISTENING -> "Dinleme"
     Skill.READING -> "Okuma"
     Skill.SPEAKING -> "Konuşma"
