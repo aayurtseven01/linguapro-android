@@ -87,7 +87,8 @@ class FirebaseAccountRepository(context: Context) {
                     displayName = snapshot.getString("displayName").orEmpty(),
                     email = snapshot.getString("email").orEmpty(),
                     cefrLevel = snapshot.getString("cefrLevel") ?: "A1",
-                    completedLessons = (snapshot.getLong("completedLessons") ?: 0L).toInt().coerceAtLeast(0)
+                    completedLessons = (snapshot.getLong("completedLessons") ?: 0L).toInt().coerceAtLeast(0),
+                    onboardingComplete = snapshot.getBoolean("onboardingComplete") ?: false
                 ))
             }
             .addOnFailureListener { callback(null) }
@@ -131,7 +132,8 @@ data class AccountProfile(
     val displayName: String,
     val email: String,
     val cefrLevel: String,
-    val completedLessons: Int
+    val completedLessons: Int,
+    val onboardingComplete: Boolean
 )
 
 data class AccountResult(

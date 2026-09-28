@@ -126,6 +126,7 @@ private fun LinguaApp() {
                 if (profile.displayName.isNotBlank()) userName = profile.displayName
                 if (profile.cefrLevel in levels) level = profile.cefrLevel
                 completed = profile.completedLessons
+                if (!profile.onboardingComplete && screenName == Screen.Home.name) screenName = Screen.Plans.name
             }
         }
     }
