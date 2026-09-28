@@ -7,6 +7,7 @@ import java.util.Locale
 object AnswerChecker {
     fun normalize(value: String): String = Normalizer.normalize(value.lowercase(Locale.ROOT), Normalizer.Form.NFD)
         .replace(Regex("\\p{Mn}+"), "")
+        .replace("'", "")
         .replace(Regex("[^a-z0-9]+"), " ")
         .trim()
 
