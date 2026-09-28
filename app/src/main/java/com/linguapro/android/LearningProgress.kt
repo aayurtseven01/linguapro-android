@@ -40,11 +40,11 @@ class LearningProgressStore(context: Context, learnerKey: String) {
         return LearningProgress(streak, prefs.getInt(KEY_TOTAL_XP, 0), todayXp, lastDate)
     }
 
-    fun recordLesson(score: Int, today: LocalDate = LocalDate.now()): LearningProgress {
+    fun recordLesson(score: Int?, today: LocalDate = LocalDate.now()): LearningProgress {
         val priorDate = runCatching { LocalDate.parse(prefs.getString(KEY_DATE, "").orEmpty()) }.getOrNull()
         val priorStreak = prefs.getInt(KEY_STREAK, 0)
         val oldTodayXp = if (priorDate == today) prefs.getInt(KEY_TODAY_XP, 0) else 0
-        val awardedXp = xpForScore(score)
+        val awardedXp = LessonScoring.xpForCompletion(score)
         val streak = StreakLogic.nextStreak(priorStreak, priorDate, today)
         val todayXp = oldTodayXp + awardedXp
         prefs.edit()
@@ -55,8 +55,6 @@ class LearningProgressStore(context: Context, learnerKey: String) {
             .apply()
         return LearningProgress(streak, prefs.getInt(KEY_TOTAL_XP, 0), todayXp, today.toString())
     }
-
-    private fun xpForScore(score: Int): Int = (10 + score.coerceIn(0, 100) / 10).coerceAtMost(20)
 
     private companion object {
         const val KEY_DATE = "last_study_date"

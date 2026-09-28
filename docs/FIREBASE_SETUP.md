@@ -13,7 +13,7 @@ Firebase SDK dependencies, the Google Services Gradle plugin, and the owner-prov
 
 ## Data and security boundary
 
-`users/{uid}` contains user profile, CEFR estimate, completion count, and skill-mastery summary. `users/{uid}/lessonEvents/{eventId}` stores lesson ID, score, and server timestamp. Firestore rules make user documents owner-readable and restrict update fields. A user-owned progress number is not proof of paid access. **No premium entitlement field may be client-writable**; subscription state must come from trusted backend verification of Google Play purchase tokens.
+`users/{uid}` contains user profile, CEFR estimate, completion count, and skill-mastery summary. `users/{uid}/lessonEvents/{eventId}` stores the lesson ID and server timestamp; an automatic assessment score is included only when that lesson has a scoreable response (open-ended writing is not falsely scored). Firestore rules make user documents owner-readable and restrict update fields. A user-owned progress number is not proof of paid access. **No premium entitlement field may be client-writable**; subscription state must come from trusted backend verification of Google Play purchase tokens.
 
 ## Current implementation status
 

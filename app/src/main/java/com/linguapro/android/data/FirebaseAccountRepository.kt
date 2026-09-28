@@ -99,8 +99,9 @@ class FirebaseAccountRepository(context: Context) {
         ).addOnSuccessListener { callback(null) }.addOnFailureListener { callback(safeMessage(it)) }
     }
 
-    fun recordLesson(uid: String, lessonId: String, score: Int, countsTowardCourse: Boolean = true, callback: (String?) -> Unit) {
-        val event = mapOf("lessonId" to lessonId, "score" to score.coerceIn(0, 100), "completedAt" to FieldValue.serverTimestamp())
+    fun recordLesson(uid: String, lessonId: String, score: Int?, countsTowardCourse: Boolean = true, callback: (String?) -> Unit) {
+        val event = mutableMapOf<String, Any>("lessonId" to lessonId, "completedAt" to FieldValue.serverTimestamp())
+        score?.let { event["score"] = it.coerceIn(0, 100) }
         store().collection("users").document(uid).collection("lessonEvents").add(event)
             .addOnSuccessListener {
                 val profileUpdates = mutableMapOf<String, Any>(

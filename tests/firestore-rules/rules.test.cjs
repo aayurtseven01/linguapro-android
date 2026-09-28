@@ -86,6 +86,9 @@ test('learner can append own bounded lesson events but cannot edit or delete the
   await assertSucceeds(setDoc(event, {
     lessonId: 'A1-U1-L1', score: 75, completedAt: serverTimestamp(),
   }));
+  await assertSucceeds(setDoc(doc(alice, 'users/alice/lessonEvents/ungraded-writing'), {
+    lessonId: 'A1-U1-L2', completedAt: serverTimestamp(),
+  }));
   await assertFails(setDoc(doc(alice, 'users/alice/lessonEvents/bad-score'), {
     lessonId: 'A1-U1-L1', score: 101, completedAt: serverTimestamp(),
   }));

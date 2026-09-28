@@ -49,12 +49,13 @@ service cloud.firestore {
         allow read: if signedInAs(userId);
         allow create: if signedInAs(userId)
           && request.resource.data.keys().hasOnly(['lessonId', 'score', 'completedAt'])
-          && request.resource.data.keys().hasAll(['lessonId', 'score', 'completedAt'])
+          && request.resource.data.keys().hasAll(['lessonId', 'completedAt'])
           && request.resource.data.lessonId is string
           && request.resource.data.lessonId.size() > 0
-          && request.resource.data.score is int
-          && request.resource.data.score >= 0
-          && request.resource.data.score <= 100;
+          && (!('score' in request.resource.data)
+            || (request.resource.data.score is int
+              && request.resource.data.score >= 0
+              && request.resource.data.score <= 100));
         allow update, delete: if false;
       }
     }

@@ -44,7 +44,7 @@ fun LearningLessonScreen(
     exerciseIndex: Int,
     onBack: () -> Unit,
     onExerciseResult: (exerciseId: String, correct: Boolean) -> Unit,
-    onDone: (Int) -> Unit
+    onDone: (Int?) -> Unit
 ) {
     val index = rememberSaveable(lesson.id, exerciseIndex) { mutableIntStateOf(exerciseIndex) }
     val exercise = lesson.exercises.getOrNull(index.intValue)
@@ -53,7 +53,10 @@ fun LearningLessonScreen(
     var submitted by rememberSaveable(lesson.id, index.intValue) { mutableStateOf(false) }
     var result by rememberSaveable(lesson.id, index.intValue) { mutableStateOf<Boolean?>(null) }
     var speechText by rememberSaveable(lesson.id, index.intValue) { mutableStateOf("") }
-    var correctCount by rememberSaveable(lesson.id) { mutableIntStateOf(0) }
+    var correctCount by rememberSaveable(lesson.id, exerciseIndex) { mutableIntStateOf(0) }
+    var gradedCount by rememberSaveable(lesson.id, exerciseIndex) { mutableIntStateOf(0) }
+    var lessonFinished by rememberSaveable(lesson.id, exerciseIndex) { mutableStateOf(false) }
+    var finalScore by rememberSaveable(lesson.id, exerciseIndex) { mutableIntStateOf(0) }
     var ttsReady by remember { mutableStateOf(false) }
     val context = LocalContext.current
     val tts = remember { mutableStateOf<TextToSpeech?>(null) }
@@ -83,6 +86,7 @@ fun LearningLessonScreen(
                 val isCorrect = AnswerChecker.matches(recognized, exercise?.acceptedAnswers.orEmpty())
                 result = isCorrect
                 exercise?.let { onExerciseResult(it.id, isCorrect) }
+                gradedCount++
                 if (isCorrect) correctCount++
                 submitted = true
             }
@@ -99,8 +103,13 @@ fun LearningLessonScreen(
         }
     }
 
+    if (lessonFinished) {
+        LessonCompletion(lesson = lesson, correct = correctCount, graded = gradedCount, score = finalScore, onContinue = { onDone(finalScore.takeIf { it >= 0 }) })
+        return
+    }
+
     if (exercise == null) {
-        LessonColumn { LessonButton("Dersi tamamla") { onDone(0) } }
+        LessonColumn { LessonButton("Dersi tamamla") { finalScore = -1; lessonFinished = true } }
         return
     }
 
@@ -226,7 +235,8 @@ fun LearningLessonScreen(
                     result = null
                     submitted = false
                 } else if (index.intValue >= lesson.exercises.lastIndex) {
-                    onDone((correctCount * 100 / lesson.exercises.size.coerceAtLeast(1)).coerceIn(0, 100))
+                    finalScore = LessonScoring.accuracyPercent(correctCount, gradedCount) ?: -1
+                    lessonFinished = true
                 } else index.intValue++
             } else {
                 val typedAnswer = if (exercise.options.isNotEmpty()) exercise.options.getOrNull(selected).orEmpty() else answer
@@ -238,12 +248,37 @@ fun LearningLessonScreen(
                     val isCorrect = AnswerChecker.matches(typedAnswer, exercise.acceptedAnswers)
                     result = isCorrect
                     onExerciseResult(exercise.id, isCorrect)
+                    gradedCount++
                     if (isCorrect) correctCount++
                     submitted = true
                 }
             }
         }
         Spacer(Modifier.height(22.dp))
+    }
+}
+
+@Composable
+private fun LessonCompletion(lesson: LearningLesson, correct: Int, graded: Int, score: Int, onContinue: () -> Unit) {
+    val isScored = score >= 0
+    val xp = LessonScoring.xpForCompletion(score.takeIf { it >= 0 })
+    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+        Text(if (score >= 80) "🎉" else "✨", fontSize = 62.sp)
+        Text("Ders tamamlandı", fontSize = 27.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 14.dp))
+        Text(lesson.title, color = LessonMuted, fontSize = 15.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 5.dp))
+        Spacer(Modifier.height(20.dp))
+        Surface(color = LessonPanel, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
+            Column(Modifier.padding(18.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                Text("+$xp XP", color = LessonGold, fontSize = 25.sp, fontWeight = FontWeight.ExtraBold)
+                Text(if (isScored) "$correct doğru yanıt • $graded otomatik değerlendirilen deneme" else "Açık uçlu yazma etkinliğini tamamladın; otomatik puan üretilmedi.", color = LessonMuted, fontSize = 12.sp, lineHeight = 17.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 6.dp))
+                Text("${lesson.exercises.size} etkinliği tamamladın.", color = Color.White, fontSize = 13.sp, modifier = Modifier.padding(top = 8.dp))
+            }
+        }
+        if (lesson.exercises.any { it.skill == Skill.WRITING }) {
+            Text("Yazma yanıtları otomatik puanlanmadı; örnek yanıtları kendi çalışmanla karşılaştır.", color = LessonMuted, fontSize = 12.sp, lineHeight = 17.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 12.dp))
+        }
+        Spacer(Modifier.height(20.dp))
+        LessonButton("Öğrenme yoluma dön", onContinue)
     }
 }
 
