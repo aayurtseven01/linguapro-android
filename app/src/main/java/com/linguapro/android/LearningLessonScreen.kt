@@ -53,6 +53,7 @@ fun LearningLessonScreen(
     var submitted by rememberSaveable(lesson.id, index.intValue) { mutableStateOf(false) }
     var result by rememberSaveable(lesson.id, index.intValue) { mutableStateOf<Boolean?>(null) }
     var speechText by rememberSaveable(lesson.id, index.intValue) { mutableStateOf("") }
+    var speechMessage by rememberSaveable(lesson.id, index.intValue) { mutableStateOf("") }
     var correctCount by rememberSaveable(lesson.id, exerciseIndex) { mutableIntStateOf(0) }
     var gradedCount by rememberSaveable(lesson.id, exerciseIndex) { mutableIntStateOf(0) }
     var lessonFinished by rememberSaveable(lesson.id, exerciseIndex) { mutableStateOf(false) }
@@ -82,6 +83,7 @@ fun LearningLessonScreen(
             val recognized = activityResult.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.firstOrNull().orEmpty()
             if (recognized.isNotBlank()) {
                 speechText = recognized
+                speechMessage = ""
                 answer = recognized
                 val isCorrect = AnswerChecker.matches(recognized, exercise?.acceptedAnswers.orEmpty())
                 result = isCorrect
@@ -100,6 +102,9 @@ fun LearningLessonScreen(
                 putExtra(RecognizerIntent.EXTRA_PROMPT, "İngilizce cümleyi söyle")
             }
             runCatching { speechLauncher.launch(intent) }
+                .onFailure { speechMessage = "Bu cihazda konuşma tanıma açılamadı. Cümleyi aşağıya yazabilirsin." }
+        } else {
+            speechMessage = "Mikrofon izni verilmedi. Cümleyi aşağıya yazarak devam edebilirsin."
         }
     }
 
@@ -193,7 +198,15 @@ fun LearningLessonScreen(
                         Icon(Icons.Default.Mic, null); Text("  Dokun ve İngilizce konuş", fontWeight = FontWeight.Bold)
                     }
                     if (speechText.isNotBlank()) Text("Algılanan ifade: $speechText", color = LessonMuted, fontSize = 13.sp, modifier = Modifier.padding(top = 10.dp))
-                    Text("Not: Bu cihazın konuşma tanıma sonucu; telaffuz puanı değildir.", color = LessonMuted, fontSize = 11.sp, lineHeight = 16.sp, modifier = Modifier.padding(top = 8.dp))
+                    if (speechMessage.isNotBlank()) Text(speechMessage, color = Color(0xFFFFCC80), fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 8.dp))
+                    OutlinedTextField(
+                        value = answer,
+                        onValueChange = { if (!submitted) answer = it },
+                        modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                        label = { Text("İstersen cümleyi buraya yaz") },
+                        colors = OutlinedTextFieldDefaults.colors(focusedBorderColor = LessonGold, unfocusedBorderColor = LessonPanel2, focusedLabelColor = LessonGold, unfocusedLabelColor = LessonMuted, cursorColor = LessonGold)
+                    )
+                    Text("Konuşma tanıma metni değerlendirir; ses kalitesi veya telaffuz puanı vermez.", color = LessonMuted, fontSize = 11.sp, lineHeight = 16.sp, modifier = Modifier.padding(top = 8.dp))
                 } else {
                     OutlinedTextField(
                         value = answer,
