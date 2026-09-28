@@ -35,6 +35,18 @@ private val Panel2 = Color(0xFF183653)
 private val Gold = Color(0xFFF2BE45)
 private val Muted = Color(0xFFA9BED2)
 private val Mint = Color(0xFF63D2B0)
+private val termsSummary = """
+    LinguaPro, İngilizce öğrenme ve pratik için sunulan bir eğitim aracıdır; resmî CEFR sertifikası veya profesyonel çeviri hizmeti sağlamaz. Alıştırma yanıtları ve otomatik değerlendirmeler öğrenme desteği içindir; her açık uçlu yanıta kesin doğruluk puanı verilmez.
+
+    Uygulamanın bazı özellikleri ve içerikleri geliştirme aşamasındadır. Şu an plan ekranı satın alma başlatmaz ve 7 günlük denemeyi başlatmış sayılmaz. İçerik ve özellikler güncellenebilir. Bu kısa metin üretim öncesi hukuki incelemenin yerini tutmaz.
+""".trimIndent()
+private val privacySummary = """
+    Hesap açıldığında ad, e-posta, tahmini CEFR seviyesi ve ders tamamlama olayları Firebase Authentication/Firestore üzerinden işlenebilir. Şifreyi uygulama kendi veritabanında saklamaz; Firebase Authentication kullanır. Bu sürümde XP ve çalışma serisi özeti cihazdaki uygulama depolamasında tutulur.
+
+    Konuşma etkinliğini sen başlattığında Android'in konuşma tanıma arayüzü açılır. Tanınan ifade ders yanıtı olarak ekranda işlenebilir; ses kaydı LinguaPro tarafından ders olayına eklenmez. İşletim sistemi veya seçili tanıma sağlayıcısının veri işlemesi kendi ayar ve politikalarına bağlıdır.
+
+    Bu özet üretim öncesi hukuki ve veri koruma incelemesinden geçmelidir. Hesap silme/dışa aktarma ve tüm veriler için cihazlar arası senkronizasyon henüz tamamlanmamıştır.
+""".trimIndent()
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -177,7 +189,7 @@ private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
         Text("Seviyene göre kişisel plan, kısa dersler ve konuşma pratiğiyle adım adım ilerle.", color = Muted, textAlign = TextAlign.Center, fontSize = 16.sp, lineHeight = 24.sp)
         Spacer(Modifier.height(24.dp))
         FeatureLine(Icons.Default.School, "Sana özel öğrenme programı")
-        FeatureLine(Icons.Default.RecordVoiceOver, "Konuşma ve telaffuz pratiği")
+        FeatureLine(Icons.Default.RecordVoiceOver, "Örnek sesle konuşma ve tekrar çalışması")
         FeatureLine(Icons.Default.TrendingUp, "A1’den C1’e gelişim takibi")
         Spacer(Modifier.height(24.dp))
         PrimaryButton("Hemen Başla", onStart)
@@ -201,6 +213,8 @@ private fun RegisterScreen(
     var error by rememberSaveable { mutableStateOf("") }
     var busy by rememberSaveable { mutableStateOf(false) }
     var info by rememberSaveable { mutableStateOf("") }
+    var acceptedLegal by rememberSaveable { mutableStateOf(false) }
+    var legalDialog by rememberSaveable { mutableStateOf("") }
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp)) {
         BackRow(if (isLogin) "Hesabına giriş yap" else "Hesap oluştur", onBack)
         Spacer(Modifier.height(22.dp))
@@ -233,7 +247,7 @@ private fun RegisterScreen(
                 }
                 if (isLogin) accounts.signIn(email, password, done) else accounts.register(name, email, password, done)
             }
-        }, enabled = !busy)
+        }, enabled = !busy && acceptedLegal)
         if (isLogin) {
             Text("Şifreni mi unuttun? Sıfırlama bağlantısı gönder", color = Gold, fontSize = 12.sp, modifier = Modifier.align(Alignment.CenterHorizontally).clickable {
                 if (!email.contains('@')) error = "Önce e-posta adresini gir."
@@ -248,12 +262,36 @@ private fun RegisterScreen(
             Spacer(Modifier.height(12.dp))
             InfoCard("Firebase henüz bu uygulamaya bağlanmadı. Gerçek kayıt için Firebase Console yapılandırması gerekir.")
             Spacer(Modifier.height(10.dp))
-            OutlinedButton(onClick = { onContinue(name.ifBlank { "Demo Öğrencisi" }, email, "") }, modifier = Modifier.fillMaxWidth()) {
+            OutlinedButton(onClick = { onContinue(name.ifBlank { "Demo Öğrencisi" }, email, "") }, enabled = acceptedLegal, modifier = Modifier.fillMaxWidth()) {
                 Text("Demo akışını aç (hesap oluşturmaz)")
             }
         }
         Spacer(Modifier.height(18.dp))
-        Text("Devam ederek Kullanım Koşulları ve Gizlilik Politikası'nı kabul etmiş olursun.", color = Muted, fontSize = 11.sp, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
+            Checkbox(checked = acceptedLegal, onCheckedChange = { acceptedLegal = it }, colors = CheckboxDefaults.colors(checkedColor = Gold, checkmarkColor = Navy))
+            Text("Aşağıdaki metinleri okudum ve kabul ediyorum.", color = Muted, fontSize = 11.sp, lineHeight = 15.sp)
+        }
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+            Text("Kullanım Koşulları", color = Gold, fontSize = 11.sp, modifier = Modifier.clickable { legalDialog = "terms" }.padding(6.dp))
+            Text("•", color = Muted, modifier = Modifier.padding(6.dp))
+            Text("Gizlilik Politikası", color = Gold, fontSize = 11.sp, modifier = Modifier.clickable { legalDialog = "privacy" }.padding(6.dp))
+        }
+        if (legalDialog.isNotBlank()) {
+            val isTerms = legalDialog == "terms"
+            AlertDialog(
+                onDismissRequest = { legalDialog = "" },
+                title = { Text(if (isTerms) "Kullanım Koşulları" else "Gizlilik Politikası") },
+                text = {
+                    Column(Modifier.heightIn(max = 340.dp).verticalScroll(rememberScrollState())) {
+                        Text(if (isTerms) termsSummary else privacySummary, fontSize = 13.sp, lineHeight = 19.sp)
+                    }
+                },
+                confirmButton = { TextButton(onClick = { legalDialog = "" }) { Text("Kapat", color = Gold) } },
+                containerColor = Panel,
+                titleContentColor = Color.White,
+                textContentColor = Muted
+            )
+        }
     }
 }
 
@@ -275,7 +313,7 @@ private fun PlanScreen(plan: String, onPlan: (String) -> Unit, onBack: () -> Uni
         Spacer(Modifier.height(18.dp))
         FeatureLine(Icons.Default.MenuBook, "A1’den C1’e seviyene özel içerik")
         FeatureLine(Icons.Default.BusinessCenter, "İş, seyahat ve günlük yaşam İngilizcesi")
-        FeatureLine(Icons.Default.Mic, "Konuşma pratiği ve telaffuz geri bildirimi")
+        FeatureLine(Icons.Default.Mic, "Konuşma üretimi ve tekrar etkinlikleri")
         Spacer(Modifier.height(16.dp))
         PrimaryButton("Demo programına devam et", onStart)
         Spacer(Modifier.height(10.dp))
@@ -475,7 +513,7 @@ private fun ProfileScreen(name: String, email: String, level: String, completed:
         InfoCard("Seviye: $level  •  Tamamlanan ders: $completed  •  Toplam XP: ${progress.totalXp}")
         Spacer(Modifier.height(18.dp))
         Text("Hesap ve gizlilik", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-        Text("Hesap verilerini ve senkronizasyonu Firebase hesabın yönetir. Demo ilerlemesi bu cihazda saklanır.", color = Muted, fontSize = 12.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 7.dp, bottom = 15.dp))
+        Text("Ders tamamlama hesabınla Firestore'a kaydedilir. XP ve çalışma serisi özeti şu an bu cihazda saklanır; cihazlar arası XP/seri eşitlemesi henüz yoktur.", color = Muted, fontSize = 12.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 7.dp, bottom = 15.dp))
         OutlinedButton(onClick = onSignOut, modifier = Modifier.fillMaxWidth()) { Text("Oturumu kapat", color = Color.White) }
         Spacer(Modifier.height(20.dp))
     }
