@@ -53,19 +53,26 @@ private fun LinguaTheme(content: @Composable () -> Unit) {
 }
 
 private enum class Screen { Welcome, Register, Login, Plans, Quiz, Home, Lesson, Locked }
-private data class Question(val level: String, val prompt: String, val answers: List<String>, val correct: Int)
+private data class Question(
+    val level: String,
+    val prompt: String,
+    val answers: List<String>,
+    val correct: Int,
+    val skill: Skill = Skill.GRAMMAR,
+    val context: String = ""
+)
 private val questions = listOf(
     Question("A1", "Hello! How ___ you?", listOf("is", "are", "am", "be"), 1),
     Question("A1", "I ___ from Türkiye.", listOf("are", "is", "am", "be"), 2),
-    Question("A1", "Choose the plural: one book, two ___.", listOf("book", "books", "bookes", "booking"), 1),
+    Question("A1", "Where is Maya from?", listOf("Italy", "Spain", "Canada", "Greece"), 1, Skill.READING, "Hi! I'm Maya. I'm from Spain. Nice to meet you."),
     Question("A2", "She ___ to work every day.", listOf("go", "goes", "going", "gone"), 1),
     Question("A2", "We ___ dinner when you called.", listOf("have", "had", "were having", "are having"), 2),
-    Question("A2", "There isn't ___ milk in the fridge.", listOf("some", "many", "any", "few"), 2),
+    Question("A2", "What does Lena need to buy?", listOf("milk", "bread", "apples", "tea"), 1, Skill.READING, "The fridge is nearly empty. We have milk and apples, but no bread. Let's buy some after work."),
     Question("B1", "If I ___ more time, I'd learn another language.", listOf("have", "had", "will have", "would have"), 1),
     Question("B1", "The report ___ by the team yesterday.", listOf("completed", "was completed", "has complete", "is completing"), 1),
-    Question("B1", "I've lived here ___ 2021.", listOf("for", "since", "during", "from"), 1),
+    Question("B1", "Why did the team change the schedule?", listOf("A client meeting moved.", "A colleague was ill.", "The venue closed.", "The report was unfinished."), 0, Skill.READING, "The client moved our review meeting from Thursday to Wednesday, so we brought the project check-in forward by one day."),
     Question("B2", "Despite ___ tired, she finished the presentation.", listOf("be", "being", "was", "to be"), 1),
-    Question("B2", "The manager asked me ___ the figures again.", listOf("check", "checking", "to check", "checked"), 2),
+    Question("B2", "In the report, 'inconclusive' means the results…", listOf("prove the claim", "do not provide a clear answer", "are irrelevant", "were fabricated"), 1, Skill.VOCABULARY, "The pilot showed a possible improvement, but the sample was too small for a firm conclusion."),
     Question("C1", "Hardly ___ the meeting begun when the fire alarm rang.", listOf("had", "has", "did", "was"), 0)
 )
 private val levels = listOf("A1", "A2", "B1", "B2", "C1")
@@ -288,9 +295,14 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
         Spacer(Modifier.height(22.dp))
         Surface(color = Panel, shape = RoundedCornerShape(24.dp)) {
             Column(Modifier.fillMaxWidth().padding(20.dp)) {
-                Row(verticalAlignment = Alignment.CenterVertically) { Icon(Icons.Default.School, null, tint = Gold); Text("  ${q.level} • GRAMER", color = Gold, fontSize = 13.sp, fontWeight = FontWeight.Bold) }
-                Text("Doğru seçeneği işaretle.", color = Muted, fontSize = 13.sp, modifier = Modifier.padding(top = 5.dp, bottom = 20.dp))
-                Text(q.prompt, fontSize = 25.sp, fontWeight = FontWeight.Bold, lineHeight = 32.sp)
+                Row(verticalAlignment = Alignment.CenterVertically) { Icon(Icons.Default.School, null, tint = Gold); Text("  ${q.level} • ${skillLabel(q.skill).uppercase()}", color = Gold, fontSize = 13.sp, fontWeight = FontWeight.Bold) }
+                Text("Doğru seçeneği işaretle.", color = Muted, fontSize = 13.sp, modifier = Modifier.padding(top = 5.dp, bottom = 16.dp))
+                if (q.context.isNotBlank()) {
+                    Surface(color = Panel2, shape = RoundedCornerShape(14.dp), modifier = Modifier.padding(bottom = 15.dp)) {
+                        Text(q.context, fontSize = 15.sp, lineHeight = 22.sp, modifier = Modifier.fillMaxWidth().padding(14.dp))
+                    }
+                }
+                Text(q.prompt, fontSize = 23.sp, fontWeight = FontWeight.Bold, lineHeight = 30.sp)
                 Spacer(Modifier.height(20.dp))
                 q.answers.forEachIndexed { i, answer ->
                     val isSelected = selected == i

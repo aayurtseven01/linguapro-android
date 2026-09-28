@@ -3,6 +3,7 @@ package com.linguapro.android.data
 import android.content.Context
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FieldValue
@@ -111,11 +112,12 @@ class FirebaseAccountRepository(context: Context) {
             .addOnFailureListener { callback(safeMessage(it)) }
     }
 
-    private fun authMessage(error: Throwable): String = when {
-        error.message.orEmpty().contains("already in use", true) -> "Bu e-posta ile bir hesap zaten var. Giriş yapmayı dene."
-        error.message.orEmpty().contains("badly formatted", true) -> "E-posta adresini kontrol et."
-        error.message.orEmpty().contains("weak-password", true) -> "Şifre en az 6 karakter olmalı."
-        error.message.orEmpty().contains("network", true) -> "Bağlantı kurulamadı. İnternetini kontrol edip tekrar dene."
+    private fun authMessage(error: Throwable): String = when ((error as? FirebaseAuthException)?.errorCode) {
+        "ERROR_EMAIL_ALREADY_IN_USE" -> "Bu e-posta ile bir hesap zaten var. Giriş yapmayı dene."
+        "ERROR_INVALID_EMAIL" -> "E-posta adresini kontrol et."
+        "ERROR_WEAK_PASSWORD" -> "Şifre en az 6 karakter olmalı."
+        "ERROR_INVALID_CREDENTIAL", "ERROR_WRONG_PASSWORD", "ERROR_USER_NOT_FOUND" -> "E-posta veya şifre doğru değil."
+        "ERROR_NETWORK_REQUEST_FAILED" -> "Bağlantı kurulamadı. İnternetini kontrol edip tekrar dene."
         else -> safeMessage(error)
     }
 
