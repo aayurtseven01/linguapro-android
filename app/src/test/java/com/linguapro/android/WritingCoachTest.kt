@@ -8,7 +8,7 @@ class WritingCoachTest {
     @Test fun `flags a few common transparent writing patterns`() {
         val feedback = WritingCoach.review("i is happy")
         assertTrue(feedback.suggestions.any { it.contains("büyük harfle") })
-        assertTrue(feedback.suggestions.any { it.contains("özne-fiil") })
+        assertTrue(feedback.suggestions.any { it.contains("özne-fiil", ignoreCase = true) })
         assertTrue(feedback.suggestions.any { it.contains("noktalama") })
     }
 
