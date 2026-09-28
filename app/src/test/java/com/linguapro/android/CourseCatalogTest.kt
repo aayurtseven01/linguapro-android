@@ -8,11 +8,10 @@ import org.junit.Test
 class CourseCatalogTest {
     @Test fun hasEveryPlannedLevelInOrder() {
         assertEquals(listOf("A1", "A2", "B1", "B2", "C1"), CourseCatalog.levels)
-        CourseCatalog.levels.forEach { assertTrue("$it must have at least ten authored units", CourseCatalog.units(it).size >= 10) }
-        assertTrue("A1 foundation should have a wider beginner path", CourseCatalog.units("A1").size >= 12)
+        CourseCatalog.levels.forEach { assertEquals(12, CourseCatalog.units(it).size) }
         assertEquals(25, CourseCatalog.lessonCount("A1"))
-        listOf("A2", "B1", "B2", "C1").forEach { assertEquals(20, CourseCatalog.lessonCount(it)) }
-        assertEquals(105, CourseCatalog.allLessons().size)
+        listOf("A2", "B1", "B2", "C1").forEach { assertEquals(24, CourseCatalog.lessonCount(it)) }
+        assertEquals(121, CourseCatalog.allLessons().size)
     }
 
     @Test fun allSeedLessonsHaveStableUniqueIdsAndActivities() {
