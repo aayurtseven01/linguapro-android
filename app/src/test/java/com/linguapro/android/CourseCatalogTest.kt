@@ -22,7 +22,7 @@ class CourseCatalogTest {
         assertEquals(exerciseIds.size, exerciseIds.toSet().size)
         lessons.forEach { lesson ->
             assertTrue("${lesson.id} needs a can-do outcome", lesson.canDo.isNotBlank())
-            assertTrue("${lesson.id} needs activities", lesson.exercises.isNotEmpty())
+            assertTrue("${lesson.id} should have at least two varied activities", lesson.exercises.size >= 2)
             lesson.exercises.forEach { exercise ->
                 assertTrue(exercise.id.isNotBlank())
                 assertTrue(exercise.prompt.isNotBlank())
@@ -41,12 +41,15 @@ class CourseCatalogTest {
         }
     }
 
-    @Test fun courseActivitiesIncludeAllCoreLanguageSkillsAcrossThePath() {
+    @Test fun courseActivitiesIncludeEveryCoreSkillAtEachLevel() {
         CourseCatalog.levels.forEach { level ->
-            val skills = CourseCatalog.units(level).flatMap { it.lessons }.flatMap { it.exercises }.map { it.skill }.toSet()
-            assertTrue("$level should include receptive practice", Skill.LISTENING in skills || Skill.READING in skills)
-            assertTrue("$level should include productive practice", Skill.SPEAKING in skills || Skill.WRITING in skills)
-            assertTrue("$level should include language form/lexis", Skill.GRAMMAR in skills || Skill.VOCABULARY in skills)
+            val units = CourseCatalog.units(level)
+            val skills = units.flatMap { it.lessons }.flatMap { it.exercises }.map { it.skill }.toSet()
+            Skill.values().forEach { skill -> assertTrue("$level needs $skill activities", skill in skills) }
+            units.forEach { unit ->
+                val exerciseCount = unit.lessons.sumOf { it.exercises.size }
+                assertTrue("${unit.id} needs multiple practice moments", exerciseCount >= 4)
+            }
         }
     }
 
