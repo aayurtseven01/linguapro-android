@@ -2,6 +2,7 @@
 .gradle/
 /local.properties
 /firebase-debug.log
+node_modules/
 /.firebase/
 /.idea/
 /build/

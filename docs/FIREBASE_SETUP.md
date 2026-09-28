@@ -1,6 +1,6 @@
 # Firebase connection checklist
 
-Firebase SDK dependencies and the Google Services Gradle plugin are staged in the Android project. The Google Services plugin is applied only when `app/google-services.json` exists, so clean CI builds do not need the owner's Firebase keys. The app deliberately shows a labelled demo path when Firebase is not configured; that path creates no account.
+Firebase SDK dependencies, the Google Services Gradle plugin, and the owner-provided `app/google-services.json` are present. The config matches package `com.linguapro.android`, is tracked with the private repository for reproducible sync/CI builds, and contains Firebase client configuration (not an Admin SDK/service-account secret). Firebase-provisioned API keys identify the project; enforce Firebase API restrictions, Security Rules and App Check. The app deliberately shows a labelled demo path when Firebase is not configured; that path creates no account.
 
 ## One-time project-owner setup
 

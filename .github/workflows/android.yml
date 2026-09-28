@@ -28,6 +28,19 @@ jobs:
         run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
       - name: Run unit tests and build debug APK
         run: ./gradlew --no-daemon testDebugUnitTest assembleDebug
+      - name: Set up JDK 21 for Firebase Emulator
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Set up Node.js for Firestore rules tests
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Test Firestore security rules in emulator
+        run: |
+          npm ci --prefix tests/firestore-rules
+          npm test --prefix tests/firestore-rules
       - name: Publish debug APK
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2

@@ -5,26 +5,53 @@ service cloud.firestore {
       return request.auth != null && request.auth.uid == userId;
     }
 
+    function validLevel(level) {
+      return level in ['A1', 'A2', 'B1', 'B2', 'C1'];
+    }
+
+    function validProfile(profile, userId) {
+      return profile.uid == userId
+        && profile.displayName is string
+        && profile.displayName.size() > 0
+        && profile.displayName.size() <= 80
+        && profile.email is string
+        && profile.email.size() <= 254
+        && validLevel(profile.cefrLevel)
+        && profile.completedLessons is int
+        && profile.completedLessons >= 0
+        && profile.skillMastery is map
+        && profile.onboardingComplete is bool;
+    }
+
     match /users/{userId} {
       allow read: if signedInAs(userId);
       allow create: if signedInAs(userId)
-        && request.resource.data.uid == userId
         && request.resource.data.keys().hasOnly([
           'uid', 'displayName', 'email', 'cefrLevel', 'completedLessons',
           'skillMastery', 'onboardingComplete', 'createdAt', 'updatedAt'
-        ]);
+        ])
+        && request.resource.data.keys().hasAll([
+          'uid', 'displayName', 'email', 'cefrLevel', 'completedLessons',
+          'skillMastery', 'onboardingComplete', 'createdAt', 'updatedAt'
+        ])
+        && validProfile(request.resource.data, userId);
+
       // Purchase/entitlement fields are deliberately not client-writable.
       allow update: if signedInAs(userId)
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
           'displayName', 'cefrLevel', 'completedLessons', 'skillMastery',
           'onboardingComplete', 'lastStudiedAt', 'updatedAt'
-        ]);
+        ])
+        && validProfile(request.resource.data, userId);
       allow delete: if false;
 
       match /lessonEvents/{eventId} {
         allow read: if signedInAs(userId);
         allow create: if signedInAs(userId)
           && request.resource.data.keys().hasOnly(['lessonId', 'score', 'completedAt'])
+          && request.resource.data.keys().hasAll(['lessonId', 'score', 'completedAt'])
+          && request.resource.data.lessonId is string
+          && request.resource.data.lessonId.size() > 0
           && request.resource.data.score is int
           && request.resource.data.score >= 0
           && request.resource.data.score <= 100;
@@ -32,7 +59,7 @@ service cloud.firestore {
       }
     }
 
-    // Courses are shipped as versioned app content in the MVP; never client-writable.
+    // Courses are versioned app content; never client-writable.
     match /courseContent/{document=**} {
       allow read: if request.auth != null;
       allow write: if false;
