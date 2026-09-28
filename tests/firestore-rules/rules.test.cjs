@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { after, before, test } = require('node:test');
+const { after, before, beforeEach, test } = require('node:test');
 const {
   assertFails,
   assertSucceeds,
@@ -26,6 +26,10 @@ before(async () => {
     projectId: 'demo-linguapro-rules',
     firestore: { rules },
   });
+});
+
+beforeEach(async () => {
+  await env.clearFirestore();
 });
 
 after(async () => {
