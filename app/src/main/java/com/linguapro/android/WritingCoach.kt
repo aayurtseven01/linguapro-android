@@ -15,7 +15,7 @@ object WritingCoach {
             if (text.last() !in listOf('.', '!', '?')) suggestions += "Cümle sonuna uygun noktalama işareti ekle."
             if (Regex(" {2,}").containsMatchIn(text)) suggestions += "Kelimeler arasında tek boşluk kullan."
             val lower = text.lowercase()
-            if (Regex("\\b(i|we|you|they) is\\b").containsMatchIn(lower)) suggestions += "Özne-fiil uyumunu kontrol et: I/we/you/they ile genellikle am/are kullanılır."
+            if (Regex("(^|\\s)(i|we|you|they)\\s+is(\\s|$)").containsMatchIn(lower)) suggestions += "Özne-fiil uyumunu kontrol et: I/we/you/they ile genellikle am/are kullanılır."
             if (Regex("\\b(he|she|it) are\\b").containsMatchIn(lower)) suggestions += "He/she/it ile be fiilinin is biçimini kullan."
             if (Regex("\\bdoesn't\\s+[a-z]+s\\b").containsMatchIn(lower)) suggestions += "Doesn't sonrasında fiilin yalın biçimini kullan."
             if (words.size >= 3) strengths += "Yanıtın ${words.size} kelime içeriyor."
