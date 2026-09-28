@@ -284,12 +284,14 @@ private fun RegisterScreen(
             if (isLogin) "Hesabın yok mu? Kayıt ol" else "Zaten hesabın var mı? Giriş yap",
             color = Gold, fontSize = 13.sp, modifier = Modifier.align(Alignment.CenterHorizontally).clickable { isLogin = !isLogin; error = ""; info = "" }.padding(10.dp)
         )
-        if (!accounts.isConfigured && !isLogin) {
+        if (!isLogin) {
             Spacer(Modifier.height(12.dp))
-            InfoCard("Firebase henüz bu uygulamaya bağlanmadı. Gerçek kayıt için Firebase Console yapılandırması gerekir.")
-            Spacer(Modifier.height(10.dp))
-            OutlinedButton(onClick = { onContinue(name.ifBlank { "Demo Öğrencisi" }, email, "") }, enabled = acceptedLegal, modifier = Modifier.fillMaxWidth()) {
-                Text("Demo akışını aç (hesap oluşturmaz)")
+            if (!accounts.isConfigured) {
+                InfoCard("Firebase yapılandırması bulunamadı. Gerçek hesap için Firebase Console kurulumu gerekir; aşağıdaki misafir akışı hesap oluşturmaz.")
+                Spacer(Modifier.height(8.dp))
+            }
+            OutlinedButton(onClick = { onContinue(name.ifBlank { "Misafir Öğrenci" }, email, "") }, enabled = acceptedLegal, modifier = Modifier.fillMaxWidth()) {
+                Text("Misafir olarak keşfet (hesap açmaz)")
             }
         }
         Spacer(Modifier.height(18.dp))
