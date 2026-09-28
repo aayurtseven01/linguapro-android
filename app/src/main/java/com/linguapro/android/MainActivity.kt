@@ -90,6 +90,8 @@ private fun LinguaApp() {
     var userName by rememberSaveable { mutableStateOf(signedInUser?.displayName.orEmpty()) }
     var accountEmail by rememberSaveable { mutableStateOf(signedInUser?.email.orEmpty()) }
     var accountUid by rememberSaveable { mutableStateOf(signedInUser?.uid.orEmpty()) }
+    val progressStore = remember(context, accountUid) { LearningProgressStore(context, accountUid) }
+    var learningProgress by remember(accountUid) { mutableStateOf(progressStore.read()) }
     var level by rememberSaveable { mutableStateOf("A1") }
     var completed by rememberSaveable { mutableIntStateOf(0) }
     val screen = Screen.valueOf(screenName)
@@ -125,7 +127,7 @@ private fun LinguaApp() {
                     go(Screen.Home)
                 } else { questionIndex++; selected = -1 }
             })
-            Screen.Home -> HomeScreen(name = userName, level = level, completed = completed, onStartLesson = { go(Screen.Lesson) }, onLocked = { go(Screen.Locked) })
+            Screen.Home -> HomeScreen(name = userName, level = level, completed = completed, progress = learningProgress, onStartLesson = { go(Screen.Lesson) }, onLocked = { go(Screen.Locked) })
             Screen.Lesson -> LearningLessonScreen(
                 lesson = CourseCatalog.lessonAt(level, completed),
                 exerciseIndex = 0,
@@ -133,6 +135,7 @@ private fun LinguaApp() {
                 onDone = { score ->
                     if (accountUid.isNotBlank()) accounts.recordLesson(accountUid, CourseCatalog.lessonAt(level, completed).id, score) { }
                     completed++
+                    learningProgress = progressStore.recordLesson(score)
                     go(Screen.Home)
                 }
             )
@@ -324,7 +327,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 }
 
 @Composable
-private fun HomeScreen(name: String, level: String, completed: Int, onStartLesson: () -> Unit, onLocked: () -> Unit) {
+private fun HomeScreen(name: String, level: String, completed: Int, progress: LearningProgress, onStartLesson: () -> Unit, onLocked: () -> Unit) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         Spacer(Modifier.height(14.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
@@ -333,8 +336,8 @@ private fun HomeScreen(name: String, level: String, completed: Int, onStartLesso
         }
         Spacer(Modifier.height(18.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            StatCard("🔥", "${completed + 1} gün serisi", "Harika gidiyorsun!", Modifier.weight(1f))
-            StatCard("◉", "Günlük hedef: %70", "Bugünün hedefi", Modifier.weight(1f))
+            StatCard("🔥", "${progress.streakDays} gün seri", if (progress.streakDays == 0) "Bugün bir dersle başlat" else "Düzenli çalışmaya devam et", Modifier.weight(1f))
+            StatCard("✦", "${progress.todayXp}/${LearningProgress.DAILY_XP_GOAL} XP", if (progress.dailyGoalReached) "Günlük hedef tamamlandı" else "Günlük hedef • ${progress.dailyGoalPercent}%", Modifier.weight(1f))
         }
         Spacer(Modifier.height(23.dp))
         Text("$level Seviyesindeki Yolculuğun", fontSize = 20.sp, fontWeight = FontWeight.Bold)
