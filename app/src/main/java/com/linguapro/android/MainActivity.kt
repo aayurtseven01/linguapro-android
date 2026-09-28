@@ -108,6 +108,8 @@ private fun LinguaApp() {
     var learningProgress by remember(accountUid) { mutableStateOf(progressStore.read()) }
     val mistakeBook = remember(context, accountUid) { MistakeBookStore(context, accountUid) }
     var mistakeIds by remember(accountUid) { mutableStateOf(mistakeBook.read()) }
+    val skillProgressStore = remember(context, accountUid) { SkillProgressStore(context, accountUid) }
+    var skillStats by remember(accountUid) { mutableStateOf(skillProgressStore.read()) }
     var level by rememberSaveable { mutableStateOf("A1") }
     var completed by rememberSaveable { mutableIntStateOf(0) }
     var selectedLessonId by rememberSaveable { mutableStateOf("") }
@@ -162,9 +164,9 @@ private fun LinguaApp() {
             })
             Screen.PlacementResult -> placementSummary?.let { summary -> PlacementResultScreen(summary, onContinue = { go(Screen.Home) }) }
                 ?: WelcomeScreen(onStart = { go(Screen.Register) }, onLogin = { go(Screen.Login) })
-            Screen.Home -> HomeScreen(name = userName, level = level, completed = completed, progress = learningProgress, onStartLesson = { selectedLessonId = ""; selectedExerciseIndex = 0; go(Screen.Lesson) }, onLocked = { go(Screen.Locked) }, onPractice = { go(Screen.Practice) }, onProgress = { go(Screen.Progress) }, onProfile = { go(Screen.Profile) })
-            Screen.Practice -> PracticeScreen(level, mistakeIds, onBack = { go(Screen.Home) }, onSelectLesson = { id -> selectedLessonId = id; selectedExerciseIndex = 0; go(Screen.Lesson) }, onReviewExercise = { lessonId, exerciseIndex -> selectedLessonId = lessonId; selectedExerciseIndex = exerciseIndex; go(Screen.Lesson) })
-            Screen.Progress -> ProgressScreen(level, completed, learningProgress, onBack = { go(Screen.Home) })
+            Screen.Home -> HomeScreen(name = userName, level = level, completed = completed, progress = learningProgress, skillStats = skillStats, onStartLesson = { selectedLessonId = ""; selectedExerciseIndex = 0; go(Screen.Lesson) }, onLocked = { go(Screen.Locked) }, onPractice = { go(Screen.Practice) }, onProgress = { go(Screen.Progress) }, onProfile = { go(Screen.Profile) })
+            Screen.Practice -> PracticeScreen(level, mistakeIds, skillStats, onBack = { go(Screen.Home) }, onSelectLesson = { id -> selectedLessonId = id; selectedExerciseIndex = 0; go(Screen.Lesson) }, onReviewExercise = { lessonId, exerciseIndex -> selectedLessonId = lessonId; selectedExerciseIndex = exerciseIndex; go(Screen.Lesson) })
+            Screen.Progress -> ProgressScreen(level, completed, learningProgress, skillStats, onBack = { go(Screen.Home) })
             Screen.Profile -> ProfileScreen(userName, accountEmail, level, completed, learningProgress, onBack = { go(Screen.Home) }, onSignOut = {
                 accounts.signOut(); accountUid = ""; accountEmail = ""; userName = "Öğrenci"; level = "A1"; completed = 0; selectedLessonId = ""; go(Screen.Welcome)
             })
@@ -172,7 +174,10 @@ private fun LinguaApp() {
                 lesson = activeLesson,
                 exerciseIndex = selectedExerciseIndex,
                 onBack = { go(Screen.Home) },
-                onExerciseResult = { exerciseId, correct -> mistakeIds = mistakeBook.record(exerciseId, correct) },
+                onExerciseResult = { exerciseId, skill, correct ->
+                    mistakeIds = mistakeBook.record(exerciseId, correct)
+                    skillStats = skillProgressStore.record(skill, correct)
+                },
                 onDone = { score ->
                     val countsTowardCourse = selectedLessonId.isBlank()
                     if (accountUid.isNotBlank()) accounts.recordLesson(accountUid, activeLesson.id, score, countsTowardCourse) { }
@@ -397,7 +402,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 }
 
 @Composable
-private fun HomeScreen(name: String, level: String, completed: Int, progress: LearningProgress, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit) {
+private fun HomeScreen(name: String, level: String, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         Spacer(Modifier.height(14.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
@@ -408,6 +413,20 @@ private fun HomeScreen(name: String, level: String, completed: Int, progress: Le
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             StatCard("🔥", "${progress.streakDays} gün seri", if (progress.streakDays == 0) "Bugün bir dersle başlat" else "Düzenli çalışmaya devam et", Modifier.weight(1f))
             StatCard("✦", "${progress.todayXp}/${LearningProgress.DAILY_XP_GOAL} XP", if (progress.dailyGoalReached) "Günlük hedef tamamlandı" else "Günlük hedef • ${progress.dailyGoalPercent}%", Modifier.weight(1f))
+        }
+        val focusSkill = SkillProgressLogic.weakest(skillStats)
+        if (focusSkill != null) {
+            Spacer(Modifier.height(14.dp))
+            Surface(color = Color(0xFF183653), shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().clickable(onClick = onPractice)) {
+                Row(Modifier.padding(13.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Icon(Icons.Default.AutoAwesome, null, tint = Gold)
+                    Column(Modifier.weight(1f).padding(start = 10.dp)) {
+                        Text("Sana özel tekrar önerisi", color = Gold, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                        Text("${skillLabel(focusSkill)} becerisini güçlendir", fontWeight = FontWeight.SemiBold, fontSize = 14.sp, modifier = Modifier.padding(top = 3.dp))
+                    }
+                    Icon(Icons.Default.ChevronRight, null, tint = Muted)
+                }
+            }
         }
         Spacer(Modifier.height(23.dp))
         Text("$level Seviyesindeki Yolculuğun", fontSize = 20.sp, fontWeight = FontWeight.Bold)
@@ -447,8 +466,9 @@ private fun HomeScreen(name: String, level: String, completed: Int, progress: Le
 }
 
 @Composable
-private fun PracticeScreen(level: String, mistakeIds: Set<String>, onBack: () -> Unit, onSelectLesson: (String) -> Unit, onReviewExercise: (String, Int) -> Unit) {
-    var selectedSkill by rememberSaveable { mutableStateOf("Tümü") }
+private fun PracticeScreen(level: String, mistakeIds: Set<String>, skillStats: Map<Skill, SkillTally>, onBack: () -> Unit, onSelectLesson: (String) -> Unit, onReviewExercise: (String, Int) -> Unit) {
+    val recommendedSkill = SkillProgressLogic.weakest(skillStats)
+    var selectedSkill by rememberSaveable(level, recommendedSkill?.name) { mutableStateOf(recommendedSkill?.let(::skillLabel) ?: "Tümü") }
     val lessons = CourseCatalog.units(level).flatMap { it.lessons }
     val skills = listOf("Tümü") + Skill.values().map(::skillLabel)
     val visibleLessons = lessons.filter { lesson -> selectedSkill == "Tümü" || lesson.exercises.any { skillLabel(it.skill) == selectedSkill } }
@@ -462,6 +482,15 @@ private fun PracticeScreen(level: String, mistakeIds: Set<String>, onBack: () ->
         Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             skills.forEach { skill ->
                 FilterChip(selected = selectedSkill == skill, onClick = { selectedSkill = skill }, label = { Text(skill) })
+            }
+        }
+        recommendedSkill?.let { focus ->
+            val tally = skillStats.getValue(focus)
+            Surface(color = Color(0xFF183653), shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+                Row(Modifier.padding(horizontal = 12.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Text("Önerilen odak: ${skillLabel(focus)} • ${tally.accuracyPercent}% / ${tally.attempts} deneme", color = Muted, fontSize = 11.sp, modifier = Modifier.weight(1f))
+                    TextButton(onClick = { selectedSkill = skillLabel(focus) }) { Text("Dersleri gör", color = Gold, fontSize = 11.sp) }
+                }
             }
         }
         if (reviewItems.isNotEmpty()) {
@@ -500,7 +529,7 @@ private fun PracticeScreen(level: String, mistakeIds: Set<String>, onBack: () ->
 }
 
 @Composable
-private fun ProgressScreen(level: String, completed: Int, progress: LearningProgress, onBack: () -> Unit) {
+private fun ProgressScreen(level: String, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, onBack: () -> Unit) {
     val total = CourseCatalog.lessonCount(level)
     val done = completed.coerceAtMost(total)
     val percent = if (total == 0) 0 else done * 100 / total
@@ -525,11 +554,15 @@ private fun ProgressScreen(level: String, completed: Int, progress: LearningProg
         }
         Spacer(Modifier.height(18.dp))
         Text("Beceriler bu kursta", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-        Text("Gösterilen sayı, katalogdaki etkinlik sayısıdır; başarı puanı değildir.", color = Muted, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 4.dp, bottom = 8.dp))
+        Text("Doğruluk yalnızca otomatik değerlendirilen yanıtları kapsar; açık uçlu yazı puanlanmaz. Bu beceri özeti bu cihazda saklanır.", color = Muted, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 4.dp, bottom = 8.dp))
         Skill.values().forEach { skill ->
             val count = skills[skill] ?: 0
+            val tally = skillStats[skill] ?: SkillTally()
             Row(Modifier.fillMaxWidth().padding(vertical = 7.dp), verticalAlignment = Alignment.CenterVertically) {
-                Text(skillLabel(skill), modifier = Modifier.weight(1f), fontSize = 14.sp)
+                Column(Modifier.weight(1f)) {
+                    Text(skillLabel(skill), fontSize = 14.sp)
+                    Text(if (tally.accuracyPercent == null) "Henüz ölçülmedi" else "${tally.accuracyPercent}% • ${tally.attempts} deneme", color = Muted, fontSize = 10.sp, modifier = Modifier.padding(top = 2.dp))
+                }
                 Text("$count etkinlik", color = Gold, fontSize = 12.sp)
             }
         }
@@ -553,7 +586,7 @@ private fun ProfileScreen(name: String, email: String, level: String, completed:
         InfoCard("Seviye: $level  •  Tamamlanan ders: $completed  •  Toplam XP: ${progress.totalXp}")
         Spacer(Modifier.height(18.dp))
         Text("Hesap ve gizlilik", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-        Text("Ders tamamlama hesabınla Firestore'a kaydedilir. XP ve çalışma serisi özeti şu an bu cihazda saklanır; cihazlar arası XP/seri eşitlemesi henüz yoktur.", color = Muted, fontSize = 12.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 7.dp, bottom = 15.dp))
+        Text("Ders tamamlama hesabınla Firestore'a kaydedilir. XP, çalışma serisi ve otomatik yanıtların beceri özeti bu cihazda tutulur; cihazlar arası eşitleme henüz yoktur.", color = Muted, fontSize = 12.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 7.dp, bottom = 15.dp))
         OutlinedButton(onClick = onSignOut, modifier = Modifier.fillMaxWidth()) { Text("Oturumu kapat", color = Color.White) }
         Spacer(Modifier.height(20.dp))
     }

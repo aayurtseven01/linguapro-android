@@ -43,7 +43,7 @@ fun LearningLessonScreen(
     lesson: LearningLesson,
     exerciseIndex: Int,
     onBack: () -> Unit,
-    onExerciseResult: (exerciseId: String, correct: Boolean) -> Unit,
+    onExerciseResult: (exerciseId: String, skill: Skill, correct: Boolean) -> Unit,
     onDone: (Int?) -> Unit
 ) {
     val index = rememberSaveable(lesson.id, exerciseIndex) { mutableIntStateOf(exerciseIndex) }
@@ -87,7 +87,7 @@ fun LearningLessonScreen(
                 answer = recognized
                 val isCorrect = AnswerChecker.matches(recognized, exercise?.acceptedAnswers.orEmpty())
                 result = isCorrect
-                exercise?.let { onExerciseResult(it.id, isCorrect) }
+                exercise?.let { onExerciseResult(it.id, it.skill, isCorrect) }
                 gradedCount++
                 if (isCorrect) correctCount++
                 submitted = true
@@ -265,7 +265,7 @@ fun LearningLessonScreen(
                 } else {
                     val isCorrect = AnswerChecker.matches(typedAnswer, exercise.acceptedAnswers)
                     result = isCorrect
-                    onExerciseResult(exercise.id, isCorrect)
+                    onExerciseResult(exercise.id, exercise.skill, isCorrect)
                     gradedCount++
                     if (isCorrect) correctCount++
                     submitted = true
