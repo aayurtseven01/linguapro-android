@@ -17,11 +17,12 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Set up Android SDK
+      - name: Set up Android SDK tools
         uses: android-actions/setup-android@v3
         with:
-          cmdline-tools-version: latest
-          packages: 'platform-tools,platforms;android-35,build-tools;35.0.0'
+          packages: ''
+      - name: Install Android platform
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
       - name: Build debug APK
         run: ./gradlew --no-daemon assembleDebug
       - name: Upload APK
