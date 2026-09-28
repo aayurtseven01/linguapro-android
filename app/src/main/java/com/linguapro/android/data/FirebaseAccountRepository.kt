@@ -99,15 +99,17 @@ class FirebaseAccountRepository(context: Context) {
         ).addOnSuccessListener { callback(null) }.addOnFailureListener { callback(safeMessage(it)) }
     }
 
-    fun recordLesson(uid: String, lessonId: String, score: Int, callback: (String?) -> Unit) {
+    fun recordLesson(uid: String, lessonId: String, score: Int, countsTowardCourse: Boolean = true, callback: (String?) -> Unit) {
         val event = mapOf("lessonId" to lessonId, "score" to score.coerceIn(0, 100), "completedAt" to FieldValue.serverTimestamp())
         store().collection("users").document(uid).collection("lessonEvents").add(event)
             .addOnSuccessListener {
-                store().collection("users").document(uid).update(
-                    "completedLessons", FieldValue.increment(1),
-                    "lastStudiedAt", FieldValue.serverTimestamp(),
-                    "updatedAt", FieldValue.serverTimestamp()
-                ).addOnSuccessListener { callback(null) }.addOnFailureListener { callback(safeMessage(it)) }
+                val profileUpdates = mutableMapOf<String, Any>(
+                    "lastStudiedAt" to FieldValue.serverTimestamp(),
+                    "updatedAt" to FieldValue.serverTimestamp()
+                )
+                if (countsTowardCourse) profileUpdates["completedLessons"] = FieldValue.increment(1)
+                store().collection("users").document(uid).update(profileUpdates)
+                    .addOnSuccessListener { callback(null) }.addOnFailureListener { callback(safeMessage(it)) }
             }
             .addOnFailureListener { callback(safeMessage(it)) }
     }

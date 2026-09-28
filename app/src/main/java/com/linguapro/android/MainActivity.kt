@@ -65,7 +65,7 @@ private fun LinguaTheme(content: @Composable () -> Unit) {
     ), content = content)
 }
 
-private enum class Screen { Welcome, Register, Login, Plans, Quiz, Home, Practice, Progress, Profile, Lesson, Locked }
+private enum class Screen { Welcome, Register, Login, Plans, Quiz, PlacementResult, Home, Practice, Progress, Profile, Lesson, Locked }
 private data class Question(
     val level: String,
     val prompt: String,
@@ -98,6 +98,7 @@ private fun LinguaApp() {
     var screenName by rememberSaveable { mutableStateOf(if (signedInUser != null) Screen.Home.name else Screen.Welcome.name) }
     var questionIndex by rememberSaveable { mutableIntStateOf(0) }
     var highestPassed by rememberSaveable { mutableIntStateOf(-1) }
+    var placementSummary by remember { mutableStateOf<PlacementSummary?>(null) }
     var selected by rememberSaveable { mutableIntStateOf(-1) }
     var plan by rememberSaveable { mutableStateOf("Yıllık") }
     var userName by rememberSaveable { mutableStateOf(signedInUser?.displayName.orEmpty()) }
@@ -134,17 +135,30 @@ private fun LinguaApp() {
                 startInLogin = true, accounts = accounts, onBack = { go(Screen.Welcome) },
                 onContinue = { name, email, uid -> userName = name.ifBlank { email.substringBefore('@') }; accountEmail = email; accountUid = uid; go(Screen.Home) }
             )
-            Screen.Plans -> PlanScreen(plan = plan, onPlan = { plan = it }, onBack = { go(Screen.Register) }, onStart = { questionIndex = 0; highestPassed = -1; selected = -1; go(Screen.Quiz) })
-            Screen.Quiz -> QuizScreen(index = questionIndex, selected = selected, onSelect = { selected = it }, onBack = { if (questionIndex > 0) questionIndex-- else go(Screen.Plans) }, onNext = {
-                val q = questions[questionIndex]
-                if (selected == q.correct) highestPassed = levels.indexOf(q.level)
-                val wrong = selected != q.correct
-                if (wrong || questionIndex == questions.lastIndex) {
-                    level = levels[(highestPassed.coerceAtLeast(0)).coerceAtMost(levels.lastIndex)]
-                    if (accountUid.isNotBlank()) accounts.savePlacement(accountUid, level, emptyMap()) { }
-                    go(Screen.Home)
+            Screen.Plans -> PlanScreen(plan = plan, onPlan = { plan = it }, onBack = { go(Screen.Register) }, onStart = { questionIndex = 0; highestPassed = -1; placementSummary = null; selected = -1; go(Screen.Quiz) })
+            Screen.Quiz -> QuizScreen(index = questionIndex, selected = selected, onSelect = { selected = it }, onBack = {
+                if (questionIndex > 0) {
+                    questionIndex--
+                    selected = -1
+                    highestPassed = if (questionIndex == 0) -1 else levels.indexOf(questions[questionIndex - 1].level)
+                } else go(Screen.Plans)
+            }, onNext = {
+                val question = questions[questionIndex]
+                val isCorrect = selected == question.correct
+                val nextHighestPassed = if (isCorrect) levels.indexOf(question.level) else highestPassed
+                if (isCorrect) highestPassed = nextHighestPassed
+                if (!isCorrect || questionIndex == questions.lastIndex) {
+                    val attempted = questions.take(questionIndex + 1).map { PlacementQuestionResult(it.level, it.skill) }
+                    val correctIndexes = (0 until questionIndex).toMutableSet().apply { if (isCorrect) add(questionIndex) }
+                    val summary = PlacementAssessment.summarize(nextHighestPassed, attempted, correctIndexes)
+                    placementSummary = summary
+                    level = summary.level
+                    if (accountUid.isNotBlank()) accounts.savePlacement(accountUid, summary.level, summary.skillMastery) { }
+                    go(Screen.PlacementResult)
                 } else { questionIndex++; selected = -1 }
             })
+            Screen.PlacementResult -> placementSummary?.let { summary -> PlacementResultScreen(summary, onContinue = { go(Screen.Home) }) }
+                ?: WelcomeScreen(onStart = { go(Screen.Register) }, onLogin = { go(Screen.Login) })
             Screen.Home -> HomeScreen(name = userName, level = level, completed = completed, progress = learningProgress, onStartLesson = { selectedLessonId = ""; go(Screen.Lesson) }, onLocked = { go(Screen.Locked) }, onPractice = { go(Screen.Practice) }, onProgress = { go(Screen.Progress) }, onProfile = { go(Screen.Profile) })
             Screen.Practice -> PracticeScreen(level, onBack = { go(Screen.Home) }, onSelectLesson = { id -> selectedLessonId = id; go(Screen.Lesson) })
             Screen.Progress -> ProgressScreen(level, completed, learningProgress, onBack = { go(Screen.Home) })
@@ -156,8 +170,9 @@ private fun LinguaApp() {
                 exerciseIndex = 0,
                 onBack = { go(Screen.Home) },
                 onDone = { score ->
-                    if (accountUid.isNotBlank()) accounts.recordLesson(accountUid, CourseCatalog.lessonAt(level, completed).id, score) { }
-                    completed++
+                    val countsTowardCourse = selectedLessonId.isBlank()
+                    if (accountUid.isNotBlank()) accounts.recordLesson(accountUid, activeLesson.id, score, countsTowardCourse) { }
+                    if (countsTowardCourse) completed++
                     selectedLessonId = ""
                     learningProgress = progressStore.recordLesson(score)
                     go(Screen.Home)
