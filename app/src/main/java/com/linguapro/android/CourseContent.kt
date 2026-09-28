@@ -207,7 +207,7 @@ object CourseCatalog {
     )
 
     private val completeCatalog: Map<String, List<LearningUnit>> = levels.associateWith { level ->
-        catalog.getValue(level) + additionalUnits[level].orEmpty()
+        catalog.getValue(level) + additionalUnits[level].orEmpty() + CourseExpansion.units(level)
     }
 
     fun units(level: String): List<LearningUnit> = completeCatalog[level] ?: completeCatalog.getValue("A1")

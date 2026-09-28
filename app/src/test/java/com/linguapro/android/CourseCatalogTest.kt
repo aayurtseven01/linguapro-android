@@ -8,8 +8,9 @@ import org.junit.Test
 class CourseCatalogTest {
     @Test fun hasEveryPlannedLevelInOrder() {
         assertEquals(listOf("A1", "A2", "B1", "B2", "C1"), CourseCatalog.levels)
-        CourseCatalog.levels.forEach { assertTrue("$it must have at least three authored units", CourseCatalog.units(it).size >= 3) }
-        assertTrue("A1 foundation should have a wider beginner path", CourseCatalog.units("A1").size >= 5)
+        CourseCatalog.levels.forEach { assertTrue("$it must have at least five authored units", CourseCatalog.units(it).size >= 5) }
+        assertTrue("A1 foundation should have a wider beginner path", CourseCatalog.units("A1").size >= 7)
+        assertTrue("Each level needs a meaningful learning path", CourseCatalog.levels.all { CourseCatalog.lessonCount(it) >= 10 })
     }
 
     @Test fun allSeedLessonsHaveStableUniqueIdsAndActivities() {
