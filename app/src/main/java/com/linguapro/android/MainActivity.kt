@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -52,7 +53,7 @@ private fun LinguaTheme(content: @Composable () -> Unit) {
     ), content = content)
 }
 
-private enum class Screen { Welcome, Register, Login, Plans, Quiz, Home, Lesson, Locked }
+private enum class Screen { Welcome, Register, Login, Plans, Quiz, Home, Practice, Progress, Profile, Lesson, Locked }
 private data class Question(
     val level: String,
     val prompt: String,
@@ -94,6 +95,11 @@ private fun LinguaApp() {
     var learningProgress by remember(accountUid) { mutableStateOf(progressStore.read()) }
     var level by rememberSaveable { mutableStateOf("A1") }
     var completed by rememberSaveable { mutableIntStateOf(0) }
+    var selectedLessonId by rememberSaveable { mutableStateOf("") }
+    val activeLesson = remember(level, completed, selectedLessonId) {
+        CourseCatalog.allLessons().firstOrNull { it.id == selectedLessonId }
+            ?: CourseCatalog.lessonAt(level, completed)
+    }
     val screen = Screen.valueOf(screenName)
     val go: (Screen) -> Unit = { screenName = it.name }
     LaunchedEffect(accountUid) {
@@ -127,14 +133,20 @@ private fun LinguaApp() {
                     go(Screen.Home)
                 } else { questionIndex++; selected = -1 }
             })
-            Screen.Home -> HomeScreen(name = userName, level = level, completed = completed, progress = learningProgress, onStartLesson = { go(Screen.Lesson) }, onLocked = { go(Screen.Locked) })
+            Screen.Home -> HomeScreen(name = userName, level = level, completed = completed, progress = learningProgress, onStartLesson = { selectedLessonId = ""; go(Screen.Lesson) }, onLocked = { go(Screen.Locked) }, onPractice = { go(Screen.Practice) }, onProgress = { go(Screen.Progress) }, onProfile = { go(Screen.Profile) })
+            Screen.Practice -> PracticeScreen(level, onBack = { go(Screen.Home) }, onSelectLesson = { id -> selectedLessonId = id; go(Screen.Lesson) })
+            Screen.Progress -> ProgressScreen(level, completed, learningProgress, onBack = { go(Screen.Home) })
+            Screen.Profile -> ProfileScreen(userName, accountEmail, level, completed, learningProgress, onBack = { go(Screen.Home) }, onSignOut = {
+                accounts.signOut(); accountUid = ""; accountEmail = ""; userName = "Öğrenci"; level = "A1"; completed = 0; selectedLessonId = ""; go(Screen.Welcome)
+            })
             Screen.Lesson -> LearningLessonScreen(
-                lesson = CourseCatalog.lessonAt(level, completed),
+                lesson = activeLesson,
                 exerciseIndex = 0,
                 onBack = { go(Screen.Home) },
                 onDone = { score ->
                     if (accountUid.isNotBlank()) accounts.recordLesson(accountUid, CourseCatalog.lessonAt(level, completed).id, score) { }
                     completed++
+                    selectedLessonId = ""
                     learningProgress = progressStore.recordLesson(score)
                     go(Screen.Home)
                 }
@@ -327,7 +339,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 }
 
 @Composable
-private fun HomeScreen(name: String, level: String, completed: Int, progress: LearningProgress, onStartLesson: () -> Unit, onLocked: () -> Unit) {
+private fun HomeScreen(name: String, level: String, completed: Int, progress: LearningProgress, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         Spacer(Modifier.height(14.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
@@ -343,7 +355,7 @@ private fun HomeScreen(name: String, level: String, completed: Int, progress: Le
         Text("$level Seviyesindeki Yolculuğun", fontSize = 20.sp, fontWeight = FontWeight.Bold)
         Text("Hedeflerine adım adım ilerle", color = Muted, fontSize = 14.sp, modifier = Modifier.padding(top = 3.dp, bottom = 14.dp))
         val moduleList = CourseCatalog.units(level)
-        val lessonPointer = completed % CourseCatalog.lessonCount(level)
+        val lessonPointer = completed.coerceAtMost(CourseCatalog.lessonCount(level))
         var previousLessonCount = 0
         moduleList.forEachIndexed { i, unit ->
             val unitStart = previousLessonCount
@@ -362,17 +374,110 @@ private fun HomeScreen(name: String, level: String, completed: Int, progress: Le
             Spacer(Modifier.height(10.dp))
         }
         Spacer(Modifier.height(8.dp))
-        PrimaryButton("▶   Derse Başla", onStartLesson)
+        PrimaryButton(if (completed >= CourseCatalog.lessonCount(level)) "↻   Dersleri tekrar et" else "▶   Derse başla", onStartLesson)
         Spacer(Modifier.height(14.dp))
         InfoCard("$level seviyesine özel programın hazır. Kısa derslerle her gün biraz daha ilerle.")
         Spacer(Modifier.height(20.dp))
         Row(Modifier.fillMaxWidth().background(Panel, RoundedCornerShape(20.dp)).padding(vertical = 14.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
-            NavItem(Icons.Default.Home, "Ana Sayfa", true)
-            NavItem(Icons.Default.Headphones, "Pratik", false)
-            NavItem(Icons.Default.BarChart, "İlerleme", false)
-            NavItem(Icons.Default.Person, "Profil", false)
+            NavItem(Icons.Default.Home, "Ana Sayfa", true) { }
+            NavItem(Icons.Default.Headphones, "Pratik", false, onPractice)
+            NavItem(Icons.Default.BarChart, "İlerleme", false, onProgress)
+            NavItem(Icons.Default.Person, "Profil", false, onProfile)
         }
         Spacer(Modifier.height(16.dp))
+    }
+}
+
+@Composable
+private fun PracticeScreen(level: String, onBack: () -> Unit, onSelectLesson: (String) -> Unit) {
+    var selectedSkill by rememberSaveable { mutableStateOf("Tümü") }
+    val lessons = CourseCatalog.units(level).flatMap { it.lessons }
+    val skills = listOf("Tümü") + Skill.values().map(::skillLabel)
+    val visibleLessons = lessons.filter { lesson -> selectedSkill == "Tümü" || lesson.exercises.any { skillLabel(it.skill) == selectedSkill } }
+    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
+        BackRow("Pratik merkezi", onBack)
+        Text("$level seviyesinde kısa bir çalışma seç.", color = Muted, modifier = Modifier.padding(start = 8.dp, top = 2.dp, bottom = 14.dp))
+        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            skills.forEach { skill ->
+                FilterChip(selected = selectedSkill == skill, onClick = { selectedSkill = skill }, label = { Text(skill) })
+            }
+        }
+        Spacer(Modifier.height(12.dp))
+        visibleLessons.forEachIndexed { index, lesson ->
+            Surface(onClick = { onSelectLesson(lesson.id) }, color = Panel, shape = RoundedCornerShape(17.dp), modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp)) {
+                Row(Modifier.padding(15.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Box(Modifier.size(38.dp).background(Panel2, CircleShape), contentAlignment = Alignment.Center) { Text("${index + 1}", color = Gold, fontWeight = FontWeight.Bold) }
+                    Column(Modifier.weight(1f).padding(horizontal = 12.dp)) {
+                        Text(lesson.title, fontWeight = FontWeight.Bold)
+                        Text(lesson.canDo, color = Muted, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 3.dp))
+                        Text(lesson.exercises.map { skillLabel(it.skill) }.distinct().joinToString(" • "), color = Gold, fontSize = 10.sp, modifier = Modifier.padding(top = 5.dp))
+                    }
+                    Icon(Icons.Default.ChevronRight, null, tint = Muted)
+                }
+            }
+        }
+        if (visibleLessons.isEmpty()) InfoCard("Bu beceri için bu seviyede henüz ders bulunmuyor.")
+        Spacer(Modifier.height(20.dp))
+    }
+}
+
+@Composable
+private fun ProgressScreen(level: String, completed: Int, progress: LearningProgress, onBack: () -> Unit) {
+    val total = CourseCatalog.lessonCount(level)
+    val done = completed.coerceAtMost(total)
+    val percent = if (total == 0) 0 else done * 100 / total
+    val skills = CourseCatalog.units(level).flatMap { it.lessons }.flatMap { it.exercises }.groupingBy { it.skill }.eachCount()
+    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
+        BackRow("Öğrenme ilerlemen", onBack)
+        Text("İstikrarlı küçük adımlar birikir.", color = Muted, modifier = Modifier.padding(start = 8.dp, top = 3.dp, bottom = 16.dp))
+        Surface(color = Panel, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
+            Column(Modifier.padding(18.dp)) {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                    Text("$level öğrenme yolu", fontWeight = FontWeight.Bold)
+                    Text("$percent%", color = Gold, fontWeight = FontWeight.Bold)
+                }
+                LinearProgressIndicator(progress = { percent / 100f }, modifier = Modifier.fillMaxWidth().padding(top = 13.dp).height(8.dp), color = Gold, trackColor = Panel2)
+                Text("$done / $total ders tamamlandı", color = Muted, fontSize = 12.sp, modifier = Modifier.padding(top = 8.dp))
+            }
+        }
+        Spacer(Modifier.height(12.dp))
+        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            StatCard("🔥", "${progress.streakDays} gün", "Çalışma serisi", Modifier.weight(1f))
+            StatCard("✦", "${progress.totalXp} XP", "Toplam deneyim", Modifier.weight(1f))
+        }
+        Spacer(Modifier.height(18.dp))
+        Text("Beceriler bu kursta", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        Text("Gösterilen sayı, katalogdaki etkinlik sayısıdır; başarı puanı değildir.", color = Muted, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 4.dp, bottom = 8.dp))
+        Skill.values().forEach { skill ->
+            val count = skills[skill] ?: 0
+            Row(Modifier.fillMaxWidth().padding(vertical = 7.dp), verticalAlignment = Alignment.CenterVertically) {
+                Text(skillLabel(skill), modifier = Modifier.weight(1f), fontSize = 14.sp)
+                Text("$count etkinlik", color = Gold, fontSize = 12.sp)
+            }
+        }
+        Spacer(Modifier.height(20.dp))
+    }
+}
+
+@Composable
+private fun ProfileScreen(name: String, email: String, level: String, completed: Int, progress: LearningProgress, onBack: () -> Unit, onSignOut: () -> Unit) {
+    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
+        BackRow("Profil", onBack)
+        Spacer(Modifier.height(12.dp))
+        Surface(color = Panel, shape = RoundedCornerShape(22.dp), modifier = Modifier.fillMaxWidth()) {
+            Column(Modifier.padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                Box(Modifier.size(76.dp).background(Panel2, CircleShape), contentAlignment = Alignment.Center) { Icon(Icons.Default.Person, null, tint = Gold, modifier = Modifier.size(42.dp)) }
+                Text(name.ifBlank { "Öğrenci" }, fontSize = 21.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 12.dp))
+                Text(email.ifBlank { "Demo hesap • bu cihazda" }, color = Muted, fontSize = 13.sp, modifier = Modifier.padding(top = 4.dp))
+            }
+        }
+        Spacer(Modifier.height(14.dp))
+        InfoCard("Seviye: $level  •  Tamamlanan ders: $completed  •  Toplam XP: ${progress.totalXp}")
+        Spacer(Modifier.height(18.dp))
+        Text("Hesap ve gizlilik", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        Text("Hesap verilerini ve senkronizasyonu Firebase hesabın yönetir. Demo ilerlemesi bu cihazda saklanır.", color = Muted, fontSize = 12.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 7.dp, bottom = 15.dp))
+        OutlinedButton(onClick = onSignOut, modifier = Modifier.fillMaxWidth()) { Text("Oturumu kapat", color = Color.White) }
+        Spacer(Modifier.height(20.dp))
     }
 }
 
@@ -420,8 +525,8 @@ private fun StatCard(emoji: String, title: String, subtitle: String, modifier: M
 }
 
 @Composable
-private fun NavItem(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String, active: Boolean) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+private fun NavItem(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String, active: Boolean, onClick: () -> Unit) {
+    Column(Modifier.clickable(onClick = onClick).padding(horizontal = 7.dp, vertical = 4.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Icon(icon, null, tint = if (active) Gold else Muted)
         Text(text, color = if (active) Gold else Muted, fontSize = 10.sp, modifier = Modifier.padding(top = 3.dp))
     }
