@@ -1,6 +1,6 @@
 # Learning content map (draft 0.1)
 
-This is a course blueprint, not a claim of complete CEFR coverage. The shipped app currently contains only seed lessons. Each full unit needs authored lesson scripts, licensed/recorded audio, answer rationale, teacher review and assessment data.
+This is a course blueprint, not a claim of complete CEFR coverage. The app currently contains a reviewed-by-tests seed set (A1: 5 units; A2/B1/B2/C1: 3 units each), not a finished commercial curriculum. Each full unit still needs expanded lesson scripts, licensed/recorded audio, richer feedback, teacher review and assessment data.
 
 | Level | Communicative outcomes | Core grammar / language | Typical tasks |
 |---|---|---|---|

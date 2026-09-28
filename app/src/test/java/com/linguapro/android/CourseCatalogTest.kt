@@ -8,7 +8,8 @@ import org.junit.Test
 class CourseCatalogTest {
     @Test fun hasEveryPlannedLevelInOrder() {
         assertEquals(listOf("A1", "A2", "B1", "B2", "C1"), CourseCatalog.levels)
-        CourseCatalog.levels.forEach { assertTrue("$it must have units", CourseCatalog.units(it).isNotEmpty()) }
+        CourseCatalog.levels.forEach { assertTrue("$it must have at least three authored units", CourseCatalog.units(it).size >= 3) }
+        assertTrue("A1 foundation should have a wider beginner path", CourseCatalog.units("A1").size >= 5)
     }
 
     @Test fun allSeedLessonsHaveStableUniqueIdsAndActivities() {
@@ -29,6 +30,11 @@ class CourseCatalogTest {
                     val optionSet = exercise.options.map(::normalize).toSet()
                     assertTrue("${exercise.id} answer key must match a choice", exercise.acceptedAnswers.any { normalize(it) in optionSet })
                 }
+                if (exercise.skill == Skill.LISTENING || exercise.skill == Skill.SPEAKING) {
+                    assertFalse("${exercise.id} needs an audio model", exercise.modelAudioText.isNullOrBlank())
+                }
+                if (exercise.skill == Skill.READING) assertFalse("${exercise.id} needs a reading passage", exercise.context.isBlank())
+                if (exercise.skill == Skill.WRITING) assertFalse("${exercise.id} needs a model response", exercise.sampleAnswer.isNullOrBlank())
             }
         }
     }

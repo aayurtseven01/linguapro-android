@@ -41,6 +41,15 @@ object CourseCatalog {
     private fun lesson(level: String, id: String, title: String, canDo: String, vararg exercises: LearningExercise) =
         LearningLesson("$level-$id", title, canDo, exercises.toList())
 
+    private fun extraUnit(
+        level: String, number: Int, title: String, summary: String,
+        title1: String, outcome1: String, first1: LearningExercise, second1: LearningExercise,
+        title2: String, outcome2: String, first2: LearningExercise, second2: LearningExercise
+    ) = LearningUnit("$level-U$number", title, summary, listOf(
+        lesson(level, "U${number}-L1", title1, outcome1, first1, second1),
+        lesson(level, "U${number}-L2", title2, outcome2, first2, second2)
+    ))
+
     private val catalog: Map<String, List<LearningUnit>> = mapOf(
         "A1" to listOf(
             LearningUnit("A1-U1", "Hello & Introductions", "Greetings, names and basic personal information.", listOf(
@@ -107,7 +116,101 @@ object CourseCatalog {
                     e("c1-synthesis-speak", Skill.SPEAKING, "İki tarafı özetleyen bir cümle söyle", "Summarize both views before giving a conclusion.", "Both options have advantages.", "Önce ortak/karşıt noktaları adil biçimde özetle.", audio = "Both options have advantages.", sample = "While both options have advantages, the phased approach appears less risky."))))),
     )
 
-    fun units(level: String): List<LearningUnit> = catalog[level] ?: catalog.getValue("A1")
+    private val additionalUnits: Map<String, List<LearningUnit>> = mapOf(
+        "A1" to listOf(
+            extraUnit("A1", 3, "Food & Café", "Order food and ask for a simple item.",
+                "A drink, please", "Order a drink politely.",
+                e("a1-food-listen", Skill.LISTENING, "Siparişi dinle", "What would the customer like?", "tea", "The customer asks for tea.", listOf("tea", "coffee", "water"), audio = "A cup of tea, please."),
+                e("a1-food-grammar", Skill.GRAMMAR, "En kibar isteği seç", "___ I have a coffee, please?", "Can", "Can I have…? basit ve kibar bir istektir.", listOf("Can", "Am", "Does")),
+                "At the market", "Ask the price and identify a quantity.",
+                e("a1-market-read", Skill.READING, "Fiyat etiketini oku", "How much are the apples?", "two pounds", "Etikette apples: £2 yazıyor.", listOf("one pound", "two pounds", "three pounds"), context = "Apples £2 per bag. Oranges £3 per bag."),
+                e("a1-market-speak", Skill.SPEAKING, "Fiyatı sor", "Say: How much is this?", "How much is this?", "How much is this? bir ürünün fiyatını sormak için kullanılır.", audio = "How much is this?", sample = "How much is this?")),
+            extraUnit("A1", 4, "My Home & Neighborhood", "Name rooms and say where familiar objects are.",
+                "Rooms at home", "Understand a simple home description.",
+                e("a1-home-read", Skill.READING, "Evi anlatan metni oku", "Where is the table?", "in the kitchen", "Metin masanın mutfakta olduğunu söylüyor.", listOf("in the bedroom", "in the kitchen", "in the garden"), context = "My home is small. There is a table in the kitchen and a bed in the bedroom."),
+                e("a1-home-grammar", Skill.GRAMMAR, "Doğru seçeneği seç", "There ___ a bed in the room.", "is", "Tekil isimle there is kullanılır.", listOf("is", "are", "am")),
+                "Places near me", "Name a familiar place and ask where it is.",
+                e("a1-place-vocab", Skill.VOCABULARY, "Kelimeyi tamamla", "You buy bread at a…", "bakery", "Bakery ekmek alınan fırındır.", listOf("bakery", "library", "station")),
+                e("a1-place-write", Skill.WRITING, "Yakınındaki bir yeri yaz", "Complete: There is a ___ near my home.", "shop", "Örnek cevap: There is a shop near my home.", sample = "There is a shop near my home.")),
+            extraUnit("A1", 5, "Free Time & Review", "Talk about hobbies and complete a short everyday mission.",
+                "What do you like?", "Ask and answer about a simple hobby.",
+                e("a1-hobby-grammar", Skill.GRAMMAR, "Doğru fiili seç", "I like ___ music.", "listening to", "Like + -ing yaygın hobi anlatımıdır.", listOf("listen", "listening to", "listened")),
+                e("a1-hobby-speak", Skill.SPEAKING, "Hobini sesli söyle", "Say: I like reading.", "I like reading.", "I like + activity-ing hobileri anlatır.", audio = "I like reading.", sample = "I like reading."),
+                "A1 review mission", "Combine a greeting, a personal detail and a simple request.",
+                e("a1-review-listen", Skill.LISTENING, "Kısa konuşmayı dinle", "What does the speaker need?", "a map", "Konuşmacı şehir haritası istiyor.", listOf("a map", "a ticket", "a menu"), audio = "Hello, I'm Deniz. I'm from Türkiye. Can I have a map, please?"),
+                e("a1-review-write", Skill.WRITING, "Kendin hakkında iki bilgi yaz", "Write your name and country in English.", "I'm from Türkiye.", "Kısa, anlaşılır iki kişisel cümle yaz.", sample = "I'm Ece. I'm from Türkiye."))
+        ),
+        "A2" to listOf(
+            extraUnit("A2", 2, "Food, Health & Requests", "Handle everyday services and describe a simple problem.",
+                "At the pharmacy", "Explain a familiar symptom and understand a simple suggestion.",
+                e("a2-health-listen", Skill.LISTENING, "Eczacı konuşmasını dinle", "What should the customer do?", "take one tablet", "The instruction is to take one tablet.", listOf("take one tablet", "drink coffee", "call a taxi"), audio = "Take one tablet twice a day, and drink plenty of water."),
+                e("a2-health-grammar", Skill.GRAMMAR, "Tavsiye kalıbını seç", "You ___ drink more water.", "should", "Should basit tavsiye vermek için kullanılır.", listOf("should", "would", "did")),
+                "Make a polite request", "Ask for help and clarify a simple service detail.",
+                e("a2-request-speak", Skill.SPEAKING, "Kibarca yardım iste", "Say: Could you help me, please?", "Could you help me, please?", "Could you…? can'den daha kibar duyulur.", audio = "Could you help me, please?", sample = "Could you help me, please?"),
+                e("a2-request-write", Skill.WRITING, "Kısa bir mesaj yaz", "Ask a friend to call you after work.", "Could you call me after work?", "Kısa mesajda isteği ve zamanı belirt.", sample = "Could you call me after work?")),
+            extraUnit("A2", 3, "Plans & Experiences", "Talk about near-future plans and compare familiar options.",
+                "Weekend plans", "Describe a simple intention using going to.",
+                e("a2-plan-grammar", Skill.GRAMMAR, "Boşluğu tamamla", "We are ___ visit our grandparents.", "going to", "Plan/intention: be + going to + base verb.", listOf("going to", "go to", "will to")),
+                e("a2-plan-listen", Skill.LISTENING, "Planı dinle", "What are they going to do on Saturday?", "visit a museum", "Konuşmacılar cumartesi müzeyi ziyaret edecek.", listOf("visit a museum", "watch a match", "stay at home"), audio = "On Saturday, we're going to visit the new museum."),
+                "Choose a place", "Compare two familiar places and explain a preference.",
+                e("a2-compare-grammar", Skill.GRAMMAR, "Karşılaştırmayı seç", "The train is ___ than the bus.", "faster", "Kısa sıfatlarda comparative için -er kullanılır.", listOf("fast", "faster", "fastest")),
+                e("a2-compare-write", Skill.WRITING, "İki ulaşım türünü karşılaştır", "Complete: The bus is ___ than the train.", "cheaper", "Cheaper, cheaper anlamında karşılaştırma biçimidir.", sample = "The bus is cheaper than the train."))
+        ),
+        "B1" to listOf(
+            extraUnit("B1", 2, "Stories & Experiences", "Narrate events clearly and connect them to present experience.",
+                "A memorable day", "Describe the order of events in a familiar story.",
+                e("b1-story-order", Skill.GRAMMAR, "Olay sırasını seç", "___ we arrived, the presentation had already started.", "When", "When olay zamanını bağlar; past perfect daha önceki olayı gösterir.", listOf("When", "Although", "Unless")),
+                e("b1-story-read", Skill.READING, "Hikâyeyi oku", "Why did Lina miss the bus?", "She left home late.", "Lina evden geç çıktığını söylüyor.", listOf("She left home late.", "The bus broke down.", "She forgot her bag."), context = "I left home late, so I missed the bus. Luckily, my colleague gave me a lift."),
+                "Explain a result", "Explain what changed after a work or study experience.",
+                e("b1-result-vocab", Skill.VOCABULARY, "Neden-sonuç bağlacını seç", "The file was missing; ___, we delayed the report.", "therefore", "Therefore sonuç bildirir.", listOf("therefore", "meanwhile", "although")),
+                e("b1-result-write", Skill.WRITING, "Deneyim ve sonucu bağla", "Write one sentence with because or so.", "I was late because the bus was delayed.", "Neden ile sonucu açıkça ilişkilendir.", sample = "I was late because the bus was delayed.")),
+            extraUnit("B1", 3, "Opinions & Problem Solving", "State a view, support it and agree on a practical next step.",
+                "Give a reasoned opinion", "Express an opinion and one supporting reason.",
+                e("b1-opinion-phrase", Skill.SPEAKING, "Görüş bildir", "Say: In my opinion, we should start earlier.", "In my opinion, we should start earlier.", "Görüş + should + fiil öneri verir.", audio = "In my opinion, we should start earlier.", sample = "In my opinion, we should start earlier."),
+                e("b1-opinion-grammar", Skill.GRAMMAR, "Koşul cümlesini tamamla", "If we leave now, we ___ arrive on time.", "will", "First conditional: if + present, will + base verb.", listOf("will", "would", "did")),
+                "Write a clear work email", "Write a short update with a request and a deadline.",
+                e("b1-email-read", Skill.READING, "E-postayı oku", "When does Jamie need the draft?", "Thursday", "Jamie taslağı perşembeye kadar istiyor.", listOf("Tuesday", "Thursday", "Friday"), context = "Hi, could you send me the first draft by Thursday? I will review it before the client meeting."),
+                e("b1-email-write", Skill.WRITING, "Kısa iş güncellemesi yaz", "Tell a colleague when you will send a draft.", "I will send the draft tomorrow.", "Kısa güncelleme: durum + net zaman.", sample = "I will send the draft tomorrow."))
+        ),
+        "B2" to listOf(
+            extraUnit("B2", 2, "Reports & Evidence", "Summarize evidence and distinguish a claim from its support.",
+                "Evaluate a claim", "Identify the evidence that supports a conclusion.",
+                e("b2-evidence-read", Skill.READING, "Raporu oku", "What supports the recommendation?", "A six-month pilot", "Öneri altı aylık pilot sonuçlarına dayanıyor.", listOf("A six-month pilot", "A personal guess", "A customer quote only"), context = "A six-month pilot reduced response times by 18%. The report recommends a phased expansion, while noting that the sample covered only two regions."),
+                e("b2-evidence-vocab", Skill.VOCABULARY, "Kanıtı sınırlayan ifadeyi seç", "The findings are promising, ___ the small sample.", "given", "Given burada 'göz önünde bulundurulduğunda' anlamı katar.", listOf("given", "despite of", "whereas of")),
+                "Present a recommendation", "Make a recommendation and acknowledge one limitation.",
+                e("b2-recommend-speak", Skill.SPEAKING, "Önerini ve sınırını söyle", "Recommend a pilot before a full launch.", "We should run a pilot first.", "Öneriyi açıkça ifade edip sınırlılığı da kabul et.", audio = "We should run a pilot first.", sample = "We should run a pilot first, as the evidence is still limited."),
+                e("b2-recommend-write", Skill.WRITING, "Bir öneriyi gerekçelendir", "Write a recommendation with one piece of evidence.", "The pilot improved response time.", "İddia ve kanıtı birbirine bağla.", sample = "I recommend a phased launch because the pilot improved response time.")),
+            extraUnit("B2", 3, "Culture, Register & Nuance", "Adapt wording to a professional audience and manage disagreement.",
+                "Disagree diplomatically", "Disagree without dismissing a colleague's point.",
+                e("b2-diplomatic-phrase", Skill.SPEAKING, "Nazikçe karşı çık", "Say: I see your point; however, I have a different concern.", "I see your point however I have a different concern", "Önce karşı tarafın noktasını kabul et, sonra çekinceni açıkla.", audio = "I see your point; however, I have a different concern.", sample = "I see your point; however, I have a different concern."),
+                e("b2-register-vocab", Skill.VOCABULARY, "Profesyonel e-postaya uygun ifadeyi seç", "Could you ___ the revised file by noon?", "send", "Doğrudan ama nazik rica profesyonel bağlama uygundur.", listOf("send", "gimme", "hand over me")),
+                "Clarify an implied meaning", "Infer a cautious response from a short exchange.",
+                e("b2-infer-listen", Skill.LISTENING, "Yanıtı dinle", "Is Priya fully convinced?", "No, she wants more evidence.", "'I'd need to see the figures first' temkinli olduğunu gösterir.", listOf("Yes, completely.", "No, she wants more evidence.", "She has not heard the idea."), audio = "That could work. I'd need to see the figures first."),
+                e("b2-infer-write", Skill.WRITING, "Kibar bir takip sorusu yaz", "Ask when the figures will be available.", "When will the figures be available?", "Açık, nazik ve bağlama uygun soru kur.", sample = "Could you let me know when the figures will be available?"))
+        ),
+        "C1" to listOf(
+            extraUnit("C1", 2, "Register & Rhetoric", "Adapt register and use rhetorical choices with control.",
+                "Shift register", "Rephrase an informal request for a formal audience.",
+                e("c1-register-vocab", Skill.VOCABULARY, "Daha resmî seçeneği işaretle", "We need to fix this ASAP.", "We should address this as a priority.", "Address this as a priority resmî ve profesyonel tondadır.", listOf("We should address this as a priority.", "Let's fix this thing now.", "Sort it out ASAP.")),
+                e("c1-register-write", Skill.WRITING, "Resmî bir yeniden ifade yaz", "Rewrite: Send me the report today.", "Could you send me the report by the end of today?", "Kibarlık ve net zaman sınırı ekle.", sample = "Could you send me the report by the end of today?"),
+                "Frame a persuasive case", "Anticipate a counterargument and respond proportionately.",
+                e("c1-rhetoric-read", Skill.READING, "Argümanı oku", "What qualification does the writer make?", "The recommendation depends on continued monitoring.", "Yazar öneriyi izleme koşuluna bağlıyor.", listOf("The recommendation depends on continued monitoring.", "The plan has no risks.", "The data is irrelevant."), context = "The evidence supports a phased rollout, provided that outcomes are monitored and the policy is revised if access gaps widen."),
+                e("c1-rhetoric-speak", Skill.SPEAKING, "Karşı görüşü tanıyarak yanıt ver", "Say: That concern is valid; the question is how we mitigate it.", "That concern is valid the question is how we mitigate it", "Geçerli çekinceyi kabul et, sonra çözüm odağına geç.", audio = "That concern is valid; the question is how we mitigate it.", sample = "That concern is valid; the question is how we mitigate it.")),
+            extraUnit("C1", 3, "Synthesis & Independent Use", "Integrate evidence from viewpoints and produce a concise conclusion.",
+                "Compare two viewpoints", "Identify agreement and a meaningful difference.",
+                e("c1-viewpoints-listen", Skill.LISTENING, "İki konuşmacıyı dinle", "Where do they disagree?", "The pace of implementation.", "İkisi hedefte hemfikir, ancak uygulama hızında ayrışıyor.", listOf("The goal itself.", "The pace of implementation.", "Whether evaluation is useful."), audio = "We both support the goal. I favour a gradual rollout, while Sam would move faster."),
+                e("c1-viewpoints-grammar", Skill.GRAMMAR, "Karşıtlığı en iyi bağlayan yapıyı seç", "___ both speakers support the goal, they differ on timing.", "Although", "Although karşıt iki bilgiyi aynı cümlede dengeler.", listOf("Although", "Because", "Unless")),
+                "Write a concise synthesis", "Combine two views and conclude with an evidence-based recommendation.",
+                e("c1-synthesis-write", Skill.WRITING, "İki görüşü bir cümlede sentezle", "Write a balanced conclusion about pace and risk.", "A phased rollout may reduce risk.", "Sentez, iki görüşü adil özetleyip gerekçeli sonuç sunar.", sample = "Although faster implementation may capture benefits sooner, a phased rollout allows risks to be monitored."),
+                e("c1-synthesis-vocab", Skill.VOCABULARY, "Sonuç bildiren akademik ifadeyi seç", "Taken together, the findings ___.", "suggest a cautious expansion", "Taken together, evidence sentezine dayalı sonuç başlatır.", listOf("suggest a cautious expansion", "prove every claim", "ignore the sample")))
+        )
+    )
+
+    private val completeCatalog: Map<String, List<LearningUnit>> = levels.associateWith { level ->
+        catalog.getValue(level) + additionalUnits[level].orEmpty()
+    }
+
+    fun units(level: String): List<LearningUnit> = completeCatalog[level] ?: completeCatalog.getValue("A1")
     fun firstLesson(level: String): LearningLesson = units(level).first().lessons.first()
     fun lessonAt(level: String, lessonIndex: Int): LearningLesson {
         val lessons = units(level).flatMap { it.lessons }
