@@ -94,7 +94,12 @@ private fun LinguaApp() {
                 } else { questionIndex++; selected = -1 }
             })
             Screen.Home -> HomeScreen(name = userName, level = level, completed = completed, onStartLesson = { go(Screen.Lesson) }, onLocked = { go(Screen.Locked) })
-            Screen.Lesson -> LessonScreen(level = level, onBack = { go(Screen.Home) }, onDone = { completed++; go(Screen.Home) })
+            Screen.Lesson -> LearningLessonScreen(
+                lesson = CourseCatalog.lessonAt(level, completed),
+                exerciseIndex = 0,
+                onBack = { go(Screen.Home) },
+                onDone = { completed++; go(Screen.Home) }
+            )
             Screen.Locked -> LockedScreen(onBack = { go(Screen.Home) })
         }
     }
@@ -247,11 +252,23 @@ private fun HomeScreen(name: String, level: String, completed: Int, onStartLesso
         Spacer(Modifier.height(23.dp))
         Text("$level Seviyesindeki Yolculuğun", fontSize = 20.sp, fontWeight = FontWeight.Bold)
         Text("Hedeflerine adım adım ilerle", color = Muted, fontSize = 14.sp, modifier = Modifier.padding(top = 3.dp, bottom = 14.dp))
-        val moduleList = curriculum[level] ?: curriculum.getValue("A1")
-        moduleList.forEachIndexed { i, module ->
-            val isDone = i < completed
-            val isCurrent = i == completed.coerceAtMost(moduleList.lastIndex)
-            ModuleCard(i + 1, module.first, module.second, if (isDone) "Tamamlandı" else if (isCurrent) "Şu anda" else "Kilitli", isDone, isCurrent) { if (isCurrent) onStartLesson() else if (!isDone) onLocked() }
+        val moduleList = CourseCatalog.units(level)
+        val lessonPointer = completed % CourseCatalog.lessonCount(level)
+        var previousLessonCount = 0
+        moduleList.forEachIndexed { i, unit ->
+            val unitStart = previousLessonCount
+            val unitEnd = unitStart + unit.lessons.size
+            val isDone = lessonPointer >= unitEnd
+            val isCurrent = lessonPointer in unitStart until unitEnd
+            ModuleCard(
+                i + 1,
+                unit.title,
+                "${unit.lessons.size} ders • ${unit.summary}",
+                if (isDone) "Tamamlandı" else if (isCurrent) "Şu anda" else "Sırada",
+                isDone,
+                isCurrent
+            ) { if (isCurrent) onStartLesson() else if (!isDone) onLocked() }
+            previousLessonCount = unitEnd
             Spacer(Modifier.height(10.dp))
         }
         Spacer(Modifier.height(8.dp))
@@ -269,14 +286,6 @@ private fun HomeScreen(name: String, level: String, completed: Int, onStartLesso
     }
 }
 
-private val curriculum = mapOf(
-    "A1" to listOf("İlk adımlar ve tanışma" to "Selamlaşma, isimler ve temel cümleler", "Günlük rutinim" to "Saatler, günler ve alışkanlıklar", "Kafede ve şehirde" to "Sipariş verme ve yön sorma"),
-    "A2" to listOf("Günlük konuşmalar" to "Geçmiş deneyimler ve planlar", "Seyahat İngilizcesi" to "Otel, ulaşım ve yol tarifi", "Kendini ifade et" to "Karşılaştırmalar ve öneriler"),
-    "B1" to listOf("Günlük Konuşmalar" to "Selamlaşma, tanışma ve günlük hayatta kullanılan ifadeler", "İş İngilizcesi Temelleri" to "Toplantılar, e-postalar ve iş hayatında etkili iletişim", "Geçmiş Zaman Hikâyeleri" to "Geçmiş deneyimlerini anlat ve daha akıcı konuş"),
-    "B2" to listOf("Etkili sunum ve tartışma" to "Fikirlerini yapılandır ve savun", "İş görüşmeleri" to "Profesyonel iletişim ve müzakere", "Akıcı ve doğal İngilizce" to "İleri bağlaçlar ve deyimler"),
-    "C1" to listOf("İleri düzey iletişim" to "İnce anlam farkları ve üslup", "Liderlik ve müzakere" to "Karmaşık iş senaryoları", "Ustalık: akıcılık" to "Doğal, esnek ve etkili anlatım")
-)
-
 @Composable
 private fun ModuleCard(number: Int, title: String, subtitle: String, status: String, done: Boolean, current: Boolean, onClick: () -> Unit) {
     Surface(onClick = onClick, color = Panel, shape = RoundedCornerShape(18.dp), border = if (current) BorderStroke(1.5.dp, Gold) else null) {
@@ -291,47 +300,6 @@ private fun ModuleCard(number: Int, title: String, subtitle: String, status: Str
             }
             Icon(Icons.Default.ChevronRight, null, tint = Muted)
         }
-    }
-}
-
-@Composable
-private fun LessonScreen(level: String, onBack: () -> Unit, onDone: () -> Unit) {
-    val phrase = when (level) { "A1" -> "Nice to meet you."; "A2" -> "Could you help me, please?"; "B1" -> "I'd like to schedule a meeting."; "B2" -> "Let's look at this from another perspective."; else -> "I would appreciate your taking this into consideration." }
-    var revealed by rememberSaveable { mutableStateOf(false) }
-    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(20.dp)) {
-        BackRow("${level} • Günlük konuşmalar", onBack)
-        Spacer(Modifier.height(18.dp))
-        LinearProgressIndicator(progress = { 0.4f }, modifier = Modifier.fillMaxWidth().height(8.dp), color = Gold, trackColor = Panel2)
-        Text("4 / 10", color = Muted, modifier = Modifier.align(Alignment.End).padding(top = 5.dp))
-        Spacer(Modifier.height(16.dp))
-        Surface(color = Panel, shape = RoundedCornerShape(24.dp)) {
-            Column(Modifier.fillMaxWidth().padding(18.dp)) {
-                Text("DİNLE VE TEKRAR ET", color = Gold, fontSize = 12.sp, fontWeight = FontWeight.Bold)
-                Spacer(Modifier.height(12.dp))
-                Box(Modifier.fillMaxWidth().height(185.dp).background(Panel2, RoundedCornerShape(18.dp)), contentAlignment = Alignment.Center) { Text("👩🏻‍💼\n💬", fontSize = 46.sp, textAlign = TextAlign.Center) }
-                Spacer(Modifier.height(14.dp))
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("🔊", fontSize = 22.sp)
-                    Text("  \"$phrase\"", fontSize = 19.sp, fontWeight = FontWeight.Bold, lineHeight = 26.sp)
-                }
-                Text("Bu cümleyi yüksek sesle tekrar et.", color = Muted, fontSize = 13.sp, modifier = Modifier.padding(top = 9.dp))
-            }
-        }
-        Spacer(Modifier.height(16.dp))
-        Surface(color = Panel, shape = RoundedCornerShape(20.dp)) {
-            Column(Modifier.fillMaxWidth().padding(18.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                Text("〰️ 〰️ 〰️ 〰️ 〰️", color = Gold, fontSize = 22.sp)
-                Text(if (revealed) "Güzel deneme! Telaffuz pratiğin kaydedildi." else "Sıra sende: cümleyi tekrar et", color = Muted, fontSize = 13.sp, modifier = Modifier.padding(top = 8.dp))
-                Spacer(Modifier.height(18.dp))
-                Surface(onClick = { revealed = true }, shape = CircleShape, color = Gold, modifier = Modifier.size(96.dp)) { Box(contentAlignment = Alignment.Center) { Icon(Icons.Default.Mic, null, tint = Navy, modifier = Modifier.size(44.dp)) } }
-                Text("Konuşmayı bitirmek için dokun", color = Muted, fontSize = 12.sp, modifier = Modifier.padding(top = 12.dp))
-            }
-        }
-        Spacer(Modifier.height(16.dp))
-        if (revealed) InfoCard("Telaffuz değerlendirmesi bu prototipte örnek geri bildirimdir. Gerçek ses tanıma entegrasyonu sonraki aşamada eklenmeli.")
-        Spacer(Modifier.height(18.dp))
-        PrimaryButton(if (revealed) "Sonraki Cümle" else "Mikrofona dokun ve konuş", { if (revealed) onDone() else revealed = true })
-        Spacer(Modifier.height(16.dp))
     }
 }
 

@@ -19,6 +19,8 @@ Komut satırı derlemesi: `./gradlew assembleDebug`
 
 ## MVP kapsamı ve üretim öncesi yapılacaklar
 
-Bu ilk sürüm ekran akışını ve seviye/ünite mantığını gösteren bir prototiptir. Hesap oluşturma henüz sunucuya kayıt yapmaz; Google Play ödemesi/gerçek 7 günlük deneme, sunucu tarafı abonelik doğrulaması, sesli telaffuz değerlendirmesi ve kalıcı kullanıcı ilerlemesi henüz bağlı değildir. Ekranlarda prototip olduğu belirtilir. Ücret/deneme koşulları uygulama mağazasına gönderilmeden önce Play Billing ile gerçek ürün yapılandırmasına göre güncellenmelidir.
+Bu sürüm ürün/öğrenme iskeleti ve içerik odaklı bir ders dikey dilimidir. A1–C1 için küçük seed dersleri bulunur; bunlar tam CEFR kursu değildir. Ders ekranında TTS ile örnek ses, sistem konuşma tanıma ile sınırlı konuşma denemesi, okuma, gramer, kelime ve yazma etkinliği akışları vardır. Konuşma tanıma telaffuz puanı değildir; açık uçlu yazı için otomatik gramer değerlendirmesi henüz yoktur.
+
+Hesap oluşturma henüz Firebase'e kayıt yapmaz; Google Play ödemesi/gerçek 7 günlük deneme, sunucu tarafı abonelik doğrulaması ve kullanıcı ilerlemesinin cihazlar arasında senkronizasyonu henüz bağlı değildir. Firebase projesi yapılandırması ve `app/google-services.json` gereklidir. Ücret/deneme koşulları Play Billing ve sunucu tarafı satın alma doğrulamasıyla gerçek ürün yapılandırmasına göre uygulanmalıdır.
 
 Her seviyenin kendine ait ayrı öğrenme ünite listesi `MainActivity.kt` içindeki `curriculum` haritasındadır. Seviye testi A1 sorularından başlar, doğru yanıt geldikçe ileri düzey sorulara geçer ve ilk yanlış yanıt sonrası yerleştirme sonucunu üretir.

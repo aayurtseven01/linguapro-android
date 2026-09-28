@@ -26,8 +26,8 @@ jobs:
           packages: ''
       - name: Install Android platform
         run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
-      - name: Build debug APK
-        run: ./gradlew --no-daemon assembleDebug
+      - name: Run unit tests and build debug APK
+        run: ./gradlew --no-daemon testDebugUnitTest assembleDebug
       - name: Publish debug APK
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
