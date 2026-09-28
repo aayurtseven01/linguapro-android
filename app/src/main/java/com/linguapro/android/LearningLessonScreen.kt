@@ -219,7 +219,12 @@ fun LearningLessonScreen(
                         if (!isWriting && !correct) Text("Örnek yanıt: ${exercise.acceptedAnswers.firstOrNull().orEmpty()}", color = LessonGold, fontSize = 12.sp, modifier = Modifier.padding(top = 5.dp))
                         if (isWriting) {
                             Text("Açık uçlu yazı henüz otomatik puanlanmıyor. Yanıtını aşağıdaki örnekle karşılaştır.", color = LessonMuted, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 5.dp))
-                            if (exercise.sampleAnswer.isNullOrBlank().not()) Text("Örnek yanıt: ${exercise.sampleAnswer}", color = LessonGold, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 6.dp))
+                            val sample = exercise.sampleAnswer ?: exercise.acceptedAnswers.firstOrNull().orEmpty()
+                            if (sample.isNotBlank()) Text("Örnek yanıt: $sample", color = LessonGold, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 6.dp))
+                            val coaching = WritingCoach.review(answer, sample)
+                            coaching.strengths.forEach { Text("✓ $it", color = LessonMint, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 5.dp)) }
+                            coaching.suggestions.forEach { Text("• $it", color = LessonGold, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 4.dp)) }
+                            Text("Otomatik dilbilgisi puanı verilmez; öneriler temel biçim kontrolüdür.", color = LessonMuted, fontSize = 10.sp, lineHeight = 14.sp, modifier = Modifier.padding(top = 6.dp))
                         }
                     }
                 }
