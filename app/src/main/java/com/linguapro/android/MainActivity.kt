@@ -24,6 +24,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.platform.LocalContext
+import com.linguapro.android.data.AccountResult
+import com.linguapro.android.data.FirebaseAccountRepository
 
 private val Navy = Color(0xFF071D32)
 private val Panel = Color(0xFF112B46)
@@ -49,7 +52,7 @@ private fun LinguaTheme(content: @Composable () -> Unit) {
     ), content = content)
 }
 
-private enum class Screen { Welcome, Register, Plans, Quiz, Home, Lesson, Locked }
+private enum class Screen { Welcome, Register, Login, Plans, Quiz, Home, Lesson, Locked }
 private data class Question(val level: String, val prompt: String, val answers: List<String>, val correct: Int)
 private val questions = listOf(
     Question("A1", "Hello! How ___ you?", listOf("is", "are", "am", "be"), 1),
@@ -69,20 +72,32 @@ private val levels = listOf("A1", "A2", "B1", "B2", "C1")
 
 @Composable
 private fun LinguaApp() {
-    var screenName by rememberSaveable { mutableStateOf(Screen.Welcome.name) }
+    val context = LocalContext.current
+    val accounts = remember(context) { FirebaseAccountRepository(context) }
+    val signedInUser = remember { accounts.currentUser() }
+    var screenName by rememberSaveable { mutableStateOf(if (signedInUser != null) Screen.Home.name else Screen.Welcome.name) }
     var questionIndex by rememberSaveable { mutableIntStateOf(0) }
     var highestPassed by rememberSaveable { mutableIntStateOf(-1) }
     var selected by rememberSaveable { mutableIntStateOf(-1) }
     var plan by rememberSaveable { mutableStateOf("Yıllık") }
-    var userName by rememberSaveable { mutableStateOf("") }
-    var level by rememberSaveable { mutableStateOf("B1") }
+    var userName by rememberSaveable { mutableStateOf(signedInUser?.displayName.orEmpty()) }
+    var accountEmail by rememberSaveable { mutableStateOf(signedInUser?.email.orEmpty()) }
+    var accountUid by rememberSaveable { mutableStateOf(signedInUser?.uid.orEmpty()) }
+    var level by rememberSaveable { mutableStateOf("A1") }
     var completed by rememberSaveable { mutableIntStateOf(0) }
     val screen = Screen.valueOf(screenName)
     val go: (Screen) -> Unit = { screenName = it.name }
     Surface(color = Navy) {
         when (screen) {
-            Screen.Welcome -> WelcomeScreen(onStart = { go(Screen.Register) })
-            Screen.Register -> RegisterScreen(onBack = { go(Screen.Welcome) }, onContinue = { name -> userName = name.ifBlank { "Öğrenci" }; go(Screen.Plans) })
+            Screen.Welcome -> WelcomeScreen(onStart = { go(Screen.Register) }, onLogin = { go(Screen.Login) })
+            Screen.Register -> RegisterScreen(
+                startInLogin = false, accounts = accounts, onBack = { go(Screen.Welcome) },
+                onContinue = { name, email, uid -> userName = name.ifBlank { email.substringBefore('@') }; accountEmail = email; accountUid = uid; go(Screen.Plans) }
+            )
+            Screen.Login -> RegisterScreen(
+                startInLogin = true, accounts = accounts, onBack = { go(Screen.Welcome) },
+                onContinue = { name, email, uid -> userName = name.ifBlank { email.substringBefore('@') }; accountEmail = email; accountUid = uid; go(Screen.Home) }
+            )
             Screen.Plans -> PlanScreen(plan = plan, onPlan = { plan = it }, onBack = { go(Screen.Register) }, onStart = { questionIndex = 0; highestPassed = -1; selected = -1; go(Screen.Quiz) })
             Screen.Quiz -> QuizScreen(index = questionIndex, selected = selected, onSelect = { selected = it }, onBack = { if (questionIndex > 0) questionIndex-- else go(Screen.Plans) }, onNext = {
                 val q = questions[questionIndex]
@@ -90,6 +105,7 @@ private fun LinguaApp() {
                 val wrong = selected != q.correct
                 if (wrong || questionIndex == questions.lastIndex) {
                     level = levels[(highestPassed.coerceAtLeast(0)).coerceAtMost(levels.lastIndex)]
+                    if (accountUid.isNotBlank()) accounts.savePlacement(accountUid, level, emptyMap()) { }
                     go(Screen.Home)
                 } else { questionIndex++; selected = -1 }
             })
@@ -98,7 +114,11 @@ private fun LinguaApp() {
                 lesson = CourseCatalog.lessonAt(level, completed),
                 exerciseIndex = 0,
                 onBack = { go(Screen.Home) },
-                onDone = { completed++; go(Screen.Home) }
+                onDone = { score ->
+                    if (accountUid.isNotBlank()) accounts.recordLesson(accountUid, CourseCatalog.lessonAt(level, completed).id, score) { }
+                    completed++
+                    go(Screen.Home)
+                }
             )
             Screen.Locked -> LockedScreen(onBack = { go(Screen.Home) })
         }
@@ -106,7 +126,7 @@ private fun LinguaApp() {
 }
 
 @Composable
-private fun WelcomeScreen(onStart: () -> Unit) {
+private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
     Column(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color(0xFF0A2943), Navy, Color(0xFF061729)))).verticalScroll(rememberScrollState()).padding(horizontal = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(Modifier.height(42.dp))
         Text("Lingua", fontSize = 34.sp, fontWeight = FontWeight.Bold, color = Color.White)
@@ -131,32 +151,78 @@ private fun WelcomeScreen(onStart: () -> Unit) {
         Spacer(Modifier.height(24.dp))
         PrimaryButton("Hemen Başla", onStart)
         Spacer(Modifier.height(12.dp))
-        Text("Zaten hesabın var mı? Kayıt akışından devam et", color = Muted, fontSize = 12.sp, textAlign = TextAlign.Center)
+        Text("Zaten hesabın var mı? Giriş yap", color = Gold, fontSize = 13.sp, textAlign = TextAlign.Center, modifier = Modifier.clickable(onClick = onLogin).padding(10.dp))
         Spacer(Modifier.height(24.dp))
     }
 }
 
 @Composable
-private fun RegisterScreen(onBack: () -> Unit, onContinue: (String) -> Unit) {
+private fun RegisterScreen(
+    startInLogin: Boolean,
+    accounts: FirebaseAccountRepository,
+    onBack: () -> Unit,
+    onContinue: (String, String, String) -> Unit
+) {
+    var isLogin by rememberSaveable(startInLogin) { mutableStateOf(startInLogin) }
     var name by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
+    var error by rememberSaveable { mutableStateOf("") }
+    var busy by rememberSaveable { mutableStateOf(false) }
+    var info by rememberSaveable { mutableStateOf("") }
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp)) {
-        BackRow("Hesap oluştur", onBack)
-        Spacer(Modifier.height(24.dp))
-        Text("Öğrenme yolculuğun\nburada başlıyor.", fontSize = 28.sp, fontWeight = FontWeight.Bold, lineHeight = 34.sp)
-        Text("Hesabını oluştur, seviyeni belirleyelim.", color = Muted, modifier = Modifier.padding(top = 8.dp, bottom = 24.dp))
-        AppField("Adın", name, { name = it }, Icons.Default.Person)
-        Spacer(Modifier.height(14.dp))
+        BackRow(if (isLogin) "Hesabına giriş yap" else "Hesap oluştur", onBack)
+        Spacer(Modifier.height(22.dp))
+        Text(if (isLogin) "Tekrar hoş geldin." else "Öğrenme yolculuğun\nburada başlıyor.", fontSize = 28.sp, fontWeight = FontWeight.Bold, lineHeight = 34.sp)
+        Text(if (isLogin) "Kaldığın yerden devam et." else "Hesabını oluştur, seviyeni belirleyelim.", color = Muted, modifier = Modifier.padding(top = 8.dp, bottom = 22.dp))
+        if (!isLogin) {
+            AppField("Adın", name, { name = it }, Icons.Default.Person)
+            Spacer(Modifier.height(12.dp))
+        }
         AppField("E-posta", email, { email = it }, Icons.Default.Email)
-        Spacer(Modifier.height(14.dp))
+        Spacer(Modifier.height(12.dp))
         AppField("Şifre", password, { password = it }, Icons.Default.Lock, isPassword = true)
-        Spacer(Modifier.height(24.dp))
-        PrimaryButton("Devam Et", { onContinue(name) })
-        Spacer(Modifier.height(16.dp))
-        Text("Devam ederek Kullanım Koşulları ve Gizlilik Politikası'nı kabul etmiş olursun.", color = Muted, fontSize = 12.sp, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+        if (error.isNotBlank()) Text(error, color = Color(0xFFFF9A9A), fontSize = 13.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 10.dp))
+        if (info.isNotBlank()) Text(info, color = Mint, fontSize = 13.sp, modifier = Modifier.padding(top = 10.dp))
         Spacer(Modifier.height(20.dp))
-        InfoCard("Hesabın bu prototipte cihazda saklanmıyor. Gerçek kayıt için güvenli kimlik doğrulama servisi bağlanmalı.")
+        PrimaryButton(if (busy) "Bağlanıyor…" else if (isLogin) "Giriş yap" else "Güvenli hesap oluştur", {
+            error = ""; info = ""
+            if (!email.contains('@') || email.substringAfter('@', "").length < 3) {
+                error = "Geçerli bir e-posta adresi gir."
+            } else if (password.length < 6) {
+                error = "Şifre en az 6 karakter olmalı."
+            } else if (!isLogin && name.isBlank()) {
+                error = "Adını gir."
+            } else {
+                busy = true
+                val done: (AccountResult) -> Unit = { result ->
+                    busy = false
+                    if (result.isSuccess) onContinue(result.displayName.ifBlank { name }, result.email.ifBlank { email }, result.uid.orEmpty())
+                    else error = result.error ?: "İşlem tamamlanamadı."
+                }
+                if (isLogin) accounts.signIn(email, password, done) else accounts.register(name, email, password, done)
+            }
+        }, enabled = !busy)
+        if (isLogin) {
+            Text("Şifreni mi unuttun? Sıfırlama bağlantısı gönder", color = Gold, fontSize = 12.sp, modifier = Modifier.align(Alignment.CenterHorizontally).clickable {
+                if (!email.contains('@')) error = "Önce e-posta adresini gir."
+                else { accounts.sendPasswordReset(email) { message -> info = message ?: "Şifre sıfırlama e-postası gönderildi." } }
+            }.padding(12.dp))
+        }
+        Text(
+            if (isLogin) "Hesabın yok mu? Kayıt ol" else "Zaten hesabın var mı? Giriş yap",
+            color = Gold, fontSize = 13.sp, modifier = Modifier.align(Alignment.CenterHorizontally).clickable { isLogin = !isLogin; error = ""; info = "" }.padding(10.dp)
+        )
+        if (!accounts.isConfigured && !isLogin) {
+            Spacer(Modifier.height(12.dp))
+            InfoCard("Firebase henüz bu uygulamaya bağlanmadı. Gerçek kayıt için Firebase Console yapılandırması gerekir.")
+            Spacer(Modifier.height(10.dp))
+            OutlinedButton(onClick = { onContinue(name.ifBlank { "Demo Öğrencisi" }, email, "") }, modifier = Modifier.fillMaxWidth()) {
+                Text("Demo akışını aç (hesap oluşturmaz)")
+            }
+        }
+        Spacer(Modifier.height(18.dp))
+        Text("Devam ederek Kullanım Koşulları ve Gizlilik Politikası'nı kabul etmiş olursun.", color = Muted, fontSize = 11.sp, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
     }
 }
 

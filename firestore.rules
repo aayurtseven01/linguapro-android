@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedInAs(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    match /users/{userId} {
+      allow read: if signedInAs(userId);
+      allow create: if signedInAs(userId)
+        && request.resource.data.uid == userId
+        && request.resource.data.keys().hasOnly([
+          'uid', 'displayName', 'email', 'cefrLevel', 'completedLessons',
+          'skillMastery', 'onboardingComplete', 'createdAt', 'updatedAt'
+        ]);
+      // Purchase/entitlement fields are deliberately not client-writable.
+      allow update: if signedInAs(userId)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'displayName', 'cefrLevel', 'completedLessons', 'skillMastery',
+          'onboardingComplete', 'lastStudiedAt', 'updatedAt'
+        ]);
+      allow delete: if false;
+
+      match /lessonEvents/{eventId} {
+        allow read: if signedInAs(userId);
+        allow create: if signedInAs(userId)
+          && request.resource.data.keys().hasOnly(['lessonId', 'score', 'completedAt'])
+          && request.resource.data.score is int
+          && request.resource.data.score >= 0
+          && request.resource.data.score <= 100;
+        allow update, delete: if false;
+      }
+    }
+
+    // Courses are shipped as versioned app content in the MVP; never client-writable.
+    match /courseContent/{document=**} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
