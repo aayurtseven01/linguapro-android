@@ -4,6 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import kotlinx.serialization.Serializable
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -67,7 +71,21 @@ private fun LinguaTheme(content: @Composable () -> Unit) {
     ), content = content)
 }
 
-private enum class Screen { Welcome, Register, Login, Plans, Quiz, PlacementResult, Home, Practice, Progress, Profile, Lesson, Locked }
+@Serializable
+private sealed interface AppRoute {
+    @Serializable data object Welcome : AppRoute
+    @Serializable data object Register : AppRoute
+    @Serializable data object Login : AppRoute
+    @Serializable data object Plans : AppRoute
+    @Serializable data object Quiz : AppRoute
+    @Serializable data object PlacementResult : AppRoute
+    @Serializable data object Home : AppRoute
+    @Serializable data object Practice : AppRoute
+    @Serializable data object Progress : AppRoute
+    @Serializable data object Profile : AppRoute
+    @Serializable data object Lesson : AppRoute
+    @Serializable data object Locked : AppRoute
+}
 private data class Question(
     val level: String,
     val prompt: String,
@@ -97,7 +115,10 @@ private fun LinguaApp() {
     val context = LocalContext.current
     val accounts = remember(context) { FirebaseAccountRepository(context) }
     val signedInUser = remember { accounts.currentUser() }
-    var screenName by rememberSaveable { mutableStateOf(if (signedInUser != null) Screen.Home.name else Screen.Welcome.name) }
+    val navController = rememberNavController()
+    val startDestination = remember(signedInUser) {
+        if (signedInUser != null) AppRoute.Home else AppRoute.Welcome
+    }
     var questionIndex by rememberSaveable { mutableIntStateOf(0) }
     var highestPassed by rememberSaveable { mutableIntStateOf(-1) }
     var placementSummary by remember { mutableStateOf<PlacementSummary?>(null) }
@@ -120,78 +141,158 @@ private fun LinguaApp() {
         CourseCatalog.allLessons().firstOrNull { it.id == selectedLessonId }
             ?: CourseCatalog.lessonAt(level, completed)
     }
-    val screen = Screen.valueOf(screenName)
-    val go: (Screen) -> Unit = { screenName = it.name }
+    val go: (AppRoute) -> Unit = { destination ->
+        navController.navigate(destination) { launchSingleTop = true }
+    }
+
     LaunchedEffect(accountUid) {
         if (accountUid.isNotBlank()) accounts.loadProfile(accountUid) { profile ->
             if (profile != null) {
                 if (profile.displayName.isNotBlank()) userName = profile.displayName
                 if (profile.cefrLevel in levels) level = profile.cefrLevel
                 completed = profile.completedLessons
-                if (!profile.onboardingComplete && screenName == Screen.Home.name) screenName = Screen.Plans.name
+                if (!profile.onboardingComplete) go(AppRoute.Plans)
             }
         }
     }
+
     Surface(color = Navy) {
-        when (screen) {
-            Screen.Welcome -> WelcomeScreen(onStart = { go(Screen.Register) }, onLogin = { go(Screen.Login) })
-            Screen.Register -> RegisterScreen(
-                startInLogin = false, accounts = accounts, onBack = { go(Screen.Welcome) },
-                onContinue = { name, email, uid -> userName = name.ifBlank { email.substringBefore('@') }; accountEmail = email; accountUid = uid; go(Screen.Plans) }
-            )
-            Screen.Login -> RegisterScreen(
-                startInLogin = true, accounts = accounts, onBack = { go(Screen.Welcome) },
-                onContinue = { name, email, uid -> userName = name.ifBlank { email.substringBefore('@') }; accountEmail = email; accountUid = uid; go(Screen.Home) }
-            )
-            Screen.Plans -> PlanScreen(plan = plan, onPlan = { plan = it }, onBack = { go(Screen.Register) }, onStart = { questionIndex = 0; highestPassed = -1; placementSummary = null; selected = -1; go(Screen.Quiz) })
-            Screen.Quiz -> QuizScreen(index = questionIndex, selected = selected, onSelect = { selected = it }, onBack = {
-                if (questionIndex > 0) {
-                    questionIndex--
-                    selected = -1
-                    highestPassed = if (questionIndex == 0) -1 else levels.indexOf(questions[questionIndex - 1].level)
-                } else go(Screen.Plans)
-            }, onNext = {
-                val question = questions[questionIndex]
-                val isCorrect = selected == question.correct
-                val nextHighestPassed = if (isCorrect) levels.indexOf(question.level) else highestPassed
-                if (isCorrect) highestPassed = nextHighestPassed
-                if (!isCorrect || questionIndex == questions.lastIndex) {
-                    val attempted = questions.take(questionIndex + 1).map { PlacementQuestionResult(it.level, it.skill) }
-                    val correctIndexes = (0 until questionIndex).toMutableSet().apply { if (isCorrect) add(questionIndex) }
-                    val summary = PlacementAssessment.summarize(nextHighestPassed, attempted, correctIndexes)
-                    placementSummary = summary
-                    level = summary.level
-                    if (accountUid.isNotBlank()) accounts.savePlacement(accountUid, summary.level, summary.skillMastery) { }
-                    go(Screen.PlacementResult)
-                } else { questionIndex++; selected = -1 }
-            })
-            Screen.PlacementResult -> placementSummary?.let { summary -> PlacementResultScreen(summary, onContinue = { go(Screen.Home) }) }
-                ?: WelcomeScreen(onStart = { go(Screen.Register) }, onLogin = { go(Screen.Login) })
-            Screen.Home -> HomeScreen(name = userName, level = level, completed = completed, progress = learningProgress, skillStats = skillStats, onStartLesson = { selectedLessonId = ""; selectedExerciseIndex = 0; go(Screen.Lesson) }, onLocked = { go(Screen.Locked) }, onPractice = { go(Screen.Practice) }, onProgress = { go(Screen.Progress) }, onProfile = { go(Screen.Profile) })
-            Screen.Practice -> PracticeScreen(level, mistakeIds, skillStats, onBack = { go(Screen.Home) }, onSelectLesson = { id -> selectedLessonId = id; selectedExerciseIndex = 0; go(Screen.Lesson) }, onReviewExercise = { lessonId, exerciseIndex -> selectedLessonId = lessonId; selectedExerciseIndex = exerciseIndex; go(Screen.Lesson) })
-            Screen.Progress -> ProgressScreen(level, completed, learningProgress, skillStats, onBack = { go(Screen.Home) })
-            Screen.Profile -> ProfileScreen(userName, accountEmail, level, completed, learningProgress, onBack = { go(Screen.Home) }, onSignOut = {
-                accounts.signOut(); accountUid = ""; accountEmail = ""; userName = "Öğrenci"; level = "A1"; completed = 0; selectedLessonId = ""; go(Screen.Welcome)
-            })
-            Screen.Lesson -> LearningLessonScreen(
-                lesson = activeLesson,
-                exerciseIndex = selectedExerciseIndex,
-                onBack = { go(Screen.Home) },
-                onExerciseResult = { exerciseId, skill, correct ->
-                    mistakeIds = mistakeBook.record(exerciseId, correct)
-                    skillStats = skillProgressStore.record(skill, correct)
-                },
-                onDone = { score ->
-                    val countsTowardCourse = selectedLessonId.isBlank()
-                    if (accountUid.isNotBlank()) accounts.recordLesson(accountUid, activeLesson.id, score, countsTowardCourse) { }
-                    if (countsTowardCourse) completed++
-                    selectedLessonId = ""
-                    selectedExerciseIndex = 0
-                    learningProgress = progressStore.recordLesson(score)
-                    go(Screen.Home)
-                }
-            )
-            Screen.Locked -> LockedScreen(onBack = { go(Screen.Home) })
+        NavHost(navController = navController, startDestination = startDestination, modifier = Modifier.fillMaxSize()) {
+            composable<AppRoute.Welcome> {
+                WelcomeScreen(onStart = { go(AppRoute.Register) }, onLogin = { go(AppRoute.Login) })
+            }
+            composable<AppRoute.Register> {
+                RegisterScreen(
+                    startInLogin = false, accounts = accounts, onBack = { go(AppRoute.Welcome) },
+                    onContinue = { name, email, uid ->
+                        userName = name.ifBlank { email.substringBefore('@') }
+                        accountEmail = email
+                        accountUid = uid
+                        go(AppRoute.Plans)
+                    }
+                )
+            }
+            composable<AppRoute.Login> {
+                RegisterScreen(
+                    startInLogin = true, accounts = accounts, onBack = { go(AppRoute.Welcome) },
+                    onContinue = { name, email, uid ->
+                        userName = name.ifBlank { email.substringBefore('@') }
+                        accountEmail = email
+                        accountUid = uid
+                        go(AppRoute.Home)
+                    }
+                )
+            }
+            composable<AppRoute.Plans> {
+                PlanScreen(
+                    plan = plan,
+                    onPlan = { plan = it },
+                    onBack = { go(AppRoute.Register) },
+                    onStart = {
+                        questionIndex = 0
+                        highestPassed = -1
+                        placementSummary = null
+                        selected = -1
+                        go(AppRoute.Quiz)
+                    }
+                )
+            }
+            composable<AppRoute.Quiz> {
+                QuizScreen(
+                    index = questionIndex,
+                    selected = selected,
+                    onSelect = { selected = it },
+                    onBack = {
+                        if (questionIndex > 0) {
+                            questionIndex--
+                            selected = -1
+                            highestPassed = if (questionIndex == 0) -1 else levels.indexOf(questions[questionIndex - 1].level)
+                        } else go(AppRoute.Plans)
+                    },
+                    onNext = {
+                        val question = questions[questionIndex]
+                        val isCorrect = selected == question.correct
+                        val nextHighestPassed = if (isCorrect) levels.indexOf(question.level) else highestPassed
+                        if (isCorrect) highestPassed = nextHighestPassed
+                        if (!isCorrect || questionIndex == questions.lastIndex) {
+                            val attempted = questions.take(questionIndex + 1).map { PlacementQuestionResult(it.level, it.skill) }
+                            val correctIndexes = (0 until questionIndex).toMutableSet().apply { if (isCorrect) add(questionIndex) }
+                            val summary = PlacementAssessment.summarize(nextHighestPassed, attempted, correctIndexes)
+                            placementSummary = summary
+                            level = summary.level
+                            if (accountUid.isNotBlank()) accounts.savePlacement(accountUid, summary.level, summary.skillMastery) { }
+                            go(AppRoute.PlacementResult)
+                        } else {
+                            questionIndex++
+                            selected = -1
+                        }
+                    }
+                )
+            }
+            composable<AppRoute.PlacementResult> {
+                placementSummary?.let { summary ->
+                    PlacementResultScreen(summary, onContinue = { go(AppRoute.Home) })
+                } ?: WelcomeScreen(onStart = { go(AppRoute.Register) }, onLogin = { go(AppRoute.Login) })
+            }
+            composable<AppRoute.Home> {
+                HomeScreen(
+                    name = userName, level = level, completed = completed, progress = learningProgress,
+                    skillStats = skillStats,
+                    onStartLesson = { selectedLessonId = ""; selectedExerciseIndex = 0; go(AppRoute.Lesson) },
+                    onLocked = { go(AppRoute.Locked) },
+                    onPractice = { go(AppRoute.Practice) },
+                    onProgress = { go(AppRoute.Progress) },
+                    onProfile = { go(AppRoute.Profile) }
+                )
+            }
+            composable<AppRoute.Practice> {
+                PracticeScreen(
+                    level, mistakeIds, skillStats,
+                    onBack = { go(AppRoute.Home) },
+                    onSelectLesson = { id -> selectedLessonId = id; selectedExerciseIndex = 0; go(AppRoute.Lesson) },
+                    onReviewExercise = { lessonId, exerciseIndex -> selectedLessonId = lessonId; selectedExerciseIndex = exerciseIndex; go(AppRoute.Lesson) }
+                )
+            }
+            composable<AppRoute.Progress> {
+                ProgressScreen(level, completed, learningProgress, skillStats, onBack = { go(AppRoute.Home) })
+            }
+            composable<AppRoute.Profile> {
+                ProfileScreen(
+                    userName, accountEmail, level, completed, learningProgress,
+                    onBack = { go(AppRoute.Home) },
+                    onSignOut = {
+                        accounts.signOut()
+                        accountUid = ""
+                        accountEmail = ""
+                        userName = "Öğrenci"
+                        level = "A1"
+                        completed = 0
+                        selectedLessonId = ""
+                        go(AppRoute.Welcome)
+                    }
+                )
+            }
+            composable<AppRoute.Lesson> {
+                LearningLessonScreen(
+                    lesson = activeLesson,
+                    exerciseIndex = selectedExerciseIndex,
+                    onBack = { go(AppRoute.Home) },
+                    onExerciseResult = { exerciseId, skill, correct ->
+                        mistakeIds = mistakeBook.record(exerciseId, correct)
+                        skillStats = skillProgressStore.record(skill, correct)
+                    },
+                    onDone = { score ->
+                        val countsTowardCourse = selectedLessonId.isBlank()
+                        if (accountUid.isNotBlank()) accounts.recordLesson(accountUid, activeLesson.id, score, countsTowardCourse) { }
+                        if (countsTowardCourse) completed++
+                        selectedLessonId = ""
+                        selectedExerciseIndex = 0
+                        learningProgress = progressStore.recordLesson(score)
+                        go(AppRoute.Home)
+                    }
+                )
+            }
+            composable<AppRoute.Locked> { LockedScreen(onBack = { go(AppRoute.Home) }) }
         }
     }
 }
