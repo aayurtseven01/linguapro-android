@@ -33,6 +33,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
 import com.linguapro.android.data.AccountResult
 import com.linguapro.android.data.FirebaseAccountRepository
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.linguapro.android.ui.home.LearningDashboardViewModel
 
 private val Navy = Color(0xFF071D32)
 private val Panel = Color(0xFF112B46)
@@ -116,6 +118,8 @@ private fun LinguaApp() {
     val accounts = remember(context) { FirebaseAccountRepository(context) }
     val signedInUser = remember { accounts.currentUser() }
     val navController = rememberNavController()
+    val dashboardViewModel: LearningDashboardViewModel = hiltViewModel()
+    val dashboardState by dashboardViewModel.uiState.collectAsState()
     val startDestination = remember(signedInUser) {
         if (signedInUser != null) AppRoute.Home else AppRoute.Welcome
     }
@@ -143,6 +147,10 @@ private fun LinguaApp() {
     }
     val go: (AppRoute) -> Unit = { destination ->
         navController.navigate(destination) { launchSingleTop = true }
+    }
+
+    LaunchedEffect(accountUid, level) {
+        dashboardViewModel.setLearnerContext(accountUid, level)
     }
 
     LaunchedEffect(accountUid) {
@@ -236,8 +244,9 @@ private fun LinguaApp() {
             }
             composable<AppRoute.Home> {
                 HomeScreen(
-                    name = userName, level = level, completed = completed, progress = learningProgress,
-                    skillStats = skillStats,
+                    name = userName, level = level,
+                    completed = if (accountUid.isBlank()) dashboardState.completedLessonCount else maxOf(completed, dashboardState.completedLessonCount),
+                    progress = learningProgress, skillStats = skillStats,
                     onStartLesson = { selectedLessonId = ""; selectedExerciseIndex = 0; go(AppRoute.Lesson) },
                     onLocked = { go(AppRoute.Locked) },
                     onPractice = { go(AppRoute.Practice) },
@@ -284,7 +293,10 @@ private fun LinguaApp() {
                     onDone = { score ->
                         val countsTowardCourse = selectedLessonId.isBlank()
                         if (accountUid.isNotBlank()) accounts.recordLesson(accountUid, activeLesson.id, score, countsTowardCourse) { }
-                        if (countsTowardCourse) completed++
+                        if (countsTowardCourse) {
+                            completed++
+                            dashboardViewModel.recordLesson(accountUid, activeLesson.id.substringBefore('-'), activeLesson.id, score)
+                        }
                         selectedLessonId = ""
                         selectedExerciseIndex = 0
                         learningProgress = progressStore.recordLesson(score)

@@ -19,7 +19,7 @@ Komut satırı derlemesi: `./gradlew assembleDebug`
 
 ## Mimari geçiş durumu
 
-Uygulama Kotlin 2.3.20 ve Compose kullanır. Yerel veri katmanı için Room (ders/kart/kelime/ilerleme tabloları), kullanıcı tercihleri için DataStore, bağımlılık enjeksiyonu için Hilt ve ViewModel/StateFlow temeli eklendi. Geçiş aşamalıdır: mevcut ekran akışı henüz NavHost'a taşınmadı; yeni Room repository ve dashboard ViewModel'i mevcut ekranlara henüz bağlanmadı. İçerik Kotlin kataloğunda duruyor; JSON seed yükleyicisi sonraki aşamada kurulacak. Bu nedenle yeni şema şu an ilk kurulum altyapısıdır; mevcut SharedPreferences/Firebase akışlarının tümü Room'a taşınmış değildir.
+Uygulama Kotlin 2.3.20 ve Compose kullanır. Yerel veri katmanı için Room (ders/kart/kelime/ilerleme tabloları), kullanıcı tercihleri için DataStore, bağımlılık enjeksiyonu için Hilt ve ViewModel/StateFlow temeli eklendi. Geçiş aşamalıdır: ekranlar tip güvenli Navigation Compose `NavHost` rotalarına taşındı; dashboard ViewModel'i Room'dan seviye bazlı ders tamamlamalarını gözlüyor ve kayıt ediyor. Diğer ekran durumları ile XP/seri/beceri/hata verilerinin eski depolama akışlarından bütünüyle taşınması sürüyor. İçerik Kotlin kataloğunda duruyor; JSON seed yükleyicisi sonraki aşamada kurulacak. Yeni Room şeması bu aşamada yerel ders/kelime/kart/ilerleme tablolarını tanımlar; üretim migration politikası ve içerik seed'i henüz tamamlanmış sayılmaz.
 
 ## MVP kapsamı ve üretim öncesi yapılacaklar
 

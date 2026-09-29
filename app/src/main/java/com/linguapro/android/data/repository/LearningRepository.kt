@@ -10,9 +10,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface LearningRepository {
     fun observeLessons(level: String): Flow<List<LessonEntity>>
-    fun observeLessonProgress(learnerId: String): Flow<List<LessonProgressEntity>>
-    fun observeCompletedLessonCount(learnerId: String): Flow<Int>
-    suspend fun recordLesson(learnerId: String, lessonId: String, scorePercent: Int, nowEpochMillis: Long = System.currentTimeMillis())
+    fun observeLessonProgress(learnerId: String, level: String): Flow<List<LessonProgressEntity>>
+    fun observeCompletedLessonCount(learnerId: String, level: String): Flow<Int>
+    suspend fun recordLesson(learnerId: String, level: String, lessonId: String, scorePercent: Int, nowEpochMillis: Long = System.currentTimeMillis())
 }
 
 @Singleton
@@ -22,12 +22,13 @@ class RoomLearningRepository @Inject constructor(
 ) : LearningRepository {
     override fun observeLessons(level: String) = lessons.observeByLevel(level)
 
-    override fun observeLessonProgress(learnerId: String) = progress.observeForLearner(learnerId)
+    override fun observeLessonProgress(learnerId: String, level: String) = progress.observeForLearner(learnerId, level)
 
-    override fun observeCompletedLessonCount(learnerId: String) = progress.observeCompletedLessonCount(learnerId)
+    override fun observeCompletedLessonCount(learnerId: String, level: String) = progress.observeCompletedLessonCount(learnerId, level)
 
-    override suspend fun recordLesson(learnerId: String, lessonId: String, scorePercent: Int, nowEpochMillis: Long) {
+    override suspend fun recordLesson(learnerId: String, level: String, lessonId: String, scorePercent: Int, nowEpochMillis: Long) {
         require(learnerId.isNotBlank())
+        require(level.matches(Regex("A[12]|B[12]|C[12]")))
         require(scorePercent in 0..100)
         val id = "$learnerId:$lessonId"
         val previous = progress.getById(id)
@@ -35,6 +36,7 @@ class RoomLearningRepository @Inject constructor(
             LessonProgressEntity(
                 id = id,
                 learnerId = learnerId,
+                cefrLevel = level,
                 lessonId = lessonId,
                 scorePercent = scorePercent,
                 completedAtEpochMillis = nowEpochMillis,

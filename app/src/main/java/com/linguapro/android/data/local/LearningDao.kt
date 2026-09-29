@@ -53,11 +53,11 @@ interface ReviewCardDao {
 
 @Dao
 interface LessonProgressDao {
-    @Query("SELECT * FROM lesson_progress WHERE learnerId = :learnerId ORDER BY completedAtEpochMillis DESC")
-    fun observeForLearner(learnerId: String): Flow<List<LessonProgressEntity>>
+    @Query("SELECT * FROM lesson_progress WHERE learnerId = :learnerId AND cefrLevel = :level ORDER BY completedAtEpochMillis DESC")
+    fun observeForLearner(learnerId: String, level: String): Flow<List<LessonProgressEntity>>
 
-    @Query("SELECT COUNT(DISTINCT lessonId) FROM lesson_progress WHERE learnerId = :learnerId")
-    fun observeCompletedLessonCount(learnerId: String): Flow<Int>
+    @Query("SELECT COUNT(DISTINCT lessonId) FROM lesson_progress WHERE learnerId = :learnerId AND cefrLevel = :level")
+    fun observeCompletedLessonCount(learnerId: String, level: String): Flow<Int>
 
     @Query("SELECT * FROM lesson_progress WHERE id = :id LIMIT 1")
     suspend fun getById(id: String): LessonProgressEntity?

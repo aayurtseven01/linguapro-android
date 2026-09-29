@@ -61,6 +61,7 @@ data class ReviewCardEntity(
 data class LessonProgressEntity(
     @PrimaryKey val id: String,
     val learnerId: String,
+    val cefrLevel: String,
     val lessonId: String,
     val scorePercent: Int,
     val completedAtEpochMillis: Long,

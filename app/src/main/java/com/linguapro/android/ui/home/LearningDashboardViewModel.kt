@@ -11,9 +11,12 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+
+private data class LearnerContext(val learnerId: String = "guest", val level: String = "A1")
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
@@ -21,10 +24,14 @@ class LearningDashboardViewModel @Inject constructor(
     private val learningRepository: LearningRepository,
     private val settingsRepository: UserSettingsRepository
 ) : ViewModel() {
-    private val learnerId = MutableStateFlow("guest")
+    private val learnerContext = MutableStateFlow(LearnerContext())
 
-    private val progress = learnerId.flatMapLatest(learningRepository::observeLessonProgress)
-    private val completedCount = learnerId.flatMapLatest(learningRepository::observeCompletedLessonCount)
+    private val progress = learnerContext.flatMapLatest { (learnerId, level) ->
+        learningRepository.observeLessonProgress(learnerId, level)
+    }
+    private val completedCount = learnerContext.flatMapLatest { (learnerId, level) ->
+        learningRepository.observeCompletedLessonCount(learnerId, level)
+    }
 
     val uiState: StateFlow<LearningDashboardState> = combine(
         progress,
@@ -38,8 +45,15 @@ class LearningDashboardViewModel @Inject constructor(
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), LearningDashboardState())
 
-    fun setLearner(learnerKey: String) {
-        learnerId.value = learnerKey.ifBlank { "guest" }
+    fun setLearnerContext(learnerKey: String, level: String) {
+        learnerContext.value = LearnerContext(learnerKey.ifBlank { "guest" }, level)
+    }
+
+    fun recordLesson(learnerKey: String, level: String, lessonId: String, scorePercent: Int) {
+        val learnerId = learnerKey.ifBlank { "guest" }
+        viewModelScope.launch {
+            learningRepository.recordLesson(learnerId, level, lessonId, scorePercent)
+        }
     }
 }
 
