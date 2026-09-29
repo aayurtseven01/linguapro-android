@@ -44,6 +44,9 @@ interface ReviewCardDao {
     @Query("SELECT COUNT(*) FROM review_cards WHERE learnerId = :learnerId AND dueAtEpochMillis <= :now")
     fun observeDueCount(learnerId: String, now: Long): Flow<Int>
 
+    @Query("SELECT * FROM review_cards WHERE learnerId = :learnerId AND vocabularyId = :vocabularyId AND direction = :direction LIMIT 1")
+    suspend fun getCard(learnerId: String, vocabularyId: String, direction: String): ReviewCardEntity?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(card: ReviewCardEntity)
 
