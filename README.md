@@ -13,9 +13,13 @@ Kotlin + Jetpack Compose ile hazırlanmış, Türkçe arayüzlü İngilizce öğ
 
 ## Android Studio'da açma
 
-Projeyi Android Studio'da açıp Gradle senkronizasyonunu tamamlayın. JDK 17 ve Android SDK 35 gerekir. Minimum Android sürümü API 26'dır. Uygulamanın paket adı `com.linguapro.android`.
+Projeyi Android Studio'da açıp Gradle senkronizasyonunu tamamlayın. JDK 17 ve Android SDK 35 gerekir. Minimum Android sürümü API 24, hedef API 34'tür. Uygulamanın paket adı `com.linguapro.android`.
 
 Komut satırı derlemesi: `./gradlew assembleDebug`
+
+## Mimari geçiş durumu
+
+Uygulama Kotlin 2.3.20 ve Compose kullanır. Yerel veri katmanı için Room (ders/kart/kelime/ilerleme tabloları), kullanıcı tercihleri için DataStore, bağımlılık enjeksiyonu için Hilt ve ViewModel/StateFlow temeli eklendi. Geçiş aşamalıdır: mevcut ekran akışı henüz NavHost'a taşınmadı; yeni Room repository ve dashboard ViewModel'i mevcut ekranlara henüz bağlanmadı. İçerik Kotlin kataloğunda duruyor; JSON seed yükleyicisi sonraki aşamada kurulacak. Bu nedenle yeni şema şu an ilk kurulum altyapısıdır; mevcut SharedPreferences/Firebase akışlarının tümü Room'a taşınmış değildir.
 
 ## MVP kapsamı ve üretim öncesi yapılacaklar
 
