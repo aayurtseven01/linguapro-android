@@ -262,7 +262,7 @@ object CourseCatalog {
         catalog.getValue(level) + additionalUnits[level].orEmpty() + CourseExpansion.units(level) + CourseExpansionAdvanced.units(level) + CourseExpansionMastery.units(level) + CourseExpansionCoverage.units(level)
     }
 
-    fun units(level: String): List<LearningUnit> = completeCatalog[level] ?: completeCatalog.getValue("A1")
+    fun units(level: String): List<LearningUnit> = completeCatalog[level] ?: if (level == "C2") emptyList() else completeCatalog.getValue("A1")
     fun firstLesson(level: String): LearningLesson = units(level).first().lessons.first()
     fun lessonAt(level: String, lessonIndex: Int): LearningLesson {
         val lessons = units(level).flatMap { it.lessons }

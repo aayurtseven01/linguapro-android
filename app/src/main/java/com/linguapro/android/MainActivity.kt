@@ -35,6 +35,7 @@ import com.linguapro.android.data.AccountResult
 import com.linguapro.android.data.FirebaseAccountRepository
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.linguapro.android.ui.home.LearningDashboardViewModel
+import com.linguapro.android.ui.settings.SettingsRoute
 
 private val Navy = Color(0xFF071D32)
 private val Panel = Color(0xFF112B46)
@@ -85,6 +86,7 @@ private sealed interface AppRoute {
     @Serializable data object Practice : AppRoute
     @Serializable data object Progress : AppRoute
     @Serializable data object Profile : AppRoute
+    @Serializable data object Settings : AppRoute
     @Serializable data object Lesson : AppRoute
     @Serializable data object Locked : AppRoute
 }
@@ -110,7 +112,7 @@ private val questions = listOf(
     Question("B2", "In the report, 'inconclusive' means the results…", listOf("prove the claim", "do not provide a clear answer", "are irrelevant", "were fabricated"), 1, Skill.VOCABULARY, "The pilot showed a possible improvement, but the sample was too small for a firm conclusion."),
     Question("C1", "Hardly ___ the meeting begun when the fire alarm rang.", listOf("had", "has", "did", "was"), 0)
 )
-private val levels = listOf("A1", "A2", "B1", "B2", "C1")
+private val levels = listOf("A1", "A2", "B1", "B2", "C1", "C2")
 
 @Composable
 private fun LinguaApp() {
@@ -287,6 +289,7 @@ private fun LinguaApp() {
                 ProfileScreen(
                     userName, accountEmail, level, completed, learningProgress,
                     onBack = { go(AppRoute.Home) },
+                    onSettings = { go(AppRoute.Settings) },
                     onSignOut = {
                         accounts.signOut()
                         accountUid = ""
@@ -299,6 +302,7 @@ private fun LinguaApp() {
                     }
                 )
             }
+            composable<AppRoute.Settings> { SettingsRoute(onBack = { go(AppRoute.Profile) }) }
             composable<AppRoute.Lesson> {
                 LearningLessonScreen(
                     lesson = activeLesson,
@@ -320,7 +324,9 @@ private fun LinguaApp() {
                         selectedExerciseIndex = 0
                         learningProgress = progressStore.recordLesson(score)
                         go(AppRoute.Home)
-                    }
+                    },
+                    ttsAccent = dashboardState.settings.speechAccent,
+                    speechRate = dashboardState.settings.speechRate
                 )
             }
             composable<AppRoute.Locked> { LockedScreen(onBack = { go(AppRoute.Home) }) }
@@ -711,7 +717,7 @@ private fun ProgressScreen(level: String, completed: Int, progress: LearningProg
 }
 
 @Composable
-private fun ProfileScreen(name: String, email: String, level: String, completed: Int, progress: LearningProgress, onBack: () -> Unit, onSignOut: () -> Unit) {
+private fun ProfileScreen(name: String, email: String, level: String, completed: Int, progress: LearningProgress, onBack: () -> Unit, onSettings: () -> Unit, onSignOut: () -> Unit) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         BackRow("Profil", onBack)
         Spacer(Modifier.height(12.dp))
@@ -727,6 +733,8 @@ private fun ProfileScreen(name: String, email: String, level: String, completed:
         Spacer(Modifier.height(18.dp))
         Text("Hesap ve gizlilik", fontSize = 18.sp, fontWeight = FontWeight.Bold)
         Text("Ders tamamlama hesabınla Firestore'a kaydedilir. XP, çalışma serisi ve otomatik yanıtların beceri özeti bu cihazda tutulur; cihazlar arası eşitleme henüz yoktur.", color = Muted, fontSize = 12.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 7.dp, bottom = 15.dp))
+        OutlinedButton(onClick = onSettings, modifier = Modifier.fillMaxWidth()) { Text("Öğrenme ayarları", color = Color.White) }
+        Spacer(Modifier.height(8.dp))
         OutlinedButton(onClick = onSignOut, modifier = Modifier.fillMaxWidth()) { Text("Oturumu kapat", color = Color.White) }
         Spacer(Modifier.height(20.dp))
     }

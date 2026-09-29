@@ -44,7 +44,9 @@ fun LearningLessonScreen(
     exerciseIndex: Int,
     onBack: () -> Unit,
     onExerciseResult: (exerciseId: String, skill: Skill, correct: Boolean) -> Unit,
-    onDone: (Int?) -> Unit
+    onDone: (Int?) -> Unit,
+    ttsAccent: String = "en-US",
+    speechRate: Float = 1.0f
 ) {
     val index = rememberSaveable(lesson.id, exerciseIndex) { mutableIntStateOf(exerciseIndex) }
     val exercise = lesson.exercises.getOrNull(index.intValue)
@@ -62,11 +64,14 @@ fun LearningLessonScreen(
     val context = LocalContext.current
     val tts = remember { mutableStateOf<TextToSpeech?>(null) }
 
-    DisposableEffect(context) {
+    DisposableEffect(context, ttsAccent, speechRate) {
         val engine = TextToSpeech(context) { status ->
             if (status == TextToSpeech.SUCCESS) {
-                engineLanguageSetup(tts.value)
-                ttsReady = true
+                ttsReady = engineLanguageSetup(tts.value, ttsAccent, speechRate)
+                if (!ttsReady) speechMessage = "Seçilen aksan için cihazda TTS sesi yok. Ayarlardan diğer aksanı deneyebilirsin."
+            } else {
+                ttsReady = false
+                speechMessage = "Cihazın metni sese dönüştürme motoru kullanılamıyor."
             }
         }
         tts.value = engine
@@ -300,8 +305,13 @@ private fun LessonCompletion(lesson: LearningLesson, correct: Int, graded: Int, 
     }
 }
 
-private fun engineLanguageSetup(engine: TextToSpeech?) {
-    engine?.language = Locale.US
+private fun engineLanguageSetup(engine: TextToSpeech?, accent: String, speechRate: Float): Boolean {
+    if (engine == null) return false
+    val locale = Locale.forLanguageTag(accent)
+    val availability = engine.setLanguage(locale)
+    if (availability == TextToSpeech.LANG_MISSING_DATA || availability == TextToSpeech.LANG_NOT_SUPPORTED) return false
+    engine.setSpeechRate(speechRate)
+    return true
 }
 
 private fun speak(engine: TextToSpeech?, text: String) {

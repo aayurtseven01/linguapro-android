@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.floatPreferencesKey
@@ -18,6 +19,7 @@ private val Context.userSettingsDataStore: DataStore<Preferences> by preferences
 
 data class UserSettings(
     val dailyGoalMinutes: Int = 10,
+    val remindersEnabled: Boolean = false,
     val reminderHour: Int = 20,
     val reminderMinute: Int = 0,
     val speechAccent: String = "en-US",
@@ -32,6 +34,7 @@ class UserSettingsRepository @Inject constructor(@ApplicationContext context: Co
     val settings: Flow<UserSettings> = dataStore.data.map { values ->
         UserSettings(
             dailyGoalMinutes = values[Keys.dailyGoalMinutes] ?: 10,
+            remindersEnabled = values[Keys.remindersEnabled] ?: false,
             reminderHour = (values[Keys.reminderHour] ?: 20).coerceIn(0, 23),
             reminderMinute = (values[Keys.reminderMinute] ?: 0).coerceIn(0, 59),
             speechAccent = values[Keys.speechAccent]?.takeIf { it in setOf("en-US", "en-GB") } ?: "en-US",
@@ -43,6 +46,10 @@ class UserSettingsRepository @Inject constructor(@ApplicationContext context: Co
     suspend fun setDailyGoal(minutes: Int) {
         require(minutes in setOf(5, 10, 20))
         dataStore.edit { it[Keys.dailyGoalMinutes] = minutes }
+    }
+
+    suspend fun setRemindersEnabled(enabled: Boolean) {
+        dataStore.edit { it[Keys.remindersEnabled] = enabled }
     }
 
     suspend fun setReminderTime(hour: Int, minute: Int) {
@@ -70,6 +77,7 @@ class UserSettingsRepository @Inject constructor(@ApplicationContext context: Co
 
     private object Keys {
         val dailyGoalMinutes = intPreferencesKey("daily_goal_minutes")
+        val remindersEnabled = booleanPreferencesKey("reminders_enabled")
         val reminderHour = intPreferencesKey("reminder_hour")
         val reminderMinute = intPreferencesKey("reminder_minute")
         val speechAccent = stringPreferencesKey("speech_accent")

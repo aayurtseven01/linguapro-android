@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">LinguaPro</string>
+    <string name="reminder_channel">Hatırlatmalar</string>
+    <string name="reminder_title">Bugünkü İngilizce tekrarın hazır</string>
+    <string name="reminder_body">Kısa bir tekrar yap ve çalışma serini sürdür.</string>
+    <string name="settings_title">Ayarlar</string>
+    <string name="settings_back">Geri</string>
+    <string name="settings_daily_goal">Günlük çalışma hedefi</string>
+    <string name="settings_daily_goal_hint">Her gün ayırabileceğin süreyi seç.</string>
+    <string name="settings_minutes">%1$d dk</string>
+    <string name="settings_reminders">Hatırlatmalar</string>
+    <string name="settings_daily_reminder">Günlük tekrar hatırlatması</string>
+    <string name="settings_reminder_hint">Seçtiğin saatte yerel bildirim gönderilir.</string>
+    <string name="settings_reminder_toggle_description">Günlük tekrar hatırlatmasını aç veya kapat</string>
+    <string name="settings_reminder_time">Hatırlatma saati: %1$02d:%2$02d</string>
+    <string name="settings_notification_denied">Bildirim izni verilmedi. Android ayarlarından izin açarsan hatırlatmalar çalışabilir.</string>
+    <string name="settings_accent">Örnek ses aksanı</string>
+    <string name="settings_accent_us">ABD İngilizcesi</string>
+    <string name="settings_accent_uk">Birleşik Krallık İngilizcesi</string>
+    <string name="settings_speech_rate">Konuşma hızı: %1$.2fx</string>
+    <string name="settings_speech_rate_hint">Hız, 0,5x ile 1,5x arasında ayarlanabilir.</string>
 </resources>
