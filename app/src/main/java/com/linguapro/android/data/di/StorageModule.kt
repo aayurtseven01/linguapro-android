@@ -2,6 +2,7 @@ package com.linguapro.android.data.di
 
 import android.content.Context
 import androidx.room.Room
+import com.linguapro.android.data.local.ContentPackDao
 import com.linguapro.android.data.local.LessonDao
 import com.linguapro.android.data.local.LessonProgressDao
 import com.linguapro.android.data.local.LinguaDatabase
@@ -31,10 +32,13 @@ object StorageModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): LinguaDatabase =
-        Room.databaseBuilder(context, LinguaDatabase::class.java, "linguapro.db").build()
+        Room.databaseBuilder(context, LinguaDatabase::class.java, "linguapro.db")
+            .addMigrations(LinguaDatabase.MIGRATION_1_2)
+            .build()
 
     @Provides fun provideLessonDao(database: LinguaDatabase): LessonDao = database.lessonDao()
     @Provides fun provideVocabularyDao(database: LinguaDatabase): VocabularyDao = database.vocabularyDao()
     @Provides fun provideReviewCardDao(database: LinguaDatabase): ReviewCardDao = database.reviewCardDao()
     @Provides fun provideLessonProgressDao(database: LinguaDatabase): LessonProgressDao = database.lessonProgressDao()
+    @Provides fun provideContentPackDao(database: LinguaDatabase): ContentPackDao = database.contentPackDao()
 }

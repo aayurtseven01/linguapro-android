@@ -19,6 +19,8 @@ object CoursePackValidator {
         if (lessons.any { it.id.isBlank() || it.title.isBlank() || it.canDo.isBlank() }) add("Her dersin kimliği, başlığı ve öğrenme çıktısı olmalı.")
         val vocabIds = lessons.flatMap { it.targetVocabulary }.map { it.id }
         if (vocabIds.toSet().size != vocabIds.size) add("Kelime kimlikleri içerik paketi genelinde benzersiz olmalı.")
+        val exerciseIds = lessons.flatMap { it.exercises }.map { it.id }
+        if (exerciseIds.toSet().size != exerciseIds.size) add("Alıştırma kimlikleri içerik paketi genelinde benzersiz olmalı.")
         supportedLevels.forEach { level ->
             if (allLessons.count { (unit, _) -> unit.id.substringBefore('-') == level } < 2) add("$level için en az iki tam ders gerekli.")
         }

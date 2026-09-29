@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.withTransaction
 import com.linguapro.android.CourseContentPack
 import com.linguapro.android.LearningLesson
+import com.linguapro.android.data.local.ContentPackEntity
 import com.linguapro.android.data.local.LessonEntity
 import com.linguapro.android.data.local.LinguaDatabase
 import com.linguapro.android.data.local.VocabularyEntity
@@ -24,11 +25,11 @@ class CourseSeedInitializer @Inject constructor(
         explicitNulls = false
     }
 
-    suspend fun seedIfEmpty(): Result<Int> = runCatching {
-        if (database.lessonDao().count() > 0) return@runCatching 0
+    suspend fun installIfNeeded(): Result<Int> = runCatching {
         val pack = context.assets.open(ASSET_FILE).bufferedReader(Charsets.UTF_8).use { reader ->
             json.decodeFromString<CourseContentPack>(reader.readText())
         }
+        if (database.contentPackDao().installedVersion(PACK_ID) == pack.contentVersion) return@runCatching 0
         val problems = CoursePackValidator.errors(pack)
         require(problems.isEmpty()) { problems.joinToString("\n") }
 
@@ -65,11 +66,20 @@ class CourseSeedInitializer @Inject constructor(
         database.withTransaction {
             database.lessonDao().upsertAll(lessons)
             database.vocabularyDao().upsertAll(vocabulary)
+            database.contentPackDao().recordInstalledPack(
+                ContentPackEntity(
+                    id = PACK_ID,
+                    schemaVersion = pack.schemaVersion,
+                    contentVersion = pack.contentVersion,
+                    installedAtEpochMillis = System.currentTimeMillis()
+                )
+            )
         }
         lessons.size
     }
 
     private companion object {
         const val ASSET_FILE = "course_content_v1.json"
+        const val PACK_ID = "core-course"
     }
 }
