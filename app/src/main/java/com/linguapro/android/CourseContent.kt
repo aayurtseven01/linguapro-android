@@ -1,8 +1,49 @@
 package com.linguapro.android
 
+import kotlinx.serialization.Serializable
+
 /** Content is data, separate from presentation, so editors/reviewers can audit learning objectives. */
+@Serializable
 enum class Skill { LISTENING, READING, SPEAKING, WRITING, GRAMMAR, VOCABULARY }
 
+@Serializable
+data class TargetVocabulary(
+    val id: String,
+    val termEn: String,
+    val translationTr: String,
+    val partOfSpeech: String,
+    val exampleEn: String,
+    val exampleTr: String,
+    val emoji: String = "📘"
+)
+
+@Serializable
+data class GrammarFocus(
+    val titleTr: String,
+    val explanationTr: String,
+    val form: String,
+    val englishExample: String,
+    val turkishEquivalent: String,
+    val commonTurkishErrorTr: String,
+    val checkPromptTr: String = "",
+    val correctAnswer: String = "",
+    val checkOptions: List<String> = emptyList()
+)
+
+@Serializable
+enum class LessonStageType { VOCABULARY, GRAMMAR, LISTENING, READING, WRITING, SPEAKING }
+
+@Serializable
+data class LessonStage(
+    val type: LessonStageType,
+    val titleTr: String,
+    val instructionTr: String,
+    val modelText: String = "",
+    val translationTr: String = ""
+)
+
+@Serializable
+@Serializable
 data class LearningExercise(
     val id: String,
     val skill: Skill,
@@ -16,18 +57,30 @@ data class LearningExercise(
     val sampleAnswer: String? = null
 )
 
+@Serializable
 data class LearningLesson(
     val id: String,
     val title: String,
     val canDo: String,
-    val exercises: List<LearningExercise>
+    val exercises: List<LearningExercise>,
+    val targetVocabulary: List<TargetVocabulary> = emptyList(),
+    val grammarFocus: GrammarFocus? = null,
+    val stages: List<LessonStage> = emptyList()
 )
 
+@Serializable
 data class LearningUnit(
     val id: String,
     val title: String,
     val summary: String,
     val lessons: List<LearningLesson>
+)
+
+@Serializable
+data class CourseContentPack(
+    val schemaVersion: Int,
+    val contentVersion: String,
+    val units: List<LearningUnit>
 )
 
 object CourseCatalog {

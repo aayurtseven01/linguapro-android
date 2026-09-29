@@ -1,0 +1,2772 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "1.0.0",
+  "units": [
+    {
+      "id": "A1-JSON-U1",
+      "title": "Hello and everyday life",
+      "summary": "İlk içerik paketi: A1 düzeyinde iletişim görevi, hedef kelimeler, biçim odağı ve bütünleşik beceri alıştırmaları.",
+      "lessons": [
+        {
+          "id": "A1-JSON-U1-L1",
+          "title": "Hello, I'm Elif",
+          "canDo": "Greet someone, introduce yourself and ask a person's name.",
+          "exercises": [
+            {
+              "id": "A1-JSON-U1-L1-E1",
+              "skill": "VOCABULARY",
+              "instructionTr": "Doğru anlamı seç.",
+              "prompt": "'hello' Türkçede ne demek?",
+              "options": [
+                "merhaba",
+                "isim",
+                "tanışmak"
+              ],
+              "acceptedAnswers": [
+                "merhaba"
+              ],
+              "explanationTr": "'hello' bu bağlamda 'merhaba' demektir."
+            },
+            {
+              "id": "A1-JSON-U1-L1-E2",
+              "skill": "GRAMMAR",
+              "instructionTr": "Dilbilgisi odağını uygula.",
+              "prompt": "Cümleyi tamamla: I ___ Elif.",
+              "context": "Özne + am/is/are + tamamlayıcı",
+              "options": [
+                "am",
+                "is",
+                "are"
+              ],
+              "acceptedAnswers": [
+                "am"
+              ],
+              "explanationTr": "Türkçede kişi eki fiile eklenebilir; İngilizcede özne ve be fiilini atlama."
+            },
+            {
+              "id": "A1-JSON-U1-L1-E3",
+              "skill": "LISTENING",
+              "instructionTr": "Dinleme metnine göre yanıtla.",
+              "prompt": "Where is Elif from?",
+              "context": "Hi, I'm Elif. I'm from Türkiye. Nice to meet you.",
+              "modelAudioText": "Hi, I'm Elif. I'm from Türkiye. Nice to meet you.",
+              "options": [
+                "Italy",
+                "Türkiye",
+                "Canada"
+              ],
+              "acceptedAnswers": [
+                "Türkiye"
+              ],
+              "explanationTr": "Yanıtı dinleme metnindeki açık bilgiyle eşleştir."
+            },
+            {
+              "id": "A1-JSON-U1-L1-E4",
+              "skill": "READING",
+              "instructionTr": "Metne göre doğru yanıtı bul.",
+              "prompt": "Who is a student?",
+              "context": "Hello! My name is Ali. I am a student. My teacher is Ms Green.",
+              "options": [
+                "Ali",
+                "Ms Green",
+                "Elif"
+              ],
+              "acceptedAnswers": [
+                "Ali"
+              ],
+              "explanationTr": "Yanıtı metindeki ilgili ifadeye dayanarak seç."
+            },
+            {
+              "id": "A1-JSON-U1-L1-E5",
+              "skill": "WRITING",
+              "instructionTr": "Kendi yanıtını yaz; örnek yanıtı kontrol listesi gibi kullan.",
+              "prompt": "Kendini İngilizce tanıt: adını ve nereli olduğunu söyle.",
+              "acceptedAnswers": [
+                "Hello, I'm Ayşe. I'm from Türkiye."
+              ],
+              "explanationTr": "Bu örnek tek olası yanıttır; serbest yazı otomatik dilbilgisi puanı değildir.",
+              "sampleAnswer": "Hello, I'm Ayşe. I'm from Türkiye."
+            },
+            {
+              "id": "A1-JSON-U1-L1-E6",
+              "skill": "SPEAKING",
+              "instructionTr": "İfadeyi önce dinle, sonra sesli tekrar et.",
+              "prompt": "Say your name and country.",
+              "acceptedAnswers": [
+                "Hello, I'm Ayşe. I'm from Türkiye."
+              ],
+              "explanationTr": "Anlaşılırlık ve düzenli tekrar hedeflenir; sistem telaffuz puanı üretmez.",
+              "modelAudioText": "Hello, I'm Ayşe. I'm from Türkiye.",
+              "sampleAnswer": "Hello, I'm Ayşe. I'm from Türkiye."
+            }
+          ],
+          "targetVocabulary": [
+            {
+              "id": "A1-JSON-U1-L1-V01",
+              "termEn": "hello",
+              "translationTr": "merhaba",
+              "partOfSpeech": "interjection",
+              "exampleEn": "Hello, I am glad to meet you.",
+              "exampleTr": "Merhaba, seninle tanıştığıma memnun oldum.",
+              "emoji": "👋"
+            },
+            {
+              "id": "A1-JSON-U1-L1-V02",
+              "termEn": "name",
+              "translationTr": "isim",
+              "partOfSpeech": "noun",
+              "exampleEn": "The name matters to the team.",
+              "exampleTr": "Ekip için isim önemlidir.",
+              "emoji": "🪪"
+            },
+            {
+              "id": "A1-JSON-U1-L1-V03",
+              "termEn": "meet",
+              "translationTr": "tanışmak",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to meet before Friday.",
+              "exampleTr": "Cuma gününden önce tanışmak planlıyoruz.",
+              "emoji": "🤝"
+            },
+            {
+              "id": "A1-JSON-U1-L1-V04",
+              "termEn": "from",
+              "translationTr": "-den/-dan",
+              "partOfSpeech": "preposition",
+              "exampleEn": "I am from Türkiye.",
+              "exampleTr": "Türkiye’denim.",
+              "emoji": "📍"
+            },
+            {
+              "id": "A1-JSON-U1-L1-V05",
+              "termEn": "country",
+              "translationTr": "ülke",
+              "partOfSpeech": "noun",
+              "exampleEn": "The country matters to the team.",
+              "exampleTr": "Ekip için ülke önemlidir.",
+              "emoji": "🌍"
+            },
+            {
+              "id": "A1-JSON-U1-L1-V06",
+              "termEn": "student",
+              "translationTr": "öğrenci",
+              "partOfSpeech": "noun",
+              "exampleEn": "The student matters to the team.",
+              "exampleTr": "Ekip için öğrenci önemlidir.",
+              "emoji": "🎒"
+            },
+            {
+              "id": "A1-JSON-U1-L1-V07",
+              "termEn": "teacher",
+              "translationTr": "öğretmen",
+              "partOfSpeech": "noun",
+              "exampleEn": "The teacher matters to the team.",
+              "exampleTr": "Ekip için öğretmen önemlidir.",
+              "emoji": "🧑‍🏫"
+            },
+            {
+              "id": "A1-JSON-U1-L1-V08",
+              "termEn": "nice",
+              "translationTr": "memnun",
+              "partOfSpeech": "adjective",
+              "exampleEn": "It is nice to meet you.",
+              "exampleTr": "Tanıştığımıza memnun oldum.",
+              "emoji": "😊"
+            }
+          ],
+          "grammarFocus": {
+            "titleTr": "be fiili: olumlu tanışma cümleleri",
+            "explanationTr": "I ile am; he/she/it ile is; you/we/they ile are kullanılır. İngilizcede özne çoğunlukla açıkça söylenir.",
+            "form": "Özne + am/is/are + tamamlayıcı",
+            "englishExample": "I am Elif. She is a teacher.",
+            "turkishEquivalent": "Ben Elif'im. O öğretmen.",
+            "commonTurkishErrorTr": "Türkçede kişi eki fiile eklenebilir; İngilizcede özne ve be fiilini atlama.",
+            "checkPromptTr": "Cümleyi tamamla: I ___ Elif.",
+            "correctAnswer": "am",
+            "checkOptions": [
+              "am",
+              "is",
+              "are"
+            ]
+          },
+          "stages": [
+            {
+              "type": "VOCABULARY",
+              "titleTr": "Hedef kelimeler",
+              "instructionTr": "Kelimeyi örnek içinde incele; İngilizce ve Türkçe anlamı birlikte hatırla.",
+              "modelText": "hello; name; meet; from; country; student; teacher; nice",
+              "translationTr": "merhaba; isim; tanışmak; -den/-dan; ülke; öğrenci; öğretmen; memnun"
+            },
+            {
+              "type": "GRAMMAR",
+              "titleTr": "be fiili: olumlu tanışma cümleleri",
+              "instructionTr": "I ile am; he/she/it ile is; you/we/they ile are kullanılır. İngilizcede özne çoğunlukla açıkça söylenir.",
+              "modelText": "I am Elif. She is a teacher.",
+              "translationTr": "Ben Elif'im. O öğretmen."
+            },
+            {
+              "type": "LISTENING",
+              "titleTr": "Dinle ve ana bilgiyi yakala",
+              "instructionTr": "Önce genel anlamı, sonra sorudaki ayrıntıyı dinle.",
+              "modelText": "Hi, I'm Elif. I'm from Türkiye. Nice to meet you.",
+              "translationTr": "Dinleme metni için Türkçe ipucu: anahtar sözcüklere odaklan."
+            },
+            {
+              "type": "READING",
+              "titleTr": "Oku ve çıkarım yap",
+              "instructionTr": "Metni oku; yanıtını metindeki kanıtla destekle.",
+              "modelText": "Hello! My name is Ali. I am a student. My teacher is Ms Green.",
+              "translationTr": "Önce bağlamı tahmin et, sonra ayrıntıyı doğrula."
+            },
+            {
+              "type": "WRITING",
+              "titleTr": "Yazma görevi",
+              "instructionTr": "Kendini İngilizce tanıt: adını ve nereli olduğunu söyle.",
+              "modelText": "Hello, I'm Ayşe. I'm from Türkiye.",
+              "translationTr": "Örnek yanıt; kendi bilgine göre uyarlayabilirsin."
+            },
+            {
+              "type": "SPEAKING",
+              "titleTr": "Konuşma tekrarı",
+              "instructionTr": "Say your name and country.",
+              "modelText": "Hello, I'm Ayşe. I'm from Türkiye.",
+              "translationTr": "Önce dinle, sonra kendi hızında tekrar et."
+            }
+          ]
+        },
+        {
+          "id": "A1-JSON-U1-L2",
+          "title": "My day",
+          "canDo": "Talk about a simple daily routine and tell the time of one activity.",
+          "exercises": [
+            {
+              "id": "A1-JSON-U1-L2-E1",
+              "skill": "VOCABULARY",
+              "instructionTr": "Doğru anlamı seç.",
+              "prompt": "'wake up' Türkçede ne demek?",
+              "options": [
+                "uyanmak",
+                "kahvaltı",
+                "genellikle"
+              ],
+              "acceptedAnswers": [
+                "uyanmak"
+              ],
+              "explanationTr": "'wake up' bu bağlamda 'uyanmak' demektir."
+            },
+            {
+              "id": "A1-JSON-U1-L2-E2",
+              "skill": "GRAMMAR",
+              "instructionTr": "Dilbilgisi odağını uygula.",
+              "prompt": "Doğru fiili seç: She ___ work at nine.",
+              "context": "I/you/we/they + fiil; he/she/it + fiil-s",
+              "options": [
+                "start",
+                "starts",
+                "starting"
+              ],
+              "acceptedAnswers": [
+                "starts"
+              ],
+              "explanationTr": "Türkçe fiilde kişi eki kullanır; İngilizce olumlu cümlede he/she/it için -s ekini unutma."
+            },
+            {
+              "id": "A1-JSON-U1-L2-E3",
+              "skill": "LISTENING",
+              "instructionTr": "Dinleme metnine göre yanıtla.",
+              "prompt": "What time does the speaker start work?",
+              "context": "I usually wake up at seven. I have breakfast, then I start work at nine.",
+              "modelAudioText": "I usually wake up at seven. I have breakfast, then I start work at nine.",
+              "options": [
+                "seven",
+                "nine",
+                "ten"
+              ],
+              "acceptedAnswers": [
+                "nine"
+              ],
+              "explanationTr": "Yanıtı dinleme metnindeki açık bilgiyle eşleştir."
+            },
+            {
+              "id": "A1-JSON-U1-L2-E4",
+              "skill": "READING",
+              "instructionTr": "Metne göre doğru yanıtı bul.",
+              "prompt": "What does Mina do after work?",
+              "context": "Mina finishes work at five. In the evening, she cooks dinner and reads.",
+              "options": [
+                "She starts a new job.",
+                "She cooks dinner and reads.",
+                "She has breakfast."
+              ],
+              "acceptedAnswers": [
+                "She cooks dinner and reads."
+              ],
+              "explanationTr": "Yanıtı metindeki ilgili ifadeye dayanarak seç."
+            },
+            {
+              "id": "A1-JSON-U1-L2-E5",
+              "skill": "WRITING",
+              "instructionTr": "Kendi yanıtını yaz; örnek yanıtı kontrol listesi gibi kullan.",
+              "prompt": "Kendi rutininden iki cümle yaz.",
+              "acceptedAnswers": [
+                "I wake up at seven. I start work at nine."
+              ],
+              "explanationTr": "Bu örnek tek olası yanıttır; serbest yazı otomatik dilbilgisi puanı değildir.",
+              "sampleAnswer": "I wake up at seven. I start work at nine."
+            },
+            {
+              "id": "A1-JSON-U1-L2-E6",
+              "skill": "SPEAKING",
+              "instructionTr": "İfadeyi önce dinle, sonra sesli tekrar et.",
+              "prompt": "Describe when you wake up and start your day.",
+              "acceptedAnswers": [
+                "I wake up at seven and start my day with breakfast."
+              ],
+              "explanationTr": "Anlaşılırlık ve düzenli tekrar hedeflenir; sistem telaffuz puanı üretmez.",
+              "modelAudioText": "I wake up at seven and start my day with breakfast.",
+              "sampleAnswer": "I wake up at seven and start my day with breakfast."
+            }
+          ],
+          "targetVocabulary": [
+            {
+              "id": "A1-JSON-U1-L2-V01",
+              "termEn": "wake up",
+              "translationTr": "uyanmak",
+              "partOfSpeech": "phrasal verb",
+              "exampleEn": "I wake up at seven on weekdays.",
+              "exampleTr": "Hafta içi saat yedide uyanırım.",
+              "emoji": "⏰"
+            },
+            {
+              "id": "A1-JSON-U1-L2-V02",
+              "termEn": "breakfast",
+              "translationTr": "kahvaltı",
+              "partOfSpeech": "noun",
+              "exampleEn": "The breakfast matters to the team.",
+              "exampleTr": "Ekip için kahvaltı önemlidir.",
+              "emoji": "🍳"
+            },
+            {
+              "id": "A1-JSON-U1-L2-V03",
+              "termEn": "usually",
+              "translationTr": "genellikle",
+              "partOfSpeech": "adverb",
+              "exampleEn": "I usually check my schedule in the morning.",
+              "exampleTr": "Sabahları genellikle programımı kontrol ederim.",
+              "emoji": "🔁"
+            },
+            {
+              "id": "A1-JSON-U1-L2-V04",
+              "termEn": "start",
+              "translationTr": "başlamak",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to start before Friday.",
+              "exampleTr": "Cuma gününden önce başlamak planlıyoruz.",
+              "emoji": "▶️"
+            },
+            {
+              "id": "A1-JSON-U1-L2-V05",
+              "termEn": "work",
+              "translationTr": "iş/çalışmak",
+              "partOfSpeech": "noun/verb",
+              "exampleEn": "We plan to work before Friday.",
+              "exampleTr": "Cuma gününden önce iş/çalışmak planlıyoruz.",
+              "emoji": "💼"
+            },
+            {
+              "id": "A1-JSON-U1-L2-V06",
+              "termEn": "lunch",
+              "translationTr": "öğle yemeği",
+              "partOfSpeech": "noun",
+              "exampleEn": "The lunch matters to the team.",
+              "exampleTr": "Ekip için öğle yemeği önemlidir.",
+              "emoji": "🥗"
+            },
+            {
+              "id": "A1-JSON-U1-L2-V07",
+              "termEn": "finish",
+              "translationTr": "bitirmek",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to finish before Friday.",
+              "exampleTr": "Cuma gününden önce bitirmek planlıyoruz.",
+              "emoji": "✅"
+            },
+            {
+              "id": "A1-JSON-U1-L2-V08",
+              "termEn": "evening",
+              "translationTr": "akşam",
+              "partOfSpeech": "noun",
+              "exampleEn": "The evening matters to the team.",
+              "exampleTr": "Ekip için akşam önemlidir.",
+              "emoji": "🌆"
+            }
+          ],
+          "grammarFocus": {
+            "titleTr": "Present simple: günlük rutin",
+            "explanationTr": "Rutin ve alışkanlıklarda present simple kullanılır. He/she/it ile fiile çoğunlukla -s eklenir.",
+            "form": "I/you/we/they + fiil; he/she/it + fiil-s",
+            "englishExample": "I start work at nine. She starts at nine.",
+            "turkishEquivalent": "İşe dokuzda başlarım. O dokuza başlar.",
+            "commonTurkishErrorTr": "Türkçe fiilde kişi eki kullanır; İngilizce olumlu cümlede he/she/it için -s ekini unutma.",
+            "checkPromptTr": "Doğru fiili seç: She ___ work at nine.",
+            "correctAnswer": "starts",
+            "checkOptions": [
+              "start",
+              "starts",
+              "starting"
+            ]
+          },
+          "stages": [
+            {
+              "type": "VOCABULARY",
+              "titleTr": "Hedef kelimeler",
+              "instructionTr": "Kelimeyi örnek içinde incele; İngilizce ve Türkçe anlamı birlikte hatırla.",
+              "modelText": "wake up; breakfast; usually; start; work; lunch; finish; evening",
+              "translationTr": "uyanmak; kahvaltı; genellikle; başlamak; iş/çalışmak; öğle yemeği; bitirmek; akşam"
+            },
+            {
+              "type": "GRAMMAR",
+              "titleTr": "Present simple: günlük rutin",
+              "instructionTr": "Rutin ve alışkanlıklarda present simple kullanılır. He/she/it ile fiile çoğunlukla -s eklenir.",
+              "modelText": "I start work at nine. She starts at nine.",
+              "translationTr": "İşe dokuzda başlarım. O dokuza başlar."
+            },
+            {
+              "type": "LISTENING",
+              "titleTr": "Dinle ve ana bilgiyi yakala",
+              "instructionTr": "Önce genel anlamı, sonra sorudaki ayrıntıyı dinle.",
+              "modelText": "I usually wake up at seven. I have breakfast, then I start work at nine.",
+              "translationTr": "Dinleme metni için Türkçe ipucu: anahtar sözcüklere odaklan."
+            },
+            {
+              "type": "READING",
+              "titleTr": "Oku ve çıkarım yap",
+              "instructionTr": "Metni oku; yanıtını metindeki kanıtla destekle.",
+              "modelText": "Mina finishes work at five. In the evening, she cooks dinner and reads.",
+              "translationTr": "Önce bağlamı tahmin et, sonra ayrıntıyı doğrula."
+            },
+            {
+              "type": "WRITING",
+              "titleTr": "Yazma görevi",
+              "instructionTr": "Kendi rutininden iki cümle yaz.",
+              "modelText": "I wake up at seven. I start work at nine.",
+              "translationTr": "Örnek yanıt; kendi bilgine göre uyarlayabilirsin."
+            },
+            {
+              "type": "SPEAKING",
+              "titleTr": "Konuşma tekrarı",
+              "instructionTr": "Describe when you wake up and start your day.",
+              "modelText": "I wake up at seven and start my day with breakfast.",
+              "translationTr": "Önce dinle, sonra kendi hızında tekrar et."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A2-JSON-U1",
+      "title": "Travel and experiences",
+      "summary": "İlk içerik paketi: A2 düzeyinde iletişim görevi, hedef kelimeler, biçim odağı ve bütünleşik beceri alıştırmaları.",
+      "lessons": [
+        {
+          "id": "A2-JSON-U1-L1",
+          "title": "At the hotel",
+          "canDo": "Check in, ask about a room and understand a short hotel reply.",
+          "exercises": [
+            {
+              "id": "A2-JSON-U1-L1-E1",
+              "skill": "VOCABULARY",
+              "instructionTr": "Doğru anlamı seç.",
+              "prompt": "'reservation' Türkçede ne demek?",
+              "options": [
+                "rezervasyon",
+                "tek kişilik oda",
+                "müsait"
+              ],
+              "acceptedAnswers": [
+                "rezervasyon"
+              ],
+              "explanationTr": "'reservation' bu bağlamda 'rezervasyon' demektir."
+            },
+            {
+              "id": "A2-JSON-U1-L1-E2",
+              "skill": "GRAMMAR",
+              "instructionTr": "Dilbilgisi odağını uygula.",
+              "prompt": "Boşluğu doldur: Could you ___ my reservation?",
+              "context": "Could you + fiilin yalın hâli…?",
+              "options": [
+                "check",
+                "checks",
+                "checking"
+              ],
+              "acceptedAnswers": [
+                "check"
+              ],
+              "explanationTr": "Türkçedeki rica eki İngilizceye doğrudan eklenmez; could you sonrasında fiili yalın kullan."
+            },
+            {
+              "id": "A2-JSON-U1-L1-E3",
+              "skill": "LISTENING",
+              "instructionTr": "Dinleme metnine göre yanıtla.",
+              "prompt": "When is breakfast served?",
+              "context": "Welcome. Your room is on the third floor. Breakfast is included, from seven to ten.",
+              "modelAudioText": "Welcome. Your room is on the third floor. Breakfast is included, from seven to ten.",
+              "options": [
+                "from six to nine",
+                "from seven to ten",
+                "from ten to twelve"
+              ],
+              "acceptedAnswers": [
+                "from seven to ten"
+              ],
+              "explanationTr": "Yanıtı dinleme metnindeki açık bilgiyle eşleştir."
+            },
+            {
+              "id": "A2-JSON-U1-L1-E4",
+              "skill": "READING",
+              "instructionTr": "Metne göre doğru yanıtı bul.",
+              "prompt": "How long is the reservation?",
+              "context": "Hello, I have a reservation for two nights. Is a single room available? Yes, and checkout is at eleven.",
+              "options": [
+                "one night",
+                "two nights",
+                "three nights"
+              ],
+              "acceptedAnswers": [
+                "two nights"
+              ],
+              "explanationTr": "Yanıtı metindeki ilgili ifadeye dayanarak seç."
+            },
+            {
+              "id": "A2-JSON-U1-L1-E5",
+              "skill": "WRITING",
+              "instructionTr": "Kendi yanıtını yaz; örnek yanıtı kontrol listesi gibi kullan.",
+              "prompt": "Otel resepsiyonuna oda ve kahvaltı hakkında nazik bir soru yaz.",
+              "acceptedAnswers": [
+                "Could you tell me if breakfast is included?"
+              ],
+              "explanationTr": "Bu örnek tek olası yanıttır; serbest yazı otomatik dilbilgisi puanı değildir.",
+              "sampleAnswer": "Could you tell me if breakfast is included?"
+            },
+            {
+              "id": "A2-JSON-U1-L1-E6",
+              "skill": "SPEAKING",
+              "instructionTr": "İfadeyi önce dinle, sonra sesli tekrar et.",
+              "prompt": "Ask politely whether a room is available.",
+              "acceptedAnswers": [
+                "Could you tell me if a single room is available?"
+              ],
+              "explanationTr": "Anlaşılırlık ve düzenli tekrar hedeflenir; sistem telaffuz puanı üretmez.",
+              "modelAudioText": "Could you tell me if a single room is available?",
+              "sampleAnswer": "Could you tell me if a single room is available?"
+            }
+          ],
+          "targetVocabulary": [
+            {
+              "id": "A2-JSON-U1-L1-V01",
+              "termEn": "reservation",
+              "translationTr": "rezervasyon",
+              "partOfSpeech": "noun",
+              "exampleEn": "The reservation matters to the team.",
+              "exampleTr": "Ekip için rezervasyon önemlidir.",
+              "emoji": "📅"
+            },
+            {
+              "id": "A2-JSON-U1-L1-V02",
+              "termEn": "single room",
+              "translationTr": "tek kişilik oda",
+              "partOfSpeech": "noun",
+              "exampleEn": "The single room matters to the team.",
+              "exampleTr": "Ekip için tek kişilik oda önemlidir.",
+              "emoji": "🛏️"
+            },
+            {
+              "id": "A2-JSON-U1-L1-V03",
+              "termEn": "available",
+              "translationTr": "müsait",
+              "partOfSpeech": "adjective",
+              "exampleEn": "A room seems available.",
+              "exampleTr": "A room müsait görünüyor.",
+              "emoji": "🟢"
+            },
+            {
+              "id": "A2-JSON-U1-L1-V04",
+              "termEn": "key",
+              "translationTr": "anahtar",
+              "partOfSpeech": "noun",
+              "exampleEn": "The key matters to the team.",
+              "exampleTr": "Ekip için anahtar önemlidir.",
+              "emoji": "🔑"
+            },
+            {
+              "id": "A2-JSON-U1-L1-V05",
+              "termEn": "floor",
+              "translationTr": "kat",
+              "partOfSpeech": "noun",
+              "exampleEn": "The floor matters to the team.",
+              "exampleTr": "Ekip için kat önemlidir.",
+              "emoji": "🏢"
+            },
+            {
+              "id": "A2-JSON-U1-L1-V06",
+              "termEn": "breakfast",
+              "translationTr": "kahvaltı",
+              "partOfSpeech": "noun",
+              "exampleEn": "The breakfast matters to the team.",
+              "exampleTr": "Ekip için kahvaltı önemlidir.",
+              "emoji": "🥐"
+            },
+            {
+              "id": "A2-JSON-U1-L1-V07",
+              "termEn": "include",
+              "translationTr": "dahil etmek",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to include before Friday.",
+              "exampleTr": "Cuma gününden önce dahil etmek planlıyoruz.",
+              "emoji": "➕"
+            },
+            {
+              "id": "A2-JSON-U1-L1-V08",
+              "termEn": "checkout",
+              "translationTr": "çıkış işlemi",
+              "partOfSpeech": "noun",
+              "exampleEn": "The checkout matters to the team.",
+              "exampleTr": "Ekip için çıkış işlemi önemlidir.",
+              "emoji": "🧳"
+            }
+          ],
+          "grammarFocus": {
+            "titleTr": "Kibar rica: can ve could",
+            "explanationTr": "Could you…? nazik rica için kullanılır. Can you…? daha doğrudan ama yaygın bir seçenektir.",
+            "form": "Could you + fiilin yalın hâli…?",
+            "englishExample": "Could you check my reservation?",
+            "turkishEquivalent": "Rezervasyonumu kontrol edebilir misiniz?",
+            "commonTurkishErrorTr": "Türkçedeki rica eki İngilizceye doğrudan eklenmez; could you sonrasında fiili yalın kullan.",
+            "checkPromptTr": "Boşluğu doldur: Could you ___ my reservation?",
+            "correctAnswer": "check",
+            "checkOptions": [
+              "check",
+              "checks",
+              "checking"
+            ]
+          },
+          "stages": [
+            {
+              "type": "VOCABULARY",
+              "titleTr": "Hedef kelimeler",
+              "instructionTr": "Kelimeyi örnek içinde incele; İngilizce ve Türkçe anlamı birlikte hatırla.",
+              "modelText": "reservation; single room; available; key; floor; breakfast; include; checkout",
+              "translationTr": "rezervasyon; tek kişilik oda; müsait; anahtar; kat; kahvaltı; dahil etmek; çıkış işlemi"
+            },
+            {
+              "type": "GRAMMAR",
+              "titleTr": "Kibar rica: can ve could",
+              "instructionTr": "Could you…? nazik rica için kullanılır. Can you…? daha doğrudan ama yaygın bir seçenektir.",
+              "modelText": "Could you check my reservation?",
+              "translationTr": "Rezervasyonumu kontrol edebilir misiniz?"
+            },
+            {
+              "type": "LISTENING",
+              "titleTr": "Dinle ve ana bilgiyi yakala",
+              "instructionTr": "Önce genel anlamı, sonra sorudaki ayrıntıyı dinle.",
+              "modelText": "Welcome. Your room is on the third floor. Breakfast is included, from seven to ten.",
+              "translationTr": "Dinleme metni için Türkçe ipucu: anahtar sözcüklere odaklan."
+            },
+            {
+              "type": "READING",
+              "titleTr": "Oku ve çıkarım yap",
+              "instructionTr": "Metni oku; yanıtını metindeki kanıtla destekle.",
+              "modelText": "Hello, I have a reservation for two nights. Is a single room available? Yes, and checkout is at eleven.",
+              "translationTr": "Önce bağlamı tahmin et, sonra ayrıntıyı doğrula."
+            },
+            {
+              "type": "WRITING",
+              "titleTr": "Yazma görevi",
+              "instructionTr": "Otel resepsiyonuna oda ve kahvaltı hakkında nazik bir soru yaz.",
+              "modelText": "Could you tell me if breakfast is included?",
+              "translationTr": "Örnek yanıt; kendi bilgine göre uyarlayabilirsin."
+            },
+            {
+              "type": "SPEAKING",
+              "titleTr": "Konuşma tekrarı",
+              "instructionTr": "Ask politely whether a room is available.",
+              "modelText": "Could you tell me if a single room is available?",
+              "translationTr": "Önce dinle, sonra kendi hızında tekrar et."
+            }
+          ]
+        },
+        {
+          "id": "A2-JSON-U1-L2",
+          "title": "A weekend away",
+          "canDo": "Describe a completed weekend trip and ask a follow-up question.",
+          "exercises": [
+            {
+              "id": "A2-JSON-U1-L2-E1",
+              "skill": "VOCABULARY",
+              "instructionTr": "Doğru anlamı seç.",
+              "prompt": "'journey' Türkçede ne demek?",
+              "options": [
+                "yolculuk",
+                "varmak",
+                "müze"
+              ],
+              "acceptedAnswers": [
+                "yolculuk"
+              ],
+              "explanationTr": "'journey' bu bağlamda 'yolculuk' demektir."
+            },
+            {
+              "id": "A2-JSON-U1-L2-E2",
+              "skill": "GRAMMAR",
+              "instructionTr": "Dilbilgisi odağını uygula.",
+              "prompt": "Cümleyi tamamla: We ___ on Friday.",
+              "context": "Özne + fiilin geçmiş biçimi",
+              "options": [
+                "arrive",
+                "arrived",
+                "arriving"
+              ],
+              "acceptedAnswers": [
+                "arrived"
+              ],
+              "explanationTr": "Türkçedeki -miş her zaman present perfect değildir; zaman belirliyse past simple çoğunlukla uygundur."
+            },
+            {
+              "id": "A2-JSON-U1-L2-E3",
+              "skill": "LISTENING",
+              "instructionTr": "Dinleme metnine göre yanıtla.",
+              "prompt": "What was crowded?",
+              "context": "We arrived on Friday. The museum was crowded, but the food was delicious.",
+              "modelAudioText": "We arrived on Friday. The museum was crowded, but the food was delicious.",
+              "options": [
+                "the hotel",
+                "the museum",
+                "the train"
+              ],
+              "acceptedAnswers": [
+                "the museum"
+              ],
+              "explanationTr": "Yanıtı dinleme metnindeki açık bilgiyle eşleştir."
+            },
+            {
+              "id": "A2-JSON-U1-L2-E4",
+              "skill": "READING",
+              "instructionTr": "Metne göre doğru yanıtı bul.",
+              "prompt": "When did Ece return home?",
+              "context": "Last weekend, Ece explored the coast with her sister. They returned home on Sunday evening.",
+              "options": [
+                "Friday morning",
+                "Saturday evening",
+                "Sunday evening"
+              ],
+              "acceptedAnswers": [
+                "Sunday evening"
+              ],
+              "explanationTr": "Yanıtı metindeki ilgili ifadeye dayanarak seç."
+            },
+            {
+              "id": "A2-JSON-U1-L2-E5",
+              "skill": "WRITING",
+              "instructionTr": "Kendi yanıtını yaz; örnek yanıtı kontrol listesi gibi kullan.",
+              "prompt": "Geçmiş bir hafta sonundan iki cümleyle söz et.",
+              "acceptedAnswers": [
+                "Last weekend, I visited İzmir. I returned home on Sunday."
+              ],
+              "explanationTr": "Bu örnek tek olası yanıttır; serbest yazı otomatik dilbilgisi puanı değildir.",
+              "sampleAnswer": "Last weekend, I visited İzmir. I returned home on Sunday."
+            },
+            {
+              "id": "A2-JSON-U1-L2-E6",
+              "skill": "SPEAKING",
+              "instructionTr": "İfadeyi önce dinle, sonra sesli tekrar et.",
+              "prompt": "Tell a partner where you went last weekend.",
+              "acceptedAnswers": [
+                "Last weekend, I went to İzmir and explored the old town."
+              ],
+              "explanationTr": "Anlaşılırlık ve düzenli tekrar hedeflenir; sistem telaffuz puanı üretmez.",
+              "modelAudioText": "Last weekend, I went to İzmir and explored the old town.",
+              "sampleAnswer": "Last weekend, I went to İzmir and explored the old town."
+            }
+          ],
+          "targetVocabulary": [
+            {
+              "id": "A2-JSON-U1-L2-V01",
+              "termEn": "journey",
+              "translationTr": "yolculuk",
+              "partOfSpeech": "noun",
+              "exampleEn": "The journey matters to the team.",
+              "exampleTr": "Ekip için yolculuk önemlidir.",
+              "emoji": "🚆"
+            },
+            {
+              "id": "A2-JSON-U1-L2-V02",
+              "termEn": "arrive",
+              "translationTr": "varmak",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to arrive before Friday.",
+              "exampleTr": "Cuma gününden önce varmak planlıyoruz.",
+              "emoji": "📍"
+            },
+            {
+              "id": "A2-JSON-U1-L2-V03",
+              "termEn": "museum",
+              "translationTr": "müze",
+              "partOfSpeech": "noun",
+              "exampleEn": "The museum matters to the team.",
+              "exampleTr": "Ekip için müze önemlidir.",
+              "emoji": "🏛️"
+            },
+            {
+              "id": "A2-JSON-U1-L2-V04",
+              "termEn": "crowded",
+              "translationTr": "kalabalık",
+              "partOfSpeech": "adjective",
+              "exampleEn": "The museum seems crowded.",
+              "exampleTr": "The museum kalabalık görünüyor.",
+              "emoji": "👥"
+            },
+            {
+              "id": "A2-JSON-U1-L2-V05",
+              "termEn": "weather",
+              "translationTr": "hava",
+              "partOfSpeech": "noun",
+              "exampleEn": "The weather matters to the team.",
+              "exampleTr": "Ekip için hava önemlidir.",
+              "emoji": "🌤️"
+            },
+            {
+              "id": "A2-JSON-U1-L2-V06",
+              "termEn": "delicious",
+              "translationTr": "lezzetli",
+              "partOfSpeech": "adjective",
+              "exampleEn": "The meal seems delicious.",
+              "exampleTr": "The meal lezzetli görünüyor.",
+              "emoji": "😋"
+            },
+            {
+              "id": "A2-JSON-U1-L2-V07",
+              "termEn": "explore",
+              "translationTr": "keşfetmek",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to explore before Friday.",
+              "exampleTr": "Cuma gününden önce keşfetmek planlıyoruz.",
+              "emoji": "🧭"
+            },
+            {
+              "id": "A2-JSON-U1-L2-V08",
+              "termEn": "return",
+              "translationTr": "dönmek",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to return before Friday.",
+              "exampleTr": "Cuma gününden önce dönmek planlıyoruz.",
+              "emoji": "↩️"
+            }
+          ],
+          "grammarFocus": {
+            "titleTr": "Past simple: tamamlanmış geçmiş",
+            "explanationTr": "Geçmişte belirli bir zamanda biten olaylarda past simple kullanılır. Düzenli fiiller -ed alır; düzensiz fiillerin biçimi değişebilir.",
+            "form": "Özne + fiilin geçmiş biçimi",
+            "englishExample": "We arrived on Saturday and explored the old town.",
+            "turkishEquivalent": "Cumartesi vardık ve eski şehri gezdik.",
+            "commonTurkishErrorTr": "Türkçedeki -miş her zaman present perfect değildir; zaman belirliyse past simple çoğunlukla uygundur.",
+            "checkPromptTr": "Cümleyi tamamla: We ___ on Friday.",
+            "correctAnswer": "arrived",
+            "checkOptions": [
+              "arrive",
+              "arrived",
+              "arriving"
+            ]
+          },
+          "stages": [
+            {
+              "type": "VOCABULARY",
+              "titleTr": "Hedef kelimeler",
+              "instructionTr": "Kelimeyi örnek içinde incele; İngilizce ve Türkçe anlamı birlikte hatırla.",
+              "modelText": "journey; arrive; museum; crowded; weather; delicious; explore; return",
+              "translationTr": "yolculuk; varmak; müze; kalabalık; hava; lezzetli; keşfetmek; dönmek"
+            },
+            {
+              "type": "GRAMMAR",
+              "titleTr": "Past simple: tamamlanmış geçmiş",
+              "instructionTr": "Geçmişte belirli bir zamanda biten olaylarda past simple kullanılır. Düzenli fiiller -ed alır; düzensiz fiillerin biçimi değişebilir.",
+              "modelText": "We arrived on Saturday and explored the old town.",
+              "translationTr": "Cumartesi vardık ve eski şehri gezdik."
+            },
+            {
+              "type": "LISTENING",
+              "titleTr": "Dinle ve ana bilgiyi yakala",
+              "instructionTr": "Önce genel anlamı, sonra sorudaki ayrıntıyı dinle.",
+              "modelText": "We arrived on Friday. The museum was crowded, but the food was delicious.",
+              "translationTr": "Dinleme metni için Türkçe ipucu: anahtar sözcüklere odaklan."
+            },
+            {
+              "type": "READING",
+              "titleTr": "Oku ve çıkarım yap",
+              "instructionTr": "Metni oku; yanıtını metindeki kanıtla destekle.",
+              "modelText": "Last weekend, Ece explored the coast with her sister. They returned home on Sunday evening.",
+              "translationTr": "Önce bağlamı tahmin et, sonra ayrıntıyı doğrula."
+            },
+            {
+              "type": "WRITING",
+              "titleTr": "Yazma görevi",
+              "instructionTr": "Geçmiş bir hafta sonundan iki cümleyle söz et.",
+              "modelText": "Last weekend, I visited İzmir. I returned home on Sunday.",
+              "translationTr": "Örnek yanıt; kendi bilgine göre uyarlayabilirsin."
+            },
+            {
+              "type": "SPEAKING",
+              "titleTr": "Konuşma tekrarı",
+              "instructionTr": "Tell a partner where you went last weekend.",
+              "modelText": "Last weekend, I went to İzmir and explored the old town.",
+              "translationTr": "Önce dinle, sonra kendi hızında tekrar et."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B1-JSON-U1",
+      "title": "Work and decisions",
+      "summary": "İlk içerik paketi: B1 düzeyinde iletişim görevi, hedef kelimeler, biçim odağı ve bütünleşik beceri alıştırmaları.",
+      "lessons": [
+        {
+          "id": "B1-JSON-U1-L1",
+          "title": "Share a work update",
+          "canDo": "Summarize progress, mention a completed task and identify a next step.",
+          "exercises": [
+            {
+              "id": "B1-JSON-U1-L1-E1",
+              "skill": "VOCABULARY",
+              "instructionTr": "Doğru anlamı seç.",
+              "prompt": "'deadline' Türkçede ne demek?",
+              "options": [
+                "son tarih",
+                "ilerleme",
+                "taslak"
+              ],
+              "acceptedAnswers": [
+                "son tarih"
+              ],
+              "explanationTr": "'deadline' bu bağlamda 'son tarih' demektir."
+            },
+            {
+              "id": "B1-JSON-U1-L1-E2",
+              "skill": "GRAMMAR",
+              "instructionTr": "Dilbilgisi odağını uygula.",
+              "prompt": "Boşluğu doldur: I ___ the first draft.",
+              "context": "have/has + V3; last week/yesterday + past simple",
+              "options": [
+                "finished",
+                "have finished",
+                "am finishing"
+              ],
+              "acceptedAnswers": [
+                "have finished"
+              ],
+              "explanationTr": "Türkçedeki -di/-miş ayrımı İngilizce zamanla birebir örtüşmez; zaman ifadesine ve bugünkü sonuca bak."
+            },
+            {
+              "id": "B1-JSON-U1-L1-E3",
+              "skill": "LISTENING",
+              "instructionTr": "Dinleme metnine göre yanıtla.",
+              "prompt": "What still needs to be reviewed?",
+              "context": "I've finished the first draft, but I haven't reviewed the figures yet. I'll send the final version by Friday.",
+              "modelAudioText": "I've finished the first draft, but I haven't reviewed the figures yet. I'll send the final version by Friday.",
+              "options": [
+                "the title",
+                "the figures",
+                "the schedule"
+              ],
+              "acceptedAnswers": [
+                "the figures"
+              ],
+              "explanationTr": "Yanıtı dinleme metnindeki açık bilgiyle eşleştir."
+            },
+            {
+              "id": "B1-JSON-U1-L1-E4",
+              "skill": "READING",
+              "instructionTr": "Metne göre doğru yanıtı bul.",
+              "prompt": "When were the interviews completed?",
+              "context": "The team has made good progress. We completed the interviews last week, and the analysis is now ready for review.",
+              "options": [
+                "today",
+                "last week",
+                "next Friday"
+              ],
+              "acceptedAnswers": [
+                "last week"
+              ],
+              "explanationTr": "Yanıtı metindeki ilgili ifadeye dayanarak seç."
+            },
+            {
+              "id": "B1-JSON-U1-L1-E5",
+              "skill": "WRITING",
+              "instructionTr": "Kendi yanıtını yaz; örnek yanıtı kontrol listesi gibi kullan.",
+              "prompt": "Proje durumunu, tamamlanan işi ve sıradaki adımı belirten kısa bir güncelleme yaz.",
+              "acceptedAnswers": [
+                "We've finished the interviews. Next, we'll review the results."
+              ],
+              "explanationTr": "Bu örnek tek olası yanıttır; serbest yazı otomatik dilbilgisi puanı değildir.",
+              "sampleAnswer": "We've finished the interviews. Next, we'll review the results."
+            },
+            {
+              "id": "B1-JSON-U1-L1-E6",
+              "skill": "SPEAKING",
+              "instructionTr": "İfadeyi önce dinle, sonra sesli tekrar et.",
+              "prompt": "Give a 20-second project update.",
+              "acceptedAnswers": [
+                "We've finished the interviews, and our next step is to review the results."
+              ],
+              "explanationTr": "Anlaşılırlık ve düzenli tekrar hedeflenir; sistem telaffuz puanı üretmez.",
+              "modelAudioText": "We've finished the interviews, and our next step is to review the results.",
+              "sampleAnswer": "We've finished the interviews, and our next step is to review the results."
+            }
+          ],
+          "targetVocabulary": [
+            {
+              "id": "B1-JSON-U1-L1-V01",
+              "termEn": "deadline",
+              "translationTr": "son tarih",
+              "partOfSpeech": "noun",
+              "exampleEn": "The deadline matters to the team.",
+              "exampleTr": "Ekip için son tarih önemlidir.",
+              "emoji": "📆"
+            },
+            {
+              "id": "B1-JSON-U1-L1-V02",
+              "termEn": "progress",
+              "translationTr": "ilerleme",
+              "partOfSpeech": "noun",
+              "exampleEn": "The progress matters to the team.",
+              "exampleTr": "Ekip için ilerleme önemlidir.",
+              "emoji": "📈"
+            },
+            {
+              "id": "B1-JSON-U1-L1-V03",
+              "termEn": "draft",
+              "translationTr": "taslak",
+              "partOfSpeech": "noun",
+              "exampleEn": "The draft matters to the team.",
+              "exampleTr": "Ekip için taslak önemlidir.",
+              "emoji": "📝"
+            },
+            {
+              "id": "B1-JSON-U1-L1-V04",
+              "termEn": "review",
+              "translationTr": "gözden geçirmek",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to review before Friday.",
+              "exampleTr": "Cuma gününden önce gözden geçirmek planlıyoruz.",
+              "emoji": "🔍"
+            },
+            {
+              "id": "B1-JSON-U1-L1-V05",
+              "termEn": "colleague",
+              "translationTr": "iş arkadaşı",
+              "partOfSpeech": "noun",
+              "exampleEn": "The colleague matters to the team.",
+              "exampleTr": "Ekip için iş arkadaşı önemlidir.",
+              "emoji": "👥"
+            },
+            {
+              "id": "B1-JSON-U1-L1-V06",
+              "termEn": "delay",
+              "translationTr": "gecikme",
+              "partOfSpeech": "noun/verb",
+              "exampleEn": "We plan to delay before Friday.",
+              "exampleTr": "Cuma gününden önce gecikme planlıyoruz.",
+              "emoji": "⏳"
+            },
+            {
+              "id": "B1-JSON-U1-L1-V07",
+              "termEn": "ready",
+              "translationTr": "hazır",
+              "partOfSpeech": "adjective",
+              "exampleEn": "The next step seems ready.",
+              "exampleTr": "The next step hazır görünüyor.",
+              "emoji": "✅"
+            },
+            {
+              "id": "B1-JSON-U1-L1-V08",
+              "termEn": "next step",
+              "translationTr": "sonraki adım",
+              "partOfSpeech": "noun",
+              "exampleEn": "The next step matters to the team.",
+              "exampleTr": "Ekip için sonraki adım önemlidir.",
+              "emoji": "➡️"
+            }
+          ],
+          "grammarFocus": {
+            "titleTr": "Present perfect ve past simple ayrımı",
+            "explanationTr": "Present perfect, zamanı belirtilmeyen deneyim veya bugüne etkisi süren durumlarda kullanılır. Biten ve zamanı belli olayda past simple kullanılır.",
+            "form": "have/has + V3; last week/yesterday + past simple",
+            "englishExample": "I've finished the draft. I sent it yesterday.",
+            "turkishEquivalent": "Taslağı bitirdim. Dün gönderdim.",
+            "commonTurkishErrorTr": "Türkçedeki -di/-miş ayrımı İngilizce zamanla birebir örtüşmez; zaman ifadesine ve bugünkü sonuca bak.",
+            "checkPromptTr": "Boşluğu doldur: I ___ the first draft.",
+            "correctAnswer": "have finished",
+            "checkOptions": [
+              "finished",
+              "have finished",
+              "am finishing"
+            ]
+          },
+          "stages": [
+            {
+              "type": "VOCABULARY",
+              "titleTr": "Hedef kelimeler",
+              "instructionTr": "Kelimeyi örnek içinde incele; İngilizce ve Türkçe anlamı birlikte hatırla.",
+              "modelText": "deadline; progress; draft; review; colleague; delay; ready; next step",
+              "translationTr": "son tarih; ilerleme; taslak; gözden geçirmek; iş arkadaşı; gecikme; hazır; sonraki adım"
+            },
+            {
+              "type": "GRAMMAR",
+              "titleTr": "Present perfect ve past simple ayrımı",
+              "instructionTr": "Present perfect, zamanı belirtilmeyen deneyim veya bugüne etkisi süren durumlarda kullanılır. Biten ve zamanı belli olayda past simple kullanılır.",
+              "modelText": "I've finished the draft. I sent it yesterday.",
+              "translationTr": "Taslağı bitirdim. Dün gönderdim."
+            },
+            {
+              "type": "LISTENING",
+              "titleTr": "Dinle ve ana bilgiyi yakala",
+              "instructionTr": "Önce genel anlamı, sonra sorudaki ayrıntıyı dinle.",
+              "modelText": "I've finished the first draft, but I haven't reviewed the figures yet. I'll send the final version by Friday.",
+              "translationTr": "Dinleme metni için Türkçe ipucu: anahtar sözcüklere odaklan."
+            },
+            {
+              "type": "READING",
+              "titleTr": "Oku ve çıkarım yap",
+              "instructionTr": "Metni oku; yanıtını metindeki kanıtla destekle.",
+              "modelText": "The team has made good progress. We completed the interviews last week, and the analysis is now ready for review.",
+              "translationTr": "Önce bağlamı tahmin et, sonra ayrıntıyı doğrula."
+            },
+            {
+              "type": "WRITING",
+              "titleTr": "Yazma görevi",
+              "instructionTr": "Proje durumunu, tamamlanan işi ve sıradaki adımı belirten kısa bir güncelleme yaz.",
+              "modelText": "We've finished the interviews. Next, we'll review the results.",
+              "translationTr": "Örnek yanıt; kendi bilgine göre uyarlayabilirsin."
+            },
+            {
+              "type": "SPEAKING",
+              "titleTr": "Konuşma tekrarı",
+              "instructionTr": "Give a 20-second project update.",
+              "modelText": "We've finished the interviews, and our next step is to review the results.",
+              "translationTr": "Önce dinle, sonra kendi hızında tekrar et."
+            }
+          ]
+        },
+        {
+          "id": "B1-JSON-U1-L2",
+          "title": "Make a practical plan",
+          "canDo": "Suggest a plan, explain a likely result and agree on a next action.",
+          "exercises": [
+            {
+              "id": "B1-JSON-U1-L2-E1",
+              "skill": "VOCABULARY",
+              "instructionTr": "Doğru anlamı seç.",
+              "prompt": "'option' Türkçede ne demek?",
+              "options": [
+                "seçenek",
+                "takvim/planlamak",
+                "müsait"
+              ],
+              "acceptedAnswers": [
+                "seçenek"
+              ],
+              "explanationTr": "'option' bu bağlamda 'seçenek' demektir."
+            },
+            {
+              "id": "B1-JSON-U1-L2-E2",
+              "skill": "GRAMMAR",
+              "instructionTr": "Dilbilgisi odağını uygula.",
+              "prompt": "Cümleyi tamamla: If we book today, we ___ save money.",
+              "context": "If + present simple, will + fiilin yalın hâli",
+              "options": [
+                "will",
+                "would",
+                "are"
+              ],
+              "acceptedAnswers": [
+                "will"
+              ],
+              "explanationTr": "If bölümünde gelecek anlamı olsa bile çoğunlukla will değil present simple kullan."
+            },
+            {
+              "id": "B1-JSON-U1-L2-E3",
+              "skill": "LISTENING",
+              "instructionTr": "Dinleme metnine göre yanıtla.",
+              "prompt": "What will they do if the room is unavailable?",
+              "context": "If the room is available, we'll meet at three. Otherwise, let's use the online option.",
+              "modelAudioText": "If the room is available, we'll meet at three. Otherwise, let's use the online option.",
+              "options": [
+                "cancel the meeting",
+                "use the online option",
+                "meet at three anyway"
+              ],
+              "acceptedAnswers": [
+                "use the online option"
+              ],
+              "explanationTr": "Yanıtı dinleme metnindeki açık bilgiyle eşleştir."
+            },
+            {
+              "id": "B1-JSON-U1-L2-E4",
+              "skill": "READING",
+              "instructionTr": "Metne göre doğru yanıtı bul.",
+              "prompt": "Why did the group agree to book today?",
+              "context": "Mert suggested an earlier train. If we book today, the tickets will be cheaper, so the group agreed to confirm by noon.",
+              "options": [
+                "the train is slower",
+                "the tickets will be cheaper",
+                "the station is closer"
+              ],
+              "acceptedAnswers": [
+                "the tickets will be cheaper"
+              ],
+              "explanationTr": "Yanıtı metindeki ilgili ifadeye dayanarak seç."
+            },
+            {
+              "id": "B1-JSON-U1-L2-E5",
+              "skill": "WRITING",
+              "instructionTr": "Kendi yanıtını yaz; örnek yanıtı kontrol listesi gibi kullan.",
+              "prompt": "If ile başlayan gerçekçi bir plan cümlesi yaz ve sonucunu belirt.",
+              "acceptedAnswers": [
+                "If we book today, we'll save money."
+              ],
+              "explanationTr": "Bu örnek tek olası yanıttır; serbest yazı otomatik dilbilgisi puanı değildir.",
+              "sampleAnswer": "If we book today, we'll save money."
+            },
+            {
+              "id": "B1-JSON-U1-L2-E6",
+              "skill": "SPEAKING",
+              "instructionTr": "İfadeyi önce dinle, sonra sesli tekrar et.",
+              "prompt": "Suggest a plan and explain what will happen if the group agrees.",
+              "acceptedAnswers": [
+                "If everyone agrees, we'll confirm the booking today."
+              ],
+              "explanationTr": "Anlaşılırlık ve düzenli tekrar hedeflenir; sistem telaffuz puanı üretmez.",
+              "modelAudioText": "If everyone agrees, we'll confirm the booking today.",
+              "sampleAnswer": "If everyone agrees, we'll confirm the booking today."
+            }
+          ],
+          "targetVocabulary": [
+            {
+              "id": "B1-JSON-U1-L2-V01",
+              "termEn": "option",
+              "translationTr": "seçenek",
+              "partOfSpeech": "noun",
+              "exampleEn": "The option matters to the team.",
+              "exampleTr": "Ekip için seçenek önemlidir.",
+              "emoji": "🔀"
+            },
+            {
+              "id": "B1-JSON-U1-L2-V02",
+              "termEn": "schedule",
+              "translationTr": "takvim/planlamak",
+              "partOfSpeech": "noun/verb",
+              "exampleEn": "We plan to schedule before Friday.",
+              "exampleTr": "Cuma gününden önce takvim/planlamak planlıyoruz.",
+              "emoji": "🗓️"
+            },
+            {
+              "id": "B1-JSON-U1-L2-V03",
+              "termEn": "available",
+              "translationTr": "müsait",
+              "partOfSpeech": "adjective",
+              "exampleEn": "A room seems available.",
+              "exampleTr": "A room müsait görünüyor.",
+              "emoji": "🟢"
+            },
+            {
+              "id": "B1-JSON-U1-L2-V04",
+              "termEn": "suggest",
+              "translationTr": "önermek",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to suggest before Friday.",
+              "exampleTr": "Cuma gününden önce önermek planlıyoruz.",
+              "emoji": "💡"
+            },
+            {
+              "id": "B1-JSON-U1-L2-V05",
+              "termEn": "probably",
+              "translationTr": "muhtemelen",
+              "partOfSpeech": "adverb",
+              "exampleEn": "We will probably meet after lunch.",
+              "exampleTr": "Öğle yemeğinden sonra muhtemelen buluşacağız.",
+              "emoji": "🔮"
+            },
+            {
+              "id": "B1-JSON-U1-L2-V06",
+              "termEn": "instead",
+              "translationTr": "onun yerine",
+              "partOfSpeech": "adverb",
+              "exampleEn": "Let us meet online instead.",
+              "exampleTr": "Onun yerine çevrim içi buluşalım.",
+              "emoji": "↪️"
+            },
+            {
+              "id": "B1-JSON-U1-L2-V07",
+              "termEn": "confirm",
+              "translationTr": "doğrulamak",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to confirm before Friday.",
+              "exampleTr": "Cuma gününden önce doğrulamak planlıyoruz.",
+              "emoji": "✔️"
+            },
+            {
+              "id": "B1-JSON-U1-L2-V08",
+              "termEn": "arrangement",
+              "translationTr": "düzenleme",
+              "partOfSpeech": "noun",
+              "exampleEn": "The arrangement matters to the team.",
+              "exampleTr": "Ekip için düzenleme önemlidir.",
+              "emoji": "🤝"
+            }
+          ],
+          "grammarFocus": {
+            "titleTr": "First conditional: gerçekçi olasılık",
+            "explanationTr": "Gelecekte mümkün bir koşul ve olası sonucu anlatır.",
+            "form": "If + present simple, will + fiilin yalın hâli",
+            "englishExample": "If we leave early, we'll arrive on time.",
+            "turkishEquivalent": "Erken çıkarsak zamanında varacağız.",
+            "commonTurkishErrorTr": "If bölümünde gelecek anlamı olsa bile çoğunlukla will değil present simple kullan.",
+            "checkPromptTr": "Cümleyi tamamla: If we book today, we ___ save money.",
+            "correctAnswer": "will",
+            "checkOptions": [
+              "will",
+              "would",
+              "are"
+            ]
+          },
+          "stages": [
+            {
+              "type": "VOCABULARY",
+              "titleTr": "Hedef kelimeler",
+              "instructionTr": "Kelimeyi örnek içinde incele; İngilizce ve Türkçe anlamı birlikte hatırla.",
+              "modelText": "option; schedule; available; suggest; probably; instead; confirm; arrangement",
+              "translationTr": "seçenek; takvim/planlamak; müsait; önermek; muhtemelen; onun yerine; doğrulamak; düzenleme"
+            },
+            {
+              "type": "GRAMMAR",
+              "titleTr": "First conditional: gerçekçi olasılık",
+              "instructionTr": "Gelecekte mümkün bir koşul ve olası sonucu anlatır.",
+              "modelText": "If we leave early, we'll arrive on time.",
+              "translationTr": "Erken çıkarsak zamanında varacağız."
+            },
+            {
+              "type": "LISTENING",
+              "titleTr": "Dinle ve ana bilgiyi yakala",
+              "instructionTr": "Önce genel anlamı, sonra sorudaki ayrıntıyı dinle.",
+              "modelText": "If the room is available, we'll meet at three. Otherwise, let's use the online option.",
+              "translationTr": "Dinleme metni için Türkçe ipucu: anahtar sözcüklere odaklan."
+            },
+            {
+              "type": "READING",
+              "titleTr": "Oku ve çıkarım yap",
+              "instructionTr": "Metni oku; yanıtını metindeki kanıtla destekle.",
+              "modelText": "Mert suggested an earlier train. If we book today, the tickets will be cheaper, so the group agreed to confirm by noon.",
+              "translationTr": "Önce bağlamı tahmin et, sonra ayrıntıyı doğrula."
+            },
+            {
+              "type": "WRITING",
+              "titleTr": "Yazma görevi",
+              "instructionTr": "If ile başlayan gerçekçi bir plan cümlesi yaz ve sonucunu belirt.",
+              "modelText": "If we book today, we'll save money.",
+              "translationTr": "Örnek yanıt; kendi bilgine göre uyarlayabilirsin."
+            },
+            {
+              "type": "SPEAKING",
+              "titleTr": "Konuşma tekrarı",
+              "instructionTr": "Suggest a plan and explain what will happen if the group agrees.",
+              "modelText": "If everyone agrees, we'll confirm the booking today.",
+              "translationTr": "Önce dinle, sonra kendi hızında tekrar et."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B2-JSON-U1",
+      "title": "Evidence and collaboration",
+      "summary": "İlk içerik paketi: B2 düzeyinde iletişim görevi, hedef kelimeler, biçim odağı ve bütünleşik beceri alıştırmaları.",
+      "lessons": [
+        {
+          "id": "B2-JSON-U1-L1",
+          "title": "Evaluate a claim",
+          "canDo": "Separate a report's claim from the evidence and name one limitation.",
+          "exercises": [
+            {
+              "id": "B2-JSON-U1-L1-E1",
+              "skill": "VOCABULARY",
+              "instructionTr": "Doğru anlamı seç.",
+              "prompt": "'evidence' Türkçede ne demek?",
+              "options": [
+                "kanıt",
+                "iddia",
+                "örneklem"
+              ],
+              "acceptedAnswers": [
+                "kanıt"
+              ],
+              "explanationTr": "'evidence' bu bağlamda 'kanıt' demektir."
+            },
+            {
+              "id": "B2-JSON-U1-L1-E2",
+              "skill": "GRAMMAR",
+              "instructionTr": "Dilbilgisi odağını uygula.",
+              "prompt": "Boşluğu doldur: The results ___ indicate a trend.",
+              "context": "The data may/might + fiil; it appears that…",
+              "options": [
+                "may",
+                "must",
+                "did"
+              ],
+              "acceptedAnswers": [
+                "may"
+              ],
+              "explanationTr": "Türkçedeki kesinlik bildiren ifade İngilizce akademik metinde fazla güçlü kalabilir; örneklem ve sınırlılıkları belirt."
+            },
+            {
+              "id": "B2-JSON-U1-L1-E3",
+              "skill": "LISTENING",
+              "instructionTr": "Dinleme metnine göre yanıtla.",
+              "prompt": "What limits the conclusion?",
+              "context": "The pilot reduced waiting time in two clinics. The sample was small, so the findings may not apply everywhere.",
+              "modelAudioText": "The pilot reduced waiting time in two clinics. The sample was small, so the findings may not apply everywhere.",
+              "options": [
+                "the short title",
+                "the small sample",
+                "the number of clinics increased"
+              ],
+              "acceptedAnswers": [
+                "the small sample"
+              ],
+              "explanationTr": "Yanıtı dinleme metnindeki açık bilgiyle eşleştir."
+            },
+            {
+              "id": "B2-JSON-U1-L1-E4",
+              "skill": "READING",
+              "instructionTr": "Metne göre doğru yanıtı bul.",
+              "prompt": "Why is a national conclusion premature?",
+              "context": "The report found a consistent improvement across three months. However, because only two regions took part, the evidence does not yet support a national conclusion.",
+              "options": [
+                "the report lasted a year",
+                "only two regions took part",
+                "there was no improvement"
+              ],
+              "acceptedAnswers": [
+                "only two regions took part"
+              ],
+              "explanationTr": "Yanıtı metindeki ilgili ifadeye dayanarak seç."
+            },
+            {
+              "id": "B2-JSON-U1-L1-E5",
+              "skill": "WRITING",
+              "instructionTr": "Kendi yanıtını yaz; örnek yanıtı kontrol listesi gibi kullan.",
+              "prompt": "Bir bulguyu ve onun sınırlılığını temkinli bir dille yaz.",
+              "acceptedAnswers": [
+                "The results may show an improvement, although the sample is limited."
+              ],
+              "explanationTr": "Bu örnek tek olası yanıttır; serbest yazı otomatik dilbilgisi puanı değildir.",
+              "sampleAnswer": "The results may show an improvement, although the sample is limited."
+            },
+            {
+              "id": "B2-JSON-U1-L1-E6",
+              "skill": "SPEAKING",
+              "instructionTr": "İfadeyi önce dinle, sonra sesli tekrar et.",
+              "prompt": "Present one claim and qualify how strong the evidence is.",
+              "acceptedAnswers": [
+                "The early results suggest progress, but the sample remains limited."
+              ],
+              "explanationTr": "Anlaşılırlık ve düzenli tekrar hedeflenir; sistem telaffuz puanı üretmez.",
+              "modelAudioText": "The early results suggest progress, but the sample remains limited.",
+              "sampleAnswer": "The early results suggest progress, but the sample remains limited."
+            }
+          ],
+          "targetVocabulary": [
+            {
+              "id": "B2-JSON-U1-L1-V01",
+              "termEn": "evidence",
+              "translationTr": "kanıt",
+              "partOfSpeech": "noun",
+              "exampleEn": "The evidence matters to the team.",
+              "exampleTr": "Ekip için kanıt önemlidir.",
+              "emoji": "🔬"
+            },
+            {
+              "id": "B2-JSON-U1-L1-V02",
+              "termEn": "claim",
+              "translationTr": "iddia",
+              "partOfSpeech": "noun/verb",
+              "exampleEn": "We plan to claim before Friday.",
+              "exampleTr": "Cuma gününden önce iddia planlıyoruz.",
+              "emoji": "💬"
+            },
+            {
+              "id": "B2-JSON-U1-L1-V03",
+              "termEn": "sample",
+              "translationTr": "örneklem",
+              "partOfSpeech": "noun",
+              "exampleEn": "The sample matters to the team.",
+              "exampleTr": "Ekip için örneklem önemlidir.",
+              "emoji": "🧪"
+            },
+            {
+              "id": "B2-JSON-U1-L1-V04",
+              "termEn": "reliable",
+              "translationTr": "güvenilir",
+              "partOfSpeech": "adjective",
+              "exampleEn": "The source seems reliable.",
+              "exampleTr": "The source güvenilir görünüyor.",
+              "emoji": "🛡️"
+            },
+            {
+              "id": "B2-JSON-U1-L1-V05",
+              "termEn": "limitation",
+              "translationTr": "sınırlılık",
+              "partOfSpeech": "noun",
+              "exampleEn": "The limitation matters to the team.",
+              "exampleTr": "Ekip için sınırlılık önemlidir.",
+              "emoji": "⚠️"
+            },
+            {
+              "id": "B2-JSON-U1-L1-V06",
+              "termEn": "trend",
+              "translationTr": "eğilim",
+              "partOfSpeech": "noun",
+              "exampleEn": "The trend matters to the team.",
+              "exampleTr": "Ekip için eğilim önemlidir.",
+              "emoji": "📉"
+            },
+            {
+              "id": "B2-JSON-U1-L1-V07",
+              "termEn": "indicate",
+              "translationTr": "göstermek",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to indicate before Friday.",
+              "exampleTr": "Cuma gününden önce göstermek planlıyoruz.",
+              "emoji": "➡️"
+            },
+            {
+              "id": "B2-JSON-U1-L1-V08",
+              "termEn": "conclusion",
+              "translationTr": "sonuç",
+              "partOfSpeech": "noun",
+              "exampleEn": "The conclusion matters to the team.",
+              "exampleTr": "Ekip için sonuç önemlidir.",
+              "emoji": "🏁"
+            }
+          ],
+          "grammarFocus": {
+            "titleTr": "Kanıtı temkinli ifade etme",
+            "explanationTr": "May, might ve appears to, kanıtın kesin olmadığını gösterir. Güçlü iddiayı verinin sınırına göre yumuşat.",
+            "form": "The data may/might + fiil; it appears that…",
+            "englishExample": "The results may indicate a positive trend.",
+            "turkishEquivalent": "Sonuçlar olumlu bir eğilime işaret ediyor olabilir.",
+            "commonTurkishErrorTr": "Türkçedeki kesinlik bildiren ifade İngilizce akademik metinde fazla güçlü kalabilir; örneklem ve sınırlılıkları belirt.",
+            "checkPromptTr": "Boşluğu doldur: The results ___ indicate a trend.",
+            "correctAnswer": "may",
+            "checkOptions": [
+              "may",
+              "must",
+              "did"
+            ]
+          },
+          "stages": [
+            {
+              "type": "VOCABULARY",
+              "titleTr": "Hedef kelimeler",
+              "instructionTr": "Kelimeyi örnek içinde incele; İngilizce ve Türkçe anlamı birlikte hatırla.",
+              "modelText": "evidence; claim; sample; reliable; limitation; trend; indicate; conclusion",
+              "translationTr": "kanıt; iddia; örneklem; güvenilir; sınırlılık; eğilim; göstermek; sonuç"
+            },
+            {
+              "type": "GRAMMAR",
+              "titleTr": "Kanıtı temkinli ifade etme",
+              "instructionTr": "May, might ve appears to, kanıtın kesin olmadığını gösterir. Güçlü iddiayı verinin sınırına göre yumuşat.",
+              "modelText": "The results may indicate a positive trend.",
+              "translationTr": "Sonuçlar olumlu bir eğilime işaret ediyor olabilir."
+            },
+            {
+              "type": "LISTENING",
+              "titleTr": "Dinle ve ana bilgiyi yakala",
+              "instructionTr": "Önce genel anlamı, sonra sorudaki ayrıntıyı dinle.",
+              "modelText": "The pilot reduced waiting time in two clinics. The sample was small, so the findings may not apply everywhere.",
+              "translationTr": "Dinleme metni için Türkçe ipucu: anahtar sözcüklere odaklan."
+            },
+            {
+              "type": "READING",
+              "titleTr": "Oku ve çıkarım yap",
+              "instructionTr": "Metni oku; yanıtını metindeki kanıtla destekle.",
+              "modelText": "The report found a consistent improvement across three months. However, because only two regions took part, the evidence does not yet support a national conclusion.",
+              "translationTr": "Önce bağlamı tahmin et, sonra ayrıntıyı doğrula."
+            },
+            {
+              "type": "WRITING",
+              "titleTr": "Yazma görevi",
+              "instructionTr": "Bir bulguyu ve onun sınırlılığını temkinli bir dille yaz.",
+              "modelText": "The results may show an improvement, although the sample is limited.",
+              "translationTr": "Örnek yanıt; kendi bilgine göre uyarlayabilirsin."
+            },
+            {
+              "type": "SPEAKING",
+              "titleTr": "Konuşma tekrarı",
+              "instructionTr": "Present one claim and qualify how strong the evidence is.",
+              "modelText": "The early results suggest progress, but the sample remains limited.",
+              "translationTr": "Önce dinle, sonra kendi hızında tekrar et."
+            }
+          ]
+        },
+        {
+          "id": "B2-JSON-U1-L2",
+          "title": "Negotiate a solution",
+          "canDo": "Acknowledge a concern, propose a compromise and define a condition.",
+          "exercises": [
+            {
+              "id": "B2-JSON-U1-L2-E1",
+              "skill": "VOCABULARY",
+              "instructionTr": "Doğru anlamı seç.",
+              "prompt": "'compromise' Türkçede ne demek?",
+              "options": [
+                "uzlaşma",
+                "öncelik",
+                "kaygı"
+              ],
+              "acceptedAnswers": [
+                "uzlaşma"
+              ],
+              "explanationTr": "'compromise' bu bağlamda 'uzlaşma' demektir."
+            },
+            {
+              "id": "B2-JSON-U1-L2-E2",
+              "skill": "GRAMMAR",
+              "instructionTr": "Dilbilgisi odağını uygula.",
+              "prompt": "Cümleyi tamamla: We can meet the date provided that we ___ the release.",
+              "context": "Öneri + provided that + koşul",
+              "options": [
+                "narrow",
+                "narrowed",
+                "will narrow"
+              ],
+              "acceptedAnswers": [
+                "narrow"
+              ],
+              "explanationTr": "Türkçe koşul eki cümle içinde farklı yerde görünebilir; İngilizcede koşul bağlacından sonra özne ve fiil gerekir."
+            },
+            {
+              "id": "B2-JSON-U1-L2-E3",
+              "skill": "LISTENING",
+              "instructionTr": "Dinleme metnine göre yanıtla.",
+              "prompt": "What is the proposed compromise?",
+              "context": "I understand the budget concern. We can keep the launch date, provided that we reduce the first release to the essential features.",
+              "modelAudioText": "I understand the budget concern. We can keep the launch date, provided that we reduce the first release to the essential features.",
+              "options": [
+                "increase the budget",
+                "cancel the launch",
+                "reduce the first release to essential features"
+              ],
+              "acceptedAnswers": [
+                "reduce the first release to essential features"
+              ],
+              "explanationTr": "Yanıtı dinleme metnindeki açık bilgiyle eşleştir."
+            },
+            {
+              "id": "B2-JSON-U1-L2-E4",
+              "skill": "READING",
+              "instructionTr": "Metne göre doğru yanıtı bul.",
+              "prompt": "What must happen by Friday?",
+              "context": "The teams agreed to share support staff for one month. This is feasible as long as both managers confirm the schedule by Friday.",
+              "options": [
+                "the project must end",
+                "both managers must confirm the schedule",
+                "the budget must double"
+              ],
+              "acceptedAnswers": [
+                "both managers must confirm the schedule"
+              ],
+              "explanationTr": "Yanıtı metindeki ilgili ifadeye dayanarak seç."
+            },
+            {
+              "id": "B2-JSON-U1-L2-E5",
+              "skill": "WRITING",
+              "instructionTr": "Kendi yanıtını yaz; örnek yanıtı kontrol listesi gibi kullan.",
+              "prompt": "Bir kaygıyı kabul edip koşullu bir uzlaşma öner.",
+              "acceptedAnswers": [
+                "We can start next week provided that the training is ready."
+              ],
+              "explanationTr": "Bu örnek tek olası yanıttır; serbest yazı otomatik dilbilgisi puanı değildir.",
+              "sampleAnswer": "We can start next week provided that the training is ready."
+            },
+            {
+              "id": "B2-JSON-U1-L2-E6",
+              "skill": "SPEAKING",
+              "instructionTr": "İfadeyi önce dinle, sonra sesli tekrar et.",
+              "prompt": "Offer a compromise and state the condition clearly.",
+              "acceptedAnswers": [
+                "I see the concern. We can keep the date, provided that we narrow the first release."
+              ],
+              "explanationTr": "Anlaşılırlık ve düzenli tekrar hedeflenir; sistem telaffuz puanı üretmez.",
+              "modelAudioText": "I see the concern. We can keep the date, provided that we narrow the first release.",
+              "sampleAnswer": "I see the concern. We can keep the date, provided that we narrow the first release."
+            }
+          ],
+          "targetVocabulary": [
+            {
+              "id": "B2-JSON-U1-L2-V01",
+              "termEn": "compromise",
+              "translationTr": "uzlaşma",
+              "partOfSpeech": "noun/verb",
+              "exampleEn": "We plan to compromise before Friday.",
+              "exampleTr": "Cuma gününden önce uzlaşma planlıyoruz.",
+              "emoji": "🤝"
+            },
+            {
+              "id": "B2-JSON-U1-L2-V02",
+              "termEn": "priority",
+              "translationTr": "öncelik",
+              "partOfSpeech": "noun",
+              "exampleEn": "The priority matters to the team.",
+              "exampleTr": "Ekip için öncelik önemlidir.",
+              "emoji": "⭐"
+            },
+            {
+              "id": "B2-JSON-U1-L2-V03",
+              "termEn": "concern",
+              "translationTr": "kaygı",
+              "partOfSpeech": "noun",
+              "exampleEn": "The concern matters to the team.",
+              "exampleTr": "Ekip için kaygı önemlidir.",
+              "emoji": "🗣️"
+            },
+            {
+              "id": "B2-JSON-U1-L2-V04",
+              "termEn": "trade-off",
+              "translationTr": "ödünleşim",
+              "partOfSpeech": "noun",
+              "exampleEn": "The trade-off matters to the team.",
+              "exampleTr": "Ekip için ödünleşim önemlidir.",
+              "emoji": "⚖️"
+            },
+            {
+              "id": "B2-JSON-U1-L2-V05",
+              "termEn": "feasible",
+              "translationTr": "uygulanabilir",
+              "partOfSpeech": "adjective",
+              "exampleEn": "The proposal seems feasible.",
+              "exampleTr": "The proposal uygulanabilir görünüyor.",
+              "emoji": "🧩"
+            },
+            {
+              "id": "B2-JSON-U1-L2-V06",
+              "termEn": "resource",
+              "translationTr": "kaynak",
+              "partOfSpeech": "noun",
+              "exampleEn": "The resource matters to the team.",
+              "exampleTr": "Ekip için kaynak önemlidir.",
+              "emoji": "🧰"
+            },
+            {
+              "id": "B2-JSON-U1-L2-V07",
+              "termEn": "propose",
+              "translationTr": "önermek",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to propose before Friday.",
+              "exampleTr": "Cuma gününden önce önermek planlıyoruz.",
+              "emoji": "💡"
+            },
+            {
+              "id": "B2-JSON-U1-L2-V08",
+              "termEn": "implement",
+              "translationTr": "uygulamak",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to implement before Friday.",
+              "exampleTr": "Cuma gününden önce uygulamak planlıyoruz.",
+              "emoji": "🛠️"
+            }
+          ],
+          "grammarFocus": {
+            "titleTr": "Koşullu öneriler: provided that",
+            "explanationTr": "Provided that ve as long as, bir planın gerçekleşmesi için gereken koşulu belirtir.",
+            "form": "Öneri + provided that + koşul",
+            "englishExample": "We can meet the deadline provided that we add one reviewer.",
+            "turkishEquivalent": "Bir gözden geçiren daha eklememiz koşuluyla son tarihe yetişebiliriz.",
+            "commonTurkishErrorTr": "Türkçe koşul eki cümle içinde farklı yerde görünebilir; İngilizcede koşul bağlacından sonra özne ve fiil gerekir.",
+            "checkPromptTr": "Cümleyi tamamla: We can meet the date provided that we ___ the release.",
+            "correctAnswer": "narrow",
+            "checkOptions": [
+              "narrow",
+              "narrowed",
+              "will narrow"
+            ]
+          },
+          "stages": [
+            {
+              "type": "VOCABULARY",
+              "titleTr": "Hedef kelimeler",
+              "instructionTr": "Kelimeyi örnek içinde incele; İngilizce ve Türkçe anlamı birlikte hatırla.",
+              "modelText": "compromise; priority; concern; trade-off; feasible; resource; propose; implement",
+              "translationTr": "uzlaşma; öncelik; kaygı; ödünleşim; uygulanabilir; kaynak; önermek; uygulamak"
+            },
+            {
+              "type": "GRAMMAR",
+              "titleTr": "Koşullu öneriler: provided that",
+              "instructionTr": "Provided that ve as long as, bir planın gerçekleşmesi için gereken koşulu belirtir.",
+              "modelText": "We can meet the deadline provided that we add one reviewer.",
+              "translationTr": "Bir gözden geçiren daha eklememiz koşuluyla son tarihe yetişebiliriz."
+            },
+            {
+              "type": "LISTENING",
+              "titleTr": "Dinle ve ana bilgiyi yakala",
+              "instructionTr": "Önce genel anlamı, sonra sorudaki ayrıntıyı dinle.",
+              "modelText": "I understand the budget concern. We can keep the launch date, provided that we reduce the first release to the essential features.",
+              "translationTr": "Dinleme metni için Türkçe ipucu: anahtar sözcüklere odaklan."
+            },
+            {
+              "type": "READING",
+              "titleTr": "Oku ve çıkarım yap",
+              "instructionTr": "Metni oku; yanıtını metindeki kanıtla destekle.",
+              "modelText": "The teams agreed to share support staff for one month. This is feasible as long as both managers confirm the schedule by Friday.",
+              "translationTr": "Önce bağlamı tahmin et, sonra ayrıntıyı doğrula."
+            },
+            {
+              "type": "WRITING",
+              "titleTr": "Yazma görevi",
+              "instructionTr": "Bir kaygıyı kabul edip koşullu bir uzlaşma öner.",
+              "modelText": "We can start next week provided that the training is ready.",
+              "translationTr": "Örnek yanıt; kendi bilgine göre uyarlayabilirsin."
+            },
+            {
+              "type": "SPEAKING",
+              "titleTr": "Konuşma tekrarı",
+              "instructionTr": "Offer a compromise and state the condition clearly.",
+              "modelText": "I see the concern. We can keep the date, provided that we narrow the first release.",
+              "translationTr": "Önce dinle, sonra kendi hızında tekrar et."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C1-JSON-U1",
+      "title": "Nuance and synthesis",
+      "summary": "İlk içerik paketi: C1 düzeyinde iletişim görevi, hedef kelimeler, biçim odağı ve bütünleşik beceri alıştırmaları.",
+      "lessons": [
+        {
+          "id": "C1-JSON-U1-L1",
+          "title": "Present findings with nuance",
+          "canDo": "Synthesize a result, qualify its certainty and adapt the wording to a professional audience.",
+          "exercises": [
+            {
+              "id": "C1-JSON-U1-L1-E1",
+              "skill": "VOCABULARY",
+              "instructionTr": "Doğru anlamı seç.",
+              "prompt": "'substantial' Türkçede ne demek?",
+              "options": [
+                "kayda değer",
+                "geçici/temkinli",
+                "temelindeki"
+              ],
+              "acceptedAnswers": [
+                "kayda değer"
+              ],
+              "explanationTr": "'substantial' bu bağlamda 'kayda değer' demektir."
+            },
+            {
+              "id": "C1-JSON-U1-L1-E2",
+              "skill": "GRAMMAR",
+              "instructionTr": "Dilbilgisi odağını uygula.",
+              "prompt": "Boşluğu doldur: Not only ___ the pilot save time, it also reduced errors.",
+              "context": "Not only + yardımcı fiil + özne + fiil…",
+              "options": [
+                "did",
+                "the pilot did",
+                "was"
+              ],
+              "acceptedAnswers": [
+                "did"
+              ],
+              "explanationTr": "Türkçe söz dizimi İngilizcedeki devrik yardımcı fiil yapısını göstermez; Not only başa gelince devrikliği koru."
+            },
+            {
+              "id": "C1-JSON-U1-L1-E3",
+              "skill": "LISTENING",
+              "instructionTr": "Dinleme metnine göre yanıtla.",
+              "prompt": "What does the speaker caution against?",
+              "context": "The improvement is substantial. That said, the data show a correlation, not proof that the new process caused the change.",
+              "modelAudioText": "The improvement is substantial. That said, the data show a correlation, not proof that the new process caused the change.",
+              "options": [
+                "reviewing the data",
+                "treating correlation as proof of causation",
+                "measuring improvement"
+              ],
+              "acceptedAnswers": [
+                "treating correlation as proof of causation"
+              ],
+              "explanationTr": "Yanıtı dinleme metnindeki açık bilgiyle eşleştir."
+            },
+            {
+              "id": "C1-JSON-U1-L1-E4",
+              "skill": "READING",
+              "instructionTr": "Metne göre doğru yanıtı bul.",
+              "prompt": "What qualification does the writer add?",
+              "context": "Not only did the revised process shorten response times, but it also made handovers more consistent. The findings are promising, though the evaluation period was brief.",
+              "options": [
+                "the process increased response times",
+                "the evaluation period was brief",
+                "there were no measurable findings"
+              ],
+              "acceptedAnswers": [
+                "the evaluation period was brief"
+              ],
+              "explanationTr": "Yanıtı metindeki ilgili ifadeye dayanarak seç."
+            },
+            {
+              "id": "C1-JSON-U1-L1-E5",
+              "skill": "WRITING",
+              "instructionTr": "Kendi yanıtını yaz; örnek yanıtı kontrol listesi gibi kullan.",
+              "prompt": "Bir olumlu bulguyu ve dikkat edilmesi gereken sınırlılığı birlikte ifade et.",
+              "acceptedAnswers": [
+                "The results are promising, although the short evaluation period limits certainty."
+              ],
+              "explanationTr": "Bu örnek tek olası yanıttır; serbest yazı otomatik dilbilgisi puanı değildir.",
+              "sampleAnswer": "The results are promising, although the short evaluation period limits certainty."
+            },
+            {
+              "id": "C1-JSON-U1-L1-E6",
+              "skill": "SPEAKING",
+              "instructionTr": "İfadeyi önce dinle, sonra sesli tekrar et.",
+              "prompt": "Summarize a finding and then qualify its implications.",
+              "acceptedAnswers": [
+                "The results are encouraging; however, the short evaluation period means we should interpret them cautiously."
+              ],
+              "explanationTr": "Anlaşılırlık ve düzenli tekrar hedeflenir; sistem telaffuz puanı üretmez.",
+              "modelAudioText": "The results are encouraging; however, the short evaluation period means we should interpret them cautiously.",
+              "sampleAnswer": "The results are encouraging; however, the short evaluation period means we should interpret them cautiously."
+            }
+          ],
+          "targetVocabulary": [
+            {
+              "id": "C1-JSON-U1-L1-V01",
+              "termEn": "substantial",
+              "translationTr": "kayda değer",
+              "partOfSpeech": "adjective",
+              "exampleEn": "The improvement seems substantial.",
+              "exampleTr": "The improvement kayda değer görünüyor.",
+              "emoji": "📊"
+            },
+            {
+              "id": "C1-JSON-U1-L1-V02",
+              "termEn": "tentative",
+              "translationTr": "geçici/temkinli",
+              "partOfSpeech": "adjective",
+              "exampleEn": "The conclusion seems tentative.",
+              "exampleTr": "The conclusion geçici/temkinli görünüyor.",
+              "emoji": "🟡"
+            },
+            {
+              "id": "C1-JSON-U1-L1-V03",
+              "termEn": "underlying",
+              "translationTr": "temelindeki",
+              "partOfSpeech": "adjective",
+              "exampleEn": "The plan seems underlying.",
+              "exampleTr": "The plan temelindeki görünüyor.",
+              "emoji": "🧱"
+            },
+            {
+              "id": "C1-JSON-U1-L1-V04",
+              "termEn": "correlation",
+              "translationTr": "korelasyon",
+              "partOfSpeech": "noun",
+              "exampleEn": "The correlation matters to the team.",
+              "exampleTr": "Ekip için korelasyon önemlidir.",
+              "emoji": "🔗"
+            },
+            {
+              "id": "C1-JSON-U1-L1-V05",
+              "termEn": "causation",
+              "translationTr": "nedensellik",
+              "partOfSpeech": "noun",
+              "exampleEn": "The causation matters to the team.",
+              "exampleTr": "Ekip için nedensellik önemlidir.",
+              "emoji": "➡️"
+            },
+            {
+              "id": "C1-JSON-U1-L1-V06",
+              "termEn": "robust",
+              "translationTr": "sağlam",
+              "partOfSpeech": "adjective",
+              "exampleEn": "The evidence seems robust.",
+              "exampleTr": "The evidence sağlam görünüyor.",
+              "emoji": "🛡️"
+            },
+            {
+              "id": "C1-JSON-U1-L1-V07",
+              "termEn": "qualify",
+              "translationTr": "nüans eklemek",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to qualify before Friday.",
+              "exampleTr": "Cuma gününden önce nüans eklemek planlıyoruz.",
+              "emoji": "🎚️"
+            },
+            {
+              "id": "C1-JSON-U1-L1-V08",
+              "termEn": "implication",
+              "translationTr": "çıkarım",
+              "partOfSpeech": "noun",
+              "exampleEn": "The implication matters to the team.",
+              "exampleTr": "Ekip için çıkarım önemlidir.",
+              "emoji": "💭"
+            }
+          ],
+          "grammarFocus": {
+            "titleTr": "Inversion: Not only ile vurgu",
+            "explanationTr": "Not only cümle başında kullanıldığında yardımcı fiil özneden önce gelir. Yapı resmî ve vurgulu anlatım sağlar.",
+            "form": "Not only + yardımcı fiil + özne + fiil…",
+            "englishExample": "Not only did the pilot save time, but it also reduced errors.",
+            "turkishEquivalent": "Pilot yalnızca zaman kazandırmakla kalmadı, hataları da azalttı.",
+            "commonTurkishErrorTr": "Türkçe söz dizimi İngilizcedeki devrik yardımcı fiil yapısını göstermez; Not only başa gelince devrikliği koru.",
+            "checkPromptTr": "Boşluğu doldur: Not only ___ the pilot save time, it also reduced errors.",
+            "correctAnswer": "did",
+            "checkOptions": [
+              "did",
+              "the pilot did",
+              "was"
+            ]
+          },
+          "stages": [
+            {
+              "type": "VOCABULARY",
+              "titleTr": "Hedef kelimeler",
+              "instructionTr": "Kelimeyi örnek içinde incele; İngilizce ve Türkçe anlamı birlikte hatırla.",
+              "modelText": "substantial; tentative; underlying; correlation; causation; robust; qualify; implication",
+              "translationTr": "kayda değer; geçici/temkinli; temelindeki; korelasyon; nedensellik; sağlam; nüans eklemek; çıkarım"
+            },
+            {
+              "type": "GRAMMAR",
+              "titleTr": "Inversion: Not only ile vurgu",
+              "instructionTr": "Not only cümle başında kullanıldığında yardımcı fiil özneden önce gelir. Yapı resmî ve vurgulu anlatım sağlar.",
+              "modelText": "Not only did the pilot save time, but it also reduced errors.",
+              "translationTr": "Pilot yalnızca zaman kazandırmakla kalmadı, hataları da azalttı."
+            },
+            {
+              "type": "LISTENING",
+              "titleTr": "Dinle ve ana bilgiyi yakala",
+              "instructionTr": "Önce genel anlamı, sonra sorudaki ayrıntıyı dinle.",
+              "modelText": "The improvement is substantial. That said, the data show a correlation, not proof that the new process caused the change.",
+              "translationTr": "Dinleme metni için Türkçe ipucu: anahtar sözcüklere odaklan."
+            },
+            {
+              "type": "READING",
+              "titleTr": "Oku ve çıkarım yap",
+              "instructionTr": "Metni oku; yanıtını metindeki kanıtla destekle.",
+              "modelText": "Not only did the revised process shorten response times, but it also made handovers more consistent. The findings are promising, though the evaluation period was brief.",
+              "translationTr": "Önce bağlamı tahmin et, sonra ayrıntıyı doğrula."
+            },
+            {
+              "type": "WRITING",
+              "titleTr": "Yazma görevi",
+              "instructionTr": "Bir olumlu bulguyu ve dikkat edilmesi gereken sınırlılığı birlikte ifade et.",
+              "modelText": "The results are promising, although the short evaluation period limits certainty.",
+              "translationTr": "Örnek yanıt; kendi bilgine göre uyarlayabilirsin."
+            },
+            {
+              "type": "SPEAKING",
+              "titleTr": "Konuşma tekrarı",
+              "instructionTr": "Summarize a finding and then qualify its implications.",
+              "modelText": "The results are encouraging; however, the short evaluation period means we should interpret them cautiously.",
+              "translationTr": "Önce dinle, sonra kendi hızında tekrar et."
+            }
+          ]
+        },
+        {
+          "id": "C1-JSON-U1-L2",
+          "title": "Synthesize two perspectives",
+          "canDo": "Compare two positions, identify their common ground and draw a carefully bounded conclusion.",
+          "exercises": [
+            {
+              "id": "C1-JSON-U1-L2-E1",
+              "skill": "VOCABULARY",
+              "instructionTr": "Doğru anlamı seç.",
+              "prompt": "'perspective' Türkçede ne demek?",
+              "options": [
+                "bakış açısı",
+                "örtüşmek",
+                "ayrışmak"
+              ],
+              "acceptedAnswers": [
+                "bakış açısı"
+              ],
+              "explanationTr": "'perspective' bu bağlamda 'bakış açısı' demektir."
+            },
+            {
+              "id": "C1-JSON-U1-L2-E2",
+              "skill": "GRAMMAR",
+              "instructionTr": "Dilbilgisi odağını uygula.",
+              "prompt": "Bağlacı seç: The plans converge on access, ___ they differ on cost.",
+              "context": "A, whereas B; insofar as + cümle",
+              "options": [
+                "whereas",
+                "because",
+                "therefore"
+              ],
+              "acceptedAnswers": [
+                "whereas"
+              ],
+              "explanationTr": "Türkçedeki ama/fakat her bağlamda aynı ilişkiyi vermez; karşıtlık mı, kapsam sınırlaması mı kurduğunu seç."
+            },
+            {
+              "id": "C1-JSON-U1-L2-E3",
+              "skill": "LISTENING",
+              "instructionTr": "Dinleme metnine göre yanıtla.",
+              "prompt": "Where do the proposals converge?",
+              "context": "Both proposals prioritize access. One emphasizes speed, whereas the other focuses on long-term support; they converge on the need for staff training.",
+              "modelAudioText": "Both proposals prioritize access. One emphasizes speed, whereas the other focuses on long-term support; they converge on the need for staff training.",
+              "options": [
+                "the launch date",
+                "the need for staff training",
+                "the budget ceiling"
+              ],
+              "acceptedAnswers": [
+                "the need for staff training"
+              ],
+              "explanationTr": "Yanıtı dinleme metnindeki açık bilgiyle eşleştir."
+            },
+            {
+              "id": "C1-JSON-U1-L2-E4",
+              "skill": "READING",
+              "instructionTr": "Metne göre doğru yanıtı bul.",
+              "prompt": "What common dependency supports a staged launch?",
+              "context": "The first analysis favors a rapid rollout; the second stresses local adaptation. Insofar as both depend on trained staff, a staged launch may address their shared concern.",
+              "options": [
+                "a larger advertising budget",
+                "trained staff",
+                "a fixed national schedule"
+              ],
+              "acceptedAnswers": [
+                "trained staff"
+              ],
+              "explanationTr": "Yanıtı metindeki ilgili ifadeye dayanarak seç."
+            },
+            {
+              "id": "C1-JSON-U1-L2-E5",
+              "skill": "WRITING",
+              "instructionTr": "Kendi yanıtını yaz; örnek yanıtı kontrol listesi gibi kullan.",
+              "prompt": "İki görüşün ortak noktasını ve bir farkını tek paragrafta sentezle.",
+              "acceptedAnswers": [
+                "Both plans support wider access, whereas they differ on pace; a staged approach may balance the two."
+              ],
+              "explanationTr": "Bu örnek tek olası yanıttır; serbest yazı otomatik dilbilgisi puanı değildir.",
+              "sampleAnswer": "Both plans support wider access, whereas they differ on pace; a staged approach may balance the two."
+            },
+            {
+              "id": "C1-JSON-U1-L2-E6",
+              "skill": "SPEAKING",
+              "instructionTr": "İfadeyi önce dinle, sonra sesli tekrar et.",
+              "prompt": "Compare two positions, note one point of agreement and one difference.",
+              "acceptedAnswers": [
+                "Both views value access, although they differ on how quickly the change should happen."
+              ],
+              "explanationTr": "Anlaşılırlık ve düzenli tekrar hedeflenir; sistem telaffuz puanı üretmez.",
+              "modelAudioText": "Both views value access, although they differ on how quickly the change should happen.",
+              "sampleAnswer": "Both views value access, although they differ on how quickly the change should happen."
+            }
+          ],
+          "targetVocabulary": [
+            {
+              "id": "C1-JSON-U1-L2-V01",
+              "termEn": "perspective",
+              "translationTr": "bakış açısı",
+              "partOfSpeech": "noun",
+              "exampleEn": "The perspective matters to the team.",
+              "exampleTr": "Ekip için bakış açısı önemlidir.",
+              "emoji": "🔭"
+            },
+            {
+              "id": "C1-JSON-U1-L2-V02",
+              "termEn": "converge",
+              "translationTr": "örtüşmek",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to converge before Friday.",
+              "exampleTr": "Cuma gününden önce örtüşmek planlıyoruz.",
+              "emoji": "🔀"
+            },
+            {
+              "id": "C1-JSON-U1-L2-V03",
+              "termEn": "diverge",
+              "translationTr": "ayrışmak",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to diverge before Friday.",
+              "exampleTr": "Cuma gününden önce ayrışmak planlıyoruz.",
+              "emoji": "↗️"
+            },
+            {
+              "id": "C1-JSON-U1-L2-V04",
+              "termEn": "trade-off",
+              "translationTr": "ödünleşim",
+              "partOfSpeech": "noun",
+              "exampleEn": "The trade-off matters to the team.",
+              "exampleTr": "Ekip için ödünleşim önemlidir.",
+              "emoji": "⚖️"
+            },
+            {
+              "id": "C1-JSON-U1-L2-V05",
+              "termEn": "inference",
+              "translationTr": "çıkarım",
+              "partOfSpeech": "noun",
+              "exampleEn": "The inference matters to the team.",
+              "exampleTr": "Ekip için çıkarım önemlidir.",
+              "emoji": "🧠"
+            },
+            {
+              "id": "C1-JSON-U1-L2-V06",
+              "termEn": "scope",
+              "translationTr": "kapsam",
+              "partOfSpeech": "noun",
+              "exampleEn": "The scope matters to the team.",
+              "exampleTr": "Ekip için kapsam önemlidir.",
+              "emoji": "🗺️"
+            },
+            {
+              "id": "C1-JSON-U1-L2-V07",
+              "termEn": "counterpart",
+              "translationTr": "karşılık/muadil",
+              "partOfSpeech": "noun",
+              "exampleEn": "The counterpart matters to the team.",
+              "exampleTr": "Ekip için karşılık/muadil önemlidir.",
+              "emoji": "🔁"
+            },
+            {
+              "id": "C1-JSON-U1-L2-V08",
+              "termEn": "synthesis",
+              "translationTr": "sentez",
+              "partOfSpeech": "noun",
+              "exampleEn": "The synthesis matters to the team.",
+              "exampleTr": "Ekip için sentez önemlidir.",
+              "emoji": "🧩"
+            }
+          ],
+          "grammarFocus": {
+            "titleTr": "Nüanslı bağlaçlar: whereas ve insofar as",
+            "explanationTr": "Whereas iki farklı durumu karşılaştırır. Insofar as kapsamı sınırlar: yalnızca belirtilen ölçüde.",
+            "form": "A, whereas B; insofar as + cümle",
+            "englishExample": "The plans converge on access, whereas they differ on cost.",
+            "turkishEquivalent": "Planlar erişim konusunda örtüşüyor, maliyet konusunda ayrışıyor.",
+            "commonTurkishErrorTr": "Türkçedeki ama/fakat her bağlamda aynı ilişkiyi vermez; karşıtlık mı, kapsam sınırlaması mı kurduğunu seç.",
+            "checkPromptTr": "Bağlacı seç: The plans converge on access, ___ they differ on cost.",
+            "correctAnswer": "whereas",
+            "checkOptions": [
+              "whereas",
+              "because",
+              "therefore"
+            ]
+          },
+          "stages": [
+            {
+              "type": "VOCABULARY",
+              "titleTr": "Hedef kelimeler",
+              "instructionTr": "Kelimeyi örnek içinde incele; İngilizce ve Türkçe anlamı birlikte hatırla.",
+              "modelText": "perspective; converge; diverge; trade-off; inference; scope; counterpart; synthesis",
+              "translationTr": "bakış açısı; örtüşmek; ayrışmak; ödünleşim; çıkarım; kapsam; karşılık/muadil; sentez"
+            },
+            {
+              "type": "GRAMMAR",
+              "titleTr": "Nüanslı bağlaçlar: whereas ve insofar as",
+              "instructionTr": "Whereas iki farklı durumu karşılaştırır. Insofar as kapsamı sınırlar: yalnızca belirtilen ölçüde.",
+              "modelText": "The plans converge on access, whereas they differ on cost.",
+              "translationTr": "Planlar erişim konusunda örtüşüyor, maliyet konusunda ayrışıyor."
+            },
+            {
+              "type": "LISTENING",
+              "titleTr": "Dinle ve ana bilgiyi yakala",
+              "instructionTr": "Önce genel anlamı, sonra sorudaki ayrıntıyı dinle.",
+              "modelText": "Both proposals prioritize access. One emphasizes speed, whereas the other focuses on long-term support; they converge on the need for staff training.",
+              "translationTr": "Dinleme metni için Türkçe ipucu: anahtar sözcüklere odaklan."
+            },
+            {
+              "type": "READING",
+              "titleTr": "Oku ve çıkarım yap",
+              "instructionTr": "Metni oku; yanıtını metindeki kanıtla destekle.",
+              "modelText": "The first analysis favors a rapid rollout; the second stresses local adaptation. Insofar as both depend on trained staff, a staged launch may address their shared concern.",
+              "translationTr": "Önce bağlamı tahmin et, sonra ayrıntıyı doğrula."
+            },
+            {
+              "type": "WRITING",
+              "titleTr": "Yazma görevi",
+              "instructionTr": "İki görüşün ortak noktasını ve bir farkını tek paragrafta sentezle.",
+              "modelText": "Both plans support wider access, whereas they differ on pace; a staged approach may balance the two.",
+              "translationTr": "Örnek yanıt; kendi bilgine göre uyarlayabilirsin."
+            },
+            {
+              "type": "SPEAKING",
+              "titleTr": "Konuşma tekrarı",
+              "instructionTr": "Compare two positions, note one point of agreement and one difference.",
+              "modelText": "Both views value access, although they differ on how quickly the change should happen.",
+              "translationTr": "Önce dinle, sonra kendi hızında tekrar et."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C2-JSON-U1",
+      "title": "Complex argument and precision",
+      "summary": "İlk içerik paketi: C2 düzeyinde iletişim görevi, hedef kelimeler, biçim odağı ve bütünleşik beceri alıştırmaları.",
+      "lessons": [
+        {
+          "id": "C2-JSON-U1-L1",
+          "title": "Challenge an assumption",
+          "canDo": "Identify an unstated assumption, distinguish possibility from certainty and respond with a counterexample.",
+          "exercises": [
+            {
+              "id": "C2-JSON-U1-L1-E1",
+              "skill": "VOCABULARY",
+              "instructionTr": "Doğru anlamı seç.",
+              "prompt": "'premise' Türkçede ne demek?",
+              "options": [
+                "öncül",
+                "koşula bağlı",
+                "karşı örnek"
+              ],
+              "acceptedAnswers": [
+                "öncül"
+              ],
+              "explanationTr": "'premise' bu bağlamda 'öncül' demektir."
+            },
+            {
+              "id": "C2-JSON-U1-L1-E2",
+              "skill": "GRAMMAR",
+              "instructionTr": "Dilbilgisi odağını uygula.",
+              "prompt": "Boşluğu doldur: If the sample had been broader, the conclusion ___ be stronger.",
+              "context": "If + past perfect, would + fiil",
+              "options": [
+                "would",
+                "will",
+                "had"
+              ],
+              "acceptedAnswers": [
+                "would"
+              ],
+              "explanationTr": "Türkçedeki koşul ekleri zaman ilişkisini tek başına göstermez; geçmiş koşul ile bugünkü sonucu ayrı biçimlerle kur."
+            },
+            {
+              "id": "C2-JSON-U1-L1-E3",
+              "skill": "LISTENING",
+              "instructionTr": "Dinleme metnine göre yanıtla.",
+              "prompt": "What caveat does the speaker raise?",
+              "context": "The conclusion is plausible, but it extrapolates beyond the sample. If the second region had been included, the comparison would be more robust.",
+              "modelAudioText": "The conclusion is plausible, but it extrapolates beyond the sample. If the second region had been included, the comparison would be more robust.",
+              "options": [
+                "the sample is too large",
+                "the conclusion extends beyond the sample",
+                "the second region was included"
+              ],
+              "acceptedAnswers": [
+                "the conclusion extends beyond the sample"
+              ],
+              "explanationTr": "Yanıtı dinleme metnindeki açık bilgiyle eşleştir."
+            },
+            {
+              "id": "C2-JSON-U1-L1-E4",
+              "skill": "READING",
+              "instructionTr": "Metne göre doğru yanıtı bul.",
+              "prompt": "What missing information weakens the recommendation?",
+              "context": "The policy assumes that all departments have comparable capacity. Had staffing levels been measured, the recommendation would rest on firmer ground.",
+              "options": [
+                "the departments' names",
+                "staffing levels",
+                "the policy date"
+              ],
+              "acceptedAnswers": [
+                "staffing levels"
+              ],
+              "explanationTr": "Yanıtı metindeki ilgili ifadeye dayanarak seç."
+            },
+            {
+              "id": "C2-JSON-U1-L1-E5",
+              "skill": "WRITING",
+              "instructionTr": "Kendi yanıtını yaz; örnek yanıtı kontrol listesi gibi kullan.",
+              "prompt": "Bir iddiadaki varsayımı belirt ve hangi ek kanıtın gerekli olduğunu yaz.",
+              "acceptedAnswers": [
+                "The claim assumes equal capacity; staffing data would be needed to test it."
+              ],
+              "explanationTr": "Bu örnek tek olası yanıttır; serbest yazı otomatik dilbilgisi puanı değildir.",
+              "sampleAnswer": "The claim assumes equal capacity; staffing data would be needed to test it."
+            },
+            {
+              "id": "C2-JSON-U1-L1-E6",
+              "skill": "SPEAKING",
+              "instructionTr": "İfadeyi önce dinle, sonra sesli tekrar et.",
+              "prompt": "Challenge a hidden assumption without overstating your counterargument.",
+              "acceptedAnswers": [
+                "That conclusion is plausible, although it depends on an untested assumption about capacity."
+              ],
+              "explanationTr": "Anlaşılırlık ve düzenli tekrar hedeflenir; sistem telaffuz puanı üretmez.",
+              "modelAudioText": "That conclusion is plausible, although it depends on an untested assumption about capacity.",
+              "sampleAnswer": "That conclusion is plausible, although it depends on an untested assumption about capacity."
+            }
+          ],
+          "targetVocabulary": [
+            {
+              "id": "C2-JSON-U1-L1-V01",
+              "termEn": "premise",
+              "translationTr": "öncül",
+              "partOfSpeech": "noun",
+              "exampleEn": "The premise matters to the team.",
+              "exampleTr": "Ekip için öncül önemlidir.",
+              "emoji": "🧱"
+            },
+            {
+              "id": "C2-JSON-U1-L1-V02",
+              "termEn": "contingent",
+              "translationTr": "koşula bağlı",
+              "partOfSpeech": "adjective",
+              "exampleEn": "The plan seems contingent.",
+              "exampleTr": "The plan koşula bağlı görünüyor.",
+              "emoji": "🔗"
+            },
+            {
+              "id": "C2-JSON-U1-L1-V03",
+              "termEn": "counterexample",
+              "translationTr": "karşı örnek",
+              "partOfSpeech": "noun",
+              "exampleEn": "The counterexample matters to the team.",
+              "exampleTr": "Ekip için karşı örnek önemlidir.",
+              "emoji": "🪞"
+            },
+            {
+              "id": "C2-JSON-U1-L1-V04",
+              "termEn": "plausible",
+              "translationTr": "akla yatkın",
+              "partOfSpeech": "adjective",
+              "exampleEn": "The explanation seems plausible.",
+              "exampleTr": "The explanation akla yatkın görünüyor.",
+              "emoji": "💭"
+            },
+            {
+              "id": "C2-JSON-U1-L1-V05",
+              "termEn": "unwarranted",
+              "translationTr": "dayanaksız",
+              "partOfSpeech": "adjective",
+              "exampleEn": "The assumption seems unwarranted.",
+              "exampleTr": "The assumption dayanaksız görünüyor.",
+              "emoji": "⛔"
+            },
+            {
+              "id": "C2-JSON-U1-L1-V06",
+              "termEn": "extrapolate",
+              "translationTr": "çıkarım yapmak",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to extrapolate before Friday.",
+              "exampleTr": "Cuma gününden önce çıkarım yapmak planlıyoruz.",
+              "emoji": "📈"
+            },
+            {
+              "id": "C2-JSON-U1-L1-V07",
+              "termEn": "caveat",
+              "translationTr": "çekince",
+              "partOfSpeech": "noun",
+              "exampleEn": "The caveat matters to the team.",
+              "exampleTr": "Ekip için çekince önemlidir.",
+              "emoji": "⚠️"
+            },
+            {
+              "id": "C2-JSON-U1-L1-V08",
+              "termEn": "robustness",
+              "translationTr": "sağlamlık",
+              "partOfSpeech": "noun",
+              "exampleEn": "The robustness matters to the team.",
+              "exampleTr": "Ekip için sağlamlık önemlidir.",
+              "emoji": "🛡️"
+            }
+          ],
+          "grammarFocus": {
+            "titleTr": "Mixed conditional ile geçmiş ve bugünü bağlama",
+            "explanationTr": "Geçmişte farklı bir koşul olsaydı bugünkü sonucun nasıl değişeceğini anlatır.",
+            "form": "If + past perfect, would + fiil",
+            "englishExample": "If the sample had been broader, the conclusion would be more robust.",
+            "turkishEquivalent": "Örneklem daha geniş olsaydı sonuç daha sağlam olurdu.",
+            "commonTurkishErrorTr": "Türkçedeki koşul ekleri zaman ilişkisini tek başına göstermez; geçmiş koşul ile bugünkü sonucu ayrı biçimlerle kur.",
+            "checkPromptTr": "Boşluğu doldur: If the sample had been broader, the conclusion ___ be stronger.",
+            "correctAnswer": "would",
+            "checkOptions": [
+              "would",
+              "will",
+              "had"
+            ]
+          },
+          "stages": [
+            {
+              "type": "VOCABULARY",
+              "titleTr": "Hedef kelimeler",
+              "instructionTr": "Kelimeyi örnek içinde incele; İngilizce ve Türkçe anlamı birlikte hatırla.",
+              "modelText": "premise; contingent; counterexample; plausible; unwarranted; extrapolate; caveat; robustness",
+              "translationTr": "öncül; koşula bağlı; karşı örnek; akla yatkın; dayanaksız; çıkarım yapmak; çekince; sağlamlık"
+            },
+            {
+              "type": "GRAMMAR",
+              "titleTr": "Mixed conditional ile geçmiş ve bugünü bağlama",
+              "instructionTr": "Geçmişte farklı bir koşul olsaydı bugünkü sonucun nasıl değişeceğini anlatır.",
+              "modelText": "If the sample had been broader, the conclusion would be more robust.",
+              "translationTr": "Örneklem daha geniş olsaydı sonuç daha sağlam olurdu."
+            },
+            {
+              "type": "LISTENING",
+              "titleTr": "Dinle ve ana bilgiyi yakala",
+              "instructionTr": "Önce genel anlamı, sonra sorudaki ayrıntıyı dinle.",
+              "modelText": "The conclusion is plausible, but it extrapolates beyond the sample. If the second region had been included, the comparison would be more robust.",
+              "translationTr": "Dinleme metni için Türkçe ipucu: anahtar sözcüklere odaklan."
+            },
+            {
+              "type": "READING",
+              "titleTr": "Oku ve çıkarım yap",
+              "instructionTr": "Metni oku; yanıtını metindeki kanıtla destekle.",
+              "modelText": "The policy assumes that all departments have comparable capacity. Had staffing levels been measured, the recommendation would rest on firmer ground.",
+              "translationTr": "Önce bağlamı tahmin et, sonra ayrıntıyı doğrula."
+            },
+            {
+              "type": "WRITING",
+              "titleTr": "Yazma görevi",
+              "instructionTr": "Bir iddiadaki varsayımı belirt ve hangi ek kanıtın gerekli olduğunu yaz.",
+              "modelText": "The claim assumes equal capacity; staffing data would be needed to test it.",
+              "translationTr": "Örnek yanıt; kendi bilgine göre uyarlayabilirsin."
+            },
+            {
+              "type": "SPEAKING",
+              "titleTr": "Konuşma tekrarı",
+              "instructionTr": "Challenge a hidden assumption without overstating your counterargument.",
+              "modelText": "That conclusion is plausible, although it depends on an untested assumption about capacity.",
+              "translationTr": "Önce dinle, sonra kendi hızında tekrar et."
+            }
+          ]
+        },
+        {
+          "id": "C2-JSON-U1-L2",
+          "title": "Frame a carefully bounded conclusion",
+          "canDo": "Integrate conflicting evidence, state a qualified conclusion and specify what would change your judgment.",
+          "exercises": [
+            {
+              "id": "C2-JSON-U1-L2-E1",
+              "skill": "VOCABULARY",
+              "instructionTr": "Doğru anlamı seç.",
+              "prompt": "'convergent' Türkçede ne demek?",
+              "options": [
+                "yakınsayan",
+                "tutarsızlık",
+                "geçici"
+              ],
+              "acceptedAnswers": [
+                "yakınsayan"
+              ],
+              "explanationTr": "'convergent' bu bağlamda 'yakınsayan' demektir."
+            },
+            {
+              "id": "C2-JSON-U1-L2-E2",
+              "skill": "GRAMMAR",
+              "instructionTr": "Dilbilgisi odağını uygula.",
+              "prompt": "Boşluğu doldur: It is the independent review ___ will determine the next step.",
+              "context": "It is/was + odak + that + cümle",
+              "options": [
+                "that",
+                "what",
+                "which it"
+              ],
+              "acceptedAnswers": [
+                "that"
+              ],
+              "explanationTr": "Türkçede vurgu ek veya tonlamayla verilebilir; İngilizcede odaklanan öğeyi cleft yapısında doğru yere taşı."
+            },
+            {
+              "id": "C2-JSON-U1-L2-E3",
+              "skill": "LISTENING",
+              "instructionTr": "Dinleme metnine göre yanıtla.",
+              "prompt": "What will determine whether the discrepancy matters?",
+              "context": "The two analyses are broadly convergent, but one discrepancy remains. It is the independent audit that will determine whether the difference is material.",
+              "modelAudioText": "The two analyses are broadly convergent, but one discrepancy remains. It is the independent audit that will determine whether the difference is material.",
+              "options": [
+                "a new deadline",
+                "the independent audit",
+                "a larger presentation"
+              ],
+              "acceptedAnswers": [
+                "the independent audit"
+              ],
+              "explanationTr": "Yanıtı dinleme metnindeki açık bilgiyle eşleştir."
+            },
+            {
+              "id": "C2-JSON-U1-L2-E4",
+              "skill": "READING",
+              "instructionTr": "Metne göre doğru yanıtı bul.",
+              "prompt": "What should guide the final judgment?",
+              "context": "The evidence supports a provisional conclusion. It is the size and persistence of the discrepancy, rather than its mere presence, that should guide the final judgment.",
+              "options": [
+                "the number of pages",
+                "the size and persistence of the discrepancy",
+                "the author's seniority"
+              ],
+              "acceptedAnswers": [
+                "the size and persistence of the discrepancy"
+              ],
+              "explanationTr": "Yanıtı metindeki ilgili ifadeye dayanarak seç."
+            },
+            {
+              "id": "C2-JSON-U1-L2-E5",
+              "skill": "WRITING",
+              "instructionTr": "Kendi yanıtını yaz; örnek yanıtı kontrol listesi gibi kullan.",
+              "prompt": "Geçici bir sonuç yaz; hangi yeni kanıtın kararını değiştirebileceğini belirt.",
+              "acceptedAnswers": [
+                "The evidence provisionally supports the change; a replicated result would strengthen that judgment."
+              ],
+              "explanationTr": "Bu örnek tek olası yanıttır; serbest yazı otomatik dilbilgisi puanı değildir.",
+              "sampleAnswer": "The evidence provisionally supports the change; a replicated result would strengthen that judgment."
+            },
+            {
+              "id": "C2-JSON-U1-L2-E6",
+              "skill": "SPEAKING",
+              "instructionTr": "İfadeyi önce dinle, sonra sesli tekrar et.",
+              "prompt": "State a bounded conclusion and name the evidence that could change it.",
+              "acceptedAnswers": [
+                "On the evidence available, the change appears justified, although independent replication could alter that assessment."
+              ],
+              "explanationTr": "Anlaşılırlık ve düzenli tekrar hedeflenir; sistem telaffuz puanı üretmez.",
+              "modelAudioText": "On the evidence available, the change appears justified, although independent replication could alter that assessment.",
+              "sampleAnswer": "On the evidence available, the change appears justified, although independent replication could alter that assessment."
+            }
+          ],
+          "targetVocabulary": [
+            {
+              "id": "C2-JSON-U1-L2-V01",
+              "termEn": "convergent",
+              "translationTr": "yakınsayan",
+              "partOfSpeech": "adjective",
+              "exampleEn": "The results seems convergent.",
+              "exampleTr": "The results yakınsayan görünüyor.",
+              "emoji": "🔀"
+            },
+            {
+              "id": "C2-JSON-U1-L2-V02",
+              "termEn": "discrepancy",
+              "translationTr": "tutarsızlık",
+              "partOfSpeech": "noun",
+              "exampleEn": "The discrepancy matters to the team.",
+              "exampleTr": "Ekip için tutarsızlık önemlidir.",
+              "emoji": "⚡"
+            },
+            {
+              "id": "C2-JSON-U1-L2-V03",
+              "termEn": "provisional",
+              "translationTr": "geçici",
+              "partOfSpeech": "adjective",
+              "exampleEn": "The finding seems provisional.",
+              "exampleTr": "The finding geçici görünüyor.",
+              "emoji": "🟡"
+            },
+            {
+              "id": "C2-JSON-U1-L2-V04",
+              "termEn": "materially",
+              "translationTr": "kayda değer ölçüde",
+              "partOfSpeech": "adverb",
+              "exampleEn": "We materially review the evidence.",
+              "exampleTr": "Kanıtı kayda değer ölçüde gözden geçiriyoruz.",
+              "emoji": "📏"
+            },
+            {
+              "id": "C2-JSON-U1-L2-V05",
+              "termEn": "qualifier",
+              "translationTr": "niteleyici",
+              "partOfSpeech": "noun",
+              "exampleEn": "The qualifier matters to the team.",
+              "exampleTr": "Ekip için niteleyici önemlidir.",
+              "emoji": "🎚️"
+            },
+            {
+              "id": "C2-JSON-U1-L2-V06",
+              "termEn": "corroborate",
+              "translationTr": "doğrulamak",
+              "partOfSpeech": "verb",
+              "exampleEn": "We plan to corroborate before Friday.",
+              "exampleTr": "Cuma gününden önce doğrulamak planlıyoruz.",
+              "emoji": "✅"
+            },
+            {
+              "id": "C2-JSON-U1-L2-V07",
+              "termEn": "threshold",
+              "translationTr": "eşik",
+              "partOfSpeech": "noun",
+              "exampleEn": "The threshold matters to the team.",
+              "exampleTr": "Ekip için eşik önemlidir.",
+              "emoji": "📍"
+            },
+            {
+              "id": "C2-JSON-U1-L2-V08",
+              "termEn": "judgment",
+              "translationTr": "değerlendirme",
+              "partOfSpeech": "noun",
+              "exampleEn": "The judgment matters to the team.",
+              "exampleTr": "Ekip için değerlendirme önemlidir.",
+              "emoji": "⚖️"
+            }
+          ],
+          "grammarFocus": {
+            "titleTr": "Cleft sentences ile odaklama",
+            "explanationTr": "It is/was … that yapısı cümlede bir unsuru özellikle öne çıkarır.",
+            "form": "It is/was + odak + that + cümle",
+            "englishExample": "It is the independent review that will determine the next step.",
+            "turkishEquivalent": "Sonraki adımı belirleyecek olan bağımsız incelemedir.",
+            "commonTurkishErrorTr": "Türkçede vurgu ek veya tonlamayla verilebilir; İngilizcede odaklanan öğeyi cleft yapısında doğru yere taşı.",
+            "checkPromptTr": "Boşluğu doldur: It is the independent review ___ will determine the next step.",
+            "correctAnswer": "that",
+            "checkOptions": [
+              "that",
+              "what",
+              "which it"
+            ]
+          },
+          "stages": [
+            {
+              "type": "VOCABULARY",
+              "titleTr": "Hedef kelimeler",
+              "instructionTr": "Kelimeyi örnek içinde incele; İngilizce ve Türkçe anlamı birlikte hatırla.",
+              "modelText": "convergent; discrepancy; provisional; materially; qualifier; corroborate; threshold; judgment",
+              "translationTr": "yakınsayan; tutarsızlık; geçici; kayda değer ölçüde; niteleyici; doğrulamak; eşik; değerlendirme"
+            },
+            {
+              "type": "GRAMMAR",
+              "titleTr": "Cleft sentences ile odaklama",
+              "instructionTr": "It is/was … that yapısı cümlede bir unsuru özellikle öne çıkarır.",
+              "modelText": "It is the independent review that will determine the next step.",
+              "translationTr": "Sonraki adımı belirleyecek olan bağımsız incelemedir."
+            },
+            {
+              "type": "LISTENING",
+              "titleTr": "Dinle ve ana bilgiyi yakala",
+              "instructionTr": "Önce genel anlamı, sonra sorudaki ayrıntıyı dinle.",
+              "modelText": "The two analyses are broadly convergent, but one discrepancy remains. It is the independent audit that will determine whether the difference is material.",
+              "translationTr": "Dinleme metni için Türkçe ipucu: anahtar sözcüklere odaklan."
+            },
+            {
+              "type": "READING",
+              "titleTr": "Oku ve çıkarım yap",
+              "instructionTr": "Metni oku; yanıtını metindeki kanıtla destekle.",
+              "modelText": "The evidence supports a provisional conclusion. It is the size and persistence of the discrepancy, rather than its mere presence, that should guide the final judgment.",
+              "translationTr": "Önce bağlamı tahmin et, sonra ayrıntıyı doğrula."
+            },
+            {
+              "type": "WRITING",
+              "titleTr": "Yazma görevi",
+              "instructionTr": "Geçici bir sonuç yaz; hangi yeni kanıtın kararını değiştirebileceğini belirt.",
+              "modelText": "The evidence provisionally supports the change; a replicated result would strengthen that judgment.",
+              "translationTr": "Örnek yanıt; kendi bilgine göre uyarlayabilirsin."
+            },
+            {
+              "type": "SPEAKING",
+              "titleTr": "Konuşma tekrarı",
+              "instructionTr": "State a bounded conclusion and name the evidence that could change it.",
+              "modelText": "On the evidence available, the change appears justified, although independent replication could alter that assessment.",
+              "translationTr": "Önce dinle, sonra kendi hızında tekrar et."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
