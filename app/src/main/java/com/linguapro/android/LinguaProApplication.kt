@@ -17,7 +17,7 @@ class LinguaProApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
-            courseSeedInitializer.seedIfEmpty().onFailure { error ->
+            courseSeedInitializer.installIfNeeded().onFailure { error ->
                 Log.e("LinguaPro", "Kurs içeriği yerel veritabanına yüklenemedi.", error)
             }
         }
