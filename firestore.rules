@@ -6,7 +6,7 @@ service cloud.firestore {
     }
 
     function validLevel(level) {
-      return level in ['A1', 'A2', 'B1', 'B2', 'C1'];
+      return level in ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
     }
 
     function validProfile(profile, userId) {
@@ -19,6 +19,12 @@ service cloud.firestore {
         && validLevel(profile.cefrLevel)
         && profile.completedLessons is int
         && profile.completedLessons >= 0
+        && (!('completedByLevelA1' in profile) || (profile.completedByLevelA1 is int && profile.completedByLevelA1 >= 0))
+        && (!('completedByLevelA2' in profile) || (profile.completedByLevelA2 is int && profile.completedByLevelA2 >= 0))
+        && (!('completedByLevelB1' in profile) || (profile.completedByLevelB1 is int && profile.completedByLevelB1 >= 0))
+        && (!('completedByLevelB2' in profile) || (profile.completedByLevelB2 is int && profile.completedByLevelB2 >= 0))
+        && (!('completedByLevelC1' in profile) || (profile.completedByLevelC1 is int && profile.completedByLevelC1 >= 0))
+        && (!('completedByLevelC2' in profile) || (profile.completedByLevelC2 is int && profile.completedByLevelC2 >= 0))
         && profile.skillMastery is map
         && profile.onboardingComplete is bool;
     }
@@ -28,10 +34,14 @@ service cloud.firestore {
       allow create: if signedInAs(userId)
         && request.resource.data.keys().hasOnly([
           'uid', 'displayName', 'email', 'cefrLevel', 'completedLessons',
+          'completedByLevelA1', 'completedByLevelA2', 'completedByLevelB1',
+          'completedByLevelB2', 'completedByLevelC1', 'completedByLevelC2',
           'skillMastery', 'onboardingComplete', 'createdAt', 'updatedAt'
         ])
         && request.resource.data.keys().hasAll([
           'uid', 'displayName', 'email', 'cefrLevel', 'completedLessons',
+          'completedByLevelA1', 'completedByLevelA2', 'completedByLevelB1',
+          'completedByLevelB2', 'completedByLevelC1', 'completedByLevelC2',
           'skillMastery', 'onboardingComplete', 'createdAt', 'updatedAt'
         ])
         && validProfile(request.resource.data, userId);
@@ -39,8 +49,10 @@ service cloud.firestore {
       // Purchase/entitlement fields are deliberately not client-writable.
       allow update: if signedInAs(userId)
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
-          'displayName', 'cefrLevel', 'completedLessons', 'skillMastery',
-          'onboardingComplete', 'lastStudiedAt', 'updatedAt'
+          'displayName', 'cefrLevel', 'completedLessons',
+          'completedByLevelA1', 'completedByLevelA2', 'completedByLevelB1',
+          'completedByLevelB2', 'completedByLevelC1', 'completedByLevelC2',
+          'skillMastery', 'onboardingComplete', 'lastStudiedAt', 'updatedAt'
         ])
         && validProfile(request.resource.data, userId);
       allow delete: if false;

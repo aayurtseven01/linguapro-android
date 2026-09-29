@@ -139,6 +139,38 @@ fun LearningLessonScreen(
         Text("Etkinlik ${index.intValue + 1} / ${lesson.exercises.size}", color = LessonMuted, fontSize = 12.sp, modifier = Modifier.align(Alignment.End).padding(top = 5.dp))
         Spacer(Modifier.height(14.dp))
 
+        if (index.intValue == 0 && lesson.targetVocabulary.isNotEmpty()) {
+            Surface(color = LessonPanel, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp)) {
+                Column(Modifier.padding(15.dp)) {
+                    Text("Hedef kelimeler • ${lesson.targetVocabulary.size}", color = LessonGold, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                    lesson.targetVocabulary.forEach { word ->
+                        Row(Modifier.fillMaxWidth().padding(top = 10.dp), verticalAlignment = Alignment.CenterVertically) {
+                            Text(word.emoji, fontSize = 23.sp)
+                            Column(Modifier.weight(1f).padding(start = 10.dp)) {
+                                Text("${word.termEn} • ${word.translationTr}", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+                                Text(word.exampleEn, color = Color.White, fontSize = 12.sp, modifier = Modifier.padding(top = 2.dp))
+                                Text(word.exampleTr, color = LessonMuted, fontSize = 11.sp, modifier = Modifier.padding(top = 1.dp))
+                            }
+                            IconButton(onClick = { speak(tts.value, word.termEn) }, enabled = ttsReady) {
+                                Icon(Icons.Default.VolumeUp, contentDescription = "${word.termEn} kelimesini dinle", tint = LessonGold)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (exercise.skill == Skill.GRAMMAR && lesson.grammarFocus != null) {
+            Surface(color = LessonPanel2, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp)) {
+                Column(Modifier.padding(15.dp)) {
+                    Text(lesson.grammarFocus.titleTr, color = LessonGold, fontWeight = FontWeight.Bold, fontSize = 15.sp)
+                    Text(lesson.grammarFocus.explanationTr, color = LessonMuted, fontSize = 13.sp, lineHeight = 19.sp, modifier = Modifier.padding(top = 7.dp))
+                    Text(lesson.grammarFocus.form, fontWeight = FontWeight.SemiBold, fontSize = 13.sp, modifier = Modifier.padding(top = 8.dp))
+                    Text("${lesson.grammarFocus.englishExample} — ${lesson.grammarFocus.turkishEquivalent}", fontSize = 13.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 5.dp))
+                    Text(lesson.grammarFocus.commonTurkishErrorTr, color = LessonMuted, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 7.dp))
+                }
+            }
+        }
+
         Surface(color = LessonPanel, shape = RoundedCornerShape(22.dp)) {
             Column(Modifier.fillMaxWidth().padding(18.dp)) {
                 Text(skillLabel(exercise.skill).uppercase(Locale.forLanguageTag("tr-TR")), color = LessonGold, fontWeight = FontWeight.Bold, fontSize = 12.sp)

@@ -39,6 +39,12 @@ class FirebaseAccountRepository(context: Context) {
                         "email" to email.trim().lowercase(),
                         "cefrLevel" to "A1",
                         "completedLessons" to 0,
+                        "completedByLevelA1" to 0,
+                        "completedByLevelA2" to 0,
+                        "completedByLevelB1" to 0,
+                        "completedByLevelB2" to 0,
+                        "completedByLevelC1" to 0,
+                        "completedByLevelC2" to 0,
                         "skillMastery" to mapOf("listening" to 0, "reading" to 0, "speaking" to 0, "writing" to 0, "grammar" to 0, "vocabulary" to 0),
                         "onboardingComplete" to false,
                         "createdAt" to FieldValue.serverTimestamp(),
@@ -88,6 +94,9 @@ class FirebaseAccountRepository(context: Context) {
                     email = snapshot.getString("email").orEmpty(),
                     cefrLevel = snapshot.getString("cefrLevel") ?: "A1",
                     completedLessons = (snapshot.getLong("completedLessons") ?: 0L).toInt().coerceAtLeast(0),
+                    completedByLevel = CEFR_LEVELS.associateWith { level ->
+                        (snapshot.getLong("completedByLevel$level") ?: 0L).toInt().coerceAtLeast(0)
+                    },
                     onboardingComplete = snapshot.getBoolean("onboardingComplete") ?: false
                 ))
             }
@@ -109,11 +118,19 @@ class FirebaseAccountRepository(context: Context) {
                     "lastStudiedAt" to FieldValue.serverTimestamp(),
                     "updatedAt" to FieldValue.serverTimestamp()
                 )
-                if (countsTowardCourse) profileUpdates["completedLessons"] = FieldValue.increment(1)
+                if (countsTowardCourse) {
+                    val cefrLevel = lessonId.substringBefore('-').takeIf { it in CEFR_LEVELS } ?: "A1"
+                    profileUpdates["completedLessons"] = FieldValue.increment(1)
+                    profileUpdates["completedByLevel$cefrLevel"] = FieldValue.increment(1)
+                }
                 store().collection("users").document(uid).update(profileUpdates)
                     .addOnSuccessListener { callback(null) }.addOnFailureListener { callback(safeMessage(it)) }
             }
             .addOnFailureListener { callback(safeMessage(it)) }
+    }
+
+    private companion object {
+        val CEFR_LEVELS = listOf("A1", "A2", "B1", "B2", "C1", "C2")
     }
 
     private fun authMessage(error: Throwable): String = when ((error as? FirebaseAuthException)?.errorCode) {
@@ -133,6 +150,7 @@ data class AccountProfile(
     val email: String,
     val cefrLevel: String,
     val completedLessons: Int,
+    val completedByLevel: Map<String, Int>,
     val onboardingComplete: Boolean
 )
 

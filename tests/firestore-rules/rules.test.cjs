@@ -43,6 +43,12 @@ function profile(uid, overrides = {}) {
     email: `${uid}@example.test`,
     cefrLevel: 'A1',
     completedLessons: 0,
+    completedByLevelA1: 0,
+    completedByLevelA2: 0,
+    completedByLevelB1: 0,
+    completedByLevelB2: 0,
+    completedByLevelC1: 0,
+    completedByLevelC2: 0,
     skillMastery: {},
     onboardingComplete: false,
     createdAt: serverTimestamp(),
@@ -67,8 +73,12 @@ test('profile updates are owner-only, validated, and cannot write entitlement', 
     cefrLevel: 'A2',
     updatedAt: serverTimestamp(),
   }));
-  await assertFails(updateDoc(doc(alice, 'users/alice'), {
+  await assertSucceeds(updateDoc(doc(alice, 'users/alice'), {
     cefrLevel: 'C2',
+    updatedAt: serverTimestamp(),
+  }));
+  await assertFails(updateDoc(doc(alice, 'users/alice'), {
+    cefrLevel: 'D1',
     updatedAt: serverTimestamp(),
   }));
   await assertFails(updateDoc(doc(alice, 'users/alice'), {
@@ -95,7 +105,8 @@ test('learner can append own bounded lesson events but cannot edit or delete the
   await assertFails(updateDoc(event, { score: 100 }));
   await assertFails(deleteDoc(event));
   await assertSucceeds(updateDoc(doc(alice, 'users/alice'), {
-    completedLessons: increment(1), lastStudiedAt: serverTimestamp(), updatedAt: serverTimestamp(),
+    completedLessons: increment(1), completedByLevelA1: increment(1),
+    lastStudiedAt: serverTimestamp(), updatedAt: serverTimestamp(),
   }));
 });
 

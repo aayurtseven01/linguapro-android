@@ -7,7 +7,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(
     entities = [LessonEntity::class, VocabularyEntity::class, ReviewCardEntity::class, LessonProgressEntity::class, ContentPackEntity::class],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class LinguaDatabase : RoomDatabase() {
@@ -58,6 +58,13 @@ abstract class LinguaDatabase : RoomDatabase() {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL("ALTER TABLE lessons ADD COLUMN unitTitle TEXT NOT NULL DEFAULT ''")
                 db.execSQL("ALTER TABLE lessons ADD COLUMN unitSummary TEXT NOT NULL DEFAULT ''")
+            }
+        }
+
+        val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE review_cards ADD COLUMN frontText TEXT NOT NULL DEFAULT ''")
+                db.execSQL("ALTER TABLE review_cards ADD COLUMN backText TEXT NOT NULL DEFAULT ''")
             }
         }
     }

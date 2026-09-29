@@ -19,4 +19,24 @@
     <string name="settings_accent_uk">Birleşik Krallık İngilizcesi</string>
     <string name="settings_speech_rate">Konuşma hızı: %1$.2fx</string>
     <string name="settings_speech_rate_hint">Hız, 0,5x ile 1,5x arasında ayarlanabilir.</string>
+    <string name="review_due_title">%1$d tekrar kartı hazır</string>
+    <string name="review_due_subtitle">Aralıklı tekrar oturumuna başla.</string>
+    <string name="review_title">Kelime tekrarı</string>
+    <string name="review_back">Geri</string>
+    <string name="review_empty_title">Bugünlük tekrar tamamlandı</string>
+    <string name="review_empty_body">Yeni kelime kartları derslerden sonra sıraya eklenecek.</string>
+    <string name="review_return">Ana sayfaya dön</string>
+    <string name="review_due_count">Bekleyen kart: %1$d</string>
+    <string name="review_instruction">Önce yanıtı aklından getir. Yazabilir, sonra kartın arkasını açıp kendini değerlendirebilirsin.</string>
+    <string name="review_tr_to_en">Türkçeden İngilizceye</string>
+    <string name="review_en_to_tr">İngilizceden Türkçeye</string>
+    <string name="review_answer_hint">Yanıtını yaz (isteğe bağlı)</string>
+    <string name="review_reveal">Yanıtı göster</string>
+    <string name="review_answer_label">Kartın arka yüzü</string>
+    <string name="review_grade_prompt">Hatırlama güçlüğüne göre aralığı seç:</string>
+    <string name="review_again">Bilmedim</string>
+    <string name="review_hard">Zor</string>
+    <string name="review_good">İyi</string>
+    <string name="review_easy">Kolay</string>
+    <string name="review_feedback_note">Zorluk seçimi SM-2 tabanlı aralığı günceller. Bu kart puanı dil yeterliği sertifikası değildir.</string>
 </resources>

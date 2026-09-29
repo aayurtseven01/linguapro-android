@@ -31,11 +31,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import com.linguapro.android.data.AccountResult
 import com.linguapro.android.data.FirebaseAccountRepository
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.linguapro.android.ui.home.LearningDashboardViewModel
 import com.linguapro.android.ui.settings.SettingsRoute
+import com.linguapro.android.ui.review.ReviewScreen
 
 private val Navy = Color(0xFF071D32)
 private val Panel = Color(0xFF112B46)
@@ -84,6 +86,7 @@ private sealed interface AppRoute {
     @Serializable data object PlacementResult : AppRoute
     @Serializable data object Home : AppRoute
     @Serializable data object Practice : AppRoute
+    @Serializable data object Review : AppRoute
     @Serializable data object Progress : AppRoute
     @Serializable data object Profile : AppRoute
     @Serializable data object Settings : AppRoute
@@ -141,14 +144,16 @@ private fun LinguaApp() {
     var skillStats by remember(accountUid) { mutableStateOf(skillProgressStore.read()) }
     var level by rememberSaveable { mutableStateOf("A1") }
     var completed by rememberSaveable { mutableIntStateOf(0) }
+    var completedByLevel by remember { mutableStateOf(emptyMap<String, Int>()) }
+    val completedForLevel = maxOf(completedByLevel[level] ?: 0, dashboardState.completedLessonCount)
     var selectedLessonId by rememberSaveable { mutableStateOf("") }
     var selectedExerciseIndex by rememberSaveable { mutableIntStateOf(0) }
     var activeLessonCountsTowardCourse by rememberSaveable { mutableStateOf(true) }
-    val activeLesson = remember(level, completed, selectedLessonId, dashboardState.supplementalUnits) {
+    val activeLesson = remember(level, completedForLevel, selectedLessonId, dashboardState.supplementalUnits) {
         val staticLessons = CourseCatalog.units(level).flatMap { it.lessons }
         val supplementalLessons = dashboardState.supplementalUnits.flatMap { it.lessons }
         val selectedFromCatalog = (staticLessons + supplementalLessons).firstOrNull { it.id == selectedLessonId }
-        val nextIndex = completed.coerceAtLeast(0)
+        val nextIndex = completedForLevel.coerceAtLeast(0)
         selectedFromCatalog ?: staticLessons.getOrNull(nextIndex)
             ?: supplementalLessons.getOrNull((nextIndex - staticLessons.size).coerceAtLeast(0))
             ?: staticLessons.firstOrNull()
@@ -169,6 +174,7 @@ private fun LinguaApp() {
                 if (profile.displayName.isNotBlank()) userName = profile.displayName
                 if (profile.cefrLevel in levels) level = profile.cefrLevel
                 completed = profile.completedLessons
+                completedByLevel = profile.completedByLevel
                 if (!profile.onboardingComplete) go(AppRoute.Plans)
             }
         }
@@ -255,14 +261,16 @@ private fun LinguaApp() {
             composable<AppRoute.Home> {
                 HomeScreen(
                     name = userName, level = level,
-                    completed = if (accountUid.isBlank()) dashboardState.completedLessonCount else maxOf(completed, dashboardState.completedLessonCount),
+                    completed = completedForLevel,
                     progress = learningProgress, skillStats = skillStats,
                     supplementalUnits = dashboardState.supplementalUnits,
+                    dueReviewCount = dashboardState.dueReviewCards.size,
+                    onReview = { go(AppRoute.Review) },
                     onStartLesson = {
                         val extras = dashboardState.supplementalUnits.flatMap { it.lessons }
                         val staticCount = CourseCatalog.lessonCount(level)
-                        selectedLessonId = if (completed >= staticCount && extras.isNotEmpty()) {
-                            extras[(completed - staticCount).coerceAtLeast(0) % extras.size].id
+                        selectedLessonId = if (completedForLevel >= staticCount && extras.isNotEmpty()) {
+                            extras[(completedForLevel - staticCount).coerceAtLeast(0) % extras.size].id
                         } else ""
                         activeLessonCountsTowardCourse = true
                         selectedExerciseIndex = 0
@@ -282,8 +290,11 @@ private fun LinguaApp() {
                     onReviewExercise = { lessonId, exerciseIndex -> selectedLessonId = lessonId; activeLessonCountsTowardCourse = false; selectedExerciseIndex = exerciseIndex; go(AppRoute.Lesson) }
                 )
             }
+            composable<AppRoute.Review> {
+                ReviewScreen(dueCards = dashboardState.dueReviewCards, onGrade = dashboardViewModel::gradeReview, onBack = { go(AppRoute.Home) })
+            }
             composable<AppRoute.Progress> {
-                ProgressScreen(level, completed, learningProgress, skillStats, dashboardState.supplementalUnits, onBack = { go(AppRoute.Home) })
+                ProgressScreen(level, completedForLevel, learningProgress, skillStats, dashboardState.supplementalUnits, onBack = { go(AppRoute.Home) })
             }
             composable<AppRoute.Profile> {
                 ProfileScreen(
@@ -297,6 +308,7 @@ private fun LinguaApp() {
                         userName = "Öğrenci"
                         level = "A1"
                         completed = 0
+                        completedByLevel = emptyMap()
                         selectedLessonId = ""
                         go(AppRoute.Welcome)
                     }
@@ -317,7 +329,14 @@ private fun LinguaApp() {
                         if (accountUid.isNotBlank()) accounts.recordLesson(accountUid, activeLesson.id, score, countsTowardCourse) { }
                         if (countsTowardCourse) {
                             completed++
-                            dashboardViewModel.recordLesson(accountUid, activeLesson.id.substringBefore('-'), activeLesson.id, score)
+                            completedByLevel = completedByLevel + (level to (completedForLevel + 1))
+                            dashboardViewModel.recordLesson(
+                                accountUid,
+                                activeLesson.id.substringBefore('-'),
+                                activeLesson.id,
+                                score,
+                                activeLesson.targetVocabulary.map { it.id }
+                            )
                         }
                         selectedLessonId = ""
                         activeLessonCountsTowardCourse = true
@@ -545,7 +564,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 }
 
 @Composable
-private fun HomeScreen(name: String, level: String, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, supplementalUnits: List<LearningUnit>, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit) {
+private fun HomeScreen(name: String, level: String, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, supplementalUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         Spacer(Modifier.height(14.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
@@ -556,6 +575,19 @@ private fun HomeScreen(name: String, level: String, completed: Int, progress: Le
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             StatCard("🔥", "${progress.streakDays} gün seri", if (progress.streakDays == 0) "Bugün bir dersle başlat" else "Düzenli çalışmaya devam et", Modifier.weight(1f))
             StatCard("✦", "${progress.todayXp}/${LearningProgress.DAILY_XP_GOAL} XP", if (progress.dailyGoalReached) "Günlük hedef tamamlandı" else "Günlük hedef • ${progress.dailyGoalPercent}%", Modifier.weight(1f))
+        }
+        if (dueReviewCount > 0) {
+            Spacer(Modifier.height(12.dp))
+            Surface(onClick = onReview, color = Color(0xFF1D3C51), shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth()) {
+                Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Icon(Icons.Default.Style, contentDescription = null, tint = Gold)
+                    Column(Modifier.weight(1f).padding(start = 10.dp)) {
+                        Text(stringResource(R.string.review_due_title, dueReviewCount), color = Gold, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                        Text(stringResource(R.string.review_due_subtitle), color = Muted, fontSize = 12.sp, modifier = Modifier.padding(top = 3.dp))
+                    }
+                    Icon(Icons.Default.ChevronRight, contentDescription = null, tint = Muted)
+                }
+            }
         }
         val focusSkill = SkillProgressLogic.weakest(skillStats)
         if (focusSkill != null) {

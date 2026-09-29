@@ -48,6 +48,8 @@ data class ReviewCardEntity(
     @PrimaryKey val id: String,
     val learnerId: String,
     val vocabularyId: String,
+    @ColumnInfo(defaultValue = "''") val frontText: String = "",
+    @ColumnInfo(defaultValue = "''") val backText: String = "",
     val direction: String,
     val repetitions: Int = 0,
     val intervalDays: Double = 0.0,

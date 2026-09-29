@@ -33,7 +33,7 @@ object StorageModule {
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): LinguaDatabase =
         Room.databaseBuilder(context, LinguaDatabase::class.java, "linguapro.db")
-            .addMigrations(LinguaDatabase.MIGRATION_1_2, LinguaDatabase.MIGRATION_2_3)
+            .addMigrations(LinguaDatabase.MIGRATION_1_2, LinguaDatabase.MIGRATION_2_3, LinguaDatabase.MIGRATION_3_4)
             .build()
 
     @Provides fun provideLessonDao(database: LinguaDatabase): LessonDao = database.lessonDao()

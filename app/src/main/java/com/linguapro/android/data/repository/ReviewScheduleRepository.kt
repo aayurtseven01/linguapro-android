@@ -2,6 +2,7 @@ package com.linguapro.android.data.repository
 
 import com.linguapro.android.data.local.ReviewCardDao
 import com.linguapro.android.data.local.ReviewCardEntity
+import com.linguapro.android.data.local.VocabularyDao
 import com.linguapro.android.domain.model.CardDirection
 import com.linguapro.android.domain.usecase.ReviewGrade
 import com.linguapro.android.domain.usecase.Sm2Scheduler
@@ -11,7 +12,10 @@ import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow
 
 @Singleton
-class ReviewScheduleRepository @Inject constructor(private val cards: ReviewCardDao) {
+class ReviewScheduleRepository @Inject constructor(
+    private val cards: ReviewCardDao,
+    private val vocabulary: VocabularyDao
+) {
     fun observeDue(learnerId: String, nowEpochMillis: Long): Flow<List<ReviewCardEntity>> =
         cards.observeDue(learnerId, nowEpochMillis)
 
@@ -21,13 +25,20 @@ class ReviewScheduleRepository @Inject constructor(private val cards: ReviewCard
     suspend fun addVocabularyForReview(learnerId: String, vocabularyId: String, nowEpochMillis: Long) {
         require(learnerId.isNotBlank())
         require(vocabularyId.isNotBlank())
+        val word = vocabulary.getById(vocabularyId) ?: return
         val newCards = CardDirection.entries.mapNotNull { direction ->
             val directionName = direction.name
             if (cards.getCard(learnerId, vocabularyId, directionName) != null) return@mapNotNull null
+            val (front, back) = when (direction) {
+                CardDirection.EN_TO_TR -> word.lemma to word.translationTr
+                CardDirection.TR_TO_EN -> word.translationTr to word.lemma
+            }
             ReviewCardEntity(
                 id = "$learnerId:$vocabularyId:$directionName",
                 learnerId = learnerId,
                 vocabularyId = vocabularyId,
+                frontText = front,
+                backText = back,
                 direction = directionName,
                 dueAtEpochMillis = nowEpochMillis
             )
