@@ -63,7 +63,7 @@ data class LessonProgressEntity(
     val learnerId: String,
     val cefrLevel: String,
     val lessonId: String,
-    val scorePercent: Int,
+    val scorePercent: Int?,
     val completedAtEpochMillis: Long,
     val attemptCount: Int = 1
 )

@@ -40,7 +40,7 @@ class LearningDashboardViewModel @Inject constructor(
     ) { recentProgress, completed, settings ->
         LearningDashboardState(
             completedLessonCount = completed,
-            recentScores = recentProgress.take(5).map { it.scorePercent },
+            recentScores = recentProgress.take(5).mapNotNull { it.scorePercent },
             settings = settings
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), LearningDashboardState())
@@ -49,7 +49,7 @@ class LearningDashboardViewModel @Inject constructor(
         learnerContext.value = LearnerContext(learnerKey.ifBlank { "guest" }, level)
     }
 
-    fun recordLesson(learnerKey: String, level: String, lessonId: String, scorePercent: Int) {
+    fun recordLesson(learnerKey: String, level: String, lessonId: String, scorePercent: Int?) {
         val learnerId = learnerKey.ifBlank { "guest" }
         viewModelScope.launch {
             learningRepository.recordLesson(learnerId, level, lessonId, scorePercent)
