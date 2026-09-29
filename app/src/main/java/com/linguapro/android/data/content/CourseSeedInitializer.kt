@@ -42,6 +42,8 @@ class CourseSeedInitializer @Inject constructor(
                     id = lesson.id,
                     cefrLevel = level,
                     unitId = unit.id,
+                    unitTitle = unit.title,
+                    unitSummary = unit.summary,
                     title = lesson.title,
                     canDo = lesson.canDo,
                     contentJson = json.encodeToString<LearningLesson>(lesson),

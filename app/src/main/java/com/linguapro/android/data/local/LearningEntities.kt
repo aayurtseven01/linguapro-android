@@ -1,5 +1,6 @@
 package com.linguapro.android.data.local
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
@@ -11,6 +12,8 @@ data class LessonEntity(
     @PrimaryKey val id: String,
     val cefrLevel: String,
     val unitId: String,
+    @ColumnInfo(defaultValue = "''") val unitTitle: String,
+    @ColumnInfo(defaultValue = "''") val unitSummary: String,
     val title: String,
     val canDo: String,
     val contentJson: String,

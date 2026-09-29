@@ -7,7 +7,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(
     entities = [LessonEntity::class, VocabularyEntity::class, ReviewCardEntity::class, LessonProgressEntity::class, ContentPackEntity::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class LinguaDatabase : RoomDatabase() {
@@ -51,6 +51,13 @@ abstract class LinguaDatabase : RoomDatabase() {
                 db.execSQL("DROP TABLE lesson_progress")
                 db.execSQL("ALTER TABLE lesson_progress_v2 RENAME TO lesson_progress")
                 db.execSQL("CREATE INDEX IF NOT EXISTS index_lesson_progress_learnerId_completedAtEpochMillis ON lesson_progress(learnerId, completedAtEpochMillis)")
+            }
+        }
+
+        val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE lessons ADD COLUMN unitTitle TEXT NOT NULL DEFAULT ''")
+                db.execSQL("ALTER TABLE lessons ADD COLUMN unitSummary TEXT NOT NULL DEFAULT ''")
             }
         }
     }
