@@ -43,7 +43,6 @@ data class LessonStage(
 )
 
 @Serializable
-@Serializable
 data class LearningExercise(
     val id: String,
     val skill: Skill,
