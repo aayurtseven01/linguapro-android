@@ -100,27 +100,42 @@ private fun SplashVideoScreen(onFinished: () -> Unit) {
             onFinished()
         }
     }
-    Box(
+    var videoAspect by remember { mutableStateOf<Float?>(null) }
+    BoxWithConstraints(
         Modifier
             .fillMaxSize()
-            .background(Color(0xFFFFFFFF))
-            .clickable { complete() },
-        contentAlignment = Alignment.Center
+            .background(Color(0xFF000000))
+            .clickable { complete() }
     ) {
+        val screenAspect = constraints.maxWidth.toFloat() / constraints.maxHeight.toFloat()
+        // Center-crop: video ekranı tamamen kaplayana kadar büyütülür, boşluk kalmaz
+        val coverScale = videoAspect?.let { va ->
+            kotlin.math.max(va / screenAspect, screenAspect / va)
+        } ?: 1f
         AndroidView(
             factory = { ctx ->
                 android.widget.VideoView(ctx).apply {
                     setVideoURI(android.net.Uri.parse("android.resource://" + ctx.packageName + "/" + R.raw.splash_logo))
+                    setOnPreparedListener { mp ->
+                        if (mp.videoHeight > 0) {
+                            videoAspect = mp.videoWidth.toFloat() / mp.videoHeight.toFloat()
+                        }
+                    }
                     setOnCompletionListener { complete() }
                     setOnErrorListener { _, _, _ -> complete(); true }
                     start()
                 }
             },
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .graphicsLayer {
+                    scaleX = coverScale
+                    scaleY = coverScale
+                }
         )
         Text(
             "Atlamak için dokun",
-            color = Color(0xFFAFAFAF),
+            color = Color(0x99FFFFFF),
             fontSize = 12.sp,
             modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 28.dp)
         )
