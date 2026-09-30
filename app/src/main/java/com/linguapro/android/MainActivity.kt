@@ -24,11 +24,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
@@ -37,6 +33,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -377,26 +374,26 @@ private fun WavingOwl(modifier: Modifier = Modifier) {
         R.drawable.owl_wave_down
     )
     val twoPi = 2f * Math.PI.toFloat()
-    val transition = rememberInfiniteTransition(label = "owl")
-    val phase by transition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(tween(3400, easing = LinearEasing), RepeatMode.Restart),
-        label = "phase"
-    )
-    // Ekrana yaylanarak giriş
+    // Tek seferlik oynatma: giriş + bir selamlama döngüsü, sonra nötr pozda durur
+    val phaseAnim = remember { Animatable(0f) }
     val entrance = remember { Animatable(0f) }
     LaunchedEffect(Unit) {
-        entrance.animateTo(1f, spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessLow))
+        launch {
+            entrance.animateTo(1f, spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessLow))
+        }
+        phaseAnim.animateTo(1f, tween(3400, easing = LinearEasing))
     }
+    val phase = phaseAnim.value
 
     val segments = waveFrames.size - 1
     val pos = (phase * segments).coerceIn(0f, segments - 0.001f)
     val frameIdx = pos.toInt()
     val blend = (1f - kotlin.math.cos((pos - frameIdx) * Math.PI.toFloat())) / 2f
     val bob = kotlin.math.sin(phase * twoPi * 2f) * 7f
-    val tilt = kotlin.math.sin(phase * twoPi * 2f + 1.2f) * 2.5f
+    val tilt = kotlin.math.sin(phase * twoPi * 2f) * 2.5f
     val glowPulse = 0.88f + 0.12f * kotlin.math.sin(phase * twoPi * 2f)
+    // Animasyon sonuna yaklaşırken parıltılar yumuşakça söner
+    val sparkleFade = ((1f - phase) * 4f).coerceIn(0f, 1f)
 
     Box(contentAlignment = Alignment.Center, modifier = modifier.size(176.dp)) {
         Canvas(Modifier.matchParentSize()) {
@@ -419,7 +416,7 @@ private fun WavingOwl(modifier: Modifier = Modifier) {
                 Offset(0.88f, 0.78f) to 1.1f
             )
             sparkles.forEach { (p, offsetPhase) ->
-                val twinkle = kotlin.math.sin(phase * twoPi * 3f + offsetPhase).coerceAtLeast(0f)
+                val twinkle = kotlin.math.sin(phase * twoPi * 3f + offsetPhase).coerceAtLeast(0f) * sparkleFade
                 if (twinkle > 0.05f) {
                     val c = Offset(size.width * p.x, size.height * p.y)
                     val r = (3f + 8f * twinkle).dp.toPx()
