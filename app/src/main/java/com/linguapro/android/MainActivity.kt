@@ -32,6 +32,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.viewinterop.AndroidView
 import kotlinx.coroutines.delay
@@ -527,9 +528,13 @@ private fun WavingOwl(modifier: Modifier = Modifier) {
 @Composable
 private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-        Spacer(Modifier.height(42.dp))
-        Text("Lingua", fontSize = 34.sp, fontWeight = FontWeight.Bold, color = OnBg)
-        Text("PRO", fontSize = 13.sp, color = OnBgSoft, fontWeight = FontWeight.Bold, letterSpacing = 4.sp)
+        Spacer(Modifier.height(28.dp))
+        Image(
+            painter = painterResource(R.drawable.lingua_pro_banner),
+            contentDescription = "Lingua Pro",
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier.fillMaxWidth()
+        )
         Spacer(Modifier.height(36.dp))
         Box(Modifier.fillMaxWidth().height(250.dp).background(Panel, RoundedCornerShape(28.dp)), contentAlignment = Alignment.Center) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
