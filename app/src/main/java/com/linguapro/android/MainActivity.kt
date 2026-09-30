@@ -22,6 +22,10 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.foundation.Image
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
+import kotlinx.coroutines.delay
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -354,6 +358,31 @@ private fun LinguaApp() {
 }
 
 @Composable
+private fun WavingOwl(modifier: Modifier = Modifier) {
+    // El sallama döngüsü: aşağı -> orta -> yukarı -> yukarı -> orta
+    val frames = listOf(
+        R.drawable.owl_wave_down,
+        R.drawable.owl_wave_mid,
+        R.drawable.owl_wave_up,
+        R.drawable.owl_wave_up,
+        R.drawable.owl_wave_mid
+    )
+    val durationsMs = listOf(350L, 180L, 350L, 250L, 180L)
+    var frameIndex by remember { mutableStateOf(0) }
+    LaunchedEffect(Unit) {
+        while (true) {
+            delay(durationsMs[frameIndex])
+            frameIndex = (frameIndex + 1) % frames.size
+        }
+    }
+    Image(
+        painter = painterResource(frames[frameIndex]),
+        contentDescription = "El sallayan LinguaPro baykuşu",
+        modifier = modifier.size(120.dp).clip(RoundedCornerShape(24.dp))
+    )
+}
+
+@Composable
 private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
     Column(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color(0xFF0A2943), Navy, Color(0xFF061729)))).verticalScroll(rememberScrollState()).padding(horizontal = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(Modifier.height(42.dp))
@@ -362,9 +391,9 @@ private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
         Spacer(Modifier.height(36.dp))
         Box(Modifier.fillMaxWidth().height(250.dp).background(Panel, RoundedCornerShape(28.dp)), contentAlignment = Alignment.Center) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text("🌍", fontSize = 72.sp)
+                WavingOwl()
                 Spacer(Modifier.height(12.dp))
-                Text("Hello, dünya!", color = Gold, fontSize = 26.sp, fontWeight = FontWeight.Bold)
+                Text("Hello, My Friend", color = Gold, fontSize = 26.sp, fontWeight = FontWeight.Bold)
                 Text("İngilizceni gerçek hayata taşı.", color = Muted, fontSize = 15.sp)
             }
         }
