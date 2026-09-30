@@ -128,15 +128,15 @@ fun LearningLessonScreen(
 
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(20.dp)) {
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, "Geri", tint = Color(0xFF4B4B4B)) }
+            IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, "Geri", tint = Color(0xFFFFFFFF)) }
             Column(Modifier.weight(1f)) {
-                Text(lesson.title, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                Text("${lesson.id} • ${skillLabel(exercise.skill)}", color = LessonMuted, fontSize = 12.sp)
+                Text(lesson.title, color = Color(0xFFFFFFFF), fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text("${lesson.id} • ${skillLabel(exercise.skill)}", color = Color(0xFFDFF3FF), fontSize = 12.sp)
             }
         }
-        Text(lesson.canDo, color = LessonMuted, fontSize = 13.sp, modifier = Modifier.padding(start = 6.dp, top = 3.dp, bottom = 14.dp))
-        LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth().height(8.dp), color = LessonGold, trackColor = LessonPanel2)
-        Text("Etkinlik ${index.intValue + 1} / ${lesson.exercises.size}", color = LessonMuted, fontSize = 12.sp, modifier = Modifier.align(Alignment.End).padding(top = 5.dp))
+        Text(lesson.canDo, color = Color(0xFFDFF3FF), fontSize = 13.sp, modifier = Modifier.padding(start = 6.dp, top = 3.dp, bottom = 14.dp))
+        LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth().height(8.dp), color = LessonGold, trackColor = Color(0x55FFFFFF))
+        Text("Etkinlik ${index.intValue + 1} / ${lesson.exercises.size}", color = Color(0xFFDFF3FF), fontSize = 12.sp, modifier = Modifier.align(Alignment.End).padding(top = 5.dp))
         Spacer(Modifier.height(14.dp))
 
         if (index.intValue == 0 && lesson.targetVocabulary.isNotEmpty()) {
@@ -319,8 +319,8 @@ private fun LessonCompletion(lesson: LearningLesson, correct: Int, graded: Int, 
     val xp = LessonScoring.xpForCompletion(score.takeIf { it >= 0 })
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
         Text(if (score >= 80) "🎉" else "✨", fontSize = 62.sp)
-        Text("Ders tamamlandı", fontSize = 27.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 14.dp))
-        Text(lesson.title, color = LessonMuted, fontSize = 15.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 5.dp))
+        Text("Ders tamamlandı", color = Color(0xFFFFFFFF), fontSize = 27.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 14.dp))
+        Text(lesson.title, color = Color(0xFFDFF3FF), fontSize = 15.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 5.dp))
         Spacer(Modifier.height(20.dp))
         Surface(color = LessonPanel, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
             Column(Modifier.padding(18.dp), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -330,7 +330,7 @@ private fun LessonCompletion(lesson: LearningLesson, correct: Int, graded: Int, 
             }
         }
         if (lesson.exercises.any { it.skill == Skill.WRITING }) {
-            Text("Yazma yanıtları otomatik puanlanmadı; örnek yanıtları kendi çalışmanla karşılaştır.", color = LessonMuted, fontSize = 12.sp, lineHeight = 17.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 12.dp))
+            Text("Yazma yanıtları otomatik puanlanmadı; örnek yanıtları kendi çalışmanla karşılaştır.", color = Color(0xFFDFF3FF), fontSize = 12.sp, lineHeight = 17.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 12.dp))
         }
         Spacer(Modifier.height(20.dp))
         LessonButton("Öğrenme yoluma dön", onContinue)

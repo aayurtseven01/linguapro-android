@@ -59,6 +59,10 @@ private val Panel2 = Color(0xFFEFEFEF)
 private val Gold = Color(0xFF58CC02)
 private val Muted = Color(0xFF777777)
 private val Mint = Color(0xFF1CB0F6)
+private val BgTop = Color(0xFF1463C6)
+private val BgBottom = Color(0xFF47D9DB)
+private val OnBg = Color(0xFFFFFFFF)
+private val OnBgSoft = Color(0xFFDFF3FF)
 private val termsSummary = """
     LinguaPro, İngilizce öğrenme ve pratik için sunulan bir eğitim aracıdır; resmî CEFR sertifikası veya profesyonel çeviri hizmeti sağlamaz. Alıştırma yanıtları ve otomatik değerlendirmeler öğrenme desteği içindir; her açık uçlu yanıta kesin doğruluk puanı verilmez.
 
@@ -150,8 +154,8 @@ private fun SplashVideoScreen(onFinished: () -> Unit) {
 @Composable
 private fun LinguaTheme(content: @Composable () -> Unit) {
     MaterialTheme(colorScheme = lightColorScheme(
-        primary = Gold, onPrimary = Navy, background = Navy, surface = Panel,
-        onBackground = Color(0xFF4B4B4B), onSurface = Color(0xFF4B4B4B), secondary = Mint
+        primary = Gold, onPrimary = Navy, background = BgTop, surface = Panel,
+        onBackground = OnBg, onSurface = Color(0xFF4B4B4B), secondary = Mint
     ), content = content)
 }
 
@@ -259,7 +263,7 @@ private fun LinguaApp() {
         }
     }
 
-    Surface(color = Navy) {
+    Box(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(BgTop, BgBottom)))) {
         NavHost(navController = navController, startDestination = startDestination, modifier = Modifier.fillMaxSize()) {
             composable<AppRoute.Welcome> {
                 WelcomeScreen(onStart = { go(AppRoute.Register) }, onLogin = { go(AppRoute.Login) })
@@ -468,7 +472,7 @@ private fun WavingOwl(modifier: Modifier = Modifier) {
             val glowRadius = size.minDimension * 0.5f * glowPulse
             drawCircle(
                 brush = Brush.radialGradient(
-                    listOf(Gold.copy(alpha = 0.38f), Gold.copy(alpha = 0f)),
+                    listOf(Color(0x80FFFFFF), Color(0x00FFFFFF)),
                     center = center,
                     radius = glowRadius
                 ),
@@ -522,10 +526,10 @@ private fun WavingOwl(modifier: Modifier = Modifier) {
 
 @Composable
 private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
-    Column(Modifier.fillMaxSize().background(Navy).verticalScroll(rememberScrollState()).padding(horizontal = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(Modifier.height(42.dp))
-        Text("Lingua", fontSize = 34.sp, fontWeight = FontWeight.Bold, color = Color(0xFF4B4B4B))
-        Text("PRO", fontSize = 13.sp, color = Gold, fontWeight = FontWeight.Bold, letterSpacing = 4.sp)
+        Text("Lingua", fontSize = 34.sp, fontWeight = FontWeight.Bold, color = OnBg)
+        Text("PRO", fontSize = 13.sp, color = OnBgSoft, fontWeight = FontWeight.Bold, letterSpacing = 4.sp)
         Spacer(Modifier.height(36.dp))
         Box(Modifier.fillMaxWidth().height(250.dp).background(Panel, RoundedCornerShape(28.dp)), contentAlignment = Alignment.Center) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -536,9 +540,9 @@ private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
             }
         }
         Spacer(Modifier.height(30.dp))
-        Text("Daha iyi bir sen,\ndaha geniş bir dünya.", fontSize = 29.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, lineHeight = 36.sp)
+        Text("Daha iyi bir sen,\ndaha geniş bir dünya.", color = OnBg, fontSize = 29.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, lineHeight = 36.sp)
         Spacer(Modifier.height(12.dp))
-        Text("Seviyene göre kişisel plan, kısa dersler ve konuşma pratiğiyle adım adım ilerle.", color = Muted, textAlign = TextAlign.Center, fontSize = 16.sp, lineHeight = 24.sp)
+        Text("Seviyene göre kişisel plan, kısa dersler ve konuşma pratiğiyle adım adım ilerle.", color = OnBgSoft, textAlign = TextAlign.Center, fontSize = 16.sp, lineHeight = 24.sp)
         Spacer(Modifier.height(24.dp))
         FeatureLine(Icons.Default.School, "Sana özel öğrenme programı")
         FeatureLine(Icons.Default.RecordVoiceOver, "Örnek sesle konuşma ve tekrar çalışması")
@@ -546,7 +550,7 @@ private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
         Spacer(Modifier.height(24.dp))
         PrimaryButton("Hemen Başla", onStart)
         Spacer(Modifier.height(12.dp))
-        Text("Zaten hesabın var mı? Giriş yap", color = Gold, fontSize = 13.sp, textAlign = TextAlign.Center, modifier = Modifier.clickable(onClick = onLogin).padding(10.dp))
+        Text("Zaten hesabın var mı? Giriş yap", color = OnBg, fontSize = 13.sp, textAlign = TextAlign.Center, modifier = Modifier.clickable(onClick = onLogin).padding(10.dp))
         Spacer(Modifier.height(24.dp))
     }
 }
@@ -570,8 +574,8 @@ private fun RegisterScreen(
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp)) {
         BackRow(if (isLogin) "Hesabına giriş yap" else "Hesap oluştur", onBack)
         Spacer(Modifier.height(22.dp))
-        Text(if (isLogin) "Tekrar hoş geldin." else "Öğrenme yolculuğun\nburada başlıyor.", fontSize = 28.sp, fontWeight = FontWeight.Bold, lineHeight = 34.sp)
-        Text(if (isLogin) "Kaldığın yerden devam et." else "Hesabını oluştur, seviyeni belirleyelim.", color = Muted, modifier = Modifier.padding(top = 8.dp, bottom = 22.dp))
+        Text(if (isLogin) "Tekrar hoş geldin." else "Öğrenme yolculuğun\nburada başlıyor.", color = OnBg, fontSize = 28.sp, fontWeight = FontWeight.Bold, lineHeight = 34.sp)
+        Text(if (isLogin) "Kaldığın yerden devam et." else "Hesabını oluştur, seviyeni belirleyelim.", color = OnBgSoft, modifier = Modifier.padding(top = 8.dp, bottom = 22.dp))
         if (!isLogin) {
             AppField("Adın", name, { name = it }, Icons.Default.Person)
             Spacer(Modifier.height(12.dp))
@@ -579,8 +583,8 @@ private fun RegisterScreen(
         AppField("E-posta", email, { email = it }, Icons.Default.Email)
         Spacer(Modifier.height(12.dp))
         AppField("Şifre", password, { password = it }, Icons.Default.Lock, isPassword = true)
-        if (error.isNotBlank()) Text(error, color = Color(0xFFFF4B4B), fontSize = 13.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 10.dp))
-        if (info.isNotBlank()) Text(info, color = Mint, fontSize = 13.sp, modifier = Modifier.padding(top = 10.dp))
+        if (error.isNotBlank()) Text(error, color = Color(0xFFFFD2D2), fontSize = 13.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 10.dp))
+        if (info.isNotBlank()) Text(info, color = Color(0xFFB9F6CA), fontSize = 13.sp, modifier = Modifier.padding(top = 10.dp))
         Spacer(Modifier.height(20.dp))
         PrimaryButton(if (busy) "Bağlanıyor…" else if (isLogin) "Giriş yap" else "Güvenli hesap oluştur", {
             error = ""; info = ""
@@ -601,7 +605,7 @@ private fun RegisterScreen(
             }
         }, enabled = !busy && acceptedLegal)
         if (isLogin) {
-            Text("Şifreni mi unuttun? Sıfırlama bağlantısı gönder", color = Gold, fontSize = 12.sp, modifier = Modifier.align(Alignment.CenterHorizontally).clickable {
+            Text("Şifreni mi unuttun? Sıfırlama bağlantısı gönder", color = OnBg, fontSize = 12.sp, modifier = Modifier.align(Alignment.CenterHorizontally).clickable {
                 if (!email.contains('@')) error = "Önce e-posta adresini gir."
                 else { accounts.sendPasswordReset(email) { message -> info = message ?: "Şifre sıfırlama e-postası gönderildi." } }
             }.padding(12.dp))
@@ -617,18 +621,18 @@ private fun RegisterScreen(
                 Spacer(Modifier.height(8.dp))
             }
             OutlinedButton(onClick = { onContinue(name.ifBlank { "Misafir Öğrenci" }, email, "") }, enabled = acceptedLegal, modifier = Modifier.fillMaxWidth()) {
-                Text("Misafir olarak keşfet (hesap açmaz)")
+                Text("Misafir olarak keşfet (hesap açmaz)", color = OnBg)
             }
         }
         Spacer(Modifier.height(18.dp))
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
             Checkbox(checked = acceptedLegal, onCheckedChange = { acceptedLegal = it }, colors = CheckboxDefaults.colors(checkedColor = Gold, checkmarkColor = Navy))
-            Text("Aşağıdaki metinleri okudum ve kabul ediyorum.", color = Muted, fontSize = 11.sp, lineHeight = 15.sp)
+            Text("Aşağıdaki metinleri okudum ve kabul ediyorum.", color = OnBgSoft, fontSize = 11.sp, lineHeight = 15.sp)
         }
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-            Text("Kullanım Koşulları", color = Gold, fontSize = 11.sp, modifier = Modifier.clickable { legalDialog = "terms" }.padding(6.dp))
-            Text("•", color = Muted, modifier = Modifier.padding(6.dp))
-            Text("Gizlilik Politikası", color = Gold, fontSize = 11.sp, modifier = Modifier.clickable { legalDialog = "privacy" }.padding(6.dp))
+            Text("Kullanım Koşulları", color = OnBg, fontSize = 11.sp, modifier = Modifier.clickable { legalDialog = "terms" }.padding(6.dp))
+            Text("•", color = OnBgSoft, modifier = Modifier.padding(6.dp))
+            Text("Gizlilik Politikası", color = OnBg, fontSize = 11.sp, modifier = Modifier.clickable { legalDialog = "privacy" }.padding(6.dp))
         }
         if (legalDialog.isNotBlank()) {
             val isTerms = legalDialog == "terms"
@@ -651,7 +655,7 @@ private fun RegisterScreen(
 
 @Composable
 private fun AppField(label: String, value: String, onValue: (String) -> Unit, icon: androidx.compose.ui.graphics.vector.ImageVector, isPassword: Boolean = false) {
-    OutlinedTextField(value = value, onValueChange = onValue, modifier = Modifier.fillMaxWidth(), label = { Text(label) }, leadingIcon = { Icon(icon, null, tint = Muted) }, singleLine = true, visualTransformation = if (isPassword) androidx.compose.ui.text.input.PasswordVisualTransformation() else androidx.compose.ui.text.input.VisualTransformation.None, colors = OutlinedTextFieldDefaults.colors(focusedBorderColor = Gold, unfocusedBorderColor = Panel2, focusedLabelColor = Gold, unfocusedLabelColor = Muted, cursorColor = Gold))
+    OutlinedTextField(value = value, onValueChange = onValue, modifier = Modifier.fillMaxWidth(), label = { Text(label) }, leadingIcon = { Icon(icon, null, tint = Muted) }, singleLine = true, visualTransformation = if (isPassword) androidx.compose.ui.text.input.PasswordVisualTransformation() else androidx.compose.ui.text.input.VisualTransformation.None, colors = OutlinedTextFieldDefaults.colors(focusedContainerColor = Color(0xFFFFFFFF), unfocusedContainerColor = Color(0xFFFFFFFF), focusedBorderColor = Gold, unfocusedBorderColor = Panel2, focusedLabelColor = Gold, unfocusedLabelColor = Muted, cursorColor = Gold))
 }
 
 @Composable
@@ -659,8 +663,8 @@ private fun PlanScreen(plan: String, onPlan: (String) -> Unit, onBack: () -> Uni
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp)) {
         BackRow("Üyelik planını seç", onBack)
         Spacer(Modifier.height(18.dp))
-        Text("Seviyene özel programını seç.", fontSize = 27.sp, fontWeight = FontWeight.Bold, lineHeight = 33.sp)
-        Text("Plan taslağı • demo modunda ödeme alınmaz", color = Muted, modifier = Modifier.padding(top = 8.dp, bottom = 20.dp))
+        Text("Seviyene özel programını seç.", color = OnBg, fontSize = 27.sp, fontWeight = FontWeight.Bold, lineHeight = 33.sp)
+        Text("Plan taslağı • demo modunda ödeme alınmaz", color = OnBgSoft, modifier = Modifier.padding(top = 8.dp, bottom = 20.dp))
         PlanCard("Yıllık", "Fiyat Google Play'den yüklenecek", "Deneme süresi ve yenileme koşulları Play Console'da yapılandırılır", "", plan == "Yıllık") { onPlan("Yıllık") }
         Spacer(Modifier.height(12.dp))
         PlanCard("Aylık", "Fiyat Google Play'den yüklenecek", "Satın alma şu an etkin değil", "", plan == "Aylık") { onPlan("Aylık") }
@@ -671,7 +675,7 @@ private fun PlanScreen(plan: String, onPlan: (String) -> Unit, onBack: () -> Uni
         Spacer(Modifier.height(16.dp))
         PrimaryButton("Demo programına devam et", onStart)
         Spacer(Modifier.height(10.dp))
-        Text("Bu adım satın alma başlatmaz ve deneme süresi başlatılmış sayılmaz.", color = Muted, fontSize = 11.sp, lineHeight = 16.sp, textAlign = TextAlign.Center)
+        Text("Bu adım satın alma başlatmaz ve deneme süresi başlatılmış sayılmaz.", color = OnBgSoft, fontSize = 11.sp, lineHeight = 16.sp, textAlign = TextAlign.Center)
         Spacer(Modifier.height(16.dp))
         InfoCard("Gerçek abonelik için Play Console ürünleri, Billing akışı ve sunucu tarafı satın alma doğrulaması gerekir. Fiyat/deneme şartları Play'den gösterilmelidir.")
         Spacer(Modifier.height(20.dp))
@@ -693,11 +697,11 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
     val q = questions[index]
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(20.dp)) {
         BackRow("Seviye belirleme", onBack)
-        Text("İngilizce seviyeni belirlemek için soruları yanıtla.", color = Muted, modifier = Modifier.padding(top = 4.dp))
+        Text("İngilizce seviyeni belirlemek için soruları yanıtla.", color = OnBgSoft, modifier = Modifier.padding(top = 4.dp))
         Spacer(Modifier.height(18.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            LinearProgressIndicator(progress = { (index + 1f) / questions.size }, modifier = Modifier.weight(1f).height(8.dp), color = Gold, trackColor = Panel2)
-            Text("  ${index + 1} / ${questions.size}", color = Muted, fontSize = 13.sp)
+            LinearProgressIndicator(progress = { (index + 1f) / questions.size }, modifier = Modifier.weight(1f).height(8.dp), color = Gold, trackColor = Color(0x55FFFFFF))
+            Text("  ${index + 1} / ${questions.size}", color = OnBgSoft, fontSize = 13.sp)
         }
         Spacer(Modifier.height(22.dp))
         Surface(color = Panel, shape = RoundedCornerShape(24.dp)) {
@@ -735,7 +739,7 @@ private fun HomeScreen(name: String, level: String, completed: Int, progress: Le
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         Spacer(Modifier.height(14.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-            Column { Text("Merhaba, $name!", fontSize = 26.sp, fontWeight = FontWeight.Bold); Text("İngilizce yolculuğuna devam et", color = Muted, fontSize = 13.sp) }
+            Column { Text("Merhaba, $name!", color = OnBg, fontSize = 26.sp, fontWeight = FontWeight.Bold); Text("İngilizce yolculuğuna devam et", color = OnBgSoft, fontSize = 13.sp) }
             IconButton(onClick = onProfile) { Icon(Icons.Default.AccountCircle, "Profili aç", tint = Gold, modifier = Modifier.size(30.dp)) }
         }
         Spacer(Modifier.height(18.dp))
@@ -771,8 +775,8 @@ private fun HomeScreen(name: String, level: String, completed: Int, progress: Le
             }
         }
         Spacer(Modifier.height(23.dp))
-        Text("$level Seviyesindeki Yolculuğun", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-        Text("Hedeflerine adım adım ilerle", color = Muted, fontSize = 14.sp, modifier = Modifier.padding(top = 3.dp, bottom = 14.dp))
+        Text("$level Seviyesindeki Yolculuğun", color = OnBg, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+        Text("Hedeflerine adım adım ilerle", color = OnBgSoft, fontSize = 14.sp, modifier = Modifier.padding(top = 3.dp, bottom = 14.dp))
         val moduleList = CourseCatalog.units(level) + supplementalUnits.filter { it.id.startsWith("$level-") }
         val courseLessonCount = moduleList.sumOf { it.lessons.size }
         val lessonPointer = completed.coerceAtMost(courseLessonCount)
@@ -822,10 +826,10 @@ private fun PracticeScreen(level: String, mistakeIds: Set<String>, skillStats: M
     }
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         BackRow("Pratik merkezi", onBack)
-        Text("$level seviyesinde kısa bir çalışma seç.", color = Muted, modifier = Modifier.padding(start = 8.dp, top = 2.dp, bottom = 14.dp))
+        Text("$level seviyesinde kısa bir çalışma seç.", color = OnBgSoft, modifier = Modifier.padding(start = 8.dp, top = 2.dp, bottom = 14.dp))
         Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             skills.forEach { skill ->
-                FilterChip(selected = selectedSkill == skill, onClick = { selectedSkill = skill }, label = { Text(skill) })
+                FilterChip(selected = selectedSkill == skill, onClick = { selectedSkill = skill }, label = { Text(skill) }, colors = FilterChipDefaults.filterChipColors(containerColor = Color(0x33FFFFFF), labelColor = OnBg, selectedContainerColor = Gold, selectedLabelColor = Navy))
             }
         }
         recommendedSkill?.let { focus ->
@@ -838,7 +842,7 @@ private fun PracticeScreen(level: String, mistakeIds: Set<String>, skillStats: M
             }
         }
         if (reviewItems.isNotEmpty()) {
-            Text("Tekrar etmen gerekenler  •  ${reviewItems.size}", fontSize = 17.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 15.dp, bottom = 5.dp))
+            Text("Tekrar etmen gerekenler  •  ${reviewItems.size}", color = OnBg, fontSize = 17.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 15.dp, bottom = 5.dp))
             reviewItems.forEach { (lesson, exerciseIndex, exercise) ->
                 Surface(onClick = { onReviewExercise(lesson.id, exerciseIndex) }, color = Color(0xFFF3E8FF), shape = RoundedCornerShape(15.dp), modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
                     Row(Modifier.padding(13.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -881,7 +885,7 @@ private fun ProgressScreen(level: String, completed: Int, progress: LearningProg
     val skills = units.flatMap { it.lessons }.flatMap { it.exercises }.groupingBy { it.skill }.eachCount()
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         BackRow("Öğrenme ilerlemen", onBack)
-        Text("İstikrarlı küçük adımlar birikir.", color = Muted, modifier = Modifier.padding(start = 8.dp, top = 3.dp, bottom = 16.dp))
+        Text("İstikrarlı küçük adımlar birikir.", color = OnBgSoft, modifier = Modifier.padding(start = 8.dp, top = 3.dp, bottom = 16.dp))
         Surface(color = Panel, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
             Column(Modifier.padding(18.dp)) {
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
@@ -898,15 +902,15 @@ private fun ProgressScreen(level: String, completed: Int, progress: LearningProg
             StatCard("✦", "${progress.totalXp} XP", "Toplam deneyim", Modifier.weight(1f))
         }
         Spacer(Modifier.height(18.dp))
-        Text("Beceriler bu kursta", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-        Text("Doğruluk yalnızca otomatik değerlendirilen yanıtları kapsar; açık uçlu yazı puanlanmaz. Bu beceri özeti bu cihazda saklanır.", color = Muted, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 4.dp, bottom = 8.dp))
+        Text("Beceriler bu kursta", color = OnBg, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        Text("Doğruluk yalnızca otomatik değerlendirilen yanıtları kapsar; açık uçlu yazı puanlanmaz. Bu beceri özeti bu cihazda saklanır.", color = OnBgSoft, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 4.dp, bottom = 8.dp))
         Skill.values().forEach { skill ->
             val count = skills[skill] ?: 0
             val tally = skillStats[skill] ?: SkillTally()
             Row(Modifier.fillMaxWidth().padding(vertical = 7.dp), verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
-                    Text(skillLabel(skill), fontSize = 14.sp)
-                    Text(if (tally.accuracyPercent == null) "Henüz ölçülmedi" else "${tally.accuracyPercent}% • ${tally.attempts} deneme", color = Muted, fontSize = 10.sp, modifier = Modifier.padding(top = 2.dp))
+                    Text(skillLabel(skill), color = OnBg, fontSize = 14.sp)
+                    Text(if (tally.accuracyPercent == null) "Henüz ölçülmedi" else "${tally.accuracyPercent}% • ${tally.attempts} deneme", color = OnBgSoft, fontSize = 10.sp, modifier = Modifier.padding(top = 2.dp))
                 }
                 Text("$count etkinlik", color = Gold, fontSize = 12.sp)
             }
@@ -930,11 +934,11 @@ private fun ProfileScreen(name: String, email: String, level: String, completed:
         Spacer(Modifier.height(14.dp))
         InfoCard("Seviye: $level  •  Tamamlanan ders: $completed  •  Toplam XP: ${progress.totalXp}")
         Spacer(Modifier.height(18.dp))
-        Text("Hesap ve gizlilik", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-        Text("Ders tamamlama hesabınla Firestore'a kaydedilir. XP, çalışma serisi ve otomatik yanıtların beceri özeti bu cihazda tutulur; cihazlar arası eşitleme henüz yoktur.", color = Muted, fontSize = 12.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 7.dp, bottom = 15.dp))
-        OutlinedButton(onClick = onSettings, modifier = Modifier.fillMaxWidth()) { Text("Öğrenme ayarları", color = Color(0xFF4B4B4B)) }
+        Text("Hesap ve gizlilik", color = OnBg, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        Text("Ders tamamlama hesabınla Firestore'a kaydedilir. XP, çalışma serisi ve otomatik yanıtların beceri özeti bu cihazda tutulur; cihazlar arası eşitleme henüz yoktur.", color = OnBgSoft, fontSize = 12.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 7.dp, bottom = 15.dp))
+        OutlinedButton(onClick = onSettings, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Öğrenme ayarları", color = OnBg) }
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onSignOut, modifier = Modifier.fillMaxWidth()) { Text("Oturumu kapat", color = Color(0xFF4B4B4B)) }
+        OutlinedButton(onClick = onSignOut, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Oturumu kapat", color = OnBg) }
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -960,8 +964,8 @@ private fun ModuleCard(number: Int, title: String, subtitle: String, status: Str
 private fun LockedScreen(onBack: () -> Unit) {
     Column(Modifier.fillMaxSize().padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
         Icon(Icons.Default.Lock, null, tint = Gold, modifier = Modifier.size(60.dp))
-        Text("Bu ünite sıradaki adımda açılacak", fontSize = 23.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 18.dp))
-        Text("Önce mevcut üniteni tamamla; öğrenme programın adım adım ilerler.", color = Muted, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 10.dp))
+        Text("Bu ünite sıradaki adımda açılacak", color = OnBg, fontSize = 23.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 18.dp))
+        Text("Önce mevcut üniteni tamamla; öğrenme programın adım adım ilerler.", color = OnBgSoft, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 10.dp))
         Spacer(Modifier.height(24.dp)); PrimaryButton("Ana sayfaya dön", onBack)
     }
 }
@@ -970,7 +974,7 @@ private fun LockedScreen(onBack: () -> Unit) {
 private fun FeatureLine(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String) {
     Row(Modifier.fillMaxWidth().padding(vertical = 7.dp), verticalAlignment = Alignment.CenterVertically) {
         Box(Modifier.size(38.dp).background(Panel2, CircleShape), contentAlignment = Alignment.Center) { Icon(icon, null, tint = Gold, modifier = Modifier.size(20.dp)) }
-        Text(text, color = Color(0xFF4B4B4B), fontSize = 14.sp, modifier = Modifier.padding(start = 12.dp))
+        Text(text, color = OnBg, fontSize = 14.sp, modifier = Modifier.padding(start = 12.dp))
     }
 }
 
@@ -1001,8 +1005,8 @@ private fun InfoCard(text: String) {
 @Composable
 private fun BackRow(title: String, onBack: () -> Unit) {
     Row(Modifier.fillMaxWidth().padding(top = 10.dp), verticalAlignment = Alignment.CenterVertically) {
-        IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, "Geri", tint = Color(0xFF4B4B4B)) }
-        Text(title, fontSize = 19.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 4.dp))
+        IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, "Geri", tint = OnBg) }
+        Text(title, color = OnBg, fontSize = 19.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 4.dp))
     }
 }
 

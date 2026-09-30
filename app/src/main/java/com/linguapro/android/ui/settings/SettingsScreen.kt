@@ -89,6 +89,7 @@ private fun SettingsScreen(
     onSpeechRate: (Float) -> Unit
 ) {
     val context = LocalContext.current
+    Surface(color = MaterialTheme.colorScheme.surface, modifier = Modifier.fillMaxSize()) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().padding(top = 14.dp, bottom = 18.dp)) {
             IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.settings_back)) }
@@ -141,6 +142,7 @@ private fun SettingsScreen(
         Text(stringResource(R.string.settings_speech_rate_hint), style = MaterialTheme.typography.bodySmall)
         Spacer(Modifier.height(20.dp))
     }
+}
 }
 
 @Composable

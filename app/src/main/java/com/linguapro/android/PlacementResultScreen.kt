@@ -26,8 +26,8 @@ fun PlacementResultScreen(summary: PlacementSummary, onContinue: () -> Unit) {
         Box(Modifier.size(76.dp).background(Color(0xFFEFEFEF), CircleShape), contentAlignment = Alignment.Center) {
             Icon(Icons.Default.CheckCircle, null, tint = Color(0xFF1CB0F6), modifier = Modifier.size(42.dp))
         }
-        Text("Seviye tahminin hazır", fontSize = 25.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 18.dp))
-        Text("Başlangıç öğrenme yolunu yanıtlarına göre seçtik.", color = Color(0xFF777777), textAlign = TextAlign.Center, fontSize = 14.sp, lineHeight = 20.sp, modifier = Modifier.padding(top = 8.dp))
+        Text("Seviye tahminin hazır", color = Color(0xFFFFFFFF), fontSize = 25.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 18.dp))
+        Text("Başlangıç öğrenme yolunu yanıtlarına göre seçtik.", color = Color(0xFFDFF3FF), textAlign = TextAlign.Center, fontSize = 14.sp, lineHeight = 20.sp, modifier = Modifier.padding(top = 8.dp))
         Spacer(Modifier.height(20.dp))
         Surface(color = Color(0xFFF7F7F7), shape = RoundedCornerShape(24.dp), modifier = Modifier.fillMaxWidth()) {
             Column(Modifier.padding(22.dp), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -37,15 +37,15 @@ fun PlacementResultScreen(summary: PlacementSummary, onContinue: () -> Unit) {
             }
         }
         Spacer(Modifier.height(20.dp))
-        Text("Beceri görünümü", fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.align(Alignment.Start))
-        Text("Yalnızca testte örneklenen beceriler gösterilir.", color = Color(0xFF777777), fontSize = 12.sp, modifier = Modifier.align(Alignment.Start).padding(top = 3.dp, bottom = 8.dp))
+        Text("Beceri görünümü", color = Color(0xFFFFFFFF), fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.align(Alignment.Start))
+        Text("Yalnızca testte örneklenen beceriler gösterilir.", color = Color(0xFFDFF3FF), fontSize = 12.sp, modifier = Modifier.align(Alignment.Start).padding(top = 3.dp, bottom = 8.dp))
         Skill.values().forEach { skill ->
             val mastery = summary.skillMastery[skill.name.lowercase(Locale.ROOT)]
             if (mastery != null) {
                 Row(Modifier.fillMaxWidth().padding(vertical = 7.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Text(skillLabel(skill), fontSize = 13.sp, modifier = Modifier.width(92.dp))
-                    LinearProgressIndicator(progress = { mastery / 100f }, modifier = Modifier.weight(1f).height(7.dp), color = Color(0xFF58CC02), trackColor = Color(0xFFEFEFEF))
-                    Text("  $mastery%", color = Color(0xFF777777), fontSize = 12.sp)
+                    Text(skillLabel(skill), color = Color(0xFFFFFFFF), fontSize = 13.sp, modifier = Modifier.width(92.dp))
+                    LinearProgressIndicator(progress = { mastery / 100f }, modifier = Modifier.weight(1f).height(7.dp), color = Color(0xFF58CC02), trackColor = Color(0x55FFFFFF))
+                    Text("  $mastery%", color = Color(0xFFDFF3FF), fontSize = 12.sp)
                 }
             }
         }

@@ -29,6 +29,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -49,8 +50,8 @@ fun ReviewScreen(
 
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().padding(top = 14.dp, bottom = 18.dp)) {
-            IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.review_back)) }
-            Text(stringResource(R.string.review_title), style = MaterialTheme.typography.headlineSmall, modifier = Modifier.padding(start = 8.dp))
+            IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.review_back), tint = Color(0xFFFFFFFF)) }
+            Text(stringResource(R.string.review_title), color = Color(0xFFFFFFFF), style = MaterialTheme.typography.headlineSmall, modifier = Modifier.padding(start = 8.dp))
         }
         if (card == null) {
             Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), modifier = Modifier.fillMaxWidth()) {
@@ -61,8 +62,8 @@ fun ReviewScreen(
                 }
             }
         } else {
-            Text(stringResource(R.string.review_due_count, dueCards.size), style = MaterialTheme.typography.labelLarge)
-            Text(stringResource(R.string.review_instruction), style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(top = 8.dp, bottom = 14.dp))
+            Text(stringResource(R.string.review_due_count, dueCards.size), color = Color(0xFFFFFFFF), style = MaterialTheme.typography.labelLarge)
+            Text(stringResource(R.string.review_instruction), color = Color(0xFFDFF3FF), style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(top = 8.dp, bottom = 14.dp))
             Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), modifier = Modifier.fillMaxWidth()) {
                 Column(Modifier.padding(22.dp)) {
                     Text(if (card.direction == "TR_TO_EN") stringResource(R.string.review_tr_to_en) else stringResource(R.string.review_en_to_tr), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.secondary)
@@ -85,7 +86,7 @@ fun ReviewScreen(
                     }
                 }
             }
-            Text(stringResource(R.string.review_feedback_note), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 14.dp))
+            Text(stringResource(R.string.review_feedback_note), color = Color(0xFFDFF3FF), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 14.dp))
         }
         Spacer(Modifier.height(24.dp))
     }
