@@ -51,12 +51,12 @@ import com.linguapro.android.ui.home.LearningDashboardViewModel
 import com.linguapro.android.ui.settings.SettingsRoute
 import com.linguapro.android.ui.review.ReviewScreen
 
-private val Navy = Color(0xFF071D32)
-private val Panel = Color(0xFF112B46)
-private val Panel2 = Color(0xFF183653)
-private val Gold = Color(0xFFF2BE45)
-private val Muted = Color(0xFFA9BED2)
-private val Mint = Color(0xFF63D2B0)
+private val Navy = Color(0xFFFFFFFF)
+private val Panel = Color(0xFFF7F7F7)
+private val Panel2 = Color(0xFFEFEFEF)
+private val Gold = Color(0xFF58CC02)
+private val Muted = Color(0xFF777777)
+private val Mint = Color(0xFF1CB0F6)
 private val termsSummary = """
     LinguaPro, İngilizce öğrenme ve pratik için sunulan bir eğitim aracıdır; resmî CEFR sertifikası veya profesyonel çeviri hizmeti sağlamaz. Alıştırma yanıtları ve otomatik değerlendirmeler öğrenme desteği içindir; her açık uçlu yanıta kesin doğruluk puanı verilmez.
 
@@ -82,9 +82,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun LinguaTheme(content: @Composable () -> Unit) {
-    MaterialTheme(colorScheme = darkColorScheme(
+    MaterialTheme(colorScheme = lightColorScheme(
         primary = Gold, onPrimary = Navy, background = Navy, surface = Panel,
-        onBackground = Color.White, onSurface = Color.White, secondary = Mint
+        onBackground = Color(0xFF4B4B4B), onSurface = Color(0xFF4B4B4B), secondary = Mint
     ), content = content)
 }
 
@@ -420,7 +420,7 @@ private fun WavingOwl(modifier: Modifier = Modifier) {
                 if (twinkle > 0.05f) {
                     val c = Offset(size.width * p.x, size.height * p.y)
                     val r = (3f + 8f * twinkle).dp.toPx()
-                    val col = Color(0xFFFFE18C).copy(alpha = twinkle)
+                    val col = Color(0xFFFFC800).copy(alpha = twinkle)
                     drawLine(col, Offset(c.x - r, c.y), Offset(c.x + r, c.y), strokeWidth = 2.5f)
                     drawLine(col, Offset(c.x, c.y - r), Offset(c.x, c.y + r), strokeWidth = 2.5f)
                     drawCircle(col, radius = 2.8f, center = c)
@@ -455,9 +455,9 @@ private fun WavingOwl(modifier: Modifier = Modifier) {
 
 @Composable
 private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
-    Column(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color(0xFF0A2943), Navy, Color(0xFF061729)))).verticalScroll(rememberScrollState()).padding(horizontal = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(Modifier.fillMaxSize().background(Navy).verticalScroll(rememberScrollState()).padding(horizontal = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(Modifier.height(42.dp))
-        Text("Lingua", fontSize = 34.sp, fontWeight = FontWeight.Bold, color = Color.White)
+        Text("Lingua", fontSize = 34.sp, fontWeight = FontWeight.Bold, color = Color(0xFF4B4B4B))
         Text("PRO", fontSize = 13.sp, color = Gold, fontWeight = FontWeight.Bold, letterSpacing = 4.sp)
         Spacer(Modifier.height(36.dp))
         Box(Modifier.fillMaxWidth().height(250.dp).background(Panel, RoundedCornerShape(28.dp)), contentAlignment = Alignment.Center) {
@@ -512,7 +512,7 @@ private fun RegisterScreen(
         AppField("E-posta", email, { email = it }, Icons.Default.Email)
         Spacer(Modifier.height(12.dp))
         AppField("Şifre", password, { password = it }, Icons.Default.Lock, isPassword = true)
-        if (error.isNotBlank()) Text(error, color = Color(0xFFFF9A9A), fontSize = 13.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 10.dp))
+        if (error.isNotBlank()) Text(error, color = Color(0xFFFF4B4B), fontSize = 13.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 10.dp))
         if (info.isNotBlank()) Text(info, color = Mint, fontSize = 13.sp, modifier = Modifier.padding(top = 10.dp))
         Spacer(Modifier.height(20.dp))
         PrimaryButton(if (busy) "Bağlanıyor…" else if (isLogin) "Giriş yap" else "Güvenli hesap oluştur", {
@@ -575,7 +575,7 @@ private fun RegisterScreen(
                 },
                 confirmButton = { TextButton(onClick = { legalDialog = "" }) { Text("Kapat", color = Gold) } },
                 containerColor = Panel,
-                titleContentColor = Color.White,
+                titleContentColor = Color(0xFF4B4B4B),
                 textContentColor = Muted
             )
         }
@@ -613,7 +613,7 @@ private fun PlanScreen(plan: String, onPlan: (String) -> Unit, onBack: () -> Uni
 
 @Composable
 private fun PlanCard(title: String, price: String, detail: String, badge: String, chosen: Boolean, onClick: () -> Unit) {
-    Surface(onClick = onClick, shape = RoundedCornerShape(18.dp), color = if (chosen) Color(0xFF1A354A) else Panel, border = BorderStroke(if (chosen) 2.dp else 1.dp, if (chosen) Gold else Panel2)) {
+    Surface(onClick = onClick, shape = RoundedCornerShape(18.dp), color = if (chosen) Color(0xFFEAF7DF) else Panel, border = BorderStroke(if (chosen) 2.dp else 1.dp, if (chosen) Gold else Panel2)) {
         Row(Modifier.fillMaxWidth().padding(17.dp), verticalAlignment = Alignment.CenterVertically) {
             Icon(if (chosen) Icons.Default.RadioButtonChecked else Icons.Default.RadioButtonUnchecked, null, tint = if (chosen) Gold else Muted)
             Column(Modifier.weight(1f).padding(start = 14.dp)) { Row(verticalAlignment = Alignment.CenterVertically) { Text(title, fontWeight = FontWeight.Bold, fontSize = 18.sp); if (badge.isNotEmpty()) Text(badge, color = Gold, fontSize = 10.sp, modifier = Modifier.padding(start = 8.dp)) }; Text(price, fontWeight = FontWeight.Bold, fontSize = 17.sp, modifier = Modifier.padding(top = 5.dp)); Text(detail, color = Muted, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 4.dp)) }
@@ -646,7 +646,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
                 Spacer(Modifier.height(20.dp))
                 q.answers.forEachIndexed { i, answer ->
                     val isSelected = selected == i
-                    Surface(onClick = { onSelect(i) }, color = if (isSelected) Color(0xFF233D4C) else Panel2, shape = RoundedCornerShape(14.dp), border = BorderStroke(if (isSelected) 2.dp else 1.dp, if (isSelected) Gold else Color(0xFF28425B)), modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp)) {
+                    Surface(onClick = { onSelect(i) }, color = if (isSelected) Color(0xFFDDF4FF) else Panel2, shape = RoundedCornerShape(14.dp), border = BorderStroke(if (isSelected) 2.dp else 1.dp, if (isSelected) Gold else Color(0xFFE5E5E5)), modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp)) {
                         Row(Modifier.padding(horizontal = 15.dp, vertical = 15.dp), verticalAlignment = Alignment.CenterVertically) {
                             Icon(if (isSelected) Icons.Default.RadioButtonChecked else Icons.Default.RadioButtonUnchecked, null, tint = if (isSelected) Gold else Muted)
                             Text(answer, fontSize = 16.sp, modifier = Modifier.padding(start = 14.dp))
@@ -678,7 +678,7 @@ private fun HomeScreen(name: String, level: String, completed: Int, progress: Le
         }
         if (dueReviewCount > 0) {
             Spacer(Modifier.height(12.dp))
-            Surface(onClick = onReview, color = Color(0xFF1D3C51), shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth()) {
+            Surface(onClick = onReview, color = Color(0xFFDDF4FF), shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth()) {
                 Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
                     Icon(Icons.Default.Style, contentDescription = null, tint = Gold)
                     Column(Modifier.weight(1f).padding(start = 10.dp)) {
@@ -692,7 +692,7 @@ private fun HomeScreen(name: String, level: String, completed: Int, progress: Le
         val focusSkill = SkillProgressLogic.weakest(skillStats)
         if (focusSkill != null) {
             Spacer(Modifier.height(14.dp))
-            Surface(color = Color(0xFF183653), shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().clickable(onClick = onPractice)) {
+            Surface(color = Color(0xFFEFEFEF), shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().clickable(onClick = onPractice)) {
                 Row(Modifier.padding(13.dp), verticalAlignment = Alignment.CenterVertically) {
                     Icon(Icons.Default.AutoAwesome, null, tint = Gold)
                     Column(Modifier.weight(1f).padding(start = 10.dp)) {
@@ -763,7 +763,7 @@ private fun PracticeScreen(level: String, mistakeIds: Set<String>, skillStats: M
         }
         recommendedSkill?.let { focus ->
             val tally = skillStats.getValue(focus)
-            Surface(color = Color(0xFF183653), shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+            Surface(color = Color(0xFFEFEFEF), shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
                 Row(Modifier.padding(horizontal = 12.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
                     Text("Önerilen odak: ${skillLabel(focus)} • ${tally.accuracyPercent}% / ${tally.attempts} deneme", color = Muted, fontSize = 11.sp, modifier = Modifier.weight(1f))
                     TextButton(onClick = { selectedSkill = skillLabel(focus) }) { Text("Dersleri gör", color = Gold, fontSize = 11.sp) }
@@ -773,7 +773,7 @@ private fun PracticeScreen(level: String, mistakeIds: Set<String>, skillStats: M
         if (reviewItems.isNotEmpty()) {
             Text("Tekrar etmen gerekenler  •  ${reviewItems.size}", fontSize = 17.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 15.dp, bottom = 5.dp))
             reviewItems.forEach { (lesson, exerciseIndex, exercise) ->
-                Surface(onClick = { onReviewExercise(lesson.id, exerciseIndex) }, color = Color(0xFF2A2638), shape = RoundedCornerShape(15.dp), modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
+                Surface(onClick = { onReviewExercise(lesson.id, exerciseIndex) }, color = Color(0xFFF3E8FF), shape = RoundedCornerShape(15.dp), modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
                     Row(Modifier.padding(13.dp), verticalAlignment = Alignment.CenterVertically) {
                         Icon(Icons.Default.Replay, null, tint = Gold)
                         Column(Modifier.weight(1f).padding(start = 10.dp)) {
@@ -865,9 +865,9 @@ private fun ProfileScreen(name: String, email: String, level: String, completed:
         Spacer(Modifier.height(18.dp))
         Text("Hesap ve gizlilik", fontSize = 18.sp, fontWeight = FontWeight.Bold)
         Text("Ders tamamlama hesabınla Firestore'a kaydedilir. XP, çalışma serisi ve otomatik yanıtların beceri özeti bu cihazda tutulur; cihazlar arası eşitleme henüz yoktur.", color = Muted, fontSize = 12.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 7.dp, bottom = 15.dp))
-        OutlinedButton(onClick = onSettings, modifier = Modifier.fillMaxWidth()) { Text("Öğrenme ayarları", color = Color.White) }
+        OutlinedButton(onClick = onSettings, modifier = Modifier.fillMaxWidth()) { Text("Öğrenme ayarları", color = Color(0xFF4B4B4B)) }
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onSignOut, modifier = Modifier.fillMaxWidth()) { Text("Oturumu kapat", color = Color.White) }
+        OutlinedButton(onClick = onSignOut, modifier = Modifier.fillMaxWidth()) { Text("Oturumu kapat", color = Color(0xFF4B4B4B)) }
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -903,7 +903,7 @@ private fun LockedScreen(onBack: () -> Unit) {
 private fun FeatureLine(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String) {
     Row(Modifier.fillMaxWidth().padding(vertical = 7.dp), verticalAlignment = Alignment.CenterVertically) {
         Box(Modifier.size(38.dp).background(Panel2, CircleShape), contentAlignment = Alignment.Center) { Icon(icon, null, tint = Gold, modifier = Modifier.size(20.dp)) }
-        Text(text, color = Color(0xFFE3EDF5), fontSize = 14.sp, modifier = Modifier.padding(start = 12.dp))
+        Text(text, color = Color(0xFF4B4B4B), fontSize = 14.sp, modifier = Modifier.padding(start = 12.dp))
     }
 }
 
@@ -934,14 +934,31 @@ private fun InfoCard(text: String) {
 @Composable
 private fun BackRow(title: String, onBack: () -> Unit) {
     Row(Modifier.fillMaxWidth().padding(top = 10.dp), verticalAlignment = Alignment.CenterVertically) {
-        IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, "Geri", tint = Color.White) }
+        IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, "Geri", tint = Color(0xFF4B4B4B)) }
         Text(title, fontSize = 19.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 4.dp))
     }
 }
 
 @Composable
 private fun PrimaryButton(text: String, onClick: () -> Unit, enabled: Boolean = true) {
-    Button(onClick = onClick, enabled = enabled, modifier = Modifier.fillMaxWidth().height(56.dp), shape = RoundedCornerShape(17.dp), colors = ButtonDefaults.buttonColors(containerColor = Gold, contentColor = Navy, disabledContainerColor = Panel2, disabledContentColor = Muted)) {
-        Text(text, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+    // Duolingo tarzı: altı koyu kenarlı, tombul 3D buton
+    val edgeColor = if (enabled) Color(0xFF46A302) else Color(0xFFD8D8D8)
+    Box(Modifier.fillMaxWidth().height(58.dp)) {
+        Box(Modifier.matchParentSize().padding(top = 5.dp).background(edgeColor, RoundedCornerShape(16.dp)))
+        Button(
+            onClick = onClick,
+            enabled = enabled,
+            modifier = Modifier.fillMaxWidth().height(53.dp),
+            shape = RoundedCornerShape(16.dp),
+            elevation = ButtonDefaults.buttonElevation(0.dp, 0.dp, 0.dp, 0.dp, 0.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Gold,
+                contentColor = Color(0xFFFFFFFF),
+                disabledContainerColor = Color(0xFFE5E5E5),
+                disabledContentColor = Color(0xFFAFAFAF)
+            )
+        ) {
+            Text(text, fontSize = 16.sp, fontWeight = FontWeight.ExtraBold, letterSpacing = 0.5.sp)
+        }
     }
 }
