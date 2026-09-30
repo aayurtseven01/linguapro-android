@@ -22,10 +22,21 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
-import kotlinx.coroutines.delay
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -359,27 +370,90 @@ private fun LinguaApp() {
 
 @Composable
 private fun WavingOwl(modifier: Modifier = Modifier) {
-    // El sallama döngüsü: aşağı -> orta -> yukarı -> yukarı -> orta
-    val frames = listOf(
-        R.drawable.owl_wave_down,
-        R.drawable.owl_wave_mid,
-        R.drawable.owl_wave_up,
-        R.drawable.owl_wave_up,
-        R.drawable.owl_wave_mid
+    // Akıcı el sallama: kareler arası sürekli crossfade + süzülme + eğilme + ışık halkası + parıltılar
+    val waveFrames = listOf(
+        R.drawable.owl_wave_down, R.drawable.owl_wave_mid, R.drawable.owl_wave_up,
+        R.drawable.owl_wave_mid, R.drawable.owl_wave_up, R.drawable.owl_wave_mid,
+        R.drawable.owl_wave_down
     )
-    val durationsMs = listOf(350L, 180L, 350L, 250L, 180L)
-    var frameIndex by remember { mutableStateOf(0) }
+    val twoPi = 2f * Math.PI.toFloat()
+    val transition = rememberInfiniteTransition(label = "owl")
+    val phase by transition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(tween(3400, easing = LinearEasing), RepeatMode.Restart),
+        label = "phase"
+    )
+    // Ekrana yaylanarak giriş
+    val entrance = remember { Animatable(0f) }
     LaunchedEffect(Unit) {
-        while (true) {
-            delay(durationsMs[frameIndex])
-            frameIndex = (frameIndex + 1) % frames.size
+        entrance.animateTo(1f, spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessLow))
+    }
+
+    val segments = waveFrames.size - 1
+    val pos = (phase * segments).coerceIn(0f, segments - 0.001f)
+    val frameIdx = pos.toInt()
+    val blend = (1f - kotlin.math.cos((pos - frameIdx) * Math.PI.toFloat())) / 2f
+    val bob = kotlin.math.sin(phase * twoPi * 2f) * 7f
+    val tilt = kotlin.math.sin(phase * twoPi * 2f + 1.2f) * 2.5f
+    val glowPulse = 0.88f + 0.12f * kotlin.math.sin(phase * twoPi * 2f)
+
+    Box(contentAlignment = Alignment.Center, modifier = modifier.size(176.dp)) {
+        Canvas(Modifier.matchParentSize()) {
+            // Nabız gibi atan altın ışık halkası
+            val glowRadius = size.minDimension * 0.5f * glowPulse
+            drawCircle(
+                brush = Brush.radialGradient(
+                    listOf(Gold.copy(alpha = 0.38f), Gold.copy(alpha = 0f)),
+                    center = center,
+                    radius = glowRadius
+                ),
+                radius = glowRadius,
+                center = center
+            )
+            // Farklı fazlarda yanıp sönen parıltılar
+            val sparkles = listOf(
+                Offset(0.10f, 0.16f) to 0.0f,
+                Offset(0.90f, 0.20f) to 2.1f,
+                Offset(0.13f, 0.82f) to 4.2f,
+                Offset(0.88f, 0.78f) to 1.1f
+            )
+            sparkles.forEach { (p, offsetPhase) ->
+                val twinkle = kotlin.math.sin(phase * twoPi * 3f + offsetPhase).coerceAtLeast(0f)
+                if (twinkle > 0.05f) {
+                    val c = Offset(size.width * p.x, size.height * p.y)
+                    val r = (3f + 8f * twinkle).dp.toPx()
+                    val col = Color(0xFFFFE18C).copy(alpha = twinkle)
+                    drawLine(col, Offset(c.x - r, c.y), Offset(c.x + r, c.y), strokeWidth = 2.5f)
+                    drawLine(col, Offset(c.x, c.y - r), Offset(c.x, c.y + r), strokeWidth = 2.5f)
+                    drawCircle(col, radius = 2.8f, center = c)
+                }
+            }
+        }
+        Box(
+            Modifier
+                .graphicsLayer {
+                    translationY = bob.dp.toPx()
+                    rotationZ = tilt
+                    scaleX = entrance.value
+                    scaleY = entrance.value
+                    alpha = entrance.value.coerceIn(0f, 1f)
+                }
+                .size(128.dp)
+                .clip(RoundedCornerShape(30.dp))
+        ) {
+            Image(
+                painter = painterResource(waveFrames[frameIdx]),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize()
+            )
+            Image(
+                painter = painterResource(waveFrames[frameIdx + 1]),
+                contentDescription = "El sallayan LinguaPro baykuşu",
+                modifier = Modifier.matchParentSize().graphicsLayer { alpha = blend }
+            )
         }
     }
-    Image(
-        painter = painterResource(frames[frameIndex]),
-        contentDescription = "El sallayan LinguaPro baykuşu",
-        modifier = modifier.size(120.dp).clip(RoundedCornerShape(24.dp))
-    )
 }
 
 @Composable
