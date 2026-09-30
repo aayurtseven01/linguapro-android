@@ -33,6 +33,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.viewinterop.AndroidView
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -76,7 +78,57 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         window.statusBarColor = android.graphics.Color.rgb(7, 29, 50)
         window.navigationBarColor = android.graphics.Color.rgb(7, 29, 50)
-        setContent { LinguaTheme { LinguaApp() } }
+        setContent {
+            LinguaTheme {
+                var showSplash by rememberSaveable { mutableStateOf(true) }
+                if (showSplash) {
+                    SplashVideoScreen(onFinished = { showSplash = false })
+                } else {
+                    LinguaApp()
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun SplashVideoScreen(onFinished: () -> Unit) {
+    var done by remember { mutableStateOf(false) }
+    val complete = {
+        if (!done) {
+            done = true
+            onFinished()
+        }
+    }
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(Color(0xFFFFFFFF))
+            .clickable { complete() },
+        contentAlignment = Alignment.Center
+    ) {
+        AndroidView(
+            factory = { ctx ->
+                android.widget.VideoView(ctx).apply {
+                    setVideoURI(android.net.Uri.parse("android.resource://" + ctx.packageName + "/" + R.raw.splash_logo))
+                    setOnCompletionListener { complete() }
+                    setOnErrorListener { _, _, _ -> complete(); true }
+                    start()
+                }
+            },
+            modifier = Modifier.fillMaxSize()
+        )
+        Text(
+            "Atlamak için dokun",
+            color = Color(0xFFAFAFAF),
+            fontSize = 12.sp,
+            modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 28.dp)
+        )
+    }
+    // Güvenlik ağı: video oynatılamazsa veya takılırsa en geç 8 saniyede geç
+    LaunchedEffect(Unit) {
+        delay(8000)
+        complete()
     }
 }
 
