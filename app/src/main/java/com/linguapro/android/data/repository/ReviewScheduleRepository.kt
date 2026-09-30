@@ -55,7 +55,13 @@ class ReviewScheduleRepository @Inject constructor(
     ): ReviewCardEntity {
         val id = "$learnerId:$vocabularyId:${direction.name}"
         val current = cards.getCard(learnerId, vocabularyId, direction.name)
-            ?: ReviewCardEntity(id, learnerId, vocabularyId, direction.name, dueAtEpochMillis = reviewedAtEpochMillis)
+            ?: ReviewCardEntity(
+                id = id,
+                learnerId = learnerId,
+                vocabularyId = vocabularyId,
+                direction = direction.name,
+                dueAtEpochMillis = reviewedAtEpochMillis
+            )
         val updated = Sm2Scheduler.review(
             Sm2State(
                 repetitions = current.repetitions,
