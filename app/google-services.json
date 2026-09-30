@@ -1,14 +1,13 @@
 {
   "project_info": {
-    "project_number": "235077829708",
-    "firebase_url": "https://zziptv-player-control-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "zziptv-player-control",
-    "storage_bucket": "zziptv-player-control.firebasestorage.app"
+    "project_number": "393748343315",
+    "project_id": "linguapro-ad8c7",
+    "storage_bucket": "linguapro-ad8c7.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:235077829708:android:2f5c95e90f0ceac7fa60e9",
+        "mobilesdk_app_id": "1:393748343315:android:cf1cbea2be6ad246606de6",
         "android_client_info": {
           "package_name": "com.linguapro.android"
         }
@@ -16,26 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAZq37V4NtdHdjiN5GUk43omDSxz7toW10"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:235077829708:android:66137e3cbbec0d74fa60e9",
-        "android_client_info": {
-          "package_name": "com.zz_xtream.zz_xtream_player"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAZq37V4NtdHdjiN5GUk43omDSxz7toW10"
+          "current_key": "AIzaSyCShVmvdzliqHj7oA0wyLV-jjT7qcC8WLw"
         }
       ],
       "services": {
