@@ -584,7 +584,7 @@ private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
         Spacer(Modifier.height(24.dp))
         FeatureLine(Icons.Default.School, "Sana özel öğrenme programı")
         FeatureLine(Icons.Default.RecordVoiceOver, "Örnek sesle konuşma ve tekrar çalışması")
-        FeatureLine(Icons.Default.TrendingUp, "A1’den C1’e gelişim takibi")
+        FeatureLine(Icons.Default.TrendingUp, "A1’den C2’ye gelişim takibi")
         Spacer(Modifier.height(24.dp))
         PrimaryButton("Hemen Başla", onStart)
         Spacer(Modifier.height(12.dp))
@@ -707,7 +707,7 @@ private fun PlanScreen(plan: String, onPlan: (String) -> Unit, onBack: () -> Uni
         Spacer(Modifier.height(12.dp))
         PlanCard("Aylık", "Fiyat Google Play'den yüklenecek", "Satın alma şu an etkin değil", "", plan == "Aylık") { onPlan("Aylık") }
         Spacer(Modifier.height(18.dp))
-        FeatureLine(Icons.Default.MenuBook, "A1’den C1’e seviyene özel içerik")
+        FeatureLine(Icons.Default.MenuBook, "A1’den C2’ye seviyene özel içerik")
         FeatureLine(Icons.Default.BusinessCenter, "İş, seyahat ve günlük yaşam İngilizcesi")
         FeatureLine(Icons.Default.Mic, "Konuşma üretimi ve tekrar etkinlikleri")
         Spacer(Modifier.height(16.dp))
