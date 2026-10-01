@@ -1,10 +1,19 @@
 package com.linguapro.android
 
 import android.content.Intent
+import android.os.Bundle
+import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
+import android.speech.SpeechRecognizer
 import android.speech.tts.TextToSpeech
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -24,6 +33,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -83,31 +93,64 @@ fun LearningLessonScreen(
         }
     }
 
-    val speechLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult ->
-        if (activityResult.resultCode == android.app.Activity.RESULT_OK) {
-            val recognized = activityResult.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.firstOrNull().orEmpty()
-            if (recognized.isNotBlank()) {
-                speechText = recognized
-                speechMessage = ""
-                answer = recognized
-                val isCorrect = AnswerChecker.matches(recognized, exercise?.acceptedAnswers.orEmpty())
-                result = isCorrect
-                exercise?.let { onExerciseResult(it.id, it.skill, isCorrect) }
-                gradedCount++
-                if (isCorrect) correctCount++
-                submitted = true
-            }
+    var isListening by remember { mutableStateOf(false) }
+    var micLevel by remember { mutableFloatStateOf(0f) }
+    val speechRecognizer = remember {
+        if (SpeechRecognizer.isRecognitionAvailable(context)) SpeechRecognizer.createSpeechRecognizer(context) else null
+    }
+    DisposableEffect(speechRecognizer) {
+        onDispose { speechRecognizer?.destroy() }
+    }
+    val startListening: () -> Unit = startListening@{
+        val sr = speechRecognizer
+        if (sr == null) {
+            speechMessage = "Bu cihazda konuşma tanıma yok. Cümleyi aşağıya yazabilirsin."
+            return@startListening
         }
+        sr.setRecognitionListener(object : RecognitionListener {
+            override fun onReadyForSpeech(params: Bundle?) { isListening = true; micLevel = 0f; speechMessage = "" }
+            override fun onBeginningOfSpeech() { isListening = true }
+            override fun onRmsChanged(rmsdB: Float) { micLevel = ((rmsdB + 2f) / 12f).coerceIn(0f, 1f) }
+            override fun onBufferReceived(buffer: ByteArray?) {}
+            override fun onEndOfSpeech() { micLevel = 0f }
+            override fun onError(error: Int) {
+                isListening = false; micLevel = 0f
+                if (error == SpeechRecognizer.ERROR_NO_MATCH || error == SpeechRecognizer.ERROR_SPEECH_TIMEOUT) {
+                    speechMessage = "Ses algılanamadı. Tekrar dene veya cümleyi aşağıya yaz."
+                }
+            }
+            override fun onPartialResults(partialResults: Bundle?) {
+                val partial = partialResults?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.firstOrNull().orEmpty()
+                if (partial.isNotBlank()) speechText = partial
+            }
+            override fun onResults(results: Bundle?) {
+                isListening = false; micLevel = 0f
+                val recognized = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.firstOrNull().orEmpty()
+                if (recognized.isNotBlank()) {
+                    speechText = recognized
+                    speechMessage = ""
+                    answer = recognized
+                    val isCorrect = AnswerChecker.matches(recognized, exercise?.acceptedAnswers.orEmpty())
+                    result = isCorrect
+                    exercise?.let { onExerciseResult(it.id, it.skill, isCorrect) }
+                    gradedCount++
+                    if (isCorrect) correctCount++
+                    submitted = true
+                }
+            }
+            override fun onEvent(eventType: Int, params: Bundle?) {}
+        })
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US")
+            putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
+        }
+        runCatching { sr.startListening(intent) }
+            .onFailure { isListening = false; speechMessage = "Bu cihazda konuşma tanıma açılamadı. Cümleyi aşağıya yazabilirsin." }
     }
     val permissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
         if (granted) {
-            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
-                putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-                putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US")
-                putExtra(RecognizerIntent.EXTRA_PROMPT, "İngilizce cümleyi söyle")
-            }
-            runCatching { speechLauncher.launch(intent) }
-                .onFailure { speechMessage = "Bu cihazda konuşma tanıma açılamadı. Cümleyi aşağıya yazabilirsin." }
+            startListening()
         } else {
             speechMessage = "Mikrofon izni verilmedi. Cümleyi aşağıya yazarak devam edebilirsin."
         }
@@ -226,13 +269,16 @@ fun LearningLessonScreen(
                         }
                     }
                 } else if (exercise.skill == Skill.SPEAKING) {
-                    Button(
-                        onClick = { permissionLauncher.launch(android.Manifest.permission.RECORD_AUDIO) },
-                        enabled = !submitted,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = LessonGold, contentColor = LessonNavy)
-                    ) {
-                        Icon(Icons.Default.Mic, null); Text("  Dokun ve İngilizce konuş", fontWeight = FontWeight.Bold)
+                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
+                        Button(
+                            onClick = { permissionLauncher.launch(android.Manifest.permission.RECORD_AUDIO) },
+                            enabled = !submitted && !isListening,
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(containerColor = LessonGold, contentColor = LessonNavy)
+                        ) {
+                            Text(if (isListening) "Dinliyorum…" else "Dokun ve İngilizce konuş", fontWeight = FontWeight.Bold)
+                        }
+                        ListeningMic(active = isListening, level = micLevel, modifier = Modifier.padding(start = 12.dp))
                     }
                     if (speechText.isNotBlank()) Text("Algılanan ifade: $speechText", color = LessonMuted, fontSize = 13.sp, modifier = Modifier.padding(top = 10.dp))
                     if (speechMessage.isNotBlank()) Text(speechMessage, color = Color(0xFFFFCC80), fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 8.dp))
@@ -368,5 +414,51 @@ private fun LessonColumn(content: @Composable ColumnScope.() -> Unit) {
 private fun LessonButton(label: String, onClick: () -> Unit) {
     Button(onClick = onClick, modifier = Modifier.fillMaxWidth().height(54.dp), shape = RoundedCornerShape(15.dp), colors = ButtonDefaults.buttonColors(containerColor = LessonGold, contentColor = LessonNavy)) {
         Text(label, fontWeight = FontWeight.Bold, fontSize = 15.sp)
+    }
+}
+
+@Composable
+private fun ListeningMic(active: Boolean, level: Float, modifier: Modifier = Modifier) {
+    val infinite = rememberInfiniteTransition(label = "mic")
+    val pulse by infinite.animateFloat(
+        initialValue = 0.94f,
+        targetValue = 1.1f,
+        animationSpec = infiniteRepeatable(tween(380, easing = LinearEasing), RepeatMode.Reverse),
+        label = "pulse"
+    )
+    val wiggle by infinite.animateFloat(
+        initialValue = -7f,
+        targetValue = 7f,
+        animationSpec = infiniteRepeatable(tween(110, easing = LinearEasing), RepeatMode.Reverse),
+        label = "wiggle"
+    )
+    val ringScale = if (active) 0.78f + 0.45f * level + (pulse - 1f) else 0f
+    val iconScale = if (active) pulse + level * 0.25f else 1f
+    Box(contentAlignment = Alignment.Center, modifier = modifier.size(46.dp)) {
+        if (active) {
+            Box(
+                Modifier
+                    .size(46.dp)
+                    .graphicsLayer { scaleX = ringScale; scaleY = ringScale; alpha = 0.3f }
+                    .background(LessonGold, CircleShape)
+            )
+        }
+        Box(
+            Modifier
+                .size(32.dp)
+                .graphicsLayer {
+                    scaleX = iconScale; scaleY = iconScale
+                    rotationZ = if (active) wiggle * (0.35f + 0.65f * level) else 0f
+                }
+                .background(if (active) LessonGold else LessonPanel2, CircleShape),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                Icons.Default.Mic,
+                contentDescription = if (active) "Dinleniyor" else "Mikrofon",
+                tint = if (active) Color(0xFFFFFFFF) else LessonMuted,
+                modifier = Modifier.size(17.dp)
+            )
+        }
     }
 }
