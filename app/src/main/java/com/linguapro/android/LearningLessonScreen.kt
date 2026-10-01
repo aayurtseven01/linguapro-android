@@ -74,10 +74,11 @@ fun LearningLessonScreen(
     val context = LocalContext.current
     val tts = remember { mutableStateOf<TextToSpeech?>(null) }
 
-    DisposableEffect(context, ttsAccent, speechRate) {
+    val courseSpeechTag = remember(lesson.id, ttsAccent) { WorldCatalog.speechTagForLesson(lesson.id, ttsAccent) }
+    DisposableEffect(context, courseSpeechTag, speechRate) {
         val engine = TextToSpeech(context) { status ->
             if (status == TextToSpeech.SUCCESS) {
-                ttsReady = engineLanguageSetup(tts.value, ttsAccent, speechRate)
+                ttsReady = engineLanguageSetup(tts.value, courseSpeechTag, speechRate)
                 if (!ttsReady) speechMessage = "Seçilen aksan için cihazda TTS sesi yok. Ayarlardan diğer aksanı deneyebilirsin."
             } else {
                 ttsReady = false
@@ -142,7 +143,7 @@ fun LearningLessonScreen(
         })
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US")
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE, courseSpeechTag)
             putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
         }
         runCatching { sr.startListening(intent) }

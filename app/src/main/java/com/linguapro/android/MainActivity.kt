@@ -238,15 +238,25 @@ private fun LinguaApp() {
     var level by rememberSaveable { mutableStateOf("A1") }
     var completed by rememberSaveable { mutableIntStateOf(0) }
     var completedByLevel by remember { mutableStateOf(emptyMap<String, Int>()) }
-    val completedForLevel = maxOf(completedByLevel[level] ?: 0, dashboardState.completedLessonCount)
+    // Çok dilli kurs durumu: seçilen eğitim dili yerelde saklanır; İngilizce dışı diller A1'den başlar.
+    val coursePrefs = remember(context) { context.getSharedPreferences("lingua_course", android.content.Context.MODE_PRIVATE) }
+    var courseLang by rememberSaveable { mutableStateOf(coursePrefs.getString("courseLang", "EN") ?: "EN") }
+    val effectiveLevel = if (courseLang == "EN") level else "A1"
+    var localLangCompleted by remember(courseLang) { mutableIntStateOf(coursePrefs.getInt("completed_$courseLang", 0)) }
+    val completedForLevel = if (courseLang == "EN") maxOf(completedByLevel[level] ?: 0, dashboardState.completedLessonCount) else localLangCompleted
+    val courseUnits = remember(courseLang, effectiveLevel, dashboardState.supplementalUnits) {
+        WorldCatalog.units(courseLang, effectiveLevel) +
+            (if (courseLang == "EN") dashboardState.supplementalUnits.filter { it.id.startsWith("$effectiveLevel-") } else emptyList())
+    }
     var selectedLessonId by rememberSaveable { mutableStateOf("") }
     var selectedExerciseIndex by rememberSaveable { mutableIntStateOf(0) }
     var activeLessonCountsTowardCourse by rememberSaveable { mutableStateOf(true) }
-    val activeLesson = remember(level, completedForLevel, selectedLessonId, dashboardState.supplementalUnits) {
-        if (selectedLessonId.endsWith("-REFRESH")) return@remember DailyRefresh.lessonFor(level)
-        val staticLessons = CourseCatalog.units(level).flatMap { it.lessons }
-        val supplementalLessons = dashboardState.supplementalUnits.flatMap { it.lessons }
+    val activeLesson = remember(courseLang, effectiveLevel, completedForLevel, selectedLessonId, dashboardState.supplementalUnits) {
+        if (selectedLessonId.endsWith("-REFRESH")) return@remember DailyRefresh.lessonFor(courseLang, effectiveLevel)
+        val staticLessons = WorldCatalog.units(courseLang, effectiveLevel).flatMap { it.lessons }
+        val supplementalLessons = if (courseLang == "EN") dashboardState.supplementalUnits.flatMap { it.lessons } else emptyList()
         val selectedFromCatalog = (staticLessons + supplementalLessons).firstOrNull { it.id == selectedLessonId }
+            ?: (CourseCatalog.allLessons() + WorldCatalog.allWorldLessons()).firstOrNull { it.id == selectedLessonId }
         val nextIndex = completedForLevel.coerceAtLeast(0)
         selectedFromCatalog ?: staticLessons.getOrNull(nextIndex)
             ?: supplementalLessons.getOrNull((nextIndex - staticLessons.size).coerceAtLeast(0))
@@ -354,15 +364,21 @@ private fun LinguaApp() {
             }
             composable<AppRoute.Home> {
                 HomeScreen(
-                    name = userName, level = level,
+                    name = userName, level = effectiveLevel,
+                    langCode = courseLang,
+                    onSelectLanguage = { code ->
+                        courseLang = code
+                        coursePrefs.edit().putString("courseLang", code).apply()
+                        selectedLessonId = ""
+                    },
                     completed = completedForLevel,
                     progress = learningProgress, skillStats = skillStats,
-                    supplementalUnits = dashboardState.supplementalUnits,
+                    courseUnits = courseUnits,
                     dueReviewCount = dashboardState.dueReviewCards.size,
                     onReview = { go(AppRoute.Review) },
                     onStartLesson = {
-                        val extras = dashboardState.supplementalUnits.flatMap { it.lessons }
-                        val staticCount = CourseCatalog.lessonCount(level)
+                        val extras = if (courseLang == "EN") dashboardState.supplementalUnits.flatMap { it.lessons } else emptyList()
+                        val staticCount = WorldCatalog.units(courseLang, effectiveLevel).sumOf { it.lessons.size }
                         selectedLessonId = if (completedForLevel >= staticCount && extras.isNotEmpty()) {
                             extras[(completedForLevel - staticCount).coerceAtLeast(0) % extras.size].id
                         } else ""
@@ -375,7 +391,7 @@ private fun LinguaApp() {
                     onProgress = { go(AppRoute.Progress) },
                     onProfile = { go(AppRoute.Profile) },
                     onDailyRefresh = {
-                        selectedLessonId = "$level-REFRESH"
+                        selectedLessonId = "$courseLang-$effectiveLevel-REFRESH"
                         activeLessonCountsTowardCourse = false
                         selectedExerciseIndex = 0
                         go(AppRoute.Lesson)
@@ -384,7 +400,7 @@ private fun LinguaApp() {
             }
             composable<AppRoute.Practice> {
                 PracticeScreen(
-                    level, mistakeIds, skillStats, dashboardState.supplementalUnits,
+                    effectiveLevel, mistakeIds, skillStats, courseUnits,
                     onBack = { go(AppRoute.Home) },
                     onSelectLesson = { id -> selectedLessonId = id; activeLessonCountsTowardCourse = false; selectedExerciseIndex = 0; go(AppRoute.Lesson) },
                     onReviewExercise = { lessonId, exerciseIndex -> selectedLessonId = lessonId; activeLessonCountsTowardCourse = false; selectedExerciseIndex = exerciseIndex; go(AppRoute.Lesson) }
@@ -394,7 +410,7 @@ private fun LinguaApp() {
                 ReviewScreen(dueCards = dashboardState.dueReviewCards, onGrade = dashboardViewModel::gradeReview, onBack = { go(AppRoute.Home) })
             }
             composable<AppRoute.Progress> {
-                ProgressScreen(level, completedForLevel, learningProgress, skillStats, dashboardState.supplementalUnits, onBack = { go(AppRoute.Home) })
+                ProgressScreen(effectiveLevel, completedForLevel, learningProgress, skillStats, courseUnits, onBack = { go(AppRoute.Home) })
             }
             composable<AppRoute.Profile> {
                 ProfileScreen(
@@ -429,14 +445,19 @@ private fun LinguaApp() {
                         if (accountUid.isNotBlank()) accounts.recordLesson(accountUid, activeLesson.id, score, countsTowardCourse) { }
                         if (countsTowardCourse) {
                             completed++
-                            completedByLevel = completedByLevel + (level to (completedForLevel + 1))
-                            dashboardViewModel.recordLesson(
-                                accountUid,
-                                activeLesson.id.substringBefore('-'),
-                                activeLesson.id,
-                                score,
-                                activeLesson.targetVocabulary.map { it.id }
-                            )
+                            if (courseLang == "EN") {
+                                completedByLevel = completedByLevel + (level to (completedForLevel + 1))
+                                dashboardViewModel.recordLesson(
+                                    accountUid,
+                                    activeLesson.id.substringBefore('-'),
+                                    activeLesson.id,
+                                    score,
+                                    activeLesson.targetVocabulary.map { it.id }
+                                )
+                            } else {
+                                localLangCompleted += 1
+                                coursePrefs.edit().putInt("completed_$courseLang", localLangCompleted).apply()
+                            }
                         }
                         selectedLessonId = ""
                         activeLessonCountsTowardCourse = true
@@ -781,14 +802,27 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 }
 
 @Composable
-private fun HomeScreen(name: String, level: String, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, supplementalUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit) {
+private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit) {
+    val langName = WorldCatalog.language(langCode).nameTr
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         Spacer(Modifier.height(14.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-            Column { Text("Merhaba, $name!", color = OnBg, fontSize = 26.sp, fontWeight = FontWeight.Bold); Text("İngilizce yolculuğuna devam et", color = OnBgSoft, fontSize = 13.sp) }
+            Column { Text("Merhaba, $name!", color = OnBg, fontSize = 26.sp, fontWeight = FontWeight.Bold); Text("$langName yolculuğuna devam et", color = OnBgSoft, fontSize = 13.sp) }
             IconButton(onClick = onProfile) { Icon(Icons.Default.AccountCircle, "Profili aç", tint = OnBg, modifier = Modifier.size(30.dp)) }
         }
-        Spacer(Modifier.height(18.dp))
+        Spacer(Modifier.height(12.dp))
+        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            WorldCatalog.languages.forEach { lang ->
+                val chosen = lang.code == langCode
+                Surface(onClick = { onSelectLanguage(lang.code) }, color = if (chosen) Panel else Color(0x33FFFFFF), shape = RoundedCornerShape(20.dp)) {
+                    Row(Modifier.padding(horizontal = 12.dp, vertical = 7.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Text(lang.flag, fontSize = 15.sp)
+                        Text(lang.nameTr, color = if (chosen) Gold else OnBg, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 6.dp))
+                    }
+                }
+            }
+        }
+        Spacer(Modifier.height(14.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             StatCard("🔥", "${progress.streakDays} gün seri", if (progress.streakDays == 0) "Bugün bir dersle başlat" else "Düzenli çalışmaya devam et", Modifier.weight(1f))
             StatCard("✦", "${progress.todayXp}/${LearningProgress.DAILY_XP_GOAL} XP", if (progress.dailyGoalReached) "Günlük hedef tamamlandı" else "Günlük hedef • ${progress.dailyGoalPercent}%", Modifier.weight(1f))
@@ -834,7 +868,7 @@ private fun HomeScreen(name: String, level: String, completed: Int, progress: Le
         Spacer(Modifier.height(23.dp))
         Text("$level Seviyesindeki Yolculuğun", color = OnBg, fontSize = 20.sp, fontWeight = FontWeight.Bold)
         Text("Hedeflerine adım adım ilerle", color = OnBgSoft, fontSize = 14.sp, modifier = Modifier.padding(top = 3.dp, bottom = 14.dp))
-        val moduleList = CourseCatalog.units(level) + supplementalUnits.filter { it.id.startsWith("$level-") }
+        val moduleList = courseUnits
         val courseLessonCount = moduleList.sumOf { it.lessons.size }
         val lessonPointer = completed.coerceAtMost(courseLessonCount)
         var previousLessonCount = 0
@@ -870,11 +904,11 @@ private fun HomeScreen(name: String, level: String, completed: Int, progress: Le
 }
 
 @Composable
-private fun PracticeScreen(level: String, mistakeIds: Set<String>, skillStats: Map<Skill, SkillTally>, supplementalUnits: List<LearningUnit>, onBack: () -> Unit, onSelectLesson: (String) -> Unit, onReviewExercise: (String, Int) -> Unit) {
+private fun PracticeScreen(level: String, mistakeIds: Set<String>, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, onBack: () -> Unit, onSelectLesson: (String) -> Unit, onReviewExercise: (String, Int) -> Unit) {
     val recommendedSkill = SkillProgressLogic.weakest(skillStats)
     var selectedSkill by rememberSaveable(level, recommendedSkill?.name) { mutableStateOf(recommendedSkill?.let(::skillLabel) ?: "Tümü") }
-    val lessons = (CourseCatalog.units(level) + supplementalUnits.filter { it.id.startsWith("$level-") }).flatMap { it.lessons }
-    val allLessons = CourseCatalog.allLessons() + supplementalUnits.flatMap { it.lessons }
+    val lessons = courseUnits.flatMap { it.lessons }
+    val allLessons = (CourseCatalog.allLessons() + WorldCatalog.allWorldLessons() + lessons).distinctBy { it.id }
     val skills = listOf("Tümü") + Skill.values().map(::skillLabel)
     val visibleLessons = lessons.filter { lesson -> selectedSkill == "Tümü" || lesson.exercises.any { skillLabel(it.skill) == selectedSkill } }
     val reviewItems = remember(mistakeIds, allLessons) {
@@ -934,8 +968,8 @@ private fun PracticeScreen(level: String, mistakeIds: Set<String>, skillStats: M
 }
 
 @Composable
-private fun ProgressScreen(level: String, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, supplementalUnits: List<LearningUnit>, onBack: () -> Unit) {
-    val units = CourseCatalog.units(level) + supplementalUnits.filter { it.id.startsWith("$level-") }
+private fun ProgressScreen(level: String, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, onBack: () -> Unit) {
+    val units = courseUnits
     val total = units.sumOf { it.lessons.size }
     val done = completed.coerceAtMost(total)
     val percent = if (total == 0) 0 else done * 100 / total

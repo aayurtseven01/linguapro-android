@@ -1,0 +1,90 @@
+package com.linguapro.android
+
+/** Fransızca (FR) A1 başlangıç kursu: 6 ünite, 18 ders. Türkçe yönergeli, elle küratörlü içerik. */
+object WorldCourseFR {
+    val units: List<LearningUnit> = listOf(
+        LearningUnit("FR-A1-U1", "Selamlaşma ve Tanışma", "Selamlaş, kendini tanıt ve vedalaş.", listOf(
+            LearningLesson("FR-A1-U1-L1", "Selamlaşma ve Tanışma — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
+                LearningExercise("fra1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'bonjour' ne anlama gelir?", "", listOf("teşekkürler", "memnun oldum", "merhaba"), listOf("merhaba"), "Bonjour, je suis Anna. — Merhaba, ben Anna.", null, null),
+                LearningExercise("fra1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'merci' ne anlama gelir?", "", listOf("benim adım", "teşekkürler", "hoşça kal"), listOf("teşekkürler"), "Merci beaucoup ! — Çok teşekkürler!", null, null),
+                LearningExercise("fra1u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'au revoir' ne anlama gelir?", "", listOf("hoşça kal", "memnun oldum", "merhaba"), listOf("hoşça kal"), "Au revoir, à demain ! — Hoşça kal, yarın görüşürüz!", null, null))),
+            LearningLesson("FR-A1-U1-L2", "Selamlaşma ve Tanışma — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
+                LearningExercise("fra1u1e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___, je suis Anna.", "", listOf("au revoir", "Bonjour", "merci"), listOf("Bonjour"), "Doğru cümle: Bonjour, je suis Anna. — Merhaba, ben Anna.", null, null),
+                LearningExercise("fra1u1e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___, moi c'est Paul.", "", listOf("Enchanté", "je m'appelle", "bonjour"), listOf("Enchanté"), "Doğru cümle: Enchanté, moi c'est Paul. — Memnun oldum, ben Paul.", null, null),
+                LearningExercise("fra1u1e6", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Merhaba, ben Anna.", "Hoşça kal, yarın görüşürüz!", "Benim adım Elif."), listOf("Benim adım Elif."), "Söylenen cümle: Je m'appelle Elif.", "Je m'appelle Elif.", null),
+                LearningExercise("fra1u1e10", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Enchanté, moi c'est Paul.", listOf("Memnun oldum, ben Paul.", "Çok teşekkürler!", "Benim adım Elif."), listOf("Memnun oldum, ben Paul."), "Cümlenin çevirisi: Memnun oldum, ben Paul.", null, null))),
+            LearningLesson("FR-A1-U1-L3", "Selamlaşma ve Tanışma — Pekiştirme", "Dil bilgisi odağını uygula, konuş ve üret.", listOf(
+                LearningExercise("fra1u1e7", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Je ___ de Turquie.", "", listOf("viens", "vient", "venez"), listOf("viens"), "Je öznesiyle venir: je viens.", null, null),
+                LearningExercise("fra1u1e8", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Merci beaucoup !", "", listOf(), listOf("Merci beaucoup !"), "Türkçesi: Çok teşekkürler!", "Merci beaucoup !", "Merci beaucoup !"),
+                LearningExercise("fra1u1e9", Skill.WRITING, "Cümleyi Fransızca yaz", "Karşılığını yaz: Hoşça kal, yarın görüşürüz!", "", listOf(), listOf("Au revoir, à demain !"), "Örnek yanıt: Au revoir, à demain !", null, "Au revoir, à demain !"))))),
+        LearningUnit("FR-A1-U2", "Sayılar ve Zaman", "Sayıları say, saati ve günleri söyle.", listOf(
+            LearningLesson("FR-A1-U2-L1", "Sayılar ve Zaman — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
+                LearningExercise("fra1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'deux' ne anlama gelir?", "", listOf("yarın", "iki", "on"), listOf("iki"), "J'ai deux sœurs. — İki kız kardeşim var.", null, null),
+                LearningExercise("fra1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'dix' ne anlama gelir?", "", listOf("on", "bugün", "saat"), listOf("on"), "Il est dix heures. — Saat on.", null, null),
+                LearningExercise("fra1u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'aujourd'hui' ne anlama gelir?", "", listOf("yarın", "iki", "bugün"), listOf("bugün"), "Aujourd'hui, c'est lundi. — Bugün pazartesi.", null, null))),
+            LearningLesson("FR-A1-U2-L2", "Sayılar ve Zaman — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
+                LearningExercise("fra1u2e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "J'ai ___ sœurs.", "", listOf("deux", "dix", "aujourd'hui"), listOf("deux"), "Doğru cümle: J'ai deux sœurs. — İki kız kardeşim var.", null, null),
+                LearningExercise("fra1u2e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "À ___ !", "", listOf("heure", "deux", "demain"), listOf("demain"), "Doğru cümle: À demain ! — Yarın görüşürüz!", null, null),
+                LearningExercise("fra1u2e6", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bugün pazartesi.", "Saat kaç?", "İki kız kardeşim var."), listOf("Saat kaç?"), "Söylenen cümle: Quelle heure est-il ?", "Quelle heure est-il ?", null),
+                LearningExercise("fra1u2e10", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "À demain !", listOf("Saat on.", "Saat kaç?", "Yarın görüşürüz!"), listOf("Yarın görüşürüz!"), "Cümlenin çevirisi: Yarın görüşürüz!", null, null))),
+            LearningLesson("FR-A1-U2-L3", "Sayılar ve Zaman — Pekiştirme", "Dil bilgisi odağını uygula, konuş ve üret.", listOf(
+                LearningExercise("fra1u2e7", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Quelle ___ est-il ?", "", listOf("heure", "heures", "temps"), listOf("heure"), "Saat sorma kalıbı: Quelle heure est-il ?", null, null),
+                LearningExercise("fra1u2e8", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Il est dix heures.", "", listOf(), listOf("Il est dix heures."), "Türkçesi: Saat on.", "Il est dix heures.", "Il est dix heures."),
+                LearningExercise("fra1u2e9", Skill.WRITING, "Cümleyi Fransızca yaz", "Karşılığını yaz: Bugün pazartesi.", "", listOf(), listOf("Aujourd'hui, c'est lundi."), "Örnek yanıt: Aujourd'hui, c'est lundi.", null, "Aujourd'hui, c'est lundi."))))),
+        LearningUnit("FR-A1-U3", "Yiyecek ve İçecek", "Temel yiyecekleri söyle ve sipariş ver.", listOf(
+            LearningLesson("FR-A1-U3-L1", "Yiyecek ve İçecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
+                LearningExercise("fra1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'eau' ne anlama gelir?", "", listOf("su", "ekmek", "elma"), listOf("su"), "Une eau, s'il vous plaît. — Bir su, lütfen.", null, null),
+                LearningExercise("fra1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'pain' ne anlama gelir?", "", listOf("kahve", "çay", "ekmek"), listOf("ekmek"), "Le pain est frais. — Ekmek taze.", null, null),
+                LearningExercise("fra1u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'café' ne anlama gelir?", "", listOf("su", "kahve", "elma"), listOf("kahve"), "Je bois un café. — Bir kahve içiyorum.", null, null))),
+            LearningLesson("FR-A1-U3-L2", "Yiyecek ve İçecek — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
+                LearningExercise("fra1u3e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Une ___, s'il vous plaît.", "", listOf("pain", "café", "eau"), listOf("eau"), "Doğru cümle: Une eau, s'il vous plaît. — Bir su, lütfen.", null, null),
+                LearningExercise("fra1u3e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "La ___ est rouge.", "", listOf("eau", "pomme", "thé"), listOf("pomme"), "Doğru cümle: La pomme est rouge. — Elma kırmızı.", null, null),
+                LearningExercise("fra1u3e6", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Çay sıcak.", "Bir su, lütfen.", "Bir kahve içiyorum."), listOf("Çay sıcak."), "Söylenen cümle: Le thé est chaud.", "Le thé est chaud.", null),
+                LearningExercise("fra1u3e10", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "La pomme est rouge.", listOf("Çay sıcak.", "Elma kırmızı.", "Ekmek taze."), listOf("Elma kırmızı."), "Cümlenin çevirisi: Elma kırmızı.", null, null))),
+            LearningLesson("FR-A1-U3-L3", "Yiyecek ve İçecek — Pekiştirme", "Dil bilgisi odağını uygula, konuş ve üret.", listOf(
+                LearningExercise("fra1u3e7", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Je ___ du thé.", "", listOf("bois", "boit", "buvez"), listOf("bois"), "Je öznesiyle boire: je bois.", null, null),
+                LearningExercise("fra1u3e8", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Le pain est frais.", "", listOf(), listOf("Le pain est frais."), "Türkçesi: Ekmek taze.", "Le pain est frais.", "Le pain est frais."),
+                LearningExercise("fra1u3e9", Skill.WRITING, "Cümleyi Fransızca yaz", "Karşılığını yaz: Bir kahve içiyorum.", "", listOf(), listOf("Je bois un café."), "Örnek yanıt: Je bois un café.", null, "Je bois un café."))))),
+        LearningUnit("FR-A1-U4", "Aile ve İnsanlar", "Aile üyelerini tanıt.", listOf(
+            LearningLesson("FR-A1-U4-L1", "Aile ve İnsanlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
+                LearningExercise("fra1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'famille' ne anlama gelir?", "", listOf("anne", "erkek kardeş", "aile"), listOf("aile"), "Ma famille est grande. — Ailem kalabalık.", null, null),
+                LearningExercise("fra1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'mère' ne anlama gelir?", "", listOf("arkadaş", "anne", "baba"), listOf("anne"), "Ma mère est à la maison. — Annem evde.", null, null),
+                LearningExercise("fra1u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'père' ne anlama gelir?", "", listOf("baba", "erkek kardeş", "aile"), listOf("baba"), "Mon père travaille beaucoup. — Babam çok çalışır.", null, null))),
+            LearningLesson("FR-A1-U4-L2", "Aile ve İnsanlar — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
+                LearningExercise("fra1u4e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Ma ___ est grande.", "", listOf("père", "famille", "mère"), listOf("famille"), "Doğru cümle: Ma famille est grande. — Ailem kalabalık.", null, null),
+                LearningExercise("fra1u4e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Mon ___ est jeune.", "", listOf("frère", "ami", "famille"), listOf("frère"), "Doğru cümle: Mon frère est jeune. — Erkek kardeşim genç.", null, null),
+                LearningExercise("fra1u4e6", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Ailem kalabalık.", "Babam çok çalışır.", "O benim arkadaşım."), listOf("O benim arkadaşım."), "Söylenen cümle: C'est mon ami.", "C'est mon ami.", null),
+                LearningExercise("fra1u4e10", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Mon frère est jeune.", listOf("Erkek kardeşim genç.", "Annem evde.", "O benim arkadaşım."), listOf("Erkek kardeşim genç."), "Cümlenin çevirisi: Erkek kardeşim genç.", null, null))),
+            LearningLesson("FR-A1-U4-L3", "Aile ve İnsanlar — Pekiştirme", "Dil bilgisi odağını uygula, konuş ve üret.", listOf(
+                LearningExercise("fra1u4e7", Skill.GRAMMAR, "Doğru seçeneği işaretle", "C'est ___ sœur.", "", listOf("ma", "mon", "mes"), listOf("ma"), "Dişil tekil isimle: ma sœur.", null, null),
+                LearningExercise("fra1u4e8", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Ma mère est à la maison.", "", listOf(), listOf("Ma mère est à la maison."), "Türkçesi: Annem evde.", "Ma mère est à la maison.", "Ma mère est à la maison."),
+                LearningExercise("fra1u4e9", Skill.WRITING, "Cümleyi Fransızca yaz", "Karşılığını yaz: Babam çok çalışır.", "", listOf(), listOf("Mon père travaille beaucoup."), "Örnek yanıt: Mon père travaille beaucoup.", null, "Mon père travaille beaucoup."))))),
+        LearningUnit("FR-A1-U5", "Günlük Yaşam ve Şehir", "Ev, iş ve şehir hakkında konuş.", listOf(
+            LearningLesson("FR-A1-U5-L1", "Günlük Yaşam ve Şehir — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
+                LearningExercise("fra1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'maison' ne anlama gelir?", "", listOf("mağaza", "ev", "iş"), listOf("ev"), "La maison est vieille. — Ev eski.", null, null),
+                LearningExercise("fra1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'travail' ne anlama gelir?", "", listOf("iş", "şehir", "oturuyorum"), listOf("iş"), "Le travail commence à neuf heures. — İş dokuzda başlıyor.", null, null),
+                LearningExercise("fra1u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'ville' ne anlama gelir?", "", listOf("mağaza", "ev", "şehir"), listOf("şehir"), "La ville est belle. — Şehir güzel.", null, null))),
+            LearningLesson("FR-A1-U5-L2", "Günlük Yaşam ve Şehir — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
+                LearningExercise("fra1u5e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "La ___ est vieille.", "", listOf("maison", "travail", "ville"), listOf("maison"), "Doğru cümle: La maison est vieille. — Ev eski.", null, null),
+                LearningExercise("fra1u5e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Le ___ est ouvert.", "", listOf("j'habite", "maison", "magasin"), listOf("magasin"), "Doğru cümle: Le magasin est ouvert. — Mağaza açık.", null, null),
+                LearningExercise("fra1u5e6", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Şehir güzel.", "Paris'te oturuyorum.", "Ev eski."), listOf("Paris'te oturuyorum."), "Söylenen cümle: J'habite à Paris.", "J'habite à Paris.", null),
+                LearningExercise("fra1u5e10", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Le magasin est ouvert.", listOf("İş dokuzda başlıyor.", "Paris'te oturuyorum.", "Mağaza açık."), listOf("Mağaza açık."), "Cümlenin çevirisi: Mağaza açık.", null, null))),
+            LearningLesson("FR-A1-U5-L3", "Günlük Yaşam ve Şehir — Pekiştirme", "Dil bilgisi odağını uygula, konuş ve üret.", listOf(
+                LearningExercise("fra1u5e7", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Où ___ -tu ?", "", listOf("habites", "habite", "habitez"), listOf("habites"), "Tu öznesiyle: tu habites.", null, null),
+                LearningExercise("fra1u5e8", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Le travail commence à neuf heures.", "", listOf(), listOf("Le travail commence à neuf heures."), "Türkçesi: İş dokuzda başlıyor.", "Le travail commence à neuf heures.", "Le travail commence à neuf heures."),
+                LearningExercise("fra1u5e9", Skill.WRITING, "Cümleyi Fransızca yaz", "Karşılığını yaz: Şehir güzel.", "", listOf(), listOf("La ville est belle."), "Örnek yanıt: La ville est belle.", null, "La ville est belle."))))),
+        LearningUnit("FR-A1-U6", "Seyahat Temelleri", "Bilet al, yol sor, otele yerleş.", listOf(
+            LearningLesson("FR-A1-U6-L1", "Seyahat Temelleri — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
+                LearningExercise("fra1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'train' ne anlama gelir?", "", listOf("tren", "bilet", "sol"), listOf("tren"), "Le train arrive à neuf heures. — Tren dokuzda geliyor.", null, null),
+                LearningExercise("fra1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'billet' ne anlama gelir?", "", listOf("otel", "havalimanı", "bilet"), listOf("bilet"), "Un billet pour Paris, s'il vous plaît. — Paris'e bir bilet, lütfen.", null, null),
+                LearningExercise("fra1u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'hôtel' ne anlama gelir?", "", listOf("tren", "otel", "sol"), listOf("otel"), "L'hôtel est au centre. — Otel merkezde.", null, null))),
+            LearningLesson("FR-A1-U6-L2", "Seyahat Temelleri — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
+                LearningExercise("fra1u6e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Le ___ arrive à neuf heures.", "", listOf("billet", "hôtel", "train"), listOf("train"), "Doğru cümle: Le train arrive à neuf heures. — Tren dokuzda geliyor.", null, null),
+                LearningExercise("fra1u6e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Tournez à ___.", "", listOf("train", "gauche", "aéroport"), listOf("gauche"), "Doğru cümle: Tournez à gauche. — Sola dönün.", null, null),
+                LearningExercise("fra1u6e6", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Havalimanı uzak.", "Tren dokuzda geliyor.", "Otel merkezde."), listOf("Havalimanı uzak."), "Söylenen cümle: L'aéroport est loin.", "L'aéroport est loin.", null),
+                LearningExercise("fra1u6e10", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Tournez à gauche.", listOf("Havalimanı uzak.", "Sola dönün.", "Paris'e bir bilet, lütfen."), listOf("Sola dönün."), "Cümlenin çevirisi: Sola dönün.", null, null))),
+            LearningLesson("FR-A1-U6-L3", "Seyahat Temelleri — Pekiştirme", "Dil bilgisi odağını uygula, konuş ve üret.", listOf(
+                LearningExercise("fra1u6e7", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Le train part ___ neuf heures.", "", listOf("à", "de", "en"), listOf("à"), "Saat belirtirken: à neuf heures.", null, null),
+                LearningExercise("fra1u6e8", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Un billet pour Paris, s'il vous plaît.", "", listOf(), listOf("Un billet pour Paris, s'il vous plaît."), "Türkçesi: Paris'e bir bilet, lütfen.", "Un billet pour Paris, s'il vous plaît.", "Un billet pour Paris, s'il vous plaît."),
+                LearningExercise("fra1u6e9", Skill.WRITING, "Cümleyi Fransızca yaz", "Karşılığını yaz: Otel merkezde.", "", listOf(), listOf("L'hôtel est au centre."), "Örnek yanıt: L'hôtel est au centre.", null, "L'hôtel est au centre."))))))
+}

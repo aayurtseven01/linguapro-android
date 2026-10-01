@@ -288,10 +288,10 @@ object CourseCatalog {
     fun allLessons(): List<LearningLesson> = levels.flatMap { level -> units(level).flatMap { it.lessons } }
 }
 
-/** Kurs sonrası tekrar modu: her gün değişen, seviyeye özel 10 soruluk karışık pratik dersi üretir. */
+/** Kurs sonrası tekrar modu: her gün değişen, dile ve seviyeye özel 10 soruluk karışık pratik dersi üretir. */
 object DailyRefresh {
-    fun lessonFor(level: String): LearningLesson {
-        val pool = CourseCatalog.units(level)
+    fun lessonFor(lang: String, level: String): LearningLesson {
+        val pool = WorldCatalog.units(lang, level)
             .flatMap { it.lessons }
             .filterNot { it.id.endsWith("-CP") }
             .flatMap { it.exercises }
@@ -299,7 +299,7 @@ object DailyRefresh {
         val seed = calendar.get(java.util.Calendar.YEAR) * 1000L + calendar.get(java.util.Calendar.DAY_OF_YEAR)
         val picks = if (pool.isEmpty()) emptyList() else pool.shuffled(kotlin.random.Random(seed)).take(10)
         return LearningLesson(
-            "$level-REFRESH",
+            "$lang-$level-REFRESH",
             "Günlük Tekrar",
             "Keep your knowledge fresh with a daily mixed practice set.",
             picks
