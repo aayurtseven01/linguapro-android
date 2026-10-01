@@ -32,7 +32,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.viewinterop.AndroidView
 import kotlinx.coroutines.delay
@@ -529,12 +528,32 @@ private fun WavingOwl(modifier: Modifier = Modifier) {
 private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(Modifier.height(28.dp))
-        Image(
-            painter = painterResource(R.drawable.lingua_pro_banner),
-            contentDescription = "Lingua Pro",
-            contentScale = ContentScale.FillWidth,
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxWidth()
-        )
+        ) {
+            Image(
+                painter = painterResource(R.drawable.owl_badge),
+                contentDescription = null,
+                modifier = Modifier.size(78.dp)
+            )
+            Text(
+                "Lingua Pro",
+                color = OnBg,
+                fontSize = 36.sp,
+                fontWeight = FontWeight.ExtraBold,
+                letterSpacing = 0.5.sp,
+                style = LocalTextStyle.current.copy(
+                    shadow = androidx.compose.ui.graphics.Shadow(
+                        color = Color(0x590A2C66),
+                        offset = Offset(0f, 5f),
+                        blurRadius = 10f
+                    )
+                ),
+                modifier = Modifier.padding(start = 16.dp)
+            )
+        }
         Spacer(Modifier.height(36.dp))
         Box(Modifier.fillMaxWidth().height(250.dp).background(Panel, RoundedCornerShape(28.dp)), contentAlignment = Alignment.Center) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
