@@ -7,11 +7,22 @@ import org.junit.Test
 
 class CourseCatalogTest {
     @Test fun hasEveryPlannedLevelInOrder() {
-        assertEquals(listOf("A1", "A2", "B1", "B2", "C1"), CourseCatalog.levels)
-        CourseCatalog.levels.forEach { assertEquals(12, CourseCatalog.units(it).size) }
-        assertEquals(25, CourseCatalog.lessonCount("A1"))
-        listOf("A2", "B1", "B2", "C1").forEach { assertEquals(24, CourseCatalog.lessonCount(it)) }
-        assertEquals(121, CourseCatalog.allLessons().size)
+        assertEquals(listOf("A1", "A2", "B1", "B2", "C1", "C2"), CourseCatalog.levels)
+        val expectedUnits = mapOf("A1" to 20, "A2" to 24, "B1" to 26, "B2" to 24, "C1" to 20, "C2" to 12)
+        expectedUnits.forEach { (level, units) -> assertEquals("$level unit count", units, CourseCatalog.units(level).size) }
+        // Her ünite, derslerine ek olarak bir Checkpoint dersi içerir.
+        CourseCatalog.levels.forEach { level ->
+            CourseCatalog.units(level).forEach { unit ->
+                assertTrue("${unit.id} needs a checkpoint lesson", unit.lessons.any { it.id.endsWith("-CP") })
+            }
+        }
+        // Çekirdek ders hacmi (Checkpoint hariç) Babbel aralığında olmalı.
+        val coreMinimums = mapOf("A1" to 45, "A2" to 55, "B1" to 60, "B2" to 55, "C1" to 45, "C2" to 30)
+        coreMinimums.forEach { (level, minimum) ->
+            val core = CourseCatalog.units(level).sumOf { unit -> unit.lessons.count { !it.id.endsWith("-CP") } }
+            assertTrue("$level core lesson volume", core >= minimum)
+        }
+        assertEquals(CourseCatalog.levels.sumOf { CourseCatalog.lessonCount(it) }, CourseCatalog.allLessons().size)
     }
 
     @Test fun allSeedLessonsHaveStableUniqueIdsAndActivities() {
