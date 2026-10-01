@@ -32,11 +32,11 @@ import androidx.compose.ui.unit.sp
 import java.util.Locale
 
 private val LessonNavy = Color(0xFFFFFFFF)
-private val LessonPanel = Color(0xFFF7F7F7)
-private val LessonPanel2 = Color(0xFFEFEFEF)
-private val LessonGold = Color(0xFF58CC02)
-private val LessonMuted = Color(0xFF777777)
-private val LessonMint = Color(0xFF1CB0F6)
+private val LessonPanel = Color(0xFFFFFFFF)
+private val LessonPanel2 = Color(0xFFF0F3F8)
+private val LessonGold = Color(0xFF0A6ED1)
+private val LessonMuted = Color(0xFF5B6475)
+private val LessonMint = Color(0xFF12B76A)
 
 @Composable
 fun LearningLessonScreen(
@@ -135,12 +135,12 @@ fun LearningLessonScreen(
             }
         }
         Text(lesson.canDo, color = Color(0xFFDFF3FF), fontSize = 13.sp, modifier = Modifier.padding(start = 6.dp, top = 3.dp, bottom = 14.dp))
-        LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth().height(8.dp), color = LessonGold, trackColor = Color(0x55FFFFFF))
+        LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth().height(8.dp), color = Color(0xFFFFFFFF), trackColor = Color(0x44FFFFFF))
         Text("Etkinlik ${index.intValue + 1} / ${lesson.exercises.size}", color = Color(0xFFDFF3FF), fontSize = 12.sp, modifier = Modifier.align(Alignment.End).padding(top = 5.dp))
         Spacer(Modifier.height(14.dp))
 
         if (index.intValue == 0 && lesson.targetVocabulary.isNotEmpty()) {
-            Surface(color = LessonPanel, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp)) {
+            Surface(color = LessonPanel, shadowElevation = 2.dp, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp)) {
                 Column(Modifier.padding(15.dp)) {
                     Text("Hedef kelimeler • ${lesson.targetVocabulary.size}", color = LessonGold, fontWeight = FontWeight.Bold, fontSize = 14.sp)
                     lesson.targetVocabulary.forEach { word ->
@@ -148,7 +148,7 @@ fun LearningLessonScreen(
                             Text(word.emoji, fontSize = 23.sp)
                             Column(Modifier.weight(1f).padding(start = 10.dp)) {
                                 Text("${word.termEn} • ${word.translationTr}", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
-                                Text(word.exampleEn, color = Color(0xFF4B4B4B), fontSize = 12.sp, modifier = Modifier.padding(top = 2.dp))
+                                Text(word.exampleEn, color = Color(0xFF1A1D29), fontSize = 12.sp, modifier = Modifier.padding(top = 2.dp))
                                 Text(word.exampleTr, color = LessonMuted, fontSize = 11.sp, modifier = Modifier.padding(top = 1.dp))
                             }
                             IconButton(onClick = { speak(tts.value, word.termEn) }, enabled = ttsReady) {
@@ -171,7 +171,7 @@ fun LearningLessonScreen(
             }
         }
 
-        Surface(color = LessonPanel, shape = RoundedCornerShape(22.dp)) {
+        Surface(color = LessonPanel, shadowElevation = 2.dp, shape = RoundedCornerShape(22.dp)) {
             Column(Modifier.fillMaxWidth().padding(18.dp)) {
                 Text(skillLabel(exercise.skill).uppercase(Locale.forLanguageTag("tr-TR")), color = LessonGold, fontWeight = FontWeight.Bold, fontSize = 12.sp)
                 Text(exercise.instructionTr, color = LessonMuted, fontSize = 13.sp, modifier = Modifier.padding(top = 6.dp, bottom = 14.dp))
@@ -260,7 +260,7 @@ fun LearningLessonScreen(
         if (submitted) {
             val isWriting = exercise.skill == Skill.WRITING
             val correct = result == true
-            Surface(color = if (isWriting) LessonPanel2 else if (correct) Color(0xFFD7FFB8) else Color(0xFFFFDFE0), shape = RoundedCornerShape(16.dp), modifier = Modifier.padding(top = 14.dp)) {
+            Surface(color = if (isWriting) LessonPanel2 else if (correct) Color(0xFFE6F6E0) else Color(0xFFFDE8E8), shape = RoundedCornerShape(16.dp), modifier = Modifier.padding(top = 14.dp)) {
                 Row(Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.Top) {
                     Icon(if (isWriting || correct) Icons.Default.CheckCircle else Icons.Default.Close, null, tint = if (isWriting || correct) Color(0xFF58A700) else Color(0xFFEA2B2B))
                     Column(Modifier.padding(start = 10.dp)) {
@@ -322,11 +322,11 @@ private fun LessonCompletion(lesson: LearningLesson, correct: Int, graded: Int, 
         Text("Ders tamamlandı", color = Color(0xFFFFFFFF), fontSize = 27.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 14.dp))
         Text(lesson.title, color = Color(0xFFDFF3FF), fontSize = 15.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 5.dp))
         Spacer(Modifier.height(20.dp))
-        Surface(color = LessonPanel, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
+        Surface(color = LessonPanel, shadowElevation = 2.dp, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
             Column(Modifier.padding(18.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                 Text("+$xp XP", color = LessonGold, fontSize = 25.sp, fontWeight = FontWeight.ExtraBold)
                 Text(if (isScored) "$correct doğru yanıt • $graded otomatik değerlendirilen deneme" else "Açık uçlu yazma etkinliğini tamamladın; otomatik puan üretilmedi.", color = LessonMuted, fontSize = 12.sp, lineHeight = 17.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 6.dp))
-                Text("${lesson.exercises.size} etkinliği tamamladın.", color = Color(0xFF4B4B4B), fontSize = 13.sp, modifier = Modifier.padding(top = 8.dp))
+                Text("${lesson.exercises.size} etkinliği tamamladın.", color = Color(0xFF1A1D29), fontSize = 13.sp, modifier = Modifier.padding(top = 8.dp))
             }
         }
         if (lesson.exercises.any { it.skill == Skill.WRITING }) {
