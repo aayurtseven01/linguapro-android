@@ -82,8 +82,16 @@ private val privacySummary = """
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.statusBarColor = android.graphics.Color.rgb(7, 29, 50)
-        window.navigationBarColor = android.graphics.Color.rgb(7, 29, 50)
+        // Tam ekran: içerik sistem çubuklarının arkasına uzanır, çubuklar şeffaftır.
+        androidx.core.view.WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.statusBarColor = android.graphics.Color.TRANSPARENT
+        window.navigationBarColor = android.graphics.Color.TRANSPARENT
+        if (android.os.Build.VERSION.SDK_INT >= 29) {
+            window.isNavigationBarContrastEnforced = false
+        }
+        val insetsController = androidx.core.view.WindowCompat.getInsetsController(window, window.decorView)
+        insetsController.isAppearanceLightStatusBars = false
+        insetsController.isAppearanceLightNavigationBars = false
         setContent {
             LinguaTheme {
                 var showSplash by rememberSaveable { mutableStateOf(true) }
@@ -267,7 +275,7 @@ private fun LinguaApp() {
     }
 
     Box(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(BgTop, BgBottom)))) {
-        NavHost(navController = navController, startDestination = startDestination, modifier = Modifier.fillMaxSize()) {
+        NavHost(navController = navController, startDestination = startDestination, modifier = Modifier.fillMaxSize().systemBarsPadding()) {
             composable<AppRoute.Welcome> {
                 WelcomeScreen(onStart = { go(AppRoute.Register) }, onLogin = { go(AppRoute.Login) })
             }
