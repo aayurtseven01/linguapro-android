@@ -3,7 +3,7 @@ package com.linguapro.android
 /** Eğitim dili tanımı: kod, Türkçe ad, bayrak ve TTS/konuşma tanıma dili etiketi. */
 data class WorldLanguage(val code: String, val nameTr: String, val flag: String, val speechTag: String)
 
-/** Çok dilli kurs kataloğu: İngilizce tam müfredata, diğer diller A1 başlangıç kurslarına yönlenir. */
+/** Çok dilli kurs kataloğu: 10 dilin tamamında A1-C2 müfredat; İngilizce CourseCatalog un geniş kataloğuna yönlenir. */
 object WorldCatalog {
     val languages: List<WorldLanguage> = listOf(
         WorldLanguage("EN", "İngilizce", "🇬🇧", "en-US"),
@@ -47,7 +47,7 @@ object WorldCatalog {
 
     fun language(code: String): WorldLanguage = languages.firstOrNull { it.code == code } ?: languages.first()
 
-    fun availableLevels(lang: String): List<String> = if (lang == "EN") CourseCatalog.levels else listOf("A1")
+    fun availableLevels(lang: String): List<String> = CourseCatalog.levels
 
     fun units(lang: String, level: String): List<LearningUnit> =
         if (lang == "EN") CourseCatalog.units(level)

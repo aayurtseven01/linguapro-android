@@ -238,11 +238,19 @@ private fun LinguaApp() {
     var level by rememberSaveable { mutableStateOf("A1") }
     var completed by rememberSaveable { mutableIntStateOf(0) }
     var completedByLevel by remember { mutableStateOf(emptyMap<String, Int>()) }
-    // Çok dilli kurs durumu: seçilen eğitim dili yerelde saklanır; İngilizce dışı diller A1'den başlar.
+    // Çok dilli kurs durumu: seçilen eğitim dili ve dil başına seviye/ilerleme yerelde saklanır.
     val coursePrefs = remember(context) { context.getSharedPreferences("lingua_course", android.content.Context.MODE_PRIVATE) }
     var courseLang by rememberSaveable { mutableStateOf(coursePrefs.getString("courseLang", "EN") ?: "EN") }
-    val effectiveLevel = if (courseLang == "EN") level else "A1"
-    var localLangCompleted by remember(courseLang) { mutableIntStateOf(coursePrefs.getInt("completed_$courseLang", 0)) }
+    var langLevel by remember(courseLang) { mutableStateOf(coursePrefs.getString("level_$courseLang", "A1") ?: "A1") }
+    val effectiveLevel = if (courseLang == "EN") level else langLevel
+    var localLangCompleted by remember(courseLang, langLevel) {
+        mutableIntStateOf(
+            coursePrefs.getInt(
+                "completed_${courseLang}_$langLevel",
+                if (langLevel == "A1") coursePrefs.getInt("completed_$courseLang", 0) else 0
+            )
+        )
+    }
     val completedForLevel = if (courseLang == "EN") maxOf(completedByLevel[level] ?: 0, dashboardState.completedLessonCount) else localLangCompleted
     val courseUnits = remember(courseLang, effectiveLevel, dashboardState.supplementalUnits) {
         WorldCatalog.units(courseLang, effectiveLevel) +
@@ -371,6 +379,11 @@ private fun LinguaApp() {
                         coursePrefs.edit().putString("courseLang", code).apply()
                         selectedLessonId = ""
                     },
+                    onSelectLevel = { lv ->
+                        langLevel = lv
+                        coursePrefs.edit().putString("level_$courseLang", lv).apply()
+                        selectedLessonId = ""
+                    },
                     completed = completedForLevel,
                     progress = learningProgress, skillStats = skillStats,
                     courseUnits = courseUnits,
@@ -456,7 +469,7 @@ private fun LinguaApp() {
                                 )
                             } else {
                                 localLangCompleted += 1
-                                coursePrefs.edit().putInt("completed_$courseLang", localLangCompleted).apply()
+                                coursePrefs.edit().putInt("completed_${courseLang}_$langLevel", localLangCompleted).apply()
                             }
                         }
                         selectedLessonId = ""
@@ -802,7 +815,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 }
 
 @Composable
-private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit) {
+private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit) {
     val langName = WorldCatalog.language(langCode).nameTr
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         Spacer(Modifier.height(14.dp))
@@ -818,6 +831,17 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                     Row(Modifier.padding(horizontal = 12.dp, vertical = 7.dp), verticalAlignment = Alignment.CenterVertically) {
                         Text(lang.flag, fontSize = 15.sp)
                         Text(lang.nameTr, color = if (chosen) Gold else OnBg, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 6.dp))
+                    }
+                }
+            }
+        }
+        if (langCode != "EN") {
+            Spacer(Modifier.height(8.dp))
+            Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                WorldCatalog.availableLevels(langCode).forEach { lv ->
+                    val chosen = lv == level
+                    Surface(onClick = { onSelectLevel(lv) }, color = if (chosen) Panel else Color(0x33FFFFFF), shape = RoundedCornerShape(20.dp)) {
+                        Text(lv, color = if (chosen) Gold else OnBg, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 14.dp, vertical = 7.dp))
                     }
                 }
             }
