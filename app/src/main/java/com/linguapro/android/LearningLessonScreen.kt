@@ -363,10 +363,22 @@ fun LearningLessonScreen(
 private fun LessonCompletion(lesson: LearningLesson, correct: Int, graded: Int, score: Int, onContinue: () -> Unit) {
     val isScored = score >= 0
     val xp = LessonScoring.xpForCompletion(score.takeIf { it >= 0 })
+    val isCheckpoint = lesson.id.endsWith("-CP")
+    val isRefresh = lesson.id.endsWith("-REFRESH")
+    val checkpointPassed = isCheckpoint && score >= 80
+    val headline = when {
+        isCheckpoint && checkpointPassed -> "Checkpoint geçildi!"
+        isCheckpoint -> "Checkpoint geçilemedi"
+        isRefresh -> "Günlük tekrar tamamlandı"
+        else -> "Ders tamamlandı"
+    }
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-        Text(if (score >= 80) "🎉" else "✨", fontSize = 62.sp)
-        Text("Ders tamamlandı", color = Color(0xFFFFFFFF), fontSize = 27.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 14.dp))
+        Text(if (score >= 80) "🎉" else if (isCheckpoint) "🔁" else "✨", fontSize = 62.sp)
+        Text(headline, color = Color(0xFFFFFFFF), fontSize = 27.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 14.dp))
         Text(lesson.title, color = Color(0xFFDFF3FF), fontSize = 15.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 5.dp))
+        if (isCheckpoint && !checkpointPassed) {
+            Text("Bu üniteyi geçmek için en az %80 doğruluk gerekli. Ünite derslerini tekrar edip yeniden dene.", color = Color(0xFFFFD2D2), fontSize = 13.sp, lineHeight = 18.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 10.dp))
+        }
         Spacer(Modifier.height(20.dp))
         Surface(color = LessonPanel, shadowElevation = 2.dp, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
             Column(Modifier.padding(18.dp), horizontalAlignment = Alignment.CenterHorizontally) {

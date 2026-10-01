@@ -235,6 +235,7 @@ private fun LinguaApp() {
     var selectedExerciseIndex by rememberSaveable { mutableIntStateOf(0) }
     var activeLessonCountsTowardCourse by rememberSaveable { mutableStateOf(true) }
     val activeLesson = remember(level, completedForLevel, selectedLessonId, dashboardState.supplementalUnits) {
+        if (selectedLessonId.endsWith("-REFRESH")) return@remember DailyRefresh.lessonFor(level)
         val staticLessons = CourseCatalog.units(level).flatMap { it.lessons }
         val supplementalLessons = dashboardState.supplementalUnits.flatMap { it.lessons }
         val selectedFromCatalog = (staticLessons + supplementalLessons).firstOrNull { it.id == selectedLessonId }
@@ -364,7 +365,13 @@ private fun LinguaApp() {
                     onLocked = { go(AppRoute.Locked) },
                     onPractice = { go(AppRoute.Practice) },
                     onProgress = { go(AppRoute.Progress) },
-                    onProfile = { go(AppRoute.Profile) }
+                    onProfile = { go(AppRoute.Profile) },
+                    onDailyRefresh = {
+                        selectedLessonId = "$level-REFRESH"
+                        activeLessonCountsTowardCourse = false
+                        selectedExerciseIndex = 0
+                        go(AppRoute.Lesson)
+                    }
                 )
             }
             composable<AppRoute.Practice> {
@@ -766,7 +773,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 }
 
 @Composable
-private fun HomeScreen(name: String, level: String, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, supplementalUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit) {
+private fun HomeScreen(name: String, level: String, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, supplementalUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         Spacer(Modifier.height(14.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
@@ -777,6 +784,17 @@ private fun HomeScreen(name: String, level: String, completed: Int, progress: Le
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             StatCard("🔥", "${progress.streakDays} gün seri", if (progress.streakDays == 0) "Bugün bir dersle başlat" else "Düzenli çalışmaya devam et", Modifier.weight(1f))
             StatCard("✦", "${progress.todayXp}/${LearningProgress.DAILY_XP_GOAL} XP", if (progress.dailyGoalReached) "Günlük hedef tamamlandı" else "Günlük hedef • ${progress.dailyGoalPercent}%", Modifier.weight(1f))
+        }
+        Spacer(Modifier.height(12.dp))
+        Surface(onClick = onDailyRefresh, color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth()) {
+            Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
+                Text("🔄", fontSize = 22.sp)
+                Column(Modifier.weight(1f).padding(start = 10.dp)) {
+                    Text("Günlük Tekrar", color = Gold, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                    Text("Her gün yenilenen 10 soruluk karışımla öğrendiklerini taze tut", color = Muted, fontSize = 12.sp, lineHeight = 16.sp, modifier = Modifier.padding(top = 3.dp))
+                }
+                Icon(Icons.Default.ChevronRight, null, tint = Muted)
+            }
         }
         if (dueReviewCount > 0) {
             Spacer(Modifier.height(12.dp))

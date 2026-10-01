@@ -83,7 +83,7 @@ data class CourseContentPack(
 )
 
 object CourseCatalog {
-    val levels: List<String> = listOf("A1", "A2", "B1", "B2", "C1")
+    val levels: List<String> = listOf("A1", "A2", "B1", "B2", "C1", "C2")
 
     private fun e(id: String, skill: Skill, instruction: String, prompt: String,
                   answer: String, explanation: String, options: List<String> = emptyList(),
@@ -258,11 +258,27 @@ object CourseCatalog {
         )
     )
 
-    private val completeCatalog: Map<String, List<LearningUnit>> = levels.associateWith { level ->
-        catalog.getValue(level) + additionalUnits[level].orEmpty() + CourseExpansion.units(level) + CourseExpansionAdvanced.units(level) + CourseExpansionMastery.units(level) + CourseExpansionCoverage.units(level)
+    /** Ünite sonu Checkpoint: ünitedeki egzersizlerden 5 soruluk, %80 barajlı bir sınav dersi ekler. */
+    private fun withCheckpoint(unit: LearningUnit): LearningUnit {
+        val pool = unit.lessons.flatMap { it.exercises }
+        if (pool.isEmpty()) return unit
+        val quiz = pool.shuffled(kotlin.random.Random(unit.id.hashCode().toLong()))
+            .take(5)
+            .map { it.copy(id = "${it.id}-cp") }
+        val checkpoint = LearningLesson(
+            "${unit.id}-CP",
+            "Checkpoint: ${unit.title}",
+            "Pass the unit checkpoint with a score of at least 80 percent.",
+            quiz
+        )
+        return unit.copy(lessons = unit.lessons + checkpoint)
     }
 
-    fun units(level: String): List<LearningUnit> = completeCatalog[level] ?: if (level == "C2") emptyList() else completeCatalog.getValue("A1")
+    private val completeCatalog: Map<String, List<LearningUnit>> = levels.associateWith { level ->
+        (catalog[level].orEmpty() + additionalUnits[level].orEmpty() + CourseExpansion.units(level) + CourseExpansionAdvanced.units(level) + CourseExpansionMastery.units(level) + CourseExpansionCoverage.units(level) + CourseVolume.units(level)).map { withCheckpoint(it) }
+    }
+
+    fun units(level: String): List<LearningUnit> = completeCatalog[level].orEmpty()
     fun firstLesson(level: String): LearningLesson = units(level).first().lessons.first()
     fun lessonAt(level: String, lessonIndex: Int): LearningLesson {
         val lessons = units(level).flatMap { it.lessons }
@@ -270,4 +286,23 @@ object CourseCatalog {
     }
     fun lessonCount(level: String): Int = units(level).sumOf { it.lessons.size }
     fun allLessons(): List<LearningLesson> = levels.flatMap { level -> units(level).flatMap { it.lessons } }
+}
+
+/** Kurs sonrası tekrar modu: her gün değişen, seviyeye özel 10 soruluk karışık pratik dersi üretir. */
+object DailyRefresh {
+    fun lessonFor(level: String): LearningLesson {
+        val pool = CourseCatalog.units(level)
+            .flatMap { it.lessons }
+            .filterNot { it.id.endsWith("-CP") }
+            .flatMap { it.exercises }
+        val calendar = java.util.Calendar.getInstance()
+        val seed = calendar.get(java.util.Calendar.YEAR) * 1000L + calendar.get(java.util.Calendar.DAY_OF_YEAR)
+        val picks = if (pool.isEmpty()) emptyList() else pool.shuffled(kotlin.random.Random(seed)).take(10)
+        return LearningLesson(
+            "$level-REFRESH",
+            "Günlük Tekrar",
+            "Keep your knowledge fresh with a daily mixed practice set.",
+            picks
+        )
+    }
 }
