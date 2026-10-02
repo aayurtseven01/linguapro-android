@@ -7,7 +7,12 @@ object WorldCourseES {
             LearningLesson("ES-A1-U1-L1", "Selamlaşma ve Tanışma — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esa1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'hola' ne anlama gelir?", "", listOf("teşekkürler", "hoşça kal", "merhaba"), listOf("merhaba"), "¡Hola! Soy Ana. — Merhaba! Ben Ana.", null, null),
                 LearningExercise("esa1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'gracias' ne anlama gelir?", "", listOf("benim adım", "teşekkürler", "lütfen"), listOf("teşekkürler"), "¡Muchas gracias! — Çok teşekkürler!", null, null),
-                LearningExercise("esa1u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'por favor' ne anlama gelir?", "", listOf("lütfen", "hoşça kal", "merhaba"), listOf("lütfen"), "Un café, por favor. — Bir kahve, lütfen.", null, null))),
+                LearningExercise("esa1u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'por favor' ne anlama gelir?", "", listOf("lütfen", "hoşça kal", "merhaba"), listOf("lütfen"), "Un café, por favor. — Bir kahve, lütfen.", null, null)), listOf(
+                TargetVocabulary("esa1u1w1", "hola", "merhaba", "ifade", "¡Hola! Soy Ana.", "Merhaba! Ben Ana."),
+                TargetVocabulary("esa1u1w2", "gracias", "teşekkürler", "ifade", "¡Muchas gracias!", "Çok teşekkürler!"),
+                TargetVocabulary("esa1u1w3", "por favor", "lütfen", "ifade", "Un café, por favor.", "Bir kahve, lütfen."),
+                TargetVocabulary("esa1u1w4", "adiós", "hoşça kal", "ifade", "Adiós, hasta mañana.", "Hoşça kal, yarın görüşürüz."),
+                TargetVocabulary("esa1u1w5", "me llamo", "benim adım", "ifade", "Me llamo Mehmet.", "Benim adım Mehmet."))),
             LearningLesson("ES-A1-U1-L2", "Selamlaşma ve Tanışma — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esa1u1e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "¡___! Soy Ana.", "", listOf("por favor", "Hola", "gracias"), listOf("Hola"), "Doğru cümle: ¡Hola! Soy Ana. — Merhaba! Ben Ana.", null, null),
                 LearningExercise("esa1u1e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___, hasta mañana.", "", listOf("Adiós", "me llamo", "hola"), listOf("Adiós"), "Doğru cümle: Adiós, hasta mañana. — Hoşça kal, yarın görüşürüz.", null, null),
@@ -21,7 +26,12 @@ object WorldCourseES {
             LearningLesson("ES-A1-U2-L1", "Sayılar ve Zaman — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esa1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'dos' ne anlama gelir?", "", listOf("yarın", "iki", "on"), listOf("iki"), "Tengo dos hermanos. — İki erkek kardeşim var.", null, null),
                 LearningExercise("esa1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'diez' ne anlama gelir?", "", listOf("on", "bugün", "saat"), listOf("on"), "Son las diez. — Saat on.", null, null),
-                LearningExercise("esa1u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'hoy' ne anlama gelir?", "", listOf("yarın", "iki", "bugün"), listOf("bugün"), "Hoy es lunes. — Bugün pazartesi.", null, null))),
+                LearningExercise("esa1u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'hoy' ne anlama gelir?", "", listOf("yarın", "iki", "bugün"), listOf("bugün"), "Hoy es lunes. — Bugün pazartesi.", null, null)), listOf(
+                TargetVocabulary("esa1u2w1", "dos", "iki", "ifade", "Tengo dos hermanos.", "İki erkek kardeşim var."),
+                TargetVocabulary("esa1u2w2", "diez", "on", "ifade", "Son las diez.", "Saat on."),
+                TargetVocabulary("esa1u2w3", "hoy", "bugün", "ifade", "Hoy es lunes.", "Bugün pazartesi."),
+                TargetVocabulary("esa1u2w4", "mañana", "yarın", "ifade", "¡Hasta mañana!", "Yarın görüşürüz!"),
+                TargetVocabulary("esa1u2w5", "hora", "saat", "ifade", "¿A qué hora empieza?", "Saat kaçta başlıyor?"))),
             LearningLesson("ES-A1-U2-L2", "Sayılar ve Zaman — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esa1u2e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Tengo ___ hermanos.", "", listOf("dos", "diez", "hoy"), listOf("dos"), "Doğru cümle: Tengo dos hermanos. — İki erkek kardeşim var.", null, null),
                 LearningExercise("esa1u2e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "¡Hasta ___!", "", listOf("hora", "dos", "mañana"), listOf("mañana"), "Doğru cümle: ¡Hasta mañana! — Yarın görüşürüz!", null, null),
@@ -35,7 +45,12 @@ object WorldCourseES {
             LearningLesson("ES-A1-U3-L1", "Yiyecek ve İçecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esa1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'agua' ne anlama gelir?", "", listOf("su", "ekmek", "elma"), listOf("su"), "Un agua, por favor. — Bir su, lütfen.", null, null),
                 LearningExercise("esa1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'pan' ne anlama gelir?", "", listOf("kahve", "çay", "ekmek"), listOf("ekmek"), "El pan está fresco. — Ekmek taze.", null, null),
-                LearningExercise("esa1u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'café' ne anlama gelir?", "", listOf("su", "kahve", "elma"), listOf("kahve"), "Bebo un café. — Bir kahve içiyorum.", null, null))),
+                LearningExercise("esa1u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'café' ne anlama gelir?", "", listOf("su", "kahve", "elma"), listOf("kahve"), "Bebo un café. — Bir kahve içiyorum.", null, null)), listOf(
+                TargetVocabulary("esa1u3w1", "agua", "su", "ifade", "Un agua, por favor.", "Bir su, lütfen."),
+                TargetVocabulary("esa1u3w2", "pan", "ekmek", "ifade", "El pan está fresco.", "Ekmek taze."),
+                TargetVocabulary("esa1u3w3", "café", "kahve", "ifade", "Bebo un café.", "Bir kahve içiyorum."),
+                TargetVocabulary("esa1u3w4", "manzana", "elma", "ifade", "La manzana es roja.", "Elma kırmızı."),
+                TargetVocabulary("esa1u3w5", "té", "çay", "ifade", "El té está caliente.", "Çay sıcak."))),
             LearningLesson("ES-A1-U3-L2", "Yiyecek ve İçecek — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esa1u3e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Un ___, por favor.", "", listOf("pan", "café", "agua"), listOf("agua"), "Doğru cümle: Un agua, por favor. — Bir su, lütfen.", null, null),
                 LearningExercise("esa1u3e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "La ___ es roja.", "", listOf("agua", "manzana", "té"), listOf("manzana"), "Doğru cümle: La manzana es roja. — Elma kırmızı.", null, null),
@@ -49,7 +64,12 @@ object WorldCourseES {
             LearningLesson("ES-A1-U4-L1", "Aile ve İnsanlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esa1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'familia' ne anlama gelir?", "", listOf("anne", "erkek kardeş", "aile"), listOf("aile"), "Mi familia es grande. — Ailem kalabalık.", null, null),
                 LearningExercise("esa1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'madre' ne anlama gelir?", "", listOf("arkadaş", "anne", "baba"), listOf("anne"), "Mi madre está en casa. — Annem evde.", null, null),
-                LearningExercise("esa1u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'padre' ne anlama gelir?", "", listOf("baba", "erkek kardeş", "aile"), listOf("baba"), "Mi padre trabaja mucho. — Babam çok çalışır.", null, null))),
+                LearningExercise("esa1u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'padre' ne anlama gelir?", "", listOf("baba", "erkek kardeş", "aile"), listOf("baba"), "Mi padre trabaja mucho. — Babam çok çalışır.", null, null)), listOf(
+                TargetVocabulary("esa1u4w1", "familia", "aile", "ifade", "Mi familia es grande.", "Ailem kalabalık."),
+                TargetVocabulary("esa1u4w2", "madre", "anne", "ifade", "Mi madre está en casa.", "Annem evde."),
+                TargetVocabulary("esa1u4w3", "padre", "baba", "ifade", "Mi padre trabaja mucho.", "Babam çok çalışır."),
+                TargetVocabulary("esa1u4w4", "hermano", "erkek kardeş", "ifade", "Mi hermano es joven.", "Erkek kardeşim genç."),
+                TargetVocabulary("esa1u4w5", "amigo", "arkadaş", "ifade", "Es mi amigo.", "O benim arkadaşım."))),
             LearningLesson("ES-A1-U4-L2", "Aile ve İnsanlar — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esa1u4e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Mi ___ es grande.", "", listOf("padre", "familia", "madre"), listOf("familia"), "Doğru cümle: Mi familia es grande. — Ailem kalabalık.", null, null),
                 LearningExercise("esa1u4e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Mi ___ es joven.", "", listOf("hermano", "amigo", "familia"), listOf("hermano"), "Doğru cümle: Mi hermano es joven. — Erkek kardeşim genç.", null, null),
@@ -63,7 +83,12 @@ object WorldCourseES {
             LearningLesson("ES-A1-U5-L1", "Günlük Yaşam ve Şehir — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esa1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'casa' ne anlama gelir?", "", listOf("mağaza", "ev", "iş"), listOf("ev"), "La casa es vieja. — Ev eski.", null, null),
                 LearningExercise("esa1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'trabajo' ne anlama gelir?", "", listOf("iş", "şehir", "yaşıyorum"), listOf("iş"), "El trabajo empieza a las nueve. — İş dokuzda başlıyor.", null, null),
-                LearningExercise("esa1u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'ciudad' ne anlama gelir?", "", listOf("mağaza", "ev", "şehir"), listOf("şehir"), "La ciudad es bonita. — Şehir güzel.", null, null))),
+                LearningExercise("esa1u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'ciudad' ne anlama gelir?", "", listOf("mağaza", "ev", "şehir"), listOf("şehir"), "La ciudad es bonita. — Şehir güzel.", null, null)), listOf(
+                TargetVocabulary("esa1u5w1", "casa", "ev", "ifade", "La casa es vieja.", "Ev eski."),
+                TargetVocabulary("esa1u5w2", "trabajo", "iş", "ifade", "El trabajo empieza a las nueve.", "İş dokuzda başlıyor."),
+                TargetVocabulary("esa1u5w3", "ciudad", "şehir", "ifade", "La ciudad es bonita.", "Şehir güzel."),
+                TargetVocabulary("esa1u5w4", "tienda", "mağaza", "ifade", "La tienda está abierta.", "Mağaza açık."),
+                TargetVocabulary("esa1u5w5", "vivo", "yaşıyorum", "ifade", "Vivo en Madrid.", "Madrid'de yaşıyorum."))),
             LearningLesson("ES-A1-U5-L2", "Günlük Yaşam ve Şehir — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esa1u5e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "La ___ es vieja.", "", listOf("casa", "trabajo", "ciudad"), listOf("casa"), "Doğru cümle: La casa es vieja. — Ev eski.", null, null),
                 LearningExercise("esa1u5e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "La ___ está abierta.", "", listOf("vivo", "casa", "tienda"), listOf("tienda"), "Doğru cümle: La tienda está abierta. — Mağaza açık.", null, null),
@@ -77,7 +102,12 @@ object WorldCourseES {
             LearningLesson("ES-A1-U6-L1", "Seyahat Temelleri — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esa1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'tren' ne anlama gelir?", "", listOf("tren", "bilet", "sol"), listOf("tren"), "El tren llega a las nueve. — Tren dokuzda geliyor.", null, null),
                 LearningExercise("esa1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'billete' ne anlama gelir?", "", listOf("otel", "havalimanı", "bilet"), listOf("bilet"), "Un billete para Madrid, por favor. — Madrid'e bir bilet, lütfen.", null, null),
-                LearningExercise("esa1u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'hotel' ne anlama gelir?", "", listOf("tren", "otel", "sol"), listOf("otel"), "El hotel está en el centro. — Otel merkezde.", null, null))),
+                LearningExercise("esa1u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'hotel' ne anlama gelir?", "", listOf("tren", "otel", "sol"), listOf("otel"), "El hotel está en el centro. — Otel merkezde.", null, null)), listOf(
+                TargetVocabulary("esa1u6w1", "tren", "tren", "ifade", "El tren llega a las nueve.", "Tren dokuzda geliyor."),
+                TargetVocabulary("esa1u6w2", "billete", "bilet", "ifade", "Un billete para Madrid, por favor.", "Madrid'e bir bilet, lütfen."),
+                TargetVocabulary("esa1u6w3", "hotel", "otel", "ifade", "El hotel está en el centro.", "Otel merkezde."),
+                TargetVocabulary("esa1u6w4", "izquierda", "sol", "ifade", "Gire a la izquierda.", "Sola dönün."),
+                TargetVocabulary("esa1u6w5", "aeropuerto", "havalimanı", "ifade", "El aeropuerto está lejos.", "Havalimanı uzak."))),
             LearningLesson("ES-A1-U6-L2", "Seyahat Temelleri — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esa1u6e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "El ___ llega a las nueve.", "", listOf("billete", "hotel", "tren"), listOf("tren"), "Doğru cümle: El tren llega a las nueve. — Tren dokuzda geliyor.", null, null),
                 LearningExercise("esa1u6e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Gire a la ___.", "", listOf("tren", "izquierda", "aeropuerto"), listOf("izquierda"), "Doğru cümle: Gire a la izquierda. — Sola dönün.", null, null),
@@ -91,7 +121,12 @@ object WorldCourseES {
             LearningLesson("ES-A2-U1-L1", "Geçmişten Bahsetmek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esa2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'ayer' ne anlama gelir?", "", listOf("geçen hafta", "gördüm", "dün"), listOf("dün"), "Ayer trabajé mucho. — Dün çok çalıştım.", null, null),
                 LearningExercise("esa2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'la semana pasada' ne anlama gelir?", "", listOf("yolculuk", "geçen hafta", "satın aldım"), listOf("geçen hafta"), "La semana pasada estuve enfermo. — Geçen hafta hastaydım.", null, null),
-                LearningExercise("esa2u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'compré' ne anlama gelir?", "", listOf("satın aldım", "gördüm", "dün"), listOf("satın aldım"), "Compré pan en el mercado. — Pazardan ekmek aldım.", null, null))),
+                LearningExercise("esa2u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'compré' ne anlama gelir?", "", listOf("satın aldım", "gördüm", "dün"), listOf("satın aldım"), "Compré pan en el mercado. — Pazardan ekmek aldım.", null, null)), listOf(
+                TargetVocabulary("esa2u1w1", "ayer", "dün", "ifade", "Ayer trabajé mucho.", "Dün çok çalıştım."),
+                TargetVocabulary("esa2u1w2", "la semana pasada", "geçen hafta", "ifade", "La semana pasada estuve enfermo.", "Geçen hafta hastaydım."),
+                TargetVocabulary("esa2u1w3", "compré", "satın aldım", "ifade", "Compré pan en el mercado.", "Pazardan ekmek aldım."),
+                TargetVocabulary("esa2u1w4", "vi", "gördüm", "ifade", "Vi esa película.", "O filmi gördüm."),
+                TargetVocabulary("esa2u1w5", "el viaje", "yolculuk", "ifade", "El viaje fue maravilloso.", "Yolculuk harikaydı."))),
             LearningLesson("ES-A2-U1-L2", "Geçmişten Bahsetmek — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esa2u1e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ trabajé mucho.", "", listOf("compré", "Ayer", "la semana pasada"), listOf("Ayer"), "Doğru cümle: Ayer trabajé mucho. — Dün çok çalıştım.", null, null),
                 LearningExercise("esa2u1e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ esa película.", "", listOf("Vi", "el viaje", "ayer"), listOf("Vi"), "Doğru cümle: Vi esa película. — O filmi gördüm.", null, null),
@@ -105,7 +140,12 @@ object WorldCourseES {
             LearningLesson("ES-A2-U2-L1", "Alışveriş ve Para — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esa2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'el dinero' ne anlama gelir?", "", listOf("fiyatı olmak", "para", "pahalı"), listOf("para"), "No tengo suficiente dinero. — Yeterli param yok.", null, null),
                 LearningExercise("esa2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'caro' ne anlama gelir?", "", listOf("pahalı", "ucuz", "ödemek"), listOf("pahalı"), "Este abrigo es muy caro. — Bu palto çok pahalı.", null, null),
-                LearningExercise("esa2u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'barato' ne anlama gelir?", "", listOf("fiyatı olmak", "para", "ucuz"), listOf("ucuz"), "El pan es barato. — Ekmek ucuz.", null, null))),
+                LearningExercise("esa2u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'barato' ne anlama gelir?", "", listOf("fiyatı olmak", "para", "ucuz"), listOf("ucuz"), "El pan es barato. — Ekmek ucuz.", null, null)), listOf(
+                TargetVocabulary("esa2u2w1", "el dinero", "para", "ifade", "No tengo suficiente dinero.", "Yeterli param yok."),
+                TargetVocabulary("esa2u2w2", "caro", "pahalı", "ifade", "Este abrigo es muy caro.", "Bu palto çok pahalı."),
+                TargetVocabulary("esa2u2w3", "barato", "ucuz", "ifade", "El pan es barato.", "Ekmek ucuz."),
+                TargetVocabulary("esa2u2w4", "costar", "fiyatı olmak", "ifade", "Esto puede costar veinte euros.", "Bu yirmi avro tutabilir."),
+                TargetVocabulary("esa2u2w5", "pagar", "ödemek", "ifade", "¿Puedo pagar con tarjeta?", "Kartla ödeyebilir miyim?"))),
             LearningLesson("ES-A2-U2-L2", "Alışveriş ve Para — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esa2u2e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "No tengo suficiente ___.", "", listOf("dinero", "caro", "barato"), listOf("dinero"), "Doğru cümle: No tengo suficiente dinero. — Yeterli param yok.", null, null),
                 LearningExercise("esa2u2e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Esto puede ___ veinte euros.", "", listOf("pagar", "el dinero", "costar"), listOf("costar"), "Doğru cümle: Esto puede costar veinte euros. — Bu yirmi avro tutabilir.", null, null),
@@ -119,7 +159,12 @@ object WorldCourseES {
             LearningLesson("ES-A2-U3-L1", "Sağlık ve Vücut — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esa2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'enfermo' ne anlama gelir?", "", listOf("hasta", "doktor", "eczane"), listOf("hasta"), "Hoy estoy enfermo. — Bugün hastayım.", null, null),
                 LearningExercise("esa2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'el médico' ne anlama gelir?", "", listOf("baş", "randevu", "doktor"), listOf("doktor"), "El médico llega a las diez. — Doktor saat onda geliyor.", null, null),
-                LearningExercise("esa2u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la cabeza' ne anlama gelir?", "", listOf("hasta", "baş", "eczane"), listOf("baş"), "Me duele la cabeza. — Başım ağrıyor.", null, null))),
+                LearningExercise("esa2u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la cabeza' ne anlama gelir?", "", listOf("hasta", "baş", "eczane"), listOf("baş"), "Me duele la cabeza. — Başım ağrıyor.", null, null)), listOf(
+                TargetVocabulary("esa2u3w1", "enfermo", "hasta", "ifade", "Hoy estoy enfermo.", "Bugün hastayım."),
+                TargetVocabulary("esa2u3w2", "el médico", "doktor", "ifade", "El médico llega a las diez.", "Doktor saat onda geliyor."),
+                TargetVocabulary("esa2u3w3", "la cabeza", "baş", "ifade", "Me duele la cabeza.", "Başım ağrıyor."),
+                TargetVocabulary("esa2u3w4", "la farmacia", "eczane", "ifade", "La farmacia está cerrada.", "Eczane kapalı."),
+                TargetVocabulary("esa2u3w5", "la cita", "randevu", "ifade", "Tengo una cita mañana.", "Yarın bir randevum var."))),
             LearningLesson("ES-A2-U3-L2", "Sağlık ve Vücut — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esa2u3e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Hoy estoy ___.", "", listOf("el médico", "la cabeza", "enfermo"), listOf("enfermo"), "Doğru cümle: Hoy estoy enfermo. — Bugün hastayım.", null, null),
                 LearningExercise("esa2u3e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ está cerrada.", "", listOf("enfermo", "La farmacia", "la cita"), listOf("La farmacia"), "Doğru cümle: La farmacia está cerrada. — Eczane kapalı.", null, null),
@@ -133,7 +178,12 @@ object WorldCourseES {
             LearningLesson("ES-A2-U4-L1", "Hava Durumu ve Doğa — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esa2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'el tiempo' ne anlama gelir?", "", listOf("yağmur yağmak", "soğuk", "hava"), listOf("hava"), "¿Qué tiempo hace hoy? — Bugün hava nasıl?", null, null),
                 LearningExercise("esa2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'llover' ne anlama gelir?", "", listOf("sıcak", "yağmur yağmak", "güneş"), listOf("yağmur yağmak"), "Va a llover mañana. — Yarın yağmur yağacak.", null, null),
-                LearningExercise("esa2u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el sol' ne anlama gelir?", "", listOf("güneş", "soğuk", "hava"), listOf("güneş"), "El sol brilla. — Güneş parlıyor.", null, null))),
+                LearningExercise("esa2u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el sol' ne anlama gelir?", "", listOf("güneş", "soğuk", "hava"), listOf("güneş"), "El sol brilla. — Güneş parlıyor.", null, null)), listOf(
+                TargetVocabulary("esa2u4w1", "el tiempo", "hava", "ifade", "¿Qué tiempo hace hoy?", "Bugün hava nasıl?"),
+                TargetVocabulary("esa2u4w2", "llover", "yağmur yağmak", "ifade", "Va a llover mañana.", "Yarın yağmur yağacak."),
+                TargetVocabulary("esa2u4w3", "el sol", "güneş", "ifade", "El sol brilla.", "Güneş parlıyor."),
+                TargetVocabulary("esa2u4w4", "frío", "soğuk", "ifade", "Hace frío en invierno.", "Kışın hava soğuk olur."),
+                TargetVocabulary("esa2u4w5", "el calor", "sıcak", "ifade", "El calor es fuerte en agosto.", "Ağustosta sıcak bastırır."))),
             LearningLesson("ES-A2-U4-L2", "Hava Durumu ve Doğa — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esa2u4e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "¿Qué ___ hace hoy?", "", listOf("el sol", "tiempo", "llover"), listOf("tiempo"), "Doğru cümle: ¿Qué tiempo hace hoy? — Bugün hava nasıl?", null, null),
                 LearningExercise("esa2u4e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Hace ___ en invierno.", "", listOf("frío", "el calor", "el tiempo"), listOf("frío"), "Doğru cümle: Hace frío en invierno. — Kışın hava soğuk olur.", null, null),
@@ -147,7 +197,12 @@ object WorldCourseES {
             LearningLesson("ES-A2-U5-L1", "İş ve Okul — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esa2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la oficina' ne anlama gelir?", "", listOf("öğretmen", "ofis", "öğrenmek"), listOf("ofis"), "La oficina está en el centro. — Ofis merkezde.", null, null),
                 LearningExercise("esa2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'aprender' ne anlama gelir?", "", listOf("öğrenmek", "sınav", "toplantı"), listOf("öğrenmek"), "Queremos aprender español. — İspanyolca öğrenmek istiyoruz.", null, null),
-                LearningExercise("esa2u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el examen' ne anlama gelir?", "", listOf("öğretmen", "ofis", "sınav"), listOf("sınav"), "El examen es el viernes. — Sınav cuma günü.", null, null))),
+                LearningExercise("esa2u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el examen' ne anlama gelir?", "", listOf("öğretmen", "ofis", "sınav"), listOf("sınav"), "El examen es el viernes. — Sınav cuma günü.", null, null)), listOf(
+                TargetVocabulary("esa2u5w1", "la oficina", "ofis", "ifade", "La oficina está en el centro.", "Ofis merkezde."),
+                TargetVocabulary("esa2u5w2", "aprender", "öğrenmek", "ifade", "Queremos aprender español.", "İspanyolca öğrenmek istiyoruz."),
+                TargetVocabulary("esa2u5w3", "el examen", "sınav", "ifade", "El examen es el viernes.", "Sınav cuma günü."),
+                TargetVocabulary("esa2u5w4", "el profesor", "öğretmen", "ifade", "El profesor explica todo.", "Öğretmen her şeyi açıklıyor."),
+                TargetVocabulary("esa2u5w5", "la reunión", "toplantı", "ifade", "La reunión empieza a las nueve.", "Toplantı dokuzda başlıyor."))),
             LearningLesson("ES-A2-U5-L2", "İş ve Okul — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esa2u5e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ está en el centro.", "", listOf("La oficina", "aprender", "el examen"), listOf("La oficina"), "Doğru cümle: La oficina está en el centro. — Ofis merkezde.", null, null),
                 LearningExercise("esa2u5e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ explica todo.", "", listOf("la reunión", "la oficina", "El profesor"), listOf("El profesor"), "Doğru cümle: El profesor explica todo. — Öğretmen her şeyi açıklıyor.", null, null),
@@ -161,7 +216,12 @@ object WorldCourseES {
             LearningLesson("ES-A2-U6-L1", "Planlar ve Gelecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esa2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'mañana' ne anlama gelir?", "", listOf("yarın", "hafta sonu", "seyahat etmek"), listOf("yarın"), "Mañana salgo para Madrid. — Yarın Madrid'e gidiyorum.", null, null),
                 LearningExercise("esa2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'el fin de semana' ne anlama gelir?", "", listOf("plan", "tatil", "hafta sonu"), listOf("hafta sonu"), "El fin de semana descanso. — Hafta sonu dinlenirim.", null, null),
-                LearningExercise("esa2u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el plan' ne anlama gelir?", "", listOf("yarın", "plan", "seyahat etmek"), listOf("plan"), "Tengo un plan para el verano. — Yaz için bir planım var.", null, null))),
+                LearningExercise("esa2u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el plan' ne anlama gelir?", "", listOf("yarın", "plan", "seyahat etmek"), listOf("plan"), "Tengo un plan para el verano. — Yaz için bir planım var.", null, null)), listOf(
+                TargetVocabulary("esa2u6w1", "mañana", "yarın", "ifade", "Mañana salgo para Madrid.", "Yarın Madrid'e gidiyorum."),
+                TargetVocabulary("esa2u6w2", "el fin de semana", "hafta sonu", "ifade", "El fin de semana descanso.", "Hafta sonu dinlenirim."),
+                TargetVocabulary("esa2u6w3", "el plan", "plan", "ifade", "Tengo un plan para el verano.", "Yaz için bir planım var."),
+                TargetVocabulary("esa2u6w4", "viajar", "seyahat etmek", "ifade", "Me encanta viajar.", "Seyahat etmeyi çok severim."),
+                TargetVocabulary("esa2u6w5", "las vacaciones", "tatil", "ifade", "Las vacaciones empiezan pronto.", "Tatil yakında başlıyor."))),
             LearningLesson("ES-A2-U6-L2", "Planlar ve Gelecek — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esa2u6e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ salgo para Madrid.", "", listOf("el fin de semana", "el plan", "Mañana"), listOf("Mañana"), "Doğru cümle: Mañana salgo para Madrid. — Yarın Madrid'e gidiyorum.", null, null),
                 LearningExercise("esa2u6e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Me encanta ___.", "", listOf("mañana", "viajar", "las vacaciones"), listOf("viajar"), "Doğru cümle: Me encanta viajar. — Seyahat etmeyi çok severim.", null, null),
@@ -175,7 +235,12 @@ object WorldCourseES {
             LearningLesson("ES-B1-U1-L1", "Deneyimler ve Anılar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esb1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la experiencia' ne anlama gelir?", "", listOf("hatırlamak", "o dönemde", "deneyim"), listOf("deneyim"), "Esa experiencia me cambió. — O deneyim beni değiştirdi.", null, null),
                 LearningExercise("esb1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'recordar' ne anlama gelir?", "", listOf("anı", "hatırlamak", "çocukluk"), listOf("hatırlamak"), "Quiero recordar este momento. — Bu anı hatırlamak istiyorum.", null, null),
-                LearningExercise("esb1u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la infancia' ne anlama gelir?", "", listOf("çocukluk", "o dönemde", "deneyim"), listOf("çocukluk"), "Mi infancia fue feliz. — Çocukluğum mutluydu.", null, null))),
+                LearningExercise("esb1u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la infancia' ne anlama gelir?", "", listOf("çocukluk", "o dönemde", "deneyim"), listOf("çocukluk"), "Mi infancia fue feliz. — Çocukluğum mutluydu.", null, null)), listOf(
+                TargetVocabulary("esb1u1w1", "la experiencia", "deneyim", "ifade", "Esa experiencia me cambió.", "O deneyim beni değiştirdi."),
+                TargetVocabulary("esb1u1w2", "recordar", "hatırlamak", "ifade", "Quiero recordar este momento.", "Bu anı hatırlamak istiyorum."),
+                TargetVocabulary("esb1u1w3", "la infancia", "çocukluk", "ifade", "Mi infancia fue feliz.", "Çocukluğum mutluydu."),
+                TargetVocabulary("esb1u1w4", "en aquella época", "o dönemde", "ifade", "En aquella época vivíamos en el campo.", "O dönemde kırsalda yaşıyorduk."),
+                TargetVocabulary("esb1u1w5", "el recuerdo", "anı", "ifade", "Ese recuerdo es muy valioso.", "O anı çok değerli."))),
             LearningLesson("ES-B1-U1-L2", "Deneyimler ve Anılar — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esb1u1e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Esa ___ me cambió.", "", listOf("la infancia", "experiencia", "recordar"), listOf("experiencia"), "Doğru cümle: Esa experiencia me cambió. — O deneyim beni değiştirdi.", null, null),
                 LearningExercise("esb1u1e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ vivíamos en el campo.", "", listOf("En aquella época", "el recuerdo", "la experiencia"), listOf("En aquella época"), "Doğru cümle: En aquella época vivíamos en el campo. — O dönemde kırsalda yaşıyorduk.", null, null),
@@ -189,7 +254,12 @@ object WorldCourseES {
             LearningLesson("ES-B1-U2-L1", "Medya ve Teknoloji — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esb1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'las noticias' ne anlama gelir?", "", listOf("bağlantı", "haberler", "cihaz"), listOf("haberler"), "Veo las noticias por la noche. — Akşamları haberleri izlerim.", null, null),
                 LearningExercise("esb1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'el dispositivo' ne anlama gelir?", "", listOf("cihaz", "indirmek", "ekran"), listOf("cihaz"), "El dispositivo es nuevo. — Cihaz yeni.", null, null),
-                LearningExercise("esb1u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'descargar' ne anlama gelir?", "", listOf("bağlantı", "haberler", "indirmek"), listOf("indirmek"), "Puedes descargar la aplicación. — Uygulamayı indirebilirsin.", null, null))),
+                LearningExercise("esb1u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'descargar' ne anlama gelir?", "", listOf("bağlantı", "haberler", "indirmek"), listOf("indirmek"), "Puedes descargar la aplicación. — Uygulamayı indirebilirsin.", null, null)), listOf(
+                TargetVocabulary("esb1u2w1", "las noticias", "haberler", "ifade", "Veo las noticias por la noche.", "Akşamları haberleri izlerim."),
+                TargetVocabulary("esb1u2w2", "el dispositivo", "cihaz", "ifade", "El dispositivo es nuevo.", "Cihaz yeni."),
+                TargetVocabulary("esb1u2w3", "descargar", "indirmek", "ifade", "Puedes descargar la aplicación.", "Uygulamayı indirebilirsin."),
+                TargetVocabulary("esb1u2w4", "la conexión", "bağlantı", "ifade", "La conexión es lenta.", "Bağlantı yavaş."),
+                TargetVocabulary("esb1u2w5", "la pantalla", "ekran", "ifade", "La pantalla brilla demasiado.", "Ekran fazla parlıyor."))),
             LearningLesson("ES-B1-U2-L2", "Medya ve Teknoloji — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esb1u2e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Veo ___ por la noche.", "", listOf("las noticias", "el dispositivo", "descargar"), listOf("las noticias"), "Doğru cümle: Veo las noticias por la noche. — Akşamları haberleri izlerim.", null, null),
                 LearningExercise("esb1u2e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ es lenta.", "", listOf("la pantalla", "las noticias", "La conexión"), listOf("La conexión"), "Doğru cümle: La conexión es lenta. — Bağlantı yavaş.", null, null),
@@ -203,7 +273,12 @@ object WorldCourseES {
             LearningLesson("ES-B1-U3-L1", "Duygular ve İlişkiler — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esb1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la amistad' ne anlama gelir?", "", listOf("arkadaşlık", "güven", "tartışmak"), listOf("arkadaşlık"), "Nuestra amistad es fuerte. — Arkadaşlığımız güçlü.", null, null),
                 LearningExercise("esb1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'la confianza' ne anlama gelir?", "", listOf("hayal kırıklığına uğramış", "duygu", "güven"), listOf("güven"), "La confianza se gana despacio. — Güven yavaş kazanılır.", null, null),
-                LearningExercise("esb1u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'decepcionado' ne anlama gelir?", "", listOf("arkadaşlık", "hayal kırıklığına uğramış", "tartışmak"), listOf("hayal kırıklığına uğramış"), "Estoy decepcionado con el resultado. — Sonuçtan hayal kırıklığına uğradım.", null, null))),
+                LearningExercise("esb1u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'decepcionado' ne anlama gelir?", "", listOf("arkadaşlık", "hayal kırıklığına uğramış", "tartışmak"), listOf("hayal kırıklığına uğramış"), "Estoy decepcionado con el resultado. — Sonuçtan hayal kırıklığına uğradım.", null, null)), listOf(
+                TargetVocabulary("esb1u3w1", "la amistad", "arkadaşlık", "ifade", "Nuestra amistad es fuerte.", "Arkadaşlığımız güçlü."),
+                TargetVocabulary("esb1u3w2", "la confianza", "güven", "ifade", "La confianza se gana despacio.", "Güven yavaş kazanılır."),
+                TargetVocabulary("esb1u3w3", "decepcionado", "hayal kırıklığına uğramış", "ifade", "Estoy decepcionado con el resultado.", "Sonuçtan hayal kırıklığına uğradım."),
+                TargetVocabulary("esb1u3w4", "discutir", "tartışmak", "ifade", "Discutimos muy pocas veces.", "Çok nadir tartışırız."),
+                TargetVocabulary("esb1u3w5", "el sentimiento", "duygu", "ifade", "Es un sentimiento extraño.", "Bu tuhaf bir duygu."))),
             LearningLesson("ES-B1-U3-L2", "Duygular ve İlişkiler — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esb1u3e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Nuestra ___ es fuerte.", "", listOf("la confianza", "decepcionado", "amistad"), listOf("amistad"), "Doğru cümle: Nuestra amistad es fuerte. — Arkadaşlığımız güçlü.", null, null),
                 LearningExercise("esb1u3e5", Skill.VOCABULARY, "Doğru anlamı seç", "'discutir' ne anlama gelir?", "", listOf("arkadaşlık", "hayal kırıklığına uğramış", "tartışmak"), listOf("tartışmak"), "Discutimos muy pocas veces. — Çok nadir tartışırız.", null, null),
@@ -217,7 +292,12 @@ object WorldCourseES {
             LearningLesson("ES-B1-U4-L1", "Kültür ve Gelenekler — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esb1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la costumbre' ne anlama gelir?", "", listOf("bayram/şenlik", "gelenek", "âdet"), listOf("âdet"), "Esta costumbre es muy antigua. — Bu âdet çok eski.", null, null),
                 LearningExercise("esb1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'la fiesta' ne anlama gelir?", "", listOf("toplum", "bayram/şenlik", "kutlamak"), listOf("bayram/şenlik"), "La fiesta dura tres días. — Şenlik üç gün sürüyor.", null, null),
-                LearningExercise("esb1u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'celebrar' ne anlama gelir?", "", listOf("kutlamak", "gelenek", "âdet"), listOf("kutlamak"), "Vamos a celebrar juntos. — Birlikte kutlayacağız.", null, null))),
+                LearningExercise("esb1u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'celebrar' ne anlama gelir?", "", listOf("kutlamak", "gelenek", "âdet"), listOf("kutlamak"), "Vamos a celebrar juntos. — Birlikte kutlayacağız.", null, null)), listOf(
+                TargetVocabulary("esb1u4w1", "la costumbre", "âdet", "ifade", "Esta costumbre es muy antigua.", "Bu âdet çok eski."),
+                TargetVocabulary("esb1u4w2", "la fiesta", "bayram/şenlik", "ifade", "La fiesta dura tres días.", "Şenlik üç gün sürüyor."),
+                TargetVocabulary("esb1u4w3", "celebrar", "kutlamak", "ifade", "Vamos a celebrar juntos.", "Birlikte kutlayacağız."),
+                TargetVocabulary("esb1u4w4", "la tradición", "gelenek", "ifade", "La tradición sigue viva.", "Gelenek yaşamaya devam ediyor."),
+                TargetVocabulary("esb1u4w5", "la sociedad", "toplum", "ifade", "La sociedad cambia rápido.", "Toplum hızla değişiyor."))),
             LearningLesson("ES-B1-U4-L2", "Kültür ve Gelenekler — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esb1u4e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Esta ___ es muy antigua.", "", listOf("celebrar", "costumbre", "la fiesta"), listOf("costumbre"), "Doğru cümle: Esta costumbre es muy antigua. — Bu âdet çok eski.", null, null),
                 LearningExercise("esb1u4e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ sigue viva.", "", listOf("La tradición", "la sociedad", "la costumbre"), listOf("La tradición"), "Doğru cümle: La tradición sigue viva. — Gelenek yaşamaya devam ediyor.", null, null),
@@ -231,7 +311,12 @@ object WorldCourseES {
             LearningLesson("ES-B1-U5-L1", "Spor ve Sağlıklı Yaşam — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esb1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la salud' ne anlama gelir?", "", listOf("antrenman yapmak", "sağlık", "hareket etmek"), listOf("sağlık"), "La salud es lo primero. — Sağlık her şeyden önce gelir.", null, null),
                 LearningExercise("esb1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'moverse' ne anlama gelir?", "", listOf("hareket etmek", "beslenme", "kaçınmak"), listOf("hareket etmek"), "Hay que moverse cada día. — Her gün hareket etmek gerekir.", null, null),
-                LearningExercise("esb1u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la alimentación' ne anlama gelir?", "", listOf("antrenman yapmak", "sağlık", "beslenme"), listOf("beslenme"), "Una buena alimentación es clave. — İyi beslenme kilittir.", null, null))),
+                LearningExercise("esb1u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la alimentación' ne anlama gelir?", "", listOf("antrenman yapmak", "sağlık", "beslenme"), listOf("beslenme"), "Una buena alimentación es clave. — İyi beslenme kilittir.", null, null)), listOf(
+                TargetVocabulary("esb1u5w1", "la salud", "sağlık", "ifade", "La salud es lo primero.", "Sağlık her şeyden önce gelir."),
+                TargetVocabulary("esb1u5w2", "moverse", "hareket etmek", "ifade", "Hay que moverse cada día.", "Her gün hareket etmek gerekir."),
+                TargetVocabulary("esb1u5w3", "la alimentación", "beslenme", "ifade", "Una buena alimentación es clave.", "İyi beslenme kilittir."),
+                TargetVocabulary("esb1u5w4", "entrenar", "antrenman yapmak", "ifade", "Entreno tres veces por semana.", "Haftada üç kez antrenman yaparım."),
+                TargetVocabulary("esb1u5w5", "evitar", "kaçınmak", "ifade", "Hay que evitar el azúcar.", "Şekerden kaçınmak gerekir."))),
             LearningLesson("ES-B1-U5-L2", "Spor ve Sağlıklı Yaşam — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esb1u5e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ es lo primero.", "", listOf("La salud", "moverse", "la alimentación"), listOf("La salud"), "Doğru cümle: La salud es lo primero. — Sağlık her şeyden önce gelir.", null, null),
                 LearningExercise("esb1u5e5", Skill.VOCABULARY, "Doğru anlamı seç", "'entrenar' ne anlama gelir?", "", listOf("antrenman yapmak", "sağlık", "beslenme"), listOf("antrenman yapmak"), "Entreno tres veces por semana. — Haftada üç kez antrenman yaparım.", null, null),
@@ -245,7 +330,12 @@ object WorldCourseES {
             LearningLesson("ES-B1-U6-L1", "Görüş Bildirmek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esb1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la opinión' ne anlama gelir?", "", listOf("görüş", "hemfikir olmak", "sebep"), listOf("görüş"), "En mi opinión, es verdad. — Bence bu doğru.", null, null),
                 LearningExercise("esb1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'estar de acuerdo' ne anlama gelir?", "", listOf("karşı", "ikna etmek", "hemfikir olmak"), listOf("hemfikir olmak"), "Estoy de acuerdo contigo. — Seninle hemfikirim.", null, null),
-                LearningExercise("esb1u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'en contra' ne anlama gelir?", "", listOf("görüş", "karşı", "sebep"), listOf("karşı"), "Estoy en contra de esa idea. — O fikre karşıyım.", null, null))),
+                LearningExercise("esb1u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'en contra' ne anlama gelir?", "", listOf("görüş", "karşı", "sebep"), listOf("karşı"), "Estoy en contra de esa idea. — O fikre karşıyım.", null, null)), listOf(
+                TargetVocabulary("esb1u6w1", "la opinión", "görüş", "ifade", "En mi opinión, es verdad.", "Bence bu doğru."),
+                TargetVocabulary("esb1u6w2", "estar de acuerdo", "hemfikir olmak", "ifade", "Estoy de acuerdo contigo.", "Seninle hemfikirim."),
+                TargetVocabulary("esb1u6w3", "en contra", "karşı", "ifade", "Estoy en contra de esa idea.", "O fikre karşıyım."),
+                TargetVocabulary("esb1u6w4", "la razón", "sebep", "ifade", "Hay una buena razón.", "İyi bir sebep var."),
+                TargetVocabulary("esb1u6w5", "convencer", "ikna etmek", "ifade", "No puedes convencerme.", "Beni ikna edemezsin."))),
             LearningLesson("ES-B1-U6-L2", "Görüş Bildirmek — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esb1u6e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "En mi ___, es verdad.", "", listOf("estar de acuerdo", "en contra", "opinión"), listOf("opinión"), "Doğru cümle: En mi opinión, es verdad. — Bence bu doğru.", null, null),
                 LearningExercise("esb1u6e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Hay una buena ___.", "", listOf("la opinión", "razón", "convencer"), listOf("razón"), "Doğru cümle: Hay una buena razón. — İyi bir sebep var.", null, null),
@@ -259,7 +349,12 @@ object WorldCourseES {
             LearningLesson("ES-B2-U1-L1", "Kariyer ve İş Dünyası — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esb2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la candidatura' ne anlama gelir?", "", listOf("mülakat", "işe almak", "başvuru"), listOf("başvuru"), "Mi candidatura fue aceptada. — Başvurum kabul edildi.", null, null),
                 LearningExercise("esb2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'la entrevista' ne anlama gelir?", "", listOf("sorumluluk", "mülakat", "özgeçmiş"), listOf("mülakat"), "La entrevista salió bien. — Mülakat iyi geçti.", null, null),
-                LearningExercise("esb2u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el currículum' ne anlama gelir?", "", listOf("özgeçmiş", "işe almak", "başvuru"), listOf("özgeçmiş"), "El currículum está actualizado. — Özgeçmiş güncel.", null, null))),
+                LearningExercise("esb2u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el currículum' ne anlama gelir?", "", listOf("özgeçmiş", "işe almak", "başvuru"), listOf("özgeçmiş"), "El currículum está actualizado. — Özgeçmiş güncel.", null, null)), listOf(
+                TargetVocabulary("esb2u1w1", "la candidatura", "başvuru", "ifade", "Mi candidatura fue aceptada.", "Başvurum kabul edildi."),
+                TargetVocabulary("esb2u1w2", "la entrevista", "mülakat", "ifade", "La entrevista salió bien.", "Mülakat iyi geçti."),
+                TargetVocabulary("esb2u1w3", "el currículum", "özgeçmiş", "ifade", "El currículum está actualizado.", "Özgeçmiş güncel."),
+                TargetVocabulary("esb2u1w4", "contratar", "işe almak", "ifade", "La empresa quiere contratar a diez personas.", "Şirket on kişi işe almak istiyor."),
+                TargetVocabulary("esb2u1w5", "la responsabilidad", "sorumluluk", "ifade", "Asumo la responsabilidad.", "Sorumluluğu üstleniyorum."))),
             LearningLesson("ES-B2-U1-L2", "Kariyer ve İş Dünyası — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esb2u1e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Mi ___ fue aceptada.", "", listOf("el currículum", "candidatura", "la entrevista"), listOf("candidatura"), "Doğru cümle: Mi candidatura fue aceptada. — Başvurum kabul edildi.", null, null),
                 LearningExercise("esb2u1e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "La empresa quiere ___ a diez personas.", "", listOf("contratar", "la responsabilidad", "la candidatura"), listOf("contratar"), "Doğru cümle: La empresa quiere contratar a diez personas. — Şirket on kişi işe almak istiyor.", null, null),
@@ -273,7 +368,12 @@ object WorldCourseES {
             LearningLesson("ES-B2-U2-L1", "Çevre ve Sürdürülebilirlik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esb2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'el medio ambiente' ne anlama gelir?", "", listOf("atıklar", "çevre", "ısınma (küresel)"), listOf("çevre"), "Hay que proteger el medio ambiente. — Çevreyi korumak gerekir.", null, null),
                 LearningExercise("esb2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'el calentamiento' ne anlama gelir?", "", listOf("ısınma (küresel)", "sürdürülebilir", "yenilenebilir"), listOf("ısınma (küresel)"), "El calentamiento global se acelera. — Küresel ısınma hızlanıyor.", null, null),
-                LearningExercise("esb2u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'sostenible' ne anlama gelir?", "", listOf("atıklar", "çevre", "sürdürülebilir"), listOf("sürdürülebilir"), "Buscamos soluciones sostenibles. — Sürdürülebilir çözümler arıyoruz.", null, null))),
+                LearningExercise("esb2u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'sostenible' ne anlama gelir?", "", listOf("atıklar", "çevre", "sürdürülebilir"), listOf("sürdürülebilir"), "Buscamos soluciones sostenibles. — Sürdürülebilir çözümler arıyoruz.", null, null)), listOf(
+                TargetVocabulary("esb2u2w1", "el medio ambiente", "çevre", "ifade", "Hay que proteger el medio ambiente.", "Çevreyi korumak gerekir."),
+                TargetVocabulary("esb2u2w2", "el calentamiento", "ısınma (küresel)", "ifade", "El calentamiento global se acelera.", "Küresel ısınma hızlanıyor."),
+                TargetVocabulary("esb2u2w3", "sostenible", "sürdürülebilir", "ifade", "Buscamos soluciones sostenibles.", "Sürdürülebilir çözümler arıyoruz."),
+                TargetVocabulary("esb2u2w4", "los residuos", "atıklar", "ifade", "Los residuos se reciclan.", "Atıklar geri dönüştürülüyor."),
+                TargetVocabulary("esb2u2w5", "renovable", "yenilenebilir", "ifade", "La energía renovable es el futuro.", "Yenilenebilir enerji gelecektir."))),
             LearningLesson("ES-B2-U2-L2", "Çevre ve Sürdürülebilirlik — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esb2u2e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Hay que proteger ___.", "", listOf("el medio ambiente", "el calentamiento", "sostenible"), listOf("el medio ambiente"), "Doğru cümle: Hay que proteger el medio ambiente. — Çevreyi korumak gerekir.", null, null),
                 LearningExercise("esb2u2e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ se reciclan.", "", listOf("renovable", "el medio ambiente", "Los residuos"), listOf("Los residuos"), "Doğru cümle: Los residuos se reciclan. — Atıklar geri dönüştürülüyor.", null, null),
@@ -287,7 +387,12 @@ object WorldCourseES {
             LearningLesson("ES-B2-U3-L1", "Bilim ve Yenilik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esb2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la investigación' ne anlama gelir?", "", listOf("araştırma", "keşif", "kanıtlamak"), listOf("araştırma"), "La investigación avanza rápido. — Araştırma hızla ilerliyor.", null, null),
                 LearningExercise("esb2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'el descubrimiento' ne anlama gelir?", "", listOf("ilerleme", "sonuç", "keşif"), listOf("keşif"), "Fue un descubrimiento clave. — Kilit bir keşifti.", null, null),
-                LearningExercise("esb2u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el avance' ne anlama gelir?", "", listOf("araştırma", "ilerleme", "kanıtlamak"), listOf("ilerleme"), "El avance es evidente. — İlerleme ortada.", null, null))),
+                LearningExercise("esb2u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el avance' ne anlama gelir?", "", listOf("araştırma", "ilerleme", "kanıtlamak"), listOf("ilerleme"), "El avance es evidente. — İlerleme ortada.", null, null)), listOf(
+                TargetVocabulary("esb2u3w1", "la investigación", "araştırma", "ifade", "La investigación avanza rápido.", "Araştırma hızla ilerliyor."),
+                TargetVocabulary("esb2u3w2", "el descubrimiento", "keşif", "ifade", "Fue un descubrimiento clave.", "Kilit bir keşifti."),
+                TargetVocabulary("esb2u3w3", "el avance", "ilerleme", "ifade", "El avance es evidente.", "İlerleme ortada."),
+                TargetVocabulary("esb2u3w4", "demostrar", "kanıtlamak", "ifade", "Los datos lo demuestran.", "Veriler bunu kanıtlıyor."),
+                TargetVocabulary("esb2u3w5", "el resultado", "sonuç", "ifade", "El resultado nos sorprende.", "Sonuç bizi şaşırtıyor."))),
             LearningLesson("ES-B2-U3-L2", "Bilim ve Yenilik — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esb2u3e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ avanza rápido.", "", listOf("el descubrimiento", "el avance", "La investigación"), listOf("La investigación"), "Doğru cümle: La investigación avanza rápido. — Araştırma hızla ilerliyor.", null, null),
                 LearningExercise("esb2u3e5", Skill.VOCABULARY, "Doğru anlamı seç", "'demostrar' ne anlama gelir?", "", listOf("araştırma", "ilerleme", "kanıtlamak"), listOf("kanıtlamak"), "Los datos lo demuestran. — Veriler bunu kanıtlıyor.", null, null),
@@ -301,7 +406,12 @@ object WorldCourseES {
             LearningLesson("ES-B2-U4-L1", "Toplum ve Güncel Konular — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esb2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la justicia' ne anlama gelir?", "", listOf("eşitlik", "yoksulluk", "adalet"), listOf("adalet"), "La justicia es un valor esencial. — Adalet temel bir değerdir.", null, null),
                 LearningExercise("esb2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'la igualdad' ne anlama gelir?", "", listOf("tartışma (kamusal)", "eşitlik", "vatandaş"), listOf("eşitlik"), "Igualdad ante la ley. — Yasa önünde eşitlik.", null, null),
-                LearningExercise("esb2u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el ciudadano' ne anlama gelir?", "", listOf("vatandaş", "yoksulluk", "adalet"), listOf("vatandaş"), "Cada ciudadano tiene derechos. — Her vatandaşın hakları vardır.", null, null))),
+                LearningExercise("esb2u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el ciudadano' ne anlama gelir?", "", listOf("vatandaş", "yoksulluk", "adalet"), listOf("vatandaş"), "Cada ciudadano tiene derechos. — Her vatandaşın hakları vardır.", null, null)), listOf(
+                TargetVocabulary("esb2u4w1", "la justicia", "adalet", "ifade", "La justicia es un valor esencial.", "Adalet temel bir değerdir."),
+                TargetVocabulary("esb2u4w2", "la igualdad", "eşitlik", "ifade", "Igualdad ante la ley.", "Yasa önünde eşitlik."),
+                TargetVocabulary("esb2u4w3", "el ciudadano", "vatandaş", "ifade", "Cada ciudadano tiene derechos.", "Her vatandaşın hakları vardır."),
+                TargetVocabulary("esb2u4w4", "la pobreza", "yoksulluk", "ifade", "Hay que combatir la pobreza.", "Yoksullukla mücadele edilmeli."),
+                TargetVocabulary("esb2u4w5", "el debate", "tartışma (kamusal)", "ifade", "El debate sigue abierto.", "Tartışma hâlâ açık."))),
             LearningLesson("ES-B2-U4-L2", "Toplum ve Güncel Konular — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esb2u4e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ es un valor esencial.", "", listOf("el ciudadano", "La justicia", "la igualdad"), listOf("La justicia"), "Doğru cümle: La justicia es un valor esencial. — Adalet temel bir değerdir.", null, null),
                 LearningExercise("esb2u4e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Hay que combatir ___.", "", listOf("la pobreza", "el debate", "la justicia"), listOf("la pobreza"), "Doğru cümle: Hay que combatir la pobreza. — Yoksullukla mücadele edilmeli.", null, null),
@@ -315,7 +425,12 @@ object WorldCourseES {
             LearningLesson("ES-B2-U5-L1", "Sanat ve Edebiyat — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esb2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'el cuadro' ne anlama gelir?", "", listOf("etkileyici", "tablo", "roman"), listOf("tablo"), "El cuadro está en el museo. — Tablo müzede.", null, null),
                 LearningExercise("esb2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'la novela' ne anlama gelir?", "", listOf("roman", "sergi", "yazar"), listOf("roman"), "La novela tiene 400 páginas. — Roman 400 sayfa.", null, null),
-                LearningExercise("esb2u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la exposición' ne anlama gelir?", "", listOf("etkileyici", "tablo", "sergi"), listOf("sergi"), "La exposición abre mañana. — Sergi yarın açılıyor.", null, null))),
+                LearningExercise("esb2u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la exposición' ne anlama gelir?", "", listOf("etkileyici", "tablo", "sergi"), listOf("sergi"), "La exposición abre mañana. — Sergi yarın açılıyor.", null, null)), listOf(
+                TargetVocabulary("esb2u5w1", "el cuadro", "tablo", "ifade", "El cuadro está en el museo.", "Tablo müzede."),
+                TargetVocabulary("esb2u5w2", "la novela", "roman", "ifade", "La novela tiene 400 páginas.", "Roman 400 sayfa."),
+                TargetVocabulary("esb2u5w3", "la exposición", "sergi", "ifade", "La exposición abre mañana.", "Sergi yarın açılıyor."),
+                TargetVocabulary("esb2u5w4", "impresionante", "etkileyici", "ifade", "La obra es impresionante.", "Eser etkileyici."),
+                TargetVocabulary("esb2u5w5", "el escritor", "yazar", "ifade", "El escritor lee esta noche.", "Yazar bu akşam okuma yapıyor."))),
             LearningLesson("ES-B2-U5-L2", "Sanat ve Edebiyat — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esb2u5e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ está en el museo.", "", listOf("El cuadro", "la novela", "la exposición"), listOf("El cuadro"), "Doğru cümle: El cuadro está en el museo. — Tablo müzede.", null, null),
                 LearningExercise("esb2u5e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "La obra es ___.", "", listOf("el escritor", "el cuadro", "impresionante"), listOf("impresionante"), "Doğru cümle: La obra es impresionante. — Eser etkileyici.", null, null),
@@ -329,7 +444,12 @@ object WorldCourseES {
             LearningLesson("ES-B2-U6-L1", "Tartışma ve İkna — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esb2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'el argumento' ne anlama gelir?", "", listOf("argüman", "bir yandan", "karşı çıkmak"), listOf("argüman"), "El argumento es sólido. — Argüman sağlam.", null, null),
                 LearningExercise("esb2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'por un lado' ne anlama gelir?", "", listOf("öte yandan", "çıkarım", "bir yandan"), listOf("bir yandan"), "Por un lado, es caro. — Bir yandan pahalı.", null, null),
-                LearningExercise("esb2u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'por otro lado' ne anlama gelir?", "", listOf("argüman", "öte yandan", "karşı çıkmak"), listOf("öte yandan"), "Por otro lado, es útil. — Öte yandan faydalı.", null, null))),
+                LearningExercise("esb2u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'por otro lado' ne anlama gelir?", "", listOf("argüman", "öte yandan", "karşı çıkmak"), listOf("öte yandan"), "Por otro lado, es útil. — Öte yandan faydalı.", null, null)), listOf(
+                TargetVocabulary("esb2u6w1", "el argumento", "argüman", "ifade", "El argumento es sólido.", "Argüman sağlam."),
+                TargetVocabulary("esb2u6w2", "por un lado", "bir yandan", "ifade", "Por un lado, es caro.", "Bir yandan pahalı."),
+                TargetVocabulary("esb2u6w3", "por otro lado", "öte yandan", "ifade", "Por otro lado, es útil.", "Öte yandan faydalı."),
+                TargetVocabulary("esb2u6w4", "contradecir", "karşı çıkmak", "ifade", "Debo contradecirte.", "Sana karşı çıkmak zorundayım."),
+                TargetVocabulary("esb2u6w5", "la conclusión", "çıkarım", "ifade", "La conclusión es clara.", "Çıkarım açık."))),
             LearningLesson("ES-B2-U6-L2", "Tartışma ve İkna — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esb2u6e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ es sólido.", "", listOf("por un lado", "por otro lado", "El argumento"), listOf("El argumento"), "Doğru cümle: El argumento es sólido. — Argüman sağlam.", null, null),
                 LearningExercise("esb2u6e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Debo ___te.", "", listOf("el argumento", "contradecir", "la conclusión"), listOf("contradecir"), "Doğru cümle: Debo contradecirte. — Sana karşı çıkmak zorundayım.", null, null),
@@ -343,7 +463,12 @@ object WorldCourseES {
             LearningLesson("ES-C1-U1-L1", "Akademik Dil — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esc1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la tesis' ne anlama gelir?", "", listOf("çözümleme", "kaynak", "tez/sav"), listOf("tez/sav"), "La tesis es discutida. — Sav tartışmalı.", null, null),
                 LearningExercise("esc1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'el análisis' ne anlama gelir?", "", listOf("yaklaşım", "çözümleme", "ele almak"), listOf("çözümleme"), "El análisis cubre diez años de datos. — Çözümleme on yıllık veriyi kapsıyor.", null, null),
-                LearningExercise("esc1u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'abordar' ne anlama gelir?", "", listOf("ele almak", "kaynak", "tez/sav"), listOf("ele almak"), "Vamos a abordar esa cuestión. — O meseleyi ele alacağız.", null, null))),
+                LearningExercise("esc1u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'abordar' ne anlama gelir?", "", listOf("ele almak", "kaynak", "tez/sav"), listOf("ele almak"), "Vamos a abordar esa cuestión. — O meseleyi ele alacağız.", null, null)), listOf(
+                TargetVocabulary("esc1u1w1", "la tesis", "tez/sav", "ifade", "La tesis es discutida.", "Sav tartışmalı."),
+                TargetVocabulary("esc1u1w2", "el análisis", "çözümleme", "ifade", "El análisis cubre diez años de datos.", "Çözümleme on yıllık veriyi kapsıyor."),
+                TargetVocabulary("esc1u1w3", "abordar", "ele almak", "ifade", "Vamos a abordar esa cuestión.", "O meseleyi ele alacağız."),
+                TargetVocabulary("esc1u1w4", "la fuente", "kaynak", "ifade", "La fuente es fiable.", "Kaynak güvenilir."),
+                TargetVocabulary("esc1u1w5", "el enfoque", "yaklaşım", "ifade", "El enfoque es prometedor.", "Yaklaşım umut verici."))),
             LearningLesson("ES-C1-U1-L2", "Akademik Dil — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esc1u1e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ es discutida.", "", listOf("abordar", "La tesis", "el análisis"), listOf("La tesis"), "Doğru cümle: La tesis es discutida. — Sav tartışmalı.", null, null),
                 LearningExercise("esc1u1e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ es fiable.", "", listOf("La fuente", "el enfoque", "la tesis"), listOf("La fuente"), "Doğru cümle: La fuente es fiable. — Kaynak güvenilir.", null, null),
@@ -357,7 +482,12 @@ object WorldCourseES {
             LearningLesson("ES-C1-U2-L1", "Soyut Kavramlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esc1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la percepción' ne anlama gelir?", "", listOf("kavram", "algı", "bilinç"), listOf("algı"), "Nuestra percepción nos engaña a menudo. — Algımız bizi sık yanıltır.", null, null),
                 LearningExercise("esc1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'la conciencia' ne anlama gelir?", "", listOf("bilinç", "nosyon", "bilgi"), listOf("bilinç"), "La conciencia sigue siendo un misterio. — Bilinç bir muamma olmayı sürdürüyor.", null, null),
-                LearningExercise("esc1u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la noción' ne anlama gelir?", "", listOf("kavram", "algı", "nosyon"), listOf("nosyon"), "Esa noción es difícil de definir. — O nosyonu tanımlamak zor.", null, null))),
+                LearningExercise("esc1u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la noción' ne anlama gelir?", "", listOf("kavram", "algı", "nosyon"), listOf("nosyon"), "Esa noción es difícil de definir. — O nosyonu tanımlamak zor.", null, null)), listOf(
+                TargetVocabulary("esc1u2w1", "la percepción", "algı", "ifade", "Nuestra percepción nos engaña a menudo.", "Algımız bizi sık yanıltır."),
+                TargetVocabulary("esc1u2w2", "la conciencia", "bilinç", "ifade", "La conciencia sigue siendo un misterio.", "Bilinç bir muamma olmayı sürdürüyor."),
+                TargetVocabulary("esc1u2w3", "la noción", "nosyon", "ifade", "Esa noción es difícil de definir.", "O nosyonu tanımlamak zor."),
+                TargetVocabulary("esc1u2w4", "el concepto", "kavram", "ifade", "El concepto ha evolucionado.", "Kavram evrildi."),
+                TargetVocabulary("esc1u2w5", "el conocimiento", "bilgi", "ifade", "El conocimiento se transmite.", "Bilgi aktarılır."))),
             LearningLesson("ES-C1-U2-L2", "Soyut Kavramlar — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esc1u2e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Nuestra ___ nos engaña a menudo.", "", listOf("percepción", "la conciencia", "la noción"), listOf("percepción"), "Doğru cümle: Nuestra percepción nos engaña a menudo. — Algımız bizi sık yanıltır.", null, null),
                 LearningExercise("esc1u2e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ ha evolucionado.", "", listOf("el conocimiento", "la percepción", "El concepto"), listOf("El concepto"), "Doğru cümle: El concepto ha evolucionado. — Kavram evrildi.", null, null),
@@ -371,7 +501,12 @@ object WorldCourseES {
             LearningLesson("ES-C1-U3-L1", "Deyimler ve Mecazlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esc1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'estar en las nubes' ne anlama gelir?", "", listOf("aklı havada olmak", "çok pahalıya mal olmak", "dalga geçmek"), listOf("aklı havada olmak"), "Hoy estás en las nubes. — Bugün aklın havada.", null, null),
                 LearningExercise("esc1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'costar un ojo de la cara' ne anlama gelir?", "", listOf("pot kırmak", "lafını esirgememek", "çok pahalıya mal olmak"), listOf("çok pahalıya mal olmak"), "Este coche cuesta un ojo de la cara. — Bu araba göz kadar pahalı.", null, null),
-                LearningExercise("esc1u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'meter la pata' ne anlama gelir?", "", listOf("aklı havada olmak", "pot kırmak", "dalga geçmek"), listOf("pot kırmak"), "Metí la pata en la reunión. — Toplantıda pot kırdım.", null, null))),
+                LearningExercise("esc1u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'meter la pata' ne anlama gelir?", "", listOf("aklı havada olmak", "pot kırmak", "dalga geçmek"), listOf("pot kırmak"), "Metí la pata en la reunión. — Toplantıda pot kırdım.", null, null)), listOf(
+                TargetVocabulary("esc1u3w1", "estar en las nubes", "aklı havada olmak", "ifade", "Hoy estás en las nubes.", "Bugün aklın havada."),
+                TargetVocabulary("esc1u3w2", "costar un ojo de la cara", "çok pahalıya mal olmak", "ifade", "Este coche cuesta un ojo de la cara.", "Bu araba göz kadar pahalı."),
+                TargetVocabulary("esc1u3w3", "meter la pata", "pot kırmak", "ifade", "Metí la pata en la reunión.", "Toplantıda pot kırdım."),
+                TargetVocabulary("esc1u3w4", "tomar el pelo", "dalga geçmek", "ifade", "¿Me estás tomando el pelo?", "Benimle dalga mı geçiyorsun?"),
+                TargetVocabulary("esc1u3w5", "no tener pelos en la lengua", "lafını esirgememek", "ifade", "Ella no tiene pelos en la lengua.", "O lafını hiç esirgemez."))),
             LearningLesson("ES-C1-U3-L2", "Deyimler ve Mecazlar — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esc1u3e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Hoy estás ___.", "", listOf("costar un ojo de la cara", "meter la pata", "en las nubes"), listOf("en las nubes"), "Doğru cümle: Hoy estás en las nubes. — Bugün aklın havada.", null, null),
                 LearningExercise("esc1u3e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "¿Me estás tomando ___?", "", listOf("estar en las nubes", "el pelo", "no tener pelos en la lengua"), listOf("el pelo"), "Doğru cümle: ¿Me estás tomando el pelo? — Benimle dalga mı geçiyorsun?", null, null),
@@ -385,7 +520,12 @@ object WorldCourseES {
             LearningLesson("ES-C1-U4-L1", "Resmî Yazışma — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esc1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'estimado' ne anlama gelir?", "", listOf("ekte", "saygılarımla", "sayın"), listOf("sayın"), "Estimado señor García: ... — Sayın Bay García: ...", null, null),
                 LearningExercise("esc1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'adjunto' ne anlama gelir?", "", listOf("işbu yazıyla", "ekte", "ilişkin"), listOf("ekte"), "Adjunto encontrará mi currículum. — Özgeçmişimi ekte bulacaksınız.", null, null),
-                LearningExercise("esc1u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'en relación con' ne anlama gelir?", "", listOf("ilişkin", "saygılarımla", "sayın"), listOf("ilişkin"), "En relación con su solicitud, le responderemos pronto. — Talebinize ilişkin yakında yanıt vereceğiz.", null, null))),
+                LearningExercise("esc1u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'en relación con' ne anlama gelir?", "", listOf("ilişkin", "saygılarımla", "sayın"), listOf("ilişkin"), "En relación con su solicitud, le responderemos pronto. — Talebinize ilişkin yakında yanıt vereceğiz.", null, null)), listOf(
+                TargetVocabulary("esc1u4w1", "estimado", "sayın", "ifade", "Estimado señor García: ...", "Sayın Bay García: ..."),
+                TargetVocabulary("esc1u4w2", "adjunto", "ekte", "ifade", "Adjunto encontrará mi currículum.", "Özgeçmişimi ekte bulacaksınız."),
+                TargetVocabulary("esc1u4w3", "en relación con", "ilişkin", "ifade", "En relación con su solicitud, le responderemos pronto.", "Talebinize ilişkin yakında yanıt vereceğiz."),
+                TargetVocabulary("esc1u4w4", "atentamente", "saygılarımla", "ifade", "Atentamente, Ali Kaya", "Saygılarımla, Ali Kaya"),
+                TargetVocabulary("esc1u4w5", "por la presente", "işbu yazıyla", "ifade", "Por la presente confirmo mi asistencia.", "İşbu yazıyla katılımımı teyit ederim."))),
             LearningLesson("ES-C1-U4-L2", "Resmî Yazışma — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esc1u4e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ señor García: ...", "", listOf("en relación con", "Estimado", "adjunto"), listOf("Estimado"), "Doğru cümle: Estimado señor García: ... — Sayın Bay García: ...", null, null),
                 LearningExercise("esc1u4e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___, Ali Kaya", "", listOf("Atentamente", "por la presente", "estimado"), listOf("Atentamente"), "Doğru cümle: Atentamente, Ali Kaya — Saygılarımla, Ali Kaya", null, null),
@@ -399,7 +539,12 @@ object WorldCourseES {
             LearningLesson("ES-C1-U5-L1", "Müzakere ve Diplomasi — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esc1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'negociar' ne anlama gelir?", "", listOf("bakış açısı", "müzakere etmek", "anlaşma"), listOf("müzakere etmek"), "Negociamos desde hace horas. — Saatlerdir müzakere ediyoruz.", null, null),
                 LearningExercise("esc1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'el acuerdo' ne anlama gelir?", "", listOf("anlaşma", "taviz", "geri adım atmak"), listOf("anlaşma"), "El acuerdo se firmó tarde. — Anlaşma geç imzalandı.", null, null),
-                LearningExercise("esc1u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la concesión' ne anlama gelir?", "", listOf("bakış açısı", "müzakere etmek", "taviz"), listOf("taviz"), "Una concesión era necesaria. — Bir taviz gerekliydi.", null, null))),
+                LearningExercise("esc1u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la concesión' ne anlama gelir?", "", listOf("bakış açısı", "müzakere etmek", "taviz"), listOf("taviz"), "Una concesión era necesaria. — Bir taviz gerekliydi.", null, null)), listOf(
+                TargetVocabulary("esc1u5w1", "negociar", "müzakere etmek", "ifade", "Negociamos desde hace horas.", "Saatlerdir müzakere ediyoruz."),
+                TargetVocabulary("esc1u5w2", "el acuerdo", "anlaşma", "ifade", "El acuerdo se firmó tarde.", "Anlaşma geç imzalandı."),
+                TargetVocabulary("esc1u5w3", "la concesión", "taviz", "ifade", "Una concesión era necesaria.", "Bir taviz gerekliydi."),
+                TargetVocabulary("esc1u5w4", "el punto de vista", "bakış açısı", "ifade", "Nuestro punto de vista no cambia.", "Bakış açımız değişmiyor."),
+                TargetVocabulary("esc1u5w5", "ceder", "geri adım atmak", "ifade", "No vamos a ceder en lo esencial.", "Esasta geri adım atmayacağız."))),
             LearningLesson("ES-C1-U5-L2", "Müzakere ve Diplomasi — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esc1u5e4", Skill.VOCABULARY, "Doğru anlamı seç", "'negociar' ne anlama gelir?", "", listOf("geri adım atmak", "müzakere etmek", "taviz"), listOf("müzakere etmek"), "Negociamos desde hace horas. — Saatlerdir müzakere ediyoruz.", null, null),
                 LearningExercise("esc1u5e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Nuestro ___ no cambia.", "", listOf("ceder", "negociar", "punto de vista"), listOf("punto de vista"), "Doğru cümle: Nuestro punto de vista no cambia. — Bakış açımız değişmiyor.", null, null),
@@ -413,7 +558,12 @@ object WorldCourseES {
             LearningLesson("ES-C1-U6-L1", "İnce Anlam Farkları — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esc1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'aparentemente' ne anlama gelir?", "", listOf("anlaşılan", "sözde/güya", "titiz"), listOf("anlaşılan"), "Aparentemente, tiene razón. — Anlaşılan haklı.", null, null),
                 LearningExercise("esc1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'supuestamente' ne anlama gelir?", "", listOf("etkili", "iddiaya göre", "sözde/güya"), listOf("sözde/güya"), "Supuestamente estaba enfermo. — Güya hastaymış.", null, null),
-                LearningExercise("esc1u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'eficaz' ne anlama gelir?", "", listOf("anlaşılan", "etkili", "titiz"), listOf("etkili"), "El método es muy eficaz. — Yöntem çok etkili.", null, null))),
+                LearningExercise("esc1u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'eficaz' ne anlama gelir?", "", listOf("anlaşılan", "etkili", "titiz"), listOf("etkili"), "El método es muy eficaz. — Yöntem çok etkili.", null, null)), listOf(
+                TargetVocabulary("esc1u6w1", "aparentemente", "anlaşılan", "ifade", "Aparentemente, tiene razón.", "Anlaşılan haklı."),
+                TargetVocabulary("esc1u6w2", "supuestamente", "sözde/güya", "ifade", "Supuestamente estaba enfermo.", "Güya hastaymış."),
+                TargetVocabulary("esc1u6w3", "eficaz", "etkili", "ifade", "El método es muy eficaz.", "Yöntem çok etkili."),
+                TargetVocabulary("esc1u6w4", "minucioso", "titiz", "ifade", "Hace un trabajo minucioso.", "Titiz bir iş çıkarıyor."),
+                TargetVocabulary("esc1u6w5", "presuntamente", "iddiaya göre", "ifade", "Presuntamente cometió un error.", "İddiaya göre hata yaptı."))),
             LearningLesson("ES-C1-U6-L2", "İnce Anlam Farkları — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esc1u6e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___, tiene razón.", "", listOf("supuestamente", "eficaz", "Aparentemente"), listOf("Aparentemente"), "Doğru cümle: Aparentemente, tiene razón. — Anlaşılan haklı.", null, null),
                 LearningExercise("esc1u6e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Hace un trabajo ___.", "", listOf("aparentemente", "minucioso", "presuntamente"), listOf("minucioso"), "Doğru cümle: Hace un trabajo minucioso. — Titiz bir iş çıkarıyor.", null, null),
@@ -427,7 +577,12 @@ object WorldCourseES {
             LearningLesson("ES-C2-U1-L1", "Üslup ve İncelik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esc2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la sutileza' ne anlama gelir?", "", listOf("ton/eda", "özlü", "incelik"), listOf("incelik"), "Las sutilezas del idioma se aprenden tarde. — Dilin incelikleri geç öğrenilir.", null, null),
                 LearningExercise("esc2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'el tono' ne anlama gelir?", "", listOf("nüanslı", "ton/eda", "ima/gönderme"), listOf("ton/eda"), "Su tono era levemente irónico. — Tonu hafif ironikti.", null, null),
-                LearningExercise("esc2u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la alusión' ne anlama gelir?", "", listOf("ima/gönderme", "özlü", "incelik"), listOf("ima/gönderme"), "Solo ella captó la alusión. — İmayı yalnızca o yakaladı.", null, null))),
+                LearningExercise("esc2u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la alusión' ne anlama gelir?", "", listOf("ima/gönderme", "özlü", "incelik"), listOf("ima/gönderme"), "Solo ella captó la alusión. — İmayı yalnızca o yakaladı.", null, null)), listOf(
+                TargetVocabulary("esc2u1w1", "la sutileza", "incelik", "ifade", "Las sutilezas del idioma se aprenden tarde.", "Dilin incelikleri geç öğrenilir."),
+                TargetVocabulary("esc2u1w2", "el tono", "ton/eda", "ifade", "Su tono era levemente irónico.", "Tonu hafif ironikti."),
+                TargetVocabulary("esc2u1w3", "la alusión", "ima/gönderme", "ifade", "Solo ella captó la alusión.", "İmayı yalnızca o yakaladı."),
+                TargetVocabulary("esc2u1w4", "conciso", "özlü", "ifade", "Su respuesta fue concisa.", "Yanıtı özlüydü."),
+                TargetVocabulary("esc2u1w5", "matizado", "nüanslı", "ifade", "Su argumentación es muy matizada.", "Savunusu çok nüanslı."))),
             LearningLesson("ES-C2-U1-L2", "Üslup ve İncelik — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esc2u1e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Las ___s del idioma se aprenden tarde.", "", listOf("la alusión", "sutileza", "el tono"), listOf("sutileza"), "Doğru cümle: Las sutilezas del idioma se aprenden tarde. — Dilin incelikleri geç öğrenilir.", null, null),
                 LearningExercise("esc2u1e5", Skill.VOCABULARY, "Doğru anlamı seç", "'conciso' ne anlama gelir?", "", listOf("ima/gönderme", "özlü", "incelik"), listOf("özlü"), "Su respuesta fue concisa. — Yanıtı özlüydü.", null, null),
@@ -441,7 +596,12 @@ object WorldCourseES {
             LearningLesson("ES-C2-U2-L1", "Edebî Dil — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esc2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la metáfora' ne anlama gelir?", "", listOf("lirik", "metafor", "simge"), listOf("metafor"), "La metáfora estructura todo el texto. — Metafor bütün metni biçimlendiriyor.", null, null),
                 LearningExercise("esc2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'el símbolo' ne anlama gelir?", "", listOf("simge", "anlatıcı sesi", "ironi"), listOf("simge"), "El mar es un símbolo de libertad. — Deniz bir özgürlük simgesidir.", null, null),
-                LearningExercise("esc2u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la voz narrativa' ne anlama gelir?", "", listOf("lirik", "metafor", "anlatıcı sesi"), listOf("anlatıcı sesi"), "La voz narrativa cambia sin cesar. — Anlatıcı sesi durmadan değişiyor.", null, null))),
+                LearningExercise("esc2u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'la voz narrativa' ne anlama gelir?", "", listOf("lirik", "metafor", "anlatıcı sesi"), listOf("anlatıcı sesi"), "La voz narrativa cambia sin cesar. — Anlatıcı sesi durmadan değişiyor.", null, null)), listOf(
+                TargetVocabulary("esc2u2w1", "la metáfora", "metafor", "ifade", "La metáfora estructura todo el texto.", "Metafor bütün metni biçimlendiriyor."),
+                TargetVocabulary("esc2u2w2", "el símbolo", "simge", "ifade", "El mar es un símbolo de libertad.", "Deniz bir özgürlük simgesidir."),
+                TargetVocabulary("esc2u2w3", "la voz narrativa", "anlatıcı sesi", "ifade", "La voz narrativa cambia sin cesar.", "Anlatıcı sesi durmadan değişiyor."),
+                TargetVocabulary("esc2u2w4", "lírico", "lirik", "ifade", "El estilo es profundamente lírico.", "Üslup derinlemesine lirik."),
+                TargetVocabulary("esc2u2w5", "la ironía", "ironi", "ifade", "La ironía es imposible de ignorar.", "İroniyi görmezden gelmek imkânsız."))),
             LearningLesson("ES-C2-U2-L2", "Edebî Dil — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esc2u2e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ estructura todo el texto.", "", listOf("La metáfora", "el símbolo", "la voz narrativa"), listOf("La metáfora"), "Doğru cümle: La metáfora estructura todo el texto. — Metafor bütün metni biçimlendiriyor.", null, null),
                 LearningExercise("esc2u2e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "El estilo es profundamente ___.", "", listOf("la ironía", "la metáfora", "lírico"), listOf("lírico"), "Doğru cümle: El estilo es profundamente lírico. — Üslup derinlemesine lirik.", null, null),
@@ -455,7 +615,12 @@ object WorldCourseES {
             LearningLesson("ES-C2-U3-L1", "Uzmanlık Söylemi — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esc2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la terminología' ne anlama gelir?", "", listOf("terminoloji", "söylem", "çarpıcı/kesin"), listOf("terminoloji"), "La terminología debe ser precisa. — Terminoloji kesin olmalı.", null, null),
                 LearningExercise("esc2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'el discurso' ne anlama gelir?", "", listOf("inceleme/risale", "inceltmek/nüanslamak", "söylem"), listOf("söylem"), "El discurso académico tiene sus códigos. — Akademik söylemin kendi kodları vardır.", null, null),
-                LearningExercise("esc2u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el tratado' ne anlama gelir?", "", listOf("terminoloji", "inceleme/risale", "çarpıcı/kesin"), listOf("inceleme/risale"), "El tratado consta de tres partes. — İnceleme üç bölümden oluşuyor.", null, null))),
+                LearningExercise("esc2u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el tratado' ne anlama gelir?", "", listOf("terminoloji", "inceleme/risale", "çarpıcı/kesin"), listOf("inceleme/risale"), "El tratado consta de tres partes. — İnceleme üç bölümden oluşuyor.", null, null)), listOf(
+                TargetVocabulary("esc2u3w1", "la terminología", "terminoloji", "ifade", "La terminología debe ser precisa.", "Terminoloji kesin olmalı."),
+                TargetVocabulary("esc2u3w2", "el discurso", "söylem", "ifade", "El discurso académico tiene sus códigos.", "Akademik söylemin kendi kodları vardır."),
+                TargetVocabulary("esc2u3w3", "el tratado", "inceleme/risale", "ifade", "El tratado consta de tres partes.", "İnceleme üç bölümden oluşuyor."),
+                TargetVocabulary("esc2u3w4", "contundente", "çarpıcı/kesin", "ifade", "El argumento es contundente.", "Argüman kesin ve çarpıcı."),
+                TargetVocabulary("esc2u3w5", "matizar", "inceltmek/nüanslamak", "ifade", "Conviene matizar esa afirmación.", "O savı nüanslamak yerinde olur."))),
             LearningLesson("ES-C2-U3-L2", "Uzmanlık Söylemi — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esc2u3e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ debe ser precisa.", "", listOf("el discurso", "el tratado", "La terminología"), listOf("La terminología"), "Doğru cümle: La terminología debe ser precisa. — Terminoloji kesin olmalı.", null, null),
                 LearningExercise("esc2u3e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "El argumento es ___.", "", listOf("la terminología", "contundente", "matizar"), listOf("contundente"), "Doğru cümle: El argumento es contundente. — Argüman kesin ve çarpıcı.", null, null),
@@ -469,7 +634,12 @@ object WorldCourseES {
             LearningLesson("ES-C2-U4-L1", "Kültürel Derinlik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esc2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la cosmovisión' ne anlama gelir?", "", listOf("zihniyet", "kökleşmiş", "dünya görüşü"), listOf("dünya görüşü"), "Su cosmovisión quedó sacudida. — Dünya görüşü sarsıldı.", null, null),
                 LearningExercise("esc2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'la mentalidad' ne anlama gelir?", "", listOf("miras", "zihniyet", "zamanın ruhu"), listOf("zihniyet"), "La mentalidad varía según la región. — Zihniyet bölgeye göre değişir.", null, null),
-                LearningExercise("esc2u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el espíritu de la época' ne anlama gelir?", "", listOf("zamanın ruhu", "kökleşmiş", "dünya görüşü"), listOf("zamanın ruhu"), "La novela capta el espíritu de la época. — Roman zamanın ruhunu yakalıyor.", null, null))),
+                LearningExercise("esc2u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el espíritu de la época' ne anlama gelir?", "", listOf("zamanın ruhu", "kökleşmiş", "dünya görüşü"), listOf("zamanın ruhu"), "La novela capta el espíritu de la época. — Roman zamanın ruhunu yakalıyor.", null, null)), listOf(
+                TargetVocabulary("esc2u4w1", "la cosmovisión", "dünya görüşü", "ifade", "Su cosmovisión quedó sacudida.", "Dünya görüşü sarsıldı."),
+                TargetVocabulary("esc2u4w2", "la mentalidad", "zihniyet", "ifade", "La mentalidad varía según la región.", "Zihniyet bölgeye göre değişir."),
+                TargetVocabulary("esc2u4w3", "el espíritu de la época", "zamanın ruhu", "ifade", "La novela capta el espíritu de la época.", "Roman zamanın ruhunu yakalıyor."),
+                TargetVocabulary("esc2u4w4", "arraigado", "kökleşmiş", "ifade", "Esa costumbre está muy arraigada.", "O âdet iyice kökleşmiş."),
+                TargetVocabulary("esc2u4w5", "el legado", "miras", "ifade", "El legado cultural se preserva.", "Kültürel miras korunuyor."))),
             LearningLesson("ES-C2-U4-L2", "Kültürel Derinlik — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esc2u4e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Su ___ quedó sacudida.", "", listOf("el espíritu de la época", "cosmovisión", "la mentalidad"), listOf("cosmovisión"), "Doğru cümle: Su cosmovisión quedó sacudida. — Dünya görüşü sarsıldı.", null, null),
                 LearningExercise("esc2u4e5", Skill.VOCABULARY, "Doğru anlamı seç", "'arraigado' ne anlama gelir?", "", listOf("zamanın ruhu", "kökleşmiş", "dünya görüşü"), listOf("kökleşmiş"), "Esa costumbre está muy arraigada. — O âdet iyice kökleşmiş.", null, null),
@@ -483,7 +653,12 @@ object WorldCourseES {
             LearningLesson("ES-C2-U5-L1", "Retorik Ustalığı — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esc2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'la retórica' ne anlama gelir?", "", listOf("keskin", "retorik", "söz sanatı"), listOf("retorik"), "Su retórica es brillante. — Retoriği parlak.", null, null),
                 LearningExercise("esc2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'la figura retórica' ne anlama gelir?", "", listOf("söz sanatı", "araç/kaynak", "ikna"), listOf("söz sanatı"), "La figura retórica actúa con sutileza. — Söz sanatı incelikle etki ediyor.", null, null),
-                LearningExercise("esc2u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el recurso' ne anlama gelir?", "", listOf("keskin", "retorik", "araç/kaynak"), listOf("araç/kaynak"), "El recurso estilístico es discreto. — Üslup aracı göze batmıyor.", null, null))),
+                LearningExercise("esc2u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el recurso' ne anlama gelir?", "", listOf("keskin", "retorik", "araç/kaynak"), listOf("araç/kaynak"), "El recurso estilístico es discreto. — Üslup aracı göze batmıyor.", null, null)), listOf(
+                TargetVocabulary("esc2u5w1", "la retórica", "retorik", "ifade", "Su retórica es brillante.", "Retoriği parlak."),
+                TargetVocabulary("esc2u5w2", "la figura retórica", "söz sanatı", "ifade", "La figura retórica actúa con sutileza.", "Söz sanatı incelikle etki ediyor."),
+                TargetVocabulary("esc2u5w3", "el recurso", "araç/kaynak", "ifade", "El recurso estilístico es discreto.", "Üslup aracı göze batmıyor."),
+                TargetVocabulary("esc2u5w4", "incisivo", "keskin", "ifade", "Su crítica fue sumamente incisiva.", "Eleştirisi son derece keskindi."),
+                TargetVocabulary("esc2u5w5", "la persuasión", "ikna", "ifade", "La persuasión requiere método.", "İkna yöntem ister."))),
             LearningLesson("ES-C2-U5-L2", "Retorik Ustalığı — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esc2u5e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Su ___ es brillante.", "", listOf("retórica", "la figura retórica", "el recurso"), listOf("retórica"), "Doğru cümle: Su retórica es brillante. — Retoriği parlak.", null, null),
                 LearningExercise("esc2u5e5", Skill.VOCABULARY, "Doğru anlamı seç", "'incisivo' ne anlama gelir?", "", listOf("keskin", "retorik", "araç/kaynak"), listOf("keskin"), "Su crítica fue sumamente incisiva. — Eleştirisi son derece keskindi.", null, null),
@@ -497,7 +672,12 @@ object WorldCourseES {
             LearningLesson("ES-C2-U6-L1", "Ana Dil Düzeyinde Akıcılık — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("esc2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'dominar' ne anlama gelir?", "", listOf("hâkim olmak", "zahmetsizce", "aksansız"), listOf("hâkim olmak"), "Ella domina cinco idiomas. — Beş dile hâkim.", null, null),
                 LearningExercise("esc2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'sin esfuerzo' ne anlama gelir?", "", listOf("rafinelik", "akıcılık/rahatlık", "zahmetsizce"), listOf("zahmetsizce"), "Cambia de registro sin esfuerzo. — Dil düzeyini zahmetsizce değiştiriyor.", null, null),
-                LearningExercise("esc2u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el refinamiento' ne anlama gelir?", "", listOf("hâkim olmak", "rafinelik", "aksansız"), listOf("rafinelik"), "Su estilo es de gran refinamiento. — Üslubu son derece rafine.", null, null))),
+                LearningExercise("esc2u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'el refinamiento' ne anlama gelir?", "", listOf("hâkim olmak", "rafinelik", "aksansız"), listOf("rafinelik"), "Su estilo es de gran refinamiento. — Üslubu son derece rafine.", null, null)), listOf(
+                TargetVocabulary("esc2u6w1", "dominar", "hâkim olmak", "ifade", "Ella domina cinco idiomas.", "Beş dile hâkim."),
+                TargetVocabulary("esc2u6w2", "sin esfuerzo", "zahmetsizce", "ifade", "Cambia de registro sin esfuerzo.", "Dil düzeyini zahmetsizce değiştiriyor."),
+                TargetVocabulary("esc2u6w3", "el refinamiento", "rafinelik", "ifade", "Su estilo es de gran refinamiento.", "Üslubu son derece rafine."),
+                TargetVocabulary("esc2u6w4", "sin acento", "aksansız", "ifade", "Habla español sin acento.", "Aksansız İspanyolca konuşuyor."),
+                TargetVocabulary("esc2u6w5", "la soltura", "akıcılık/rahatlık", "ifade", "Se expresa con total soltura.", "Kendini tam bir akıcılıkla ifade ediyor."))),
             LearningLesson("ES-C2-U6-L2", "Ana Dil Düzeyinde Akıcılık — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("esc2u6e4", Skill.VOCABULARY, "Doğru anlamı seç", "'dominar' ne anlama gelir?", "", listOf("hâkim olmak", "rafinelik", "akıcılık/rahatlık"), listOf("hâkim olmak"), "Ella domina cinco idiomas. — Beş dile hâkim.", null, null),
                 LearningExercise("esc2u6e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Habla español ___.", "", listOf("dominar", "sin acento", "la soltura"), listOf("sin acento"), "Doğru cümle: Habla español sin acento. — Aksansız İspanyolca konuşuyor.", null, null),

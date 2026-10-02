@@ -119,9 +119,11 @@ class FirebaseAccountRepository(context: Context) {
                     "updatedAt" to FieldValue.serverTimestamp()
                 )
                 if (countsTowardCourse) {
-                    val cefrLevel = lessonId.substringBefore('-').takeIf { it in CEFR_LEVELS } ?: "A1"
                     profileUpdates["completedLessons"] = FieldValue.increment(1)
-                    profileUpdates["completedByLevel$cefrLevel"] = FieldValue.increment(1)
+                    // Seviye sayacı yalnızca kimliği CEFR seviyesiyle başlayan (İngilizce) dersler için artar;
+                    // diğer dillerin ilerlemesi cihazda dil+seviye bazında tutulur. A1'e geri düşme yok.
+                    val cefrLevel = lessonId.substringBefore('-').takeIf { it in CEFR_LEVELS }
+                    if (cefrLevel != null) profileUpdates["completedByLevel$cefrLevel"] = FieldValue.increment(1)
                 }
                 store().collection("users").document(uid).update(profileUpdates)
                     .addOnSuccessListener { callback(null) }.addOnFailureListener { callback(safeMessage(it)) }

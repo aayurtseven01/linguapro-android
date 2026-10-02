@@ -53,7 +53,14 @@ object WorldCatalog {
         if (lang == "EN") CourseCatalog.units(level)
         else worldUnits[lang].orEmpty().filter { it.id.startsWith("$lang-$level-") }
 
-    fun allWorldLessons(): List<LearningLesson> = worldUnits.values.flatten().flatMap { it.lessons }
+    private val allWorldLessonsCache: List<LearningLesson> by lazy { worldUnits.values.flatten().flatMap { it.lessons } }
+    fun allWorldLessons(): List<LearningLesson> = allWorldLessonsCache
+
+    /** Ders kimliğinden hedef dilin Türkçe adını döndürür; İngilizce ve bilinmeyenler için "İngilizce". */
+    fun languageNameForLesson(lessonId: String): String {
+        val prefix = lessonId.substringBefore('-')
+        return languages.firstOrNull { it.code == prefix }?.nameTr ?: "İngilizce"
+    }
 
     /** Dersin kimliğinden konuşma/TTS dili etiketini türetir; İngilizce derslerde kullanıcı aksanı korunur. */
     fun speechTagForLesson(lessonId: String, fallback: String): String {

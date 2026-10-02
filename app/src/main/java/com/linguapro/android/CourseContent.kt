@@ -268,7 +268,7 @@ object CourseCatalog {
         val checkpoint = LearningLesson(
             "${unit.id}-CP",
             "Checkpoint: ${unit.title}",
-            "Pass the unit checkpoint with a score of at least 80 percent.",
+            "Üniteyi en az yüzde 80 başarıyla geç.",
             quiz
         )
         return unit.copy(lessons = unit.lessons + checkpoint)
@@ -285,7 +285,8 @@ object CourseCatalog {
         return lessons[lessonIndex.mod(lessons.size)]
     }
     fun lessonCount(level: String): Int = units(level).sumOf { it.lessons.size }
-    fun allLessons(): List<LearningLesson> = levels.flatMap { level -> units(level).flatMap { it.lessons } }
+    private val allLessonsCache: List<LearningLesson> by lazy { levels.flatMap { level -> units(level).flatMap { it.lessons } } }
+    fun allLessons(): List<LearningLesson> = allLessonsCache
 }
 
 /** Kurs sonrası tekrar modu: her gün değişen, dile ve seviyeye özel 10 soruluk karışık pratik dersi üretir. */
@@ -301,7 +302,7 @@ object DailyRefresh {
         return LearningLesson(
             "$lang-$level-REFRESH",
             "Günlük Tekrar",
-            "Keep your knowledge fresh with a daily mixed practice set.",
+            "Bilgini her gün değişen karışık tekrar setiyle taze tut.",
             picks
         )
     }

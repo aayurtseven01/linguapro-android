@@ -58,23 +58,25 @@ fun LearningLessonScreen(
     ttsAccent: String = "en-US",
     speechRate: Float = 1.0f
 ) {
-    val index = rememberSaveable(lesson.id, exerciseIndex) { mutableIntStateOf(exerciseIndex) }
+    var attempt by rememberSaveable(lesson.id) { mutableIntStateOf(0) }
+    val index = rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableIntStateOf(exerciseIndex) }
     val exercise = lesson.exercises.getOrNull(index.intValue)
-    var selected by rememberSaveable(lesson.id, index.intValue) { mutableIntStateOf(-1) }
-    var answer by rememberSaveable(lesson.id, index.intValue) { mutableStateOf("") }
-    var submitted by rememberSaveable(lesson.id, index.intValue) { mutableStateOf(false) }
-    var result by rememberSaveable(lesson.id, index.intValue) { mutableStateOf<Boolean?>(null) }
-    var speechText by rememberSaveable(lesson.id, index.intValue) { mutableStateOf("") }
-    var speechMessage by rememberSaveable(lesson.id, index.intValue) { mutableStateOf("") }
-    var correctCount by rememberSaveable(lesson.id, exerciseIndex) { mutableIntStateOf(0) }
-    var gradedCount by rememberSaveable(lesson.id, exerciseIndex) { mutableIntStateOf(0) }
-    var lessonFinished by rememberSaveable(lesson.id, exerciseIndex) { mutableStateOf(false) }
-    var finalScore by rememberSaveable(lesson.id, exerciseIndex) { mutableIntStateOf(0) }
+    var selected by rememberSaveable(lesson.id, index.intValue, attempt) { mutableIntStateOf(-1) }
+    var answer by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf("") }
+    var submitted by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf(false) }
+    var result by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf<Boolean?>(null) }
+    var speechText by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf("") }
+    var speechMessage by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf("") }
+    var correctCount by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableIntStateOf(0) }
+    var gradedCount by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableIntStateOf(0) }
+    var lessonFinished by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableStateOf(false) }
+    var finalScore by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableIntStateOf(0) }
     var ttsReady by remember { mutableStateOf(false) }
     val context = LocalContext.current
     val tts = remember { mutableStateOf<TextToSpeech?>(null) }
 
     val courseSpeechTag = remember(lesson.id, ttsAccent) { WorldCatalog.speechTagForLesson(lesson.id, ttsAccent) }
+    val courseLangName = remember(lesson.id) { WorldCatalog.languageNameForLesson(lesson.id) }
     DisposableEffect(context, courseSpeechTag, speechRate) {
         val engine = TextToSpeech(context) { status ->
             if (status == TextToSpeech.SUCCESS) {
@@ -158,7 +160,7 @@ fun LearningLessonScreen(
     }
 
     if (lessonFinished) {
-        LessonCompletion(lesson = lesson, correct = correctCount, graded = gradedCount, score = finalScore, onContinue = { onDone(finalScore.takeIf { it >= 0 }) })
+        LessonCompletion(lesson = lesson, correct = correctCount, graded = gradedCount, score = finalScore, onContinue = { onDone(finalScore.takeIf { it >= 0 }) }, onRetry = { attempt++ })
         return
     }
 
@@ -229,12 +231,16 @@ fun LearningLessonScreen(
                     Surface(color = LessonPanel2, shape = RoundedCornerShape(14.dp)) {
                         Row(Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
                             Icon(Icons.Default.VolumeUp, null, tint = LessonGold)
-                            Text("Önce sesi dinle; metin yanıtından sonra gösterilir.", color = LessonMuted, fontSize = 13.sp, modifier = Modifier.padding(start = 10.dp))
+                            Text(
+                                if (ttsReady) "Önce sesi dinle; metin yanıtından sonra gösterilir."
+                                else "Cihazda bu dil için ses paketi yok — cümleyi okuyarak yanıtla: $modelText",
+                                color = LessonMuted, fontSize = 13.sp, modifier = Modifier.padding(start = 10.dp)
+                            )
                         }
                     }
                     Spacer(Modifier.height(12.dp))
                     OutlinedButton(onClick = { speak(tts.value, modelText) }, enabled = ttsReady, modifier = Modifier.fillMaxWidth()) {
-                        Icon(Icons.Default.VolumeUp, null); Text(if (ttsReady) "İngilizce sesi dinle" else "Ses hazırlanıyor…", modifier = Modifier.padding(start = 8.dp))
+                        Icon(Icons.Default.VolumeUp, null); Text(if (ttsReady) "$courseLangName sesi dinle" else "Ses hazırlanıyor…", modifier = Modifier.padding(start = 8.dp))
                     }
                     Spacer(Modifier.height(14.dp))
                 }
@@ -297,7 +303,7 @@ fun LearningLessonScreen(
                         onValueChange = { if (!submitted) answer = it },
                         modifier = Modifier.fillMaxWidth(),
                         minLines = if (exercise.skill == Skill.WRITING) 3 else 1,
-                        label = { Text(if (exercise.skill == Skill.WRITING) "Yanıtını İngilizce yaz" else "Yanıt") },
+                        label = { Text(if (exercise.skill == Skill.WRITING) "Yanıtını $courseLangName yaz" else "Yanıt") },
                         colors = OutlinedTextFieldDefaults.colors(focusedBorderColor = LessonGold, unfocusedBorderColor = LessonPanel2, focusedLabelColor = LessonGold, unfocusedLabelColor = LessonMuted, cursorColor = LessonGold)
                     )
                 }
@@ -361,7 +367,7 @@ fun LearningLessonScreen(
 }
 
 @Composable
-private fun LessonCompletion(lesson: LearningLesson, correct: Int, graded: Int, score: Int, onContinue: () -> Unit) {
+private fun LessonCompletion(lesson: LearningLesson, correct: Int, graded: Int, score: Int, onContinue: () -> Unit, onRetry: (() -> Unit)? = null) {
     val isScored = score >= 0
     val xp = LessonScoring.xpForCompletion(score.takeIf { it >= 0 })
     val isCheckpoint = lesson.id.endsWith("-CP")
@@ -392,6 +398,11 @@ private fun LessonCompletion(lesson: LearningLesson, correct: Int, graded: Int, 
             Text("Yazma yanıtları otomatik puanlanmadı; örnek yanıtları kendi çalışmanla karşılaştır.", color = Color(0xFFDFF3FF), fontSize = 12.sp, lineHeight = 17.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 12.dp))
         }
         Spacer(Modifier.height(20.dp))
+        val checkpointFailed = isCheckpoint && !checkpointPassed
+        if (checkpointFailed && onRetry != null) {
+            LessonButton("Yeniden dene", onRetry)
+            Spacer(Modifier.height(10.dp))
+        }
         LessonButton("Öğrenme yoluma dön", onContinue)
     }
 }

@@ -21,4 +21,24 @@ class AnswerCheckerTest {
     @Test fun rejectsBlankInput() {
         assertFalse(AnswerChecker.matches("   ", listOf("hello")))
     }
+
+    @Test
+    fun acceptsExactChineseAfterPunctuationNormalization() {
+        assertTrue(AnswerChecker.matches("我喝咖啡", listOf("我喝咖啡。")))
+    }
+
+    @Test
+    fun acceptsMinorCjkSpeechVariation() {
+        assertTrue(AnswerChecker.matches("我喝咖啡了", listOf("我喝咖啡。")))
+    }
+
+    @Test
+    fun rejectsDifferentCjkSentence() {
+        assertFalse(AnswerChecker.matches("今天天气很好", listOf("我喝咖啡。")))
+    }
+
+    @Test
+    fun cjkSimilarityDoesNotWeakenEnglishChecks() {
+        assertFalse(AnswerChecker.matches("yellow", listOf("hello")))
+    }
 }

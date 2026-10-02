@@ -241,13 +241,23 @@ private fun LinguaApp() {
     // Çok dilli kurs durumu: seçilen eğitim dili ve dil başına seviye/ilerleme yerelde saklanır.
     val coursePrefs = remember(context) { context.getSharedPreferences("lingua_course", android.content.Context.MODE_PRIVATE) }
     var courseLang by rememberSaveable { mutableStateOf(coursePrefs.getString("courseLang", "EN") ?: "EN") }
-    var langLevel by remember(courseLang) { mutableStateOf(coursePrefs.getString("level_$courseLang", "A1") ?: "A1") }
+    // Dil ilerlemesi hesaba (uid) bağlıdır; oturum yoksa "local" altında tutulur. Eski anahtarlardan sorunsuz geçiş yapılır.
+    val courseUid = accountUid.ifBlank { "local" }
+    var langLevel by remember(courseLang, courseUid) {
+        mutableStateOf(
+            coursePrefs.getString("level_${courseUid}_$courseLang", null)
+                ?: coursePrefs.getString("level_$courseLang", "A1") ?: "A1"
+        )
+    }
     val effectiveLevel = if (courseLang == "EN") level else langLevel
-    var localLangCompleted by remember(courseLang, langLevel) {
+    var localLangCompleted by remember(courseLang, langLevel, courseUid) {
         mutableIntStateOf(
             coursePrefs.getInt(
-                "completed_${courseLang}_$langLevel",
-                if (langLevel == "A1") coursePrefs.getInt("completed_$courseLang", 0) else 0
+                "completed_${courseUid}_${courseLang}_$langLevel",
+                coursePrefs.getInt(
+                    "completed_${courseLang}_$langLevel",
+                    if (langLevel == "A1") coursePrefs.getInt("completed_$courseLang", 0) else 0
+                )
             )
         )
     }
@@ -381,7 +391,7 @@ private fun LinguaApp() {
                     },
                     onSelectLevel = { lv ->
                         langLevel = lv
-                        coursePrefs.edit().putString("level_$courseLang", lv).apply()
+                        coursePrefs.edit().putString("level_${courseUid}_$courseLang", lv).apply()
                         selectedLessonId = ""
                     },
                     completed = completedForLevel,
@@ -392,10 +402,17 @@ private fun LinguaApp() {
                     onStartLesson = {
                         val extras = if (courseLang == "EN") dashboardState.supplementalUnits.flatMap { it.lessons } else emptyList()
                         val staticCount = WorldCatalog.units(courseLang, effectiveLevel).sumOf { it.lessons.size }
-                        selectedLessonId = if (completedForLevel >= staticCount && extras.isNotEmpty()) {
-                            extras[(completedForLevel - staticCount).coerceAtLeast(0) % extras.size].id
-                        } else ""
-                        activeLessonCountsTowardCourse = true
+                        val levelFinished = staticCount > 0 && completedForLevel >= staticCount + extras.size
+                        if (levelFinished) {
+                            // Seviye bitti: başa sarmak yerine Günlük Tekrar başlat.
+                            selectedLessonId = "$courseLang-$effectiveLevel-REFRESH"
+                            activeLessonCountsTowardCourse = false
+                        } else {
+                            selectedLessonId = if (completedForLevel >= staticCount && extras.isNotEmpty()) {
+                                extras[(completedForLevel - staticCount).coerceAtLeast(0) % extras.size].id
+                            } else ""
+                            activeLessonCountsTowardCourse = true
+                        }
                         selectedExerciseIndex = 0
                         go(AppRoute.Lesson)
                     },
@@ -455,8 +472,10 @@ private fun LinguaApp() {
                     },
                     onDone = { score ->
                         val countsTowardCourse = activeLessonCountsTowardCourse
-                        if (accountUid.isNotBlank()) accounts.recordLesson(accountUid, activeLesson.id, score, countsTowardCourse) { }
-                        if (countsTowardCourse) {
+                        // Checkpoint barajı: %80 altı puan üniteyi geçirmez; ders yine günlüğe işlenir ama ilerleme artmaz.
+                        val checkpointBlocked = activeLesson.id.endsWith("-CP") && (score ?: 0) < 80
+                        if (accountUid.isNotBlank()) accounts.recordLesson(accountUid, activeLesson.id, score, countsTowardCourse && !checkpointBlocked) { }
+                        if (countsTowardCourse && !checkpointBlocked) {
                             completed++
                             if (courseLang == "EN") {
                                 completedByLevel = completedByLevel + (level to (completedForLevel + 1))
@@ -469,7 +488,7 @@ private fun LinguaApp() {
                                 )
                             } else {
                                 localLangCompleted += 1
-                                coursePrefs.edit().putInt("completed_${courseLang}_$langLevel", localLangCompleted).apply()
+                                coursePrefs.edit().putInt("completed_${courseUid}_${courseLang}_$langLevel", localLangCompleted).apply()
                             }
                         }
                         selectedLessonId = ""
@@ -842,6 +861,31 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                     val chosen = lv == level
                     Surface(onClick = { onSelectLevel(lv) }, color = if (chosen) Panel else Color(0x33FFFFFF), shape = RoundedCornerShape(20.dp)) {
                         Text(lv, color = if (chosen) Gold else OnBg, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 14.dp, vertical = 7.dp))
+                    }
+                }
+            }
+        }
+        val levelLessonTotal = courseUnits.sumOf { it.lessons.size }
+        if (levelLessonTotal > 0 && completed >= levelLessonTotal) {
+            Spacer(Modifier.height(12.dp))
+            Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth()) {
+                Column(Modifier.padding(16.dp)) {
+                    Text("🎉 $level seviyesini tamamladın!", color = Color(0xFF1A1D29), fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    Text(
+                        if (langCode == "EN") "Bilgini Günlük Tekrar ile taze tut; seviye testiyle üst seviyeye geçebilirsin."
+                        else "Bilgini Günlük Tekrar ile taze tut veya bir üst seviyeye geç.",
+                        color = Muted, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 5.dp)
+                    )
+                    Row(Modifier.padding(top = 10.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        val nextLevel = levels.getOrNull(levels.indexOf(level) + 1)
+                        if (langCode != "EN" && nextLevel != null) {
+                            Surface(onClick = { onSelectLevel(nextLevel) }, color = Gold, shape = RoundedCornerShape(14.dp)) {
+                                Text("$nextLevel seviyesine geç", color = Color(0xFFFFFFFF), fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 13.dp, vertical = 8.dp))
+                            }
+                        }
+                        Surface(onClick = onDailyRefresh, color = Panel2, shape = RoundedCornerShape(14.dp)) {
+                            Text("Günlük Tekrar", color = Gold, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 13.dp, vertical = 8.dp))
+                        }
                     }
                 }
             }

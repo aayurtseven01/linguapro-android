@@ -18,9 +18,9 @@ android {
     defaultConfig {
         applicationId = "com.linguapro.android"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0"
+        targetSdk = 35
+        versionCode = (System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1)
+        versionName = "1.1." + (System.getenv("GITHUB_RUN_NUMBER") ?: "0")
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

@@ -7,7 +7,12 @@ object WorldCourseJA {
             LearningLesson("JA-A1-U1-L1", "Selamlaşma ve Tanışma — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'こんにちは' ne anlama gelir?", "", listOf("teşekkürler", "hoşça kal", "merhaba"), listOf("merhaba"), "こんにちは、アンナです。 — Merhaba, ben Anna.", null, null),
                 LearningExercise("jaa1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'ありがとう' ne anlama gelir?", "", listOf("memnun oldum", "teşekkürler", "lütfen (rica)"), listOf("teşekkürler"), "ありがとうございます。 — Teşekkür ederim.", null, null),
-                LearningExercise("jaa1u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'お願いします' ne anlama gelir?", "", listOf("lütfen (rica)", "hoşça kal", "merhaba"), listOf("lütfen (rica)"), "コーヒーをお願いします。 — Kahve lütfen.", null, null))),
+                LearningExercise("jaa1u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'お願いします' ne anlama gelir?", "", listOf("lütfen (rica)", "hoşça kal", "merhaba"), listOf("lütfen (rica)"), "コーヒーをお願いします。 — Kahve lütfen.", null, null)), listOf(
+                TargetVocabulary("jaa1u1w1", "こんにちは", "merhaba", "ifade", "こんにちは、アンナです。", "Merhaba, ben Anna."),
+                TargetVocabulary("jaa1u1w2", "ありがとう", "teşekkürler", "ifade", "ありがとうございます。", "Teşekkür ederim."),
+                TargetVocabulary("jaa1u1w3", "お願いします", "lütfen (rica)", "ifade", "コーヒーをお願いします。", "Kahve lütfen."),
+                TargetVocabulary("jaa1u1w4", "さようなら", "hoşça kal", "ifade", "さようなら、また明日！", "Hoşça kal, yarın görüşürüz!"),
+                TargetVocabulary("jaa1u1w5", "はじめまして", "memnun oldum", "ifade", "はじめまして、メフメトです。", "Memnun oldum, ben Mehmet."))),
             LearningLesson("JA-A1-U1-L2", "Selamlaşma ve Tanışma — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jaa1u1e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___、アンナです。", "", listOf("お願いします", "こんにちは", "ありがとう"), listOf("こんにちは"), "Doğru cümle: こんにちは、アンナです。 — Merhaba, ben Anna.", null, null),
                 LearningExercise("jaa1u1e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___、また明日！", "", listOf("さようなら", "はじめまして", "こんにちは"), listOf("さようなら"), "Doğru cümle: さようなら、また明日！ — Hoşça kal, yarın görüşürüz!", null, null),
@@ -21,7 +26,12 @@ object WorldCourseJA {
             LearningLesson("JA-A1-U2-L1", "Sayılar ve Zaman — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'二' ne anlama gelir?", "", listOf("yarın", "iki", "on"), listOf("iki"), "二人の兄弟がいます。 — İki kardeşim var.", null, null),
                 LearningExercise("jaa1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'十' ne anlama gelir?", "", listOf("on", "bugün", "saat (...da)"), listOf("on"), "今、十時です。 — Saat şimdi on.", null, null),
-                LearningExercise("jaa1u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'今日' ne anlama gelir?", "", listOf("yarın", "iki", "bugün"), listOf("bugün"), "今日は月曜日です。 — Bugün pazartesi.", null, null))),
+                LearningExercise("jaa1u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'今日' ne anlama gelir?", "", listOf("yarın", "iki", "bugün"), listOf("bugün"), "今日は月曜日です。 — Bugün pazartesi.", null, null)), listOf(
+                TargetVocabulary("jaa1u2w1", "二", "iki", "ifade", "二人の兄弟がいます。", "İki kardeşim var."),
+                TargetVocabulary("jaa1u2w2", "十", "on", "ifade", "今、十時です。", "Saat şimdi on."),
+                TargetVocabulary("jaa1u2w3", "今日", "bugün", "ifade", "今日は月曜日です。", "Bugün pazartesi."),
+                TargetVocabulary("jaa1u2w4", "明日", "yarın", "ifade", "また明日！", "Yarın görüşürüz!"),
+                TargetVocabulary("jaa1u2w5", "時", "saat (...da)", "ifade", "今、何時ですか。", "Şu an saat kaç?"))),
             LearningLesson("JA-A1-U2-L2", "Sayılar ve Zaman — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jaa1u2e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___人の兄弟がいます。", "", listOf("二", "十", "今日"), listOf("二"), "Doğru cümle: 二人の兄弟がいます。 — İki kardeşim var.", null, null),
                 LearningExercise("jaa1u2e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "また___！", "", listOf("時", "二", "明日"), listOf("明日"), "Doğru cümle: また明日！ — Yarın görüşürüz!", null, null),
@@ -35,7 +45,12 @@ object WorldCourseJA {
             LearningLesson("JA-A1-U3-L1", "Yiyecek ve İçecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'水' ne anlama gelir?", "", listOf("su", "ekmek", "elma"), listOf("su"), "水をください。 — Su lütfen.", null, null),
                 LearningExercise("jaa1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'パン' ne anlama gelir?", "", listOf("kahve", "çay", "ekmek"), listOf("ekmek"), "パンは新しいです。 — Ekmek taze.", null, null),
-                LearningExercise("jaa1u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'コーヒー' ne anlama gelir?", "", listOf("su", "kahve", "elma"), listOf("kahve"), "コーヒーを飲みます。 — Kahve içiyorum.", null, null))),
+                LearningExercise("jaa1u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'コーヒー' ne anlama gelir?", "", listOf("su", "kahve", "elma"), listOf("kahve"), "コーヒーを飲みます。 — Kahve içiyorum.", null, null)), listOf(
+                TargetVocabulary("jaa1u3w1", "水", "su", "ifade", "水をください。", "Su lütfen."),
+                TargetVocabulary("jaa1u3w2", "パン", "ekmek", "ifade", "パンは新しいです。", "Ekmek taze."),
+                TargetVocabulary("jaa1u3w3", "コーヒー", "kahve", "ifade", "コーヒーを飲みます。", "Kahve içiyorum."),
+                TargetVocabulary("jaa1u3w4", "りんご", "elma", "ifade", "りんごは赤いです。", "Elma kırmızı."),
+                TargetVocabulary("jaa1u3w5", "お茶", "çay", "ifade", "お茶が好きです。", "Çayı severim."))),
             LearningLesson("JA-A1-U3-L2", "Yiyecek ve İçecek — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jaa1u3e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___をください。", "", listOf("パン", "コーヒー", "水"), listOf("水"), "Doğru cümle: 水をください。 — Su lütfen.", null, null),
                 LearningExercise("jaa1u3e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は赤いです。", "", listOf("水", "りんご", "お茶"), listOf("りんご"), "Doğru cümle: りんごは赤いです。 — Elma kırmızı.", null, null),
@@ -49,7 +64,12 @@ object WorldCourseJA {
             LearningLesson("JA-A1-U4-L1", "Aile ve İnsanlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'家族' ne anlama gelir?", "", listOf("anne", "ağabey", "aile"), listOf("aile"), "家族は大きいです。 — Ailem kalabalık.", null, null),
                 LearningExercise("jaa1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'母' ne anlama gelir?", "", listOf("arkadaş", "anne", "baba"), listOf("anne"), "母は家にいます。 — Annem evde.", null, null),
-                LearningExercise("jaa1u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'父' ne anlama gelir?", "", listOf("baba", "ağabey", "aile"), listOf("baba"), "父はよく働きます。 — Babam çok çalışır.", null, null))),
+                LearningExercise("jaa1u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'父' ne anlama gelir?", "", listOf("baba", "ağabey", "aile"), listOf("baba"), "父はよく働きます。 — Babam çok çalışır.", null, null)), listOf(
+                TargetVocabulary("jaa1u4w1", "家族", "aile", "ifade", "家族は大きいです。", "Ailem kalabalık."),
+                TargetVocabulary("jaa1u4w2", "母", "anne", "ifade", "母は家にいます。", "Annem evde."),
+                TargetVocabulary("jaa1u4w3", "父", "baba", "ifade", "父はよく働きます。", "Babam çok çalışır."),
+                TargetVocabulary("jaa1u4w4", "兄", "ağabey", "ifade", "兄は若いです。", "Ağabeyim genç."),
+                TargetVocabulary("jaa1u4w5", "友達", "arkadaş", "ifade", "彼は友達です。", "O benim arkadaşım."))),
             LearningLesson("JA-A1-U4-L2", "Aile ve İnsanlar — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jaa1u4e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は大きいです。", "", listOf("父", "家族", "母"), listOf("家族"), "Doğru cümle: 家族は大きいです。 — Ailem kalabalık.", null, null),
                 LearningExercise("jaa1u4e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は若いです。", "", listOf("兄", "友達", "家族"), listOf("兄"), "Doğru cümle: 兄は若いです。 — Ağabeyim genç.", null, null),
@@ -63,7 +83,12 @@ object WorldCourseJA {
             LearningLesson("JA-A1-U5-L1", "Günlük Yaşam ve Şehir — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'家' ne anlama gelir?", "", listOf("satın alırım", "ev", "iş"), listOf("ev"), "家は古いです。 — Ev eski.", null, null),
                 LearningExercise("jaa1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'仕事' ne anlama gelir?", "", listOf("iş", "şehir / kasaba", "oturuyorum"), listOf("iş"), "仕事に行きます。 — İşe gidiyorum.", null, null),
-                LearningExercise("jaa1u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'町' ne anlama gelir?", "", listOf("satın alırım", "ev", "şehir / kasaba"), listOf("şehir / kasaba"), "町はきれいです。 — Şehir güzel.", null, null))),
+                LearningExercise("jaa1u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'町' ne anlama gelir?", "", listOf("satın alırım", "ev", "şehir / kasaba"), listOf("şehir / kasaba"), "町はきれいです。 — Şehir güzel.", null, null)), listOf(
+                TargetVocabulary("jaa1u5w1", "家", "ev", "ifade", "家は古いです。", "Ev eski."),
+                TargetVocabulary("jaa1u5w2", "仕事", "iş", "ifade", "仕事に行きます。", "İşe gidiyorum."),
+                TargetVocabulary("jaa1u5w3", "町", "şehir / kasaba", "ifade", "町はきれいです。", "Şehir güzel."),
+                TargetVocabulary("jaa1u5w4", "買います", "satın alırım", "ifade", "果物を買います。", "Meyve alıyorum."),
+                TargetVocabulary("jaa1u5w5", "住んでいます", "oturuyorum", "ifade", "東京に住んでいます。", "Tokyo'da oturuyorum."))),
             LearningLesson("JA-A1-U5-L2", "Günlük Yaşam ve Şehir — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jaa1u5e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は古いです。", "", listOf("家", "仕事", "町"), listOf("家"), "Doğru cümle: 家は古いです。 — Ev eski.", null, null),
                 LearningExercise("jaa1u5e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "果物を___。", "", listOf("住んでいます", "家", "買います"), listOf("買います"), "Doğru cümle: 果物を買います。 — Meyve alıyorum.", null, null),
@@ -77,7 +102,12 @@ object WorldCourseJA {
             LearningLesson("JA-A1-U6-L1", "Seyahat Temelleri — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'電車' ne anlama gelir?", "", listOf("tren", "bilet", "sol"), listOf("tren"), "電車は九時に来ます。 — Tren dokuzda geliyor.", null, null),
                 LearningExercise("jaa1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'切符' ne anlama gelir?", "", listOf("otel", "havalimanı", "bilet"), listOf("bilet"), "切符を一枚ください。 — Bir bilet lütfen.", null, null),
-                LearningExercise("jaa1u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'ホテル' ne anlama gelir?", "", listOf("tren", "otel", "sol"), listOf("otel"), "ホテルは中心にあります。 — Otel merkezde.", null, null))),
+                LearningExercise("jaa1u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'ホテル' ne anlama gelir?", "", listOf("tren", "otel", "sol"), listOf("otel"), "ホテルは中心にあります。 — Otel merkezde.", null, null)), listOf(
+                TargetVocabulary("jaa1u6w1", "電車", "tren", "ifade", "電車は九時に来ます。", "Tren dokuzda geliyor."),
+                TargetVocabulary("jaa1u6w2", "切符", "bilet", "ifade", "切符を一枚ください。", "Bir bilet lütfen."),
+                TargetVocabulary("jaa1u6w3", "ホテル", "otel", "ifade", "ホテルは中心にあります。", "Otel merkezde."),
+                TargetVocabulary("jaa1u6w4", "左", "sol", "ifade", "左に曲がってください。", "Sola dönün lütfen."),
+                TargetVocabulary("jaa1u6w5", "空港", "havalimanı", "ifade", "空港は遠いです。", "Havalimanı uzak."))),
             LearningLesson("JA-A1-U6-L2", "Seyahat Temelleri — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jaa1u6e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は九時に来ます。", "", listOf("切符", "ホテル", "電車"), listOf("電車"), "Doğru cümle: 電車は九時に来ます。 — Tren dokuzda geliyor.", null, null),
                 LearningExercise("jaa1u6e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___に曲がってください。", "", listOf("電車", "左", "空港"), listOf("左"), "Doğru cümle: 左に曲がってください。 — Sola dönün lütfen.", null, null),
@@ -91,7 +121,12 @@ object WorldCourseJA {
             LearningLesson("JA-A2-U1-L1", "Geçmişten Bahsetmek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'昨日' ne anlama gelir?", "", listOf("geçen hafta", "gördü/izledi", "dün"), listOf("dün"), "昨日、働きました。 — Dün çalıştım.", null, null),
                 LearningExercise("jaa2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'先週' ne anlama gelir?", "", listOf("yolculuk", "geçen hafta", "satın aldı"), listOf("geçen hafta"), "先週、病気でした。 — Geçen hafta hastaydım.", null, null),
-                LearningExercise("jaa2u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'買いました' ne anlama gelir?", "", listOf("satın aldı", "gördü/izledi", "dün"), listOf("satın aldı"), "パンを買いました。 — Ekmek aldım.", null, null))),
+                LearningExercise("jaa2u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'買いました' ne anlama gelir?", "", listOf("satın aldı", "gördü/izledi", "dün"), listOf("satın aldı"), "パンを買いました。 — Ekmek aldım.", null, null)), listOf(
+                TargetVocabulary("jaa2u1w1", "昨日", "dün", "ifade", "昨日、働きました。", "Dün çalıştım."),
+                TargetVocabulary("jaa2u1w2", "先週", "geçen hafta", "ifade", "先週、病気でした。", "Geçen hafta hastaydım."),
+                TargetVocabulary("jaa2u1w3", "買いました", "satın aldı", "ifade", "パンを買いました。", "Ekmek aldım."),
+                TargetVocabulary("jaa2u1w4", "見ました", "gördü/izledi", "ifade", "その映画を見ました。", "O filmi izledim."),
+                TargetVocabulary("jaa2u1w5", "旅行", "yolculuk", "ifade", "旅行は楽しかったです。", "Yolculuk keyifliydi."))),
             LearningLesson("JA-A2-U1-L2", "Geçmişten Bahsetmek — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jaa2u1e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___、働きました。", "", listOf("買いました", "昨日", "先週"), listOf("昨日"), "Doğru cümle: 昨日、働きました。 — Dün çalıştım.", null, null),
                 LearningExercise("jaa2u1e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "その映画を___。", "", listOf("見ました", "旅行", "昨日"), listOf("見ました"), "Doğru cümle: その映画を見ました。 — O filmi izledim.", null, null),
@@ -105,7 +140,12 @@ object WorldCourseJA {
             LearningLesson("JA-A2-U2-L1", "Alışveriş ve Para — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'お金' ne anlama gelir?", "", listOf("kaç para", "para", "pahalı"), listOf("para"), "お金が足りません。 — Param yetmiyor.", null, null),
                 LearningExercise("jaa2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'高い' ne anlama gelir?", "", listOf("pahalı", "ucuz", "ödemek"), listOf("pahalı"), "この電話は高いです。 — Bu telefon pahalı.", null, null),
-                LearningExercise("jaa2u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'安い' ne anlama gelir?", "", listOf("kaç para", "para", "ucuz"), listOf("ucuz"), "パンは安いです。 — Ekmek ucuz.", null, null))),
+                LearningExercise("jaa2u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'安い' ne anlama gelir?", "", listOf("kaç para", "para", "ucuz"), listOf("ucuz"), "パンは安いです。 — Ekmek ucuz.", null, null)), listOf(
+                TargetVocabulary("jaa2u2w1", "お金", "para", "ifade", "お金が足りません。", "Param yetmiyor."),
+                TargetVocabulary("jaa2u2w2", "高い", "pahalı", "ifade", "この電話は高いです。", "Bu telefon pahalı."),
+                TargetVocabulary("jaa2u2w3", "安い", "ucuz", "ifade", "パンは安いです。", "Ekmek ucuz."),
+                TargetVocabulary("jaa2u2w4", "いくら", "kaç para", "ifade", "これはいくらですか。", "Bu kaç para?"),
+                TargetVocabulary("jaa2u2w5", "払います", "ödemek", "ifade", "カードで払います。", "Kartla ödüyorum."))),
             LearningLesson("JA-A2-U2-L2", "Alışveriş ve Para — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jaa2u2e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___が足りません。", "", listOf("お金", "高い", "安い"), listOf("お金"), "Doğru cümle: お金が足りません。 — Param yetmiyor.", null, null),
                 LearningExercise("jaa2u2e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "これは___ですか。", "", listOf("払います", "お金", "いくら"), listOf("いくら"), "Doğru cümle: これはいくらですか。 — Bu kaç para?", null, null),
@@ -119,7 +159,12 @@ object WorldCourseJA {
             LearningLesson("JA-A2-U3-L1", "Sağlık ve Vücut — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'病気' ne anlama gelir?", "", listOf("hastalık", "doktor", "eczane"), listOf("hastalık"), "今日は病気です。 — Bugün hastayım.", null, null),
                 LearningExercise("jaa2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'医者' ne anlama gelir?", "", listOf("baş", "ağrıyor", "doktor"), listOf("doktor"), "医者は十時に来ます。 — Doktor onda geliyor.", null, null),
-                LearningExercise("jaa2u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'頭' ne anlama gelir?", "", listOf("hastalık", "baş", "eczane"), listOf("baş"), "頭が痛いです。 — Başım ağrıyor.", null, null))),
+                LearningExercise("jaa2u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'頭' ne anlama gelir?", "", listOf("hastalık", "baş", "eczane"), listOf("baş"), "頭が痛いです。 — Başım ağrıyor.", null, null)), listOf(
+                TargetVocabulary("jaa2u3w1", "病気", "hastalık", "ifade", "今日は病気です。", "Bugün hastayım."),
+                TargetVocabulary("jaa2u3w2", "医者", "doktor", "ifade", "医者は十時に来ます。", "Doktor onda geliyor."),
+                TargetVocabulary("jaa2u3w3", "頭", "baş", "ifade", "頭が痛いです。", "Başım ağrıyor."),
+                TargetVocabulary("jaa2u3w4", "薬局", "eczane", "ifade", "薬局は閉まっています。", "Eczane kapalı."),
+                TargetVocabulary("jaa2u3w5", "痛い", "ağrıyor", "ifade", "足が痛いです。", "Ayağım ağrıyor."))),
             LearningLesson("JA-A2-U3-L2", "Sağlık ve Vücut — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jaa2u3e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "今日は___です。", "", listOf("医者", "頭", "病気"), listOf("病気"), "Doğru cümle: 今日は病気です。 — Bugün hastayım.", null, null),
                 LearningExercise("jaa2u3e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は閉まっています。", "", listOf("病気", "薬局", "痛い"), listOf("薬局"), "Doğru cümle: 薬局は閉まっています。 — Eczane kapalı.", null, null),
@@ -133,7 +178,12 @@ object WorldCourseJA {
             LearningLesson("JA-A2-U4-L1", "Hava Durumu ve Doğa — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'天気' ne anlama gelir?", "", listOf("yağmur", "soğuk", "hava durumu"), listOf("hava durumu"), "今日は天気がいいです。 — Bugün hava güzel.", null, null),
                 LearningExercise("jaa2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'雨' ne anlama gelir?", "", listOf("sıcak", "yağmur", "güneş"), listOf("yağmur"), "明日は雨が降ります。 — Yarın yağmur yağacak.", null, null),
-                LearningExercise("jaa2u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'太陽' ne anlama gelir?", "", listOf("güneş", "soğuk", "hava durumu"), listOf("güneş"), "太陽が出ています。 — Güneş çıkmış durumda.", null, null))),
+                LearningExercise("jaa2u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'太陽' ne anlama gelir?", "", listOf("güneş", "soğuk", "hava durumu"), listOf("güneş"), "太陽が出ています。 — Güneş çıkmış durumda.", null, null)), listOf(
+                TargetVocabulary("jaa2u4w1", "天気", "hava durumu", "ifade", "今日は天気がいいです。", "Bugün hava güzel."),
+                TargetVocabulary("jaa2u4w2", "雨", "yağmur", "ifade", "明日は雨が降ります。", "Yarın yağmur yağacak."),
+                TargetVocabulary("jaa2u4w3", "太陽", "güneş", "ifade", "太陽が出ています。", "Güneş çıkmış durumda."),
+                TargetVocabulary("jaa2u4w4", "寒い", "soğuk", "ifade", "冬は寒いです。", "Kışın hava soğuk olur."),
+                TargetVocabulary("jaa2u4w5", "暑い", "sıcak", "ifade", "夏は暑いです。", "Yazın hava sıcak olur."))),
             LearningLesson("JA-A2-U4-L2", "Hava Durumu ve Doğa — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jaa2u4e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "今日は___がいいです。", "", listOf("太陽", "天気", "雨"), listOf("天気"), "Doğru cümle: 今日は天気がいいです。 — Bugün hava güzel.", null, null),
                 LearningExercise("jaa2u4e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "冬は___です。", "", listOf("寒い", "暑い", "天気"), listOf("寒い"), "Doğru cümle: 冬は寒いです。 — Kışın hava soğuk olur.", null, null),
@@ -147,7 +197,12 @@ object WorldCourseJA {
             LearningLesson("JA-A2-U5-L1", "İş ve Okul — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'オフィス' ne anlama gelir?", "", listOf("öğretmen", "ofis", "ders çalışma"), listOf("ofis"), "オフィスは中心にあります。 — Ofis merkezde.", null, null),
                 LearningExercise("jaa2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'勉強' ne anlama gelir?", "", listOf("ders çalışma", "sınav", "toplantı"), listOf("ders çalışma"), "日本語を勉強します。 — Japonca çalışıyorum.", null, null),
-                LearningExercise("jaa2u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'試験' ne anlama gelir?", "", listOf("öğretmen", "ofis", "sınav"), listOf("sınav"), "試験は金曜日です。 — Sınav cuma günü.", null, null))),
+                LearningExercise("jaa2u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'試験' ne anlama gelir?", "", listOf("öğretmen", "ofis", "sınav"), listOf("sınav"), "試験は金曜日です。 — Sınav cuma günü.", null, null)), listOf(
+                TargetVocabulary("jaa2u5w1", "オフィス", "ofis", "ifade", "オフィスは中心にあります。", "Ofis merkezde."),
+                TargetVocabulary("jaa2u5w2", "勉強", "ders çalışma", "ifade", "日本語を勉強します。", "Japonca çalışıyorum."),
+                TargetVocabulary("jaa2u5w3", "試験", "sınav", "ifade", "試験は金曜日です。", "Sınav cuma günü."),
+                TargetVocabulary("jaa2u5w4", "先生", "öğretmen", "ifade", "先生は全部説明します。", "Öğretmen her şeyi açıklıyor."),
+                TargetVocabulary("jaa2u5w5", "会議", "toplantı", "ifade", "会議は九時に始まります。", "Toplantı dokuzda başlıyor."))),
             LearningLesson("JA-A2-U5-L2", "İş ve Okul — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jaa2u5e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は中心にあります。", "", listOf("オフィス", "勉強", "試験"), listOf("オフィス"), "Doğru cümle: オフィスは中心にあります。 — Ofis merkezde.", null, null),
                 LearningExercise("jaa2u5e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は全部説明します。", "", listOf("会議", "オフィス", "先生"), listOf("先生"), "Doğru cümle: 先生は全部説明します。 — Öğretmen her şeyi açıklıyor.", null, null),
@@ -161,7 +216,12 @@ object WorldCourseJA {
             LearningLesson("JA-A2-U6-L1", "Planlar ve Gelecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'週末' ne anlama gelir?", "", listOf("hafta sonu", "plan", "gelecek yıl"), listOf("hafta sonu"), "週末は休みます。 — Hafta sonu dinlenirim.", null, null),
                 LearningExercise("jaa2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'計画' ne anlama gelir?", "", listOf("tatil/izin", "program/plan", "plan"), listOf("plan"), "夏の計画があります。 — Yaz için bir planım var.", null, null),
-                LearningExercise("jaa2u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'休み' ne anlama gelir?", "", listOf("hafta sonu", "tatil/izin", "gelecek yıl"), listOf("tatil/izin"), "休みはもうすぐ始まります。 — Tatil yakında başlıyor.", null, null))),
+                LearningExercise("jaa2u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'休み' ne anlama gelir?", "", listOf("hafta sonu", "tatil/izin", "gelecek yıl"), listOf("tatil/izin"), "休みはもうすぐ始まります。 — Tatil yakında başlıyor.", null, null)), listOf(
+                TargetVocabulary("jaa2u6w1", "週末", "hafta sonu", "ifade", "週末は休みます。", "Hafta sonu dinlenirim."),
+                TargetVocabulary("jaa2u6w2", "計画", "plan", "ifade", "夏の計画があります。", "Yaz için bir planım var."),
+                TargetVocabulary("jaa2u6w3", "休み", "tatil/izin", "ifade", "休みはもうすぐ始まります。", "Tatil yakında başlıyor."),
+                TargetVocabulary("jaa2u6w4", "来年", "gelecek yıl", "ifade", "来年、日本へ行きます。", "Gelecek yıl Japonya'ya gideceğim."),
+                TargetVocabulary("jaa2u6w5", "予定", "program/plan", "ifade", "明日の予定は何ですか。", "Yarınki programın ne?"))),
             LearningLesson("JA-A2-U6-L2", "Planlar ve Gelecek — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jaa2u6e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は休みます。", "", listOf("計画", "休み", "週末"), listOf("週末"), "Doğru cümle: 週末は休みます。 — Hafta sonu dinlenirim.", null, null),
                 LearningExercise("jaa2u6e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___、日本へ行きます。", "", listOf("週末", "来年", "予定"), listOf("来年"), "Doğru cümle: 来年、日本へ行きます。 — Gelecek yıl Japonya'ya gideceğim.", null, null),
@@ -175,7 +235,12 @@ object WorldCourseJA {
             LearningLesson("JA-B1-U1-L1", "Deneyimler ve Anılar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'経験' ne anlama gelir?", "", listOf("hatırlıyor", "o dönemde", "deneyim"), listOf("deneyim"), "あの経験は私を変えました。 — O deneyim beni değiştirdi.", null, null),
                 LearningExercise("jab1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'覚えています' ne anlama gelir?", "", listOf("anı", "hatırlıyor", "çocukluk dönemi"), listOf("hatırlıyor"), "子供のころを覚えています。 — Çocukluğumu hatırlıyorum.", null, null),
-                LearningExercise("jab1u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'子供のころ' ne anlama gelir?", "", listOf("çocukluk dönemi", "o dönemde", "deneyim"), listOf("çocukluk dönemi"), "子供のころは幸せでした。 — Çocuklukta mutluydum.", null, null))),
+                LearningExercise("jab1u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'子供のころ' ne anlama gelir?", "", listOf("çocukluk dönemi", "o dönemde", "deneyim"), listOf("çocukluk dönemi"), "子供のころは幸せでした。 — Çocuklukta mutluydum.", null, null)), listOf(
+                TargetVocabulary("jab1u1w1", "経験", "deneyim", "ifade", "あの経験は私を変えました。", "O deneyim beni değiştirdi."),
+                TargetVocabulary("jab1u1w2", "覚えています", "hatırlıyor", "ifade", "子供のころを覚えています。", "Çocukluğumu hatırlıyorum."),
+                TargetVocabulary("jab1u1w3", "子供のころ", "çocukluk dönemi", "ifade", "子供のころは幸せでした。", "Çocuklukta mutluydum."),
+                TargetVocabulary("jab1u1w4", "当時", "o dönemde", "ifade", "当時は田舎に住んでいました。", "O dönemde kırsalda yaşıyorduk."),
+                TargetVocabulary("jab1u1w5", "思い出", "anı", "ifade", "この思い出は大切です。", "Bu anı çok değerli."))),
             LearningLesson("JA-B1-U1-L2", "Deneyimler ve Anılar — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jab1u1e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "あの___は私を変えました。", "", listOf("子供のころ", "経験", "覚えています"), listOf("経験"), "Doğru cümle: あの経験は私を変えました。 — O deneyim beni değiştirdi.", null, null),
                 LearningExercise("jab1u1e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は田舎に住んでいました。", "", listOf("当時", "思い出", "経験"), listOf("当時"), "Doğru cümle: 当時は田舎に住んでいました。 — O dönemde kırsalda yaşıyorduk.", null, null),
@@ -189,7 +254,12 @@ object WorldCourseJA {
             LearningLesson("JA-B1-U2-L1", "Medya ve Teknoloji — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'ニュース' ne anlama gelir?", "", listOf("bağlantı", "haberler", "cihaz"), listOf("haberler"), "夜にニュースを見ます。 — Akşamları haber izlerim.", null, null),
                 LearningExercise("jab1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'端末' ne anlama gelir?", "", listOf("cihaz", "indirme", "ekran"), listOf("cihaz"), "この端末は新しいです。 — Bu cihaz yeni.", null, null),
-                LearningExercise("jab1u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'ダウンロード' ne anlama gelir?", "", listOf("bağlantı", "haberler", "indirme"), listOf("indirme"), "アプリをダウンロードしたいです。 — Uygulamayı indirmek istiyorum.", null, null))),
+                LearningExercise("jab1u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'ダウンロード' ne anlama gelir?", "", listOf("bağlantı", "haberler", "indirme"), listOf("indirme"), "アプリをダウンロードしたいです。 — Uygulamayı indirmek istiyorum.", null, null)), listOf(
+                TargetVocabulary("jab1u2w1", "ニュース", "haberler", "ifade", "夜にニュースを見ます。", "Akşamları haber izlerim."),
+                TargetVocabulary("jab1u2w2", "端末", "cihaz", "ifade", "この端末は新しいです。", "Bu cihaz yeni."),
+                TargetVocabulary("jab1u2w3", "ダウンロード", "indirme", "ifade", "アプリをダウンロードしたいです。", "Uygulamayı indirmek istiyorum."),
+                TargetVocabulary("jab1u2w4", "接続", "bağlantı", "ifade", "接続が遅いです。", "Bağlantı yavaş."),
+                TargetVocabulary("jab1u2w5", "画面", "ekran", "ifade", "画面が明るすぎます。", "Ekran fazla parlak."))),
             LearningLesson("JA-B1-U2-L2", "Medya ve Teknoloji — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jab1u2e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "夜に___を見ます。", "", listOf("ニュース", "端末", "ダウンロード"), listOf("ニュース"), "Doğru cümle: 夜にニュースを見ます。 — Akşamları haber izlerim.", null, null),
                 LearningExercise("jab1u2e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___が遅いです。", "", listOf("画面", "ニュース", "接続"), listOf("接続"), "Doğru cümle: 接続が遅いです。 — Bağlantı yavaş.", null, null),
@@ -203,7 +273,12 @@ object WorldCourseJA {
             LearningLesson("JA-B1-U3-L1", "Duygular ve İlişkiler — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'友情' ne anlama gelir?", "", listOf("arkadaşlık", "güven", "kavga"), listOf("arkadaşlık"), "私たちの友情は強いです。 — Arkadaşlığımız güçlü.", null, null),
                 LearningExercise("jab1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'信頼' ne anlama gelir?", "", listOf("hayal kırıklığı", "duygu/his", "güven"), listOf("güven"), "信頼には時間がかかります。 — Güven zaman alır.", null, null),
-                LearningExercise("jab1u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'がっかり' ne anlama gelir?", "", listOf("arkadaşlık", "hayal kırıklığı", "kavga"), listOf("hayal kırıklığı"), "結果にがっかりしました。 — Sonuçtan hayal kırıklığına uğradım.", null, null))),
+                LearningExercise("jab1u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'がっかり' ne anlama gelir?", "", listOf("arkadaşlık", "hayal kırıklığı", "kavga"), listOf("hayal kırıklığı"), "結果にがっかりしました。 — Sonuçtan hayal kırıklığına uğradım.", null, null)), listOf(
+                TargetVocabulary("jab1u3w1", "友情", "arkadaşlık", "ifade", "私たちの友情は強いです。", "Arkadaşlığımız güçlü."),
+                TargetVocabulary("jab1u3w2", "信頼", "güven", "ifade", "信頼には時間がかかります。", "Güven zaman alır."),
+                TargetVocabulary("jab1u3w3", "がっかり", "hayal kırıklığı", "ifade", "結果にがっかりしました。", "Sonuçtan hayal kırıklığına uğradım."),
+                TargetVocabulary("jab1u3w4", "けんか", "kavga", "ifade", "私たちはあまりけんかしません。", "Pek kavga etmeyiz."),
+                TargetVocabulary("jab1u3w5", "気持ち", "duygu/his", "ifade", "不思議な気持ちです。", "Tuhaf bir his."))),
             LearningLesson("JA-B1-U3-L2", "Duygular ve İlişkiler — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jab1u3e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "私たちの___は強いです。", "", listOf("信頼", "がっかり", "友情"), listOf("友情"), "Doğru cümle: 私たちの友情は強いです。 — Arkadaşlığımız güçlü.", null, null),
                 LearningExercise("jab1u3e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "私たちはあまり___しません。", "", listOf("友情", "けんか", "気持ち"), listOf("けんか"), "Doğru cümle: 私たちはあまりけんかしません。 — Pek kavga etmeyiz.", null, null),
@@ -217,7 +292,12 @@ object WorldCourseJA {
             LearningLesson("JA-B1-U4-L1", "Kültür ve Gelenekler — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'習慣' ne anlama gelir?", "", listOf("festival/bayram", "gelenek", "âdet/alışkanlık"), listOf("âdet/alışkanlık"), "この習慣はとても古いです。 — Bu âdet çok eski.", null, null),
                 LearningExercise("jab1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'祭り' ne anlama gelir?", "", listOf("toplum", "festival/bayram", "kutlamak"), listOf("festival/bayram"), "祭りは三日間続きます。 — Festival üç gün sürüyor.", null, null),
-                LearningExercise("jab1u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'祝います' ne anlama gelir?", "", listOf("kutlamak", "gelenek", "âdet/alışkanlık"), listOf("kutlamak"), "一緒に祝います。 — Birlikte kutluyoruz.", null, null))),
+                LearningExercise("jab1u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'祝います' ne anlama gelir?", "", listOf("kutlamak", "gelenek", "âdet/alışkanlık"), listOf("kutlamak"), "一緒に祝います。 — Birlikte kutluyoruz.", null, null)), listOf(
+                TargetVocabulary("jab1u4w1", "習慣", "âdet/alışkanlık", "ifade", "この習慣はとても古いです。", "Bu âdet çok eski."),
+                TargetVocabulary("jab1u4w2", "祭り", "festival/bayram", "ifade", "祭りは三日間続きます。", "Festival üç gün sürüyor."),
+                TargetVocabulary("jab1u4w3", "祝います", "kutlamak", "ifade", "一緒に祝います。", "Birlikte kutluyoruz."),
+                TargetVocabulary("jab1u4w4", "伝統", "gelenek", "ifade", "伝統は続いています。", "Gelenek sürüyor."),
+                TargetVocabulary("jab1u4w5", "社会", "toplum", "ifade", "社会は速く変わります。", "Toplum hızla değişiyor."))),
             LearningLesson("JA-B1-U4-L2", "Kültür ve Gelenekler — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jab1u4e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "この___はとても古いです。", "", listOf("祝います", "習慣", "祭り"), listOf("習慣"), "Doğru cümle: この習慣はとても古いです。 — Bu âdet çok eski.", null, null),
                 LearningExercise("jab1u4e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は続いています。", "", listOf("伝統", "社会", "習慣"), listOf("伝統"), "Doğru cümle: 伝統は続いています。 — Gelenek sürüyor.", null, null),
@@ -231,7 +311,12 @@ object WorldCourseJA {
             LearningLesson("JA-B1-U5-L1", "Spor ve Sağlıklı Yaşam — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'健康' ne anlama gelir?", "", listOf("antrenman", "sağlık", "spor/hareket"), listOf("sağlık"), "健康が一番大切です。 — Sağlık en önemlisidir.", null, null),
                 LearningExercise("jab1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'運動' ne anlama gelir?", "", listOf("spor/hareket", "yemek/beslenme", "kaçınmak"), listOf("spor/hareket"), "毎日運動するべきです。 — Her gün hareket etmeli.", null, null),
-                LearningExercise("jab1u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'食事' ne anlama gelir?", "", listOf("antrenman", "sağlık", "yemek/beslenme"), listOf("yemek/beslenme"), "バランスのいい食事が大事です。 — Dengeli beslenme önemli.", null, null))),
+                LearningExercise("jab1u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'食事' ne anlama gelir?", "", listOf("antrenman", "sağlık", "yemek/beslenme"), listOf("yemek/beslenme"), "バランスのいい食事が大事です。 — Dengeli beslenme önemli.", null, null)), listOf(
+                TargetVocabulary("jab1u5w1", "健康", "sağlık", "ifade", "健康が一番大切です。", "Sağlık en önemlisidir."),
+                TargetVocabulary("jab1u5w2", "運動", "spor/hareket", "ifade", "毎日運動するべきです。", "Her gün hareket etmeli."),
+                TargetVocabulary("jab1u5w3", "食事", "yemek/beslenme", "ifade", "バランスのいい食事が大事です。", "Dengeli beslenme önemli."),
+                TargetVocabulary("jab1u5w4", "トレーニング", "antrenman", "ifade", "週に三回トレーニングします。", "Haftada üç kez antrenman yaparım."),
+                TargetVocabulary("jab1u5w5", "避けます", "kaçınmak", "ifade", "砂糖を避けます。", "Şekerden kaçınırım."))),
             LearningLesson("JA-B1-U5-L2", "Spor ve Sağlıklı Yaşam — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jab1u5e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___が一番大切です。", "", listOf("健康", "運動", "食事"), listOf("健康"), "Doğru cümle: 健康が一番大切です。 — Sağlık en önemlisidir.", null, null),
                 LearningExercise("jab1u5e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "週に三回___します。", "", listOf("避けます", "健康", "トレーニング"), listOf("トレーニング"), "Doğru cümle: 週に三回トレーニングします。 — Haftada üç kez antrenman yaparım.", null, null),
@@ -245,7 +330,12 @@ object WorldCourseJA {
             LearningLesson("JA-B1-U6-L1", "Görüş Bildirmek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'意見' ne anlama gelir?", "", listOf("görüş", "katılma (fikre)", "sebep"), listOf("görüş"), "これは私の意見です。 — Bu benim görüşüm.", null, null),
                 LearningExercise("jab1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'賛成' ne anlama gelir?", "", listOf("karşı çıkma", "ikna olma", "katılma (fikre)"), listOf("katılma (fikre)"), "私は賛成です。 — Ben katılıyorum.", null, null),
-                LearningExercise("jab1u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'反対' ne anlama gelir?", "", listOf("görüş", "karşı çıkma", "sebep"), listOf("karşı çıkma"), "その案に反対です。 — O öneriye karşıyım.", null, null))),
+                LearningExercise("jab1u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'反対' ne anlama gelir?", "", listOf("görüş", "karşı çıkma", "sebep"), listOf("karşı çıkma"), "その案に反対です。 — O öneriye karşıyım.", null, null)), listOf(
+                TargetVocabulary("jab1u6w1", "意見", "görüş", "ifade", "これは私の意見です。", "Bu benim görüşüm."),
+                TargetVocabulary("jab1u6w2", "賛成", "katılma (fikre)", "ifade", "私は賛成です。", "Ben katılıyorum."),
+                TargetVocabulary("jab1u6w3", "反対", "karşı çıkma", "ifade", "その案に反対です。", "O öneriye karşıyım."),
+                TargetVocabulary("jab1u6w4", "理由", "sebep", "ifade", "いい理由があります。", "İyi bir sebep var."),
+                TargetVocabulary("jab1u6w5", "納得", "ikna olma", "ifade", "まだ納得できません。", "Henüz ikna olamadım."))),
             LearningLesson("JA-B1-U6-L2", "Görüş Bildirmek — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jab1u6e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "これは私の___です。", "", listOf("賛成", "反対", "意見"), listOf("意見"), "Doğru cümle: これは私の意見です。 — Bu benim görüşüm.", null, null),
                 LearningExercise("jab1u6e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "いい___があります。", "", listOf("意見", "理由", "納得"), listOf("理由"), "Doğru cümle: いい理由があります。 — İyi bir sebep var.", null, null),
@@ -259,7 +349,12 @@ object WorldCourseJA {
             LearningLesson("JA-B2-U1-L1", "Kariyer ve İş Dünyası — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'履歴書' ne anlama gelir?", "", listOf("mülakat", "sorumluluk", "özgeçmiş"), listOf("özgeçmiş"), "履歴書は短くまとめます。 — Özgeçmişi kısa tutarım.", null, null),
                 LearningExercise("jab2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'面接' ne anlama gelir?", "", listOf("kariyer", "mülakat", "işe alım"), listOf("mülakat"), "面接はうまくいきました。 — Mülakat iyi geçti.", null, null),
-                LearningExercise("jab2u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'採用' ne anlama gelir?", "", listOf("işe alım", "sorumluluk", "özgeçmiş"), listOf("işe alım"), "彼女は会社に採用されました。 — Şirkete işe alındı.", null, null))),
+                LearningExercise("jab2u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'採用' ne anlama gelir?", "", listOf("işe alım", "sorumluluk", "özgeçmiş"), listOf("işe alım"), "彼女は会社に採用されました。 — Şirkete işe alındı.", null, null)), listOf(
+                TargetVocabulary("jab2u1w1", "履歴書", "özgeçmiş", "ifade", "履歴書は短くまとめます。", "Özgeçmişi kısa tutarım."),
+                TargetVocabulary("jab2u1w2", "面接", "mülakat", "ifade", "面接はうまくいきました。", "Mülakat iyi geçti."),
+                TargetVocabulary("jab2u1w3", "採用", "işe alım", "ifade", "彼女は会社に採用されました。", "Şirkete işe alındı."),
+                TargetVocabulary("jab2u1w4", "責任", "sorumluluk", "ifade", "責任を引き受けます。", "Sorumluluğu üstleniyorum."),
+                TargetVocabulary("jab2u1w5", "キャリア", "kariyer", "ifade", "彼女のキャリアは順調です。", "Kariyeri yolunda gidiyor."))),
             LearningLesson("JA-B2-U1-L2", "Kariyer ve İş Dünyası — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jab2u1e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は短くまとめます。", "", listOf("採用", "履歴書", "面接"), listOf("履歴書"), "Doğru cümle: 履歴書は短くまとめます。 — Özgeçmişi kısa tutarım.", null, null),
                 LearningExercise("jab2u1e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___を引き受けます。", "", listOf("責任", "キャリア", "履歴書"), listOf("責任"), "Doğru cümle: 責任を引き受けます。 — Sorumluluğu üstleniyorum.", null, null),
@@ -273,7 +368,12 @@ object WorldCourseJA {
             LearningLesson("JA-B2-U2-L1", "Çevre ve Sürdürülebilirlik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'環境' ne anlama gelir?", "", listOf("çöp", "çevre", "iklim değişikliği"), listOf("çevre"), "環境を守らなければなりません。 — Çevreyi korumalıyız.", null, null),
                 LearningExercise("jab2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'気候変動' ne anlama gelir?", "", listOf("iklim değişikliği", "sürdürülebilir", "yenilenebilir"), listOf("iklim değişikliği"), "気候変動はみんなに影響します。 — İklim değişikliği herkesi etkiliyor.", null, null),
-                LearningExercise("jab2u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'持続可能' ne anlama gelir?", "", listOf("çöp", "çevre", "sürdürülebilir"), listOf("sürdürülebilir"), "持続可能な解決策が必要です。 — Sürdürülebilir çözümler gerekli.", null, null))),
+                LearningExercise("jab2u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'持続可能' ne anlama gelir?", "", listOf("çöp", "çevre", "sürdürülebilir"), listOf("sürdürülebilir"), "持続可能な解決策が必要です。 — Sürdürülebilir çözümler gerekli.", null, null)), listOf(
+                TargetVocabulary("jab2u2w1", "環境", "çevre", "ifade", "環境を守らなければなりません。", "Çevreyi korumalıyız."),
+                TargetVocabulary("jab2u2w2", "気候変動", "iklim değişikliği", "ifade", "気候変動はみんなに影響します。", "İklim değişikliği herkesi etkiliyor."),
+                TargetVocabulary("jab2u2w3", "持続可能", "sürdürülebilir", "ifade", "持続可能な解決策が必要です。", "Sürdürülebilir çözümler gerekli."),
+                TargetVocabulary("jab2u2w4", "ごみ", "çöp", "ifade", "ごみは分別します。", "Çöp ayrıştırılır."),
+                TargetVocabulary("jab2u2w5", "再生可能", "yenilenebilir", "ifade", "再生可能エネルギーは未来です。", "Yenilenebilir enerji gelecektir."))),
             LearningLesson("JA-B2-U2-L2", "Çevre ve Sürdürülebilirlik — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jab2u2e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___を守らなければなりません。", "", listOf("環境", "気候変動", "持続可能"), listOf("環境"), "Doğru cümle: 環境を守らなければなりません。 — Çevreyi korumalıyız.", null, null),
                 LearningExercise("jab2u2e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は分別します。", "", listOf("再生可能", "環境", "ごみ"), listOf("ごみ"), "Doğru cümle: ごみは分別します。 — Çöp ayrıştırılır.", null, null),
@@ -287,7 +387,12 @@ object WorldCourseJA {
             LearningLesson("JA-B2-U3-L1", "Bilim ve Yenilik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'研究' ne anlama gelir?", "", listOf("araştırma", "keşif", "kanıtlama"), listOf("araştırma"), "研究は続いています。 — Araştırma sürüyor.", null, null),
                 LearningExercise("jab2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'発見' ne anlama gelir?", "", listOf("ilerleme", "sonuç", "keşif"), listOf("keşif"), "重要な発見でした。 — Önemli bir keşifti.", null, null),
-                LearningExercise("jab2u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'進歩' ne anlama gelir?", "", listOf("araştırma", "ilerleme", "kanıtlama"), listOf("ilerleme"), "進歩は明らかです。 — İlerleme ortada.", null, null))),
+                LearningExercise("jab2u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'進歩' ne anlama gelir?", "", listOf("araştırma", "ilerleme", "kanıtlama"), listOf("ilerleme"), "進歩は明らかです。 — İlerleme ortada.", null, null)), listOf(
+                TargetVocabulary("jab2u3w1", "研究", "araştırma", "ifade", "研究は続いています。", "Araştırma sürüyor."),
+                TargetVocabulary("jab2u3w2", "発見", "keşif", "ifade", "重要な発見でした。", "Önemli bir keşifti."),
+                TargetVocabulary("jab2u3w3", "進歩", "ilerleme", "ifade", "進歩は明らかです。", "İlerleme ortada."),
+                TargetVocabulary("jab2u3w4", "証明", "kanıtlama", "ifade", "理論が証明されました。", "Teori kanıtlandı."),
+                TargetVocabulary("jab2u3w5", "結果", "sonuç", "ifade", "結果に驚きました。", "Sonuca şaşırdık."))),
             LearningLesson("JA-B2-U3-L2", "Bilim ve Yenilik — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jab2u3e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は続いています。", "", listOf("発見", "進歩", "研究"), listOf("研究"), "Doğru cümle: 研究は続いています。 — Araştırma sürüyor.", null, null),
                 LearningExercise("jab2u3e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "理論が___されました。", "", listOf("研究", "証明", "結果"), listOf("証明"), "Doğru cümle: 理論が証明されました。 — Teori kanıtlandı.", null, null),
@@ -301,7 +406,12 @@ object WorldCourseJA {
             LearningLesson("JA-B2-U4-L1", "Toplum ve Güncel Konular — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'正義' ne anlama gelir?", "", listOf("eşitlik", "yoksulluk", "adalet"), listOf("adalet"), "正義は基本的な価値です。 — Adalet temel bir değerdir.", null, null),
                 LearningExercise("jab2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'平等' ne anlama gelir?", "", listOf("tartışma", "eşitlik", "vatandaş"), listOf("eşitlik"), "法の下の平等。 — Yasa önünde eşitlik.", null, null),
-                LearningExercise("jab2u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'市民' ne anlama gelir?", "", listOf("vatandaş", "yoksulluk", "adalet"), listOf("vatandaş"), "すべての市民に権利があります。 — Her vatandaşın hakları vardır.", null, null))),
+                LearningExercise("jab2u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'市民' ne anlama gelir?", "", listOf("vatandaş", "yoksulluk", "adalet"), listOf("vatandaş"), "すべての市民に権利があります。 — Her vatandaşın hakları vardır.", null, null)), listOf(
+                TargetVocabulary("jab2u4w1", "正義", "adalet", "ifade", "正義は基本的な価値です。", "Adalet temel bir değerdir."),
+                TargetVocabulary("jab2u4w2", "平等", "eşitlik", "ifade", "法の下の平等。", "Yasa önünde eşitlik."),
+                TargetVocabulary("jab2u4w3", "市民", "vatandaş", "ifade", "すべての市民に権利があります。", "Her vatandaşın hakları vardır."),
+                TargetVocabulary("jab2u4w4", "貧困", "yoksulluk", "ifade", "貧困と戦わなければなりません。", "Yoksullukla mücadele etmeliyiz."),
+                TargetVocabulary("jab2u4w5", "議論", "tartışma", "ifade", "議論は続いています。", "Tartışma sürüyor."))),
             LearningLesson("JA-B2-U4-L2", "Toplum ve Güncel Konular — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jab2u4e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は基本的な価値です。", "", listOf("市民", "正義", "平等"), listOf("正義"), "Doğru cümle: 正義は基本的な価値です。 — Adalet temel bir değerdir.", null, null),
                 LearningExercise("jab2u4e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___と戦わなければなりません。", "", listOf("貧困", "議論", "正義"), listOf("貧困"), "Doğru cümle: 貧困と戦わなければなりません。 — Yoksullukla mücadele etmeliyiz.", null, null),
@@ -315,7 +425,12 @@ object WorldCourseJA {
             LearningLesson("JA-B2-U5-L1", "Sanat ve Edebiyat — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'絵画' ne anlama gelir?", "", listOf("etkileyici", "tablo/resim", "roman"), listOf("tablo/resim"), "絵画は美術館にあります。 — Tablo müzede.", null, null),
                 LearningExercise("jab2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'小説' ne anlama gelir?", "", listOf("roman", "sergi", "yazar"), listOf("roman"), "小説は四百ページあります。 — Roman dört yüz sayfa.", null, null),
-                LearningExercise("jab2u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'展覧会' ne anlama gelir?", "", listOf("etkileyici", "tablo/resim", "sergi"), listOf("sergi"), "展覧会は明日始まります。 — Sergi yarın başlıyor.", null, null))),
+                LearningExercise("jab2u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'展覧会' ne anlama gelir?", "", listOf("etkileyici", "tablo/resim", "sergi"), listOf("sergi"), "展覧会は明日始まります。 — Sergi yarın başlıyor.", null, null)), listOf(
+                TargetVocabulary("jab2u5w1", "絵画", "tablo/resim", "ifade", "絵画は美術館にあります。", "Tablo müzede."),
+                TargetVocabulary("jab2u5w2", "小説", "roman", "ifade", "小説は四百ページあります。", "Roman dört yüz sayfa."),
+                TargetVocabulary("jab2u5w3", "展覧会", "sergi", "ifade", "展覧会は明日始まります。", "Sergi yarın başlıyor."),
+                TargetVocabulary("jab2u5w4", "印象的", "etkileyici", "ifade", "印象的な作品です。", "Etkileyici bir eser."),
+                TargetVocabulary("jab2u5w5", "作家", "yazar", "ifade", "作家は今晩朗読します。", "Yazar bu akşam okuma yapıyor."))),
             LearningLesson("JA-B2-U5-L2", "Sanat ve Edebiyat — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jab2u5e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は美術館にあります。", "", listOf("絵画", "小説", "展覧会"), listOf("絵画"), "Doğru cümle: 絵画は美術館にあります。 — Tablo müzede.", null, null),
                 LearningExercise("jab2u5e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___な作品です。", "", listOf("作家", "絵画", "印象的"), listOf("印象的"), "Doğru cümle: 印象的な作品です。 — Etkileyici bir eser.", null, null),
@@ -329,7 +444,12 @@ object WorldCourseJA {
             LearningLesson("JA-B2-U6-L1", "Tartışma ve İkna — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'論点' ne anlama gelir?", "", listOf("argüman/tartışma noktası", "bir yandan", "karşı argüman"), listOf("argüman/tartışma noktası"), "論点は明確です。 — Tartışma noktası net.", null, null),
                 LearningExercise("jab2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'一方で' ne anlama gelir?", "", listOf("öte yandan", "sonuç/çıkarım", "bir yandan"), listOf("bir yandan"), "一方で高いです。 — Bir yandan pahalı.", null, null),
-                LearningExercise("jab2u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'他方で' ne anlama gelir?", "", listOf("argüman/tartışma noktası", "öte yandan", "karşı argüman"), listOf("öte yandan"), "他方で便利です。 — Öte yandan kullanışlı.", null, null))),
+                LearningExercise("jab2u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'他方で' ne anlama gelir?", "", listOf("argüman/tartışma noktası", "öte yandan", "karşı argüman"), listOf("öte yandan"), "他方で便利です。 — Öte yandan kullanışlı.", null, null)), listOf(
+                TargetVocabulary("jab2u6w1", "論点", "argüman/tartışma noktası", "ifade", "論点は明確です。", "Tartışma noktası net."),
+                TargetVocabulary("jab2u6w2", "一方で", "bir yandan", "ifade", "一方で高いです。", "Bir yandan pahalı."),
+                TargetVocabulary("jab2u6w3", "他方で", "öte yandan", "ifade", "他方で便利です。", "Öte yandan kullanışlı."),
+                TargetVocabulary("jab2u6w4", "反論", "karşı argüman", "ifade", "反論があります。", "Bir karşı argümanım var."),
+                TargetVocabulary("jab2u6w5", "結論", "sonuç/çıkarım", "ifade", "結論は明らかです。", "Çıkarım açık."))),
             LearningLesson("JA-B2-U6-L2", "Tartışma ve İkna — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jab2u6e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は明確です。", "", listOf("一方で", "他方で", "論点"), listOf("論点"), "Doğru cümle: 論点は明確です。 — Tartışma noktası net.", null, null),
                 LearningExercise("jab2u6e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___があります。", "", listOf("論点", "反論", "結論"), listOf("反論"), "Doğru cümle: 反論があります。 — Bir karşı argümanım var.", null, null),
@@ -343,7 +463,12 @@ object WorldCourseJA {
             LearningLesson("JA-C1-U1-L1", "Akademik Dil — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'論文' ne anlama gelir?", "", listOf("çözümleme", "kaynak (alıntı)", "makale/tez"), listOf("makale/tez"), "この論文は議論を呼んでいます。 — Bu makale tartışma yaratıyor.", null, null),
                 LearningExercise("jac1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'分析' ne anlama gelir?", "", listOf("yöntem", "çözümleme", "inceleme/değerlendirme"), listOf("çözümleme"), "分析は十年のデータを扱います。 — Çözümleme on yıllık veriyi ele alıyor.", null, null),
-                LearningExercise("jac1u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'検討' ne anlama gelir?", "", listOf("inceleme/değerlendirme", "kaynak (alıntı)", "makale/tez"), listOf("inceleme/değerlendirme"), "明日この問題を検討します。 — Bu konuyu yarın değerlendireceğiz.", null, null))),
+                LearningExercise("jac1u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'検討' ne anlama gelir?", "", listOf("inceleme/değerlendirme", "kaynak (alıntı)", "makale/tez"), listOf("inceleme/değerlendirme"), "明日この問題を検討します。 — Bu konuyu yarın değerlendireceğiz.", null, null)), listOf(
+                TargetVocabulary("jac1u1w1", "論文", "makale/tez", "ifade", "この論文は議論を呼んでいます。", "Bu makale tartışma yaratıyor."),
+                TargetVocabulary("jac1u1w2", "分析", "çözümleme", "ifade", "分析は十年のデータを扱います。", "Çözümleme on yıllık veriyi ele alıyor."),
+                TargetVocabulary("jac1u1w3", "検討", "inceleme/değerlendirme", "ifade", "明日この問題を検討します。", "Bu konuyu yarın değerlendireceğiz."),
+                TargetVocabulary("jac1u1w4", "出典", "kaynak (alıntı)", "ifade", "出典は信頼できます。", "Kaynak güvenilir."),
+                TargetVocabulary("jac1u1w5", "手法", "yöntem", "ifade", "この手法は有望です。", "Bu yöntem umut verici."))),
             LearningLesson("JA-C1-U1-L2", "Akademik Dil — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jac1u1e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "この___は議論を呼んでいます。", "", listOf("検討", "論文", "分析"), listOf("論文"), "Doğru cümle: この論文は議論を呼んでいます。 — Bu makale tartışma yaratıyor.", null, null),
                 LearningExercise("jac1u1e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は信頼できます。", "", listOf("出典", "手法", "論文"), listOf("出典"), "Doğru cümle: 出典は信頼できます。 — Kaynak güvenilir.", null, null),
@@ -357,7 +482,12 @@ object WorldCourseJA {
             LearningLesson("JA-C1-U2-L1", "Soyut Kavramlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'知覚' ne anlama gelir?", "", listOf("düşünce/anlayış", "algı", "bilinç"), listOf("algı"), "知覚はよく私たちを欺きます。 — Algı bizi sık yanıltır.", null, null),
                 LearningExercise("jac1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'意識' ne anlama gelir?", "", listOf("bilinç", "kavram", "kavrayış/idrak"), listOf("bilinç"), "意識はまだ謎です。 — Bilinç hâlâ bir muamma.", null, null),
-                LearningExercise("jac1u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'概念' ne anlama gelir?", "", listOf("düşünce/anlayış", "algı", "kavram"), listOf("kavram"), "この概念は定義しにくいです。 — Bu kavramı tanımlamak zor.", null, null))),
+                LearningExercise("jac1u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'概念' ne anlama gelir?", "", listOf("düşünce/anlayış", "algı", "kavram"), listOf("kavram"), "この概念は定義しにくいです。 — Bu kavramı tanımlamak zor.", null, null)), listOf(
+                TargetVocabulary("jac1u2w1", "知覚", "algı", "ifade", "知覚はよく私たちを欺きます。", "Algı bizi sık yanıltır."),
+                TargetVocabulary("jac1u2w2", "意識", "bilinç", "ifade", "意識はまだ謎です。", "Bilinç hâlâ bir muamma."),
+                TargetVocabulary("jac1u2w3", "概念", "kavram", "ifade", "この概念は定義しにくいです。", "Bu kavramı tanımlamak zor."),
+                TargetVocabulary("jac1u2w4", "観念", "düşünce/anlayış", "ifade", "この観念は広く共有されています。", "Bu anlayış geniş kabul görüyor."),
+                TargetVocabulary("jac1u2w5", "認識", "kavrayış/idrak", "ifade", "認識は経験で変わります。", "Kavrayış deneyimle değişir."))),
             LearningLesson("JA-C1-U2-L2", "Soyut Kavramlar — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jac1u2e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___はよく私たちを欺きます。", "", listOf("知覚", "意識", "概念"), listOf("知覚"), "Doğru cümle: 知覚はよく私たちを欺きます。 — Algı bizi sık yanıltır.", null, null),
                 LearningExercise("jac1u2e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "この___は広く共有されています。", "", listOf("認識", "知覚", "観念"), listOf("観念"), "Doğru cümle: この観念は広く共有されています。 — Bu anlayış geniş kabul görüyor.", null, null),
@@ -371,7 +501,12 @@ object WorldCourseJA {
             LearningLesson("JA-C1-U3-L1", "Deyimler ve Mecazlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'一石二鳥' ne anlama gelir?", "", listOf("bir taşla iki kuş", "çok yoğun olmak", "boşa nasihat"), listOf("bir taşla iki kuş"), "それは一石二鳥です。 — Bu bir taşla iki kuş.", null, null),
                 LearningExercise("jac1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'猫の手も借りたい' ne anlama gelir?", "", listOf("kuyu dibindeki kurbağa", "beklenmedik şans", "çok yoğun olmak"), listOf("çok yoğun olmak"), "今日は猫の手も借りたいほど忙しいです。 — Bugün kedi pençesi bile ödünç alınacak kadar yoğunum.", null, null),
-                LearningExercise("jac1u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'井の中の蛙' ne anlama gelir?", "", listOf("bir taşla iki kuş", "kuyu dibindeki kurbağa", "boşa nasihat"), listOf("kuyu dibindeki kurbağa"), "井の中の蛙になるな。 — Kuyudaki kurbağa olma.", null, null))),
+                LearningExercise("jac1u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'井の中の蛙' ne anlama gelir?", "", listOf("bir taşla iki kuş", "kuyu dibindeki kurbağa", "boşa nasihat"), listOf("kuyu dibindeki kurbağa"), "井の中の蛙になるな。 — Kuyudaki kurbağa olma.", null, null)), listOf(
+                TargetVocabulary("jac1u3w1", "一石二鳥", "bir taşla iki kuş", "ifade", "それは一石二鳥です。", "Bu bir taşla iki kuş."),
+                TargetVocabulary("jac1u3w2", "猫の手も借りたい", "çok yoğun olmak", "ifade", "今日は猫の手も借りたいほど忙しいです。", "Bugün kedi pençesi bile ödünç alınacak kadar yoğunum."),
+                TargetVocabulary("jac1u3w3", "井の中の蛙", "kuyu dibindeki kurbağa", "ifade", "井の中の蛙になるな。", "Kuyudaki kurbağa olma."),
+                TargetVocabulary("jac1u3w4", "馬の耳に念仏", "boşa nasihat", "ifade", "彼に言っても馬の耳に念仏です。", "Ona söylemek atın kulağına dua okumak gibi."),
+                TargetVocabulary("jac1u3w5", "棚からぼたもち", "beklenmedik şans", "ifade", "棚からぼたもちでした。", "Raftan botamochi düştü; beklenmedik şanstı."))),
             LearningLesson("JA-C1-U3-L2", "Deyimler ve Mecazlar — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jac1u3e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "それは___です。", "", listOf("猫の手も借りたい", "井の中の蛙", "一石二鳥"), listOf("一石二鳥"), "Doğru cümle: それは一石二鳥です。 — Bu bir taşla iki kuş.", null, null),
                 LearningExercise("jac1u3e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "彼に言っても___です。", "", listOf("一石二鳥", "馬の耳に念仏", "棚からぼたもち"), listOf("馬の耳に念仏"), "Doğru cümle: 彼に言っても馬の耳に念仏です。 — Ona söylemek atın kulağına dua okumak gibi.", null, null),
@@ -385,7 +520,12 @@ object WorldCourseJA {
             LearningLesson("JA-C1-U4-L1", "Resmî Yazışma — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'拝啓' ne anlama gelir?", "", listOf("ek (dosya)", "saygılarımla (mektup sonu)", "saygıdeğer (mektup girişi)"), listOf("saygıdeğer (mektup girişi)"), "拝啓 春の候、... — Saygıdeğer, bahar mevsiminde...", null, null),
                 LearningExercise("jac1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'添付' ne anlama gelir?", "", listOf("iş nezaketi selamı", "ek (dosya)", "ilişkin (resmî)"), listOf("ek (dosya)"), "履歴書を添付します。 — Özgeçmişi ekliyorum.", null, null),
-                LearningExercise("jac1u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'につきまして' ne anlama gelir?", "", listOf("ilişkin (resmî)", "saygılarımla (mektup sonu)", "saygıdeğer (mektup girişi)"), listOf("ilişkin (resmî)"), "その件につきましてご連絡します。 — O konuya ilişkin bilgi vereceğiz.", null, null))),
+                LearningExercise("jac1u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'につきまして' ne anlama gelir?", "", listOf("ilişkin (resmî)", "saygılarımla (mektup sonu)", "saygıdeğer (mektup girişi)"), listOf("ilişkin (resmî)"), "その件につきましてご連絡します。 — O konuya ilişkin bilgi vereceğiz.", null, null)), listOf(
+                TargetVocabulary("jac1u4w1", "拝啓", "saygıdeğer (mektup girişi)", "ifade", "拝啓 春の候、...", "Saygıdeğer, bahar mevsiminde..."),
+                TargetVocabulary("jac1u4w2", "添付", "ek (dosya)", "ifade", "履歴書を添付します。", "Özgeçmişi ekliyorum."),
+                TargetVocabulary("jac1u4w3", "につきまして", "ilişkin (resmî)", "ifade", "その件につきましてご連絡します。", "O konuya ilişkin bilgi vereceğiz."),
+                TargetVocabulary("jac1u4w4", "敬具", "saygılarımla (mektup sonu)", "ifade", "敬具", "Saygılarımla"),
+                TargetVocabulary("jac1u4w5", "お世話になっております", "iş nezaketi selamı", "ifade", "いつもお世話になっております。", "Her zaman yardımlarınız için teşekkürler."))),
             LearningLesson("JA-C1-U4-L2", "Resmî Yazışma — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jac1u4e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ 春の候、...", "", listOf("につきまして", "拝啓", "添付"), listOf("拝啓"), "Doğru cümle: 拝啓 春の候、... — Saygıdeğer, bahar mevsiminde...", null, null),
                 LearningExercise("jac1u4e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___", "", listOf("敬具", "お世話になっております", "拝啓"), listOf("敬具"), "Doğru cümle: 敬具 — Saygılarımla", null, null),
@@ -399,7 +539,12 @@ object WorldCourseJA {
             LearningLesson("JA-C1-U5-L1", "Müzakere ve Diplomasi — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'交渉' ne anlama gelir?", "", listOf("anlaşma/mutabakat", "müzakere", "uzlaşma"), listOf("müzakere"), "交渉は何時間も続きました。 — Müzakere saatlerce sürdü.", null, null),
                 LearningExercise("jac1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'妥協' ne anlama gelir?", "", listOf("uzlaşma", "taviz", "duruş/pozisyon"), listOf("uzlaşma"), "妥協は公平です。 — Uzlaşma adil.", null, null),
-                LearningExercise("jac1u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'譲歩' ne anlama gelir?", "", listOf("anlaşma/mutabakat", "müzakere", "taviz"), listOf("taviz"), "譲歩が必要でした。 — Taviz gerekliydi.", null, null))),
+                LearningExercise("jac1u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'譲歩' ne anlama gelir?", "", listOf("anlaşma/mutabakat", "müzakere", "taviz"), listOf("taviz"), "譲歩が必要でした。 — Taviz gerekliydi.", null, null)), listOf(
+                TargetVocabulary("jac1u5w1", "交渉", "müzakere", "ifade", "交渉は何時間も続きました。", "Müzakere saatlerce sürdü."),
+                TargetVocabulary("jac1u5w2", "妥協", "uzlaşma", "ifade", "妥協は公平です。", "Uzlaşma adil."),
+                TargetVocabulary("jac1u5w3", "譲歩", "taviz", "ifade", "譲歩が必要でした。", "Taviz gerekliydi."),
+                TargetVocabulary("jac1u5w4", "合意", "anlaşma/mutabakat", "ifade", "合意は遅く成立しました。", "Mutabakat geç sağlandı."),
+                TargetVocabulary("jac1u5w5", "立場", "duruş/pozisyon", "ifade", "私たちの立場は変わりません。", "Duruşumuz değişmiyor."))),
             LearningLesson("JA-C1-U5-L2", "Müzakere ve Diplomasi — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jac1u5e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は何時間も続きました。", "", listOf("交渉", "妥協", "譲歩"), listOf("交渉"), "Doğru cümle: 交渉は何時間も続きました。 — Müzakere saatlerce sürdü.", null, null),
                 LearningExercise("jac1u5e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は遅く成立しました。", "", listOf("立場", "交渉", "合意"), listOf("合意"), "Doğru cümle: 合意は遅く成立しました。 — Mutabakat geç sağlandı.", null, null),
@@ -413,7 +558,12 @@ object WorldCourseJA {
             LearningLesson("JA-C1-U6-L1", "İnce Anlam Farkları — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'どうやら' ne anlama gelir?", "", listOf("anlaşılan", "sözde/adıyla bilinen", "titiz/ayrıntılı"), listOf("anlaşılan"), "どうやら彼が正しいようです。 — Anlaşılan o haklı.", null, null),
                 LearningExercise("jac1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'いわゆる' ne anlama gelir?", "", listOf("etkili", "muhtemelen", "sözde/adıyla bilinen"), listOf("sözde/adıyla bilinen"), "いわゆる専門家が話しました。 — Sözde bir uzman konuştu.", null, null),
-                LearningExercise("jac1u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'効果的' ne anlama gelir?", "", listOf("anlaşılan", "etkili", "titiz/ayrıntılı"), listOf("etkili"), "この方法は効果的です。 — Bu yöntem etkili.", null, null))),
+                LearningExercise("jac1u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'効果的' ne anlama gelir?", "", listOf("anlaşılan", "etkili", "titiz/ayrıntılı"), listOf("etkili"), "この方法は効果的です。 — Bu yöntem etkili.", null, null)), listOf(
+                TargetVocabulary("jac1u6w1", "どうやら", "anlaşılan", "ifade", "どうやら彼が正しいようです。", "Anlaşılan o haklı."),
+                TargetVocabulary("jac1u6w2", "いわゆる", "sözde/adıyla bilinen", "ifade", "いわゆる専門家が話しました。", "Sözde bir uzman konuştu."),
+                TargetVocabulary("jac1u6w3", "効果的", "etkili", "ifade", "この方法は効果的です。", "Bu yöntem etkili."),
+                TargetVocabulary("jac1u6w4", "綿密", "titiz/ayrıntılı", "ifade", "綿密な計画が必要です。", "Titiz bir plan gerekli."),
+                TargetVocabulary("jac1u6w5", "おそらく", "muhtemelen", "ifade", "おそらく間違いでしょう。", "Muhtemelen bir hata."))),
             LearningLesson("JA-C1-U6-L2", "İnce Anlam Farkları — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jac1u6e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___彼が正しいようです。", "", listOf("いわゆる", "効果的", "どうやら"), listOf("どうやら"), "Doğru cümle: どうやら彼が正しいようです。 — Anlaşılan o haklı.", null, null),
                 LearningExercise("jac1u6e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___な計画が必要です。", "", listOf("どうやら", "綿密", "おそらく"), listOf("綿密"), "Doğru cümle: 綿密な計画が必要です。 — Titiz bir plan gerekli.", null, null),
@@ -427,7 +577,12 @@ object WorldCourseJA {
             LearningLesson("JA-C2-U1-L1", "Üslup ve İncelik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'微妙' ne anlama gelir?", "", listOf("konuşma tonu", "özlü", "incelikli/nazik"), listOf("incelikli/nazik"), "言葉の微妙な違いは難しいです。 — Sözcüklerin incelikli farkları zordur.", null, null),
                 LearningExercise("jac2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'口調' ne anlama gelir?", "", listOf("ince/zarif", "konuşma tonu", "ima"), listOf("konuşma tonu"), "彼の口調は少し皮肉でした。 — Konuşma tonu biraz alaycıydı.", null, null),
-                LearningExercise("jac2u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'ほのめかし' ne anlama gelir?", "", listOf("ima", "özlü", "incelikli/nazik"), listOf("ima"), "彼女だけがほのめかしに気づきました。 — İmayı yalnızca o fark etti.", null, null))),
+                LearningExercise("jac2u1e3", Skill.VOCABULARY, "Doğru anlamı seç", "'ほのめかし' ne anlama gelir?", "", listOf("ima", "özlü", "incelikli/nazik"), listOf("ima"), "彼女だけがほのめかしに気づきました。 — İmayı yalnızca o fark etti.", null, null)), listOf(
+                TargetVocabulary("jac2u1w1", "微妙", "incelikli/nazik", "ifade", "言葉の微妙な違いは難しいです。", "Sözcüklerin incelikli farkları zordur."),
+                TargetVocabulary("jac2u1w2", "口調", "konuşma tonu", "ifade", "彼の口調は少し皮肉でした。", "Konuşma tonu biraz alaycıydı."),
+                TargetVocabulary("jac2u1w3", "ほのめかし", "ima", "ifade", "彼女だけがほのめかしに気づきました。", "İmayı yalnızca o fark etti."),
+                TargetVocabulary("jac2u1w4", "簡潔", "özlü", "ifade", "彼の答えは簡潔でした。", "Yanıtı özlüydü."),
+                TargetVocabulary("jac2u1w5", "繊細", "ince/zarif", "ifade", "繊細な表現が光ります。", "İnce ifadeler göz dolduruyor."))),
             LearningLesson("JA-C2-U1-L2", "Üslup ve İncelik — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jac2u1e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "言葉の___な違いは難しいです。", "", listOf("ほのめかし", "微妙", "口調"), listOf("微妙"), "Doğru cümle: 言葉の微妙な違いは難しいです。 — Sözcüklerin incelikli farkları zordur.", null, null),
                 LearningExercise("jac2u1e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "彼の答えは___でした。", "", listOf("簡潔", "繊細", "微妙"), listOf("簡潔"), "Doğru cümle: 彼の答えは簡潔でした。 — Yanıtı özlüydü.", null, null),
@@ -441,7 +596,12 @@ object WorldCourseJA {
             LearningLesson("JA-C2-U2-L1", "Edebî Dil — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'隠喩' ne anlama gelir?", "", listOf("lirik", "metafor", "simge"), listOf("metafor"), "隠喩が全文を貫いています。 — Metafor bütün metni kat ediyor.", null, null),
                 LearningExercise("jac2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'象徴' ne anlama gelir?", "", listOf("simge", "anlatıcı", "ironi"), listOf("simge"), "海は自由の象徴です。 — Deniz özgürlüğün simgesidir.", null, null),
-                LearningExercise("jac2u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'語り手' ne anlama gelir?", "", listOf("lirik", "metafor", "anlatıcı"), listOf("anlatıcı"), "語り手が何度も変わります。 — Anlatıcı defalarca değişiyor.", null, null))),
+                LearningExercise("jac2u2e3", Skill.VOCABULARY, "Doğru anlamı seç", "'語り手' ne anlama gelir?", "", listOf("lirik", "metafor", "anlatıcı"), listOf("anlatıcı"), "語り手が何度も変わります。 — Anlatıcı defalarca değişiyor.", null, null)), listOf(
+                TargetVocabulary("jac2u2w1", "隠喩", "metafor", "ifade", "隠喩が全文を貫いています。", "Metafor bütün metni kat ediyor."),
+                TargetVocabulary("jac2u2w2", "象徴", "simge", "ifade", "海は自由の象徴です。", "Deniz özgürlüğün simgesidir."),
+                TargetVocabulary("jac2u2w3", "語り手", "anlatıcı", "ifade", "語り手が何度も変わります。", "Anlatıcı defalarca değişiyor."),
+                TargetVocabulary("jac2u2w4", "叙情的", "lirik", "ifade", "文体はとても叙情的です。", "Üslup çok lirik."),
+                TargetVocabulary("jac2u2w5", "皮肉", "ironi", "ifade", "この文章の皮肉は明らかです。", "Bu metindeki ironi çok açık."))),
             LearningLesson("JA-C2-U2-L2", "Edebî Dil — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jac2u2e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___が全文を貫いています。", "", listOf("隠喩", "象徴", "語り手"), listOf("隠喩"), "Doğru cümle: 隠喩が全文を貫いています。 — Metafor bütün metni kat ediyor.", null, null),
                 LearningExercise("jac2u2e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "文体はとても___です。", "", listOf("皮肉", "隠喩", "叙情的"), listOf("叙情的"), "Doğru cümle: 文体はとても叙情的です。 — Üslup çok lirik.", null, null),
@@ -455,7 +615,12 @@ object WorldCourseJA {
             LearningLesson("JA-C2-U3-L1", "Uzmanlık Söylemi — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'専門用語' ne anlama gelir?", "", listOf("uzmanlık terimi", "söylem", "ikna gücü"), listOf("uzmanlık terimi"), "専門用語は正確であるべきです。 — Terimler kesin olmalı.", null, null),
                 LearningExercise("jac2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'言説' ne anlama gelir?", "", listOf("inceleme yazısı", "ayırt etme", "söylem"), listOf("söylem"), "学術的言説には規範があります。 — Akademik söylemin normları vardır.", null, null),
-                LearningExercise("jac2u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'論考' ne anlama gelir?", "", listOf("uzmanlık terimi", "inceleme yazısı", "ikna gücü"), listOf("inceleme yazısı"), "この論考は三部構成です。 — Bu inceleme üç bölümden oluşuyor.", null, null))),
+                LearningExercise("jac2u3e3", Skill.VOCABULARY, "Doğru anlamı seç", "'論考' ne anlama gelir?", "", listOf("uzmanlık terimi", "inceleme yazısı", "ikna gücü"), listOf("inceleme yazısı"), "この論考は三部構成です。 — Bu inceleme üç bölümden oluşuyor.", null, null)), listOf(
+                TargetVocabulary("jac2u3w1", "専門用語", "uzmanlık terimi", "ifade", "専門用語は正確であるべきです。", "Terimler kesin olmalı."),
+                TargetVocabulary("jac2u3w2", "言説", "söylem", "ifade", "学術的言説には規範があります。", "Akademik söylemin normları vardır."),
+                TargetVocabulary("jac2u3w3", "論考", "inceleme yazısı", "ifade", "この論考は三部構成です。", "Bu inceleme üç bölümden oluşuyor."),
+                TargetVocabulary("jac2u3w4", "説得力", "ikna gücü", "ifade", "説得力のある議論です。", "İkna gücü yüksek bir tartışma."),
+                TargetVocabulary("jac2u3w5", "区別", "ayırt etme", "ifade", "この二つの概念を区別すべきです。", "Bu iki kavram ayırt edilmeli."))),
             LearningLesson("JA-C2-U3-L2", "Uzmanlık Söylemi — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jac2u3e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は正確であるべきです。", "", listOf("言説", "論考", "専門用語"), listOf("専門用語"), "Doğru cümle: 専門用語は正確であるべきです。 — Terimler kesin olmalı.", null, null),
                 LearningExercise("jac2u3e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___のある議論です。", "", listOf("専門用語", "説得力", "区別"), listOf("説得力"), "Doğru cümle: 説得力のある議論です。 — İkna gücü yüksek bir tartışma.", null, null),
@@ -469,7 +634,12 @@ object WorldCourseJA {
             LearningLesson("JA-C2-U4-L1", "Kültürel Derinlik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'世界観' ne anlama gelir?", "", listOf("mizaç", "kökleşmiş", "dünya görüşü"), listOf("dünya görüşü"), "彼の世界観は揺らぎました。 — Dünya görüşü sarsıldı.", null, null),
                 LearningExercise("jac2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'気質' ne anlama gelir?", "", listOf("miras", "mizaç", "zamanın ruhu"), listOf("mizaç"), "地域によって気質が違います。 — Mizaç bölgeye göre değişir.", null, null),
-                LearningExercise("jac2u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'時代精神' ne anlama gelir?", "", listOf("zamanın ruhu", "kökleşmiş", "dünya görüşü"), listOf("zamanın ruhu"), "この小説は時代精神を捉えています。 — Bu roman zamanın ruhunu yakalıyor.", null, null))),
+                LearningExercise("jac2u4e3", Skill.VOCABULARY, "Doğru anlamı seç", "'時代精神' ne anlama gelir?", "", listOf("zamanın ruhu", "kökleşmiş", "dünya görüşü"), listOf("zamanın ruhu"), "この小説は時代精神を捉えています。 — Bu roman zamanın ruhunu yakalıyor.", null, null)), listOf(
+                TargetVocabulary("jac2u4w1", "世界観", "dünya görüşü", "ifade", "彼の世界観は揺らぎました。", "Dünya görüşü sarsıldı."),
+                TargetVocabulary("jac2u4w2", "気質", "mizaç", "ifade", "地域によって気質が違います。", "Mizaç bölgeye göre değişir."),
+                TargetVocabulary("jac2u4w3", "時代精神", "zamanın ruhu", "ifade", "この小説は時代精神を捉えています。", "Bu roman zamanın ruhunu yakalıyor."),
+                TargetVocabulary("jac2u4w4", "根付いた", "kökleşmiş", "ifade", "この伝統は文化に深く根付いています。", "Bu gelenek kültüre derin kök salmış."),
+                TargetVocabulary("jac2u4w5", "遺産", "miras", "ifade", "文化遺産は守られています。", "Kültürel miras korunuyor."))),
             LearningLesson("JA-C2-U4-L2", "Kültürel Derinlik — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jac2u4e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "彼の___は揺らぎました。", "", listOf("時代精神", "世界観", "気質"), listOf("世界観"), "Doğru cümle: 彼の世界観は揺らぎました。 — Dünya görüşü sarsıldı.", null, null),
                 LearningExercise("jac2u4e5", Skill.VOCABULARY, "Doğru anlamı seç", "'根付いた' ne anlama gelir?", "", listOf("zamanın ruhu", "kökleşmiş", "dünya görüşü"), listOf("kökleşmiş"), "この伝統は文化に深く根付いています。 — Bu gelenek kültüre derin kök salmış.", null, null),
@@ -483,7 +653,12 @@ object WorldCourseJA {
             LearningLesson("JA-C2-U5-L1", "Retorik Ustalığı — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'修辞' ne anlama gelir?", "", listOf("keskin", "retorik", "mecazlı ifade"), listOf("retorik"), "彼の修辞は見事です。 — Retoriği kusursuz.", null, null),
                 LearningExercise("jac2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'比喩表現' ne anlama gelir?", "", listOf("mecazlı ifade", "belagat", "üslup heybeti"), listOf("mecazlı ifade"), "比喩表現がさりげなく効いています。 — Mecazlı ifadeler incelikle etki ediyor.", null, null),
-                LearningExercise("jac2u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'雄弁' ne anlama gelir?", "", listOf("keskin", "retorik", "belagat"), listOf("belagat"), "彼女の雄弁は有名です。 — Belagati meşhur.", null, null))),
+                LearningExercise("jac2u5e3", Skill.VOCABULARY, "Doğru anlamı seç", "'雄弁' ne anlama gelir?", "", listOf("keskin", "retorik", "belagat"), listOf("belagat"), "彼女の雄弁は有名です。 — Belagati meşhur.", null, null)), listOf(
+                TargetVocabulary("jac2u5w1", "修辞", "retorik", "ifade", "彼の修辞は見事です。", "Retoriği kusursuz."),
+                TargetVocabulary("jac2u5w2", "比喩表現", "mecazlı ifade", "ifade", "比喩表現がさりげなく効いています。", "Mecazlı ifadeler incelikle etki ediyor."),
+                TargetVocabulary("jac2u5w3", "雄弁", "belagat", "ifade", "彼女の雄弁は有名です。", "Belagati meşhur."),
+                TargetVocabulary("jac2u5w4", "鋭い", "keskin", "ifade", "彼の批評は非常に鋭いです。", "Eleştirisi son derece keskin."),
+                TargetVocabulary("jac2u5w5", "風格", "üslup heybeti", "ifade", "文章に風格があります。", "Yazıda asil bir hava var."))),
             LearningLesson("JA-C2-U5-L2", "Retorik Ustalığı — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jac2u5e4", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "彼の___は見事です。", "", listOf("修辞", "比喩表現", "雄弁"), listOf("修辞"), "Doğru cümle: 彼の修辞は見事です。 — Retoriği kusursuz.", null, null),
                 LearningExercise("jac2u5e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "彼の批評は非常に___です。", "", listOf("風格", "修辞", "鋭い"), listOf("鋭い"), "Doğru cümle: 彼の批評は非常に鋭いです。 — Eleştirisi son derece keskin.", null, null),
@@ -497,7 +672,12 @@ object WorldCourseJA {
             LearningLesson("JA-C2-U6-L1", "Ana Dil Düzeyinde Akıcılık — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'使いこなす' ne anlama gelir?", "", listOf("ustaca kullanmak", "rahatlıkla", "doğal telaffuz"), listOf("ustaca kullanmak"), "彼女は五か国語を使いこなします。 — Beş dili ustaca kullanıyor.", null, null),
                 LearningExercise("jac2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'楽々と' ne anlama gelir?", "", listOf("rafinelik", "akıcı", "rahatlıkla"), listOf("rahatlıkla"), "楽々と文体を切り替えます。 — Üslubu rahatlıkla değiştiriyor.", null, null),
-                LearningExercise("jac2u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'洗練' ne anlama gelir?", "", listOf("ustaca kullanmak", "rafinelik", "doğal telaffuz"), listOf("rafinelik"), "洗練された表現です。 — Rafine bir ifade.", null, null))),
+                LearningExercise("jac2u6e3", Skill.VOCABULARY, "Doğru anlamı seç", "'洗練' ne anlama gelir?", "", listOf("ustaca kullanmak", "rafinelik", "doğal telaffuz"), listOf("rafinelik"), "洗練された表現です。 — Rafine bir ifade.", null, null)), listOf(
+                TargetVocabulary("jac2u6w1", "使いこなす", "ustaca kullanmak", "ifade", "彼女は五か国語を使いこなします。", "Beş dili ustaca kullanıyor."),
+                TargetVocabulary("jac2u6w2", "楽々と", "rahatlıkla", "ifade", "楽々と文体を切り替えます。", "Üslubu rahatlıkla değiştiriyor."),
+                TargetVocabulary("jac2u6w3", "洗練", "rafinelik", "ifade", "洗練された表現です。", "Rafine bir ifade."),
+                TargetVocabulary("jac2u6w4", "自然な発音", "doğal telaffuz", "ifade", "自然な発音で話します。", "Doğal bir telaffuzla konuşuyor."),
+                TargetVocabulary("jac2u6w5", "流暢", "akıcı", "ifade", "彼女は日本語を流暢に話します。", "Japoncayı akıcı konuşuyor."))),
             LearningLesson("JA-C2-U6-L2", "Ana Dil Düzeyinde Akıcılık — Kullanım", "Kelimeleri gerçek cümlelerde, dinleyerek ve okuyarak kullan.", listOf(
                 LearningExercise("jac2u6e4", Skill.VOCABULARY, "Doğru anlamı seç", "'使いこなす' ne anlama gelir?", "", listOf("ustaca kullanmak", "rafinelik", "akıcı"), listOf("ustaca kullanmak"), "彼女は五か国語を使いこなします。 — Beş dili ustaca kullanıyor.", null, null),
                 LearningExercise("jac2u6e5", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___で話します。", "", listOf("使いこなす", "自然な発音", "流暢"), listOf("自然な発音"), "Doğru cümle: 自然な発音で話します。 — Doğal bir telaffuzla konuşuyor.", null, null),
