@@ -451,7 +451,11 @@ private fun LinguaApp() {
             }
             composable<AppRoute.PlacementResult> {
                 placementSummary?.let { summary ->
-                    PlacementResultScreen(summary, onContinue = { go(AppRoute.Home) })
+                    PlacementResultScreen(summary, onChooseLevel = { chosenLevel ->
+                        level = chosenLevel
+                        if (accountUid.isNotBlank()) accounts.savePlacement(accountUid, chosenLevel, summary.skillMastery) { }
+                        go(AppRoute.Home)
+                    })
                 } ?: WelcomeScreen(onStart = { go(AppRoute.Register) }, onLogin = { go(AppRoute.Login) })
             }
             composable<AppRoute.Home> {
