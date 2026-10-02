@@ -95,6 +95,26 @@ class FirebaseAccountRepository(context: Context) {
         if (user == null || user.uid != uid) { callback("Oturum doğrulanamadı. Çıkıp yeniden giriş yaptıktan sonra tekrar dene."); return }
         val events = store().collection("users").document(uid).collection("lessonEvents")
 
+        fun deleteSocial(then: () -> Unit) {
+            // Lig kaydi + arkadas listesi + bulten paylasimlari (en iyi caba; hata silmeyi durdurmaz)
+            store().collection("leaderboard").document(uid).delete()
+                .addOnCompleteListener {
+                    store().collection("users").document(uid).collection("friends").limit(200).get()
+                        .addOnCompleteListener { fr ->
+                            val batch = store().batch()
+                            fr.result?.documents?.forEach { batch.delete(it.reference) }
+                            batch.commit().addOnCompleteListener {
+                                store().collection("activity").whereEqualTo("uid", uid).limit(200).get()
+                                    .addOnCompleteListener { ac ->
+                                        val batch2 = store().batch()
+                                        ac.result?.documents?.forEach { batch2.delete(it.reference) }
+                                        batch2.commit().addOnCompleteListener { then() }
+                                    }
+                            }
+                        }
+                }
+        }
+
         fun deleteProfileThenUser() {
             store().collection("users").document(uid).delete()
                 .addOnSuccessListener {
@@ -124,7 +144,7 @@ class FirebaseAccountRepository(context: Context) {
                 .addOnFailureListener { e -> callback(e.localizedMessage ?: "Ders geçmişi okunamadı.") }
         }
 
-        deleteEventsBatch()
+        deleteSocial { deleteEventsBatch() }
     }
 
     fun loadProfile(uid: String, callback: (AccountProfile?) -> Unit) {

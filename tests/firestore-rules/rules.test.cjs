@@ -137,3 +137,36 @@ test('owner can delete own profile but strangers cannot', async () => {
   await assertFails(deleteDoc(doc(mallory, 'users/alice')));
   await assertSucceeds(deleteDoc(doc(alice, 'users/alice')));
 });
+
+test('leaderboard: owner writes own entry, strangers cannot, signed-in users can read', async () => {
+  const alice = env.authenticatedContext('alice').firestore();
+  const entry = { uid: 'alice', username: 'alice_tr', displayName: 'Alice', level: 3, totalXp: 450, avatar: 'g=0;t=1' };
+  await assertSucceeds(setDoc(doc(alice, 'leaderboard/alice'), entry));
+  const mallory = env.authenticatedContext('mallory').firestore();
+  await assertFails(setDoc(doc(mallory, 'leaderboard/alice'), { ...entry, totalXp: 99999 }));
+  const bob = env.authenticatedContext('bob').firestore();
+  await assertSucceeds(getDoc(doc(bob, 'leaderboard/alice')));
+  const anon = env.unauthenticatedContext().firestore();
+  await assertFails(getDoc(doc(anon, 'leaderboard/alice')));
+});
+
+test('activity: users post only as themselves and cannot edit posts', async () => {
+  const alice = env.authenticatedContext('alice').firestore();
+  const item = doc(collection(alice, 'activity'));
+  await assertSucceeds(setDoc(item, { uid: 'alice', username: 'alice_tr', avatar: '', text: 'Seviye 3 oldu!', createdAt: 1700000000000 }));
+  await assertFails(setDoc(doc(collection(alice, 'activity')), { uid: 'bob', username: 'sahte', avatar: '', text: 'x', createdAt: 1 }));
+  await assertFails(updateDoc(item, { text: 'degisti' }));
+  const bob = env.authenticatedContext('bob').firestore();
+  await assertSucceeds(getDoc(item));
+  await assertFails(deleteDoc(doc(bob, item.path)));
+  await assertSucceeds(deleteDoc(item));
+});
+
+test('friends: only the owner manages their own list', async () => {
+  const alice = env.authenticatedContext('alice').firestore();
+  await assertSucceeds(setDoc(doc(alice, 'users/alice/friends/bob'), { uid: 'bob', username: 'bob_tr', avatar: '', addedAt: 1 }));
+  const mallory = env.authenticatedContext('mallory').firestore();
+  await assertFails(setDoc(doc(mallory, 'users/alice/friends/mallory'), { uid: 'mallory', username: 'm', avatar: '', addedAt: 1 }));
+  await assertFails(getDocs(collection(mallory, 'users/alice/friends')));
+  await assertSucceeds(deleteDoc(doc(alice, 'users/alice/friends/bob')));
+});

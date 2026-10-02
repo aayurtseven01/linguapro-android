@@ -56,6 +56,20 @@ class LearningProgressStore(context: Context, learnerKey: String) {
         return LearningProgress(streak, prefs.getInt(KEY_TOTAL_XP, 0), todayXp, today.toString())
     }
 
+    /** Gunluk gorev odulu gibi ders disi XP ekler; seri ve gunluk hedef sayaclarini da gunceller. */
+    fun addBonusXp(xp: Int, today: LocalDate = LocalDate.now()): LearningProgress {
+        val priorDate = runCatching { LocalDate.parse(prefs.getString(KEY_DATE, "").orEmpty()) }.getOrNull()
+        val oldTodayXp = if (priorDate == today) prefs.getInt(KEY_TODAY_XP, 0) else 0
+        val streak = StreakLogic.nextStreak(prefs.getInt(KEY_STREAK, 0), priorDate, today)
+        prefs.edit()
+            .putString(KEY_DATE, today.toString())
+            .putInt(KEY_STREAK, streak)
+            .putInt(KEY_TODAY_XP, oldTodayXp + xp)
+            .putInt(KEY_TOTAL_XP, prefs.getInt(KEY_TOTAL_XP, 0) + xp)
+            .apply()
+        return read(today)
+    }
+
     private companion object {
         const val KEY_DATE = "last_study_date"
         const val KEY_STREAK = "streak_days"

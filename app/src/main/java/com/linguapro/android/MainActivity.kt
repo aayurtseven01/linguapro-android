@@ -208,6 +208,8 @@ private sealed interface AppRoute {
     @Serializable data object Settings : AppRoute
     @Serializable data object Lesson : AppRoute
     @Serializable data object Locked : AppRoute
+    @Serializable data object Social : AppRoute
+    @Serializable data object AvatarEditor : AppRoute
 }
 private data class Question(
     val level: String,
@@ -273,6 +275,16 @@ private fun LinguaApp() {
     var accountUid by rememberSaveable { mutableStateOf(signedInUser?.uid.orEmpty()) }
     val progressStore = remember(context, accountUid) { LearningProgressStore(context, accountUid) }
     var learningProgress by remember(accountUid) { mutableStateOf(progressStore.read()) }
+    // Sosyal katman: kullanıcı adı, avatar, günlük görevler, lig senkronu
+    var username by remember(courseUid) { mutableStateOf(coursePrefs.getString("username_$courseUid", "") ?: "") }
+    var avatarCode by remember(courseUid) { mutableStateOf(coursePrefs.getString("avatar_$courseUid", "") ?: "") }
+    val social = remember { com.linguapro.android.data.SocialRepository() }
+    val questStore = remember(context, courseUid) { QuestProgressStore(context, courseUid) }
+    var questVersion by remember { mutableIntStateOf(0) }
+    val syncBoard: () -> Unit = syncBoard@{
+        if (accountUid.isBlank() || username.isBlank()) return@syncBoard
+        social.upsertBoard(accountUid, username, userName, LevelSystem.levelFor(learningProgress.totalXp), learningProgress.totalXp, avatarCode) { }
+    }
     val mistakeBook = remember(context, accountUid) { MistakeBookStore(context, accountUid) }
     var mistakeIds by remember(accountUid) { mutableStateOf(mistakeBook.read()) }
     val skillProgressStore = remember(context, accountUid) { SkillProgressStore(context, accountUid) }
@@ -488,6 +500,25 @@ private fun LinguaApp() {
                         selectedExerciseIndex = 0
                         go(AppRoute.Lesson)
                     },
+                    dailyQuests = run {
+                        questVersion // yeniden hesaplama tetikleyicisi
+                        val day = DailyWords.todayEpochDay()
+                        DailyQuests.questsFor(day).map { q -> QuestUi(q, questStore.progress(day, q.metric), questStore.claimed(day, q.id)) }
+                    },
+                    onClaimQuest = { quest ->
+                        val day = DailyWords.todayEpochDay()
+                        if (!questStore.claimed(day, quest.id) && questStore.progress(day, quest.metric) >= quest.target) {
+                            questStore.setClaimed(day, quest.id)
+                            learningProgress = progressStore.addBonusXp(quest.rewardXp)
+                            questVersion++
+                            android.widget.Toast.makeText(context, "+${quest.rewardXp} XP — görev ödülü!", android.widget.Toast.LENGTH_SHORT).show()
+                            if (DailyQuests.questsFor(day).all { questStore.claimed(day, it.id) } && accountUid.isNotBlank() && username.isNotBlank()) {
+                                social.postActivity(accountUid, username, avatarCode, "Günün tüm görevlerini tamamladı! 🏆") { }
+                            }
+                            syncBoard()
+                        }
+                    },
+                    onSocial = { go(AppRoute.Social) },
                     dailyWords = remember(courseLang) { DailyWords.wordsFor(courseLang, DailyWords.todayEpochDay()) },
                     onDailyWords = {
                         selectedLessonId = "$courseLang-WORDS"
@@ -514,6 +545,10 @@ private fun LinguaApp() {
             composable<AppRoute.Profile> {
                 ProfileScreen(
                     userName, accountEmail, level, completed, learningProgress,
+                    username = username,
+                    avatarCode = avatarCode,
+                    onEditAvatar = { go(AppRoute.AvatarEditor) },
+                    onSocial = { go(AppRoute.Social) },
                     onBack = { go(AppRoute.Home) },
                     onSettings = { go(AppRoute.Settings) },
                     onDeleteAccount = {
@@ -585,11 +620,59 @@ private fun LinguaApp() {
                         selectedLessonId = ""
                         activeLessonCountsTowardCourse = true
                         selectedExerciseIndex = 0
+                        val levelBefore = LevelSystem.levelFor(learningProgress.totalXp)
                         learningProgress = progressStore.recordLesson(score)
+                        // Günlük görev ilerlemesi
+                        val questDay = DailyWords.todayEpochDay()
+                        questStore.add(questDay, "lessons", 1)
+                        questStore.add(questDay, "xp", LessonScoring.xpForCompletion(score))
+                        if (activeLesson.id.endsWith("-REFRESH")) questStore.add(questDay, "refresh", 1)
+                        if (activeLesson.id.endsWith("-WORDS")) questStore.add(questDay, "words", 1)
+                        if (activeLesson.id.endsWith("-CP") && (score ?: 0) >= 80) questStore.add(questDay, "checkpoint", 1)
+                        if (score != null && score >= 90) questStore.add(questDay, "perfect", 1)
+                        questVersion++
+                        // Seviye atlama kutlaması + bülten paylaşımı
+                        val levelAfter = LevelSystem.levelFor(learningProgress.totalXp)
+                        if (levelAfter > levelBefore) {
+                            android.widget.Toast.makeText(context, "🎉 Seviye $levelAfter oldun!", android.widget.Toast.LENGTH_LONG).show()
+                            if (accountUid.isNotBlank() && username.isNotBlank()) social.postActivity(accountUid, username, avatarCode, "Seviye $levelAfter oldu! ✨") { }
+                        }
+                        if (activeLesson.id.endsWith("-CP") && (score ?: 0) >= 80 && accountUid.isNotBlank() && username.isNotBlank()) {
+                            social.postActivity(accountUid, username, avatarCode, "Bir Checkpoint'i %$score ile geçti! 🏁") { }
+                        }
+                        syncBoard()
                         go(AppRoute.Home)
                     },
                     ttsAccent = dashboardState.settings.speechAccent,
                     speechRate = dashboardState.settings.speechRate
+                )
+            }
+            composable<AppRoute.Social> {
+                SocialScreen(
+                    uid = accountUid,
+                    username = username,
+                    totalXp = learningProgress.totalXp,
+                    avatarCode = avatarCode,
+                    social = social,
+                    onSaveUsername = { newName ->
+                        username = newName
+                        coursePrefs.edit().putString("username_$courseUid", newName).apply()
+                        syncBoard()
+                    },
+                    onEditAvatar = { go(AppRoute.AvatarEditor) },
+                    onBack = { go(AppRoute.Home) }
+                )
+            }
+            composable<AppRoute.AvatarEditor> {
+                AvatarEditorScreen(
+                    initialCode = avatarCode,
+                    onSave = { code ->
+                        avatarCode = code
+                        coursePrefs.edit().putString("avatar_$courseUid", code).apply()
+                        syncBoard()
+                        go(AppRoute.Profile)
+                    },
+                    onBack = { go(AppRoute.Profile) }
                 )
             }
             composable<AppRoute.Locked> { LockedScreen(onBack = { go(AppRoute.Home) }) }
@@ -910,7 +993,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 }
 
 @Composable
-private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit, dailyWords: List<TargetVocabulary> = emptyList(), onDailyWords: () -> Unit = {}) {
+private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit, dailyWords: List<TargetVocabulary> = emptyList(), onDailyWords: () -> Unit = {}, dailyQuests: List<QuestUi> = emptyList(), onClaimQuest: (DailyQuest) -> Unit = {}, onSocial: () -> Unit = {}) {
     val langName = WorldCatalog.language(langCode).nameTr
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         Spacer(Modifier.height(14.dp))
@@ -1006,6 +1089,41 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                 Icon(Icons.Default.ChevronRight, null, tint = Gold)
             }
         }
+        if (dailyQuests.isNotEmpty()) {
+            Spacer(Modifier.height(12.dp))
+            Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth()) {
+                Column(Modifier.padding(14.dp)) {
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                        Text("🗓️ Günlük Görevler", color = Gold, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                        Text("her gün yenilenir", color = Muted, fontSize = 10.sp)
+                    }
+                    dailyQuests.forEach { questUi ->
+                        val done = questUi.progress >= questUi.quest.target
+                        Row(Modifier.fillMaxWidth().padding(top = 10.dp), verticalAlignment = Alignment.CenterVertically) {
+                            Text(questUi.quest.emoji, fontSize = 17.sp)
+                            Column(Modifier.weight(1f).padding(start = 9.dp, end = 9.dp)) {
+                                Text(questUi.quest.title, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                                Box(Modifier.fillMaxWidth().height(6.dp).background(Panel2, RoundedCornerShape(3.dp))) {
+                                    Box(
+                                        Modifier
+                                            .fillMaxWidth((questUi.progress.toFloat() / questUi.quest.target).coerceIn(0f, 1f))
+                                            .height(6.dp)
+                                            .background(Gold, RoundedCornerShape(3.dp))
+                                    )
+                                }
+                            }
+                            when {
+                                questUi.claimed -> Text("✓", color = Gold, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                                done -> Surface(onClick = { onClaimQuest(questUi.quest) }, color = Gold, shape = RoundedCornerShape(12.dp)) {
+                                    Text("+${questUi.quest.rewardXp} XP al", color = Navy, fontSize = 11.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp))
+                                }
+                                else -> Text("${questUi.progress}/${questUi.quest.target}", color = Muted, fontSize = 11.sp)
+                            }
+                        }
+                    }
+                }
+            }
+        }
         if (dailyWords.isNotEmpty()) {
             Spacer(Modifier.height(12.dp))
             Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth()) {
@@ -1086,6 +1204,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         Row(Modifier.fillMaxWidth().padding(horizontal = 22.dp).background(Color(0xE62A1B4D), RoundedCornerShape(30.dp)).border(1.dp, Color(0x2EFFFFFF), RoundedCornerShape(30.dp)).padding(vertical = 12.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
             NavItem(Icons.Default.Home, "Ana Sayfa", true) { }
             NavItem(Icons.Default.Headphones, "Pratik", false, onPractice)
+            NavItem(Icons.Default.Groups, "Topluluk", false, onSocial)
             NavItem(Icons.Default.BarChart, "İlerleme", false, onProgress)
             NavItem(Icons.Default.Person, "Profil", false, onProfile)
         }
@@ -1201,16 +1320,31 @@ private fun ProgressScreen(level: String, completed: Int, progress: LearningProg
 }
 
 @Composable
-private fun ProfileScreen(name: String, email: String, level: String, completed: Int, progress: LearningProgress, onBack: () -> Unit, onSettings: () -> Unit, onSignOut: () -> Unit, onDeleteAccount: () -> Unit) {
+private fun ProfileScreen(name: String, email: String, level: String, completed: Int, progress: LearningProgress, username: String, avatarCode: String, onEditAvatar: () -> Unit, onSocial: () -> Unit, onBack: () -> Unit, onSettings: () -> Unit, onSignOut: () -> Unit, onDeleteAccount: () -> Unit) {
     var confirmDelete by remember { mutableStateOf(false) }
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         BackRow("Profil", onBack)
         Spacer(Modifier.height(12.dp))
         Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(22.dp), modifier = Modifier.fillMaxWidth()) {
             Column(Modifier.padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                Box(Modifier.size(76.dp).background(Panel2, CircleShape), contentAlignment = Alignment.Center) { Icon(Icons.Default.Person, null, tint = Gold, modifier = Modifier.size(42.dp)) }
-                Text(name.ifBlank { "Öğrenci" }, fontSize = 21.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 12.dp))
+                AvatarView(AvatarConfig.decode(avatarCode), 92.dp)
+                Text(name.ifBlank { "Öğrenci" }, fontSize = 21.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 10.dp))
+                if (username.isNotBlank()) Text("@$username", color = Gold, fontSize = 13.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 2.dp))
                 Text(email.ifBlank { "Demo hesap • bu cihazda" }, color = Muted, fontSize = 13.sp, modifier = Modifier.padding(top = 4.dp))
+                // XP seviyesi: her XP seni bir üst seviyeye taşır
+                val xpLevel = LevelSystem.levelFor(progress.totalXp)
+                val (inLevel, needed, percent) = LevelSystem.progressToNext(progress.totalXp)
+                Row(Modifier.fillMaxWidth().padding(top = 14.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Surface(color = Gold, shape = RoundedCornerShape(12.dp)) {
+                        Text("Lv $xpLevel", color = Navy, fontSize = 13.sp, fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(horizontal = 11.dp, vertical = 5.dp))
+                    }
+                    Column(Modifier.weight(1f).padding(start = 10.dp)) {
+                        Box(Modifier.fillMaxWidth().height(8.dp).background(Panel2, RoundedCornerShape(4.dp))) {
+                            Box(Modifier.fillMaxWidth((percent / 100f).coerceIn(0f, 1f)).height(8.dp).background(Gold, RoundedCornerShape(4.dp)))
+                        }
+                        Text("$inLevel / $needed XP • sonraki seviyeye %${100 - percent}", color = Muted, fontSize = 10.sp, modifier = Modifier.padding(top = 3.dp))
+                    }
+                }
             }
         }
         Spacer(Modifier.height(14.dp))
@@ -1218,6 +1352,10 @@ private fun ProfileScreen(name: String, email: String, level: String, completed:
         Spacer(Modifier.height(18.dp))
         Text("Hesap ve gizlilik", color = OnBg, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         Text("Ders tamamlama hesabınla Firestore'a kaydedilir. XP, çalışma serisi ve otomatik yanıtların beceri özeti bu cihazda tutulur; cihazlar arası eşitleme henüz yoktur.", color = OnBgSoft, fontSize = 12.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 7.dp, bottom = 15.dp))
+        OutlinedButton(onClick = onEditAvatar, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Avatarını düzenle", color = OnBg) }
+        Spacer(Modifier.height(8.dp))
+        OutlinedButton(onClick = onSocial, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Topluluk: Bülten • Lig • Arkadaşlar", color = OnBg) }
+        Spacer(Modifier.height(8.dp))
         OutlinedButton(onClick = onSettings, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Öğrenme ayarları", color = OnBg) }
         Spacer(Modifier.height(8.dp))
         OutlinedButton(onClick = onSignOut, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Oturumu kapat", color = OnBg) }
