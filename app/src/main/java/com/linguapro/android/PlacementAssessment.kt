@@ -13,7 +13,7 @@ data class PlacementSummary(
 
 /** Converts the adaptive diagnostic's observed answers into a level estimate and skill profile. */
 object PlacementAssessment {
-    private val levelOrder = listOf("A1", "A2", "B1", "B2", "C1")
+    private val levelOrder = listOf("A1", "A2", "B1", "B2", "C1", "C2")
 
     fun summarize(highestPassedIndex: Int, questions: List<PlacementQuestionResult>, correctIndices: Set<Int>): PlacementSummary {
         val total = questions.size
