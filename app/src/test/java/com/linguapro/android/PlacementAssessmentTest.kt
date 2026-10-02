@@ -25,4 +25,10 @@ class PlacementAssessmentTest {
         assertEquals(0, result.accuracyPercent)
         assertEquals(emptyMap<String, Int>(), result.skillMastery)
     }
+
+    @Test fun `top index now maps to C2`() {
+        val questions = listOf(PlacementQuestionResult("C2", Skill.GRAMMAR))
+        val result = PlacementAssessment.summarize(5, questions, setOf(0))
+        assertEquals("C2", result.level)
+    }
 }

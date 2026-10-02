@@ -84,6 +84,49 @@ class FirebaseAccountRepository(context: Context) {
 
     fun signOut() { if (isConfigured) auth().signOut() }
 
+    /**
+     * Hesap ve veri silme (Google Play zorunlulugu): once Firestore'daki ders gecmisi
+     * parti parti silinir, ardindan profil belgesi ve Authentication hesabi kaldirilir.
+     * Basarida callback(null), hatada kullaniciya gosterilecek Turkce mesaj doner.
+     */
+    fun deleteAccount(uid: String, callback: (String?) -> Unit) {
+        if (!isConfigured) { callback("Firebase yapılandırılmamış; silinecek bulut hesabı yok."); return }
+        val user = auth().currentUser
+        if (user == null || user.uid != uid) { callback("Oturum doğrulanamadı. Çıkıp yeniden giriş yaptıktan sonra tekrar dene."); return }
+        val events = store().collection("users").document(uid).collection("lessonEvents")
+
+        fun deleteProfileThenUser() {
+            store().collection("users").document(uid).delete()
+                .addOnSuccessListener {
+                    user.delete()
+                        .addOnSuccessListener { callback(null) }
+                        .addOnFailureListener { e ->
+                            callback(
+                                if (e is com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException)
+                                    "Güvenlik gereği bu işlem yakın zamanda giriş ister. Çıkış yapıp yeniden giriş yaptıktan sonra tekrar dene."
+                                else e.localizedMessage ?: "Hesap silinemedi."
+                            )
+                        }
+                }
+                .addOnFailureListener { e -> callback(e.localizedMessage ?: "Profil verisi silinemedi.") }
+        }
+
+        fun deleteEventsBatch() {
+            events.limit(200).get()
+                .addOnSuccessListener { snapshot ->
+                    if (snapshot.isEmpty) { deleteProfileThenUser(); return@addOnSuccessListener }
+                    val batch = store().batch()
+                    snapshot.documents.forEach { batch.delete(it.reference) }
+                    batch.commit()
+                        .addOnSuccessListener { deleteEventsBatch() }
+                        .addOnFailureListener { e -> callback(e.localizedMessage ?: "Ders geçmişi silinemedi.") }
+                }
+                .addOnFailureListener { e -> callback(e.localizedMessage ?: "Ders geçmişi okunamadı.") }
+        }
+
+        deleteEventsBatch()
+    }
+
     fun loadProfile(uid: String, callback: (AccountProfile?) -> Unit) {
         if (!isConfigured) { callback(null); return }
         store().collection("users").document(uid).get()

@@ -55,7 +55,8 @@ service cloud.firestore {
           'skillMastery', 'onboardingComplete', 'lastStudiedAt', 'updatedAt'
         ])
         && validProfile(request.resource.data, userId);
-      allow delete: if false;
+      // Hesap silme (Google Play zorunlulugu): kullanici yalnizca kendi profilini silebilir.
+      allow delete: if signedInAs(userId);
 
       match /lessonEvents/{eventId} {
         allow read: if signedInAs(userId);
@@ -68,7 +69,9 @@ service cloud.firestore {
             || (request.resource.data.score is int
               && request.resource.data.score >= 0
               && request.resource.data.score <= 100));
-        allow update, delete: if false;
+        allow update: if false;
+        // Hesap silme temizligi: kullanici kendi ders gecmisini silebilir.
+        allow delete: if signedInAs(userId);
       }
     }
 

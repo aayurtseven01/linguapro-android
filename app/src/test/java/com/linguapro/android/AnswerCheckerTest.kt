@@ -41,4 +41,22 @@ class AnswerCheckerTest {
     fun cjkSimilarityDoesNotWeakenEnglishChecks() {
         assertFalse(AnswerChecker.matches("yellow", listOf("hello")))
     }
+
+    @Test
+    fun rejectsNegationMismatch() {
+        assertFalse(AnswerChecker.matches("I am not from Turkey", listOf("I am from Turkey.")))
+        assertFalse(AnswerChecker.matches("I am from Turkey", listOf("I am not from Turkey.")))
+        assertFalse(AnswerChecker.matches("Ich trinke keinen Kaffee", listOf("Ich trinke Kaffee.")))
+    }
+
+    @Test
+    fun rejectsScrambledWordOrder() {
+        assertFalse(AnswerChecker.matches("Turkey from am I", listOf("I am from Turkey.")))
+    }
+
+    @Test
+    fun stillAcceptsSmallSpeechOmissions() {
+        // Konusma tanima kucuk kelime dusurebilir; sira korunuyorsa kabul edilir.
+        assertTrue(AnswerChecker.matches("We buy fruit at market", listOf("We buy fruit at the market.")))
+    }
 }

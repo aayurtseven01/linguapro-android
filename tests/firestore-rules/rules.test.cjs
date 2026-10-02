@@ -89,7 +89,7 @@ test('profile updates are owner-only, validated, and cannot write entitlement', 
   await assertFails(updateDoc(doc(bob, 'users/alice'), { displayName: 'Intruder' }));
 });
 
-test('learner can append own bounded lesson events but cannot edit or delete them', async () => {
+test('learner can append own bounded lesson events but cannot edit them; owner may delete for account removal', async () => {
   const alice = env.authenticatedContext('alice').firestore();
   await assertSucceeds(setDoc(doc(alice, 'users/alice'), profile('alice')));
   const event = doc(collection(alice, 'users/alice/lessonEvents'));
@@ -103,7 +103,10 @@ test('learner can append own bounded lesson events but cannot edit or delete the
     lessonId: 'A1-U1-L1', score: 101, completedAt: serverTimestamp(),
   }));
   await assertFails(updateDoc(event, { score: 100 }));
-  await assertFails(deleteDoc(event));
+  // Hesap silme icin sahibinin kendi olayini silmesine izin verilir; yabanci silemez.
+  const mallory = env.authenticatedContext('mallory').firestore();
+  await assertFails(deleteDoc(doc(mallory, event.path)));
+  await assertSucceeds(deleteDoc(event));
   await assertSucceeds(updateDoc(doc(alice, 'users/alice'), {
     completedLessons: increment(1), completedByLevelA1: increment(1),
     lastStudiedAt: serverTimestamp(), updatedAt: serverTimestamp(),
@@ -125,4 +128,12 @@ test('course content is authenticated read-only', async () => {
   await assertSucceeds(getDocs(collection(alice, 'courseContent')));
   await assertFails(setDoc(doc(alice, 'courseContent/a1'), { title: 'tampered' }));
   await assertFails(getDocs(collection(anonymous, 'courseContent')));
+});
+
+test('owner can delete own profile but strangers cannot', async () => {
+  const alice = env.authenticatedContext('alice').firestore();
+  await assertSucceeds(setDoc(doc(alice, 'users/alice'), profile('alice')));
+  const mallory = env.authenticatedContext('mallory').firestore();
+  await assertFails(deleteDoc(doc(mallory, 'users/alice')));
+  await assertSucceeds(deleteDoc(doc(alice, 'users/alice')));
 });

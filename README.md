@@ -13,7 +13,7 @@ Kotlin + Jetpack Compose ile hazırlanmış, Türkçe arayüzlü İngilizce öğ
 
 ## Android Studio'da açma
 
-Projeyi Android Studio'da açıp Gradle senkronizasyonunu tamamlayın. JDK 17 ve Android SDK 35 gerekir. Minimum Android sürümü API 24, hedef API 34'tür. Uygulamanın paket adı `com.linguapro.android`.
+Projeyi Android Studio'da açıp Gradle senkronizasyonunu tamamlayın. JDK 17 ve Android SDK 35 gerekir. Minimum Android sürümü API 24, hedef API 35'tür. Uygulamanın paket adı `com.linguapro.android`.
 
 Komut satırı derlemesi: `./gradlew assembleDebug`
 

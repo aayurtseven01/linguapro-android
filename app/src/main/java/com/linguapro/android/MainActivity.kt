@@ -229,9 +229,27 @@ private val questions = listOf(
     Question("B1", "Why did the team change the schedule?", listOf("A client meeting moved.", "A colleague was ill.", "The venue closed.", "The report was unfinished."), 0, Skill.READING, "The client moved our review meeting from Thursday to Wednesday, so we brought the project check-in forward by one day."),
     Question("B2", "Despite ___ tired, she finished the presentation.", listOf("be", "being", "was", "to be"), 1),
     Question("B2", "In the report, 'inconclusive' means the results…", listOf("prove the claim", "do not provide a clear answer", "are irrelevant", "were fabricated"), 1, Skill.VOCABULARY, "The pilot showed a possible improvement, but the sample was too small for a firm conclusion."),
-    Question("C1", "Hardly ___ the meeting begun when the fire alarm rang.", listOf("had", "has", "did", "was"), 0)
+    Question("B2", "By the time we arrived, the film ___.", listOf("started", "has started", "had started", "was starting"), 2),
+    Question("C1", "Hardly ___ the meeting begun when the fire alarm rang.", listOf("had", "has", "did", "was"), 0),
+    Question("C1", "___ the committee approve the proposal, work will begin in May.", listOf("Should", "Would", "Unless", "Provided"), 0),
+    Question("C1", "In the review, 'tentative' suggests the plan is...", listOf("final and binding", "provisional and open to change", "rejected outright", "overdue"), 1, Skill.VOCABULARY, "The roadmap remains tentative; dates will firm up after the budget review."),
+    Question("C2", "The committee's findings were anything ___ transparent.", listOf("but", "than", "as", "so"), 0),
+    Question("C2", "Only after the audit ___ the full scale of the problem.", listOf("we grasped", "did we grasp", "we did grasp", "grasped we"), 1),
+    Question("C2", "Her 'perfunctory' apology implies it was...", listOf("heartfelt and sincere", "done hastily, without real feeling", "formally documented", "unexpectedly generous"), 1, Skill.VOCABULARY, "She offered a perfunctory apology before returning to her notes.")
 )
 private val levels = listOf("A1", "A2", "B1", "B2", "C1", "C2")
+
+/** Geri gidilince, ilk [answeredCount] soru icinde TAMAMEN yanitlanmis seviyelerden 2/3 olcutuyle gecilen en yuksek seviyeyi dondurur. */
+private fun placementHighestPassed(answeredCount: Int, correct: Set<Int>): Int {
+    var highest = -1
+    for ((levelIndex, lv) in levels.withIndex()) {
+        val idx = questions.indices.filter { questions[it].level == lv }
+        if (idx.isEmpty() || idx.any { it >= answeredCount }) break
+        val passed = idx.count { it in correct } * 3 >= idx.size * 2
+        if (passed) highest = levelIndex else break
+    }
+    return highest
+}
 
 @Composable
 private fun LinguaApp() {
@@ -246,6 +264,7 @@ private fun LinguaApp() {
     }
     var questionIndex by rememberSaveable { mutableIntStateOf(0) }
     var highestPassed by rememberSaveable { mutableIntStateOf(-1) }
+    var placementCorrect by remember { mutableStateOf(setOf<Int>()) }
     var placementSummary by remember { mutableStateOf<PlacementSummary?>(null) }
     var selected by rememberSaveable { mutableIntStateOf(-1) }
     var plan by rememberSaveable { mutableStateOf("Yıllık") }
@@ -369,6 +388,7 @@ private fun LinguaApp() {
                     onStart = {
                         questionIndex = 0
                         highestPassed = -1
+                        placementCorrect = setOf()
                         placementSummary = null
                         selected = -1
                         go(AppRoute.Quiz)
@@ -384,18 +404,28 @@ private fun LinguaApp() {
                         if (questionIndex > 0) {
                             questionIndex--
                             selected = -1
-                            highestPassed = if (questionIndex == 0) -1 else levels.indexOf(questions[questionIndex - 1].level)
+                            placementCorrect = placementCorrect.filter { it < questionIndex }.toSet()
+                            highestPassed = placementHighestPassed(questionIndex, placementCorrect)
                         } else go(AppRoute.Plans)
                     },
                     onNext = {
+                        // Tek yanlis testi bitirmez: her seviyeden 3 soru sorulur, 2/3 dogru seviyeyi gecirir.
                         val question = questions[questionIndex]
                         val isCorrect = selected == question.correct
-                        val nextHighestPassed = if (isCorrect) levels.indexOf(question.level) else highestPassed
-                        if (isCorrect) highestPassed = nextHighestPassed
-                        if (!isCorrect || questionIndex == questions.lastIndex) {
+                        val newCorrect = if (isCorrect) placementCorrect + questionIndex else placementCorrect
+                        placementCorrect = newCorrect
+                        val levelEnded = questionIndex == questions.lastIndex ||
+                            questions[questionIndex + 1].level != question.level
+                        var finished = questionIndex == questions.lastIndex
+                        if (levelEnded) {
+                            val levelIdx = questions.indices.filter { questions[it].level == question.level }
+                            val levelCorrect = levelIdx.count { it in newCorrect }
+                            val passed = levelCorrect * 3 >= levelIdx.size * 2
+                            if (passed) highestPassed = levels.indexOf(question.level) else finished = true
+                        }
+                        if (finished) {
                             val attempted = questions.take(questionIndex + 1).map { PlacementQuestionResult(it.level, it.skill) }
-                            val correctIndexes = (0 until questionIndex).toMutableSet().apply { if (isCorrect) add(questionIndex) }
-                            val summary = PlacementAssessment.summarize(nextHighestPassed, attempted, correctIndexes)
+                            val summary = PlacementAssessment.summarize(highestPassed, attempted, newCorrect)
                             placementSummary = summary
                             level = summary.level
                             if (accountUid.isNotBlank()) accounts.savePlacement(accountUid, summary.level, summary.skillMastery) { }
@@ -486,6 +516,28 @@ private fun LinguaApp() {
                     userName, accountEmail, level, completed, learningProgress,
                     onBack = { go(AppRoute.Home) },
                     onSettings = { go(AppRoute.Settings) },
+                    onDeleteAccount = {
+                        val uidToDelete = accountUid
+                        accounts.deleteAccount(uidToDelete) { error ->
+                            if (error == null) {
+                                // Yerel izleri temizle: bu hesaba ait kurs/seviye/ilerleme anahtarlari
+                                val editor = coursePrefs.edit()
+                                coursePrefs.all.keys.filter { uidToDelete.isNotBlank() && it.contains(uidToDelete) }.forEach { editor.remove(it) }
+                                editor.apply()
+                                accounts.signOut()
+                                accountUid = ""
+                                accountEmail = ""
+                                userName = "Öğrenci"
+                                level = "A1"
+                                completed = 0
+                                completedByLevel = emptyMap()
+                                android.widget.Toast.makeText(context, "Hesabın ve verilerin silindi.", android.widget.Toast.LENGTH_LONG).show()
+                                go(AppRoute.Welcome)
+                            } else {
+                                android.widget.Toast.makeText(context, error, android.widget.Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    },
                     onSignOut = {
                         accounts.signOut()
                         accountUid = ""
@@ -1149,7 +1201,8 @@ private fun ProgressScreen(level: String, completed: Int, progress: LearningProg
 }
 
 @Composable
-private fun ProfileScreen(name: String, email: String, level: String, completed: Int, progress: LearningProgress, onBack: () -> Unit, onSettings: () -> Unit, onSignOut: () -> Unit) {
+private fun ProfileScreen(name: String, email: String, level: String, completed: Int, progress: LearningProgress, onBack: () -> Unit, onSettings: () -> Unit, onSignOut: () -> Unit, onDeleteAccount: () -> Unit) {
+    var confirmDelete by remember { mutableStateOf(false) }
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         BackRow("Profil", onBack)
         Spacer(Modifier.height(12.dp))
@@ -1168,7 +1221,21 @@ private fun ProfileScreen(name: String, email: String, level: String, completed:
         OutlinedButton(onClick = onSettings, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Öğrenme ayarları", color = OnBg) }
         Spacer(Modifier.height(8.dp))
         OutlinedButton(onClick = onSignOut, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Oturumu kapat", color = OnBg) }
+        Spacer(Modifier.height(8.dp))
+        OutlinedButton(onClick = { confirmDelete = true }, border = BorderStroke(1.dp, PinkAccent), modifier = Modifier.fillMaxWidth()) { Text("Hesabı ve verileri sil", color = PinkAccent) }
         Spacer(Modifier.height(20.dp))
+    }
+    if (confirmDelete) {
+        AlertDialog(
+            onDismissRequest = { confirmDelete = false },
+            containerColor = Panel,
+            title = { Text("Hesap silinsin mi?", fontWeight = FontWeight.Bold) },
+            text = { Text("Hesabın, profil bilgilerin ve ders geçmişin kalıcı olarak silinir. Bu işlem geri alınamaz.", color = Muted, fontSize = 13.sp, lineHeight = 19.sp) },
+            confirmButton = {
+                TextButton(onClick = { confirmDelete = false; onDeleteAccount() }) { Text("Evet, kalıcı olarak sil", color = PinkAccent, fontWeight = FontWeight.Bold) }
+            },
+            dismissButton = { TextButton(onClick = { confirmDelete = false }) { Text("Vazgeç", color = OnBg) } }
+        )
     }
 }
 
