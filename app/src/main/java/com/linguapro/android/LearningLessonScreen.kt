@@ -304,7 +304,7 @@ fun LearningLessonScreen(
                             rowItems.forEach { (optionIndex, option) ->
                                 val chosen = selected == optionIndex
                                 Surface(
-                                    onClick = { if (!submitted) selected = optionIndex },
+                                    onClick = { if (!submitted) { selected = optionIndex; playTapTick(soundOn) } },
                                     color = if (chosen) Color(0xFF3E2B6E) else LessonPanel2,
                                     shape = RoundedCornerShape(18.dp),
                                     border = BorderStroke(if (chosen) 2.dp else 1.dp, if (chosen) LessonGold else Color(0x26FFFFFF)),
@@ -520,27 +520,83 @@ private fun ConfettiBurst(modifier: Modifier = Modifier) {
     }
 }
 
-/** Kısa "pluck" tonu: doğruda tiz onay, yanlışta pes uyarı. */
-private fun playFeedbackTone(enabled: Boolean, correct: Boolean) {
-    if (!enabled) return
-    runCatching {
-        val toneGen = android.media.ToneGenerator(android.media.AudioManager.STREAM_MUSIC, 55)
-        toneGen.startTone(if (correct) android.media.ToneGenerator.TONE_PROP_ACK else android.media.ToneGenerator.TONE_PROP_NACK, 170)
-        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({ runCatching { toneGen.release() } }, 450)
+// ---- Pluck ses sentezleyici: AudioTrack ile üretilen kısa, yumuşak tonlar ----
+private const val SOUND_SAMPLE_RATE = 44100
+
+/** Doğal sönümlenmeli tek "pluck" notası üretir (telli çalgı hissi). */
+private fun pluckNote(frequencyHz: Double, durationMs: Int, amplitude: Double = 0.55): ShortArray {
+    val sampleCount = SOUND_SAMPLE_RATE * durationMs / 1000
+    return ShortArray(sampleCount) { i ->
+        val t = i.toDouble() / SOUND_SAMPLE_RATE
+        val envelope = kotlin.math.exp(-5.5 * i / sampleCount)
+        val wave = kotlin.math.sin(2.0 * Math.PI * frequencyHz * t) +
+            0.35 * kotlin.math.sin(4.0 * Math.PI * frequencyHz * t)
+        (wave / 1.35 * envelope * amplitude * Short.MAX_VALUE).toInt()
+            .coerceIn(Short.MIN_VALUE.toInt(), Short.MAX_VALUE.toInt()).toShort()
     }
 }
 
-/** Ders sonunda üç notalık kısa kutlama melodisi. */
+/** Notaları araya kısa sessizlik koyarak tek tampon halinde birleştirir. */
+private fun joinNotes(vararg notes: ShortArray, gapMs: Int = 28): ShortArray {
+    val gap = ShortArray(SOUND_SAMPLE_RATE * gapMs / 1000)
+    val total = notes.sumOf { it.size } + gap.size * (notes.size - 1).coerceAtLeast(0)
+    val out = ShortArray(total)
+    var pos = 0
+    notes.forEachIndexed { i, n ->
+        n.copyInto(out, pos); pos += n.size
+        if (i < notes.lastIndex) { gap.copyInto(out, pos); pos += gap.size }
+    }
+    return out
+}
+
+private fun playPcm(samples: ShortArray) {
+    runCatching {
+        val track = android.media.AudioTrack(
+            android.media.AudioAttributes.Builder()
+                .setUsage(android.media.AudioAttributes.USAGE_MEDIA)
+                .setContentType(android.media.AudioAttributes.CONTENT_TYPE_MUSIC)
+                .build(),
+            android.media.AudioFormat.Builder()
+                .setSampleRate(SOUND_SAMPLE_RATE)
+                .setEncoding(android.media.AudioFormat.ENCODING_PCM_16BIT)
+                .setChannelMask(android.media.AudioFormat.CHANNEL_OUT_MONO)
+                .build(),
+            samples.size * 2,
+            android.media.AudioTrack.MODE_STATIC,
+            android.media.AudioManager.AUDIO_SESSION_ID_GENERATE
+        )
+        track.write(samples, 0, samples.size)
+        track.play()
+        val durationMs = samples.size * 1000L / SOUND_SAMPLE_RATE
+        android.os.Handler(android.os.Looper.getMainLooper())
+            .postDelayed({ runCatching { track.release() } }, durationMs + 250L)
+    }
+}
+
+/** Seçeneğe dokununca duyulan çok kısa, ince tık. */
+private fun playTapTick(enabled: Boolean) {
+    if (!enabled) return
+    playPcm(pluckNote(523.25, 70, amplitude = 0.28))
+}
+
+/** Kısa "pluck" geri bildirimi: doğruda yükselen iki nota, yanlışta pes tek nota. */
+private fun playFeedbackTone(enabled: Boolean, correct: Boolean) {
+    if (!enabled) return
+    playPcm(
+        if (correct) joinNotes(pluckNote(659.25, 130), pluckNote(987.77, 210))
+        else pluckNote(196.0, 260, amplitude = 0.5)
+    )
+}
+
+/** Ders sonunda dört notalık kısa kutlama arpeji. */
 private fun playCompletionMelody(enabled: Boolean) {
     if (!enabled) return
-    runCatching {
-        val toneGen = android.media.ToneGenerator(android.media.AudioManager.STREAM_MUSIC, 60)
-        val handler = android.os.Handler(android.os.Looper.getMainLooper())
-        listOf(android.media.ToneGenerator.TONE_DTMF_1, android.media.ToneGenerator.TONE_DTMF_5, android.media.ToneGenerator.TONE_DTMF_9).forEachIndexed { i, tone ->
-            handler.postDelayed({ runCatching { toneGen.startTone(tone, 130) } }, i * 160L)
-        }
-        handler.postDelayed({ runCatching { toneGen.release() } }, 900)
-    }
+    playPcm(
+        joinNotes(
+            pluckNote(523.25, 150), pluckNote(659.25, 150),
+            pluckNote(783.99, 150), pluckNote(1046.50, 320)
+        )
+    )
 }
 
 @Composable
