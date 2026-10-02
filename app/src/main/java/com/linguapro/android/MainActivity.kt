@@ -275,16 +275,6 @@ private fun LinguaApp() {
     var accountUid by rememberSaveable { mutableStateOf(signedInUser?.uid.orEmpty()) }
     val progressStore = remember(context, accountUid) { LearningProgressStore(context, accountUid) }
     var learningProgress by remember(accountUid) { mutableStateOf(progressStore.read()) }
-    // Sosyal katman: kullanıcı adı, avatar, günlük görevler, lig senkronu
-    var username by remember(courseUid) { mutableStateOf(coursePrefs.getString("username_$courseUid", "") ?: "") }
-    var avatarCode by remember(courseUid) { mutableStateOf(coursePrefs.getString("avatar_$courseUid", "") ?: "") }
-    val social = remember { com.linguapro.android.data.SocialRepository() }
-    val questStore = remember(context, courseUid) { QuestProgressStore(context, courseUid) }
-    var questVersion by remember { mutableIntStateOf(0) }
-    val syncBoard: () -> Unit = syncBoard@{
-        if (accountUid.isBlank() || username.isBlank()) return@syncBoard
-        social.upsertBoard(accountUid, username, userName, LevelSystem.levelFor(learningProgress.totalXp), learningProgress.totalXp, avatarCode) { }
-    }
     val mistakeBook = remember(context, accountUid) { MistakeBookStore(context, accountUid) }
     var mistakeIds by remember(accountUid) { mutableStateOf(mistakeBook.read()) }
     val skillProgressStore = remember(context, accountUid) { SkillProgressStore(context, accountUid) }
@@ -322,6 +312,16 @@ private fun LinguaApp() {
     }
     var selectedLessonId by rememberSaveable { mutableStateOf("") }
     var selectedExerciseIndex by rememberSaveable { mutableIntStateOf(0) }
+    // Sosyal katman: kullanıcı adı, avatar, günlük görevler, lig senkronu
+    var username by remember(courseUid) { mutableStateOf(coursePrefs.getString("username_$courseUid", "") ?: "") }
+    var avatarCode by remember(courseUid) { mutableStateOf(coursePrefs.getString("avatar_$courseUid", "") ?: "") }
+    val social = remember { com.linguapro.android.data.SocialRepository() }
+    val questStore = remember(context, courseUid) { QuestProgressStore(context, courseUid) }
+    var questVersion by remember { mutableIntStateOf(0) }
+    val syncBoard: () -> Unit = syncBoard@{
+        if (accountUid.isBlank() || username.isBlank()) return@syncBoard
+        social.upsertBoard(accountUid, username, userName, LevelSystem.levelFor(learningProgress.totalXp), learningProgress.totalXp, avatarCode) { }
+    }
     var activeLessonCountsTowardCourse by rememberSaveable { mutableStateOf(true) }
     val activeLesson = remember(courseLang, effectiveLevel, completedForLevel, selectedLessonId, dashboardState.supplementalUnits) {
         if (selectedLessonId.endsWith("-WORDS")) return@remember DailyWords.lessonFor(courseLang)
