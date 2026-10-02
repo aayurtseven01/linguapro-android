@@ -20,13 +20,17 @@ class DailyWordsTest {
     @Test
     fun examBankEntriesCarryOfficialTierLabels() {
         val expected = mapOf(
-            "DE" to "Goethe", "FR" to "DELF", "ES" to "DELE", "PT" to "CAPLE", "IT" to "CILS",
-            "RU" to "TORFL", "ZH" to "HSK", "JA" to "JLPT", "KO" to "TOPIK", "EN" to "Oxford"
+            "DE" to listOf("Goethe"), "FR" to listOf("DELF", "DALF"), "ES" to listOf("DELE"),
+            "PT" to listOf("CAPLE"), "IT" to listOf("CILS"), "RU" to listOf("TORFL"),
+            "ZH" to listOf("HSK"), "JA" to listOf("JLPT"), "KO" to listOf("TOPIK"), "EN" to listOf("Oxford")
         )
-        expected.forEach { (lang, label) ->
+        expected.forEach { (lang, labels) ->
             val bank = ExamVocabulary.bank(lang)
             assertTrue("$lang sınav bankası en az 100 kelime olmalı", bank.size >= 100)
-            assertTrue("$lang kademe etiketi '$label' içermeli", bank.all { it.partOfSpeech.contains(label) })
+            assertTrue(
+                "$lang kademe etiketi ${labels.joinToString("/")} içermeli",
+                bank.all { word -> labels.any { word.partOfSpeech.contains(it) } }
+            )
         }
     }
 
