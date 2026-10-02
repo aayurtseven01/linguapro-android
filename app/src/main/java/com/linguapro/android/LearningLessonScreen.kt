@@ -59,6 +59,17 @@ private val LessonMuted = Color(0xFFA99BC9)
 private val LessonMint = Color(0xFFB5F23D)
 private val LessonPink = Color(0xFFFF5CA8)
 private val LessonText = Color(0xFFF5F1FF)
+private val LessonCombo = Color(0xFFFFB020)
+
+/** Derslerde sorulari sunan karakter kadrosu (parametrik avatar motoru). */
+private val lessonCast = listOf(
+    AvatarConfig(gender = 0, skin = 1, hairStyle = 1, hairColor = 0, eyeColor = 0, glasses = false, shirt = 1),
+    AvatarConfig(gender = 1, skin = 2, hairStyle = 0, hairColor = 1, eyeColor = 1, glasses = true, shirt = 2),
+    AvatarConfig(gender = 0, skin = 0, hairStyle = 2, hairColor = 4, eyeColor = 2, glasses = false, shirt = 0),
+    AvatarConfig(gender = 1, skin = 3, hairStyle = 3, hairColor = 0, eyeColor = 0, glasses = false, shirt = 3),
+    AvatarConfig(gender = 0, skin = 2, hairStyle = 3, hairColor = 2, eyeColor = 1, glasses = true, shirt = 4),
+    AvatarConfig(gender = 1, skin = 1, hairStyle = 4, hairColor = 3, eyeColor = 0, glasses = false, shirt = 2)
+)
 
 @Composable
 fun LearningLessonScreen(
@@ -86,6 +97,8 @@ fun LearningLessonScreen(
     var ttsReady by remember { mutableStateOf(false) }
     val soundPrefs = LocalContext.current.getSharedPreferences("lingua_course", android.content.Context.MODE_PRIVATE)
     var soundOn by remember { mutableStateOf(soundPrefs.getBoolean("sound_on", true)) }
+    var comboStreak by rememberSaveable(lesson.id, attempt) { mutableIntStateOf(0) }
+    var comboCelebrate by remember { mutableIntStateOf(0) }
     val context = LocalContext.current
     val tts = remember { mutableStateOf<TextToSpeech?>(null) }
 
@@ -154,6 +167,8 @@ fun LearningLessonScreen(
                     if (isCorrect) correctCount++
                     submitted = true
                     playFeedbackTone(soundOn, isCorrect)
+                    if (isCorrect) { comboStreak++; if (comboStreak % 5 == 0) comboCelebrate = comboStreak } else comboStreak = 0
+                    if (isCorrect) { comboStreak++; if (comboStreak % 5 == 0) comboCelebrate = comboStreak } else comboStreak = 0
                 }
             }
             override fun onEvent(eventType: Int, params: Bundle?) {}
@@ -202,6 +217,13 @@ fun LearningLessonScreen(
             }
         }
         Text(lesson.canDo, color = Color(0xFFCBBDE8), fontSize = 13.sp, modifier = Modifier.padding(start = 6.dp, top = 3.dp, bottom = 14.dp))
+        if (comboStreak >= 2) {
+            Text(
+                "KOMBO x$comboStreak",
+                color = LessonCombo, fontSize = 13.sp, fontWeight = FontWeight.ExtraBold, letterSpacing = 1.5.sp,
+                modifier = Modifier.align(Alignment.CenterHorizontally).padding(bottom = 4.dp)
+            )
+        }
         // Parça parça dolan ilerleme çubuğu
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             repeat(lesson.exercises.size) { seg ->
@@ -210,6 +232,16 @@ fun LearningLessonScreen(
                         .weight(1f)
                         .height(7.dp)
                         .background(if (seg <= index.intValue) LessonGold else Color(0x30FFFFFF), RoundedCornerShape(4.dp))
+                )
+            }
+        }
+        if (comboCelebrate > 0) {
+            LaunchedEffect(comboCelebrate) { kotlinx.coroutines.delay(1600); comboCelebrate = 0 }
+            Surface(color = LessonGold, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth().padding(top = 12.dp)) {
+                Text(
+                    "🔥 Üst üste $comboCelebrate!",
+                    color = LessonNavy, fontSize = 22.sp, fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 14.dp)
                 )
             }
         }
@@ -294,10 +326,67 @@ fun LearningLessonScreen(
                     }
                     Spacer(Modifier.height(12.dp))
                 }
-                Text(exercise.prompt, fontSize = 21.sp, fontWeight = FontWeight.Bold, lineHeight = 28.sp)
-                Spacer(Modifier.height(14.dp))
-
+                val isWordBank = exercise.skill == Skill.GRAMMAR && exercise.options.isNotEmpty() && exercise.prompt.contains("___")
                 if (exercise.options.isNotEmpty()) {
+                    // Duolingo tarzı: soruyu dersin karakteri sunar
+                    Row(verticalAlignment = Alignment.Bottom) {
+                        AvatarView(lessonCast[kotlin.math.abs(exercise.id.hashCode()) % lessonCast.size], 82.dp)
+                        Surface(
+                            color = LessonPanel2,
+                            shape = RoundedCornerShape(topStart = 18.dp, topEnd = 18.dp, bottomEnd = 18.dp, bottomStart = 4.dp),
+                            border = BorderStroke(1.dp, Color(0x26FFFFFF)),
+                            modifier = Modifier.padding(start = 8.dp, bottom = 12.dp).weight(1f)
+                        ) {
+                            if (isWordBank) {
+                                val filledWord = exercise.options.getOrNull(selected)
+                                val promptParts = exercise.prompt.split("___", limit = 2)
+                                Text(
+                                    androidx.compose.ui.text.buildAnnotatedString {
+                                        append(promptParts.getOrElse(0) { "" })
+                                        if (filledWord != null) {
+                                            pushStyle(androidx.compose.ui.text.SpanStyle(color = LessonGold, fontWeight = FontWeight.ExtraBold))
+                                            append(filledWord)
+                                            pop()
+                                        } else append("____")
+                                        append(promptParts.getOrElse(1) { "" })
+                                    },
+                                    color = LessonText, fontSize = 18.sp, lineHeight = 26.sp, fontWeight = FontWeight.SemiBold,
+                                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp)
+                                )
+                            } else {
+                                Text(exercise.prompt, color = LessonText, fontSize = 18.sp, lineHeight = 26.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp))
+                            }
+                        }
+                    }
+                    Spacer(Modifier.height(8.dp))
+                } else {
+                    Text(exercise.prompt, fontSize = 21.sp, fontWeight = FontWeight.Bold, lineHeight = 28.sp)
+                    Spacer(Modifier.height(14.dp))
+                }
+
+                if (isWordBank) {
+                    // Kelime bankası: boşluğu doldurmak için kelimeye dokun; tekrar dokununca geri gelir
+                    Text("Boşluğu doldurmak için kelimeye dokun", color = LessonMuted, fontSize = 12.sp, modifier = Modifier.padding(bottom = 8.dp))
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        exercise.options.forEachIndexed { optionIndex, option ->
+                            val chosen = selected == optionIndex
+                            Surface(
+                                onClick = { if (!submitted) selected = if (chosen) -1 else optionIndex },
+                                color = if (chosen) Color(0x14FFFFFF) else LessonPanel2,
+                                shape = RoundedCornerShape(14.dp),
+                                border = BorderStroke(1.dp, if (chosen) Color(0x59C6FF4A) else Color(0x26FFFFFF)),
+                                modifier = Modifier.weight(1f)
+                            ) {
+                                Text(
+                                    option,
+                                    color = if (chosen) Color(0x33F5F1FF) else LessonText,
+                                    fontSize = 13.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, maxLines = 2, lineHeight = 17.sp,
+                                    modifier = Modifier.padding(vertical = 12.dp, horizontal = 4.dp)
+                                )
+                            }
+                        }
+                    }
+                } else if (exercise.options.isNotEmpty()) {
                     // 2×2 büyük kare seçenekler
                     exercise.options.withIndex().chunked(2).forEach { rowItems ->
                         Row(Modifier.fillMaxWidth().padding(vertical = 5.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {

@@ -32,6 +32,10 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -1183,22 +1187,68 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         val moduleList = courseUnits
         val courseLessonCount = moduleList.sumOf { it.lessons.size }
         val lessonPointer = completed.coerceAtMost(courseLessonCount)
+        // Duolingo tarzı kıvrımlı patika: her ders bir düğüm, Checkpoint kupa, mevcut düğüm nabız atar
         var previousLessonCount = 0
         moduleList.forEachIndexed { i, unit ->
             val unitStart = previousLessonCount
             val unitEnd = unitStart + unit.lessons.size
-            val isDone = lessonPointer >= unitEnd
-            val isCurrent = lessonPointer in unitStart until unitEnd
-            ModuleCard(
-                i + 1,
-                unit.title,
-                "${unit.lessons.size} ders • ${unit.summary}",
-                if (isDone) "Tamamlandı" else if (isCurrent) "Şu anda" else "Sırada",
-                isDone,
-                isCurrent
-            ) { if (isCurrent) onStartLesson() else if (!isDone) onLocked() }
+            val unitDone = lessonPointer >= unitEnd
+            val unitCurrent = lessonPointer in unitStart until unitEnd
+            Surface(color = if (unitDone || unitCurrent) Gold else Panel, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth()) {
+                Row(Modifier.padding(horizontal = 16.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) {
+                        Text("${i + 1}. ÜNİTE", color = if (unitDone || unitCurrent) Color(0x991A0E2E) else Muted, fontSize = 10.sp, fontWeight = FontWeight.ExtraBold, letterSpacing = 1.5.sp)
+                        Text(unit.title, color = if (unitDone || unitCurrent) Navy else OnBg, fontSize = 15.sp, fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(top = 2.dp))
+                    }
+                    if (unitDone) Text("✓", color = Navy, fontSize = 18.sp, fontWeight = FontWeight.ExtraBold)
+                }
+            }
+            Spacer(Modifier.height(4.dp))
+            unit.lessons.forEachIndexed { li, pathLesson ->
+                val g = unitStart + li
+                val nodeDone = g < lessonPointer
+                val nodeCurrent = g == lessonPointer
+                val isCp = pathLesson.id.endsWith("-CP")
+                val xOffset = (kotlin.math.sin(g * 1.05) * 86).dp
+                if (li > 0) {
+                    val prevOffset = (kotlin.math.sin((g - 1) * 1.05) * 86).dp
+                    repeat(2) { d ->
+                        val t = (d + 1) / 3f
+                        Box(Modifier.fillMaxWidth().padding(vertical = 2.dp), contentAlignment = Alignment.Center) {
+                            Box(Modifier.offset(x = prevOffset + (xOffset - prevOffset) * t).size(7.dp).background(if (g <= lessonPointer) Gold else Color(0x33FFFFFF), CircleShape))
+                        }
+                    }
+                }
+                Box(Modifier.fillMaxWidth().padding(vertical = 3.dp), contentAlignment = Alignment.Center) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.offset(x = xOffset)) {
+                        val pulse = if (nodeCurrent) {
+                            val nodeAnim = rememberInfiniteTransition(label = "pathNode")
+                            nodeAnim.animateFloat(1f, 1.1f, infiniteRepeatable(tween(650), RepeatMode.Reverse), label = "pulse").value
+                        } else 1f
+                        Surface(
+                            onClick = { if (nodeCurrent) onStartLesson() else if (!nodeDone) onLocked() },
+                            color = if (nodeDone || nodeCurrent) Gold else Panel2,
+                            shape = CircleShape,
+                            shadowElevation = if (nodeCurrent) 8.dp else 2.dp,
+                            border = if (nodeCurrent) BorderStroke(3.dp, Color(0xFFF5F1FF)) else null,
+                            modifier = Modifier.size(60.dp).graphicsLayer { scaleX = pulse; scaleY = pulse }
+                        ) {
+                            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+                                if (isCp) Text("🏆", fontSize = 24.sp)
+                                else Icon(
+                                    if (nodeDone) Icons.Default.Check else if (nodeCurrent) Icons.Default.Star else Icons.Default.Lock,
+                                    null,
+                                    tint = if (nodeDone || nodeCurrent) Navy else Muted,
+                                    modifier = Modifier.size(26.dp)
+                                )
+                            }
+                        }
+                        if (nodeCurrent) Text(pathLesson.title, color = OnBgSoft, fontSize = 10.sp, maxLines = 1, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 4.dp).width(150.dp))
+                    }
+                }
+            }
             previousLessonCount = unitEnd
-            Spacer(Modifier.height(10.dp))
+            Spacer(Modifier.height(14.dp))
         }
         Spacer(Modifier.height(8.dp))
         PrimaryButton(if (completed >= courseLessonCount) "↻   Dersleri tekrar et" else "▶   Derse başla", onStartLesson)
