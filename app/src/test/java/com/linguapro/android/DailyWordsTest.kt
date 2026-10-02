@@ -11,7 +11,22 @@ class DailyWordsTest {
     @Test
     fun everyLanguageHasALargeEnoughWordPool() {
         allLangs.forEach { lang ->
-            assertTrue("$lang havuzu en az 100 kelime olmalı", DailyWords.pool(lang).size >= 100)
+            val pool = DailyWords.pool(lang)
+            assertTrue("$lang havuzu en az 230 kelime olmalı (müfredat + sınav bankası)", pool.size >= 230)
+            assertEquals("$lang havuzunda kelime tekrarı olmamalı", pool.size, pool.map { it.termEn.lowercase() }.toSet().size)
+        }
+    }
+
+    @Test
+    fun examBankEntriesCarryOfficialTierLabels() {
+        val expected = mapOf(
+            "DE" to "Goethe", "FR" to "DELF", "ES" to "DELE", "PT" to "CAPLE", "IT" to "CILS",
+            "RU" to "TORFL", "ZH" to "HSK", "JA" to "JLPT", "KO" to "TOPIK", "EN" to "Oxford"
+        )
+        expected.forEach { (lang, label) ->
+            val bank = ExamVocabulary.bank(lang)
+            assertTrue("$lang sınav bankası en az 100 kelime olmalı", bank.size >= 100)
+            assertTrue("$lang kademe etiketi '$label' içermeli", bank.all { it.partOfSpeech.contains(label) })
         }
     }
 

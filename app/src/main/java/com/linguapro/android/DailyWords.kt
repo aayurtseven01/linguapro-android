@@ -3,8 +3,9 @@ package com.linguapro.android
 /**
  * Günün 5 Kelimesi: her gün deterministik olarak farklı 5 kelime seçer ve
  * ertesi günün sınavına "dünün kelimeleri" olarak ekler (öğren → ertesi gün pekiştir).
- * Dünya dilleri havuzunu ders kelime kartlarından (dil başına 180), İngilizce için
- * yerleşik 120 kelimelik bankadan alır. Seçim tamamen deterministiktir: aynı gün
+ * Dünya dilleri havuzu: 180 müfredat kelimesi + resmî sınav listelerine (Goethe, DELF/DALF,
+ * DELE, CAPLE, CILS, TORFL, HSK, JLPT, TOPIK) hizalı ~105 ek kelime (bkz. ExamVocabulary).
+ * İngilizce havuzu: 120 temel + 120 Oxford bandı kelime. Seçim tamamen deterministiktir: aynı gün
  * aynı kelimeler, ertesi gün farklı kelimeler; havuz bitince karıştırılıp yeniden başlar.
  */
 object DailyWords {
@@ -15,10 +16,13 @@ object DailyWords {
 
     fun pool(lang: String): List<TargetVocabulary> = synchronized(poolCache) {
         poolCache.getOrPut(lang) {
-            if (lang == "EN") englishBank
+            val curriculum = if (lang == "EN") englishBank
             else CourseCatalog.levels.flatMap { level ->
                 WorldCatalog.units(lang, level).flatMap { unit -> unit.lessons.flatMap { it.targetVocabulary } }
             }
+            // Resmî sınav listelerine hizalı ek banka (Goethe/DELF/DELE/CAPLE/CILS/TORFL/HSK/JLPT/TOPIK/Oxford).
+            // distinctBy: aynı kelime döngü içinde iki kez "yeni" diye çıkmasın.
+            (curriculum + ExamVocabulary.bank(lang)).distinctBy { it.termEn.lowercase() }
         }
     }
 
