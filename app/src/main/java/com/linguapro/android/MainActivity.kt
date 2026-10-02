@@ -87,6 +87,21 @@ private val privacySummary = """
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private var touchDownX = 0f
+    private var touchDownY = 0f
+
+    override fun dispatchTouchEvent(ev: android.view.MotionEvent): Boolean {
+        when (ev.actionMasked) {
+            android.view.MotionEvent.ACTION_DOWN -> { touchDownX = ev.x; touchDownY = ev.y }
+            android.view.MotionEvent.ACTION_UP -> {
+                val moved = kotlin.math.hypot((ev.x - touchDownX).toDouble(), (ev.y - touchDownY).toDouble())
+                if (moved < 28.0) UiClickSound.play(this) // dokunuş: klik; kaydırma: sessiz
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Tam ekran: içerik sistem çubuklarının arkasına uzanır, çubuklar şeffaftır.

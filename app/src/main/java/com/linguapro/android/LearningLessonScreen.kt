@@ -304,7 +304,7 @@ fun LearningLessonScreen(
                             rowItems.forEach { (optionIndex, option) ->
                                 val chosen = selected == optionIndex
                                 Surface(
-                                    onClick = { if (!submitted) { selected = optionIndex; playTapTick(soundOn) } },
+                                    onClick = { if (!submitted) selected = optionIndex },
                                     color = if (chosen) Color(0xFF3E2B6E) else LessonPanel2,
                                     shape = RoundedCornerShape(18.dp),
                                     border = BorderStroke(if (chosen) 2.dp else 1.dp, if (chosen) LessonGold else Color(0x26FFFFFF)),
@@ -571,12 +571,6 @@ private fun playPcm(samples: ShortArray) {
         android.os.Handler(android.os.Looper.getMainLooper())
             .postDelayed({ runCatching { track.release() } }, durationMs + 250L)
     }
-}
-
-/** Seçeneğe dokununca duyulan çok kısa, ince tık. */
-private fun playTapTick(enabled: Boolean) {
-    if (!enabled) return
-    playPcm(pluckNote(523.25, 70, amplitude = 0.28))
 }
 
 /** Kısa "pluck" geri bildirimi: doğruda yükselen iki nota, yanlışta pes tek nota. */
