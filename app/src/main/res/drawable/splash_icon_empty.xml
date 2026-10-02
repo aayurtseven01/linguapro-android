@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sistem splash ikonu olarak kullanılan tamamen boş drawable:
+     renk kaynağı yerine gerçek drawable verilmezse bazı cihazlar uygulama
+     ikonuna (baykuş) geri düşüyor ve video öncesi kısa süre görünüyordu. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@android:color/transparent" />
+</shape>
