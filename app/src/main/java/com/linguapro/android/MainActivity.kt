@@ -270,6 +270,7 @@ private fun LinguaApp() {
     var selectedExerciseIndex by rememberSaveable { mutableIntStateOf(0) }
     var activeLessonCountsTowardCourse by rememberSaveable { mutableStateOf(true) }
     val activeLesson = remember(courseLang, effectiveLevel, completedForLevel, selectedLessonId, dashboardState.supplementalUnits) {
+        if (selectedLessonId.endsWith("-WORDS")) return@remember DailyWords.lessonFor(courseLang)
         if (selectedLessonId.endsWith("-REFRESH")) return@remember DailyRefresh.lessonFor(courseLang, effectiveLevel)
         val staticLessons = WorldCatalog.units(courseLang, effectiveLevel).flatMap { it.lessons }
         val supplementalLessons = if (courseLang == "EN") dashboardState.supplementalUnits.flatMap { it.lessons } else emptyList()
@@ -422,6 +423,13 @@ private fun LinguaApp() {
                     onProfile = { go(AppRoute.Profile) },
                     onDailyRefresh = {
                         selectedLessonId = "$courseLang-$effectiveLevel-REFRESH"
+                        activeLessonCountsTowardCourse = false
+                        selectedExerciseIndex = 0
+                        go(AppRoute.Lesson)
+                    },
+                    dailyWords = remember(courseLang) { DailyWords.wordsFor(courseLang, DailyWords.todayEpochDay()) },
+                    onDailyWords = {
+                        selectedLessonId = "$courseLang-WORDS"
                         activeLessonCountsTowardCourse = false
                         selectedExerciseIndex = 0
                         go(AppRoute.Lesson)
@@ -834,7 +842,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 }
 
 @Composable
-private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit) {
+private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit, dailyWords: List<TargetVocabulary> = emptyList(), onDailyWords: () -> Unit = {}) {
     val langName = WorldCatalog.language(langCode).nameTr
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         Spacer(Modifier.height(14.dp))
@@ -904,6 +912,28 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                     Text("Her gün yenilenen 10 soruluk karışımla öğrendiklerini taze tut", color = Muted, fontSize = 12.sp, lineHeight = 16.sp, modifier = Modifier.padding(top = 3.dp))
                 }
                 Icon(Icons.Default.ChevronRight, null, tint = Muted)
+            }
+        }
+        if (dailyWords.isNotEmpty()) {
+            Spacer(Modifier.height(12.dp))
+            Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth()) {
+                Column(Modifier.padding(14.dp)) {
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                        Text("📚 Günün 5 Kelimesi", color = Gold, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                        Text("her gün yenilenir", color = Muted, fontSize = 10.sp)
+                    }
+                    Text("Bugün öğren, yarın tekrarıyla pekiştir — kalıcı ezber.", color = Muted, fontSize = 12.sp, lineHeight = 16.sp, modifier = Modifier.padding(top = 3.dp))
+                    dailyWords.forEach { word ->
+                        Row(Modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                            Text(word.emoji, fontSize = 15.sp)
+                            Text(word.termEn, fontSize = 13.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(start = 8.dp))
+                            Text(" • ${word.translationTr}", color = Muted, fontSize = 13.sp)
+                        }
+                    }
+                    Surface(onClick = onDailyWords, color = Gold, shape = RoundedCornerShape(14.dp), modifier = Modifier.padding(top = 12.dp)) {
+                        Text("Çalış ve tekrar et", color = Color(0xFFFFFFFF), fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp))
+                    }
+                }
             }
         }
         if (dueReviewCount > 0) {
