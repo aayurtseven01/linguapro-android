@@ -327,8 +327,8 @@ fun LearningLessonScreen(
                     Spacer(Modifier.height(12.dp))
                 }
                 val isWordBank = exercise.skill == Skill.GRAMMAR && exercise.options.isNotEmpty() && exercise.prompt.contains("___")
-                if (exercise.options.isNotEmpty()) {
-                    // Duolingo tarzı: soruyu dersin karakteri sunar
+                if (exercise.options.isNotEmpty() && exercise.skill != Skill.LISTENING) {
+                    // Duolingo tarzı: soruyu dersin karakteri sunar (dinlemede ses düğmesi esastır, balon gösterilmez)
                     Row(verticalAlignment = Alignment.Bottom) {
                         AvatarView(lessonCast[kotlin.math.abs(exercise.id.hashCode()) % lessonCast.size], 82.dp)
                         Surface(

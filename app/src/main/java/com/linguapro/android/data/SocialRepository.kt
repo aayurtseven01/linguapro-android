@@ -63,6 +63,18 @@ class SocialRepository {
             .addOnFailureListener { done(emptyList(), it.localizedMessage ?: "Arama yapılamadı.") }
     }
 
+    /**
+     * Kullanıcı adı rezervasyonu: usernames/{ad} belgesi "ilk alan kazanır" kuralıyla yazılır.
+     * Ad alınmışsa kurallar güncellemeyi reddeder ve Türkçe mesaj döner.
+     */
+    fun claimUsername(uid: String, username: String, done: (String?) -> Unit) {
+        val d = db() ?: return done("Çevrimiçi özellikler için Firebase gerekli.")
+        val key = username.lowercase().trim()
+        d.collection("usernames").document(key).set(mapOf("uid" to uid))
+            .addOnSuccessListener { done(null) }
+            .addOnFailureListener { done("Bu kullanıcı adı alınmış, başka bir tane dene.") }
+    }
+
     fun addFriend(uid: String, friend: BoardEntry, done: (String?) -> Unit) {
         val d = db() ?: return done("Çevrimiçi özellikler için Firebase gerekli.")
         val data = mapOf(
@@ -108,7 +120,10 @@ class SocialRepository {
             "text" to text.take(140),
             "createdAt" to System.currentTimeMillis()
         )
-        d.collection("activity").add(data)
+        // Ters-zaman kimlik: varsayılan belge sıralaması "en yeni önce" olur; dizin gerekmeden
+        // limit(20) her zaman kullanıcının EN YENİ paylaşımlarını döndürür.
+        val reverseTimeId = "%019d-%s".format(Long.MAX_VALUE - System.currentTimeMillis(), uid.take(8))
+        d.collection("activity").document(reverseTimeId).set(data)
             .addOnSuccessListener { done(null) }
             .addOnFailureListener { done(it.localizedMessage ?: "Paylaşım gönderilemedi.") }
     }

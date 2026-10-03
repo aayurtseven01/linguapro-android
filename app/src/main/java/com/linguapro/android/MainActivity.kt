@@ -14,6 +14,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -688,94 +689,6 @@ private fun LinguaApp() {
     }
 }
 
-@Composable
-private fun WavingOwl(modifier: Modifier = Modifier) {
-    // Akıcı el sallama: kareler arası sürekli crossfade + süzülme + eğilme + ışık halkası + parıltılar
-    val waveFrames = listOf(
-        R.drawable.owl_wave_down, R.drawable.owl_wave_mid, R.drawable.owl_wave_up,
-        R.drawable.owl_wave_mid, R.drawable.owl_wave_up, R.drawable.owl_wave_mid,
-        R.drawable.owl_wave_down
-    )
-    val twoPi = 2f * Math.PI.toFloat()
-    // Tek seferlik oynatma: giriş + bir selamlama döngüsü, sonra nötr pozda durur
-    val phaseAnim = remember { Animatable(0f) }
-    val entrance = remember { Animatable(0f) }
-    LaunchedEffect(Unit) {
-        launch {
-            entrance.animateTo(1f, spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessLow))
-        }
-        phaseAnim.animateTo(1f, tween(3400, easing = LinearEasing))
-    }
-    val phase = phaseAnim.value
-
-    val segments = waveFrames.size - 1
-    val pos = (phase * segments).coerceIn(0f, segments - 0.001f)
-    val frameIdx = pos.toInt()
-    val blend = (1f - kotlin.math.cos((pos - frameIdx) * Math.PI.toFloat())) / 2f
-    val bob = kotlin.math.sin(phase * twoPi * 2f) * 7f
-    val tilt = kotlin.math.sin(phase * twoPi * 2f) * 2.5f
-    val glowPulse = 0.88f + 0.12f * kotlin.math.sin(phase * twoPi * 2f)
-    // Animasyon sonuna yaklaşırken parıltılar yumuşakça söner
-    val sparkleFade = ((1f - phase) * 4f).coerceIn(0f, 1f)
-
-    Box(contentAlignment = Alignment.Center, modifier = modifier.size(176.dp)) {
-        Canvas(Modifier.matchParentSize()) {
-            // Nabız gibi atan altın ışık halkası
-            val glowRadius = size.minDimension * 0.5f * glowPulse
-            drawCircle(
-                brush = Brush.radialGradient(
-                    listOf(Color(0x80FFFFFF), Color(0x00FFFFFF)),
-                    center = center,
-                    radius = glowRadius
-                ),
-                radius = glowRadius,
-                center = center
-            )
-            // Farklı fazlarda yanıp sönen parıltılar
-            val sparkles = listOf(
-                Offset(0.10f, 0.16f) to 0.0f,
-                Offset(0.90f, 0.20f) to 2.1f,
-                Offset(0.13f, 0.82f) to 4.2f,
-                Offset(0.88f, 0.78f) to 1.1f
-            )
-            sparkles.forEach { (p, offsetPhase) ->
-                val twinkle = kotlin.math.sin(phase * twoPi * 3f + offsetPhase).coerceAtLeast(0f) * sparkleFade
-                if (twinkle > 0.05f) {
-                    val c = Offset(size.width * p.x, size.height * p.y)
-                    val r = (3f + 8f * twinkle).dp.toPx()
-                    val col = Color(0xFFFFC800).copy(alpha = twinkle)
-                    drawLine(col, Offset(c.x - r, c.y), Offset(c.x + r, c.y), strokeWidth = 2.5f)
-                    drawLine(col, Offset(c.x, c.y - r), Offset(c.x, c.y + r), strokeWidth = 2.5f)
-                    drawCircle(col, radius = 2.8f, center = c)
-                }
-            }
-        }
-        Box(
-            Modifier
-                .graphicsLayer {
-                    translationY = bob.dp.toPx()
-                    rotationZ = tilt
-                    scaleX = entrance.value
-                    scaleY = entrance.value
-                    alpha = entrance.value.coerceIn(0f, 1f)
-                }
-                .size(132.dp)
-                .clip(CircleShape)
-                .border(3.dp, Color(0xE6FFFFFF), CircleShape)
-        ) {
-            Image(
-                painter = painterResource(waveFrames[frameIdx]),
-                contentDescription = null,
-                modifier = Modifier.matchParentSize()
-            )
-            Image(
-                painter = painterResource(waveFrames[frameIdx + 1]),
-                contentDescription = "El sallayan LinguaPro baykuşu",
-                modifier = Modifier.matchParentSize().graphicsLayer { alpha = blend }
-            )
-        }
-    }
-}
 
 @Composable
 private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
@@ -1003,7 +916,13 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 @Composable
 private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit, dailyWords: List<TargetVocabulary> = emptyList(), onDailyWords: () -> Unit = {}, dailyQuests: List<QuestUi> = emptyList(), onClaimQuest: (DailyQuest) -> Unit = {}, onSocial: () -> Unit = {}) {
     val langName = WorldCatalog.language(langCode).nameTr
-    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
+    val moduleList = courseUnits
+    val courseLessonCount = moduleList.sumOf { it.lessons.size }
+    val lessonPointer = completed.coerceAtMost(courseLessonCount)
+    val unitStartOffsets = run { var acc = 0; moduleList.map { u -> acc.also { acc += u.lessons.size } } }
+    // Patika artık LazyColumn: yüzlerce düğüm yalnızca ekrana girerken oluşturulur (düşük cihaz performansı).
+    LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(horizontal = 18.dp)) {
+        item { Column {
         Spacer(Modifier.height(14.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
             Column { Text("Merhaba, $name!", color = OnBg, fontSize = 26.sp, fontWeight = FontWeight.Bold); Text("$langName yolculuğuna devam et", color = OnBgSoft, fontSize = 13.sp) }
@@ -1184,16 +1103,14 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         Spacer(Modifier.height(23.dp))
         Text("$level Seviyesindeki Yolculuğun", color = OnBg, fontSize = 20.sp, fontWeight = FontWeight.Bold)
         Text("Hedeflerine adım adım ilerle", color = OnBgSoft, fontSize = 14.sp, modifier = Modifier.padding(top = 3.dp, bottom = 14.dp))
-        val moduleList = courseUnits
-        val courseLessonCount = moduleList.sumOf { it.lessons.size }
-        val lessonPointer = completed.coerceAtMost(courseLessonCount)
-        // Duolingo tarzı kıvrımlı patika: her ders bir düğüm, Checkpoint kupa, mevcut düğüm nabız atar
-        var previousLessonCount = 0
+        } }
+        // Duolingo tarzı kıvrımlı patika: her düğüm ayrı tembel öğe
         moduleList.forEachIndexed { i, unit ->
-            val unitStart = previousLessonCount
+            val unitStart = unitStartOffsets[i]
             val unitEnd = unitStart + unit.lessons.size
             val unitDone = lessonPointer >= unitEnd
             val unitCurrent = lessonPointer in unitStart until unitEnd
+            item { Column {
             Surface(color = if (unitDone || unitCurrent) Gold else Panel, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth()) {
                 Row(Modifier.padding(horizontal = 16.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
                     Column(Modifier.weight(1f)) {
@@ -1204,7 +1121,8 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                 }
             }
             Spacer(Modifier.height(4.dp))
-            unit.lessons.forEachIndexed { li, pathLesson ->
+            } }
+            unit.lessons.forEachIndexed { li, pathLesson -> item {
                 val g = unitStart + li
                 val nodeDone = g < lessonPointer
                 val nodeCurrent = g == lessonPointer
@@ -1246,10 +1164,10 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                         if (nodeCurrent) Text(pathLesson.title, color = OnBgSoft, fontSize = 10.sp, maxLines = 1, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 4.dp).width(150.dp))
                     }
                 }
-            }
-            previousLessonCount = unitEnd
-            Spacer(Modifier.height(14.dp))
+            } }
+            item { Spacer(Modifier.height(14.dp)) }
         }
+        item { Column {
         Spacer(Modifier.height(8.dp))
         PrimaryButton(if (completed >= courseLessonCount) "↻   Dersleri tekrar et" else "▶   Derse başla", onStartLesson)
         Spacer(Modifier.height(14.dp))
@@ -1263,6 +1181,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
             NavItem(Icons.Default.Person, "Profil", false, onProfile)
         }
         Spacer(Modifier.height(16.dp))
+        } }
     }
 }
 
@@ -1402,7 +1321,7 @@ private fun ProfileScreen(name: String, email: String, level: String, completed:
             }
         }
         Spacer(Modifier.height(14.dp))
-        InfoCard("Seviye: $level  •  Tamamlanan ders: $completed  •  Toplam XP: ${progress.totalXp}")
+        InfoCard("CEFR: $level  •  Tamamlanan ders: $completed  •  Toplam XP: ${progress.totalXp}")
         Spacer(Modifier.height(18.dp))
         Text("Hesap ve gizlilik", color = OnBg, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         Text("Ders tamamlama hesabınla Firestore'a kaydedilir. XP, çalışma serisi ve otomatik yanıtların beceri özeti bu cihazda tutulur; cihazlar arası eşitleme henüz yoktur.", color = OnBgSoft, fontSize = 12.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 7.dp, bottom = 15.dp))
@@ -1431,22 +1350,6 @@ private fun ProfileScreen(name: String, email: String, level: String, completed:
     }
 }
 
-@Composable
-private fun ModuleCard(number: Int, title: String, subtitle: String, status: String, done: Boolean, current: Boolean, onClick: () -> Unit) {
-    Surface(onClick = onClick, color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(18.dp), border = if (current) BorderStroke(1.5.dp, Gold) else null) {
-        Row(Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
-            Box(Modifier.size(38.dp).background(if (done) Mint else if (current) Gold else Panel2, CircleShape), contentAlignment = Alignment.Center) {
-                if (done) Icon(Icons.Default.Check, null, tint = Navy) else Text("$number", color = if (current) Navy else Muted, fontWeight = FontWeight.Bold)
-            }
-            Column(Modifier.weight(1f).padding(start = 12.dp, end = 4.dp)) {
-                Text("$number. Ünite: $title", fontSize = 14.sp, fontWeight = FontWeight.Bold, lineHeight = 19.sp)
-                Text(subtitle, fontSize = 12.sp, color = Muted, lineHeight = 17.sp, modifier = Modifier.padding(top = 4.dp))
-                Text(if (done) "✓  $status" else if (current) "●  $status" else "🔒  $status", fontSize = 11.sp, color = if (done) Mint else if (current) Gold else Muted, modifier = Modifier.padding(top = 7.dp))
-            }
-            Icon(Icons.Default.ChevronRight, null, tint = Muted)
-        }
-    }
-}
 
 @Composable
 private fun LockedScreen(onBack: () -> Unit) {

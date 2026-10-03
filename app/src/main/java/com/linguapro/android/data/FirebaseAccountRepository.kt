@@ -95,23 +95,26 @@ class FirebaseAccountRepository(context: Context) {
         if (user == null || user.uid != uid) { callback("Oturum doğrulanamadı. Çıkıp yeniden giriş yaptıktan sonra tekrar dene."); return }
         val events = store().collection("users").document(uid).collection("lessonEvents")
 
+        // Sosyal temizlik: her koleksiyon parti parti, bitene kadar dongulu silinir (200+ kayit kalinti birakmaz).
+        fun deleteQueryLoop(nextBatch: () -> com.google.firebase.firestore.Query, then: () -> Unit) {
+            nextBatch().limit(200).get()
+                .addOnCompleteListener { task ->
+                    val docs = task.result?.documents.orEmpty()
+                    if (docs.isEmpty()) { then(); return@addOnCompleteListener }
+                    val batch = store().batch()
+                    docs.forEach { batch.delete(it.reference) }
+                    batch.commit().addOnCompleteListener { deleteQueryLoop(nextBatch, then) }
+                }
+        }
+
         fun deleteSocial(then: () -> Unit) {
-            // Lig kaydi + arkadas listesi + bulten paylasimlari (en iyi caba; hata silmeyi durdurmaz)
             store().collection("leaderboard").document(uid).delete()
                 .addOnCompleteListener {
-                    store().collection("users").document(uid).collection("friends").limit(200).get()
-                        .addOnCompleteListener { fr ->
-                            val batch = store().batch()
-                            fr.result?.documents?.forEach { batch.delete(it.reference) }
-                            batch.commit().addOnCompleteListener {
-                                store().collection("activity").whereEqualTo("uid", uid).limit(200).get()
-                                    .addOnCompleteListener { ac ->
-                                        val batch2 = store().batch()
-                                        ac.result?.documents?.forEach { batch2.delete(it.reference) }
-                                        batch2.commit().addOnCompleteListener { then() }
-                                    }
-                            }
+                    deleteQueryLoop({ store().collection("users").document(uid).collection("friends") }) {
+                        deleteQueryLoop({ store().collection("activity").whereEqualTo("uid", uid) }) {
+                            deleteQueryLoop({ store().collection("usernames").whereEqualTo("uid", uid) }) { then() }
                         }
+                    }
                 }
         }
 

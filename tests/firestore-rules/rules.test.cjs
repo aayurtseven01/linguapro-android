@@ -170,3 +170,13 @@ test('friends: only the owner manages their own list', async () => {
   await assertFails(getDocs(collection(mallory, 'users/alice/friends')));
   await assertSucceeds(deleteDoc(doc(alice, 'users/alice/friends/bob')));
 });
+
+test('usernames: first claim wins, cannot be overwritten, owner can release', async () => {
+  const alice = env.authenticatedContext('alice').firestore();
+  await assertSucceeds(setDoc(doc(alice, 'usernames/kaptan'), { uid: 'alice' }));
+  const bob = env.authenticatedContext('bob').firestore();
+  await assertFails(setDoc(doc(bob, 'usernames/kaptan'), { uid: 'bob' }));
+  await assertFails(setDoc(doc(alice, 'usernames/kaptan'), { uid: 'alice' })); // update de kapali
+  await assertFails(deleteDoc(doc(bob, 'usernames/kaptan')));
+  await assertSucceeds(deleteDoc(doc(alice, 'usernames/kaptan')));
+});

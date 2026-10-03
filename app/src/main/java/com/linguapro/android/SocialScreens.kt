@@ -128,7 +128,11 @@ fun SocialScreen(
                         colors = OutlinedTextFieldDefaults.colors(focusedBorderColor = ScGold, unfocusedBorderColor = ScPanel2, focusedLabelColor = ScGold, unfocusedLabelColor = ScMuted, cursorColor = ScGold)
                     )
                     Surface(
-                        onClick = { if (nameDraft.length >= 3) { onSaveUsername(nameDraft); refresh++ } },
+                        onClick = {
+                            if (nameDraft.length >= 3) social.claimUsername(uid, nameDraft) { err ->
+                                if (err == null) { onSaveUsername(nameDraft); refresh++ } else statusMessage = err
+                            }
+                        },
                         color = if (nameDraft.length >= 3) ScGold else ScPanel2,
                         shape = RoundedCornerShape(14.dp),
                         modifier = Modifier.padding(top = 12.dp)
@@ -193,6 +197,9 @@ fun SocialScreen(
                         Column(Modifier.weight(1f).padding(start = 10.dp)) {
                             Text("@$username", color = ScGold, fontSize = 13.sp, fontWeight = FontWeight.Bold)
                             Text("Seviye ${LevelSystem.levelFor(totalXp)} • $totalXp XP", color = ScMuted, fontSize = 11.sp)
+                        }
+                        Surface(onClick = onEditAvatar, color = ScPanel2, shape = RoundedCornerShape(10.dp), modifier = Modifier.padding(end = 10.dp)) {
+                            Text("✎", color = ScGold, fontSize = 14.sp, modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp))
                         }
                         Text(if (myRank >= 0) "#${myRank + 1}" else "#50+", color = ScPink, fontSize = 17.sp, fontWeight = FontWeight.Bold)
                     }
