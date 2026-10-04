@@ -80,7 +80,7 @@ class ProductFlowTest {
                 { score, _ -> completionScore = score; completed = true })
         } } }
         compose.onNodeWithText(writing.context).assertExists()
-        compose.onNodeWithText(writing.writingRequirements!!.checklistTr.first()).performScrollTo().assertIsDisplayed()
+        compose.onNodeWithText("• ${writing.writingRequirements!!.checklistTr.first()}").performScrollTo().assertIsDisplayed()
         compose.onNodeWithText("Örnek yanıt: ${writing.sampleAnswer}").assertDoesNotExist()
         val answer = "The customer asked for changes near the deadline. The team explained the extra time needed and agreed to show the design first. The working website would follow on Monday. Sending an email afterwards helped everyone understand the agreement and avoided promising a final delivery on Friday."
         compose.onNode(hasSetTextAction()).performScrollTo().performTextInput(answer)
