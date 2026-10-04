@@ -20,6 +20,11 @@ class AuthViewModelTest {
         complete!!(AccountResult.Success("alice", "Alice", request.email))
         assertFalse(model.state.value.busy)
         assertEquals("alice", model.state.value.result?.uid)
+        model.submit(request)
+        assertEquals(1, attempts)
+        model.consumeResult()
+        model.submit(request)
+        assertEquals(2, attempts)
     }
 
     @Test fun completedResultRemainsAvailableUntilTheScreenConsumesIt() {

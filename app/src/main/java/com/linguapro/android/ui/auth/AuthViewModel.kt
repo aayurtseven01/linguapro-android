@@ -18,7 +18,7 @@ internal class AuthViewModel(
     val state: StateFlow<AuthState> = mutableState
 
     fun submit(request: AuthRequest) {
-        if (mutableState.value.busy) return
+        if (mutableState.value.busy || mutableState.value.result != null) return
         mutableState.value = AuthState(busy = true)
         val completed: (AccountResult) -> Unit = { mutableState.value = AuthState(result = it) }
         try { authenticate(request, completed) }
