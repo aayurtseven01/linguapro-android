@@ -100,6 +100,8 @@ fun LearningLessonScreen(
     var soundOn by remember { mutableStateOf(soundPrefs.getBoolean("sound_on", true)) }
     var comboStreak by rememberSaveable(lesson.id, attempt) { mutableIntStateOf(0) }
     var comboCelebrate by remember { mutableIntStateOf(0) }
+    var wrongStreak by rememberSaveable(lesson.id, attempt) { mutableIntStateOf(0) }
+    val assistActive = wrongStreak >= 2
     val context = LocalContext.current
     val tts = remember { mutableStateOf<TextToSpeech?>(null) }
 
@@ -169,7 +171,7 @@ fun LearningLessonScreen(
                     submitted = true
                     playFeedbackTone(soundOn, isCorrect)
                     if (isCorrect) { comboStreak++; if (comboStreak % 5 == 0) comboCelebrate = comboStreak } else comboStreak = 0
-                    if (isCorrect) { comboStreak++; if (comboStreak % 5 == 0) comboCelebrate = comboStreak } else comboStreak = 0
+                    wrongStreak = if (isCorrect) 0 else wrongStreak + 1
                 }
             }
             override fun onEvent(eventType: Int, params: Bundle?) {}
@@ -203,6 +205,9 @@ fun LearningLessonScreen(
     val progress = (index.intValue + 1f) / lesson.exercises.size
     val modelText = exercise.modelAudioText ?: exercise.acceptedAnswers.firstOrNull().orEmpty()
     // Duolingo tarzı mekanikler: içerikten deterministik türetilir
+    val castIndex = remember(exercise.id) { kotlin.math.abs(exercise.id.hashCode()) % lessonCast.size }
+    val charPitch = castVoicePitch[castIndex]
+    val charRate = castVoiceRate[castIndex]
     val isBuilder = remember(exercise.id) { ExerciseMechanics.isSentenceBuilder(exercise) }
     val isDictation = remember(exercise.id) { ExerciseMechanics.isDictation(exercise) }
     val builderTileWords = remember(exercise.id) { if (isBuilder) ExerciseMechanics.builderTiles(exercise) else emptyList() }
@@ -362,7 +367,7 @@ fun LearningLessonScreen(
                         }
                     }
                     Spacer(Modifier.height(12.dp))
-                    OutlinedButton(onClick = { speak(tts.value, modelText) }, enabled = ttsReady, modifier = Modifier.fillMaxWidth()) {
+                    OutlinedButton(onClick = { speak(tts.value, modelText, charPitch, charRate) }, enabled = ttsReady, modifier = Modifier.fillMaxWidth()) {
                         Icon(Icons.Default.VolumeUp, null); Text(if (ttsReady) "$courseLangName sesi dinle" else "Ses hazırlanıyor…", modifier = Modifier.padding(start = 8.dp))
                     }
                     Spacer(Modifier.height(14.dp))
@@ -372,7 +377,7 @@ fun LearningLessonScreen(
                         Column(Modifier.fillMaxWidth().padding(14.dp)) {
                             Text("Örnek ifade", color = LessonGold, fontSize = 12.sp, fontWeight = FontWeight.Bold)
                             Text(modelText, fontSize = 18.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 7.dp))
-                            OutlinedButton(onClick = { speak(tts.value, modelText) }, enabled = ttsReady, modifier = Modifier.padding(top = 8.dp)) {
+                            OutlinedButton(onClick = { speak(tts.value, modelText, charPitch, charRate) }, enabled = ttsReady, modifier = Modifier.padding(top = 8.dp)) {
                                 Icon(Icons.Default.VolumeUp, null); Text("Örneği dinle", modifier = Modifier.padding(start = 7.dp))
                             }
                         }
@@ -440,20 +445,27 @@ fun LearningLessonScreen(
                         }
                     }
                 } else if (exercise.options.isNotEmpty() && !isDictation) {
+                    // Akıllı Yardım: 2 üst üste yanlıştan sonra bir çeldirici elenir
+                    val correctIdx = exercise.options.indexOf(exercise.acceptedAnswers.firstOrNull())
+                    val eliminatedIdx = if (assistActive && correctIdx >= 0) exercise.options.indices.firstOrNull { it != correctIdx } ?: -1 else -1
+                    if (assistActive) {
+                        Text("🛟 Akıllı Yardım: bir çeldirici elendi", color = LessonGold, fontSize = 11.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 6.dp))
+                    }
                     // 2×2 büyük kare seçenekler
                     exercise.options.withIndex().chunked(2).forEach { rowItems ->
                         Row(Modifier.fillMaxWidth().padding(vertical = 5.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                             rowItems.forEach { (optionIndex, option) ->
                                 val chosen = selected == optionIndex
+                                val eliminated = optionIndex == eliminatedIdx
                                 Surface(
-                                    onClick = { if (!submitted) selected = optionIndex },
-                                    color = if (chosen) Color(0xFF3E2B6E) else LessonPanel2,
+                                    onClick = { if (!submitted && !eliminated) selected = optionIndex },
+                                    color = if (eliminated) Color(0x0DFFFFFF) else if (chosen) Color(0xFF3E2B6E) else LessonPanel2,
                                     shape = RoundedCornerShape(18.dp),
                                     border = BorderStroke(if (chosen) 2.dp else 1.dp, if (chosen) LessonGold else Color(0x26FFFFFF)),
                                     modifier = Modifier.weight(1f).height(96.dp)
                                 ) {
                                     Box(Modifier.fillMaxSize().padding(10.dp), contentAlignment = Alignment.Center) {
-                                        Text(option, color = LessonText, fontSize = 15.sp, lineHeight = 20.sp, textAlign = TextAlign.Center, fontWeight = if (chosen) FontWeight.Bold else FontWeight.Medium)
+                                        Text(if (eliminated) "✕" else option, color = if (eliminated) Color(0x33F5F1FF) else LessonText, fontSize = 15.sp, lineHeight = 20.sp, textAlign = TextAlign.Center, fontWeight = if (chosen) FontWeight.Bold else FontWeight.Medium)
                                     }
                                 }
                             }
@@ -485,6 +497,9 @@ fun LearningLessonScreen(
                 } else if (isBuilder) {
                     // Fişlerle cümle kurma: dokun → yerleşir, tekrar dokun → geri döner
                     Text("Fişlere dokunarak cümleyi doğru sırayla kur", color = LessonMuted, fontSize = 12.sp, modifier = Modifier.padding(bottom = 8.dp))
+                    if (assistActive) {
+                        Text("🛟 İpucu — ilk kelime: ${ExerciseMechanics.builderTarget(exercise).firstOrNull().orEmpty()}", color = LessonGold, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 8.dp))
+                    }
                     Surface(color = LessonPanel2, shape = RoundedCornerShape(14.dp), border = BorderStroke(1.dp, Color(0x26FFFFFF)), modifier = Modifier.fillMaxWidth().heightIn(min = 58.dp)) {
                         FlowRow(Modifier.padding(10.dp), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                             if (builderPicks.isEmpty()) {
@@ -533,6 +548,7 @@ fun LearningLessonScreen(
                         modifier = Modifier.fillMaxWidth(),
                         minLines = if (exercise.skill == Skill.WRITING) 3 else 1,
                         label = { Text(if (exercise.skill == Skill.WRITING) "Yanıtını $courseLangName yaz" else if (isDictation) "Duyduğunu buraya yaz" else "Yanıt") },
+                        supportingText = if (assistActive && isDictation) ({ Text("🛟 İpucu — ilk kelime: ${modelText.split(" ").firstOrNull().orEmpty()}", color = LessonGold, fontSize = 11.sp) }) else null,
                         colors = OutlinedTextFieldDefaults.colors(focusedBorderColor = LessonGold, unfocusedBorderColor = LessonPanel2, focusedLabelColor = LessonGold, unfocusedLabelColor = LessonMuted, cursorColor = LessonGold)
                     )
                 }
@@ -603,6 +619,8 @@ fun LearningLessonScreen(
                     if (isCorrect) correctCount++
                     submitted = true
                     playFeedbackTone(soundOn, isCorrect)
+                    if (isCorrect) { comboStreak++; if (comboStreak % 5 == 0) comboCelebrate = comboStreak } else comboStreak = 0
+                    wrongStreak = if (isCorrect) 0 else wrongStreak + 1
                 }
             }
         }
@@ -682,8 +700,17 @@ private fun engineLanguageSetup(engine: TextToSpeech?, accent: String, speechRat
     return true
 }
 
-private fun speak(engine: TextToSpeech?, text: String) {
-    if (text.isNotBlank()) engine?.speak(text, TextToSpeech.QUEUE_FLUSH, null, "linguapro-lesson-audio")
+/** Karakter ses profilleri: her karakterin kendine özgü perde/hızı var (Duolingo hissi, sıfır maliyet). */
+private val castVoicePitch = listOf(0.85f, 1.2f, 1.05f, 0.8f, 1.25f, 0.95f)
+private val castVoiceRate = listOf(1.0f, 1.04f, 0.97f, 0.92f, 1.08f, 1.0f)
+
+private fun speak(engine: TextToSpeech?, text: String, pitch: Float = 1.0f, rate: Float? = null) {
+    if (text.isBlank() || engine == null) return
+    runCatching {
+        engine.setPitch(pitch)
+        if (rate != null) engine.setSpeechRate(rate)
+        engine.speak(text, TextToSpeech.QUEUE_FLUSH, null, "linguapro-lesson-audio")
+    }
 }
 
 fun skillLabel(skill: Skill): String = when (skill) {

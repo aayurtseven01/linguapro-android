@@ -13,9 +13,10 @@ class WorldCatalogTest {
         worldLangs.forEach { lang ->
             CourseCatalog.levels.forEach { level ->
                 val units = WorldCatalog.units(lang, level)
-                assertEquals("$lang $level ünite sayısı", 6, units.size)
+                assertEquals("$lang $level ünite sayısı (6 temel + 10 Pekiştirme Kampı)", 16, units.size)
                 units.forEach { unit ->
-                    assertEquals("$lang ${unit.id} ders sayısı (5 ders + Checkpoint)", 6, unit.lessons.size)
+                    val expected = if ("-K" in unit.id) 5 else 6 // kamp: 4 ders + CP; temel: 5 ders + CP
+                    assertEquals("$lang ${unit.id} ders sayısı", expected, unit.lessons.size)
                     assertTrue("$lang ${unit.id} son ders Checkpoint olmalı", unit.lessons.last().id.endsWith("-CP"))
                 }
             }
@@ -74,7 +75,7 @@ class WorldCatalogTest {
     fun firstLessonOfEachWorldUnitCarriesTargetVocabulary() {
         worldLangs.forEach { lang ->
             CourseCatalog.levels.forEach { level ->
-                WorldCatalog.units(lang, level).forEach { unit ->
+                WorldCatalog.units(lang, level).filterNot { "-K" in it.id }.forEach { unit ->
                     assertEquals("${unit.id} L1 hedef kelime kartları", 5, unit.lessons.first().targetVocabulary.size)
                 }
             }

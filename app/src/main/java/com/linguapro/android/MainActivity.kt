@@ -340,7 +340,7 @@ private fun LinguaApp() {
     var activeLessonCountsTowardCourse by rememberSaveable { mutableStateOf(true) }
     val activeLesson = remember(courseLang, effectiveLevel, completedForLevel, selectedLessonId, dashboardState.supplementalUnits) {
         if (selectedLessonId.endsWith("-WORDS")) return@remember DailyWords.lessonFor(courseLang)
-        if (selectedLessonId.endsWith("-REFRESH")) return@remember DailyRefresh.lessonFor(courseLang, effectiveLevel)
+        if (selectedLessonId.endsWith("-REFRESH")) return@remember DailyRefresh.lessonFor(courseLang, effectiveLevel, SkillProgressLogic.weakest(skillStats))
         val staticLessons = WorldCatalog.units(courseLang, effectiveLevel).flatMap { it.lessons }
         val supplementalLessons = if (courseLang == "EN") dashboardState.supplementalUnits.flatMap { it.lessons } else emptyList()
         val selectedFromCatalog = (staticLessons + supplementalLessons).firstOrNull { it.id == selectedLessonId }
@@ -1108,7 +1108,11 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
             Column(Modifier.weight(1f).fillMaxHeight(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Surface(color = PinkAccent, shape = RoundedCornerShape(26.dp), modifier = Modifier.weight(1f).fillMaxWidth()) {
                     Column(Modifier.fillMaxSize().padding(horizontal = 14.dp), verticalArrangement = Arrangement.Center) {
-                        Text("🔥 ${progress.streakDays}", color = Color(0xFF330C20), fontSize = 19.sp, fontWeight = FontWeight.ExtraBold)
+                        val flamePulse = if (progress.streakDays > 0) {
+                            val flameAnim = rememberInfiniteTransition(label = "flame")
+                            flameAnim.animateFloat(1f, 1.15f, infiniteRepeatable(tween(700), RepeatMode.Reverse), label = "flamePulse").value
+                        } else 1f
+                        Text("🔥 ${progress.streakDays}", color = Color(0xFF330C20), fontSize = 19.sp, fontWeight = FontWeight.ExtraBold, modifier = Modifier.graphicsLayer { scaleX = flamePulse; scaleY = flamePulse })
                         Text("gün seri", color = Color(0xB3330C20), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                     }
                 }
@@ -1307,13 +1311,17 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                     val chestTaken = unit.id in chestsClaimed
                     val chestOffset = (kotlin.math.sin((unitStart + li + 0.5) * 1.05) * 86).dp
                     Box(Modifier.fillMaxWidth().padding(vertical = 3.dp), contentAlignment = Alignment.Center) {
+                        val chestPulse = if (chestUnlocked && !chestTaken) {
+                            val chestAnim = rememberInfiniteTransition(label = "chest")
+                            chestAnim.animateFloat(1f, 1.12f, infiniteRepeatable(tween(520), RepeatMode.Reverse), label = "chestPulse").value
+                        } else 1f
                         Surface(
                             onClick = { if (chestUnlocked && !chestTaken) onClaimChest(unit.id) else if (!chestUnlocked) onLocked() },
                             color = if (chestTaken) Panel2 else if (chestUnlocked) PinkAccent else Panel2,
                             shape = CircleShape,
                             shadowElevation = if (chestUnlocked && !chestTaken) 8.dp else 2.dp,
                             border = if (chestUnlocked && !chestTaken) BorderStroke(2.dp, Color(0xFFF5F1FF)) else null,
-                            modifier = Modifier.offset(x = chestOffset).size(52.dp)
+                            modifier = Modifier.offset(x = chestOffset).size(52.dp).graphicsLayer { scaleX = chestPulse; scaleY = chestPulse }
                         ) {
                             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                                 if (chestTaken) Text("✓", color = Gold, fontSize = 20.sp, fontWeight = FontWeight.ExtraBold)

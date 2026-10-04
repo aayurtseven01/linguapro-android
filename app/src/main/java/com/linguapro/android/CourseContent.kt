@@ -291,11 +291,15 @@ object CourseCatalog {
 
 /** Kurs sonrası tekrar modu: her gün değişen, dile ve seviyeye özel 10 soruluk karışık pratik dersi üretir. */
 object DailyRefresh {
-    fun lessonFor(lang: String, level: String): LearningLesson {
-        val pool = WorldCatalog.units(lang, level)
+    /** Uyarlanabilir seçim: [focusSkill] verilirse o becerinin soruları 3 kat ağırlıkla örneklenir. */
+    fun lessonFor(lang: String, level: String, focusSkill: Skill? = null): LearningLesson {
+        val base = WorldCatalog.units(lang, level)
             .flatMap { it.lessons }
             .filterNot { it.id.endsWith("-CP") }
             .flatMap { it.exercises }
+        val weighted = if (focusSkill == null) base
+        else base + base.filter { it.skill == focusSkill } + base.filter { it.skill == focusSkill }
+        val pool = weighted
         val calendar = java.util.Calendar.getInstance()
         val seed = calendar.get(java.util.Calendar.YEAR) * 1000L + calendar.get(java.util.Calendar.DAY_OF_YEAR)
         val picks = if (pool.isEmpty()) emptyList() else pool.shuffled(kotlin.random.Random(seed)).take(10)
