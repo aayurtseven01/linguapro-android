@@ -46,4 +46,37 @@ class ExerciseMechanicsTest {
             .count { ExerciseMechanics.isSentenceBuilder(it) }
         assertTrue("Almanca A1'de en az 3 cümle kurma egzersizi olmalı", builderCount >= 3)
     }
+
+    @Test
+    fun dictationNeverTargetsNoSpaceScripts() {
+        // Hanzi/kana hedeflerde dikte üretilmez: kimlik karması ne olursa olsun çoktan seçmeli kalır
+        for (i in 1..12) {
+            val zh = LearningExercise("zh$i", Skill.LISTENING, "Dinle", "?", "", listOf("a", "b", "c"), listOf("a"), "", "我喝咖啡。")
+            val ja = LearningExercise("ja$i", Skill.LISTENING, "Dinle", "?", "", listOf("a", "b", "c"), listOf("a"), "", "コーヒーを飲みます。")
+            assertFalse(ExerciseMechanics.isDictation(zh))
+            assertFalse(ExerciseMechanics.isDictation(ja))
+        }
+        // Korece boşluklu yazar: dikte açık kalır (karma uygun kimlikte true dönebilmeli)
+        val koVariants = (1..40).map {
+            ExerciseMechanics.isDictation(LearningExercise("ko$it", Skill.LISTENING, "", "", "", listOf(), listOf("x"), "", "커피를 마셔요."))
+        }
+        assertTrue(koVariants.any { it })
+    }
+
+    @Test
+    fun russianAndKoreanWritingIsBuilderEligible() {
+        for (lang in listOf("RU", "KO")) {
+            val count = WorldCatalog.units(lang, "A1").flatMap { it.lessons }.flatMap { it.exercises }
+                .count { ExerciseMechanics.isSentenceBuilder(it) }
+            assertTrue("$lang A1 fiş dizme egzersizi içermeli (bulunan: $count)", count >= 3)
+        }
+    }
+
+    @Test
+    fun twoWordSentencesAreBuildableAndNeverPreSolved() {
+        val exercise = LearningExercise("w2w", Skill.WRITING, "", "", "", listOf(), listOf("Мы пришли."), "", null, "Мы пришли.")
+        assertTrue(ExerciseMechanics.isSentenceBuilder(exercise))
+        assertTrue(ExerciseMechanics.builderTiles(exercise) != ExerciseMechanics.builderTarget(exercise))
+        assertEquals(ExerciseMechanics.builderTarget(exercise).sorted(), ExerciseMechanics.builderTiles(exercise).sorted())
+    }
 }

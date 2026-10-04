@@ -55,7 +55,7 @@ object WorldCourseDE {
                 LearningExercise("dea1u2e13", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yarın' ifadesinin Almanca karşılığı hangisi?", "", listOf("zehn", "Uhr", "morgen"), listOf("morgen"), "Örnek: Bis morgen! — Yarın görüşürüz!", null, null))),
             LearningLesson("DE-A1-U2-L5", "Sayılar ve Zaman — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("dea1u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Saat kaç?", "", listOf(), listOf("Wie viel Uhr ist es?"), "Doğru cümle: Wie viel Uhr ist es?", null, "Wie viel Uhr ist es?"),
-                LearningExercise("dea1u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Bis morgen!", listOf("Bugün pazartesi.", "Saat kaç?", "Yarın görüşürüz!"), listOf("Yarın görüşürüz!"), "Cümlenin çevirisi: Yarın görüşürüz!", null, null),
+                LearningExercise("dea1u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yarın görüşürüz!", "", listOf(), listOf("Bis morgen!"), "Doğru cümle: Bis morgen!", null, "Bis morgen!"),
                 LearningExercise("dea1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Ich habe zwei Brüder.", "", listOf(), listOf("Ich habe zwei Brüder."), "Türkçesi: İki erkek kardeşim var.", "Ich habe zwei Brüder.", "Ich habe zwei Brüder."))))),
         LearningUnit("DE-A1-U3", "Yiyecek ve İçecek", "Temel yiyecekleri söyle ve sipariş ver.", listOf(
             LearningLesson("DE-A1-U3-L1", "Yiyecek ve İçecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(

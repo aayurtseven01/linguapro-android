@@ -55,7 +55,7 @@ object WorldCourseES {
                 LearningExercise("esa1u2e13", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yarın' ifadesinin İspanyolca karşılığı hangisi?", "", listOf("diez", "hora", "mañana"), listOf("mañana"), "Örnek: ¡Hasta mañana! — Yarın görüşürüz!", null, null))),
             LearningLesson("ES-A1-U2-L5", "Sayılar ve Zaman — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("esa1u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Saat kaçta başlıyor?", "", listOf(), listOf("¿A qué hora empieza?"), "Doğru cümle: ¿A qué hora empieza?", null, "¿A qué hora empieza?"),
-                LearningExercise("esa1u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "¡Hasta mañana!", listOf("Bugün pazartesi.", "Saat kaçta başlıyor?", "Yarın görüşürüz!"), listOf("Yarın görüşürüz!"), "Cümlenin çevirisi: Yarın görüşürüz!", null, null),
+                LearningExercise("esa1u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yarın görüşürüz!", "", listOf(), listOf("¡Hasta mañana!"), "Doğru cümle: ¡Hasta mañana!", null, "¡Hasta mañana!"),
                 LearningExercise("esa1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Tengo dos hermanos.", "", listOf(), listOf("Tengo dos hermanos."), "Türkçesi: İki erkek kardeşim var.", "Tengo dos hermanos.", "Tengo dos hermanos."))))),
         LearningUnit("ES-A1-U3", "Yiyecek ve İçecek", "Temel yiyecekleri söyle ve sipariş ver.", listOf(
             LearningLesson("ES-A1-U3-L1", "Yiyecek ve İçecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
@@ -649,7 +649,7 @@ object WorldCourseES {
                 LearningExercise("esb2u6e13", Skill.VOCABULARY, "Doğru çeviriyi seç", "'karşı çıkmak' ifadesinin İspanyolca karşılığı hangisi?", "", listOf("la conclusión", "contradecir", "por un lado"), listOf("contradecir"), "Örnek: Debo contradecirte. — Sana karşı çıkmak zorundayım.", null, null))),
             LearningLesson("ES-B2-U6-L5", "Tartışma ve İkna — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("esb2u6e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Çıkarım açık.", "", listOf(), listOf("La conclusión es clara."), "Doğru cümle: La conclusión es clara.", null, "La conclusión es clara."),
-                LearningExercise("esb2u6e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Debo contradecirte.", listOf("Çıkarım açık.", "Sana karşı çıkmak zorundayım.", "Öte yandan faydalı."), listOf("Sana karşı çıkmak zorundayım."), "Cümlenin çevirisi: Sana karşı çıkmak zorundayım.", null, null),
+                LearningExercise("esb2u6e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sana karşı çıkmak zorundayım.", "", listOf(), listOf("Debo contradecirte."), "Doğru cümle: Debo contradecirte.", null, "Debo contradecirte."),
                 LearningExercise("esb2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: El argumento es sólido.", "", listOf(), listOf("El argumento es sólido."), "Türkçesi: Argüman sağlam.", "El argumento es sólido.", "El argumento es sólido."))))),
         LearningUnit("ES-C1-U1", "Akademik Dil", "Akademik metinleri çözümle ve üret.", listOf(
             LearningLesson("ES-C1-U1-L1", "Akademik Dil — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(

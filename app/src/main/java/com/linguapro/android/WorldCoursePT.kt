@@ -55,7 +55,7 @@ object WorldCoursePT {
                 LearningExercise("pta1u2e13", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yarın' ifadesinin Portekizce karşılığı hangisi?", "", listOf("dez", "hora", "amanhã"), listOf("amanhã"), "Örnek: Até amanhã! — Yarın görüşürüz!", null, null))),
             LearningLesson("PT-A1-U2-L5", "Sayılar ve Zaman — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("pta1u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Saat kaçta başlıyor?", "", listOf(), listOf("A que hora começa?"), "Doğru cümle: A que hora começa?", null, "A que hora começa?"),
-                LearningExercise("pta1u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Até amanhã!", listOf("Bugün pazartesi.", "Saat kaçta başlıyor?", "Yarın görüşürüz!"), listOf("Yarın görüşürüz!"), "Cümlenin çevirisi: Yarın görüşürüz!", null, null),
+                LearningExercise("pta1u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yarın görüşürüz!", "", listOf(), listOf("Até amanhã!"), "Doğru cümle: Até amanhã!", null, "Até amanhã!"),
                 LearningExercise("pta1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Tenho dois irmãos.", "", listOf(), listOf("Tenho dois irmãos."), "Türkçesi: İki erkek kardeşim var.", "Tenho dois irmãos.", "Tenho dois irmãos."))))),
         LearningUnit("PT-A1-U3", "Yiyecek ve İçecek", "Temel yiyecekleri söyle ve sipariş ver.", listOf(
             LearningLesson("PT-A1-U3-L1", "Yiyecek ve İçecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
@@ -325,7 +325,7 @@ object WorldCoursePT {
                 LearningExercise("pta2u6e13", Skill.VOCABULARY, "Doğru çeviriyi seç", "'seyahat etmek' ifadesinin Portekizce karşılığı hangisi?", "", listOf("as férias", "viajar", "o fim de semana"), listOf("viajar"), "Örnek: Adoro viajar. — Seyahat etmeyi çok severim.", null, null))),
             LearningLesson("PT-A2-U6-L5", "Planlar ve Gelecek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("pta2u6e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Tatil yakında başlıyor.", "", listOf(), listOf("As férias começam em breve."), "Doğru cümle: As férias começam em breve.", null, "As férias começam em breve."),
-                LearningExercise("pta2u6e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Adoro viajar.", listOf("Tatil yakında başlıyor.", "Seyahat etmeyi çok severim.", "Yaz için bir planım var."), listOf("Seyahat etmeyi çok severim."), "Cümlenin çevirisi: Seyahat etmeyi çok severim.", null, null),
+                LearningExercise("pta2u6e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Seyahat etmeyi çok severim.", "", listOf(), listOf("Adoro viajar."), "Doğru cümle: Adoro viajar.", null, "Adoro viajar."),
                 LearningExercise("pta2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Amanhã parto para Lisboa.", "", listOf(), listOf("Amanhã parto para Lisboa."), "Türkçesi: Yarın Lizbon'a gidiyorum.", "Amanhã parto para Lisboa.", "Amanhã parto para Lisboa."))))),
         LearningUnit("PT-B1-U1", "Deneyimler ve Anılar", "Anılarını ayrıntılarıyla paylaş.", listOf(
             LearningLesson("PT-B1-U1-L1", "Deneyimler ve Anılar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
