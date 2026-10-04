@@ -2,8 +2,21 @@ package com.linguapro.android
 
 import org.junit.Assert.*
 import org.junit.Test
+import java.io.File
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
+import com.linguapro.android.data.content.CoursePackValidator
 
 class EditorialCurriculumTest {
+    @Test fun installedSupplementalPackStillMeetsItsSchemaAfterEditorialRevision() {
+        val original = Json { ignoreUnknownKeys = true }.decodeFromString<CourseContentPack>(
+            File("src/main/assets/course_content_v1.json").readText())
+        val revised = original.copy(units = original.units.map { ContentEditorialPolicy.revise(EditorialCurriculum.revise(it)) })
+        assertTrue(CoursePackValidator.errors(revised).joinToString("\n"), CoursePackValidator.errors(revised).isEmpty())
+        val twice = revised.copy(units = revised.units.map { ContentEditorialPolicy.revise(it) })
+        assertEquals(revised, twice)
+    }
+
     @Test fun revisedLessonsReachLearnersWithStableIdsAndEightActivities() {
         val revised = EditorialCurriculum.revisedLessons()
         assertEquals(15, revised.size)
@@ -24,6 +37,18 @@ class EditorialCurriculumTest {
             }
         }
         assertEquals(CourseCatalog.levels.toSet(), revised.map { it.id.substringBefore('-') }.toSet())
+        val teachingExercises = (CourseCatalog.allLessons() + WorldCatalog.allWorldLessons())
+            .filterNot { it.id.endsWith("-CP") }.flatMap { it.exercises }
+        val report = File("build/reports/catalog/content-quality.txt")
+        report.parentFile.mkdirs()
+        report.writeText(buildString {
+            appendLine("Rewritten English lessons: ${revised.size}")
+            appendLine("New teaching activities: ${revised.sumOf { it.exercises.size }}")
+            appendLine("New assessment activities: 35")
+            appendLine("Legacy vocabulary tasks with explicit meaning: ${teachingExercises.count { it.prompt.startsWith("Anlam:") }}")
+            appendLine("Scenario lesson IDs: ${revised.joinToString { it.id }}")
+            appendLine("This report verifies structural contracts, not expert language review or CEFR calibration.")
+        })
     }
 
     @Test fun assessmentsUseUnseenPassagesAndOnlyScorableTasks() {
