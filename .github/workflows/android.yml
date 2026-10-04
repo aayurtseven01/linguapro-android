@@ -99,6 +99,8 @@ jobs:
         with:
           api-level: ${{ matrix.api-level }}
           arch: x86_64
+          # Keep the emulator data partition within hosted-runner disk capacity.
+          disk-size: 2048M
           disable-animations: true
           script: |
             chmod +x gradlew && ./gradlew -Pandroid.injected.androidTest.leaveApksInstalledAfterRun=true connectedDebugAndroidTest
