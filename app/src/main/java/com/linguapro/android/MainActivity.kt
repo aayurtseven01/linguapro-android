@@ -32,6 +32,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -274,8 +275,9 @@ private fun LinguaApp() {
     }
     var questionIndex by rememberSaveable { mutableIntStateOf(0) }
     var highestPassed by rememberSaveable { mutableIntStateOf(-1) }
-    var placementCorrect by remember { mutableStateOf(setOf<Int>()) }
-    var placementSummary by remember { mutableStateOf<PlacementSummary?>(null) }
+    var placementCorrect by rememberSaveable(stateSaver = listSaver<Set<Int>, Int>(
+        save = { it.toList() }, restore = { it.toSet() }
+    )) { mutableStateOf(setOf<Int>()) }
     var selected by rememberSaveable { mutableIntStateOf(-1) }
     var plan by rememberSaveable { mutableStateOf("10") }
     var deletionBusy by remember { mutableStateOf(false) }
@@ -456,7 +458,6 @@ private fun LinguaApp() {
                         questionIndex = 0
                         highestPassed = -1
                         placementCorrect = setOf()
-                        placementSummary = null
                         selected = -1
                         go(AppRoute.Quiz)
                     }
@@ -493,7 +494,6 @@ private fun LinguaApp() {
                         if (finished) {
                             val attempted = questions.take(questionIndex + 1).map { PlacementQuestionResult(it.level, it.skill) }
                             val summary = PlacementAssessment.summarize(highestPassed, attempted, newCorrect)
-                            placementSummary = summary
                             level = summary.level
                             if (accountUid.isNotBlank()) accounts.savePlacement(accountUid, summary.level, summary.skillMastery) { }
                             go(AppRoute.PlacementResult)
@@ -505,13 +505,15 @@ private fun LinguaApp() {
                 )
             }
             composable<AppRoute.PlacementResult> {
-                placementSummary?.let { summary ->
+                val summary = PlacementAssessment.summarize(highestPassed,
+                    questions.take(questionIndex + 1).map { PlacementQuestionResult(it.level, it.skill) }, placementCorrect)
+                run {
                     PlacementResultScreen(summary, onChooseLevel = { chosenLevel ->
                         level = chosenLevel
                         if (accountUid.isNotBlank()) accounts.savePlacement(accountUid, chosenLevel, summary.skillMastery) { }
                         go(AppRoute.Home)
                     })
-                } ?: WelcomeScreen(onStart = { go(AppRoute.Register) }, onLogin = { go(AppRoute.Login) })
+                }
             }
             composable<AppRoute.Home> {
                 HomeScreen(
@@ -894,7 +896,7 @@ private fun RegisterScreen(
 
 @Composable
 private fun AppField(label: String, value: String, onValue: (String) -> Unit, icon: androidx.compose.ui.graphics.vector.ImageVector, isPassword: Boolean = false) {
-    OutlinedTextField(value = value, onValueChange = onValue, modifier = Modifier.fillMaxWidth(), label = { Text(label) }, leadingIcon = { Icon(icon, null, tint = Muted) }, singleLine = true, visualTransformation = if (isPassword) androidx.compose.ui.text.input.PasswordVisualTransformation() else androidx.compose.ui.text.input.VisualTransformation.None, colors = OutlinedTextFieldDefaults.colors(focusedContainerColor = Color(0xFFFFFFFF), unfocusedContainerColor = Color(0xFFFFFFFF), focusedBorderColor = Gold, unfocusedBorderColor = Panel2, focusedLabelColor = Gold, unfocusedLabelColor = Muted, cursorColor = Gold))
+    OutlinedTextField(value = value, onValueChange = onValue, modifier = Modifier.fillMaxWidth(), label = { Text(label) }, leadingIcon = { Icon(icon, null, tint = Muted) }, singleLine = true, visualTransformation = if (isPassword) androidx.compose.ui.text.input.PasswordVisualTransformation() else androidx.compose.ui.text.input.VisualTransformation.None, colors = OutlinedTextFieldDefaults.colors(focusedContainerColor = Panel, unfocusedContainerColor = Panel, focusedTextColor = OnBg, unfocusedTextColor = OnBg, focusedBorderColor = Gold, unfocusedBorderColor = Panel2, focusedLabelColor = Gold, unfocusedLabelColor = Muted, cursorColor = Gold))
 }
 
 

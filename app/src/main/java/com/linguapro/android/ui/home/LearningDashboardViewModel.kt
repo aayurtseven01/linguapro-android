@@ -152,6 +152,7 @@ class LearningDashboardViewModel @Inject constructor(
 
     fun gradeReview(card: ReviewCardEntity, grade: ReviewGrade) {
         val learnerId = learnerContext.value.learnerId
+        if (learnerId.isBlank() || card.learnerId != learnerId) return
         viewModelScope.launch {
             try {
                 reviewScheduleRepository.grade(
@@ -159,7 +160,8 @@ class LearningDashboardViewModel @Inject constructor(
                     card.vocabularyId,
                     CardDirection.valueOf(card.direction),
                     grade,
-                    System.currentTimeMillis()
+                    System.currentTimeMillis(),
+                    card.lastReviewedAtEpochMillis
                 )
             } catch (error: Exception) {
                 if (error is kotlinx.coroutines.CancellationException) throw error

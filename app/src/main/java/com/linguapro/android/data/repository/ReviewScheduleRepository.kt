@@ -1,5 +1,7 @@
 package com.linguapro.android.data.repository
 
+import androidx.room.withTransaction
+import com.linguapro.android.data.local.LinguaDatabase
 import com.linguapro.android.data.local.ReviewCardDao
 import com.linguapro.android.data.local.ReviewCardEntity
 import com.linguapro.android.data.local.VocabularyDao
@@ -14,7 +16,8 @@ import kotlinx.coroutines.flow.Flow
 @Singleton
 class ReviewScheduleRepository @Inject constructor(
     private val cards: ReviewCardDao,
-    private val vocabulary: VocabularyDao
+    private val vocabulary: VocabularyDao,
+    private val database: LinguaDatabase
 ) {
     fun observeDue(learnerId: String, nowEpochMillis: Long): Flow<List<ReviewCardEntity>> =
         cards.observeDue(learnerId, nowEpochMillis)
@@ -51,17 +54,13 @@ class ReviewScheduleRepository @Inject constructor(
         vocabularyId: String,
         direction: CardDirection,
         grade: ReviewGrade,
-        reviewedAtEpochMillis: Long
-    ): ReviewCardEntity {
-        val id = "$learnerId:$vocabularyId:${direction.name}"
+        reviewedAtEpochMillis: Long,
+        expectedLastReviewedAtEpochMillis: Long?
+    ): ReviewCardEntity? = database.withTransaction {
+        require(learnerId.isNotBlank())
         val current = cards.getCard(learnerId, vocabularyId, direction.name)
-            ?: ReviewCardEntity(
-                id = id,
-                learnerId = learnerId,
-                vocabularyId = vocabularyId,
-                direction = direction.name,
-                dueAtEpochMillis = reviewedAtEpochMillis
-            )
+            ?: return@withTransaction null
+        if (current.lastReviewedAtEpochMillis != expectedLastReviewedAtEpochMillis) return@withTransaction current
         val updated = Sm2Scheduler.review(
             Sm2State(
                 repetitions = current.repetitions,
@@ -83,6 +82,7 @@ class ReviewScheduleRepository @Inject constructor(
             lastReviewedAtEpochMillis = updated.lastReviewedAtEpochMillis
         )
         cards.upsert(saved)
-        return saved
+        saved
     }
 }
+

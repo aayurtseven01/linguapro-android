@@ -22,6 +22,25 @@ class OfflineLearningTest {
         assertEquals(2, StreakLogic.nextStreak(1, LocalDate.of(2026, 10, 3), LocalDate.of(2026, 10, 4)))
     }
 
+    @Test fun staleReviewTapDoesNotAdvanceTheScheduleTwice() = runBlocking {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val database = Room.inMemoryDatabaseBuilder(context, LinguaDatabase::class.java).build()
+        try {
+            val word = com.linguapro.android.data.local.VocabularyEntity("word", "A1", "U1", "L1", "hello", "merhaba", "hello", "merhaba")
+            database.vocabularyDao().upsertAll(listOf(word))
+            val repository = com.linguapro.android.data.repository.ReviewScheduleRepository(database.reviewCardDao(), database.vocabularyDao(), database)
+            repository.addVocabularyForReview("alice", "word", 1000L)
+            val first = repository.grade("alice", "word", com.linguapro.android.domain.model.CardDirection.EN_TO_TR,
+                com.linguapro.android.domain.usecase.ReviewGrade.GOOD, 2000L, null)
+            val stale = repository.grade("alice", "word", com.linguapro.android.domain.model.CardDirection.EN_TO_TR,
+                com.linguapro.android.domain.usecase.ReviewGrade.GOOD, 2100L, null)
+            assertEquals(first, stale)
+            assertEquals(1, stale?.repetitions)
+            assertEquals(null, repository.grade("bob", "word", com.linguapro.android.domain.model.CardDirection.EN_TO_TR,
+                com.linguapro.android.domain.usecase.ReviewGrade.GOOD, 2200L, null))
+        } finally { database.close() }
+    }
+
     @Test fun pendingAttemptSurvivesDatabaseReopeningAndAccountCleanupIsIsolated() = runBlocking {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val name = "offline-test-${System.nanoTime()}.db"
