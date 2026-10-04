@@ -15,7 +15,7 @@ class WorldCatalogTest {
                 val units = WorldCatalog.units(lang, level)
                 assertEquals("$lang $level ünite sayısı", 6, units.size)
                 units.forEach { unit ->
-                    assertEquals("$lang ${unit.id} ders sayısı (3 ders + Checkpoint)", 4, unit.lessons.size)
+                    assertEquals("$lang ${unit.id} ders sayısı (5 ders + Checkpoint)", 6, unit.lessons.size)
                     assertTrue("$lang ${unit.id} son ders Checkpoint olmalı", unit.lessons.last().id.endsWith("-CP"))
                 }
             }
