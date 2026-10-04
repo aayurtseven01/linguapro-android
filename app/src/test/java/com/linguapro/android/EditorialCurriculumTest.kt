@@ -60,13 +60,13 @@ class EditorialCurriculumTest {
         val report = File("build/reports/catalog/content-quality.txt")
         report.parentFile.mkdirs()
         report.writeText(buildString {
-            appendLine("Rewritten English lessons: ${revised.size}")
-            appendLine("New teaching activities: ${revised.sumOf { it.exercises.size }}")
+            appendLine("Previously authored English foundation lessons: ${revised.size}")
+            appendLine("Foundation teaching activities before full scenario revision: ${revised.sumOf { it.exercises.size }}")
             appendLine("Rewritten world introduction lessons: 9")
             appendLine("New world introduction activities: 72")
-            appendLine("New assessment activities: 35")
+            appendLine("Retained independent foundation assessment activities: 35")
             appendLine("Legacy vocabulary tasks with explicit meaning: ${teachingExercises.count { it.prompt.startsWith("Anlam:") }}")
-            appendLine("Scenario lesson IDs: ${revised.joinToString { it.id }}")
+            appendLine("Foundation lesson IDs: ${revised.joinToString { it.id }}")
             appendLine("This report verifies structural contracts, not expert language review or CEFR calibration.")
         })
     }

@@ -120,7 +120,7 @@ object CourseCatalog {
                     e("a1-spell-phrase", Skill.SPEAKING, "İfadeyi tekrar et", "Say: How do you spell your name?", "How do you spell your name?", "'How do you spell…?' yazılışı sormak için kullanılır.", audio = "How do you spell your name?", sample = "How do you spell your name?")))),
             LearningUnit("A1-U2", "People & Everyday Life", "Describe people and talk about simple routines.", listOf(
                 lesson("A1", "U2-L1", "This is my family", "Name close family members and describe one person.",
-                    e("a1-family-vocab", Skill.VOCABULARY, "Doğru kelimeyi seç", "Your mother's daughter is your…", "sister", "Mother's daughter (you or another girl) is a sister.", listOf("sister", "uncle", "grandfather")),
+                    e("a1-family-vocab", Skill.VOCABULARY, "Doğru kelimeyi seç", "Your female sibling is your…", "sister", "Female sibling, kız kardeş anlamına gelir: sister.", listOf("sister", "uncle", "grandfather")),
                     e("a1-family-grammar", Skill.GRAMMAR, "Boşluğu tamamla", "This is ___ brother.", "my", "my sahiplik bildirir: my brother.", listOf("I", "my", "me")),
                     e("a1-family-read", Skill.READING, "Metni oku", "How many people are in Sam's family?", "four", "Metinde Sam, anne, baba ve kız kardeş var.", listOf("two", "three", "four"), context = "This is my family. My mother is Lisa. My father is Tom. I have one sister. We are four.")),
                 lesson("A1", "U2-L2", "My day", "Understand and write a simple daily routine.",
