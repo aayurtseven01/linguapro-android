@@ -48,6 +48,7 @@ class ProBillingRepository @Inject constructor(@ApplicationContext private val c
     val state: StateFlow<ProBillingState> = mutableState
     private val connection = Mutex()
     private val verification = Mutex()
+    private val restoration = Mutex()
     private var entitlementListener: ListenerRegistration? = null
     private val client = BillingClient.newBuilder(context)
         .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build())
@@ -158,8 +159,9 @@ class ProBillingRepository @Inject constructor(@ApplicationContext private val c
         }
     }
 
-    suspend fun restore(silent: Boolean = false) {
-        mutableState.update { it.copy(loading = true, message = null) }
+    suspend fun restore(silent: Boolean = false) = restoration.withLock {
+        if (mutableState.value.uid == null) return@withLock
+        if (!silent) mutableState.update { it.copy(loading = true, message = null) }
         try {
             connect()
             val purchases = suspendCancellableCoroutine<List<Purchase>> { continuation ->
@@ -174,7 +176,7 @@ class ProBillingRepository @Inject constructor(@ApplicationContext private val c
         } catch (error: Exception) {
             if (error is CancellationException) throw error
             if (!silent) mutableState.update { it.copy(message = "Satın alımlar geri yüklenemedi. İnternet bağlantını kontrol edip tekrar dene.") }
-        } finally { mutableState.update { it.copy(loading = false) } }
+        } finally { if (!silent) mutableState.update { it.copy(loading = false) } }
     }
 
     private fun verifyPurchase(purchase: Purchase) {

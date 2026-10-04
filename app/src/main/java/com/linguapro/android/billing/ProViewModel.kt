@@ -12,6 +12,7 @@ class ProViewModel @Inject constructor(private val billing: ProBillingRepository
     val state = billing.state
     fun load() = viewModelScope.launch { billing.loadOffers() }
     fun restore() = viewModelScope.launch { billing.restore() }
+    fun onResume() = viewModelScope.launch { billing.restore(silent = true) }
     fun buy(activity: Activity, offer: ProOffer) = billing.purchase(activity, offer)
     fun canUsePro() = billing.canUsePro()
 }

@@ -11,6 +11,9 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.decodeFromString
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.linguapro.android.billing.ProViewModel
 import com.linguapro.android.ui.profile.ProfileScreen
 import com.linguapro.android.ui.onboarding.PlanScreen
@@ -269,6 +272,14 @@ private fun LinguaApp() {
     val navController = rememberNavController()
     val dashboardViewModel: LearningDashboardViewModel = hiltViewModel()
     val proViewModel: ProViewModel = hiltViewModel()
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner, proViewModel) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) proViewModel.onResume()
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
     val proState by proViewModel.state.collectAsState()
     val dashboardState by dashboardViewModel.uiState.collectAsState()
     val startDestination = remember(signedInUser) {

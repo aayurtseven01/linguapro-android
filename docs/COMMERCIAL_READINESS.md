@@ -41,7 +41,7 @@ Existing leaderboard values are not trusted or copied into `verifiedXp`. New ser
 
 CI runs unit tests, debug lint, debug APK, optimized release APK/AAB, Firestore security tests, backend domain tests and API 24/36 device tests. The unsigned release build checks packaging; it is not an upload-ready signed release. Passing these checks does not replace real Play purchase tests, device-specific speech tests, accessibility review, or education-content review.
 
-Paid-access cache evidence expires after 24 hours without verification and never outlives the subscription expiry. On sign-in the app attempts to restore/verify current Play purchases. A full multi-device migration of local XP, streak, per-skill evidence and multilingual progress is still a separate product milestone.
+Paid-access cache evidence expires after 24 hours without verification and never outlives the subscription expiry. On sign-in and foreground resume the app attempts to restore/verify current Play purchases. A full multi-device migration of local XP, streak, per-skill evidence and multilingual progress is still a separate product milestone.
 
 ## Next product milestones
 
