@@ -85,7 +85,8 @@ object ScenarioCurriculum {
     fun checkpointFor(unit: LearningUnit): LearningLesson? {
         val scenario = scenarios[unit.id] ?: return null
         val closed = unit.lessons.flatMap { it.exercises }.filter { it.options.isNotEmpty() && it.skill != Skill.WRITING && it.skill != Skill.SPEAKING }
-            .distinctBy { it.id }.shuffled(kotlin.random.Random(unit.id.hashCode())).take(4)
+            .distinctBy { Triple(it.prompt, it.context + it.modelAudioText.orEmpty(), it.acceptedAnswers) }
+            .shuffled(kotlin.random.Random(unit.id.hashCode())).take(4)
         if (closed.size != 4) return null
         return LearningLesson("${unit.id}-CP", "Kazanım kontrolü: ${unit.title}",
             "Yeni bir durumda anlamı ayırt et ve ünite kazanımlarını en az yüzde 80 başarıyla uygula.",

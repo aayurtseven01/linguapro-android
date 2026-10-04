@@ -38,6 +38,7 @@ class ScenarioCurriculumTest {
         units.forEach { unit ->
             val checkpoint = unit.lessons.single { it.id.endsWith("-CP") }
             assertEquals(5, checkpoint.exercises.size)
+            assertEquals(unit.id, 5, checkpoint.exercises.map { Triple(it.prompt, it.context + it.modelAudioText.orEmpty(), it.acceptedAnswers) }.distinct().size)
             assertTrue(checkpoint.exercises.all { it.options.size == 3 && it.skill != Skill.WRITING && it.skill != Skill.SPEAKING })
             checkpoint.exercises.forEach { q -> assertEquals(q.id, 1, q.options.count { AnswerChecker.matchesClosed(it, q.acceptedAnswers) }) }
             val teaching = unit.lessons.filterNot { it.id.endsWith("-CP") }.flatMap { it.exercises }.flatMap { listOf(it.context, it.modelAudioText.orEmpty()) }
