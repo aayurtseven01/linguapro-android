@@ -74,10 +74,11 @@ class ProductFlowTest {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val target = File(context.filesDir, "qa-screenshots/$name.png")
         target.parentFile!!.mkdirs()
-        val root = if (name == "delete-confirmation") {
-            compose.onNode(isRoot() and hasAnyDescendant(hasText("Evet, kalıcı olarak sil")))
-        } else compose.onRoot()
-        val bitmap = root.captureToImage().asAndroidBitmap()
+        val bitmap = if (name == "delete-confirmation") {
+            // Dialog owns a separate Window; root PixelCopy can capture the underlying Activity.
+            compose.onNodeWithText("Hesap silinsin mi?").assertIsDisplayed()
+            androidx.test.platform.app.InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot()
+        } else compose.onRoot().captureToImage().asAndroidBitmap()
         target.outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
     }
 }
