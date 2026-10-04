@@ -215,6 +215,8 @@ private sealed interface AppRoute {
     @Serializable data object Locked : AppRoute
     @Serializable data object Social : AppRoute
     @Serializable data object AvatarEditor : AppRoute
+    @Serializable data object Stories : AppRoute
+    @Serializable data object StoryPlayer : AppRoute
 }
 private data class Question(
     val level: String,
@@ -327,6 +329,10 @@ private fun LinguaApp() {
     var gems by remember(courseUid) { mutableIntStateOf(gemStore.gems()) }
     var claimedChests by remember(courseUid) { mutableStateOf(gemStore.claimedChests()) }
     var showGemShop by remember { mutableStateOf(false) }
+    var selectedStoryId by rememberSaveable { mutableStateOf("") }
+    var doneStories by remember(courseUid) {
+        mutableStateOf(coursePrefs.getStringSet("stories_done_$courseUid", emptySet()).orEmpty().toSet())
+    }
     val syncBoard: () -> Unit = syncBoard@{
         if (accountUid.isBlank() || username.isBlank()) return@syncBoard
         social.upsertBoard(accountUid, username, userName, LevelSystem.levelFor(learningProgress.totalXp), learningProgress.totalXp, avatarCode) { }
@@ -535,6 +541,8 @@ private fun LinguaApp() {
                     onSocial = { go(AppRoute.Social) },
                     gems = gems,
                     onOpenShop = { showGemShop = true },
+                    onStories = { go(AppRoute.Stories) },
+                    storiesDoneCount = doneStories.count { it.startsWith(courseLang) },
                     chestsClaimed = claimedChests,
                     onClaimChest = { chestUnitId ->
                         if (gemStore.claimChest(chestUnitId)) {
@@ -725,6 +733,40 @@ private fun LinguaApp() {
                     ttsAccent = dashboardState.settings.speechAccent,
                     speechRate = dashboardState.settings.speechRate
                 )
+            }
+            composable<AppRoute.Stories> {
+                StoriesListScreen(
+                    lang = courseLang,
+                    doneIds = doneStories,
+                    onOpen = { sid -> selectedStoryId = sid; go(AppRoute.StoryPlayer) },
+                    onBack = { go(AppRoute.Home) }
+                )
+            }
+            composable<AppRoute.StoryPlayer> {
+                val story = StoryCatalog.byId(selectedStoryId)
+                if (story == null) {
+                    StoriesListScreen(courseLang, doneStories, { sid -> selectedStoryId = sid; go(AppRoute.StoryPlayer) }, { go(AppRoute.Home) })
+                } else {
+                    StoryPlayerScreen(
+                        story = story,
+                        soundOn = true,
+                        onFinished = { correct, total ->
+                            if (story.id !in doneStories) {
+                                doneStories = doneStories + story.id
+                                coursePrefs.edit().putStringSet("stories_done_$courseUid", doneStories).apply()
+                                learningProgress = progressStore.addBonusXp(10)
+                                gems = gemStore.add(5)
+                                if (accountUid.isNotBlank() && username.isNotBlank()) {
+                                    social.postActivity(accountUid, username, avatarCode, "\"${story.title}\" hikâyesini bitirdi! 📖") { }
+                                }
+                                syncBoard()
+                            }
+                            android.widget.Toast.makeText(context, "📖 Hikâye bitti: $correct/$total doğru  •  +10 XP +5 💎", android.widget.Toast.LENGTH_LONG).show()
+                            go(AppRoute.Stories)
+                        },
+                        onBack = { go(AppRoute.Stories) }
+                    )
+                }
             }
             composable<AppRoute.Social> {
                 SocialScreen(
@@ -984,7 +1026,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 }
 
 @Composable
-private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit, dailyWords: List<TargetVocabulary> = emptyList(), onDailyWords: () -> Unit = {}, dailyQuests: List<QuestUi> = emptyList(), onClaimQuest: (DailyQuest) -> Unit = {}, onSocial: () -> Unit = {}, gems: Int = 0, onOpenShop: () -> Unit = {}, chestsClaimed: Set<String> = emptySet(), onClaimChest: (String) -> Unit = {}) {
+private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit, dailyWords: List<TargetVocabulary> = emptyList(), onDailyWords: () -> Unit = {}, dailyQuests: List<QuestUi> = emptyList(), onClaimQuest: (DailyQuest) -> Unit = {}, onSocial: () -> Unit = {}, gems: Int = 0, onOpenShop: () -> Unit = {}, chestsClaimed: Set<String> = emptySet(), onClaimChest: (String) -> Unit = {}, onStories: () -> Unit = {}, storiesDoneCount: Int = 0) {
     val langName = WorldCatalog.language(langCode).nameTr
     val moduleList = courseUnits
     val courseLessonCount = moduleList.sumOf { it.lessons.size }
@@ -1087,6 +1129,27 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                     Text("Her gün yenilenen 10 soruluk karışımla öğrendiklerini taze tut", color = Muted, fontSize = 12.sp, lineHeight = 16.sp, modifier = Modifier.padding(top = 3.dp))
                 }
                 Icon(Icons.Default.ChevronRight, null, tint = Gold)
+            }
+        }
+        run {
+            val storyTotal = StoryCatalog.storiesFor(langCode).size
+            if (storyTotal > 0) {
+                Spacer(Modifier.height(12.dp))
+                Surface(onClick = onStories, color = Panel, border = BorderStroke(1.dp, Color(0x59FF5CA8)), shape = RoundedCornerShape(26.dp), modifier = Modifier.fillMaxWidth()) {
+                    Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Text("📖", fontSize = 22.sp)
+                        Column(Modifier.weight(1f).padding(start = 10.dp)) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text("Hikâyeler", color = PinkAccent, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                                Surface(color = PinkAccent, shape = RoundedCornerShape(8.dp), modifier = Modifier.padding(start = 8.dp)) {
+                                    Text("YENİ", color = Color(0xFF330C20), fontSize = 9.sp, fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp))
+                                }
+                            }
+                            Text("Diyalogları oku-dinle, soruları yanıtla • $storiesDoneCount/$storyTotal tamamlandı", color = Muted, fontSize = 12.sp, lineHeight = 16.sp, modifier = Modifier.padding(top = 3.dp))
+                        }
+                        Icon(Icons.Default.ChevronRight, null, tint = PinkAccent)
+                    }
+                }
             }
         }
         if (dailyQuests.isNotEmpty()) {
