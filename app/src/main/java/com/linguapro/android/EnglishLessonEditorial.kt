@@ -43,7 +43,7 @@ object EnglishLessonEditorial {
                 explanationTr = "Bu derste hedef ifade: ${target.termEn}.\n${target.exampleEn}\n${target.exampleTr}")
         } else emptyList()
         lesson.copy(
-            canDo = if (isWordLesson) "${words.joinToString { it.termEn }} ifadelerini bağlamda tanıyıp bakmadan hatırlayabilirim." else lesson.canDo,
+            canDo = if (isWordLesson) "Bu dersin hedef ifadelerini bağlamda tanıyıp seçeneklere bakmadan hatırlayabilirim." else lesson.canDo,
             exercises = (contextual + retrieval).distinctBy { it.id },
             targetVocabulary = (lesson.targetVocabulary + words).distinctBy { it.termEn.lowercase() }
         )

@@ -43,6 +43,7 @@ class ProductionEditorialTest {
                 recalled++
                 assertTrue(task.options.isEmpty() && task.context.isEmpty())
                 val word = lesson.targetVocabulary.single { it.id.removeSuffix("-word") + "-recall" == task.id }
+                assertFalse("The persistent learning outcome must not reveal the recall answer", lesson.canDo.contains(word.termEn, ignoreCase = true))
                 assertTrue(AnswerChecker.matchesClosed(word.termEn, task.acceptedAnswers))
                 val introduced = lesson.exercises.single { it.id == task.id.removeSuffix("-recall") }
                 assertEquals(word.exampleEn, introduced.context)
