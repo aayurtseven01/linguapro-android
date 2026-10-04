@@ -5,6 +5,12 @@ service cloud.firestore {
       return request.auth != null && request.auth.uid == userId;
     }
 
+    function activeAccount(userId) {
+      return signedInAs(userId)
+        && exists(/databases/$(database)/documents/users/$(userId))
+        && get(/databases/$(database)/documents/users/$(userId)).data.get('deletionRequested', false) == false;
+    }
+
     function validLevel(level) {
       return level in ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
     }
@@ -47,7 +53,7 @@ service cloud.firestore {
         && validProfile(request.resource.data, userId);
 
       // Purchase/entitlement fields are deliberately not client-writable.
-      allow update: if signedInAs(userId)
+      allow update: if activeAccount(userId)
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
           'displayName', 'cefrLevel', 'completedLessons',
           'completedByLevelA1', 'completedByLevelA2', 'completedByLevelB1',
@@ -60,9 +66,10 @@ service cloud.firestore {
 
       match /lessonEvents/{eventId} {
         allow read: if signedInAs(userId);
-        allow create: if signedInAs(userId)
+        allow create: if activeAccount(userId)
           && request.resource.data.keys().hasOnly(['lessonId', 'score', 'completedAt'])
           && request.resource.data.keys().hasAll(['lessonId', 'completedAt'])
+          && request.resource.data.completedAt == request.time
           && request.resource.data.lessonId is string
           && request.resource.data.lessonId.size() > 0
           && (!('score' in request.resource.data)
@@ -77,7 +84,7 @@ service cloud.firestore {
       // Stable lesson ids make retries and repeated lessons count once toward the course.
       match /lessonCompletions/{lessonId} {
         allow read, delete: if signedInAs(userId);
-        allow create: if signedInAs(userId)
+        allow create: if activeAccount(userId)
           && request.resource.data.keys().hasOnly(['lessonId', 'score', 'completedAt'])
           && request.resource.data.keys().hasAll(['lessonId', 'completedAt'])
           && request.resource.data.lessonId == lessonId
@@ -85,6 +92,15 @@ service cloud.firestore {
           && (!('score' in request.resource.data)
             || (request.resource.data.score is int && request.resource.data.score >= 0 && request.resource.data.score <= 100));
         allow update: if false;
+      }
+
+      match /private/{document} {
+        allow read: if signedInAs(userId);
+        allow write: if false;
+      }
+      match /xpAwards/{awardId} {
+        allow read: if signedInAs(userId);
+        allow write: if false;
       }
 
       // Arkadas listesi: yalnizca sahibi okur/yazar/siler.
@@ -96,20 +112,23 @@ service cloud.firestore {
     // Lig tablosu: herkes okur (giris sartiyla), kullanici yalnizca kendi kaydini yazar.
     match /leaderboard/{userId} {
       allow read: if request.auth != null;
-      allow create, update: if signedInAs(userId)
-        && request.resource.data.uid == userId
-        && request.resource.data.username is string
-        && request.resource.data.username.size() >= 3
-        && request.resource.data.username.size() <= 20
-        && request.resource.data.displayName is string
-        && request.resource.data.displayName.size() <= 40
-        && request.resource.data.level is int
-        && request.resource.data.level >= 1
-        && request.resource.data.level <= 200
-        && request.resource.data.totalXp is int
-        && request.resource.data.totalXp >= 0
-        && request.resource.data.avatar is string
-        && request.resource.data.avatar.size() <= 120;
+      function ownsUsername() {
+        return request.resource.data.username.matches('[a-z0-9_.]{3,20}')
+          && get(/databases/$(database)/documents/usernames/$(request.resource.data.username)).data.uid == userId;
+      }
+      function validIdentity() {
+        return request.resource.data.uid == userId
+          && request.resource.data.displayName is string
+          && request.resource.data.displayName.size() <= 40
+          && request.resource.data.avatar is string
+          && request.resource.data.avatar.size() <= 120
+          && ownsUsername();
+      }
+      // Ranked scores are written only by the trusted backend, never supplied by the app.
+      allow create: if signedInAs(userId) && validIdentity()
+        && request.resource.data.keys().hasOnly(['uid', 'username', 'displayName', 'avatar']);
+      allow update: if signedInAs(userId) && validIdentity()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['username', 'displayName', 'avatar']);
       allow delete: if signedInAs(userId);
     }
 
@@ -120,7 +139,8 @@ service cloud.firestore {
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.keys().hasOnly(['uid', 'username', 'avatar', 'text', 'createdAt'])
         && request.resource.data.username is string
-        && request.resource.data.username.size() <= 20
+        && request.resource.data.username.matches('[a-z0-9_.]{3,20}')
+        && get(/databases/$(database)/documents/usernames/$(request.resource.data.username)).data.uid == request.auth.uid
         && request.resource.data.avatar is string
         && request.resource.data.avatar.size() <= 120
         && request.resource.data.text is string
@@ -137,8 +157,7 @@ service cloud.firestore {
       allow create: if request.auth != null
         && request.resource.data.keys().hasOnly(['uid'])
         && request.resource.data.uid == request.auth.uid
-        && name.size() >= 3
-        && name.size() <= 20;
+        && name.matches('[a-z0-9_.]{3,20}');
       allow update: if false;
       allow delete: if request.auth != null && resource.data.uid == request.auth.uid;
     }

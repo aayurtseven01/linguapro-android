@@ -25,9 +25,9 @@ jobs:
         with:
           packages: ''
       - name: Install Android platform
-        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+        run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
       - name: Run unit tests and build debug APK
-        run: chmod +x gradlew && ./gradlew --no-daemon testDebugUnitTest assembleDebug lintDebug
+        run: chmod +x gradlew && ./gradlew --no-daemon testDebugUnitTest assembleDebug assembleRelease bundleRelease lintDebug
       - name: Upload test and lint reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -69,7 +69,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        api-level: [24, 35]
+        api-level: [24, 36]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -87,9 +87,28 @@ jobs:
           api-level: ${{ matrix.api-level }}
           arch: x86_64
           disable-animations: true
-          script: chmod +x gradlew && ./gradlew connectedDebugAndroidTest
+          script: |
+            chmod +x gradlew && ./gradlew connectedDebugAndroidTest
+            mkdir -p app/build/ui-screenshots
+            for name in study-plan-top study-plan-bottom delete-confirmation pro-preview; do
+              adb shell run-as com.linguapro.android cat files/qa-screenshots/$name.png > app/build/ui-screenshots/$name.png
+            done
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: device-reports-api-${{ matrix.api-level }}
-          path: app/build/reports/androidTests/
+          path: |
+            app/build/reports/androidTests/
+            app/build/ui-screenshots/
+
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: functions/package-lock.json
+      - run: npm ci --prefix functions --ignore-scripts
+      - run: npm test --prefix functions && npm run check --prefix functions

@@ -77,7 +77,7 @@ fun LearningLessonScreen(
     exerciseIndex: Int,
     onBack: () -> Unit,
     onExerciseResult: (exerciseId: String, skill: Skill, correct: Boolean) -> Unit,
-    onDone: (Int?) -> Unit,
+    onDone: (Int?, Int) -> Unit,
     ttsAccent: String = "en-US",
     speechRate: Float = 1.0f
 ) {
@@ -93,6 +93,35 @@ fun LearningLessonScreen(
     var correctCount by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableIntStateOf(0) }
     var gradedCount by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableIntStateOf(0) }
     var lessonFinished by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableStateOf(false) }
+    var savedStudyMillis by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableLongStateOf(0L) }
+    val studyClock = remember(lesson.id, exerciseIndex, attempt) { ActiveStudyClock(savedStudyMillis) }
+    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
+    val isFinished by rememberUpdatedState(lessonFinished)
+    LaunchedEffect(studyClock) {
+        while (true) { delay(1000); savedStudyMillis = studyClock.elapsedMillis(android.os.SystemClock.elapsedRealtime()) }
+    }
+    DisposableEffect(lifecycleOwner, studyClock) {
+        if (lifecycleOwner.lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.STARTED) && !isFinished) {
+            studyClock.resume(android.os.SystemClock.elapsedRealtime())
+        }
+        val observer = androidx.lifecycle.LifecycleEventObserver { _, event ->
+            val now = android.os.SystemClock.elapsedRealtime()
+            if (event == androidx.lifecycle.Lifecycle.Event.ON_START && !isFinished) studyClock.resume(now)
+            if (event == androidx.lifecycle.Lifecycle.Event.ON_STOP) { studyClock.pause(now); savedStudyMillis = studyClock.elapsedMillis(now) }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            val now = android.os.SystemClock.elapsedRealtime()
+            studyClock.pause(now); savedStudyMillis = studyClock.elapsedMillis(now)
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+    LaunchedEffect(lessonFinished) {
+        if (lessonFinished) {
+            val now = android.os.SystemClock.elapsedRealtime()
+            studyClock.pause(now); savedStudyMillis = studyClock.elapsedMillis(now)
+        }
+    }
     var finalScore by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableIntStateOf(0) }
     var ttsReady by remember { mutableStateOf(false) }
     val soundPrefs = LocalContext.current.getSharedPreferences("lingua_course", android.content.Context.MODE_PRIVATE)
@@ -145,8 +174,12 @@ fun LearningLessonScreen(
             override fun onEndOfSpeech() { micLevel = 0f }
             override fun onError(error: Int) {
                 isListening = false; micLevel = 0f
-                if (error == SpeechRecognizer.ERROR_NO_MATCH || error == SpeechRecognizer.ERROR_SPEECH_TIMEOUT) {
-                    speechMessage = "Ses algılanamadı. Tekrar dene veya cümleyi aşağıya yaz."
+                speechMessage = when (error) {
+                    SpeechRecognizer.ERROR_NO_MATCH, SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> "Ses algılanamadı. Tekrar dene veya cümleyi aşağıya yaz."
+                    SpeechRecognizer.ERROR_NETWORK, SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> "Konuşma tanıma için bağlantı kurulamadı. Cümleyi yazarak devam edebilirsin."
+                    SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> "Mikrofon iznini kontrol et veya cümleyi aşağıya yaz."
+                    SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> "Konuşma tanıma meşgul. Biraz bekleyip tekrar dene."
+                    else -> "Konuşma tanıma tamamlanamadı. Tekrar dene veya cümleyi aşağıya yaz."
                 }
             }
             override fun onPartialResults(partialResults: Bundle?) {
@@ -190,7 +223,10 @@ fun LearningLessonScreen(
     }
 
     if (lessonFinished) {
-        LessonCompletion(lesson = lesson, correct = correctCount, graded = gradedCount, score = finalScore, onContinue = { onDone(finalScore.takeIf { it >= 0 }) }, onRetry = { attempt++ })
+        LessonCompletion(lesson = lesson, correct = correctCount, graded = gradedCount, score = finalScore, onContinue = {
+            val seconds = (studyClock.elapsedMillis(android.os.SystemClock.elapsedRealtime()) / 1000).coerceIn(0L, 7200L).toInt()
+            onDone(finalScore.takeIf { it >= 0 }, seconds)
+        }, onRetry = { attempt++ })
         return
     }
 

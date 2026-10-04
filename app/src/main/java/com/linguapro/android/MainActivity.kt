@@ -8,6 +8,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.decodeFromString
+import com.linguapro.android.billing.ProViewModel
+import com.linguapro.android.ui.profile.ProfileScreen
+import com.linguapro.android.ui.onboarding.PlanScreen
+import com.linguapro.android.ui.components.*
+import com.linguapro.android.billing.ProScreen
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -66,17 +74,6 @@ import com.linguapro.android.ui.settings.SettingsRoute
 import com.linguapro.android.ui.review.ReviewScreen
 
 // Tasarım 2 — "premium gece": koyu mor zemin, ışıklı lime ve pembe vurgular
-private val Navy = Color(0xFF1A0E2E)
-private val Panel = Color(0xFF281A4A)
-private val Panel2 = Color(0xFF342457)
-private val Gold = Color(0xFFC6FF4A)
-private val Muted = Color(0xFFA99BC9)
-private val Mint = Color(0xFFB5F23D)
-private val BgTop = Color(0xFF2E1660)
-private val BgBottom = Color(0xFF150A30)
-private val OnBg = Color(0xFFF5F1FF)
-private val OnBgSoft = Color(0xFFCBBDE8)
-private val PinkAccent = Color(0xFFFF5CA8)
 private val termsSummary = """
     LinguaPro, İngilizce öğrenme ve pratik için sunulan bir eğitim aracıdır; resmî CEFR sertifikası veya profesyonel çeviri hizmeti sağlamaz. Alıştırma yanıtları ve otomatik değerlendirmeler öğrenme desteği içindir; her açık uçlu yanıta kesin doğruluk puanı verilmez.
 
@@ -87,7 +84,7 @@ private val privacySummary = """
 
     Konuşma etkinliğini sen başlattığında Android'in konuşma tanıma arayüzü açılır. Tanınan ifade ders yanıtı olarak ekranda işlenebilir; ses kaydı LinguaPro tarafından ders olayına eklenmez. İşletim sistemi veya seçili tanıma sağlayıcısının veri işlemesi kendi ayar ve politikalarına bağlıdır.
 
-    Bu özet üretim öncesi hukuki ve veri koruma incelemesinden geçmelidir. Hesap silme/dışa aktarma ve tüm veriler için cihazlar arası senkronizasyon henüz tamamlanmamıştır.
+    Profil ekranından hesabını ve öğrenme verilerini silmeyi isteyebilirsin. Google Play aboneliklerini ayrıca Google Play üzerinden yönetmelisin.
 """.trimIndent()
 
 @AndroidEntryPoint
@@ -189,7 +186,7 @@ private fun SplashVideoScreen(onFinished: () -> Unit) {
 }
 
 @Composable
-private fun LinguaTheme(content: @Composable () -> Unit) {
+internal fun LinguaTheme(content: @Composable () -> Unit) {
     MaterialTheme(colorScheme = darkColorScheme(
         primary = Gold, onPrimary = Navy, background = BgBottom, surface = Panel,
         onBackground = OnBg, onSurface = OnBg, secondary = PinkAccent,
@@ -202,6 +199,7 @@ private sealed interface AppRoute {
     @Serializable data object Welcome : AppRoute
     @Serializable data object Register : AppRoute
     @Serializable data object Login : AppRoute
+    @Serializable data object Pro : AppRoute
     @Serializable data object Plans : AppRoute
     @Serializable data object Quiz : AppRoute
     @Serializable data object PlacementResult : AppRoute
@@ -263,8 +261,13 @@ private fun LinguaApp() {
     val context = LocalContext.current
     val accounts = remember(context) { FirebaseAccountRepository(context) }
     val signedInUser = remember { accounts.currentUser() }
+    val today by produceState(DailyWords.todayEpochDay()) {
+        while (true) { delay(60_000); value = DailyWords.todayEpochDay() }
+    }
     val navController = rememberNavController()
     val dashboardViewModel: LearningDashboardViewModel = hiltViewModel()
+    val proViewModel: ProViewModel = hiltViewModel()
+    val proState by proViewModel.state.collectAsState()
     val dashboardState by dashboardViewModel.uiState.collectAsState()
     val startDestination = remember(signedInUser) {
         if (signedInUser != null) AppRoute.Home else AppRoute.Welcome
@@ -320,6 +323,7 @@ private fun LinguaApp() {
             (if (courseLang == "EN") dashboardState.supplementalUnits.filter { it.id.startsWith("$effectiveLevel-") } else emptyList())
     }
     var selectedLessonId by rememberSaveable { mutableStateOf("") }
+    var personalLessonJson by rememberSaveable(accountUid) { mutableStateOf("") }
     var selectedExerciseIndex by rememberSaveable { mutableIntStateOf(0) }
     // Sosyal katman: kullanıcı adı, avatar, günlük görevler, lig senkronu
     var username by remember(courseUid) { mutableStateOf(coursePrefs.getString("username_$courseUid", "") ?: "") }
@@ -332,7 +336,10 @@ private fun LinguaApp() {
         social.upsertBoard(accountUid, username, userName, LevelSystem.levelFor(learningProgress.totalXp), learningProgress.totalXp, avatarCode) { }
     }
     var activeLessonCountsTowardCourse by rememberSaveable { mutableStateOf(true) }
-    val activeLesson = remember(courseLang, effectiveLevel, completedForLevel, selectedLessonId, dashboardState.supplementalUnits) {
+    val activeLesson = remember(courseLang, effectiveLevel, completedForLevel, selectedLessonId, personalLessonJson, dashboardState.supplementalUnits) {
+        if (selectedLessonId.endsWith("-PRO") && personalLessonJson.isNotBlank()) {
+            runCatching { Json.decodeFromString<LearningLesson>(personalLessonJson) }.getOrNull()?.let { return@remember it }
+        }
         if (selectedLessonId.endsWith("-WORDS")) return@remember DailyWords.lessonFor(courseLang)
         if (selectedLessonId.endsWith("-REFRESH")) return@remember DailyRefresh.lessonFor(courseLang, effectiveLevel)
         val staticLessons = WorldCatalog.units(courseLang, effectiveLevel).flatMap { it.lessons }
@@ -354,6 +361,31 @@ private fun LinguaApp() {
             }
         }
     }
+
+    val startProPractice: () -> Unit = {
+        if (!proViewModel.canUsePro()) go(AppRoute.Pro)
+        else {
+            val personal = PersonalizedPractice.build(courseLang, effectiveLevel, courseUnits.flatMap { it.lessons }, mistakeIds, skillStats)
+            personalLessonJson = Json.encodeToString(personal)
+            selectedLessonId = personal.id
+            activeLessonCountsTowardCourse = false
+            selectedExerciseIndex = 0
+            go(AppRoute.Lesson)
+        }
+    }
+
+    LaunchedEffect(accountUid) {
+        val uid = accountUid
+        if (uid.isNotBlank()) social.loadIdentity(uid) { identity ->
+            if (accountUid == uid && identity != null) {
+                username = identity.username
+                if (identity.avatar.isNotBlank()) avatarCode = identity.avatar
+                coursePrefs.edit().putString("username_$uid", username).putString("avatar_$uid", avatarCode).apply()
+            }
+        }
+    }
+
+    LaunchedEffect(accountUid, today) { learningProgress = progressStore.read() }
 
     LaunchedEffect(storageError) {
         storageError?.let {
@@ -414,6 +446,7 @@ private fun LinguaApp() {
                     }
                 )
             }
+            composable<AppRoute.Pro> { ProScreen(proViewModel, onBack = { go(AppRoute.Home) }, onPractice = startProPractice) }
             composable<AppRoute.Plans> {
                 PlanScreen(
                     plan = plan,
@@ -484,6 +517,7 @@ private fun LinguaApp() {
                 HomeScreen(
                     name = userName, level = effectiveLevel,
                     pendingSyncCount = pendingSyncCount,
+                    onPro = { go(AppRoute.Pro) }, proActive = proState.hasPro && proState.uid == accountUid, dailyGoalMinutes = dashboardState.settings.dailyGoalMinutes,
                     langCode = courseLang,
                     onSelectLanguage = { code ->
                         courseLang = code
@@ -546,7 +580,7 @@ private fun LinguaApp() {
                         }
                     },
                     onSocial = { go(AppRoute.Social) },
-                    dailyWords = remember(courseLang) { DailyWords.wordsFor(courseLang, DailyWords.todayEpochDay()) },
+                    dailyWords = remember(courseLang, today) { DailyWords.wordsFor(courseLang, today) },
                     onDailyWords = {
                         selectedLessonId = "$courseLang-WORDS"
                         activeLessonCountsTowardCourse = false
@@ -576,6 +610,7 @@ private fun LinguaApp() {
                     avatarCode = avatarCode,
                     onEditAvatar = { go(AppRoute.AvatarEditor) },
                     onSocial = { go(AppRoute.Social) },
+                    onPro = { go(AppRoute.Pro) },
                     onBack = { go(AppRoute.Home) },
                     onSettings = { go(AppRoute.Settings) },
                     deletionBusy = deletionBusy,
@@ -618,7 +653,9 @@ private fun LinguaApp() {
             }
             composable<AppRoute.Settings> { SettingsRoute(onBack = { go(AppRoute.Profile) }) }
             composable<AppRoute.Lesson> {
-                LearningLessonScreen(
+                if (selectedLessonId.endsWith("-PRO") && (!proState.hasPro || proState.uid != accountUid)) {
+                    ProScreen(proViewModel, onBack = { go(AppRoute.Home) }, onPractice = startProPractice)
+                } else LearningLessonScreen(
                     lesson = activeLesson,
                     exerciseIndex = selectedExerciseIndex,
                     onBack = { go(AppRoute.Home) },
@@ -626,7 +663,7 @@ private fun LinguaApp() {
                         mistakeIds = mistakeBook.record(exerciseId, correct)
                         skillStats = skillProgressStore.record(skill, correct)
                     },
-                    onDone = { score ->
+                    onDone = { score, studySeconds ->
                         val countsTowardCourse = activeLessonCountsTowardCourse
                         // Checkpoint barajı: %80 altı puan üniteyi geçirmez; ders yine günlüğe işlenir ama ilerleme artmaz.
                         val checkpointBlocked = activeLesson.id.endsWith("-CP") && (score ?: 0) < 80
@@ -634,7 +671,7 @@ private fun LinguaApp() {
                         lessonSaveBusy = true
                         dashboardViewModel.recordLesson(
                             accountUid, effectiveLevel, activeLesson.id, score,
-                            activeLesson.targetVocabulary.map { it.id }, countsTowardCourse && !checkpointBlocked
+                            activeLesson.targetVocabulary, countsTowardCourse && !checkpointBlocked
                         ) { saved ->
                         lessonSaveBusy = false
                         if (saved) {
@@ -651,7 +688,7 @@ private fun LinguaApp() {
                         activeLessonCountsTowardCourse = true
                         selectedExerciseIndex = 0
                         val levelBefore = LevelSystem.levelFor(learningProgress.totalXp)
-                        learningProgress = progressStore.recordLesson(score)
+                        learningProgress = progressStore.recordLesson(score, studiedSeconds = studySeconds)
                         // Günlük görev ilerlemesi
                         val questDay = DailyWords.todayEpochDay()
                         questStore.add(questDay, "lessons", 1)
@@ -860,48 +897,7 @@ private fun AppField(label: String, value: String, onValue: (String) -> Unit, ic
     OutlinedTextField(value = value, onValueChange = onValue, modifier = Modifier.fillMaxWidth(), label = { Text(label) }, leadingIcon = { Icon(icon, null, tint = Muted) }, singleLine = true, visualTransformation = if (isPassword) androidx.compose.ui.text.input.PasswordVisualTransformation() else androidx.compose.ui.text.input.VisualTransformation.None, colors = OutlinedTextFieldDefaults.colors(focusedContainerColor = Color(0xFFFFFFFF), unfocusedContainerColor = Color(0xFFFFFFFF), focusedBorderColor = Gold, unfocusedBorderColor = Panel2, focusedLabelColor = Gold, unfocusedLabelColor = Muted, cursorColor = Gold))
 }
 
-@Composable
-private fun PlanScreen(plan: String, onPlan: (String) -> Unit, onBack: () -> Unit, onStart: () -> Unit) {
-    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp)) {
-        BackRow("Çalışma planın", onBack)
-        Spacer(Modifier.height(18.dp))
-        Text("Her gün küçük bir adım.", color = OnBg, fontSize = 29.sp, fontWeight = FontWeight.ExtraBold)
-        Text("Kendine uygun bir hedef seç. Daha sonra ayarlardan değiştirebilirsin.", color = OnBgSoft, lineHeight = 21.sp, modifier = Modifier.padding(top = 10.dp, bottom = 22.dp))
-        listOf(Triple("5", "Rahat başlangıç", "Günde 5 dakika • alışkanlık kazan"),
-            Triple("10", "Dengeli ilerleme", "Günde 10 dakika • öğren ve pekiştir"),
-            Triple("20", "Yoğun çalışma", "Günde 20 dakika • daha fazla pratik")).forEach { (minutes, title, detail) ->
-            Surface(onClick = { onPlan(minutes) }, color = if (plan == minutes) Panel2 else Panel,
-                border = BorderStroke(if (plan == minutes) 2.dp else 1.dp, if (plan == minutes) Gold else Panel2),
-                shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp)) {
-                Row(Modifier.padding(18.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Icon(if (plan == minutes) Icons.Default.CheckCircle else Icons.Default.RadioButtonUnchecked, null, tint = if (plan == minutes) Gold else Muted)
-                    Column(Modifier.padding(start = 14.dp)) {
-                        Text(title, color = OnBg, fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                        Text(detail, color = OnBgSoft, fontSize = 12.sp, modifier = Modifier.padding(top = 5.dp))
-                    }
-                }
-            }
-        }
-        Spacer(Modifier.height(10.dp))
-        FeatureLine(Icons.Default.MenuBook, "Seviyene uygun bir öğrenme yolu")
-        FeatureLine(Icons.Default.Style, "Aralıklı tekrar ile kelime pratiği")
-        FeatureLine(Icons.Default.Mic, "Dinleme, konuşma ve yazma etkinlikleri")
-        Spacer(Modifier.height(20.dp))
-        PrimaryButton("Seviyemi belirle", onStart)
-        Text("Kısa test başlangıç seviyeni tahmin eder. Bu bir resmî dil sertifikası değildir.", color = OnBgSoft, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 12.dp))
-        Spacer(Modifier.height(24.dp))
-    }
-}
 
-@Composable
-private fun PlanCard(title: String, price: String, detail: String, badge: String, chosen: Boolean, onClick: () -> Unit) {
-    Surface(onClick = onClick, shadowElevation = 2.dp, shape = RoundedCornerShape(18.dp), color = if (chosen) Color(0xFFE8F1FF) else Panel, border = BorderStroke(if (chosen) 2.dp else 1.dp, if (chosen) Gold else Panel2)) {
-        Row(Modifier.fillMaxWidth().padding(17.dp), verticalAlignment = Alignment.CenterVertically) {
-            Icon(if (chosen) Icons.Default.RadioButtonChecked else Icons.Default.RadioButtonUnchecked, null, tint = if (chosen) Gold else Muted)
-            Column(Modifier.weight(1f).padding(start = 14.dp)) { Row(verticalAlignment = Alignment.CenterVertically) { Text(title, fontWeight = FontWeight.Bold, fontSize = 18.sp); if (badge.isNotEmpty()) Text(badge, color = Gold, fontSize = 10.sp, modifier = Modifier.padding(start = 8.dp)) }; Text(price, fontWeight = FontWeight.Bold, fontSize = 17.sp, modifier = Modifier.padding(top = 5.dp)); Text(detail, color = Muted, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 4.dp)) }
-        }
-    }
-}
 
 @Composable
 private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBack: () -> Unit, onNext: () -> Unit) {
@@ -946,7 +942,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 }
 
 @Composable
-private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit, dailyWords: List<TargetVocabulary> = emptyList(), onDailyWords: () -> Unit = {}, dailyQuests: List<QuestUi> = emptyList(), onClaimQuest: (DailyQuest) -> Unit = {}, onSocial: () -> Unit = {}, pendingSyncCount: Int = 0) {
+private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit, dailyWords: List<TargetVocabulary> = emptyList(), onDailyWords: () -> Unit = {}, dailyQuests: List<QuestUi> = emptyList(), onClaimQuest: (DailyQuest) -> Unit = {}, onSocial: () -> Unit = {}, pendingSyncCount: Int = 0, onPro: () -> Unit = {}, proActive: Boolean = false, dailyGoalMinutes: Int = 10) {
     val langName = WorldCatalog.language(langCode).nameTr
     val moduleList = courseUnits
     val courseLessonCount = moduleList.sumOf { it.lessons.size }
@@ -1031,8 +1027,8 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                 }
                 Surface(color = Panel, shape = RoundedCornerShape(26.dp), modifier = Modifier.weight(1f).fillMaxWidth()) {
                     Column(Modifier.fillMaxSize().padding(horizontal = 14.dp), verticalArrangement = Arrangement.Center) {
-                        Text("✦ ${progress.todayXp}/${LearningProgress.DAILY_XP_GOAL}", color = Gold, fontSize = 16.sp, fontWeight = FontWeight.ExtraBold)
-                        Text(if (progress.dailyGoalReached) "hedef tamam!" else "günlük XP", color = Muted, fontSize = 11.sp)
+                        Text("${progress.todayStudySeconds / 60}/$dailyGoalMinutes dk", color = Gold, fontSize = 16.sp, fontWeight = FontWeight.ExtraBold)
+                        Text(if (progress.studyGoalPercent(dailyGoalMinutes) >= 100) "hedef tamam!" else "günlük hedef", color = Muted, fontSize = 11.sp)
                     }
                 }
             }
@@ -1136,6 +1132,16 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         if (pendingSyncCount > 0) {
             InfoCard("$pendingSyncCount ders kaydı cihazında güvende. İnternet bağlantısında hesabınla eşitlenecek.")
             Spacer(Modifier.height(12.dp))
+        }
+        Surface(onClick = onPro, color = Panel2, shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, Gold), modifier = Modifier.fillMaxWidth().padding(bottom = 18.dp)) {
+            Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Default.AutoAwesome, null, tint = Gold)
+                Column(Modifier.weight(1f).padding(start = 12.dp)) {
+                    Text(if (proActive) "Sana özel Pro pratiği" else "Lingua Pro’yu keşfet", color = Gold, fontWeight = FontWeight.Bold)
+                    Text("Hatalarına ve becerilerine göre kişisel oturumlar", color = OnBgSoft, fontSize = 12.sp, modifier = Modifier.padding(top = 4.dp))
+                }
+                Icon(Icons.Default.ChevronRight, "Lingua Pro’yu aç", tint = Gold)
+            }
         }
         Text("$level Seviyesindeki Yolculuğun", color = OnBg, fontSize = 20.sp, fontWeight = FontWeight.Bold)
         Text("Hedeflerine adım adım ilerle", color = OnBgSoft, fontSize = 14.sp, modifier = Modifier.padding(top = 3.dp, bottom = 14.dp))
@@ -1328,71 +1334,6 @@ private fun ProgressScreen(level: String, completed: Int, progress: LearningProg
     }
 }
 
-@Composable
-private fun ProfileScreen(name: String, email: String, level: String, completed: Int, progress: LearningProgress, username: String, avatarCode: String, onEditAvatar: () -> Unit, onSocial: () -> Unit, onBack: () -> Unit, onSettings: () -> Unit, onSignOut: () -> Unit, onDeleteAccount: (String) -> Unit, deletionBusy: Boolean = false) {
-    var confirmDelete by remember { mutableStateOf(false) }
-    var deletePassword by remember { mutableStateOf("") }
-    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
-        BackRow("Profil", onBack)
-        Spacer(Modifier.height(12.dp))
-        Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(22.dp), modifier = Modifier.fillMaxWidth()) {
-            Column(Modifier.padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                AvatarView(AvatarConfig.decode(avatarCode), 92.dp)
-                Text(name.ifBlank { "Öğrenci" }, fontSize = 21.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 10.dp))
-                if (username.isNotBlank()) Text("@$username", color = Gold, fontSize = 13.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 2.dp))
-                Text(email.ifBlank { "Demo hesap • bu cihazda" }, color = Muted, fontSize = 13.sp, modifier = Modifier.padding(top = 4.dp))
-                // XP seviyesi: her XP seni bir üst seviyeye taşır
-                val xpLevel = LevelSystem.levelFor(progress.totalXp)
-                val (inLevel, needed, percent) = LevelSystem.progressToNext(progress.totalXp)
-                Row(Modifier.fillMaxWidth().padding(top = 14.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Surface(color = Gold, shape = RoundedCornerShape(12.dp)) {
-                        Text("Lv $xpLevel", color = Navy, fontSize = 13.sp, fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(horizontal = 11.dp, vertical = 5.dp))
-                    }
-                    Column(Modifier.weight(1f).padding(start = 10.dp)) {
-                        Box(Modifier.fillMaxWidth().height(8.dp).background(Panel2, RoundedCornerShape(4.dp))) {
-                            Box(Modifier.fillMaxWidth((percent / 100f).coerceIn(0f, 1f)).height(8.dp).background(Gold, RoundedCornerShape(4.dp)))
-                        }
-                        Text("$inLevel / $needed XP • sonraki seviyeye %${100 - percent}", color = Muted, fontSize = 10.sp, modifier = Modifier.padding(top = 3.dp))
-                    }
-                }
-            }
-        }
-        Spacer(Modifier.height(14.dp))
-        InfoCard("CEFR: $level  •  Tamamlanan ders: $completed  •  Toplam XP: ${progress.totalXp}")
-        Spacer(Modifier.height(18.dp))
-        Text("Hesap ve gizlilik", color = OnBg, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-        Text("Ders tamamlama hesabınla Firestore'a kaydedilir. XP, çalışma serisi ve otomatik yanıtların beceri özeti bu cihazda tutulur; cihazlar arası eşitleme henüz yoktur.", color = OnBgSoft, fontSize = 12.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 7.dp, bottom = 15.dp))
-        OutlinedButton(onClick = onEditAvatar, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Avatarını düzenle", color = OnBg) }
-        Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onSocial, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Topluluk: Bülten • Lig • Arkadaşlar", color = OnBg) }
-        Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onSettings, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Öğrenme ayarları", color = OnBg) }
-        Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onSignOut, enabled = !deletionBusy, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Oturumu kapat", color = OnBg) }
-        Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = { confirmDelete = true }, enabled = !deletionBusy, border = BorderStroke(1.dp, PinkAccent), modifier = Modifier.fillMaxWidth()) { Text(if (deletionBusy) "Hesap siliniyor…" else "Hesabı ve verileri sil", color = PinkAccent) }
-        Spacer(Modifier.height(20.dp))
-    }
-    if (confirmDelete) {
-        AlertDialog(
-            onDismissRequest = { confirmDelete = false; deletePassword = "" },
-            containerColor = Panel,
-            title = { Text("Hesap silinsin mi?", fontWeight = FontWeight.Bold) },
-            text = {
-                Column {
-                    Text("Hesabın ve öğrenme verilerin kalıcı olarak silinir. Devam etmek için mevcut şifreni gir.", color = Muted, fontSize = 13.sp)
-                    OutlinedTextField(value = deletePassword, onValueChange = { deletePassword = it }, label = { Text("Mevcut şifre") }, singleLine = true,
-                        visualTransformation = androidx.compose.ui.text.input.PasswordVisualTransformation(), modifier = Modifier.padding(top = 12.dp))
-                }
-            },
-            confirmButton = {
-                TextButton(enabled = deletePassword.isNotBlank() && !deletionBusy, onClick = { val password = deletePassword; deletePassword = ""; confirmDelete = false; onDeleteAccount(password) }) { Text("Evet, kalıcı olarak sil", color = PinkAccent, fontWeight = FontWeight.Bold) }
-            },
-            dismissButton = { TextButton(onClick = { confirmDelete = false; deletePassword = "" }) { Text("Vazgeç", color = OnBg) } }
-        )
-    }
-}
-
 
 @Composable
 private fun LockedScreen(onBack: () -> Unit) {
@@ -1404,13 +1345,6 @@ private fun LockedScreen(onBack: () -> Unit) {
     }
 }
 
-@Composable
-private fun FeatureLine(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String) {
-    Row(Modifier.fillMaxWidth().padding(vertical = 7.dp), verticalAlignment = Alignment.CenterVertically) {
-        Box(Modifier.size(38.dp).background(Panel2, CircleShape), contentAlignment = Alignment.Center) { Icon(icon, null, tint = Gold, modifier = Modifier.size(20.dp)) }
-        Text(text, color = OnBg, fontSize = 14.sp, modifier = Modifier.padding(start = 12.dp))
-    }
-}
 
 @Composable
 private fun StatCard(emoji: String, title: String, subtitle: String, modifier: Modifier = Modifier) {
@@ -1427,43 +1361,3 @@ private fun NavItem(icon: androidx.compose.ui.graphics.vector.ImageVector, text:
         Text(text, color = if (active) Gold else Muted, fontSize = 10.sp, modifier = Modifier.padding(top = 3.dp))
     }
 }
-
-@Composable
-private fun InfoCard(text: String) {
-    Row(Modifier.fillMaxWidth().background(Panel, RoundedCornerShape(16.dp)).padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
-        Icon(Icons.Default.Lightbulb, null, tint = Gold)
-        Text(text, color = Muted, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(start = 10.dp))
-    }
-}
-
-@Composable
-private fun BackRow(title: String, onBack: () -> Unit) {
-    Row(Modifier.fillMaxWidth().padding(top = 10.dp), verticalAlignment = Alignment.CenterVertically) {
-        IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, "Geri", tint = OnBg) }
-        Text(title, color = OnBg, fontSize = 19.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 4.dp))
-    }
-}
-
-@Composable
-private fun PrimaryButton(text: String, onClick: () -> Unit, enabled: Boolean = true) {
-    // Premium gece CTA: ışıklı lime zemin, koyu metin, yumuşak neon gölge
-    Button(
-        onClick = onClick,
-        enabled = enabled,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(54.dp)
-            .shadow(14.dp, RoundedCornerShape(16.dp), ambientColor = Color(0x59C6FF4A), spotColor = Color(0x66C6FF4A)),
-        shape = RoundedCornerShape(16.dp),
-        elevation = ButtonDefaults.buttonElevation(0.dp, 0.dp, 0.dp, 0.dp, 0.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Gold,
-            contentColor = Navy,
-            disabledContainerColor = Color(0x4DC6FF4A),
-            disabledContentColor = Color(0x991A0E2E)
-        )
-    ) {
-        Text(text, fontSize = 16.sp, fontWeight = FontWeight.Bold, letterSpacing = 0.3.sp)
-    }
-}
-

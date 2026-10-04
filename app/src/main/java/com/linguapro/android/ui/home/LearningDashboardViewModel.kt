@@ -13,6 +13,8 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.flow.flow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.linguapro.android.TargetVocabulary
+import com.linguapro.android.data.local.VocabularyEntity
 import com.linguapro.android.LearningLesson
 import com.linguapro.android.LearningUnit
 import com.linguapro.android.data.local.ReviewCardEntity
@@ -108,7 +110,7 @@ class LearningDashboardViewModel @Inject constructor(
 
     fun recordLesson(
         learnerKey: String, level: String, lessonId: String, scorePercent: Int?,
-        vocabularyIds: List<String>, countsTowardCourse: Boolean = true, done: (Boolean) -> Unit = {}
+        vocabulary: List<TargetVocabulary>, countsTowardCourse: Boolean = true, done: (Boolean) -> Unit = {}
     ) {
         val learnerId = learnerKey.ifBlank { "guest" }
         viewModelScope.launch {
@@ -119,7 +121,11 @@ class LearningDashboardViewModel @Inject constructor(
                     if (learnerKey.isNotBlank()) database.pendingLessonEventDao().enqueue(
                         PendingLessonEvent(UUID.randomUUID().toString(), learnerId, lessonId, scorePercent, countsTowardCourse, now)
                     )
-                    vocabularyIds.forEach { reviewScheduleRepository.addVocabularyForReview(learnerId, it, now) }
+                    database.vocabularyDao().upsertAll(vocabulary.distinctBy { it.id }.map { word ->
+                        VocabularyEntity(word.id, level, lessonId.substringBeforeLast('-'), lessonId,
+                            word.termEn, word.translationTr, word.exampleEn, word.exampleTr, word.emoji, word.termEn)
+                    })
+                    vocabulary.forEach { reviewScheduleRepository.addVocabularyForReview(learnerId, it.id, now) }
                 }
                 if (learnerKey.isNotBlank()) LessonSyncWorker.schedule(context)
                 reviewClock.value = now

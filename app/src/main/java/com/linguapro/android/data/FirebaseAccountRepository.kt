@@ -13,6 +13,7 @@ import java.util.UUID
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -109,25 +110,9 @@ class FirebaseAccountRepository(context: Context) {
                 return@launch
             }
             try {
-                suspend fun deleteQuery(query: com.google.firebase.firestore.Query) {
-                    while (true) {
-                        val docs = query.limit(200).get().await().documents
-                        if (docs.isEmpty()) return
-                        val batch = store().batch()
-                        docs.forEach { batch.delete(it.reference) }
-                        batch.commit().await()
-                    }
-                }
-                val profile = store().collection("users").document(uid)
-                deleteQuery(profile.collection("friends"))
-                deleteQuery(store().collection("activity").whereEqualTo("uid", uid))
-                deleteQuery(profile.collection("lessonEvents"))
-                deleteQuery(profile.collection("lessonCompletions"))
-                // Release names only after the public identity has been removed.
-                store().collection("leaderboard").document(uid).delete().await()
-                deleteQuery(store().collection("usernames").whereEqualTo("uid", uid))
-                profile.delete().await()
-                user.delete().await()
+                user.getIdToken(true).await()
+                val response = FirebaseFunctions.getInstance().getHttpsCallable("deleteAccount").call().await()
+                check((response.data as? Map<*, *>)?.get("deleted") == true)
                 callback(null)
             } catch (error: Exception) {
                 callback("Silme tamamlanamadı. Bazı veriler silinmiş olabilir; aynı işlemi yeniden deneyebilirsin. " + safeMessage(error))
