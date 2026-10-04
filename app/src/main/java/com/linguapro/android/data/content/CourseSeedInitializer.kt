@@ -89,7 +89,7 @@ class CourseSeedInitializer @Inject constructor(
 
     private suspend fun installCatalogVocabulary() {
         val packId = "catalog-vocabulary"
-        val version = "2026-10-04-scenarios-v4"
+        val version = "2026-10-04-production-v5"
         if (database.contentPackDao().installedVersion(packId) == version) return
         val vocabulary = (CourseCatalog.allLessons() + WorldCatalog.allWorldLessons()).flatMap { lesson ->
             val languagePrefix = lesson.id.substringBefore('-')

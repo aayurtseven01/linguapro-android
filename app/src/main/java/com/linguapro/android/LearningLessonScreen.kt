@@ -327,7 +327,7 @@ fun LearningLessonScreen(
             Column(Modifier.fillMaxWidth().padding(18.dp)) {
                 Text(skillLabel(exercise.skill).uppercase(Locale.forLanguageTag("tr-TR")), color = LessonGold, fontWeight = FontWeight.Bold, fontSize = 12.sp)
                 Text(exercise.instructionTr, color = LessonMuted, fontSize = 13.sp, modifier = Modifier.padding(top = 6.dp, bottom = 14.dp))
-                if ((exercise.skill == Skill.READING || exercise.skill == Skill.WRITING) && exercise.context.isNotBlank()) {
+                if ((exercise.skill == Skill.READING || exercise.skill == Skill.WRITING || exercise.skill == Skill.VOCABULARY) && exercise.context.isNotBlank()) {
                     Surface(color = LessonPanel2, shape = RoundedCornerShape(14.dp)) {
                         Text(exercise.context, fontSize = 16.sp, lineHeight = 25.sp, modifier = Modifier.fillMaxWidth().padding(14.dp))
                     }
@@ -398,6 +398,22 @@ fun LearningLessonScreen(
                 } else {
                     Text(exercise.prompt, fontSize = 21.sp, fontWeight = FontWeight.Bold, lineHeight = 28.sp)
                     Spacer(Modifier.height(14.dp))
+                }
+
+                if (exercise.skill == Skill.WRITING) {
+                    exercise.writingRequirements?.let { requirements ->
+                        Text("Yanıtını kontrol ederken", color = LessonGold, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                        requirements.checklistTr.forEach { criterion ->
+                            Text("• $criterion", color = LessonMuted, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 4.dp))
+                        }
+                        val minimum = requirements.minimumWords
+                        val maximum = requirements.maximumWords
+                        if (minimum != null && maximum != null) {
+                            val count = answer.trim().split(Regex("\\s+")).count { it.isNotBlank() }
+                            Text("Kelime sayısı: $count • Hedef: $minimum–$maximum", color = LessonGold, fontSize = 12.sp, modifier = Modifier.padding(top = 8.dp))
+                        }
+                        Spacer(Modifier.height(12.dp))
+                    }
                 }
 
                 if (isWordBank) {
@@ -499,7 +515,7 @@ fun LearningLessonScreen(
                             Text("Açık uçlu yazı henüz otomatik puanlanmıyor. Yanıtını aşağıdaki örnekle karşılaştır.", color = LessonMuted, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 5.dp))
                             val sample = exercise.sampleAnswer ?: exercise.acceptedAnswers.firstOrNull().orEmpty()
                             if (sample.isNotBlank()) Text("Örnek yanıt: $sample", color = LessonGold, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 6.dp))
-                            val coaching = WritingCoach.review(answer, sample)
+                            val coaching = WritingCoach.review(answer, sample, exercise.writingRequirements)
                             coaching.strengths.forEach { Text("✓ $it", color = LessonMint, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 5.dp)) }
                             coaching.suggestions.forEach { Text("• $it", color = LessonGold, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 4.dp)) }
                             Text("Otomatik dilbilgisi puanı verilmez; öneriler temel biçim kontrolüdür.", color = LessonMuted, fontSize = 10.sp, lineHeight = 14.sp, modifier = Modifier.padding(top = 6.dp))

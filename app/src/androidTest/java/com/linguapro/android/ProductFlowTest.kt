@@ -67,6 +67,34 @@ class ProductFlowTest {
         compose.onNodeWithText("Ücretsiz öğrenmeye devam et").performScrollTo().assertIsEnabled()
     }
 
+
+    @Test fun writingShowsSourceAndCriteriaThenAcceptsAnAlternativeWithoutAFalseScore() {
+        val originalLesson = CourseCatalog.units("B1").first().lessons[1]
+        val writing = originalLesson.exercises.single { it.skill == Skill.WRITING }
+        val lesson = originalLesson.copy(id = "writing-ui-test", exercises = listOf(writing),
+            targetVocabulary = emptyList(), grammarFocus = null, stages = emptyList())
+        var completed = false
+        var completionScore: Int? = 999
+        compose.setContent { LinguaTheme { Box(Modifier.fillMaxSize().background(BgBottom)) {
+            LearningLessonScreen(lesson, 0, {}, { _, _, _ -> error("Open writing must not be scored") },
+                { score, _ -> completionScore = score; completed = true })
+        } } }
+        compose.onNodeWithText(writing.context).assertExists()
+        compose.onNodeWithText(writing.writingRequirements!!.checklistTr.first()).performScrollTo().assertIsDisplayed()
+        compose.onNodeWithText("Örnek yanıt: ${writing.sampleAnswer}").assertDoesNotExist()
+        val answer = "The customer asked for changes near the deadline. The team explained the extra time needed and agreed to show the design first. The working website would follow on Monday. Sending an email afterwards helped everyone understand the agreement and avoided promising a final delivery on Friday."
+        compose.onNode(hasSetTextAction()).performScrollTo().performTextInput(answer)
+        compose.onNodeWithText("Kelime sayısı: ${answer.split(Regex("\\s+")).size} • Hedef: 40–60").assertExists()
+        screenshot("writing-task")
+        compose.onNodeWithText("Yanıtı kontrol et").performScrollTo().performClick()
+        compose.onNodeWithText("Yanıtın kaydedildi").performScrollTo().assertIsDisplayed()
+        compose.onNodeWithText("Örnek yanıt: ${writing.sampleAnswer}").assertExists()
+        compose.onNodeWithText("Dersi tamamla").performScrollTo().performClick()
+        compose.onNodeWithText("Öğrenme yoluma dön").performScrollTo().performClick()
+        assertEquals(true, completed)
+        org.junit.Assert.assertNull(completionScore)
+    }
+
     private fun screenshot(name: String) {
         // PixelCopy-backed capture is reliable on API 26+. API 24 still runs all behavior checks.
         if (Build.VERSION.SDK_INT < 26) return

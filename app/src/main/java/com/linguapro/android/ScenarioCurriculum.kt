@@ -62,9 +62,9 @@ object ScenarioCurriculum {
                 reuse("listen-review", listening), reuse("read-review", reading), reuse("speak", speaking),
                 LearningExercise("scenario-${unit.id.lowercase()}-write", Skill.WRITING,
                     "Öğrendiğini kendi cümlelerinle ifade et", production, context = scenario.passage,
-                    acceptedAnswers = listOf(scenario.passage),
-                    explanationTr = "Önce ana bilgiyi seç, ardından bu seviyenin görev ölçütlerini kontrol et. Aşağıdaki metin dil örneğidir; tek doğru cevap değildir. Yazın otomatik puanlanmaz.",
-                    sampleAnswer = scenario.passage)
+                    acceptedAnswers = listOf(WritingModels.forUnit(unit.id)),
+                    explanationTr = "Önce ana bilgiyi seç, ardından bu seviyenin görev ölçütlerini kontrol et. Aşağıdaki yanıt görevi karşılayan bir örnektir; tek doğru cevap değildir. Yazın otomatik puanlanmaz.",
+                    sampleAnswer = WritingModels.forUnit(unit.id), writingRequirements = WritingModels.requirements(level))
             ))
         return unit.copy(lessons = unit.lessons.map { if (it.id == target.id) revised else it })
     }
