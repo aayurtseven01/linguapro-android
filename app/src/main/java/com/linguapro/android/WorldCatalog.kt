@@ -43,7 +43,7 @@ object WorldCatalog {
         "ZH" to WorldCourseZH.units,
         "JA" to WorldCourseJA.units,
         "KO" to WorldCourseKO.units
-    ).mapValues { (_, units) -> units.map { withCheckpoint(it) } }
+    ).mapValues { (_, units) -> units.map { withCheckpoint(ContentEditorialPolicy.revise(it)) } }
 
     fun language(code: String): WorldLanguage = languages.firstOrNull { it.code == code } ?: languages.first()
 

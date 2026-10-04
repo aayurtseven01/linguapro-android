@@ -2,6 +2,8 @@ package com.linguapro.android.data.content
 
 import android.content.Context
 import androidx.room.withTransaction
+import com.linguapro.android.ContentEditorialPolicy
+import com.linguapro.android.EditorialCurriculum
 import com.linguapro.android.CourseCatalog
 import com.linguapro.android.WorldCatalog
 import com.linguapro.android.CourseContentPack
@@ -29,9 +31,11 @@ class CourseSeedInitializer @Inject constructor(
 
     suspend fun installIfNeeded(): Result<Int> = runCatching {
         installCatalogVocabulary()
-        val pack = context.assets.open(ASSET_FILE).bufferedReader(Charsets.UTF_8).use { reader ->
+        val rawPack = context.assets.open(ASSET_FILE).bufferedReader(Charsets.UTF_8).use { reader ->
             json.decodeFromString<CourseContentPack>(reader.readText())
         }
+        val pack = rawPack.copy(contentVersion = rawPack.contentVersion + "-editorial-v2",
+            units = rawPack.units.map { ContentEditorialPolicy.revise(EditorialCurriculum.revise(it)) })
         if (database.contentPackDao().installedVersion(PACK_ID) == pack.contentVersion) return@runCatching 0
         val problems = CoursePackValidator.errors(pack)
         require(problems.isEmpty()) { problems.joinToString("\n") }
@@ -85,7 +89,7 @@ class CourseSeedInitializer @Inject constructor(
 
     private suspend fun installCatalogVocabulary() {
         val packId = "catalog-vocabulary"
-        val version = "2026-10-04-v1"
+        val version = "2026-10-04-editorial-v2"
         if (database.contentPackDao().installedVersion(packId) == version) return
         val vocabulary = (CourseCatalog.allLessons() + WorldCatalog.allWorldLessons()).flatMap { lesson ->
             val languagePrefix = lesson.id.substringBefore('-')
@@ -106,4 +110,3 @@ class CourseSeedInitializer @Inject constructor(
         const val PACK_ID = "core-course"
     }
 }
-

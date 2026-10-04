@@ -265,7 +265,7 @@ object CourseCatalog {
         val quiz = pool.shuffled(kotlin.random.Random(unit.id.hashCode().toLong()))
             .take(5)
             .map { it.copy(id = "${it.id}-cp") }
-        val checkpoint = LearningLesson(
+        val checkpoint = EditorialCurriculum.checkpointFor(unit) ?: LearningLesson(
             "${unit.id}-CP",
             "Checkpoint: ${unit.title}",
             "Üniteyi en az yüzde 80 başarıyla geç.",
@@ -275,7 +275,7 @@ object CourseCatalog {
     }
 
     private val completeCatalog: Map<String, List<LearningUnit>> = levels.associateWith { level ->
-        (catalog[level].orEmpty() + additionalUnits[level].orEmpty() + CourseExpansion.units(level) + CourseExpansionAdvanced.units(level) + CourseExpansionMastery.units(level) + CourseExpansionCoverage.units(level) + CourseVolume.units(level)).map { withCheckpoint(it) }
+        (catalog[level].orEmpty() + additionalUnits[level].orEmpty() + CourseExpansion.units(level) + CourseExpansionAdvanced.units(level) + CourseExpansionMastery.units(level) + CourseExpansionCoverage.units(level) + CourseVolume.units(level)).map { withCheckpoint(ContentEditorialPolicy.revise(EditorialCurriculum.revise(it))) }
     }
 
     fun units(level: String): List<LearningUnit> = completeCatalog[level].orEmpty()
