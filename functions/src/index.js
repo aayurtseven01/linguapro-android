@@ -93,7 +93,7 @@ exports.initializeBoardScore = onDocumentCreated('leaderboard/{uid}', async (eve
   await db.runTransaction(async (tx) => {
     const user = await tx.get(db.collection('users').doc(uid));
     const board = await tx.get(event.data.ref);
-    if (!board.exists || !user.exists) return;
+    if (!board.exists || !user.exists || user.get('deletionRequested')) return;
     const xp = user.get('verifiedXp') || 0;
     const week = weekKey(Date.now());
     tx.update(event.data.ref, { verifiedXp: xp, level: levelFor(xp), weekKey: week,

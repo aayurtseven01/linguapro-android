@@ -140,6 +140,7 @@ test('owner can delete own profile but strangers cannot', async () => {
 
 test('leaderboard: owner writes own entry, strangers cannot, signed-in users can read', async () => {
   const alice = env.authenticatedContext('alice').firestore();
+  await assertSucceeds(setDoc(doc(alice, 'users/alice'), profile('alice')));
   await assertSucceeds(setDoc(doc(alice, 'usernames/alice_tr'), { uid: 'alice' }));
   const entry = { uid: 'alice', username: 'alice_tr', displayName: 'Alice', avatar: 'g=0;t=1' };
   await assertSucceeds(setDoc(doc(alice, 'leaderboard/alice'), entry));
@@ -161,6 +162,7 @@ test('leaderboard: owner writes own entry, strangers cannot, signed-in users can
 
 test('activity: users post only as themselves and cannot edit posts', async () => {
   const alice = env.authenticatedContext('alice').firestore();
+  await assertSucceeds(setDoc(doc(alice, 'users/alice'), profile('alice')));
   await assertSucceeds(setDoc(doc(alice, 'usernames/alice_tr'), { uid: 'alice' }));
   const item = doc(collection(alice, 'activity'));
   await assertSucceeds(setDoc(item, { uid: 'alice', username: 'alice_tr', avatar: '', text: 'Seviye 3 oldu!', createdAt: 1700000000000 }));
@@ -189,6 +191,7 @@ test('paid access and ranked XP evidence can only be written by the backend', as
 test('reserved names cannot be impersonated in the leaderboard or activity feed', async () => {
   const alice = env.authenticatedContext('alice').firestore();
   const bob = env.authenticatedContext('bob').firestore();
+  await assertSucceeds(setDoc(doc(alice, 'users/alice'), profile('alice')));
   await assertSucceeds(setDoc(doc(alice, 'usernames/alice_tr'), { uid: 'alice' }));
   await assertFails(setDoc(doc(bob, 'leaderboard/bob'), { uid: 'bob', username: 'alice_tr', displayName: 'Fake', avatar: '' }));
   await assertFails(setDoc(doc(collection(bob, 'activity')), { uid: 'bob', username: 'alice_tr', avatar: '', text: 'Fake', createdAt: 1 }));
@@ -242,4 +245,15 @@ test('account deletion marker prevents new writes racing with server cleanup', a
   });
   await assertFails(updateDoc(doc(alice, 'users/alice'), { completedLessons: increment(1) }));
   await assertFails(setDoc(doc(collection(alice, 'users/alice/lessonEvents')), { lessonId: 'A1-U1-L1', completedAt: serverTimestamp() }));
+});
+
+test('deleting accounts cannot recreate public activity or league entries', async () => {
+  const alice = env.authenticatedContext('alice').firestore();
+  await assertSucceeds(setDoc(doc(alice, 'users/alice'), profile('alice')));
+  await assertSucceeds(setDoc(doc(alice, 'usernames/alice_tr'), { uid: 'alice' }));
+  await env.withSecurityRulesDisabled(async (ctx) => {
+    await updateDoc(doc(ctx.firestore(), 'users/alice'), { deletionRequested: true });
+  });
+  await assertFails(setDoc(doc(alice, 'leaderboard/alice'), { uid: 'alice', username: 'alice_tr', displayName: 'Alice', avatar: '' }));
+  await assertFails(setDoc(doc(collection(alice, 'activity')), { uid: 'alice', username: 'alice_tr', avatar: '', text: 'x', createdAt: 1 }));
 });
