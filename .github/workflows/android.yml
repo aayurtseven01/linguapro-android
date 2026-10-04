@@ -103,7 +103,7 @@ jobs:
           script: |
             chmod +x gradlew && ./gradlew -Pandroid.injected.androidTest.leaveApksInstalledAfterRun=true connectedDebugAndroidTest
             mkdir -p app/build/ui-screenshots
-            for name in study-plan-top study-plan-bottom delete-confirmation pro-preview; do adb shell run-as com.linguapro.android cat files/qa-screenshots/$name.png > app/build/ui-screenshots/$name.png; done
+            if [ "${{ matrix.api-level }}" -ge 26 ]; then for name in study-plan-top study-plan-bottom delete-confirmation pro-preview; do adb shell run-as com.linguapro.android cat files/qa-screenshots/$name.png > app/build/ui-screenshots/$name.png; done; fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:

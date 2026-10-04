@@ -2,6 +2,8 @@ package com.linguapro.android
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.os.Build
+import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -66,11 +68,14 @@ class ProductFlowTest {
     }
 
     private fun screenshot(name: String) {
+        // PixelCopy-backed capture is reliable on API 26+. API 24 still runs all behavior checks.
+        if (Build.VERSION.SDK_INT < 26) return
         compose.waitForIdle()
         val context = ApplicationProvider.getApplicationContext<Context>()
         val target = File(context.filesDir, "qa-screenshots/$name.png")
         target.parentFile!!.mkdirs()
-        val bitmap = androidx.test.platform.app.InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot()
+        val roots = compose.onAllNodes(isRoot())
+        val bitmap = roots[roots.fetchSemanticsNodes().lastIndex].captureToImage().asAndroidBitmap()
         target.outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
     }
 }
