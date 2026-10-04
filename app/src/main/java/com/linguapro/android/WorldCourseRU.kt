@@ -1,9 +1,106 @@
 package com.linguapro.android
 
-/** Rusça (RU) tam müfredat: A1-C2, 36 ünite, 108 ders. Türkçe yönergeli, elle küratörlü içerik. */
+/** Rusça (RU) tam müfredat: A1-C2, 96 ünite (temel + Pekiştirme Kampı). Türkçe yönergeli içerik. */
 object WorldCourseRU {
-    val units: List<LearningUnit> = listOf(
-        LearningUnit("RU-A1-U1", "Selamlaşma ve Tanışma", "Selamlaş, kendini tanıt ve vedalaş.", listOf(
+    val units: List<LearningUnit> by lazy { listOf(
+        u1(),
+        u2(),
+        u3(),
+        u4(),
+        u5(),
+        u6(),
+        u7(),
+        u8(),
+        u9(),
+        u10(),
+        u11(),
+        u12(),
+        u13(),
+        u14(),
+        u15(),
+        u16(),
+        u17(),
+        u18(),
+        u19(),
+        u20(),
+        u21(),
+        u22(),
+        u23(),
+        u24(),
+        u25(),
+        u26(),
+        u27(),
+        u28(),
+        u29(),
+        u30(),
+        u31(),
+        u32(),
+        u33(),
+        u34(),
+        u35(),
+        u36(),
+        u37(),
+        u38(),
+        u39(),
+        u40(),
+        u41(),
+        u42(),
+        u43(),
+        u44(),
+        u45(),
+        u46(),
+        u47(),
+        u48(),
+        u49(),
+        u50(),
+        u51(),
+        u52(),
+        u53(),
+        u54(),
+        u55(),
+        u56(),
+        u57(),
+        u58(),
+        u59(),
+        u60(),
+        u61(),
+        u62(),
+        u63(),
+        u64(),
+        u65(),
+        u66(),
+        u67(),
+        u68(),
+        u69(),
+        u70(),
+        u71(),
+        u72(),
+        u73(),
+        u74(),
+        u75(),
+        u76(),
+        u77(),
+        u78(),
+        u79(),
+        u80(),
+        u81(),
+        u82(),
+        u83(),
+        u84(),
+        u85(),
+        u86(),
+        u87(),
+        u88(),
+        u89(),
+        u90(),
+        u91(),
+        u92(),
+        u93(),
+        u94(),
+        u95(),
+        u96()) }
+
+    private fun u1(): LearningUnit = LearningUnit("RU-A1-U1", "Selamlaşma ve Tanışma", "Selamlaş, kendini tanıt ve vedalaş.", listOf(
             LearningLesson("RU-A1-U1-L1", "Selamlaşma ve Tanışma — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rua1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'привет' ne anlama gelir?", "", listOf("teşekkürler", "hoşça kalın", "merhaba"), listOf("merhaba"), "Привет, я Анна. — Merhaba, ben Anna.", null, null),
                 LearningExercise("rua1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'спасибо' ne anlama gelir?", "", listOf("benim adım", "teşekkürler", "lütfen / rica ederim"), listOf("teşekkürler"), "Большое спасибо! — Çok teşekkürler!", null, null),
@@ -29,8 +126,9 @@ object WorldCourseRU {
             LearningLesson("RU-A1-U1-L5", "Selamlaşma ve Tanışma — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rua1u1e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Benim adım Mehmet.", "", listOf(), listOf("Меня зовут Мехмет."), "Doğru cümle: Меня зовут Мехмет.", null, "Меня зовут Мехмет."),
                 LearningExercise("rua1u1e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Hoşça kalın, yarına görüşürüz!", "", listOf(), listOf("До свидания, до завтра!"), "Doğru cümle: До свидания, до завтра!", null, "До свидания, до завтра!"),
-                LearningExercise("rua1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Привет, я Анна.", "", listOf(), listOf("Привет, я Анна."), "Türkçesi: Merhaba, ben Anna.", "Привет, я Анна.", "Привет, я Анна."))))),
-        LearningUnit("RU-A1-U2", "Sayılar ve Zaman", "Sayıları say, saati ve günleri söyle.", listOf(
+                LearningExercise("rua1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Привет, я Анна.", "", listOf(), listOf("Привет, я Анна."), "Türkçesi: Merhaba, ben Anna.", "Привет, я Анна.", "Привет, я Анна.")))))
+
+    private fun u2(): LearningUnit = LearningUnit("RU-A1-U2", "Sayılar ve Zaman", "Sayıları say, saati ve günleri söyle.", listOf(
             LearningLesson("RU-A1-U2-L1", "Sayılar ve Zaman — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rua1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'два' ne anlama gelir?", "", listOf("yarın", "iki", "on"), listOf("iki"), "У меня два брата. — İki erkek kardeşim var.", null, null),
                 LearningExercise("rua1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'десять' ne anlama gelir?", "", listOf("on", "bugün", "saat"), listOf("on"), "Сейчас десять часов. — Saat şimdi on.", null, null),
@@ -56,8 +154,9 @@ object WorldCourseRU {
             LearningLesson("RU-A1-U2-L5", "Sayılar ve Zaman — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rua1u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Saat kaç?", "", listOf(), listOf("Который час?"), "Doğru cümle: Который час?", null, "Который час?"),
                 LearningExercise("rua1u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yarına görüşürüz!", "", listOf(), listOf("До завтра!"), "Doğru cümle: До завтра!", null, "До завтра!"),
-                LearningExercise("rua1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: У меня два брата.", "", listOf(), listOf("У меня два брата."), "Türkçesi: İki erkek kardeşim var.", "У меня два брата.", "У меня два брата."))))),
-        LearningUnit("RU-A1-U3", "Yiyecek ve İçecek", "Temel yiyecekleri söyle ve sipariş ver.", listOf(
+                LearningExercise("rua1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: У меня два брата.", "", listOf(), listOf("У меня два брата."), "Türkçesi: İki erkek kardeşim var.", "У меня два брата.", "У меня два брата.")))))
+
+    private fun u3(): LearningUnit = LearningUnit("RU-A1-U3", "Yiyecek ve İçecek", "Temel yiyecekleri söyle ve sipariş ver.", listOf(
             LearningLesson("RU-A1-U3-L1", "Yiyecek ve İçecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rua1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'вода' ne anlama gelir?", "", listOf("su", "ekmek", "elma"), listOf("su"), "Вода холодная. — Su soğuk.", null, null),
                 LearningExercise("rua1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'хлеб' ne anlama gelir?", "", listOf("kahve", "çay", "ekmek"), listOf("ekmek"), "Хлеб свежий. — Ekmek taze.", null, null),
@@ -83,8 +182,9 @@ object WorldCourseRU {
             LearningLesson("RU-A1-U3-L5", "Yiyecek ve İçecek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rua1u3e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Çayı severim.", "", listOf(), listOf("Я люблю чай."), "Doğru cümle: Я люблю чай.", null, "Я люблю чай."),
                 LearningExercise("rua1u3e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Elma kırmızı.", "", listOf(), listOf("Яблоко красное."), "Doğru cümle: Яблоко красное.", null, "Яблоко красное."),
-                LearningExercise("rua1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Вода холодная.", "", listOf(), listOf("Вода холодная."), "Türkçesi: Su soğuk.", "Вода холодная.", "Вода холодная."))))),
-        LearningUnit("RU-A1-U4", "Aile ve İnsanlar", "Aile üyelerini tanıt.", listOf(
+                LearningExercise("rua1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Вода холодная.", "", listOf(), listOf("Вода холодная."), "Türkçesi: Su soğuk.", "Вода холодная.", "Вода холодная.")))))
+
+    private fun u4(): LearningUnit = LearningUnit("RU-A1-U4", "Aile ve İnsanlar", "Aile üyelerini tanıt.", listOf(
             LearningLesson("RU-A1-U4-L1", "Aile ve İnsanlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rua1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'семья' ne anlama gelir?", "", listOf("anne", "erkek kardeş", "aile"), listOf("aile"), "Моя семья большая. — Ailem kalabalık.", null, null),
                 LearningExercise("rua1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'мама' ne anlama gelir?", "", listOf("arkadaş", "anne", "baba"), listOf("anne"), "Мама дома. — Annem evde.", null, null),
@@ -110,8 +210,9 @@ object WorldCourseRU {
             LearningLesson("RU-A1-U4-L5", "Aile ve İnsanlar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rua1u4e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: O benim arkadaşım.", "", listOf(), listOf("Он мой друг."), "Doğru cümle: Он мой друг.", null, "Он мой друг."),
                 LearningExercise("rua1u4e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Erkek kardeşim genç.", "", listOf(), listOf("Мой брат молодой."), "Doğru cümle: Мой брат молодой.", null, "Мой брат молодой."),
-                LearningExercise("rua1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Моя семья большая.", "", listOf(), listOf("Моя семья большая."), "Türkçesi: Ailem kalabalık.", "Моя семья большая.", "Моя семья большая."))))),
-        LearningUnit("RU-A1-U5", "Günlük Yaşam ve Şehir", "Ev, iş ve şehir hakkında konuş.", listOf(
+                LearningExercise("rua1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Моя семья большая.", "", listOf(), listOf("Моя семья большая."), "Türkçesi: Ailem kalabalık.", "Моя семья большая.", "Моя семья большая.")))))
+
+    private fun u5(): LearningUnit = LearningUnit("RU-A1-U5", "Günlük Yaşam ve Şehir", "Ev, iş ve şehir hakkında konuş.", listOf(
             LearningLesson("RU-A1-U5-L1", "Günlük Yaşam ve Şehir — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rua1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'дом' ne anlama gelir?", "", listOf("mağaza", "ev", "iş"), listOf("ev"), "Дом старый. — Ev eski.", null, null),
                 LearningExercise("rua1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'работа' ne anlama gelir?", "", listOf("iş", "şehir", "yaşıyorum"), listOf("iş"), "Работа интересная. — İş ilginç.", null, null),
@@ -137,8 +238,9 @@ object WorldCourseRU {
             LearningLesson("RU-A1-U5-L5", "Günlük Yaşam ve Şehir — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rua1u5e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Moskova'da yaşıyorum.", "", listOf(), listOf("Я живу в Москве."), "Doğru cümle: Я живу в Москве.", null, "Я живу в Москве."),
                 LearningExercise("rua1u5e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Mağaza kapalı.", "", listOf(), listOf("Магазин закрыт."), "Doğru cümle: Магазин закрыт.", null, "Магазин закрыт."),
-                LearningExercise("rua1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Дом старый.", "", listOf(), listOf("Дом старый."), "Türkçesi: Ev eski.", "Дом старый.", "Дом старый."))))),
-        LearningUnit("RU-A1-U6", "Seyahat Temelleri", "Bilet al, yol sor, otele yerleş.", listOf(
+                LearningExercise("rua1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Дом старый.", "", listOf(), listOf("Дом старый."), "Türkçesi: Ev eski.", "Дом старый.", "Дом старый.")))))
+
+    private fun u6(): LearningUnit = LearningUnit("RU-A1-U6", "Seyahat Temelleri", "Bilet al, yol sor, otele yerleş.", listOf(
             LearningLesson("RU-A1-U6-L1", "Seyahat Temelleri — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rua1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'поезд' ne anlama gelir?", "", listOf("tren", "bilet", "sola"), listOf("tren"), "Поезд приходит в девять. — Tren dokuzda geliyor.", null, null),
                 LearningExercise("rua1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'билет' ne anlama gelir?", "", listOf("otel", "havalimanı", "bilet"), listOf("bilet"), "Один билет, пожалуйста. — Bir bilet, lütfen.", null, null),
@@ -164,8 +266,9 @@ object WorldCourseRU {
             LearningLesson("RU-A1-U6-L5", "Seyahat Temelleri — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rua1u6e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Havalimanı uzak.", "", listOf(), listOf("Аэропорт далеко."), "Doğru cümle: Аэропорт далеко.", null, "Аэропорт далеко."),
                 LearningExercise("rua1u6e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sola gidin.", "", listOf(), listOf("Идите налево."), "Doğru cümle: Идите налево.", null, "Идите налево."),
-                LearningExercise("rua1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Поезд приходит в девять.", "", listOf(), listOf("Поезд приходит в девять."), "Türkçesi: Tren dokuzda geliyor.", "Поезд приходит в девять.", "Поезд приходит в девять."))))),
-        LearningUnit("RU-A1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Поезд приходит в девять.", "", listOf(), listOf("Поезд приходит в девять."), "Türkçesi: Tren dokuzda geliyor.", "Поезд приходит в девять.", "Поезд приходит в девять.")))))
+
+    private fun u7(): LearningUnit = LearningUnit("RU-A1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A1-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua1k_e110", Skill.VOCABULARY, "Doğru çeviriyi seç", "'erkek kardeş' ifadesinin Rusça karşılığı hangisi?", "", listOf("работа", "город", "брат"), listOf("брат"), "Örnek: Мой брат молодой. — Erkek kardeşim genç.", null, null),
                 LearningExercise("rua1k_e61", Skill.VOCABULARY, "Doğru anlamı seç", "'вода' ne anlama gelir?", "", listOf("ekmek", "kahve", "su"), listOf("su"), "Вода холодная. — Su soğuk.", null, null),
@@ -189,8 +292,9 @@ object WorldCourseRU {
                 LearningExercise("rua1k_e101", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Мама дома.", listOf("Çayı severim.", "Annem evde.", "Elma kırmızı."), listOf("Annem evde."), "Cümlenin çevirisi: Annem evde.", null, null),
                 LearningExercise("rua1k_e18", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Кофе, ___.", "", listOf("гостиница", "налево", "пожалуйста"), listOf("пожалуйста"), "Doğru cümle: Кофе, пожалуйста. — Kahve, lütfen.", null, null),
                 LearningExercise("rua1k_e142", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Mağaza kapalı.", "", listOf(), listOf("Магазин закрыт."), "Doğru cümle: Магазин закрыт.", null, "Магазин закрыт."),
-                LearningExercise("rua1k_e122", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ev' ifadesinin Rusça karşılığı hangisi?", "", listOf("дом", "яблоко", "чай"), listOf("дом"), "Örnek: Дом старый. — Ev eski.", null, null))))),
-        LearningUnit("RU-A1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua1k_e122", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ev' ifadesinin Rusça karşılığı hangisi?", "", listOf("дом", "яблоко", "чай"), listOf("дом"), "Örnek: Дом старый. — Ev eski.", null, null)))))
+
+    private fun u8(): LearningUnit = LearningUnit("RU-A1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A1-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua1k_e82", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Elma kırmızı.", "", listOf(), listOf("Яблоко красное."), "Doğru cümle: Яблоко красное.", null, "Яблоко красное."),
                 LearningExercise("rua1k_e63", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Вода холодная."), "Söylenen cümle: Вода холодная. — Su soğuk.", "Вода холодная.", null),
@@ -214,8 +318,9 @@ object WorldCourseRU {
                 LearningExercise("rua1k_e58", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Saat kaç?", "", listOf(), listOf("Который час?"), "Doğru cümle: Который час?", null, "Который час?"),
                 LearningExercise("rua1k_e167", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Гостиница в центре.", listOf("Kahve içiyorum.", "Elma kırmızı.", "Otel merkezde."), listOf("Otel merkezde."), "Cümlenin çevirisi: Otel merkezde.", null, null),
                 LearningExercise("rua1k_e65", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Вода холодная.", listOf("Ev eski.", "Su soğuk.", "O benim arkadaşım."), listOf("Su soğuk."), "Cümlenin çevirisi: Su soğuk.", null, null),
-                LearningExercise("rua1k_e12", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Большое ___!", "", listOf("спасибо", "меня зовут", "два"), listOf("спасибо"), "Doğru cümle: Большое спасибо! — Çok teşekkürler!", null, null))))),
-        LearningUnit("RU-A1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua1k_e12", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Большое ___!", "", listOf("спасибо", "меня зовут", "два"), listOf("спасибо"), "Doğru cümle: Большое спасибо! — Çok teşekkürler!", null, null)))))
+
+    private fun u9(): LearningUnit = LearningUnit("RU-A1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A1-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua1k_e104", Skill.VOCABULARY, "Doğru çeviriyi seç", "'baba' ifadesinin Rusça karşılığı hangisi?", "", listOf("папа", "вода", "хлеб"), listOf("папа"), "Örnek: Папа много работает. — Babam çok çalışır.", null, null),
                 LearningExercise("rua1k_e129", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Работа интересная."), "Söylenen cümle: Работа интересная. — İş ilginç.", "Работа интересная.", null),
@@ -239,8 +344,9 @@ object WorldCourseRU {
                 LearningExercise("rua1k_e52", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yarına görüşürüz!", "", listOf(), listOf("До завтра!"), "Doğru cümle: До завтра!", null, "До завтра!"),
                 LearningExercise("rua1k_e195", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Я живу в Москве.", "", listOf(), listOf("Я живу в Москве."), "Türkçesi: Moskova'da yaşıyorum.", "Я живу в Москве.", "Я живу в Москве."),
                 LearningExercise("rua1k_e67", Skill.VOCABULARY, "Doğru anlamı seç", "'хлеб' ne anlama gelir?", "", listOf("arkadaş", "ekmek", "erkek kardeş"), listOf("ekmek"), "Хлеб свежий. — Ekmek taze.", null, null),
-                LearningExercise("rua1k_e99", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Мама дома."), "Söylenen cümle: Мама дома. — Annem evde.", "Мама дома.", null))))),
-        LearningUnit("RU-A1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua1k_e99", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Мама дома."), "Söylenen cümle: Мама дома. — Annem evde.", "Мама дома.", null)))))
+
+    private fun u10(): LearningUnit = LearningUnit("RU-A1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A1-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua1k_e83", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Яблоко красное.", listOf("Babam çok çalışır.", "Elma kırmızı.", "Annem evde."), listOf("Elma kırmızı."), "Cümlenin çevirisi: Elma kırmızı.", null, null),
                 LearningExercise("rua1k_e180", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ далеко.", "", listOf("брат", "друг", "Аэропорт"), listOf("Аэропорт"), "Doğru cümle: Аэропорт далеко. — Havalimanı uzak.", null, null),
@@ -264,8 +370,9 @@ object WorldCourseRU {
                 LearningExercise("rua1k_e196", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Гостиница в центре.", "", listOf(), listOf("Гостиница в центре."), "Türkçesi: Otel merkezde.", "Гостиница в центре.", "Гостиница в центре."),
                 LearningExercise("rua1k_e135", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Город красивый."), "Söylenen cümle: Город красивый. — Şehir güzel.", "Город красивый.", null),
                 LearningExercise("rua1k_e2", Skill.VOCABULARY, "Doğru çeviriyi seç", "'merhaba' ifadesinin Rusça karşılığı hangisi?", "", listOf("до свидания", "меня зовут", "привет"), listOf("привет"), "Örnek: Привет, я Анна. — Merhaba, ben Anna.", null, null),
-                LearningExercise("rua1k_e128", Skill.VOCABULARY, "Doğru çeviriyi seç", "'iş' ifadesinin Rusça karşılığı hangisi?", "", listOf("я живу", "поезд", "работа"), listOf("работа"), "Örnek: Работа интересная. — İş ilginç.", null, null))))),
-        LearningUnit("RU-A1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua1k_e128", Skill.VOCABULARY, "Doğru çeviriyi seç", "'iş' ifadesinin Rusça karşılığı hangisi?", "", listOf("я живу", "поезд", "работа"), listOf("работа"), "Örnek: Работа интересная. — İş ilginç.", null, null)))))
+
+    private fun u11(): LearningUnit = LearningUnit("RU-A1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A1-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua1k_e7", Skill.VOCABULARY, "Doğru anlamı seç", "'спасибо' ne anlama gelir?", "", listOf("yarın", "saat", "teşekkürler"), listOf("teşekkürler"), "Большое спасибо! — Çok teşekkürler!", null, null),
                 LearningExercise("rua1k_e192", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Моя семья большая.", "", listOf(), listOf("Моя семья большая."), "Türkçesi: Ailem kalabalık.", "Моя семья большая.", "Моя семья большая."),
@@ -289,8 +396,9 @@ object WorldCourseRU {
                 LearningExercise("rua1k_e183", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Я ___ кофе.", "", listOf("пью", "пьёшь", "пьёт"), listOf("пью"), "Я öznesiyle пить: я пью.", null, null),
                 LearningExercise("rua1k_e62", Skill.VOCABULARY, "Doğru çeviriyi seç", "'su' ifadesinin Rusça karşılığı hangisi?", "", listOf("я живу", "вода", "магазин"), listOf("вода"), "Örnek: Вода холодная. — Su soğuk.", null, null),
                 LearningExercise("rua1k_e173", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Идите налево.", listOf("Kahve, lütfen.", "Sola gidin.", "Çok teşekkürler!"), listOf("Sola gidin."), "Cümlenin çevirisi: Sola gidin.", null, null),
-                LearningExercise("rua1k_e160", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bir bilet, lütfen.", "", listOf(), listOf("Один билет, пожалуйста."), "Doğru cümle: Один билет, пожалуйста.", null, "Один билет, пожалуйста."))))),
-        LearningUnit("RU-A1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua1k_e160", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bir bilet, lütfen.", "", listOf(), listOf("Один билет, пожалуйста."), "Doğru cümle: Один билет, пожалуйста.", null, "Один билет, пожалуйста.")))))
+
+    private fun u12(): LearningUnit = LearningUnit("RU-A1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A1-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua1k_e193", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Мой брат молодой.", "", listOf(), listOf("Мой брат молодой."), "Türkçesi: Erkek kardeşim genç.", "Мой брат молодой.", "Мой брат молодой."),
                 LearningExercise("rua1k_e15", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Кофе, пожалуйста."), "Söylenen cümle: Кофе, пожалуйста. — Kahve, lütfen.", "Кофе, пожалуйста.", null),
@@ -314,8 +422,9 @@ object WorldCourseRU {
                 LearningExercise("rua1k_e74", Skill.VOCABULARY, "Doğru çeviriyi seç", "'kahve' ifadesinin Rusça karşılığı hangisi?", "", listOf("семья", "мама", "кофе"), listOf("кофе"), "Örnek: Я пью кофе. — Kahve içiyorum.", null, null),
                 LearningExercise("rua1k_e194", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Работа интересная.", "", listOf(), listOf("Работа интересная."), "Türkçesi: İş ilginç.", "Работа интересная.", "Работа интересная."),
                 LearningExercise("rua1k_e134", Skill.VOCABULARY, "Doğru çeviriyi seç", "'şehir' ifadesinin Rusça karşılığı hangisi?", "", listOf("десять", "город", "два"), listOf("город"), "Örnek: Город красивый. — Şehir güzel.", null, null),
-                LearningExercise("rua1k_e157", Skill.VOCABULARY, "Doğru anlamı seç", "'билет' ne anlama gelir?", "", listOf("benim adım", "bilet", "hoşça kalın"), listOf("bilet"), "Один билет, пожалуйста. — Bir bilet, lütfen.", null, null))))),
-        LearningUnit("RU-A1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua1k_e157", Skill.VOCABULARY, "Doğru anlamı seç", "'билет' ne anlama gelir?", "", listOf("benim adım", "bilet", "hoşça kalın"), listOf("bilet"), "Один билет, пожалуйста. — Bir bilet, lütfen.", null, null)))))
+
+    private fun u13(): LearningUnit = LearningUnit("RU-A1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A1-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua1k_e86", Skill.VOCABULARY, "Doğru çeviriyi seç", "'çay' ifadesinin Rusça karşılığı hangisi?", "", listOf("чай", "сегодня", "завтра"), listOf("чай"), "Örnek: Я люблю чай. — Çayı severim.", null, null),
                 LearningExercise("rua1k_e109", Skill.VOCABULARY, "Doğru anlamı seç", "'брат' ne anlama gelir?", "", listOf("erkek kardeş", "bugün", "yarın"), listOf("erkek kardeş"), "Мой брат молодой. — Erkek kardeşim genç.", null, null),
@@ -339,8 +448,9 @@ object WorldCourseRU {
                 LearningExercise("rua1k_e47", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Сегодня понедельник.", listOf("Mağaza kapalı.", "Bugün pazartesi.", "Şehir güzel."), listOf("Bugün pazartesi."), "Cümlenin çevirisi: Bugün pazartesi.", null, null),
                 LearningExercise("rua1k_e84", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ красное.", "", listOf("Яблоко", "вода", "хлеб"), listOf("Яблоко"), "Doğru cümle: Яблоко красное. — Elma kırmızı.", null, null),
                 LearningExercise("rua1k_e113", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Мой брат молодой.", listOf("İş ilginç.", "Şehir güzel.", "Erkek kardeşim genç."), listOf("Erkek kardeşim genç."), "Cümlenin çevirisi: Erkek kardeşim genç.", null, null),
-                LearningExercise("rua1k_e120", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Он мой ___.", "", listOf("друг", "налево", "аэропорт"), listOf("друг"), "Doğru cümle: Он мой друг. — O benim arkadaşım.", null, null))))),
-        LearningUnit("RU-A1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua1k_e120", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Он мой ___.", "", listOf("друг", "налево", "аэропорт"), listOf("друг"), "Doğru cümle: Он мой друг. — O benim arkadaşım.", null, null)))))
+
+    private fun u14(): LearningUnit = LearningUnit("RU-A1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A1-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua1k_e81", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Яблоко красное."), "Söylenen cümle: Яблоко красное. — Elma kırmızı.", "Яблоко красное.", null),
                 LearningExercise("rua1k_e57", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Который час?"), "Söylenen cümle: Который час? — Saat kaç?", "Который час?", null),
@@ -364,8 +474,9 @@ object WorldCourseRU {
                 LearningExercise("rua1k_e137", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Город красивый.", listOf("Yarına görüşürüz!", "Şehir güzel.", "Bugün pazartesi."), listOf("Şehir güzel."), "Cümlenin çevirisi: Şehir güzel.", null, null),
                 LearningExercise("rua1k_e106", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Babam çok çalışır.", "", listOf(), listOf("Папа много работает."), "Doğru cümle: Папа много работает.", null, "Папа много работает."),
                 LearningExercise("rua1k_e117", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Он мой друг."), "Söylenen cümle: Он мой друг. — O benim arkadaşım.", "Он мой друг.", null),
-                LearningExercise("rua1k_e66", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ холодная.", "", listOf("Вода", "спасибо", "пожалуйста"), listOf("Вода"), "Doğru cümle: Вода холодная. — Su soğuk.", null, null))))),
-        LearningUnit("RU-A1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua1k_e66", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ холодная.", "", listOf("Вода", "спасибо", "пожалуйста"), listOf("Вода"), "Doğru cümle: Вода холодная. — Su soğuk.", null, null)))))
+
+    private fun u15(): LearningUnit = LearningUnit("RU-A1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A1-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua1k_e188", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: До свидания, до завтра!", "", listOf(), listOf("До свидания, до завтра!"), "Türkçesi: Hoşça kalın, yarına görüşürüz!", "До свидания, до завтра!", "До свидания, до завтра!"),
                 LearningExercise("rua1k_e24", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___, до завтра!", "", listOf("работа", "До свидания", "дом"), listOf("До свидания"), "Doğru cümle: До свидания, до завтра! — Hoşça kalın, yarına görüşürüz!", null, null),
@@ -389,8 +500,9 @@ object WorldCourseRU {
                 LearningExercise("rua1k_e191", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Я пью кофе.", "", listOf(), listOf("Я пью кофе."), "Türkçesi: Kahve içiyorum.", "Я пью кофе.", "Я пью кофе."),
                 LearningExercise("rua1k_e172", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sola gidin.", "", listOf(), listOf("Идите налево."), "Doğru cümle: Идите налево.", null, "Идите налево."),
                 LearningExercise("rua1k_e179", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Аэропорт далеко.", listOf("Havalimanı uzak.", "Ev eski.", "İş ilginç."), listOf("Havalimanı uzak."), "Cümlenin çevirisi: Havalimanı uzak.", null, null),
-                LearningExercise("rua1k_e43", Skill.VOCABULARY, "Doğru anlamı seç", "'сегодня' ne anlama gelir?", "", listOf("ev", "iş", "bugün"), listOf("bugün"), "Сегодня понедельник. — Bugün pazartesi.", null, null))))),
-        LearningUnit("RU-A1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua1k_e43", Skill.VOCABULARY, "Doğru anlamı seç", "'сегодня' ne anlama gelir?", "", listOf("ev", "iş", "bugün"), listOf("bugün"), "Сегодня понедельник. — Bugün pazartesi.", null, null)))))
+
+    private fun u16(): LearningUnit = LearningUnit("RU-A1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A1-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua1k_e156", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ приходит в девять.", "", listOf("Поезд", "мама", "папа"), listOf("Поезд"), "Doğru cümle: Поезд приходит в девять. — Tren dokuzda geliyor.", null, null),
                 LearningExercise("rua1k_e45", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Сегодня понедельник."), "Söylenen cümle: Сегодня понедельник. — Bugün pazartesi.", "Сегодня понедельник.", null),
@@ -414,8 +526,9 @@ object WorldCourseRU {
                 LearningExercise("rua1k_e76", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kahve içiyorum.", "", listOf(), listOf("Я пью кофе."), "Doğru cümle: Я пью кофе.", null, "Я пью кофе."),
                 LearningExercise("rua1k_e199", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Сейчас десять часов.", "", listOf(), listOf("Сейчас десять часов."), "Türkçesi: Saat şimdi on.", "Сейчас десять часов.", "Сейчас десять часов."),
                 LearningExercise("rua1k_e85", Skill.VOCABULARY, "Doğru anlamı seç", "'чай' ne anlama gelir?", "", listOf("su", "çay", "saat"), listOf("çay"), "Я люблю чай. — Çayı severim.", null, null),
-                LearningExercise("rua1k_e59", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Который час?", listOf("Merhaba, ben Anna.", "Çok teşekkürler!", "Saat kaç?"), listOf("Saat kaç?"), "Cümlenin çevirisi: Saat kaç?", null, null))))),
-        LearningUnit("RU-A2-U1", "Geçmişten Bahsetmek", "Geçmişte olanları anlat.", listOf(
+                LearningExercise("rua1k_e59", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Который час?", listOf("Merhaba, ben Anna.", "Çok teşekkürler!", "Saat kaç?"), listOf("Saat kaç?"), "Cümlenin çevirisi: Saat kaç?", null, null)))))
+
+    private fun u17(): LearningUnit = LearningUnit("RU-A2-U1", "Geçmişten Bahsetmek", "Geçmişte olanları anlat.", listOf(
             LearningLesson("RU-A2-U1-L1", "Geçmişten Bahsetmek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rua2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'вчера' ne anlama gelir?", "", listOf("geçen hafta", "gördük", "dün"), listOf("dün"), "Вчера мы много работали. — Dün çok çalıştık.", null, null),
                 LearningExercise("rua2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'на прошлой неделе' ne anlama gelir?", "", listOf("yolculuk", "geçen hafta", "satın aldık"), listOf("geçen hafta"), "На прошлой неделе он болел. — Geçen hafta hastaydı.", null, null),
@@ -441,8 +554,9 @@ object WorldCourseRU {
             LearningLesson("RU-A2-U1-L5", "Geçmişten Bahsetmek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rua2u1e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yolculuk harikaydı.", "", listOf(), listOf("Поездка была прекрасная."), "Doğru cümle: Поездка была прекрасная.", null, "Поездка была прекрасная."),
                 LearningExercise("rua2u1e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu filmi gördük.", "", listOf(), listOf("Мы видели этот фильм."), "Doğru cümle: Мы видели этот фильм.", null, "Мы видели этот фильм."),
-                LearningExercise("rua2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Вчера мы много работали.", "", listOf(), listOf("Вчера мы много работали."), "Türkçesi: Dün çok çalıştık.", "Вчера мы много работали.", "Вчера мы много работали."))))),
-        LearningUnit("RU-A2-U2", "Alışveriş ve Para", "Fiyat sor, ödeme yap.", listOf(
+                LearningExercise("rua2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Вчера мы много работали.", "", listOf(), listOf("Вчера мы много работали."), "Türkçesi: Dün çok çalıştık.", "Вчера мы много работали.", "Вчера мы много работали.")))))
+
+    private fun u18(): LearningUnit = LearningUnit("RU-A2-U2", "Alışveriş ve Para", "Fiyat sor, ödeme yap.", listOf(
             LearningLesson("RU-A2-U2-L1", "Alışveriş ve Para — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rua2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'деньги' ne anlama gelir?", "", listOf("fiyatı ... eder", "para", "pahalı"), listOf("para"), "У меня мало денег. — Az param var.", null, null),
                 LearningExercise("rua2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'дорогой' ne anlama gelir?", "", listOf("pahalı", "ucuz", "ödemek"), listOf("pahalı"), "Этот телефон дорогой. — Bu telefon pahalı.", null, null),
@@ -468,8 +582,9 @@ object WorldCourseRU {
             LearningLesson("RU-A2-U2-L5", "Alışveriş ve Para — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rua2u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kartla ödeyeceğim.", "", listOf(), listOf("Я буду платить картой."), "Doğru cümle: Я буду платить картой.", null, "Я буду платить картой."),
                 LearningExercise("rua2u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu yüz ruble eder.", "", listOf(), listOf("Это стоит сто рублей."), "Doğru cümle: Это стоит сто рублей.", null, "Это стоит сто рублей."),
-                LearningExercise("rua2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: У меня мало денег.", "", listOf(), listOf("У меня мало денег."), "Türkçesi: Az param var.", "У меня мало денег.", "У меня мало денег."))))),
-        LearningUnit("RU-A2-U3", "Sağlık ve Vücut", "Rahatsızlığını anlat, randevu al.", listOf(
+                LearningExercise("rua2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: У меня мало денег.", "", listOf(), listOf("У меня мало денег."), "Türkçesi: Az param var.", "У меня мало денег.", "У меня мало денег.")))))
+
+    private fun u19(): LearningUnit = LearningUnit("RU-A2-U3", "Sağlık ve Vücut", "Rahatsızlığını anlat, randevu al.", listOf(
             LearningLesson("RU-A2-U3-L1", "Sağlık ve Vücut — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rua2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'болит' ne anlama gelir?", "", listOf("ağrıyor", "doktor", "eczane"), listOf("ağrıyor"), "У меня болит голова. — Başım ağrıyor.", null, null),
                 LearningExercise("rua2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'врач' ne anlama gelir?", "", listOf("baş", "ilaç", "doktor"), listOf("doktor"), "Врач придёт в десять. — Doktor onda gelecek.", null, null),
@@ -495,8 +610,9 @@ object WorldCourseRU {
             LearningLesson("RU-A2-U3-L5", "Sağlık ve Vücut — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rua2u3e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu ilaç iyi geliyor.", "", listOf(), listOf("Это лекарство помогает."), "Doğru cümle: Это лекарство помогает.", null, "Это лекарство помогает."),
                 LearningExercise("rua2u3e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Eczane kapalı.", "", listOf(), listOf("Аптека закрыта."), "Doğru cümle: Аптека закрыта.", null, "Аптека закрыта."),
-                LearningExercise("rua2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: У меня болит голова.", "", listOf(), listOf("У меня болит голова."), "Türkçesi: Başım ağrıyor.", "У меня болит голова.", "У меня болит голова."))))),
-        LearningUnit("RU-A2-U4", "Hava Durumu ve Doğa", "Havayı ve mevsimleri anlat.", listOf(
+                LearningExercise("rua2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: У меня болит голова.", "", listOf(), listOf("У меня болит голова."), "Türkçesi: Başım ağrıyor.", "У меня болит голова.", "У меня болит голова.")))))
+
+    private fun u20(): LearningUnit = LearningUnit("RU-A2-U4", "Hava Durumu ve Doğa", "Havayı ve mevsimleri anlat.", listOf(
             LearningLesson("RU-A2-U4-L1", "Hava Durumu ve Doğa — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rua2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'погода' ne anlama gelir?", "", listOf("yağmur", "soğuk (hava)", "hava durumu"), listOf("hava durumu"), "Погода сегодня хорошая. — Bugün hava güzel.", null, null),
                 LearningExercise("rua2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'дождь' ne anlama gelir?", "", listOf("ılık/sıcak", "yağmur", "güneş"), listOf("yağmur"), "Завтра будет дождь. — Yarın yağmur yağacak.", null, null),
@@ -522,8 +638,9 @@ object WorldCourseRU {
             LearningLesson("RU-A2-U4-L5", "Hava Durumu ve Doğa — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rua2u4e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bugün hava ılık.", "", listOf(), listOf("Сегодня тепло."), "Doğru cümle: Сегодня тепло.", null, "Сегодня тепло."),
                 LearningExercise("rua2u4e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kışın hava soğuk olur.", "", listOf(), listOf("Зимой холодно."), "Doğru cümle: Зимой холодно.", null, "Зимой холодно."),
-                LearningExercise("rua2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Погода сегодня хорошая.", "", listOf(), listOf("Погода сегодня хорошая."), "Türkçesi: Bugün hava güzel.", "Погода сегодня хорошая.", "Погода сегодня хорошая."))))),
-        LearningUnit("RU-A2-U5", "İş ve Okul", "İş ve eğitim hayatından bahset.", listOf(
+                LearningExercise("rua2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Погода сегодня хорошая.", "", listOf(), listOf("Погода сегодня хорошая."), "Türkçesi: Bugün hava güzel.", "Погода сегодня хорошая.", "Погода сегодня хорошая.")))))
+
+    private fun u21(): LearningUnit = LearningUnit("RU-A2-U5", "İş ve Okul", "İş ve eğitim hayatından bahset.", listOf(
             LearningLesson("RU-A2-U5-L1", "İş ve Okul — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rua2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'офис' ne anlama gelir?", "", listOf("öğretmen", "ofis", "öğrenmek/çalışmak"), listOf("ofis"), "Офис находится в центре. — Ofis merkezde.", null, null),
                 LearningExercise("rua2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'учить' ne anlama gelir?", "", listOf("öğrenmek/çalışmak", "sınav", "toplantı/buluşma"), listOf("öğrenmek/çalışmak"), "Я учу русский язык. — Rusça öğreniyorum.", null, null),
@@ -549,8 +666,9 @@ object WorldCourseRU {
             LearningLesson("RU-A2-U5-L5", "İş ve Okul — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rua2u5e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Toplantı dokuzda başlıyor.", "", listOf(), listOf("Встреча начинается в девять."), "Doğru cümle: Встреча начинается в девять.", null, "Встреча начинается в девять."),
                 LearningExercise("rua2u5e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Öğretmen her şeyi açıklıyor.", "", listOf(), listOf("Учитель всё объясняет."), "Doğru cümle: Учитель всё объясняет.", null, "Учитель всё объясняет."),
-                LearningExercise("rua2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Офис находится в центре.", "", listOf(), listOf("Офис находится в центре."), "Türkçesi: Ofis merkezde.", "Офис находится в центре.", "Офис находится в центре."))))),
-        LearningUnit("RU-A2-U6", "Planlar ve Gelecek", "Gelecek planlarını anlat.", listOf(
+                LearningExercise("rua2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Офис находится в центре.", "", listOf(), listOf("Офис находится в центре."), "Türkçesi: Ofis merkezde.", "Офис находится в центре.", "Офис находится в центре.")))))
+
+    private fun u22(): LearningUnit = LearningUnit("RU-A2-U6", "Planlar ve Gelecek", "Gelecek planlarını anlat.", listOf(
             LearningLesson("RU-A2-U6-L1", "Planlar ve Gelecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rua2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'план' ne anlama gelir?", "", listOf("plan", "hafta sonu", "gideceğim"), listOf("plan"), "У меня есть план на лето. — Yaz için bir planım var.", null, null),
                 LearningExercise("rua2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'выходные' ne anlama gelir?", "", listOf("tatil (izin)", "gelecek", "hafta sonu"), listOf("hafta sonu"), "В выходные я отдыхаю. — Hafta sonu dinlenirim.", null, null),
@@ -576,8 +694,9 @@ object WorldCourseRU {
             LearningLesson("RU-A2-U6-L5", "Planlar ve Gelecek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rua2u6e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Geleceği kimse bilmez.", "", listOf(), listOf("Будущее никто не знает."), "Doğru cümle: Будущее никто не знает.", null, "Будущее никто не знает."),
                 LearningExercise("rua2u6e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yazın denize gideceğim.", "", listOf(), listOf("Летом я поеду на море."), "Doğru cümle: Летом я поеду на море.", null, "Летом я поеду на море."),
-                LearningExercise("rua2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: У меня есть план на лето.", "", listOf(), listOf("У меня есть план на лето."), "Türkçesi: Yaz için bir planım var.", "У меня есть план на лето.", "У меня есть план на лето."))))),
-        LearningUnit("RU-A2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: У меня есть план на лето.", "", listOf(), listOf("У меня есть план на лето."), "Türkçesi: Yaz için bir planım var.", "У меня есть план на лето.", "У меня есть план на лето.")))))
+
+    private fun u23(): LearningUnit = LearningUnit("RU-A2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A2-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua2k_e191", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Голова не болит сегодня.", "", listOf(), listOf("Голова не болит сегодня."), "Türkçesi: Bugün başım ağrımıyor.", "Голова не болит сегодня.", "Голова не болит сегодня."),
                 LearningExercise("rua2k_e172", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yazın denize gideceğim.", "", listOf(), listOf("Летом я поеду на море."), "Doğru cümle: Летом я поеду на море.", null, "Летом я поеду на море."),
@@ -601,8 +720,9 @@ object WorldCourseRU {
                 LearningExercise("rua2k_e145", Skill.VOCABULARY, "Doğru anlamı seç", "'встреча' ne anlama gelir?", "", listOf("toplantı/buluşma", "ılık/sıcak", "ofis"), listOf("toplantı/buluşma"), "Встреча начинается в девять. — Toplantı dokuzda başlıyor.", null, null),
                 LearningExercise("rua2k_e16", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ekmek aldık.", "", listOf(), listOf("Мы купили хлеб."), "Doğru cümle: Мы купили хлеб.", null, "Мы купили хлеб."),
                 LearningExercise("rua2k_e39", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Этот телефон дорогой."), "Söylenen cümle: Этот телефон дорогой. — Bu telefon pahalı.", "Этот телефон дорогой.", null),
-                LearningExercise("rua2k_e69", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Врач придёт в десять."), "Söylenen cümle: Врач придёт в десять. — Doktor onda gelecek.", "Врач придёт в десять.", null))))),
-        LearningUnit("RU-A2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua2k_e69", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Врач придёт в десять."), "Söylenen cümle: Врач придёт в десять. — Doktor onda gelecek.", "Врач придёт в десять.", null)))))
+
+    private fun u24(): LearningUnit = LearningUnit("RU-A2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A2-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua2k_e136", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sınav cuma günü.", "", listOf(), listOf("Экзамен в пятницу."), "Doğru cümle: Экзамен в пятницу.", null, "Экзамен в пятницу."),
                 LearningExercise("rua2k_e108", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ светит.", "", listOf("голова", "аптека", "Солнце"), listOf("Солнце"), "Doğru cümle: Солнце светит. — Güneş parlıyor.", null, null),
@@ -626,8 +746,9 @@ object WorldCourseRU {
                 LearningExercise("rua2k_e194", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Я учу русский язык.", "", listOf(), listOf("Я учу русский язык."), "Türkçesi: Rusça öğreniyorum.", "Я учу русский язык.", "Я учу русский язык."),
                 LearningExercise("rua2k_e143", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Учитель всё объясняет.", listOf("Öğretmen her şeyi açıklıyor.", "Hafta sonu dinlenirim.", "Tatil yakında başlıyor."), listOf("Öğretmen her şeyi açıklıyor."), "Cümlenin çevirisi: Öğretmen her şeyi açıklıyor.", null, null),
                 LearningExercise("rua2k_e119", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Сегодня тепло.", listOf("Doktor onda gelecek.", "Bugün hava ılık.", "Başım ağrıyor."), listOf("Bugün hava ılık."), "Cümlenin çevirisi: Bugün hava ılık.", null, null),
-                LearningExercise("rua2k_e196", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Отпуск начинается скоро.", "", listOf(), listOf("Отпуск начинается скоро."), "Türkçesi: Tatil yakında başlıyor.", "Отпуск начинается скоро.", "Отпуск начинается скоро."))))),
-        LearningUnit("RU-A2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua2k_e196", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Отпуск начинается скоро.", "", listOf(), listOf("Отпуск начинается скоро."), "Türkçesi: Tatil yakında başlıyor.", "Отпуск начинается скоро.", "Отпуск начинается скоро.")))))
+
+    private fun u25(): LearningUnit = LearningUnit("RU-A2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A2-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua2k_e22", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu filmi gördük.", "", listOf(), listOf("Мы видели этот фильм."), "Doğru cümle: Мы видели этот фильм.", null, "Мы видели этот фильм."),
                 LearningExercise("rua2k_e147", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Встреча начинается в девять."), "Söylenen cümle: Встреча начинается в девять. — Toplantı dokuzda başlıyor.", "Встреча начинается в девять.", null),
@@ -651,8 +772,9 @@ object WorldCourseRU {
                 LearningExercise("rua2k_e158", Skill.VOCABULARY, "Doğru çeviriyi seç", "'hafta sonu' ifadesinin Rusça karşılığı hangisi?", "", listOf("выходные", "тепло", "офис"), listOf("выходные"), "Örnek: В выходные я отдыхаю. — Hafta sonu dinlenirim.", null, null),
                 LearningExercise("rua2k_e57", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Я буду платить картой."), "Söylenen cümle: Я буду платить картой. — Kartla ödeyeceğim.", "Я буду платить картой.", null),
                 LearningExercise("rua2k_e162", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "В ___ я отдыхаю.", "", listOf("платить", "болит", "выходные"), listOf("выходные"), "Doğru cümle: В выходные я отдыхаю. — Hafta sonu dinlenirim.", null, null),
-                LearningExercise("rua2k_e80", Skill.VOCABULARY, "Doğru çeviriyi seç", "'eczane' ifadesinin Rusça karşılığı hangisi?", "", listOf("отпуск", "аптека", "выходные"), listOf("аптека"), "Örnek: Аптека закрыта. — Eczane kapalı.", null, null))))),
-        LearningUnit("RU-A2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua2k_e80", Skill.VOCABULARY, "Doğru çeviriyi seç", "'eczane' ifadesinin Rusça karşılığı hangisi?", "", listOf("отпуск", "аптека", "выходные"), listOf("аптека"), "Örnek: Аптека закрыта. — Eczane kapalı.", null, null)))))
+
+    private fun u26(): LearningUnit = LearningUnit("RU-A2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A2-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua2k_e90", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Это ___ помогает.", "", listOf("видели", "поездка", "лекарство"), listOf("лекарство"), "Doğru cümle: Это лекарство помогает. — Bu ilaç iyi geliyor.", null, null),
                 LearningExercise("rua2k_e35", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "У меня мало денег.", listOf("Az param var.", "Bu ilaç iyi geliyor.", "Bugün hava güzel."), listOf("Az param var."), "Cümlenin çevirisi: Az param var.", null, null),
@@ -676,8 +798,9 @@ object WorldCourseRU {
                 LearningExercise("rua2k_e100", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yarın yağmur yağacak.", "", listOf(), listOf("Завтра будет дождь."), "Doğru cümle: Завтра будет дождь.", null, "Завтра будет дождь."),
                 LearningExercise("rua2k_e128", Skill.VOCABULARY, "Doğru çeviriyi seç", "'öğrenmek/çalışmak' ifadesinin Rusça karşılığı hangisi?", "", listOf("встреча", "план", "учить"), listOf("учить"), "Örnek: Я учу русский язык. — Rusça öğreniyorum.", null, null),
                 LearningExercise("rua2k_e14", Skill.VOCABULARY, "Doğru çeviriyi seç", "'satın aldık' ifadesinin Rusça karşılığı hangisi?", "", listOf("купили", "план", "выходные"), listOf("купили"), "Örnek: Мы купили хлеб. — Ekmek aldık.", null, null),
-                LearningExercise("rua2k_e112", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kışın hava soğuk olur.", "", listOf(), listOf("Зимой холодно."), "Doğru cümle: Зимой холодно.", null, "Зимой холодно."))))),
-        LearningUnit("RU-A2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua2k_e112", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kışın hava soğuk olur.", "", listOf(), listOf("Зимой холодно."), "Doğru cümle: Зимой холодно.", null, "Зимой холодно.")))))
+
+    private fun u27(): LearningUnit = LearningUnit("RU-A2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A2-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua2k_e21", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Мы видели этот фильм."), "Söylenen cümle: Мы видели этот фильм. — Bu filmi gördük.", "Мы видели этот фильм.", null),
                 LearningExercise("rua2k_e52", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu yüz ruble eder.", "", listOf(), listOf("Это стоит сто рублей."), "Doğru cümle: Это стоит сто рублей.", null, "Это стоит сто рублей."),
@@ -701,8 +824,9 @@ object WorldCourseRU {
                 LearningExercise("rua2k_e30", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ была прекрасная.", "", listOf("Поездка", "аптека", "лекарство"), listOf("Поездка"), "Doğru cümle: Поездка была прекрасная. — Yolculuk harikaydı.", null, null),
                 LearningExercise("rua2k_e192", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Погода сегодня хорошая.", "", listOf(), listOf("Погода сегодня хорошая."), "Türkçesi: Bugün hava güzel.", "Погода сегодня хорошая.", "Погода сегодня хорошая."),
                 LearningExercise("rua2k_e53", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Это стоит сто рублей.", listOf("Bu yüz ruble eder.", "Doktor onda gelecek.", "Bugün başım ağrımıyor."), listOf("Bu yüz ruble eder."), "Cümlenin çevirisi: Bu yüz ruble eder.", null, null),
-                LearningExercise("rua2k_e199", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Этот телефон дорогой.", "", listOf(), listOf("Этот телефон дорогой."), "Türkçesi: Bu telefon pahalı.", "Этот телефон дорогой.", "Этот телефон дорогой."))))),
-        LearningUnit("RU-A2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua2k_e199", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Этот телефон дорогой.", "", listOf(), listOf("Этот телефон дорогой."), "Türkçesi: Bu telefon pahalı.", "Этот телефон дорогой.", "Этот телефон дорогой.")))))
+
+    private fun u28(): LearningUnit = LearningUnit("RU-A2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A2-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua2k_e48", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Хлеб ___.", "", listOf("дешёвый", "экзамен", "учитель"), listOf("дешёвый"), "Doğru cümle: Хлеб дешёвый. — Ekmek ucuz.", null, null),
                 LearningExercise("rua2k_e116", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ılık/sıcak' ifadesinin Rusça karşılığı hangisi?", "", listOf("видели", "тепло", "купили"), listOf("тепло"), "Örnek: Сегодня тепло. — Bugün hava ılık.", null, null),
@@ -726,8 +850,9 @@ object WorldCourseRU {
                 LearningExercise("rua2k_e132", Skill.VOCABULARY, "Doğru anlamı seç", "'учить' ne anlama gelir?", "", listOf("hava durumu", "öğrenmek/çalışmak", "ilaç"), listOf("öğrenmek/çalışmak"), "Я учу русский язык. — Rusça öğreniyorum.", null, null),
                 LearningExercise("rua2k_e13", Skill.VOCABULARY, "Doğru anlamı seç", "'купили' ne anlama gelir?", "", listOf("yağmur", "satın aldık", "hava durumu"), listOf("satın aldık"), "Мы купили хлеб. — Ekmek aldık.", null, null),
                 LearningExercise("rua2k_e82", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Eczane kapalı.", "", listOf(), listOf("Аптека закрыта."), "Doğru cümle: Аптека закрыта.", null, "Аптека закрыта."),
-                LearningExercise("rua2k_e56", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ödemek' ifadesinin Rusça karşılığı hangisi?", "", listOf("голова", "аптека", "платить"), listOf("платить"), "Örnek: Я буду платить картой. — Kartla ödeyeceğim.", null, null))))),
-        LearningUnit("RU-A2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua2k_e56", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ödemek' ifadesinin Rusça karşılığı hangisi?", "", listOf("голова", "аптека", "платить"), listOf("платить"), "Örnek: Я буду платить картой. — Kartla ödeyeceğim.", null, null)))))
+
+    private fun u29(): LearningUnit = LearningUnit("RU-A2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A2-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua2k_e181", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Вчера мы ___ в кино.", "", listOf("ходили", "ходим", "пойдём"), listOf("ходили"), "Geçmiş zaman çoğul: мы ходили — cinsiyetten bağımsız biçim.", null, null),
                 LearningExercise("rua2k_e83", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Аптека закрыта.", listOf("Güneş parlıyor.", "Eczane kapalı.", "Yarın yağmur yağacak."), listOf("Eczane kapalı."), "Cümlenin çevirisi: Eczane kapalı.", null, null),
@@ -751,8 +876,9 @@ object WorldCourseRU {
                 LearningExercise("rua2k_e129", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Я учу русский язык."), "Söylenen cümle: Я учу русский язык. — Rusça öğreniyorum.", "Я учу русский язык.", null),
                 LearningExercise("rua2k_e89", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Это лекарство помогает.", listOf("Bu ilaç iyi geliyor.", "Az param var.", "Bu telefon pahalı."), listOf("Bu ilaç iyi geliyor."), "Cümlenin çevirisi: Bu ilaç iyi geliyor.", null, null),
                 LearningExercise("rua2k_e41", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Этот телефон дорогой.", listOf("Bu filmi gördük.", "Yolculuk harikaydı.", "Bu telefon pahalı."), listOf("Bu telefon pahalı."), "Cümlenin çevirisi: Bu telefon pahalı.", null, null),
-                LearningExercise("rua2k_e139", Skill.VOCABULARY, "Doğru anlamı seç", "'учитель' ne anlama gelir?", "", listOf("eczane", "öğretmen", "baş"), listOf("öğretmen"), "Учитель всё объясняет. — Öğretmen her şeyi açıklıyor.", null, null))))),
-        LearningUnit("RU-A2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua2k_e139", Skill.VOCABULARY, "Doğru anlamı seç", "'учитель' ne anlama gelir?", "", listOf("eczane", "öğretmen", "baş"), listOf("öğretmen"), "Учитель всё объясняет. — Öğretmen her şeyi açıklıyor.", null, null)))))
+
+    private fun u30(): LearningUnit = LearningUnit("RU-A2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A2-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua2k_e51", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Это стоит сто рублей."), "Söylenen cümle: Это стоит сто рублей. — Bu yüz ruble eder.", "Это стоит сто рублей.", null),
                 LearningExercise("rua2k_e109", Skill.VOCABULARY, "Doğru anlamı seç", "'холодно' ne anlama gelir?", "", listOf("soğuk (hava)", "ucuz", "fiyatı ... eder"), listOf("soğuk (hava)"), "Зимой холодно. — Kışın hava soğuk olur.", null, null),
@@ -776,8 +902,9 @@ object WorldCourseRU {
                 LearningExercise("rua2k_e189", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Этот телефон дорогой.", "", listOf(), listOf("Этот телефон дорогой."), "Türkçesi: Bu telefon pahalı.", "Этот телефон дорогой.", "Этот телефон дорогой."),
                 LearningExercise("rua2k_e179", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Будущее никто не знает.", listOf("Geleceği kimse bilmez.", "Ofis merkezde.", "Rusça öğreniyorum."), listOf("Geleceği kimse bilmez."), "Cümlenin çevirisi: Geleceği kimse bilmez.", null, null),
                 LearningExercise("rua2k_e126", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ находится в центре.", "", listOf("учить", "экзамен", "Офис"), listOf("Офис"), "Doğru cümle: Офис находится в центре. — Ofis merkezde.", null, null),
-                LearningExercise("rua2k_e135", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Экзамен в пятницу."), "Söylenen cümle: Экзамен в пятницу. — Sınav cuma günü.", "Экзамен в пятницу.", null))))),
-        LearningUnit("RU-A2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua2k_e135", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Экзамен в пятницу."), "Söylenen cümle: Экзамен в пятницу. — Sınav cuma günü.", "Экзамен в пятницу.", null)))))
+
+    private fun u31(): LearningUnit = LearningUnit("RU-A2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A2-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua2k_e92", Skill.VOCABULARY, "Doğru çeviriyi seç", "'hava durumu' ifadesinin Rusça karşılığı hangisi?", "", listOf("холодно", "тепло", "погода"), listOf("погода"), "Örnek: Погода сегодня хорошая. — Bugün hava güzel.", null, null),
                 LearningExercise("rua2k_e104", Skill.VOCABULARY, "Doğru çeviriyi seç", "'güneş' ifadesinin Rusça karşılığı hangisi?", "", listOf("солнце", "болит", "врач"), listOf("солнце"), "Örnek: Солнце светит. — Güneş parlıyor.", null, null),
@@ -801,8 +928,9 @@ object WorldCourseRU {
                 LearningExercise("rua2k_e73", Skill.VOCABULARY, "Doğru anlamı seç", "'голова' ne anlama gelir?", "", listOf("baş", "plan", "hafta sonu"), listOf("baş"), "Голова не болит сегодня. — Bugün başım ağrımıyor.", null, null),
                 LearningExercise("rua2k_e157", Skill.VOCABULARY, "Doğru anlamı seç", "'выходные' ne anlama gelir?", "", listOf("yolculuk", "hafta sonu", "gördük"), listOf("hafta sonu"), "В выходные я отдыхаю. — Hafta sonu dinlenirim.", null, null),
                 LearningExercise("rua2k_e94", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bugün hava güzel.", "", listOf(), listOf("Погода сегодня хорошая."), "Doğru cümle: Погода сегодня хорошая.", null, "Погода сегодня хорошая."),
-                LearningExercise("rua2k_e76", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bugün başım ağrımıyor.", "", listOf(), listOf("Голова не болит сегодня."), "Doğru cümle: Голова не болит сегодня.", null, "Голова не болит сегодня."))))),
-        LearningUnit("RU-A2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rua2k_e76", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bugün başım ağrımıyor.", "", listOf(), listOf("Голова не болит сегодня."), "Doğru cümle: Голова не болит сегодня.", null, "Голова не болит сегодня.")))))
+
+    private fun u32(): LearningUnit = LearningUnit("RU-A2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-A2-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rua2k_e6", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ мы много работали.", "", listOf("голова", "Вчера", "врач"), listOf("Вчера"), "Doğru cümle: Вчера мы много работали. — Dün çok çalıştık.", null, null),
                 LearningExercise("rua2k_e118", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bugün hava ılık.", "", listOf(), listOf("Сегодня тепло."), "Doğru cümle: Сегодня тепло.", null, "Сегодня тепло."),
@@ -826,8 +954,9 @@ object WorldCourseRU {
                 LearningExercise("rua2k_e134", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sınav' ifadesinin Rusça karşılığı hangisi?", "", listOf("дорогой", "экзамен", "деньги"), listOf("экзамен"), "Örnek: Экзамен в пятницу. — Sınav cuma günü.", null, null),
                 LearningExercise("rua2k_e2", Skill.VOCABULARY, "Doğru çeviriyi seç", "'dün' ifadesinin Rusça karşılığı hangisi?", "", listOf("видели", "поездка", "вчера"), listOf("вчера"), "Örnek: Вчера мы много работали. — Dün çok çalıştık.", null, null),
                 LearningExercise("rua2k_e182", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Сколько это ___?", "", listOf("стоит", "стоят", "стоить"), listOf("стоит"), "Fiyat sorma: Сколько это стоит?", null, null),
-                LearningExercise("rua2k_e50", Skill.VOCABULARY, "Doğru çeviriyi seç", "'fiyatı ... eder' ifadesinin Rusça karşılığı hangisi?", "", listOf("стоит", "на прошлой неделе", "купили"), listOf("стоит"), "Örnek: Это стоит сто рублей. — Bu yüz ruble eder.", null, null))))),
-        LearningUnit("RU-B1-U1", "Deneyimler ve Anılar", "Anılarını ayrıntılarıyla paylaş.", listOf(
+                LearningExercise("rua2k_e50", Skill.VOCABULARY, "Doğru çeviriyi seç", "'fiyatı ... eder' ifadesinin Rusça karşılığı hangisi?", "", listOf("стоит", "на прошлой неделе", "купили"), listOf("стоит"), "Örnek: Это стоит сто рублей. — Bu yüz ruble eder.", null, null)))))
+
+    private fun u33(): LearningUnit = LearningUnit("RU-B1-U1", "Deneyimler ve Anılar", "Anılarını ayrıntılarıyla paylaş.", listOf(
             LearningLesson("RU-B1-U1-L1", "Deneyimler ve Anılar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rub1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'опыт' ne anlama gelir?", "", listOf("hatırlamak", "o zamanlar", "deneyim"), listOf("deneyim"), "Этот опыт изменил меня. — Bu deneyim beni değiştirdi.", null, null),
                 LearningExercise("rub1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'помнить' ne anlama gelir?", "", listOf("anı", "hatırlamak", "çocukluk"), listOf("hatırlamak"), "Я буду помнить этот день. — Bu günü hatırlayacağım.", null, null),
@@ -853,8 +982,9 @@ object WorldCourseRU {
             LearningLesson("RU-B1-U1-L5", "Deneyimler ve Anılar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rub1u1e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu anı benim için çok değerli.", "", listOf(), listOf("Это воспоминание очень дорого мне."), "Doğru cümle: Это воспоминание очень дорого мне.", null, "Это воспоминание очень дорого мне."),
                 LearningExercise("rub1u1e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: O zamanlar köyde yaşıyorduk.", "", listOf(), listOf("Тогда мы жили в деревне."), "Doğru cümle: Тогда мы жили в деревне.", null, "Тогда мы жили в деревне."),
-                LearningExercise("rub1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Этот опыт изменил меня.", "", listOf(), listOf("Этот опыт изменил меня."), "Türkçesi: Bu deneyim beni değiştirdi.", "Этот опыт изменил меня.", "Этот опыт изменил меня."))))),
-        LearningUnit("RU-B1-U2", "Medya ve Teknoloji", "Teknoloji ve haberler hakkında konuş.", listOf(
+                LearningExercise("rub1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Этот опыт изменил меня.", "", listOf(), listOf("Этот опыт изменил меня."), "Türkçesi: Bu deneyim beni değiştirdi.", "Этот опыт изменил меня.", "Этот опыт изменил меня.")))))
+
+    private fun u34(): LearningUnit = LearningUnit("RU-B1-U2", "Medya ve Teknoloji", "Teknoloji ve haberler hakkında konuş.", listOf(
             LearningLesson("RU-B1-U2-L1", "Medya ve Teknoloji — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rub1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'новости' ne anlama gelir?", "", listOf("bağlantı", "haberler", "cihaz"), listOf("haberler"), "Я читаю новости вечером. — Akşamları haberleri okurum.", null, null),
                 LearningExercise("rub1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'устройство' ne anlama gelir?", "", listOf("cihaz", "indirmek", "ekran"), listOf("cihaz"), "Устройство совсем новое. — Cihaz yepyeni.", null, null),
@@ -880,8 +1010,9 @@ object WorldCourseRU {
             LearningLesson("RU-B1-U2-L5", "Medya ve Teknoloji — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rub1u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ekran fazla parlak.", "", listOf(), listOf("Экран слишком яркий."), "Doğru cümle: Экран слишком яркий.", null, "Экран слишком яркий."),
                 LearningExercise("rub1u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bağlantı çok yavaş.", "", listOf(), listOf("Связь очень медленная."), "Doğru cümle: Связь очень медленная.", null, "Связь очень медленная."),
-                LearningExercise("rub1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Я читаю новости вечером.", "", listOf(), listOf("Я читаю новости вечером."), "Türkçesi: Akşamları haberleri okurum.", "Я читаю новости вечером.", "Я читаю новости вечером."))))),
-        LearningUnit("RU-B1-U3", "Duygular ve İlişkiler", "Duygularını ve ilişkilerini anlat.", listOf(
+                LearningExercise("rub1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Я читаю новости вечером.", "", listOf(), listOf("Я читаю новости вечером."), "Türkçesi: Akşamları haberleri okurum.", "Я читаю новости вечером.", "Я читаю новости вечером.")))))
+
+    private fun u35(): LearningUnit = LearningUnit("RU-B1-U3", "Duygular ve İlişkiler", "Duygularını ve ilişkilerini anlat.", listOf(
             LearningLesson("RU-B1-U3-L1", "Duygular ve İlişkiler — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rub1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'дружба' ne anlama gelir?", "", listOf("arkadaşlık", "güven", "tartışmak/kavga etmek"), listOf("arkadaşlık"), "Наша дружба крепкая. — Arkadaşlığımız sağlam.", null, null),
                 LearningExercise("rub1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'доверие' ne anlama gelir?", "", listOf("hayal kırıklığına uğramış", "duygu", "güven"), listOf("güven"), "Доверие строится медленно. — Güven yavaş kurulur.", null, null),
@@ -907,8 +1038,9 @@ object WorldCourseRU {
             LearningLesson("RU-B1-U3-L5", "Duygular ve İlişkiler — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rub1u3e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu tuhaf bir duygu.", "", listOf(), listOf("Это странное чувство."), "Doğru cümle: Это странное чувство.", null, "Это странное чувство."),
                 LearningExercise("rub1u3e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Nadiren kavga ederiz.", "", listOf(), listOf("Мы редко ссоримся."), "Doğru cümle: Мы редко ссоримся.", null, "Мы редко ссоримся."),
-                LearningExercise("rub1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Наша дружба крепкая.", "", listOf(), listOf("Наша дружба крепкая."), "Türkçesi: Arkadaşlığımız sağlam.", "Наша дружба крепкая.", "Наша дружба крепкая."))))),
-        LearningUnit("RU-B1-U4", "Kültür ve Gelenekler", "Gelenekleri ve kültürü tanıt.", listOf(
+                LearningExercise("rub1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Наша дружба крепкая.", "", listOf(), listOf("Наша дружба крепкая."), "Türkçesi: Arkadaşlığımız sağlam.", "Наша дружба крепкая.", "Наша дружба крепкая.")))))
+
+    private fun u36(): LearningUnit = LearningUnit("RU-B1-U4", "Kültür ve Gelenekler", "Gelenekleri ve kültürü tanıt.", listOf(
             LearningLesson("RU-B1-U4-L1", "Kültür ve Gelenekler — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rub1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'обычай' ne anlama gelir?", "", listOf("bayram", "gelenek", "âdet"), listOf("âdet"), "Этот обычай очень старый. — Bu âdet çok eski.", null, null),
                 LearningExercise("rub1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'праздник' ne anlama gelir?", "", listOf("toplum", "bayram", "kutlamak"), listOf("bayram"), "Праздник длится три дня. — Bayram üç gün sürüyor.", null, null),
@@ -934,8 +1066,9 @@ object WorldCourseRU {
             LearningLesson("RU-B1-U4-L5", "Kültür ve Gelenekler — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rub1u4e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Toplum hızla değişiyor.", "", listOf(), listOf("Общество быстро меняется."), "Doğru cümle: Общество быстро меняется.", null, "Общество быстро меняется."),
                 LearningExercise("rub1u4e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Gelenek yaşamaya devam ediyor.", "", listOf(), listOf("Традиция живёт дальше."), "Doğru cümle: Традиция живёт дальше.", null, "Традиция живёт дальше."),
-                LearningExercise("rub1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Этот обычай очень старый.", "", listOf(), listOf("Этот обычай очень старый."), "Türkçesi: Bu âdet çok eski.", "Этот обычай очень старый.", "Этот обычай очень старый."))))),
-        LearningUnit("RU-B1-U5", "Spor ve Sağlıklı Yaşam", "Sağlıklı yaşam alışkanlıklarını anlat.", listOf(
+                LearningExercise("rub1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Этот обычай очень старый.", "", listOf(), listOf("Этот обычай очень старый."), "Türkçesi: Bu âdet çok eski.", "Этот обычай очень старый.", "Этот обычай очень старый.")))))
+
+    private fun u37(): LearningUnit = LearningUnit("RU-B1-U5", "Spor ve Sağlıklı Yaşam", "Sağlıklı yaşam alışkanlıklarını anlat.", listOf(
             LearningLesson("RU-B1-U5-L1", "Spor ve Sağlıklı Yaşam — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rub1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'здоровье' ne anlama gelir?", "", listOf("antrenman yapmak", "sağlık", "hareket etmek"), listOf("sağlık"), "Здоровье важнее всего. — Sağlık her şeyden önemli.", null, null),
                 LearningExercise("rub1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'двигаться' ne anlama gelir?", "", listOf("hareket etmek", "beslenme", "kaçınmak"), listOf("hareket etmek"), "Нужно двигаться каждый день. — Her gün hareket etmek gerekir.", null, null),
@@ -961,8 +1094,9 @@ object WorldCourseRU {
             LearningLesson("RU-B1-U5-L5", "Spor ve Sağlıklı Yaşam — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rub1u5e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Şekerden kaçınmak gerekir.", "", listOf(), listOf("Нужно избегать сахара."), "Doğru cümle: Нужно избегать сахара.", null, "Нужно избегать сахара."),
                 LearningExercise("rub1u5e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Haftada üç kez antrenman yaparım.", "", listOf(), listOf("Я тренируюсь три раза в неделю."), "Doğru cümle: Я тренируюсь три раза в неделю.", null, "Я тренируюсь три раза в неделю."),
-                LearningExercise("rub1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Здоровье важнее всего.", "", listOf(), listOf("Здоровье важнее всего."), "Türkçesi: Sağlık her şeyden önemli.", "Здоровье важнее всего.", "Здоровье важнее всего."))))),
-        LearningUnit("RU-B1-U6", "Görüş Bildirmek", "Fikrini gerekçeleriyle savun.", listOf(
+                LearningExercise("rub1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Здоровье важнее всего.", "", listOf(), listOf("Здоровье важнее всего."), "Türkçesi: Sağlık her şeyden önemli.", "Здоровье важнее всего.", "Здоровье важнее всего.")))))
+
+    private fun u38(): LearningUnit = LearningUnit("RU-B1-U6", "Görüş Bildirmek", "Fikrini gerekçeleriyle savun.", listOf(
             LearningLesson("RU-B1-U6-L1", "Görüş Bildirmek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rub1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'мнение' ne anlama gelir?", "", listOf("görüş", "hemfikir", "sebep"), listOf("görüş"), "Это моё мнение. — Bu benim görüşüm.", null, null),
                 LearningExercise("rub1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'согласен' ne anlama gelir?", "", listOf("karşı", "ikna etmek", "hemfikir"), listOf("hemfikir"), "Я с тобой согласен. — Seninle hemfikirim.", null, null),
@@ -988,8 +1122,9 @@ object WorldCourseRU {
             LearningLesson("RU-B1-U6-L5", "Görüş Bildirmek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rub1u6e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Beni ikna edemezsin.", "", listOf(), listOf("Ты не можешь меня убедить."), "Doğru cümle: Ты не можешь меня убедить.", null, "Ты не можешь меня убедить."),
                 LearningExercise("rub1u6e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: İyi bir sebep var.", "", listOf(), listOf("Есть хорошая причина."), "Doğru cümle: Есть хорошая причина.", null, "Есть хорошая причина."),
-                LearningExercise("rub1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Это моё мнение.", "", listOf(), listOf("Это моё мнение."), "Türkçesi: Bu benim görüşüm.", "Это моё мнение.", "Это моё мнение."))))),
-        LearningUnit("RU-B1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Это моё мнение.", "", listOf(), listOf("Это моё мнение."), "Türkçesi: Bu benim görüşüm.", "Это моё мнение.", "Это моё мнение.")))))
+
+    private fun u39(): LearningUnit = LearningUnit("RU-B1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B1-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub1k_e90", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Это странное ___.", "", listOf("тогда", "воспоминание", "чувство"), listOf("чувство"), "Doğru cümle: Это странное чувство. — Bu tuhaf bir duygu.", null, null),
                 LearningExercise("rub1k_e186", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Я думаю, ___ это важно.", "", listOf("что", "чтобы", "как"), listOf("что"), "Görüş bildirme: я думаю, что ...", null, null),
@@ -1013,8 +1148,9 @@ object WorldCourseRU {
                 LearningExercise("rub1k_e139", Skill.VOCABULARY, "Doğru anlamı seç", "'тренироваться' ne anlama gelir?", "", listOf("tartışmak/kavga etmek", "antrenman yapmak", "hayal kırıklığına uğramış"), listOf("antrenman yapmak"), "Я тренируюсь три раза в неделю. — Haftada üç kez antrenman yaparım.", null, null),
                 LearningExercise("rub1k_e198", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Тогда мы жили в деревне.", "", listOf(), listOf("Тогда мы жили в деревне."), "Türkçesi: O zamanlar köyde yaşıyorduk.", "Тогда мы жили в деревне.", "Тогда мы жили в деревне."),
                 LearningExercise("rub1k_e15", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Моё детство было счастливым."), "Söylenen cümle: Моё детство было счастливым. — Çocukluğum mutluydu.", "Моё детство было счастливым.", null),
-                LearningExercise("rub1k_e60", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ слишком яркий.", "", listOf("экран", "Экран", "связь"), listOf("Экран"), "Doğru cümle: Экран слишком яркий. — Ekran fazla parlak.", null, null))))),
-        LearningUnit("RU-B1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub1k_e60", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ слишком яркий.", "", listOf("экран", "Экран", "связь"), listOf("Экран"), "Doğru cümle: Экран слишком яркий. — Ekran fazla parlak.", null, null)))))
+
+    private fun u40(): LearningUnit = LearningUnit("RU-B1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B1-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub1k_e154", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu benim görüşüm.", "", listOf(), listOf("Это моё мнение."), "Doğru cümle: Это моё мнение.", null, "Это моё мнение."),
                 LearningExercise("rub1k_e52", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bağlantı çok yavaş.", "", listOf(), listOf("Связь очень медленная."), "Doğru cümle: Связь очень медленная.", null, "Связь очень медленная."),
@@ -1038,8 +1174,9 @@ object WorldCourseRU {
                 LearningExercise("rub1k_e40", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Cihaz yepyeni.", "", listOf(), listOf("Устройство совсем новое."), "Doğru cümle: Устройство совсем новое.", null, "Устройство совсем новое."),
                 LearningExercise("rub1k_e109", Skill.VOCABULARY, "Doğru anlamı seç", "'традиция' ne anlama gelir?", "", listOf("gelenek", "indirmek", "bağlantı"), listOf("gelenek"), "Традиция живёт дальше. — Gelenek yaşamaya devam ediyor.", null, null),
                 LearningExercise("rub1k_e189", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Устройство совсем новое.", "", listOf(), listOf("Устройство совсем новое."), "Türkçesi: Cihaz yepyeni.", "Устройство совсем новое.", "Устройство совсем новое."),
-                LearningExercise("rub1k_e24", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ мы жили в деревне.", "", listOf("двигаться", "Тогда", "здоровье"), listOf("Тогда"), "Doğru cümle: Тогда мы жили в деревне. — O zamanlar köyde yaşıyorduk.", null, null))))),
-        LearningUnit("RU-B1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub1k_e24", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ мы жили в деревне.", "", listOf("двигаться", "Тогда", "здоровье"), listOf("Тогда"), "Doğru cümle: Тогда мы жили в деревне. — O zamanlar köyde yaşıyorduk.", null, null)))))
+
+    private fun u41(): LearningUnit = LearningUnit("RU-B1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B1-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub1k_e68", Skill.VOCABULARY, "Doğru çeviriyi seç", "'güven' ifadesinin Rusça karşılığı hangisi?", "", listOf("доверие", "воспоминание", "новости"), listOf("доверие"), "Örnek: Доверие строится медленно. — Güven yavaş kurulur.", null, null),
                 LearningExercise("rub1k_e7", Skill.VOCABULARY, "Doğru anlamı seç", "'помнить' ne anlama gelir?", "", listOf("bağlantı", "ekran", "hatırlamak"), listOf("hatırlamak"), "Я буду помнить этот день. — Bu günü hatırlayacağım.", null, null),
@@ -1063,8 +1200,9 @@ object WorldCourseRU {
                 LearningExercise("rub1k_e71", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Доверие строится медленно.", listOf("Güven yavaş kurulur.", "Bağlantı çok yavaş.", "Ekran fazla parlak."), listOf("Güven yavaş kurulur."), "Cümlenin çevirisi: Güven yavaş kurulur.", null, null),
                 LearningExercise("rub1k_e168", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Я ___ этой идеи.", "", listOf("тогда", "против", "детство"), listOf("против"), "Doğru cümle: Я против этой идеи. — Bu fikre karşıyım.", null, null),
                 LearningExercise("rub1k_e82", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Nadiren kavga ederiz.", "", listOf(), listOf("Мы редко ссоримся."), "Doğru cümle: Мы редко ссоримся.", null, "Мы редко ссоримся."),
-                LearningExercise("rub1k_e141", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Я тренируюсь три раза в неделю."), "Söylenen cümle: Я тренируюсь три раза в неделю. — Haftada üç kez antrenman yaparım.", "Я тренируюсь три раза в неделю.", null))))),
-        LearningUnit("RU-B1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub1k_e141", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Я тренируюсь три раза в неделю."), "Söylenen cümle: Я тренируюсь три раза в неделю. — Haftada üç kez antrenman yaparım.", "Я тренируюсь три раза в неделю.", null)))))
+
+    private fun u42(): LearningUnit = LearningUnit("RU-B1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B1-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub1k_e16", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Çocukluğum mutluydu.", "", listOf(), listOf("Моё детство было счастливым."), "Doğru cümle: Моё детство было счастливым.", null, "Моё детство было счастливым."),
                 LearningExercise("rub1k_e100", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bayram üç gün sürüyor.", "", listOf(), listOf("Праздник длится три дня."), "Doğru cümle: Праздник длится три дня.", null, "Праздник длится три дня."),
@@ -1088,8 +1226,9 @@ object WorldCourseRU {
                 LearningExercise("rub1k_e79", Skill.VOCABULARY, "Doğru anlamı seç", "'ссориться' ne anlama gelir?", "", listOf("çocukluk", "o zamanlar", "tartışmak/kavga etmek"), listOf("tartışmak/kavga etmek"), "Мы редко ссоримся. — Nadiren kavga ederiz.", null, null),
                 LearningExercise("rub1k_e114", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ живёт дальше.", "", listOf("устройство", "Традиция", "новости"), listOf("Традиция"), "Doğru cümle: Традиция живёт дальше. — Gelenek yaşamaya devam ediyor.", null, null),
                 LearningExercise("rub1k_e170", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sebep' ifadesinin Rusça karşılığı hangisi?", "", listOf("разочарован", "причина", "доверие"), listOf("причина"), "Örnek: Есть хорошая причина. — İyi bir sebep var.", null, null),
-                LearningExercise("rub1k_e122", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sağlık' ifadesinin Rusça karşılığı hangisi?", "", listOf("здоровье", "ссориться", "чувство"), listOf("здоровье"), "Örnek: Здоровье важнее всего. — Sağlık her şeyden önemli.", null, null))))),
-        LearningUnit("RU-B1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub1k_e122", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sağlık' ifadesinin Rusça karşılığı hangisi?", "", listOf("здоровье", "ссориться", "чувство"), listOf("здоровье"), "Örnek: Здоровье важнее всего. — Sağlık her şeyden önemli.", null, null)))))
+
+    private fun u43(): LearningUnit = LearningUnit("RU-B1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B1-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub1k_e162", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Я с тобой ___.", "", listOf("экран", "дружба", "согласен"), listOf("согласен"), "Doğru cümle: Я с тобой согласен. — Seninle hemfikirim.", null, null),
                 LearningExercise("rub1k_e150", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Нужно ___ сахара.", "", listOf("мнение", "избегать", "тренироваться"), listOf("избегать"), "Doğru cümle: Нужно избегать сахара. — Şekerden kaçınmak gerekir.", null, null),
@@ -1113,8 +1252,9 @@ object WorldCourseRU {
                 LearningExercise("rub1k_e182", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Мы уже ___ приложение.", "", listOf("скачали", "скачаем", "скачивать"), listOf("скачали"), "Geçmiş zaman çoğul: мы скачали.", null, null),
                 LearningExercise("rub1k_e161", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Я с тобой согласен.", listOf("Seninle hemfikirim.", "Haftada üç kez antrenman yaparım.", "Şekerden kaçınmak gerekir."), listOf("Seninle hemfikirim."), "Cümlenin çevirisi: Seninle hemfikirim.", null, null),
                 LearningExercise("rub1k_e118", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Toplum hızla değişiyor.", "", listOf(), listOf("Общество быстро меняется."), "Doğru cümle: Общество быстро меняется.", null, "Общество быстро меняется."),
-                LearningExercise("rub1k_e76", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sonuçtan hayal kırıklığına uğradım.", "", listOf(), listOf("Я разочарован результатом."), "Doğru cümle: Я разочарован результатом.", null, "Я разочарован результатом."))))),
-        LearningUnit("RU-B1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub1k_e76", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sonuçtan hayal kırıklığına uğradım.", "", listOf(), listOf("Я разочарован результатом."), "Doğru cümle: Я разочарован результатом.", null, "Я разочарован результатом.")))))
+
+    private fun u44(): LearningUnit = LearningUnit("RU-B1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B1-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub1k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Это воспоминание очень дорого мне.", listOf("Seninle hemfikirim.", "Bu anı benim için çok değerli.", "Bu benim görüşüm."), listOf("Bu anı benim için çok değerli."), "Cümlenin çevirisi: Bu anı benim için çok değerli.", null, null),
                 LearningExercise("rub1k_e43", Skill.VOCABULARY, "Doğru anlamı seç", "'скачать' ne anlama gelir?", "", listOf("sağlık", "hareket etmek", "indirmek"), listOf("indirmek"), "Ты можешь скачать приложение. — Uygulamayı indirebilirsin.", null, null),
@@ -1138,8 +1278,9 @@ object WorldCourseRU {
                 LearningExercise("rub1k_e177", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Ты не можешь меня убедить."), "Söylenen cümle: Ты не можешь меня убедить. — Beni ikna edemezsin.", "Ты не можешь меня убедить.", null),
                 LearningExercise("rub1k_e188", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Тогда мы жили в деревне.", "", listOf(), listOf("Тогда мы жили в деревне."), "Türkçesi: O zamanlar köyde yaşıyorduk.", "Тогда мы жили в деревне.", "Тогда мы жили в деревне."),
                 LearningExercise("rub1k_e193", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Традиция живёт дальше.", "", listOf(), listOf("Традиция живёт дальше."), "Türkçesi: Gelenek yaşamaya devam ediyor.", "Традиция живёт дальше.", "Традиция живёт дальше."),
-                LearningExercise("rub1k_e112", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Gelenek yaşamaya devam ediyor.", "", listOf(), listOf("Традиция живёт дальше."), "Doğru cümle: Традиция живёт дальше.", null, "Традиция живёт дальше."))))),
-        LearningUnit("RU-B1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub1k_e112", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Gelenek yaşamaya devam ediyor.", "", listOf(), listOf("Традиция живёт дальше."), "Doğru cümle: Традиция живёт дальше.", null, "Традиция живёт дальше.")))))
+
+    private fun u45(): LearningUnit = LearningUnit("RU-B1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B1-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub1k_e14", Skill.VOCABULARY, "Doğru çeviriyi seç", "'çocukluk' ifadesinin Rusça karşılığı hangisi?", "", listOf("детство", "мнение", "согласен"), listOf("детство"), "Örnek: Моё детство было счастливым. — Çocukluğum mutluydu.", null, null),
                 LearningExercise("rub1k_e107", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Мы будем отмечать вместе.", listOf("Birlikte kutlayacağız.", "Çocukluğum mutluydu.", "O zamanlar köyde yaşıyorduk."), listOf("Birlikte kutlayacağız."), "Cümlenin çevirisi: Birlikte kutlayacağız.", null, null),
@@ -1163,8 +1304,9 @@ object WorldCourseRU {
                 LearningExercise("rub1k_e62", Skill.VOCABULARY, "Doğru çeviriyi seç", "'arkadaşlık' ifadesinin Rusça karşılığı hangisi?", "", listOf("избегать", "дружба", "тренироваться"), listOf("дружба"), "Örnek: Наша дружба крепкая. — Arkadaşlığımız sağlam.", null, null),
                 LearningExercise("rub1k_e140", Skill.VOCABULARY, "Doğru çeviriyi seç", "'antrenman yapmak' ifadesinin Rusça karşılığı hangisi?", "", listOf("тренироваться", "праздник", "отмечать"), listOf("тренироваться"), "Örnek: Я тренируюсь три раза в неделю. — Haftada üç kez antrenman yaparım.", null, null),
                 LearningExercise("rub1k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ строится медленно.", "", listOf("избегать", "мнение", "Доверие"), listOf("Доверие"), "Doğru cümle: Доверие строится медленно. — Güven yavaş kurulur.", null, null),
-                LearningExercise("rub1k_e115", Skill.VOCABULARY, "Doğru anlamı seç", "'общество' ne anlama gelir?", "", listOf("duygu", "âdet", "toplum"), listOf("toplum"), "Общество быстро меняется. — Toplum hızla değişiyor.", null, null))))),
-        LearningUnit("RU-B1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub1k_e115", Skill.VOCABULARY, "Doğru anlamı seç", "'общество' ne anlama gelir?", "", listOf("duygu", "âdet", "toplum"), listOf("toplum"), "Общество быстро меняется. — Toplum hızla değişiyor.", null, null)))))
+
+    private fun u46(): LearningUnit = LearningUnit("RU-B1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B1-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub1k_e63", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Наша дружба крепкая."), "Söylenen cümle: Наша дружба крепкая. — Arkadaşlığımız sağlam.", "Наша дружба крепкая.", null),
                 LearningExercise("rub1k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'indirmek' ifadesinin Rusça karşılığı hangisi?", "", listOf("двигаться", "скачать", "здоровье"), listOf("скачать"), "Örnek: Ты можешь скачать приложение. — Uygulamayı indirebilirsin.", null, null),
@@ -1188,8 +1330,9 @@ object WorldCourseRU {
                 LearningExercise("rub1k_e78", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Я ___ результатом.", "", listOf("традиция", "разочарован", "отмечать"), listOf("разочарован"), "Doğru cümle: Я разочарован результатом. — Sonuçtan hayal kırıklığına uğradım.", null, null),
                 LearningExercise("rub1k_e159", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Я с тобой согласен."), "Söylenen cümle: Я с тобой согласен. — Seninle hemfikirim.", "Я с тобой согласен.", null),
                 LearningExercise("rub1k_e106", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Birlikte kutlayacağız.", "", listOf(), listOf("Мы будем отмечать вместе."), "Doğru cümle: Мы будем отмечать вместе.", null, "Мы будем отмечать вместе."),
-                LearningExercise("rub1k_e147", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Нужно избегать сахара."), "Söylenen cümle: Нужно избегать сахара. — Şekerden kaçınmak gerekir.", "Нужно избегать сахара.", null))))),
-        LearningUnit("RU-B1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub1k_e147", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Нужно избегать сахара."), "Söylenen cümle: Нужно избегать сахара. — Şekerden kaçınmak gerekir.", "Нужно избегать сахара.", null)))))
+
+    private fun u47(): LearningUnit = LearningUnit("RU-B1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B1-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub1k_e135", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Здоровое питание очень важно."), "Söylenen cümle: Здоровое питание очень важно. — Sağlıklı beslenme çok önemli.", "Здоровое питание очень важно.", null),
                 LearningExercise("rub1k_e51", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Связь очень медленная."), "Söylenen cümle: Связь очень медленная. — Bağlantı çok yavaş.", "Связь очень медленная.", null),
@@ -1213,8 +1356,9 @@ object WorldCourseRU {
                 LearningExercise("rub1k_e129", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Нужно двигаться каждый день."), "Söylenen cümle: Нужно двигаться каждый день. — Her gün hareket etmek gerekir.", "Нужно двигаться каждый день.", null),
                 LearningExercise("rub1k_e33", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Я читаю новости вечером."), "Söylenen cümle: Я читаю новости вечером. — Akşamları haberleri okurum.", "Я читаю новости вечером.", null),
                 LearningExercise("rub1k_e195", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Нужно избегать сахара.", "", listOf(), listOf("Нужно избегать сахара."), "Türkçesi: Şekerden kaçınmak gerekir.", "Нужно избегать сахара.", "Нужно избегать сахара."),
-                LearningExercise("rub1k_e91", Skill.VOCABULARY, "Doğru anlamı seç", "'обычай' ne anlama gelir?", "", listOf("âdet", "bayram", "kutlamak"), listOf("âdet"), "Этот обычай очень старый. — Bu âdet çok eski.", null, null))))),
-        LearningUnit("RU-B1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub1k_e91", Skill.VOCABULARY, "Doğru anlamı seç", "'обычай' ne anlama gelir?", "", listOf("âdet", "bayram", "kutlamak"), listOf("âdet"), "Этот обычай очень старый. — Bu âdet çok eski.", null, null)))))
+
+    private fun u48(): LearningUnit = LearningUnit("RU-B1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B1-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub1k_e38", Skill.VOCABULARY, "Doğru çeviriyi seç", "'cihaz' ifadesinin Rusça karşılığı hangisi?", "", listOf("экран", "дружба", "устройство"), listOf("устройство"), "Örnek: Устройство совсем новое. — Cihaz yepyeni.", null, null),
                 LearningExercise("rub1k_e58", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ekran fazla parlak.", "", listOf(), listOf("Экран слишком яркий."), "Doğru cümle: Экран слишком яркий.", null, "Экран слишком яркий."),
@@ -1238,8 +1382,9 @@ object WorldCourseRU {
                 LearningExercise("rub1k_e20", Skill.VOCABULARY, "Doğru çeviriyi seç", "'o zamanlar' ifadesinin Rusça karşılığı hangisi?", "", listOf("устройство", "скачать", "тогда"), listOf("тогда"), "Örnek: Тогда мы жили в деревне. — O zamanlar köyde yaşıyorduk.", null, null),
                 LearningExercise("rub1k_e56", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ekran' ifadesinin Rusça karşılığı hangisi?", "", listOf("разочарован", "ссориться", "экран"), listOf("экран"), "Örnek: Экран слишком яркий. — Ekran fazla parlak.", null, null),
                 LearningExercise("rub1k_e57", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Экран слишком яркий."), "Söylenen cümle: Экран слишком яркий. — Ekran fazla parlak.", "Экран слишком яркий.", null),
-                LearningExercise("rub1k_e105", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Мы будем отмечать вместе."), "Söylenen cümle: Мы будем отмечать вместе. — Birlikte kutlayacağız.", "Мы будем отмечать вместе.", null))))),
-        LearningUnit("RU-B2-U1", "Kariyer ve İş Dünyası", "İş görüşmesi ve kariyer dilinde ustalaş.", listOf(
+                LearningExercise("rub1k_e105", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Мы будем отмечать вместе."), "Söylenen cümle: Мы будем отмечать вместе. — Birlikte kutlayacağız.", "Мы будем отмечать вместе.", null)))))
+
+    private fun u49(): LearningUnit = LearningUnit("RU-B2-U1", "Kariyer ve İş Dünyası", "İş görüşmesi ve kariyer dilinde ustalaş.", listOf(
             LearningLesson("RU-B2-U1-L1", "Kariyer ve İş Dünyası — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rub2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'резюме' ne anlama gelir?", "", listOf("mülakat", "sorumluluk", "özgeçmiş"), listOf("özgeçmiş"), "Резюме должно быть коротким. — Özgeçmiş kısa olmalı.", null, null),
                 LearningExercise("rub2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'собеседование' ne anlama gelir?", "", listOf("kariyer", "mülakat", "işe almak"), listOf("mülakat"), "Собеседование прошло хорошо. — Mülakat iyi geçti.", null, null),
@@ -1265,8 +1410,9 @@ object WorldCourseRU {
             LearningLesson("RU-B2-U1-L5", "Kariyer ve İş Dünyası — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rub2u1e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kariyeri hızla gelişiyor.", "", listOf(), listOf("Её карьера развивается быстро."), "Doğru cümle: Её карьера развивается быстро.", null, "Её карьера развивается быстро."),
                 LearningExercise("rub2u1e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sorumluluğu üstleniyorum.", "", listOf(), listOf("Я беру на себя ответственность."), "Doğru cümle: Я беру на себя ответственность.", null, "Я беру на себя ответственность."),
-                LearningExercise("rub2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Резюме должно быть коротким.", "", listOf(), listOf("Резюме должно быть коротким."), "Türkçesi: Özgeçmiş kısa olmalı.", "Резюме должно быть коротким.", "Резюме должно быть коротким."))))),
-        LearningUnit("RU-B2-U2", "Çevre ve Sürdürülebilirlik", "Çevre sorunlarını tartış.", listOf(
+                LearningExercise("rub2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Резюме должно быть коротким.", "", listOf(), listOf("Резюме должно быть коротким."), "Türkçesi: Özgeçmiş kısa olmalı.", "Резюме должно быть коротким.", "Резюме должно быть коротким.")))))
+
+    private fun u50(): LearningUnit = LearningUnit("RU-B2-U2", "Çevre ve Sürdürülebilirlik", "Çevre sorunlarını tartış.", listOf(
             LearningLesson("RU-B2-U2-L1", "Çevre ve Sürdürülebilirlik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rub2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'окружающая среда' ne anlama gelir?", "", listOf("atıklar", "çevre", "ısınma (küresel)"), listOf("çevre"), "Мы должны защищать окружающую среду. — Çevreyi korumalıyız.", null, null),
                 LearningExercise("rub2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'потепление' ne anlama gelir?", "", listOf("ısınma (küresel)", "sürdürülebilir", "yenilenebilir"), listOf("ısınma (küresel)"), "Глобальное потепление ускоряется. — Küresel ısınma hızlanıyor.", null, null),
@@ -1292,8 +1438,9 @@ object WorldCourseRU {
             LearningLesson("RU-B2-U2-L5", "Çevre ve Sürdürülebilirlik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rub2u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yenilenebilir enerji gelecektir.", "", listOf(), listOf("Возобновляемая энергия — это будущее."), "Doğru cümle: Возобновляемая энергия — это будущее.", null, "Возобновляемая энергия — это будущее."),
                 LearningExercise("rub2u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Atıklar geri dönüştürülüyor.", "", listOf(), listOf("Отходы перерабатываются."), "Doğru cümle: Отходы перерабатываются.", null, "Отходы перерабатываются."),
-                LearningExercise("rub2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Мы должны защищать окружающую среду.", "", listOf(), listOf("Мы должны защищать окружающую среду."), "Türkçesi: Çevreyi korumalıyız.", "Мы должны защищать окружающую среду.", "Мы должны защищать окружающую среду."))))),
-        LearningUnit("RU-B2-U3", "Bilim ve Yenilik", "Bilimsel gelişmeleri aktar.", listOf(
+                LearningExercise("rub2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Мы должны защищать окружающую среду.", "", listOf(), listOf("Мы должны защищать окружающую среду."), "Türkçesi: Çevreyi korumalıyız.", "Мы должны защищать окружающую среду.", "Мы должны защищать окружающую среду.")))))
+
+    private fun u51(): LearningUnit = LearningUnit("RU-B2-U3", "Bilim ve Yenilik", "Bilimsel gelişmeleri aktar.", listOf(
             LearningLesson("RU-B2-U3-L1", "Bilim ve Yenilik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rub2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'исследование' ne anlama gelir?", "", listOf("araştırma", "keşif", "kanıtlamak"), listOf("araştırma"), "Исследование продолжается. — Araştırma sürüyor.", null, null),
                 LearningExercise("rub2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'открытие' ne anlama gelir?", "", listOf("ilerleme", "sonuç", "keşif"), listOf("keşif"), "Это было важное открытие. — Bu önemli bir keşifti.", null, null),
@@ -1319,8 +1466,9 @@ object WorldCourseRU {
             LearningLesson("RU-B2-U3-L5", "Bilim ve Yenilik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rub2u3e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sonuç bizi şaşırtıyor.", "", listOf(), listOf("Результат нас удивляет."), "Doğru cümle: Результат нас удивляет.", null, "Результат нас удивляет."),
                 LearningExercise("rub2u3e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Veriler bunu kanıtlayabilir.", "", listOf(), listOf("Данные могут доказать это."), "Doğru cümle: Данные могут доказать это.", null, "Данные могут доказать это."),
-                LearningExercise("rub2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Исследование продолжается.", "", listOf(), listOf("Исследование продолжается."), "Türkçesi: Araştırma sürüyor.", "Исследование продолжается.", "Исследование продолжается."))))),
-        LearningUnit("RU-B2-U4", "Toplum ve Güncel Konular", "Toplumsal konularda görüş geliştir.", listOf(
+                LearningExercise("rub2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Исследование продолжается.", "", listOf(), listOf("Исследование продолжается."), "Türkçesi: Araştırma sürüyor.", "Исследование продолжается.", "Исследование продолжается.")))))
+
+    private fun u52(): LearningUnit = LearningUnit("RU-B2-U4", "Toplum ve Güncel Konular", "Toplumsal konularda görüş geliştir.", listOf(
             LearningLesson("RU-B2-U4-L1", "Toplum ve Güncel Konular — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rub2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'справедливость' ne anlama gelir?", "", listOf("eşitlik", "yoksulluk", "adalet"), listOf("adalet"), "Справедливость — базовая ценность. — Adalet temel bir değerdir.", null, null),
                 LearningExercise("rub2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'равенство' ne anlama gelir?", "", listOf("tartışma (kamusal)", "eşitlik", "vatandaş"), listOf("eşitlik"), "Равенство перед законом. — Yasa önünde eşitlik.", null, null),
@@ -1346,8 +1494,9 @@ object WorldCourseRU {
             LearningLesson("RU-B2-U4-L5", "Toplum ve Güncel Konular — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rub2u4e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Tartışma sürüyor.", "", listOf(), listOf("Дискуссия продолжается."), "Doğru cümle: Дискуссия продолжается.", null, "Дискуссия продолжается."),
                 LearningExercise("rub2u4e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yoksullukla mücadele edilmeli.", "", listOf(), listOf("С бедностью нужно бороться."), "Doğru cümle: С бедностью нужно бороться.", null, "С бедностью нужно бороться."),
-                LearningExercise("rub2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Справедливость — базовая ценность.", "", listOf(), listOf("Справедливость — базовая ценность."), "Türkçesi: Adalet temel bir değerdir.", "Справедливость — базовая ценность.", "Справедливость — базовая ценность."))))),
-        LearningUnit("RU-B2-U5", "Sanat ve Edebiyat", "Sanat eserlerini yorumla.", listOf(
+                LearningExercise("rub2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Справедливость — базовая ценность.", "", listOf(), listOf("Справедливость — базовая ценность."), "Türkçesi: Adalet temel bir değerdir.", "Справедливость — базовая ценность.", "Справедливость — базовая ценность.")))))
+
+    private fun u53(): LearningUnit = LearningUnit("RU-B2-U5", "Sanat ve Edebiyat", "Sanat eserlerini yorumla.", listOf(
             LearningLesson("RU-B2-U5-L1", "Sanat ve Edebiyat — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rub2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'картина' ne anlama gelir?", "", listOf("etkileyici", "tablo", "roman"), listOf("tablo"), "Картина висит в музее. — Tablo müzede asılı.", null, null),
                 LearningExercise("rub2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'роман' ne anlama gelir?", "", listOf("roman", "sergi", "yazar"), listOf("roman"), "В романе четыреста страниц. — Roman dört yüz sayfa.", null, null),
@@ -1373,8 +1522,9 @@ object WorldCourseRU {
             LearningLesson("RU-B2-U5-L5", "Sanat ve Edebiyat — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rub2u5e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yazar bu akşam okuma yapıyor.", "", listOf(), listOf("Писатель читает сегодня вечером."), "Doğru cümle: Писатель читает сегодня вечером.", null, "Писатель читает сегодня вечером."),
                 LearningExercise("rub2u5e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Eser etkileyici.", "", listOf(), listOf("Произведение впечатляющее."), "Doğru cümle: Произведение впечатляющее.", null, "Произведение впечатляющее."),
-                LearningExercise("rub2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Картина висит в музее.", "", listOf(), listOf("Картина висит в музее."), "Türkçesi: Tablo müzede asılı.", "Картина висит в музее.", "Картина висит в музее."))))),
-        LearningUnit("RU-B2-U6", "Tartışma ve İkna", "Karşıt görüşleri dengeli biçimde tart.", listOf(
+                LearningExercise("rub2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Картина висит в музее.", "", listOf(), listOf("Картина висит в музее."), "Türkçesi: Tablo müzede asılı.", "Картина висит в музее.", "Картина висит в музее.")))))
+
+    private fun u54(): LearningUnit = LearningUnit("RU-B2-U6", "Tartışma ve İkna", "Karşıt görüşleri dengeli biçimde tart.", listOf(
             LearningLesson("RU-B2-U6-L1", "Tartışma ve İkna — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("rub2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'аргумент' ne anlama gelir?", "", listOf("argüman", "bir yandan", "itiraz etmek"), listOf("argüman"), "Аргумент сильный. — Argüman güçlü.", null, null),
                 LearningExercise("rub2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'с одной стороны' ne anlama gelir?", "", listOf("öte yandan", "çıkarım", "bir yandan"), listOf("bir yandan"), "С одной стороны, это дорого. — Bir yandan bu pahalı.", null, null),
@@ -1400,8 +1550,9 @@ object WorldCourseRU {
             LearningLesson("RU-B2-U6-L5", "Tartışma ve İkna — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("rub2u6e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Çıkarım açık.", "", listOf(), listOf("Вывод ясен."), "Doğru cümle: Вывод ясен.", null, "Вывод ясен."),
                 LearningExercise("rub2u6e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: İtiraz etmek zorundayım.", "", listOf(), listOf("Я должен возражать."), "Doğru cümle: Я должен возражать.", null, "Я должен возражать."),
-                LearningExercise("rub2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Аргумент сильный.", "", listOf(), listOf("Аргумент сильный."), "Türkçesi: Argüman güçlü.", "Аргумент сильный.", "Аргумент сильный."))))),
-        LearningUnit("RU-B2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Аргумент сильный.", "", listOf(), listOf("Аргумент сильный."), "Türkçesi: Argüman güçlü.", "Аргумент сильный.", "Аргумент сильный.")))))
+
+    private fun u55(): LearningUnit = LearningUnit("RU-B2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B2-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub2k_e69", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Это было важное открытие."), "Söylenen cümle: Это было важное открытие. — Bu önemli bir keşifti.", "Это было важное открытие.", null),
                 LearningExercise("rub2k_e126", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ висит в музее.", "", listOf("роман", "выставка", "Картина"), listOf("Картина"), "Doğru cümle: Картина висит в музее. — Tablo müzede asılı.", null, null),
@@ -1425,8 +1576,9 @@ object WorldCourseRU {
                 LearningExercise("rub2k_e109", Skill.VOCABULARY, "Doğru anlamı seç", "'бедность' ne anlama gelir?", "", listOf("yoksulluk", "sürdürülebilir", "atıklar"), listOf("yoksulluk"), "С бедностью нужно бороться. — Yoksullukla mücadele edilmeli.", null, null),
                 LearningExercise("rub2k_e42", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Глобальное ___ ускоряется.", "", listOf("резюме", "потепление", "вывод"), listOf("потепление"), "Doğru cümle: Глобальное потепление ускоряется. — Küresel ısınma hızlanıyor.", null, null),
                 LearningExercise("rub2k_e12", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ прошло хорошо.", "", listOf("Собеседование", "карьера", "окружающая среда"), listOf("Собеседование"), "Doğru cümle: Собеседование прошло хорошо. — Mülakat iyi geçti.", null, null),
-                LearningExercise("rub2k_e98", Skill.VOCABULARY, "Doğru çeviriyi seç", "'eşitlik' ifadesinin Rusça karşılığı hangisi?", "", listOf("резюме", "равенство", "вывод"), listOf("равенство"), "Örnek: Равенство перед законом. — Yasa önünde eşitlik.", null, null))))),
-        LearningUnit("RU-B2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub2k_e98", Skill.VOCABULARY, "Doğru çeviriyi seç", "'eşitlik' ifadesinin Rusça karşılığı hangisi?", "", listOf("резюме", "равенство", "вывод"), listOf("равенство"), "Örnek: Равенство перед законом. — Yasa önünde eşitlik.", null, null)))))
+
+    private fun u56(): LearningUnit = LearningUnit("RU-B2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B2-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub2k_e100", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yasa önünde eşitlik.", "", listOf(), listOf("Равенство перед законом."), "Doğru cümle: Равенство перед законом.", null, "Равенство перед законом."),
                 LearningExercise("rub2k_e148", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yazar bu akşam okuma yapıyor.", "", listOf(), listOf("Писатель читает сегодня вечером."), "Doğru cümle: Писатель читает сегодня вечером.", null, "Писатель читает сегодня вечером."),
@@ -1450,8 +1602,9 @@ object WorldCourseRU {
                 LearningExercise("rub2k_e101", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Равенство перед законом.", listOf("Sonuç bizi şaşırtıyor.", "Yasa önünde eşitlik.", "Veriler bunu kanıtlayabilir."), listOf("Yasa önünde eşitlik."), "Cümlenin çevirisi: Yasa önünde eşitlik.", null, null),
                 LearningExercise("rub2k_e92", Skill.VOCABULARY, "Doğru çeviriyi seç", "'adalet' ifadesinin Rusça karşılığı hangisi?", "", listOf("бедность", "дискуссия", "справедливость"), listOf("справедливость"), "Örnek: Справедливость — базовая ценность. — Adalet temel bir değerdir.", null, null),
                 LearningExercise("rub2k_e134", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sergi' ifadesinin Rusça karşılığı hangisi?", "", listOf("потепление", "выставка", "окружающая среда"), listOf("выставка"), "Örnek: Выставка открывается завтра. — Sergi yarın açılıyor.", null, null),
-                LearningExercise("rub2k_e11", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Собеседование прошло хорошо.", listOf("Çıkarım açık.", "Mülakat iyi geçti.", "İtiraz etmek zorundayım."), listOf("Mülakat iyi geçti."), "Cümlenin çevirisi: Mülakat iyi geçti.", null, null))))),
-        LearningUnit("RU-B2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub2k_e11", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Собеседование прошло хорошо.", listOf("Çıkarım açık.", "Mülakat iyi geçti.", "İtiraz etmek zorundayım."), listOf("Mülakat iyi geçti."), "Cümlenin çevirisi: Mülakat iyi geçti.", null, null)))))
+
+    private fun u57(): LearningUnit = LearningUnit("RU-B2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B2-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub2k_e8", Skill.VOCABULARY, "Doğru çeviriyi seç", "'mülakat' ifadesinin Rusça karşılığı hangisi?", "", listOf("справедливость", "собеседование", "результат"), listOf("собеседование"), "Örnek: Собеседование прошло хорошо. — Mülakat iyi geçti.", null, null),
                 LearningExercise("rub2k_e5", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Резюме должно быть коротким.", listOf("Yenilenebilir enerji gelecektir.", "Araştırma sürüyor.", "Özgeçmiş kısa olmalı."), listOf("Özgeçmiş kısa olmalı."), "Cümlenin çevirisi: Özgeçmiş kısa olmalı.", null, null),
@@ -1475,8 +1628,9 @@ object WorldCourseRU {
                 LearningExercise("rub2k_e189", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Глобальное потепление ускоряется.", "", listOf(), listOf("Глобальное потепление ускоряется."), "Türkçesi: Küresel ısınma hızlanıyor.", "Глобальное потепление ускоряется.", "Глобальное потепление ускоряется."),
                 LearningExercise("rub2k_e91", Skill.VOCABULARY, "Doğru anlamı seç", "'справедливость' ne anlama gelir?", "", listOf("adalet", "eşitlik", "vatandaş"), listOf("adalet"), "Справедливость — базовая ценность. — Adalet temel bir değerdir.", null, null),
                 LearningExercise("rub2k_e18", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Компания будет ___ новых людей.", "", listOf("с другой стороны", "возражать", "нанимать"), listOf("нанимать"), "Doğru cümle: Компания будет нанимать новых людей. — Şirket yeni insanlar işe alacak.", null, null),
-                LearningExercise("rub2k_e175", Skill.VOCABULARY, "Doğru anlamı seç", "'вывод' ne anlama gelir?", "", listOf("argüman", "çıkarım", "yazar"), listOf("çıkarım"), "Вывод ясен. — Çıkarım açık.", null, null))))),
-        LearningUnit("RU-B2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub2k_e175", Skill.VOCABULARY, "Doğru anlamı seç", "'вывод' ne anlama gelir?", "", listOf("argüman", "çıkarım", "yazar"), listOf("çıkarım"), "Вывод ясен. — Çıkarım açık.", null, null)))))
+
+    private fun u58(): LearningUnit = LearningUnit("RU-B2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B2-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub2k_e150", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ читает сегодня вечером.", "", listOf("писатель", "Писатель", "впечатляющий"), listOf("Писатель"), "Doğru cümle: Писатель читает сегодня вечером. — Yazar bu akşam okuma yapıyor.", null, null),
                 LearningExercise("rub2k_e2", Skill.VOCABULARY, "Doğru çeviriyi seç", "'özgeçmiş' ifadesinin Rusça karşılığı hangisi?", "", listOf("ответственность", "карьера", "резюме"), listOf("резюме"), "Örnek: Резюме должно быть коротким. — Özgeçmiş kısa olmalı.", null, null),
@@ -1500,8 +1654,9 @@ object WorldCourseRU {
                 LearningExercise("rub2k_e84", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Данные могут ___ это.", "", listOf("доказать", "исследование", "открытие"), listOf("доказать"), "Doğru cümle: Данные могут доказать это. — Veriler bunu kanıtlayabilir.", null, null),
                 LearningExercise("rub2k_e167", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "С другой стороны, это полезно.", listOf("İlerleme ortada.", "Veriler bunu kanıtlayabilir.", "Öte yandan bu faydalı."), listOf("Öte yandan bu faydalı."), "Cümlenin çevirisi: Öte yandan bu faydalı.", null, null),
                 LearningExercise("rub2k_e4", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Özgeçmiş kısa olmalı.", "", listOf(), listOf("Резюме должно быть коротким."), "Doğru cümle: Резюме должно быть коротким.", null, "Резюме должно быть коротким."),
-                LearningExercise("rub2k_e14", Skill.VOCABULARY, "Doğru çeviriyi seç", "'işe almak' ifadesinin Rusça karşılığı hangisi?", "", listOf("нанимать", "аргумент", "с одной стороны"), listOf("нанимать"), "Örnek: Компания будет нанимать новых людей. — Şirket yeni insanlar işe alacak.", null, null))))),
-        LearningUnit("RU-B2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub2k_e14", Skill.VOCABULARY, "Doğru çeviriyi seç", "'işe almak' ifadesinin Rusça karşılığı hangisi?", "", listOf("нанимать", "аргумент", "с одной стороны"), listOf("нанимать"), "Örnek: Компания будет нанимать новых людей. — Şirket yeni insanlar işe alacak.", null, null)))))
+
+    private fun u59(): LearningUnit = LearningUnit("RU-B2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B2-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub2k_e177", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Вывод ясен."), "Söylenen cümle: Вывод ясен. — Çıkarım açık.", "Вывод ясен.", null),
                 LearningExercise("rub2k_e200", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Возобновляемая энергия — это будущее.", "", listOf(), listOf("Возобновляемая энергия — это будущее."), "Türkçesi: Yenilenebilir enerji gelecektir.", "Возобновляемая энергия — это будущее.", "Возобновляемая энергия — это будущее."),
@@ -1525,8 +1680,9 @@ object WorldCourseRU {
                 LearningExercise("rub2k_e137", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Выставка открывается завтра.", listOf("Atıklar geri dönüştürülüyor.", "Sergi yarın açılıyor.", "Sürdürülebilir çözümlere ihtiyacımız var."), listOf("Sergi yarın açılıyor."), "Cümlenin çevirisi: Sergi yarın açılıyor.", null, null),
                 LearningExercise("rub2k_e139", Skill.VOCABULARY, "Doğru anlamı seç", "'впечатляющий' ne anlama gelir?", "", listOf("kanıtlamak", "etkileyici", "ilerleme"), listOf("etkileyici"), "Произведение впечатляющее. — Eser etkileyici.", null, null),
                 LearningExercise("rub2k_e88", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sonuç bizi şaşırtıyor.", "", listOf(), listOf("Результат нас удивляет."), "Doğru cümle: Результат нас удивляет.", null, "Результат нас удивляет."),
-                LearningExercise("rub2k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Это было важное ___.", "", listOf("писатель", "аргумент", "открытие"), listOf("открытие"), "Doğru cümle: Это было важное открытие. — Bu önemli bir keşifti.", null, null))))),
-        LearningUnit("RU-B2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub2k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Это было важное ___.", "", listOf("писатель", "аргумент", "открытие"), listOf("открытие"), "Doğru cümle: Это было важное открытие. — Bu önemli bir keşifti.", null, null)))))
+
+    private fun u60(): LearningUnit = LearningUnit("RU-B2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B2-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub2k_e129", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("В романе четыреста страниц."), "Söylenen cümle: В романе четыреста страниц. — Roman dört yüz sayfa.", "В романе четыреста страниц.", null),
                 LearningExercise("rub2k_e146", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yazar' ifadesinin Rusça karşılığı hangisi?", "", listOf("с другой стороны", "возражать", "писатель"), listOf("писатель"), "Örnek: Писатель читает сегодня вечером. — Yazar bu akşam okuma yapıyor.", null, null),
@@ -1550,8 +1706,9 @@ object WorldCourseRU {
                 LearningExercise("rub2k_e174", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Я должен ___.", "", listOf("возражать", "аргумент", "с одной стороны"), listOf("возражать"), "Doğru cümle: Я должен возражать. — İtiraz etmek zorundayım.", null, null),
                 LearningExercise("rub2k_e105", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Каждый гражданин имеет права."), "Söylenen cümle: Каждый гражданин имеет права. — Her vatandaşın hakları vardır.", "Каждый гражданин имеет права.", null),
                 LearningExercise("rub2k_e24", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Я беру на себя ___.", "", listOf("роман", "ответственность", "картина"), listOf("ответственность"), "Doğru cümle: Я беру на себя ответственность. — Sorumluluğu üstleniyorum.", null, null),
-                LearningExercise("rub2k_e47", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Нам нужны устойчивые решения.", listOf("Eser etkileyici.", "Sürdürülebilir çözümlere ihtiyacımız var.", "Sergi yarın açılıyor."), listOf("Sürdürülebilir çözümlere ihtiyacımız var."), "Cümlenin çevirisi: Sürdürülebilir çözümlere ihtiyacımız var.", null, null))))),
-        LearningUnit("RU-B2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub2k_e47", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Нам нужны устойчивые решения.", listOf("Eser etkileyici.", "Sürdürülebilir çözümlere ihtiyacımız var.", "Sergi yarın açılıyor."), listOf("Sürdürülebilir çözümlere ihtiyacımız var."), "Cümlenin çevirisi: Sürdürülebilir çözümlere ihtiyacımız var.", null, null)))))
+
+    private fun u61(): LearningUnit = LearningUnit("RU-B2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B2-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub2k_e6", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ должно быть коротким.", "", listOf("прогресс", "Резюме", "открытие"), listOf("Резюме"), "Doğru cümle: Резюме должно быть коротким. — Özgeçmiş kısa olmalı.", null, null),
                 LearningExercise("rub2k_e144", Skill.VOCABULARY, "Doğru anlamı seç", "'впечатляющий' ne anlama gelir?", "", listOf("özgeçmiş", "mülakat", "etkileyici"), listOf("etkileyici"), "Произведение впечатляющее. — Eser etkileyici.", null, null),
@@ -1575,8 +1732,9 @@ object WorldCourseRU {
                 LearningExercise("rub2k_e77", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Прогресс очевиден.", listOf("Öte yandan bu faydalı.", "İtiraz etmek zorundayım.", "İlerleme ortada."), listOf("İlerleme ortada."), "Cümlenin çevirisi: İlerleme ortada.", null, null),
                 LearningExercise("rub2k_e74", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ilerleme' ifadesinin Rusça karşılığı hangisi?", "", listOf("справедливость", "равенство", "прогресс"), listOf("прогресс"), "Örnek: Прогресс очевиден. — İlerleme ortada.", null, null),
                 LearningExercise("rub2k_e178", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Çıkarım açık.", "", listOf(), listOf("Вывод ясен."), "Doğru cümle: Вывод ясен.", null, "Вывод ясен."),
-                LearningExercise("rub2k_e145", Skill.VOCABULARY, "Doğru anlamı seç", "'писатель' ne anlama gelir?", "", listOf("yazar", "tartışma (kamusal)", "tablo"), listOf("yazar"), "Писатель читает сегодня вечером. — Yazar bu akşam okuma yapıyor.", null, null))))),
-        LearningUnit("RU-B2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub2k_e145", Skill.VOCABULARY, "Doğru anlamı seç", "'писатель' ne anlama gelir?", "", listOf("yazar", "tartışma (kamusal)", "tablo"), listOf("yazar"), "Писатель читает сегодня вечером. — Yazar bu akşam okuma yapıyor.", null, null)))))
+
+    private fun u62(): LearningUnit = LearningUnit("RU-B2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B2-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub2k_e21", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Я беру на себя ответственность."), "Söylenen cümle: Я беру на себя ответственность. — Sorumluluğu üstleniyorum.", "Я беру на себя ответственность.", null),
                 LearningExercise("rub2k_e7", Skill.VOCABULARY, "Doğru anlamı seç", "'собеседование' ne anlama gelir?", "", listOf("atıklar", "yenilenebilir", "mülakat"), listOf("mülakat"), "Собеседование прошло хорошо. — Mülakat iyi geçti.", null, null),
@@ -1600,8 +1758,9 @@ object WorldCourseRU {
                 LearningExercise("rub2k_e187", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Резюме должно быть коротким.", "", listOf(), listOf("Резюме должно быть коротким."), "Türkçesi: Özgeçmiş kısa olmalı.", "Резюме должно быть коротким.", "Резюме должно быть коротким."),
                 LearningExercise("rub2k_e86", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sonuç' ifadesinin Rusça karşılığı hangisi?", "", listOf("результат", "устойчивый", "отходы"), listOf("результат"), "Örnek: Результат нас удивляет. — Sonuç bizi şaşırtıyor.", null, null),
                 LearningExercise("rub2k_e26", Skill.VOCABULARY, "Doğru çeviriyi seç", "'kariyer' ifadesinin Rusça karşılığı hangisi?", "", listOf("бедность", "карьера", "гражданин"), listOf("карьера"), "Örnek: Её карьера развивается быстро. — Kariyeri hızla gelişiyor.", null, null),
-                LearningExercise("rub2k_e154", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Argüman güçlü.", "", listOf(), listOf("Аргумент сильный."), "Doğru cümle: Аргумент сильный.", null, "Аргумент сильный."))))),
-        LearningUnit("RU-B2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub2k_e154", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Argüman güçlü.", "", listOf(), listOf("Аргумент сильный."), "Doğru cümle: Аргумент сильный.", null, "Аргумент сильный.")))))
+
+    private fun u63(): LearningUnit = LearningUnit("RU-B2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B2-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub2k_e9", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Собеседование прошло хорошо."), "Söylenen cümle: Собеседование прошло хорошо. — Mülakat iyi geçti.", "Собеседование прошло хорошо.", null),
                 LearningExercise("rub2k_e141", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Произведение впечатляющее."), "Söylenen cümle: Произведение впечатляющее. — Eser etkileyici.", "Произведение впечатляющее.", null),
@@ -1625,8 +1784,9 @@ object WorldCourseRU {
                 LearningExercise("rub2k_e33", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Мы должны защищать окружающую среду."), "Söylenen cümle: Мы должны защищать окружающую среду. — Çevreyi korumalıyız.", "Мы должны защищать окружающую среду.", null),
                 LearningExercise("rub2k_e160", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bir yandan bu pahalı.", "", listOf(), listOf("С одной стороны, это дорого."), "Doğru cümle: С одной стороны, это дорого.", null, "С одной стороны, это дорого."),
                 LearningExercise("rub2k_e51", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Отходы перерабатываются."), "Söylenen cümle: Отходы перерабатываются. — Atıklar geri dönüştürülüyor.", "Отходы перерабатываются.", null),
-                LearningExercise("rub2k_e197", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Резюме должно быть коротким.", "", listOf(), listOf("Резюме должно быть коротким."), "Türkçesi: Özgeçmiş kısa olmalı.", "Резюме должно быть коротким.", "Резюме должно быть коротким."))))),
-        LearningUnit("RU-B2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("rub2k_e197", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Резюме должно быть коротким.", "", listOf(), listOf("Резюме должно быть коротким."), "Türkçesi: Özgeçmiş kısa olmalı.", "Резюме должно быть коротким.", "Резюме должно быть коротким.")))))
+
+    private fun u64(): LearningUnit = LearningUnit("RU-B2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-B2-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("rub2k_e170", Skill.VOCABULARY, "Doğru çeviriyi seç", "'itiraz etmek' ifadesinin Rusça karşılığı hangisi?", "", listOf("прогресс", "возражать", "открытие"), listOf("возражать"), "Örnek: Я должен возражать. — İtiraz etmek zorundayım.", null, null),
                 LearningExercise("rub2k_e52", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Atıklar geri dönüştürülüyor.", "", listOf(), listOf("Отходы перерабатываются."), "Doğru cümle: Отходы перерабатываются.", null, "Отходы перерабатываются."),
@@ -1650,8 +1810,9 @@ object WorldCourseRU {
                 LearningExercise("rub2k_e15", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Компания будет нанимать новых людей."), "Söylenen cümle: Компания будет нанимать новых людей. — Şirket yeni insanlar işe alacak.", "Компания будет нанимать новых людей.", null),
                 LearningExercise("rub2k_e90", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ нас удивляет.", "", listOf("ответственность", "карьера", "Результат"), listOf("Результат"), "Doğru cümle: Результат нас удивляет. — Sonuç bizi şaşırtıyor.", null, null),
                 LearningExercise("rub2k_e49", Skill.VOCABULARY, "Doğru anlamı seç", "'отходы' ne anlama gelir?", "", listOf("itiraz etmek", "atıklar", "öte yandan"), listOf("atıklar"), "Отходы перерабатываются. — Atıklar geri dönüştürülüyor.", null, null),
-                LearningExercise("rub2k_e153", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Аргумент сильный."), "Söylenen cümle: Аргумент сильный. — Argüman güçlü.", "Аргумент сильный.", null))))),
-        LearningUnit("RU-C1-U1", "Akademik Dil", "Akademik metinleri çözümle ve üret.", listOf(
+                LearningExercise("rub2k_e153", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Аргумент сильный."), "Söylenen cümle: Аргумент сильный. — Argüman güçlü.", "Аргумент сильный.", null)))))
+
+    private fun u65(): LearningUnit = LearningUnit("RU-C1-U1", "Akademik Dil", "Akademik metinleri çözümle ve üret.", listOf(
             LearningLesson("RU-C1-U1-L1", "Akademik Dil — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("ruc1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'тезис' ne anlama gelir?", "", listOf("çözümleme", "kaynak", "tez/sav"), listOf("tez/sav"), "Тезис остаётся спорным. — Sav tartışmalı kalıyor.", null, null),
                 LearningExercise("ruc1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'анализ' ne anlama gelir?", "", listOf("yaklaşım", "çözümleme", "ele almak"), listOf("çözümleme"), "Анализ охватывает десять лет. — Çözümleme on yılı kapsıyor.", null, null),
@@ -1677,8 +1838,9 @@ object WorldCourseRU {
             LearningLesson("RU-C1-U1-L5", "Akademik Dil — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("ruc1u1e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yaklaşım umut verici.", "", listOf(), listOf("Подход многообещающий."), "Doğru cümle: Подход многообещающий.", null, "Подход многообещающий."),
                 LearningExercise("ruc1u1e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kaynak güvenilir.", "", listOf(), listOf("Источник надёжный."), "Doğru cümle: Источник надёжный.", null, "Источник надёжный."),
-                LearningExercise("ruc1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Тезис остаётся спорным.", "", listOf(), listOf("Тезис остаётся спорным."), "Türkçesi: Sav tartışmalı kalıyor.", "Тезис остаётся спорным.", "Тезис остаётся спорным."))))),
-        LearningUnit("RU-C1-U2", "Soyut Kavramlar", "Soyut düşünceleri akıcı ifade et.", listOf(
+                LearningExercise("ruc1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Тезис остаётся спорным.", "", listOf(), listOf("Тезис остаётся спорным."), "Türkçesi: Sav tartışmalı kalıyor.", "Тезис остаётся спорным.", "Тезис остаётся спорным.")))))
+
+    private fun u66(): LearningUnit = LearningUnit("RU-C1-U2", "Soyut Kavramlar", "Soyut düşünceleri akıcı ifade et.", listOf(
             LearningLesson("RU-C1-U2-L1", "Soyut Kavramlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("ruc1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'восприятие' ne anlama gelir?", "", listOf("tasavvur", "algı", "bilinç"), listOf("algı"), "Наше восприятие часто обманывает нас. — Algımız bizi sık yanıltır.", null, null),
                 LearningExercise("ruc1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'сознание' ne anlama gelir?", "", listOf("bilinç", "kavram", "kavrayış/idrak"), listOf("bilinç"), "Сознание остаётся загадкой. — Bilinç bir muamma olmayı sürdürüyor.", null, null),
@@ -1704,8 +1866,9 @@ object WorldCourseRU {
             LearningLesson("RU-C1-U2-L5", "Soyut Kavramlar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("ruc1u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Dünyayı kavramanın sonu yok.", "", listOf(), listOf("Познание мира бесконечно."), "Doğru cümle: Познание мира бесконечно.", null, "Познание мира бесконечно."),
                 LearningExercise("ruc1u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu tasavvur çok yaygın.", "", listOf(), listOf("Это представление широко распространено."), "Doğru cümle: Это представление широко распространено.", null, "Это представление широко распространено."),
-                LearningExercise("ruc1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Наше восприятие часто обманывает нас.", "", listOf(), listOf("Наше восприятие часто обманывает нас."), "Türkçesi: Algımız bizi sık yanıltır.", "Наше восприятие часто обманывает нас.", "Наше восприятие часто обманывает нас."))))),
-        LearningUnit("RU-C1-U3", "Deyimler ve Mecazlar", "Deyimleri doğal bağlamda kullan.", listOf(
+                LearningExercise("ruc1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Наше восприятие часто обманывает нас.", "", listOf(), listOf("Наше восприятие часто обманывает нас."), "Türkçesi: Algımız bizi sık yanıltır.", "Наше восприятие часто обманывает нас.", "Наше восприятие часто обманывает нас.")))))
+
+    private fun u67(): LearningUnit = LearningUnit("RU-C1-U3", "Deyimler ve Mecazlar", "Deyimleri doğal bağlamda kullan.", listOf(
             LearningLesson("RU-C1-U3-L1", "Deyimler ve Mecazlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("ruc1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'как рыба в воде' ne anlama gelir?", "", listOf("suda balık gibi", "boş boş gezmek", "rezil olmak"), listOf("suda balık gibi"), "Он чувствует себя как рыба в воде. — Kendini sudaki balık gibi hissediyor.", null, null),
                 LearningExercise("ruc1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'бить баклуши' ne anlama gelir?", "", listOf("kandırıp oyalamak", "kulağına küpe etmek", "boş boş gezmek"), listOf("boş boş gezmek"), "Хватит бить баклуши! — Boş gezmeyi bırak artık!", null, null),
@@ -1731,8 +1894,9 @@ object WorldCourseRU {
             LearningLesson("RU-C1-U3-L5", "Deyimler ve Mecazlar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("ruc1u3e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bunu kulağına küpe et!", "", listOf(), listOf("Заруби это себе на носу!"), "Doğru cümle: Заруби это себе на носу!", null, "Заруби это себе на носу!"),
                 LearningExercise("ruc1u3e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Rezil olmak istemiyorum.", "", listOf(), listOf("Я не хочу сесть в лужу."), "Doğru cümle: Я не хочу сесть в лужу.", null, "Я не хочу сесть в лужу."),
-                LearningExercise("ruc1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Он чувствует себя как рыба в воде.", "", listOf(), listOf("Он чувствует себя как рыба в воде."), "Türkçesi: Kendini sudaki balık gibi hissediyor.", "Он чувствует себя как рыба в воде.", "Он чувствует себя как рыба в воде."))))),
-        LearningUnit("RU-C1-U4", "Resmî Yazışma", "Resmî mektup ve e-posta dilinde ustalaş.", listOf(
+                LearningExercise("ruc1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Он чувствует себя как рыба в воде.", "", listOf(), listOf("Он чувствует себя как рыба в воде."), "Türkçesi: Kendini sudaki balık gibi hissediyor.", "Он чувствует себя как рыба в воде.", "Он чувствует себя как рыба в воде.")))))
+
+    private fun u68(): LearningUnit = LearningUnit("RU-C1-U4", "Resmî Yazışma", "Resmî mektup ve e-posta dilinde ustalaş.", listOf(
             LearningLesson("RU-C1-U4-L1", "Resmî Yazışma — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("ruc1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'уважаемый' ne anlama gelir?", "", listOf("ekte", "saygılarımla", "sayın"), listOf("sayın"), "Уважаемый Иван Петрович! — Sayın İvan Petroviç!", null, null),
                 LearningExercise("ruc1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'во вложении' ne anlama gelir?", "", listOf("işbu yazıyla", "ekte", "ilişkin"), listOf("ekte"), "Документ находится во вложении. — Belge ektedir.", null, null),
@@ -1758,8 +1922,9 @@ object WorldCourseRU {
             LearningLesson("RU-C1-U4-L5", "Resmî Yazışma — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("ruc1u4e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: İşbu yazıyla katılımımı teyit ederim.", "", listOf(), listOf("Настоящим подтверждаю своё участие."), "Doğru cümle: Настоящим подтверждаю своё участие.", null, "Настоящим подтверждаю своё участие."),
                 LearningExercise("ruc1u4e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Saygılarımla, Ali Kaya", "", listOf(), listOf("С уважением, Али Кая"), "Doğru cümle: С уважением, Али Кая", null, "С уважением, Али Кая"),
-                LearningExercise("ruc1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Уважаемый Иван Петрович!", "", listOf(), listOf("Уважаемый Иван Петрович!"), "Türkçesi: Sayın İvan Petroviç!", "Уважаемый Иван Петрович!", "Уважаемый Иван Петрович!"))))),
-        LearningUnit("RU-C1-U5", "Müzakere ve Diplomasi", "İncelikli müzakere dili kur.", listOf(
+                LearningExercise("ruc1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Уважаемый Иван Петрович!", "", listOf(), listOf("Уважаемый Иван Петрович!"), "Türkçesi: Sayın İvan Petroviç!", "Уважаемый Иван Петрович!", "Уважаемый Иван Петрович!")))))
+
+    private fun u69(): LearningUnit = LearningUnit("RU-C1-U5", "Müzakere ve Diplomasi", "İncelikli müzakere dili kur.", listOf(
             LearningLesson("RU-C1-U5-L1", "Müzakere ve Diplomasi — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("ruc1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'вести переговоры' ne anlama gelir?", "", listOf("anlaşma", "müzakere etmek", "uzlaşma"), listOf("müzakere etmek"), "Мы ведём переговоры с утра. — Sabahtan beri müzakere ediyoruz.", null, null),
                 LearningExercise("ruc1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'компромисс' ne anlama gelir?", "", listOf("uzlaşma", "taviz", "bakış açısı"), listOf("uzlaşma"), "Компромисс справедливый. — Uzlaşma adil.", null, null),
@@ -1785,8 +1950,9 @@ object WorldCourseRU {
             LearningLesson("RU-C1-U5-L5", "Müzakere ve Diplomasi — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("ruc1u5e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bakış açımız değişmiyor.", "", listOf(), listOf("Наша точка зрения не меняется."), "Doğru cümle: Наша точка зрения не меняется.", null, "Наша точка зрения не меняется."),
                 LearningExercise("ruc1u5e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Anlaşma geç imzalandı.", "", listOf(), listOf("Соглашение подписали поздно."), "Doğru cümle: Соглашение подписали поздно.", null, "Соглашение подписали поздно."),
-                LearningExercise("ruc1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Мы ведём переговоры с утра.", "", listOf(), listOf("Мы ведём переговоры с утра."), "Türkçesi: Sabahtan beri müzakere ediyoruz.", "Мы ведём переговоры с утра.", "Мы ведём переговоры с утра."))))),
-        LearningUnit("RU-C1-U6", "İnce Anlam Farkları", "Yakın anlamlı ifadeleri ayırt et.", listOf(
+                LearningExercise("ruc1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Мы ведём переговоры с утра.", "", listOf(), listOf("Мы ведём переговоры с утра."), "Türkçesi: Sabahtan beri müzakere ediyoruz.", "Мы ведём переговоры с утра.", "Мы ведём переговоры с утра.")))))
+
+    private fun u70(): LearningUnit = LearningUnit("RU-C1-U6", "İnce Anlam Farkları", "Yakın anlamlı ifadeleri ayırt et.", listOf(
             LearningLesson("RU-C1-U6-L1", "İnce Anlam Farkları — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("ruc1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'по-видимому' ne anlama gelir?", "", listOf("anlaşılan", "güya", "titiz"), listOf("anlaşılan"), "По-видимому, он прав. — Anlaşılan o haklı.", null, null),
                 LearningExercise("ruc1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'якобы' ne anlama gelir?", "", listOf("etkili", "tahminen", "güya"), listOf("güya"), "Он якобы был болен. — Güya hastaymış.", null, null),
@@ -1812,8 +1978,9 @@ object WorldCourseRU {
             LearningLesson("RU-C1-U6-L5", "İnce Anlam Farkları — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("ruc1u6e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Tahminen bu bir hata.", "", listOf(), listOf("Предположительно, это ошибка."), "Doğru cümle: Предположительно, это ошибка.", null, "Предположительно, это ошибка."),
                 LearningExercise("ruc1u6e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Titiz bir iş çıkarıyor.", "", listOf(), listOf("Он делает тщательную работу."), "Doğru cümle: Он делает тщательную работу.", null, "Он делает тщательную работу."),
-                LearningExercise("ruc1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: По-видимому, он прав.", "", listOf(), listOf("По-видимому, он прав."), "Türkçesi: Anlaşılan o haklı.", "По-видимому, он прав.", "По-видимому, он прав."))))),
-        LearningUnit("RU-C1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: По-видимому, он прав.", "", listOf(), listOf("По-видимому, он прав."), "Türkçesi: Anlaşılan o haklı.", "По-видимому, он прав.", "По-видимому, он прав.")))))
+
+    private fun u71(): LearningUnit = LearningUnit("RU-C1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C1-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc1k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Хватит ___!", "", listOf("точка зрения", "по-видимому", "бить баклуши"), listOf("бить баклуши"), "Doğru cümle: Хватит бить баклуши! — Boş gezmeyi bırak artık!", null, null),
                 LearningExercise("ruc1k_e45", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Это понятие трудно определить."), "Söylenen cümle: Это понятие трудно определить. — Bu kavramı tanımlamak zor.", "Это понятие трудно определить.", null),
@@ -1837,8 +2004,9 @@ object WorldCourseRU {
                 LearningExercise("ruc1k_e23", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Источник надёжный.", listOf("Bilinç bir muamma olmayı sürdürüyor.", "Bu kavramı tanımlamak zor.", "Kaynak güvenilir."), listOf("Kaynak güvenilir."), "Cümlenin çevirisi: Kaynak güvenilir.", null, null),
                 LearningExercise("ruc1k_e179", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Предположительно, это ошибка.", listOf("Tahminen bu bir hata.", "Sabahtan beri müzakere ediyoruz.", "Uzlaşma adil."), listOf("Tahminen bu bir hata."), "Cümlenin çevirisi: Tahminen bu bir hata.", null, null),
                 LearningExercise("ruc1k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Подход многообещающий.", listOf("Güya hastaymış.", "Yaklaşım umut verici.", "Anlaşılan o haklı."), listOf("Yaklaşım umut verici."), "Cümlenin çevirisi: Yaklaşım umut verici.", null, null),
-                LearningExercise("ruc1k_e184", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Документ находится ___ вложении.", "", listOf("во", "в на", "при"), listOf("во"), "Resmî kalıp: во вложении (ekte).", null, null))))),
-        LearningUnit("RU-C1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc1k_e184", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Документ находится ___ вложении.", "", listOf("во", "в на", "при"), listOf("во"), "Resmî kalıp: во вложении (ekte).", null, null)))))
+
+    private fun u72(): LearningUnit = LearningUnit("RU-C1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C1-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc1k_e90", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Заруби это себе ___!", "", listOf("источник", "подход", "на носу"), listOf("на носу"), "Doğru cümle: Заруби это себе на носу! — Bunu kulağına küpe et!", null, null),
                 LearningExercise("ruc1k_e140", Skill.VOCABULARY, "Doğru çeviriyi seç", "'anlaşma' ifadesinin Rusça karşılığı hangisi?", "", listOf("соглашение", "во вложении", "касательно"), listOf("соглашение"), "Örnek: Соглашение подписали поздно. — Anlaşma geç imzalandı.", null, null),
@@ -1862,8 +2030,9 @@ object WorldCourseRU {
                 LearningExercise("ruc1k_e84", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Я не хочу ___.", "", listOf("сесть в лужу", "как рыба в воде", "бить баклуши"), listOf("сесть в лужу"), "Doğru cümle: Я не хочу сесть в лужу. — Rezil olmak istemiyorum.", null, null),
                 LearningExercise("ruc1k_e39", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Сознание остаётся загадкой."), "Söylenen cümle: Сознание остаётся загадкой. — Bilinç bir muamma olmayı sürdürüyor.", "Сознание остаётся загадкой.", null),
                 LearningExercise("ruc1k_e138", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ была необходима.", "", listOf("Уступка", "понятие", "представление"), listOf("Уступка"), "Doğru cümle: Уступка была необходима. — Taviz gerekliydi.", null, null),
-                LearningExercise("ruc1k_e12", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ охватывает десять лет.", "", listOf("Анализ", "подход", "восприятие"), listOf("Анализ"), "Doğru cümle: Анализ охватывает десять лет. — Çözümleme on yılı kapsıyor.", null, null))))),
-        LearningUnit("RU-C1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc1k_e12", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ охватывает десять лет.", "", listOf("Анализ", "подход", "восприятие"), listOf("Анализ"), "Doğru cümle: Анализ охватывает десять лет. — Çözümleme on yılı kapsıyor.", null, null)))))
+
+    private fun u73(): LearningUnit = LearningUnit("RU-C1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C1-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc1k_e118", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: İşbu yazıyla katılımımı teyit ederim.", "", listOf(), listOf("Настоящим подтверждаю своё участие."), "Doğru cümle: Настоящим подтверждаю своё участие.", null, "Настоящим подтверждаю своё участие."),
                 LearningExercise("ruc1k_e49", Skill.VOCABULARY, "Doğru anlamı seç", "'представление' ne anlama gelir?", "", listOf("titiz", "tasavvur", "etkili"), listOf("tasavvur"), "Это представление широко распространено. — Bu tasavvur çok yaygın.", null, null),
@@ -1887,8 +2056,9 @@ object WorldCourseRU {
                 LearningExercise("ruc1k_e9", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Анализ охватывает десять лет."), "Söylenen cümle: Анализ охватывает десять лет. — Çözümleme on yılı kapsıyor.", "Анализ охватывает десять лет.", null),
                 LearningExercise("ruc1k_e125", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Мы ведём переговоры с утра.", listOf("Sabahtan beri müzakere ediyoruz.", "Tahminen bu bir hata.", "Sav tartışmalı kalıyor."), listOf("Sabahtan beri müzakere ediyoruz."), "Cümlenin çevirisi: Sabahtan beri müzakere ediyoruz.", null, null),
                 LearningExercise("ruc1k_e73", Skill.VOCABULARY, "Doğru anlamı seç", "'водить за нос' ne anlama gelir?", "", listOf("kandırıp oyalamak", "anlaşılan", "güya"), listOf("kandırıp oyalamak"), "Он водит нас за нос. — Bizi kandırıp oyalıyor.", null, null),
-                LearningExercise("ruc1k_e30", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ многообещающий.", "", listOf("Подход", "сесть в лужу", "зарубить на носу"), listOf("Подход"), "Doğru cümle: Подход многообещающий. — Yaklaşım umut verici.", null, null))))),
-        LearningUnit("RU-C1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc1k_e30", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ многообещающий.", "", listOf("Подход", "сесть в лужу", "зарубить на носу"), listOf("Подход"), "Doğru cümle: Подход многообещающий. — Yaklaşım umut verici.", null, null)))))
+
+    private fun u74(): LearningUnit = LearningUnit("RU-C1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C1-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc1k_e76", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bizi kandırıp oyalıyor.", "", listOf(), listOf("Он водит нас за нос."), "Doğru cümle: Он водит нас за нос.", null, "Он водит нас за нос."),
                 LearningExercise("ruc1k_e193", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: С уважением, Али Кая", "", listOf(), listOf("С уважением, Али Кая"), "Türkçesi: Saygılarımla, Ali Kaya", "С уважением, Али Кая", "С уважением, Али Кая"),
@@ -1912,8 +2082,9 @@ object WorldCourseRU {
                 LearningExercise("ruc1k_e80", Skill.VOCABULARY, "Doğru çeviriyi seç", "'rezil olmak' ifadesinin Rusça karşılığı hangisi?", "", listOf("эффективный", "сесть в лужу", "якобы"), listOf("сесть в лужу"), "Örnek: Я не хочу сесть в лужу. — Rezil olmak istemiyorum.", null, null),
                 LearningExercise("ruc1k_e174", Skill.VOCABULARY, "Doğru anlamı seç", "'тщательный' ne anlama gelir?", "", listOf("titiz", "anlaşılan", "güya"), listOf("titiz"), "Он делает тщательную работу. — Titiz bir iş çıkarıyor.", null, null),
                 LearningExercise("ruc1k_e92", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sayın' ifadesinin Rusça karşılığı hangisi?", "", listOf("с уважением", "настоящим", "уважаемый"), listOf("уважаемый"), "Örnek: Уважаемый Иван Петрович! — Sayın İvan Petroviç!", null, null),
-                LearningExercise("ruc1k_e192", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Уважаемый Иван Петрович!", "", listOf(), listOf("Уважаемый Иван Петрович!"), "Türkçesi: Sayın İvan Petroviç!", "Уважаемый Иван Петрович!", "Уважаемый Иван Петрович!"))))),
-        LearningUnit("RU-C1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc1k_e192", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Уважаемый Иван Петрович!", "", listOf(), listOf("Уважаемый Иван Петрович!"), "Türkçesi: Sayın İvan Petroviç!", "Уважаемый Иван Петрович!", "Уважаемый Иван Петрович!")))))
+
+    private fun u75(): LearningUnit = LearningUnit("RU-C1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C1-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc1k_e147", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Наша точка зрения не меняется."), "Söylenen cümle: Наша точка зрения не меняется. — Bakış açımız değişmiyor.", "Наша точка зрения не меняется.", null),
                 LearningExercise("ruc1k_e62", Skill.VOCABULARY, "Doğru çeviriyi seç", "'suda balık gibi' ifadesinin Rusça karşılığı hangisi?", "", listOf("точка зрения", "как рыба в воде", "соглашение"), listOf("как рыба в воде"), "Örnek: Он чувствует себя как рыба в воде. — Kendini sudaki balık gibi hissediyor.", null, null),
@@ -1937,8 +2108,9 @@ object WorldCourseRU {
                 LearningExercise("ruc1k_e103", Skill.VOCABULARY, "Doğru anlamı seç", "'касательно' ne anlama gelir?", "", listOf("çözümleme", "ilişkin", "tez/sav"), listOf("ilişkin"), "Касательно вашего запроса мы ответим позже. — Talebinize ilişkin sonra yanıt vereceğiz.", null, null),
                 LearningExercise("ruc1k_e61", Skill.VOCABULARY, "Doğru anlamı seç", "'как рыба в воде' ne anlama gelir?", "", listOf("boş boş gezmek", "kandırıp oyalamak", "suda balık gibi"), listOf("suda balık gibi"), "Он чувствует себя как рыба в воде. — Kendini sudaki balık gibi hissediyor.", null, null),
                 LearningExercise("ruc1k_e142", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Anlaşma geç imzalandı.", "", listOf(), listOf("Соглашение подписали поздно."), "Doğru cümle: Соглашение подписали поздно.", null, "Соглашение подписали поздно."),
-                LearningExercise("ruc1k_e187", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Тезис остаётся спорным.", "", listOf(), listOf("Тезис остаётся спорным."), "Türkçesi: Sav tartışmalı kalıyor.", "Тезис остаётся спорным.", "Тезис остаётся спорным."))))),
-        LearningUnit("RU-C1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc1k_e187", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Тезис остаётся спорным.", "", listOf(), listOf("Тезис остаётся спорным."), "Türkçesi: Sav tartışmalı kalıyor.", "Тезис остаётся спорным.", "Тезис остаётся спорным.")))))
+
+    private fun u76(): LearningUnit = LearningUnit("RU-C1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C1-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc1k_e5", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Тезис остаётся спорным.", listOf("Dünyayı kavramanın sonu yok.", "Kendini sudaki balık gibi hissediyor.", "Sav tartışmalı kalıyor."), listOf("Sav tartışmalı kalıyor."), "Cümlenin çevirisi: Sav tartışmalı kalıyor.", null, null),
                 LearningExercise("ruc1k_e154", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Anlaşılan o haklı.", "", listOf(), listOf("По-видимому, он прав."), "Doğru cümle: По-видимому, он прав.", null, "По-видимому, он прав."),
@@ -1962,8 +2134,9 @@ object WorldCourseRU {
                 LearningExercise("ruc1k_e22", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kaynak güvenilir.", "", listOf(), listOf("Источник надёжный."), "Doğru cümle: Источник надёжный.", null, "Источник надёжный."),
                 LearningExercise("ruc1k_e106", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Talebinize ilişkin sonra yanıt vereceğiz.", "", listOf(), listOf("Касательно вашего запроса мы ответим позже."), "Doğru cümle: Касательно вашего запроса мы ответим позже.", null, "Касательно вашего запроса мы ответим позже."),
                 LearningExercise("ruc1k_e55", Skill.VOCABULARY, "Doğru anlamı seç", "'познание' ne anlama gelir?", "", listOf("kavrayış/idrak", "yaklaşım", "algı"), listOf("kavrayış/idrak"), "Познание мира бесконечно. — Dünyayı kavramanın sonu yok.", null, null),
-                LearningExercise("ruc1k_e196", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Метод очень эффективный.", "", listOf(), listOf("Метод очень эффективный."), "Türkçesi: Yöntem çok etkili.", "Метод очень эффективный.", "Метод очень эффективный."))))),
-        LearningUnit("RU-C1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc1k_e196", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Метод очень эффективный.", "", listOf(), listOf("Метод очень эффективный."), "Türkçesi: Yöntem çok etkili.", "Метод очень эффективный.", "Метод очень эффективный.")))))
+
+    private fun u77(): LearningUnit = LearningUnit("RU-C1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C1-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc1k_e119", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Настоящим подтверждаю своё участие.", listOf("Boş gezmeyi bırak artık!", "İşbu yazıyla katılımımı teyit ederim.", "Kendini sudaki balık gibi hissediyor."), listOf("İşbu yazıyla katılımımı teyit ederim."), "Cümlenin çevirisi: İşbu yazıyla katılımımı teyit ederim.", null, null),
                 LearningExercise("ruc1k_e27", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Подход многообещающий."), "Söylenen cümle: Подход многообещающий. — Yaklaşım umut verici.", "Подход многообещающий.", null),
@@ -1987,8 +2160,9 @@ object WorldCourseRU {
                 LearningExercise("ruc1k_e89", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Заруби это себе на носу!", listOf("Bunu kulağına küpe et!", "Algımız bizi sık yanıltır.", "Bilinç bir muamma olmayı sürdürüyor."), listOf("Bunu kulağına küpe et!"), "Cümlenin çevirisi: Bunu kulağına küpe et!", null, null),
                 LearningExercise("ruc1k_e132", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ справедливый.", "", listOf("уважаемый", "Компромисс", "зарубить на носу"), listOf("Компромисс"), "Doğru cümle: Компромисс справедливый. — Uzlaşma adil.", null, null),
                 LearningExercise("ruc1k_e113", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "С уважением, Али Кая", listOf("Uzlaşma adil.", "Taviz gerekliydi.", "Saygılarımla, Ali Kaya"), listOf("Saygılarımla, Ali Kaya"), "Cümlenin çevirisi: Saygılarımla, Ali Kaya", null, null),
-                LearningExercise("ruc1k_e25", Skill.VOCABULARY, "Doğru anlamı seç", "'подход' ne anlama gelir?", "", listOf("tahminen", "tez/sav", "yaklaşım"), listOf("yaklaşım"), "Подход многообещающий. — Yaklaşım umut verici.", null, null))))),
-        LearningUnit("RU-C1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc1k_e25", Skill.VOCABULARY, "Doğru anlamı seç", "'подход' ne anlama gelir?", "", listOf("tahminen", "tez/sav", "yaklaşım"), listOf("yaklaşım"), "Подход многообещающий. — Yaklaşım umut verici.", null, null)))))
+
+    private fun u78(): LearningUnit = LearningUnit("RU-C1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C1-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc1k_e195", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Наша точка зрения не меняется.", "", listOf(), listOf("Наша точка зрения не меняется."), "Türkçesi: Bakış açımız değişmiyor.", "Наша точка зрения не меняется.", "Наша точка зрения не меняется."),
                 LearningExercise("ruc1k_e159", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Он якобы был болен."), "Söylenen cümle: Он якобы был болен. — Güya hastaymış.", "Он якобы был болен.", null),
@@ -2012,8 +2186,9 @@ object WorldCourseRU {
                 LearningExercise("ruc1k_e75", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Он водит нас за нос."), "Söylenen cümle: Он водит нас за нос. — Bizi kandırıp oyalıyor.", "Он водит нас за нос.", null),
                 LearningExercise("ruc1k_e152", Skill.VOCABULARY, "Doğru çeviriyi seç", "'anlaşılan' ifadesinin Rusça karşılığı hangisi?", "", listOf("познание", "по-видимому", "представление"), listOf("по-видимому"), "Örnek: По-видимому, он прав. — Anlaşılan o haklı.", null, null),
                 LearningExercise("ruc1k_e151", Skill.VOCABULARY, "Doğru anlamı seç", "'по-видимому' ne anlama gelir?", "", listOf("güya", "etkili", "anlaşılan"), listOf("anlaşılan"), "По-видимому, он прав. — Anlaşılan o haklı.", null, null),
-                LearningExercise("ruc1k_e170", Skill.VOCABULARY, "Doğru çeviriyi seç", "'titiz' ifadesinin Rusça karşılığı hangisi?", "", listOf("водить за нос", "тщательный", "бить баклуши"), listOf("тщательный"), "Örnek: Он делает тщательную работу. — Titiz bir iş çıkarıyor.", null, null))))),
-        LearningUnit("RU-C1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc1k_e170", Skill.VOCABULARY, "Doğru çeviriyi seç", "'titiz' ifadesinin Rusça karşılığı hangisi?", "", listOf("водить за нос", "тщательный", "бить баклуши"), listOf("тщательный"), "Örnek: Он делает тщательную работу. — Titiz bir iş çıkarıyor.", null, null)))))
+
+    private fun u79(): LearningUnit = LearningUnit("RU-C1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C1-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc1k_e156", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___, он прав.", "", listOf("По-видимому", "во вложении", "касательно"), listOf("По-видимому"), "Doğru cümle: По-видимому, он прав. — Anlaşılan o haklı.", null, null),
                 LearningExercise("ruc1k_e59", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Познание мира бесконечно.", listOf("Sav tartışmalı kalıyor.", "Çözümleme on yılı kapsıyor.", "Dünyayı kavramanın sonu yok."), listOf("Dünyayı kavramanın sonu yok."), "Cümlenin çevirisi: Dünyayı kavramanın sonu yok.", null, null),
@@ -2037,8 +2212,9 @@ object WorldCourseRU {
                 LearningExercise("ruc1k_e194", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Компромисс справедливый.", "", listOf(), listOf("Компромисс справедливый."), "Türkçesi: Uzlaşma adil.", "Компромисс справедливый.", "Компромисс справедливый."),
                 LearningExercise("ruc1k_e143", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Соглашение подписали поздно.", listOf("Anlaşma geç imzalandı.", "Güya hastaymış.", "Yöntem çok etkili."), listOf("Anlaşma geç imzalandı."), "Cümlenin çevirisi: Anlaşma geç imzalandı.", null, null),
                 LearningExercise("ruc1k_e81", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Я не хочу сесть в лужу."), "Söylenen cümle: Я не хочу сесть в лужу. — Rezil olmak istemiyorum.", "Я не хочу сесть в лужу.", null),
-                LearningExercise("ruc1k_e185", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Мы пришли ___ соглашению.", "", listOf("к", "до", "у"), listOf("к"), "прийти к соглашению: anlaşmaya varmak.", null, null))))),
-        LearningUnit("RU-C1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc1k_e185", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Мы пришли ___ соглашению.", "", listOf("к", "до", "у"), listOf("к"), "прийти к соглашению: anlaşmaya varmak.", null, null)))))
+
+    private fun u80(): LearningUnit = LearningUnit("RU-C1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C1-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc1k_e200", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Познание мира бесконечно.", "", listOf(), listOf("Познание мира бесконечно."), "Türkçesi: Dünyayı kavramanın sonu yok.", "Познание мира бесконечно.", "Познание мира бесконечно."),
                 LearningExercise("ruc1k_e189", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Сознание остаётся загадкой.", "", listOf(), listOf("Сознание остаётся загадкой."), "Türkçesi: Bilinç bir muamma olmayı sürdürüyor.", "Сознание остаётся загадкой.", "Сознание остаётся загадкой."),
@@ -2062,8 +2238,9 @@ object WorldCourseRU {
                 LearningExercise("ruc1k_e17", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Мы будем рассматривать этот вопрос.", listOf("Bu soruyu ele alacağız.", "Talebinize ilişkin sonra yanıt vereceğiz.", "Saygılarımla, Ali Kaya"), listOf("Bu soruyu ele alacağız."), "Cümlenin çevirisi: Bu soruyu ele alacağız.", null, null),
                 LearningExercise("ruc1k_e111", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("С уважением, Али Кая"), "Söylenen cümle: С уважением, Али Кая — Saygılarımla, Ali Kaya", "С уважением, Али Кая", null),
                 LearningExercise("ruc1k_e130", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Uzlaşma adil.", "", listOf(), listOf("Компромисс справедливый."), "Doğru cümle: Компромисс справедливый.", null, "Компромисс справедливый."),
-                LearningExercise("ruc1k_e40", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bilinç bir muamma olmayı sürdürüyor.", "", listOf(), listOf("Сознание остаётся загадкой."), "Doğru cümle: Сознание остаётся загадкой.", null, "Сознание остаётся загадкой."))))),
-        LearningUnit("RU-C2-U1", "Üslup ve İncelik", "Üslubu bağlama göre ustaca ayarla.", listOf(
+                LearningExercise("ruc1k_e40", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bilinç bir muamma olmayı sürdürüyor.", "", listOf(), listOf("Сознание остаётся загадкой."), "Doğru cümle: Сознание остаётся загадкой.", null, "Сознание остаётся загадкой.")))))
+
+    private fun u81(): LearningUnit = LearningUnit("RU-C2-U1", "Üslup ve İncelik", "Üslubu bağlama göre ustaca ayarla.", listOf(
             LearningLesson("RU-C2-U1-L1", "Üslup ve İncelik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("ruc2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'тонкость' ne anlama gelir?", "", listOf("ton/eda", "özlü", "incelik"), listOf("incelik"), "Тонкости языка узнаёшь поздно. — Dilin inceliklerini geç öğrenirsin.", null, null),
                 LearningExercise("ruc2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'тон' ne anlama gelir?", "", listOf("özenle tartılmış", "ton/eda", "ima"), listOf("ton/eda"), "Его тон был слегка ироничным. — Tonu hafif ironikti.", null, null),
@@ -2089,8 +2266,9 @@ object WorldCourseRU {
             LearningLesson("RU-C2-U1-L5", "Üslup ve İncelik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("ruc2u1e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Her kelime özenle tartılmış.", "", listOf(), listOf("Каждое слово выверенное."), "Doğru cümle: Каждое слово выверенное.", null, "Каждое слово выверенное."),
                 LearningExercise("ruc2u1e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yanıtı özlüydü.", "", listOf(), listOf("Его ответ был лаконичным."), "Doğru cümle: Его ответ был лаконичным.", null, "Его ответ был лаконичным."),
-                LearningExercise("ruc2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Тонкости языка узнаёшь поздно.", "", listOf(), listOf("Тонкости языка узнаёшь поздно."), "Türkçesi: Dilin inceliklerini geç öğrenirsin.", "Тонкости языка узнаёшь поздно.", "Тонкости языка узнаёшь поздно."))))),
-        LearningUnit("RU-C2-U2", "Edebî Dil", "Edebî metinlerin katmanlarını çözümle.", listOf(
+                LearningExercise("ruc2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Тонкости языка узнаёшь поздно.", "", listOf(), listOf("Тонкости языка узнаёшь поздно."), "Türkçesi: Dilin inceliklerini geç öğrenirsin.", "Тонкости языка узнаёшь поздно.", "Тонкости языка узнаёшь поздно.")))))
+
+    private fun u82(): LearningUnit = LearningUnit("RU-C2-U2", "Edebî Dil", "Edebî metinlerin katmanlarını çözümle.", listOf(
             LearningLesson("RU-C2-U2-L1", "Edebî Dil — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("ruc2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'метафора' ne anlama gelir?", "", listOf("lirik", "metafor", "simge"), listOf("metafor"), "Метафора держит весь текст. — Metafor bütün metni ayakta tutuyor.", null, null),
                 LearningExercise("ruc2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'символ' ne anlama gelir?", "", listOf("simge", "anlatım", "ironi"), listOf("simge"), "Море — символ свободы. — Deniz bir özgürlük simgesidir.", null, null),
@@ -2116,8 +2294,9 @@ object WorldCourseRU {
             LearningLesson("RU-C2-U2-L5", "Edebî Dil — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("ruc2u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: İroniyi fark etmemek imkânsız.", "", listOf(), listOf("Иронию невозможно не заметить."), "Doğru cümle: Иронию невозможно не заметить.", null, "Иронию невозможно не заметить."),
                 LearningExercise("ruc2u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Üslup derinlemesine lirik.", "", listOf(), listOf("Стиль глубоко лирический."), "Doğru cümle: Стиль глубоко лирический.", null, "Стиль глубоко лирический."),
-                LearningExercise("ruc2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Метафора держит весь текст.", "", listOf(), listOf("Метафора держит весь текст."), "Türkçesi: Metafor bütün metni ayakta tutuyor.", "Метафора держит весь текст.", "Метафора держит весь текст."))))),
-        LearningUnit("RU-C2-U3", "Uzmanlık Söylemi", "Uzmanlık alanı söylemine hâkim ol.", listOf(
+                LearningExercise("ruc2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Метафора держит весь текст.", "", listOf(), listOf("Метафора держит весь текст."), "Türkçesi: Metafor bütün metni ayakta tutuyor.", "Метафора держит весь текст.", "Метафора держит весь текст.")))))
+
+    private fun u83(): LearningUnit = LearningUnit("RU-C2-U3", "Uzmanlık Söylemi", "Uzmanlık alanı söylemine hâkim ol.", listOf(
             LearningLesson("RU-C2-U3-L1", "Uzmanlık Söylemi — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("ruc2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'терминология' ne anlama gelir?", "", listOf("terminoloji", "söylem", "ikna edici"), listOf("terminoloji"), "Терминология должна быть точной. — Terminoloji kesin olmalı.", null, null),
                 LearningExercise("ruc2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'дискурс' ne anlama gelir?", "", listOf("inceleme/risale", "ayrıştırmak", "söylem"), listOf("söylem"), "Научный дискурс имеет свои коды. — Bilimsel söylemin kendi kodları vardır.", null, null),
@@ -2143,8 +2322,9 @@ object WorldCourseRU {
             LearningLesson("RU-C2-U3-L5", "Uzmanlık Söylemi — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("ruc2u3e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu kavramları ayrıştırmak gerekir.", "", listOf(), listOf("Нужно разграничивать эти понятия."), "Doğru cümle: Нужно разграничивать эти понятия.", null, "Нужно разграничивать эти понятия."),
                 LearningExercise("ruc2u3e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Argüman çok ikna edici.", "", listOf(), listOf("Аргумент очень убедительный."), "Doğru cümle: Аргумент очень убедительный.", null, "Аргумент очень убедительный."),
-                LearningExercise("ruc2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Терминология должна быть точной.", "", listOf(), listOf("Терминология должна быть точной."), "Türkçesi: Terminoloji kesin olmalı.", "Терминология должна быть точной.", "Терминология должна быть точной."))))),
-        LearningUnit("RU-C2-U4", "Kültürel Derinlik", "Kültürel referansları derinlemesine kavra.", listOf(
+                LearningExercise("ruc2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Терминология должна быть точной.", "", listOf(), listOf("Терминология должна быть точной."), "Türkçesi: Terminoloji kesin olmalı.", "Терминология должна быть точной.", "Терминология должна быть точной.")))))
+
+    private fun u84(): LearningUnit = LearningUnit("RU-C2-U4", "Kültürel Derinlik", "Kültürel referansları derinlemesine kavra.", listOf(
             LearningLesson("RU-C2-U4-L1", "Kültürel Derinlik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("ruc2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'мировоззрение' ne anlama gelir?", "", listOf("zihniyet", "kökleşmiş", "dünya görüşü"), listOf("dünya görüşü"), "Его мировоззрение пошатнулось. — Dünya görüşü sarsıldı.", null, null),
                 LearningExercise("ruc2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'менталитет' ne anlama gelir?", "", listOf("miras", "zihniyet", "zamanın ruhu"), listOf("zihniyet"), "Менталитет различается по регионам. — Zihniyet bölgeden bölgeye değişir.", null, null),
@@ -2170,8 +2350,9 @@ object WorldCourseRU {
             LearningLesson("RU-C2-U4-L5", "Kültürel Derinlik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("ruc2u4e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kültürel miras korunuyor.", "", listOf(), listOf("Культурное наследие сохраняется."), "Doğru cümle: Культурное наследие сохраняется.", null, "Культурное наследие сохраняется."),
                 LearningExercise("ruc2u4e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Âdet derinlemesine kökleşmiş.", "", listOf(), listOf("Обычай глубоко укоренённый."), "Doğru cümle: Обычай глубоко укоренённый.", null, "Обычай глубоко укоренённый."),
-                LearningExercise("ruc2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Его мировоззрение пошатнулось.", "", listOf(), listOf("Его мировоззрение пошатнулось."), "Türkçesi: Dünya görüşü sarsıldı.", "Его мировоззрение пошатнулось.", "Его мировоззрение пошатнулось."))))),
-        LearningUnit("RU-C2-U5", "Retorik Ustalığı", "Retorik araçları etkili kullan.", listOf(
+                LearningExercise("ruc2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Его мировоззрение пошатнулось.", "", listOf(), listOf("Его мировоззрение пошатнулось."), "Türkçesi: Dünya görüşü sarsıldı.", "Его мировоззрение пошатнулось.", "Его мировоззрение пошатнулось.")))))
+
+    private fun u85(): LearningUnit = LearningUnit("RU-C2-U5", "Retorik Ustalığı", "Retorik araçları etkili kullan.", listOf(
             LearningLesson("RU-C2-U5-L1", "Retorik Ustalığı — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("ruc2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'риторика' ne anlama gelir?", "", listOf("yerinde/keskin", "retorik", "üslup aracı"), listOf("retorik"), "Его риторика блестящая. — Retoriği parlak.", null, null),
                 LearningExercise("ruc2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'стилистический приём' ne anlama gelir?", "", listOf("üslup aracı", "ifade gücü", "duygu yükü"), listOf("üslup aracı"), "Этот стилистический приём действует тонко. — Bu üslup aracı incelikle etki ediyor.", null, null),
@@ -2197,8 +2378,9 @@ object WorldCourseRU {
             LearningLesson("RU-C2-U5-L5", "Retorik Ustalığı — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("ruc2u5e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Konuşmanın duygusal yükü bilinçliydi.", "", listOf(), listOf("Пафос речи был намеренным."), "Doğru cümle: Пафос речи был намеренным.", null, "Пафос речи был намеренным."),
                 LearningExercise("ruc2u5e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yorumu tam yerindeydi.", "", listOf(), listOf("Его замечание было метким."), "Doğru cümle: Его замечание было метким.", null, "Его замечание было метким."),
-                LearningExercise("ruc2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Его риторика блестящая.", "", listOf(), listOf("Его риторика блестящая."), "Türkçesi: Retoriği parlak.", "Его риторика блестящая.", "Его риторика блестящая."))))),
-        LearningUnit("RU-C2-U6", "Ana Dil Düzeyinde Akıcılık", "Ana dil konuşuru düzeyinde incelik kazan.", listOf(
+                LearningExercise("ruc2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Его риторика блестящая.", "", listOf(), listOf("Его риторика блестящая."), "Türkçesi: Retoriği parlak.", "Его риторика блестящая.", "Его риторика блестящая.")))))
+
+    private fun u86(): LearningUnit = LearningUnit("RU-C2-U6", "Ana Dil Düzeyinde Akıcılık", "Ana dil konuşuru düzeyinde incelik kazan.", listOf(
             LearningLesson("RU-C2-U6-L1", "Ana Dil Düzeyinde Akıcılık — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("ruc2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'владеть' ne anlama gelir?", "", listOf("hâkim olmak", "zahmetsizce", "aksansız"), listOf("hâkim olmak"), "Она свободно владеет пятью языками. — Beş dile akıcı şekilde hâkim.", null, null),
                 LearningExercise("ruc2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'без усилий' ne anlama gelir?", "", listOf("cilalanmışlık/işlenmişlik", "akıcılık", "zahmetsizce"), listOf("zahmetsizce"), "Она меняет стиль без усилий. — Üslubu zahmetsizce değiştiriyor.", null, null),
@@ -2224,8 +2406,9 @@ object WorldCourseRU {
             LearningLesson("RU-C2-U6-L5", "Ana Dil Düzeyinde Akıcılık — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("ruc2u6e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Akıcılığı etkileyici.", "", listOf(), listOf("Её беглость впечатляет."), "Doğru cümle: Её беглость впечатляет.", null, "Её беглость впечатляет."),
                 LearningExercise("ruc2u6e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Aksansız Rusça konuşuyor.", "", listOf(), listOf("Он говорит по-русски без акцента."), "Doğru cümle: Он говорит по-русски без акцента.", null, "Он говорит по-русски без акцента."),
-                LearningExercise("ruc2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Она свободно владеет пятью языками.", "", listOf(), listOf("Она свободно владеет пятью языками."), "Türkçesi: Beş dile akıcı şekilde hâkim.", "Она свободно владеет пятью языками.", "Она свободно владеет пятью языками."))))),
-        LearningUnit("RU-C2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Она свободно владеет пятью языками.", "", listOf(), listOf("Она свободно владеет пятью языками."), "Türkçesi: Beş dile akıcı şekilde hâkim.", "Она свободно владеет пятью языками.", "Она свободно владеет пятью языками.")))))
+
+    private fun u87(): LearningUnit = LearningUnit("RU-C2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C2-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc2k_e181", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Его речь была краткой и ___.", "", listOf("лаконичной", "лаконичный", "лаконично"), listOf("лаконичной"), "Творительный değil; была + dişil Instrumental uyumu: лаконичной.", null, null),
                 LearningExercise("ruc2k_e25", Skill.VOCABULARY, "Doğru anlamı seç", "'выверенный' ne anlama gelir?", "", listOf("akıcılık", "incelik", "özenle tartılmış"), listOf("özenle tartılmış"), "Каждое слово выверенное. — Her kelime özenle tartılmış.", null, null),
@@ -2249,8 +2432,9 @@ object WorldCourseRU {
                 LearningExercise("ruc2k_e16", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: İmayı yalnızca o anladı.", "", listOf(), listOf("Намёк поняла только она."), "Doğru cümle: Намёк поняла только она.", null, "Намёк поняла только она."),
                 LearningExercise("ruc2k_e155", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Она свободно владеет пятью языками.", listOf("Metafor bütün metni ayakta tutuyor.", "Beş dile akıcı şekilde hâkim.", "Her kelime özenle tartılmış."), listOf("Beş dile akıcı şekilde hâkim."), "Cümlenin çevirisi: Beş dile akıcı şekilde hâkim.", null, null),
                 LearningExercise("ruc2k_e65", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Терминология должна быть точной.", listOf("Retoriği parlak.", "Terminoloji kesin olmalı.", "Kültürel miras korunuyor."), listOf("Terminoloji kesin olmalı."), "Cümlenin çevirisi: Terminoloji kesin olmalı.", null, null),
-                LearningExercise("ruc2k_e168", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ фраз заметна.", "", listOf("лаконичный", "Отточенность", "намёк"), listOf("Отточенность"), "Doğru cümle: Отточенность фраз заметна. — Cümlelerin işlenmişliği göze çarpıyor.", null, null))))),
-        LearningUnit("RU-C2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc2k_e168", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ фраз заметна.", "", listOf("лаконичный", "Отточенность", "намёк"), listOf("Отточенность"), "Doğru cümle: Отточенность фраз заметна. — Cümlelerin işlenmişliği göze çarpıyor.", null, null)))))
+
+    private fun u88(): LearningUnit = LearningUnit("RU-C2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C2-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc2k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'anlatım' ifadesinin Rusça karşılığı hangisi?", "", listOf("стилистический приём", "повествование", "риторика"), listOf("повествование"), "Örnek: Повествование постоянно меняется. — Anlatım sürekli değişiyor.", null, null),
                 LearningExercise("ruc2k_e36", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ держит весь текст.", "", listOf("символ", "повествование", "Метафора"), listOf("Метафора"), "Doğru cümle: Метафора держит весь текст. — Metafor bütün metni ayakta tutuyor.", null, null),
@@ -2274,8 +2458,9 @@ object WorldCourseRU {
                 LearningExercise("ruc2k_e32", Skill.VOCABULARY, "Doğru çeviriyi seç", "'metafor' ifadesinin Rusça karşılığı hangisi?", "", listOf("метафора", "без акцента", "беглость"), listOf("метафора"), "Örnek: Метафора держит весь текст. — Metafor bütün metni ayakta tutuyor.", null, null),
                 LearningExercise("ruc2k_e50", Skill.VOCABULARY, "Doğru çeviriyi seç", "'lirik' ifadesinin Rusça karşılığı hangisi?", "", listOf("лирический", "тон", "намёк"), listOf("лирический"), "Örnek: Стиль глубоко лирический. — Üslup derinlemesine lirik.", null, null),
                 LearningExercise("ruc2k_e145", Skill.VOCABULARY, "Doğru anlamı seç", "'пафос' ne anlama gelir?", "", listOf("duygu yükü", "miras", "retorik"), listOf("duygu yükü"), "Пафос речи был намеренным. — Konuşmanın duygusal yükü bilinçliydi.", null, null),
-                LearningExercise("ruc2k_e156", Skill.VOCABULARY, "Doğru anlamı seç", "'владеть' ne anlama gelir?", "", listOf("hâkim olmak", "zihniyet", "zamanın ruhu"), listOf("hâkim olmak"), "Она свободно владеет пятью языками. — Beş dile akıcı şekilde hâkim.", null, null))))),
-        LearningUnit("RU-C2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc2k_e156", Skill.VOCABULARY, "Doğru anlamı seç", "'владеть' ne anlama gelir?", "", listOf("hâkim olmak", "zihniyet", "zamanın ruhu"), listOf("hâkim olmak"), "Она свободно владеет пятью языками. — Beş dile akıcı şekilde hâkim.", null, null)))))
+
+    private fun u89(): LearningUnit = LearningUnit("RU-C2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C2-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc2k_e89", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Нужно разграничивать эти понятия.", listOf("Bu kavramları ayrıştırmak gerekir.", "Metafor bütün metni ayakta tutuyor.", "Deniz bir özgürlük simgesidir."), listOf("Bu kavramları ayrıştırmak gerekir."), "Cümlenin çevirisi: Bu kavramları ayrıştırmak gerekir.", null, null),
                 LearningExercise("ruc2k_e99", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Менталитет различается по регионам."), "Söylenen cümle: Менталитет различается по регионам. — Zihniyet bölgeden bölgeye değişir.", "Менталитет различается по регионам.", null),
@@ -2299,8 +2484,9 @@ object WorldCourseRU {
                 LearningExercise("ruc2k_e191", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Трактат состоит из трёх частей.", "", listOf(), listOf("Трактат состоит из трёх частей."), "Türkçesi: İnceleme üç bölümden oluşuyor.", "Трактат состоит из трёх частей.", "Трактат состоит из трёх частей."),
                 LearningExercise("ruc2k_e159", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Она меняет стиль без усилий."), "Söylenen cümle: Она меняет стиль без усилий. — Üslubu zahmetsizce değiştiriyor.", "Она меняет стиль без усилий.", null),
                 LearningExercise("ruc2k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Каждое слово выверенное.", listOf("Üslubu zahmetsizce değiştiriyor.", "Her kelime özenle tartılmış.", "Beş dile akıcı şekilde hâkim."), listOf("Her kelime özenle tartılmış."), "Cümlenin çevirisi: Her kelime özenle tartılmış.", null, null),
-                LearningExercise("ruc2k_e38", Skill.VOCABULARY, "Doğru çeviriyi seç", "'simge' ifadesinin Rusça karşılığı hangisi?", "", listOf("ирония", "терминология", "символ"), listOf("символ"), "Örnek: Море — символ свободы. — Deniz bir özgürlük simgesidir.", null, null))))),
-        LearningUnit("RU-C2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc2k_e38", Skill.VOCABULARY, "Doğru çeviriyi seç", "'simge' ifadesinin Rusça karşılığı hangisi?", "", listOf("ирония", "терминология", "символ"), listOf("символ"), "Örnek: Море — символ свободы. — Deniz bir özgürlük simgesidir.", null, null)))))
+
+    private fun u90(): LearningUnit = LearningUnit("RU-C2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C2-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc2k_e46", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Anlatım sürekli değişiyor.", "", listOf(), listOf("Повествование постоянно меняется."), "Doğru cümle: Повествование постоянно меняется.", null, "Повествование постоянно меняется."),
                 LearningExercise("ruc2k_e31", Skill.VOCABULARY, "Doğru anlamı seç", "'метафора' ne anlama gelir?", "", listOf("anlatım", "metafor", "simge"), listOf("metafor"), "Метафора держит весь текст. — Metafor bütün metni ayakta tutuyor.", null, null),
@@ -2324,8 +2510,9 @@ object WorldCourseRU {
                 LearningExercise("ruc2k_e118", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kültürel miras korunuyor.", "", listOf(), listOf("Культурное наследие сохраняется."), "Doğru cümle: Культурное наследие сохраняется.", null, "Культурное наследие сохраняется."),
                 LearningExercise("ruc2k_e154", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Beş dile akıcı şekilde hâkim.", "", listOf(), listOf("Она свободно владеет пятью языками."), "Doğru cümle: Она свободно владеет пятью языками.", null, "Она свободно владеет пятью языками."),
                 LearningExercise("ruc2k_e45", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Повествование постоянно меняется."), "Söylenen cümle: Повествование постоянно меняется. — Anlatım sürekli değişiyor.", "Повествование постоянно меняется.", null),
-                LearningExercise("ruc2k_e185", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Его критика была предельно ___.", "", listOf("меткой", "меткий", "метко"), listOf("меткой"), "была + dişil Instrumental uyumu: меткой.", null, null))))),
-        LearningUnit("RU-C2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc2k_e185", Skill.GRAMMAR, "Doğru seçeneği işaretle", "Его критика была предельно ___.", "", listOf("меткой", "меткий", "метко"), listOf("меткой"), "была + dişil Instrumental uyumu: меткой.", null, null)))))
+
+    private fun u91(): LearningUnit = LearningUnit("RU-C2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C2-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc2k_e3", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Тонкости языка узнаёшь поздно."), "Söylenen cümle: Тонкости языка узнаёшь поздно. — Dilin inceliklerini geç öğrenirsin.", "Тонкости языка узнаёшь поздно.", null),
                 LearningExercise("ruc2k_e98", Skill.VOCABULARY, "Doğru çeviriyi seç", "'zihniyet' ifadesinin Rusça karşılığı hangisi?", "", listOf("тонкость", "менталитет", "беглость"), listOf("менталитет"), "Örnek: Менталитет различается по регионам. — Zihniyet bölgeden bölgeye değişir.", null, null),
@@ -2349,8 +2536,9 @@ object WorldCourseRU {
                 LearningExercise("ruc2k_e9", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Его тон был слегка ироничным."), "Söylenen cümle: Его тон был слегка ироничным. — Tonu hafif ironikti.", "Его тон был слегка ироничным.", null),
                 LearningExercise("ruc2k_e19", Skill.VOCABULARY, "Doğru anlamı seç", "'лаконичный' ne anlama gelir?", "", listOf("özlü", "ifade gücü", "yerinde/keskin"), listOf("özlü"), "Его ответ был лаконичным. — Yanıtı özlüydü.", null, null),
                 LearningExercise("ruc2k_e22", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yanıtı özlüydü.", "", listOf(), listOf("Его ответ был лаконичным."), "Doğru cümle: Его ответ был лаконичным.", null, "Его ответ был лаконичным."),
-                LearningExercise("ruc2k_e96", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Его ___ пошатнулось.", "", listOf("отточенность", "мировоззрение", "без усилий"), listOf("мировоззрение"), "Doğru cümle: Его мировоззрение пошатнулось. — Dünya görüşü sarsıldı.", null, null))))),
-        LearningUnit("RU-C2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc2k_e96", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "Его ___ пошатнулось.", "", listOf("отточенность", "мировоззрение", "без усилий"), listOf("мировоззрение"), "Doğru cümle: Его мировоззрение пошатнулось. — Dünya görüşü sarsıldı.", null, null)))))
+
+    private fun u92(): LearningUnit = LearningUnit("RU-C2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C2-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc2k_e109", Skill.VOCABULARY, "Doğru anlamı seç", "'укоренённый' ne anlama gelir?", "", listOf("kökleşmiş", "anlatım", "lirik"), listOf("kökleşmiş"), "Обычай глубоко укоренённый. — Âdet derinlemesine kökleşmiş.", null, null),
                 LearningExercise("ruc2k_e51", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Стиль глубоко лирический."), "Söylenen cümle: Стиль глубоко лирический. — Üslup derinlemesine lirik.", "Стиль глубоко лирический.", null),
@@ -2374,8 +2562,9 @@ object WorldCourseRU {
                 LearningExercise("ruc2k_e199", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Море — символ свободы.", "", listOf(), listOf("Море — символ свободы."), "Türkçesi: Deniz bir özgürlük simgesidir.", "Море — символ свободы.", "Море — символ свободы."),
                 LearningExercise("ruc2k_e4", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Dilin inceliklerini geç öğrenirsin.", "", listOf(), listOf("Тонкости языка узнаёшь поздно."), "Doğru cümle: Тонкости языка узнаёшь поздно.", null, "Тонкости языка узнаёшь поздно."),
                 LearningExercise("ruc2k_e20", Skill.VOCABULARY, "Doğru çeviriyi seç", "'özlü' ifadesinin Rusça karşılığı hangisi?", "", listOf("символ", "повествование", "лаконичный"), listOf("лаконичный"), "Örnek: Его ответ был лаконичным. — Yanıtı özlüydü.", null, null),
-                LearningExercise("ruc2k_e71", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Научный дискурс имеет свои коды.", listOf("Bilimsel söylemin kendi kodları vardır.", "Üslup derinlemesine lirik.", "İroniyi fark etmemek imkânsız."), listOf("Bilimsel söylemin kendi kodları vardır."), "Cümlenin çevirisi: Bilimsel söylemin kendi kodları vardır.", null, null))))),
-        LearningUnit("RU-C2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc2k_e71", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Научный дискурс имеет свои коды.", listOf("Bilimsel söylemin kendi kodları vardır.", "Üslup derinlemesine lirik.", "İroniyi fark etmemek imkânsız."), listOf("Bilimsel söylemin kendi kodları vardır."), "Cümlenin çevirisi: Bilimsel söylemin kendi kodları vardır.", null, null)))))
+
+    private fun u93(): LearningUnit = LearningUnit("RU-C2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C2-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc2k_e146", Skill.VOCABULARY, "Doğru çeviriyi seç", "'duygu yükü' ifadesinin Rusça karşılığı hangisi?", "", listOf("отточенность", "без акцента", "пафос"), listOf("пафос"), "Örnek: Пафос речи был намеренным. — Konuşmanın duygusal yükü bilinçliydi.", null, null),
                 LearningExercise("ruc2k_e134", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ifade gücü' ifadesinin Rusça karşılığı hangisi?", "", listOf("символ", "выразительность", "метафора"), listOf("выразительность"), "Örnek: Выразительность речи поражает. — Konuşmanın ifade gücü çarpıcı.", null, null),
@@ -2399,8 +2588,9 @@ object WorldCourseRU {
                 LearningExercise("ruc2k_e194", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Этот стилистический приём действует тонко.", "", listOf(), listOf("Этот стилистический приём действует тонко."), "Türkçesi: Bu üslup aracı incelikle etki ediyor.", "Этот стилистический приём действует тонко.", "Этот стилистический приём действует тонко."),
                 LearningExercise("ruc2k_e161", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Она меняет стиль без усилий.", listOf("Üslubu zahmetsizce değiştiriyor.", "Yorumu tam yerindeydi.", "Konuşmanın duygusal yükü bilinçliydi."), listOf("Üslubu zahmetsizce değiştiriyor."), "Cümlenin çevirisi: Üslubu zahmetsizce değiştiriyor.", null, null),
                 LearningExercise("ruc2k_e140", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yerinde/keskin' ifadesinin Rusça karşılığı hangisi?", "", listOf("меткий", "менталитет", "дух времени"), listOf("меткий"), "Örnek: Его замечание было метким. — Yorumu tam yerindeydi.", null, null),
-                LearningExercise("ruc2k_e49", Skill.VOCABULARY, "Doğru anlamı seç", "'лирический' ne anlama gelir?", "", listOf("aksansız", "lirik", "cilalanmışlık/işlenmişlik"), listOf("lirik"), "Стиль глубоко лирический. — Üslup derinlemesine lirik.", null, null))))),
-        LearningUnit("RU-C2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc2k_e49", Skill.VOCABULARY, "Doğru anlamı seç", "'лирический' ne anlama gelir?", "", listOf("aksansız", "lirik", "cilalanmışlık/işlenmişlik"), listOf("lirik"), "Стиль глубоко лирический. — Üslup derinlemesine lirik.", null, null)))))
+
+    private fun u94(): LearningUnit = LearningUnit("RU-C2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C2-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc2k_e172", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Aksansız Rusça konuşuyor.", "", listOf(), listOf("Он говорит по-русски без акцента."), "Doğru cümle: Он говорит по-русски без акцента.", null, "Он говорит по-русски без акцента."),
                 LearningExercise("ruc2k_e75", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Трактат состоит из трёх частей."), "Söylenen cümle: Трактат состоит из трёх частей. — İnceleme üç bölümden oluşuyor.", "Трактат состоит из трёх частей.", null),
@@ -2424,8 +2614,9 @@ object WorldCourseRU {
                 LearningExercise("ruc2k_e87", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Нужно разграничивать эти понятия."), "Söylenen cümle: Нужно разграничивать эти понятия. — Bu kavramları ayrıştırmak gerekir.", "Нужно разграничивать эти понятия.", null),
                 LearningExercise("ruc2k_e69", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Научный дискурс имеет свои коды."), "Söylenen cümle: Научный дискурс имеет свои коды. — Bilimsel söylemin kendi kodları vardır.", "Научный дискурс имеет свои коды.", null),
                 LearningExercise("ruc2k_e171", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Он говорит по-русски без акцента."), "Söylenen cümle: Он говорит по-русски без акцента. — Aksansız Rusça konuşuyor.", "Он говорит по-русски без акцента.", null),
-                LearningExercise("ruc2k_e28", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Her kelime özenle tartılmış.", "", listOf(), listOf("Каждое слово выверенное."), "Doğru cümle: Каждое слово выверенное.", null, "Каждое слово выверенное."))))),
-        LearningUnit("RU-C2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc2k_e28", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Her kelime özenle tartılmış.", "", listOf(), listOf("Каждое слово выверенное."), "Doğru cümle: Каждое слово выверенное.", null, "Каждое слово выверенное.")))))
+
+    private fun u95(): LearningUnit = LearningUnit("RU-C2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C2-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc2k_e67", Skill.VOCABULARY, "Doğru anlamı seç", "'дискурс' ne anlama gelir?", "", listOf("miras", "söylem", "kökleşmiş"), listOf("söylem"), "Научный дискурс имеет свои коды. — Bilimsel söylemin kendi kodları vardır.", null, null),
                 LearningExercise("ruc2k_e150", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ речи был намеренным.", "", listOf("пафос", "Пафос", "меткий"), listOf("Пафос"), "Doğru cümle: Пафос речи был намеренным. — Konuşmanın duygusal yükü bilinçliydi.", null, null),
@@ -2449,8 +2640,9 @@ object WorldCourseRU {
                 LearningExercise("ruc2k_e18", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ поняла только она.", "", listOf("отточенность", "без акцента", "Намёк"), listOf("Намёк"), "Doğru cümle: Намёк поняла только она. — İmayı yalnızca o anladı.", null, null),
                 LearningExercise("ruc2k_e26", Skill.VOCABULARY, "Doğru çeviriyi seç", "'özenle tartılmış' ifadesinin Rusça karşılığı hangisi?", "", listOf("укоренённый", "выверенный", "дух времени"), listOf("выверенный"), "Örnek: Каждое слово выверенное. — Her kelime özenle tartılmış.", null, null),
                 LearningExercise("ruc2k_e119", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Культурное наследие сохраняется.", listOf("Bilimsel söylemin kendi kodları vardır.", "Kültürel miras korunuyor.", "Terminoloji kesin olmalı."), listOf("Kültürel miras korunuyor."), "Cümlenin çevirisi: Kültürel miras korunuyor.", null, null),
-                LearningExercise("ruc2k_e61", Skill.VOCABULARY, "Doğru anlamı seç", "'терминология' ne anlama gelir?", "", listOf("söylem", "inceleme/risale", "terminoloji"), listOf("terminoloji"), "Терминология должна быть точной. — Terminoloji kesin olmalı.", null, null))))),
-        LearningUnit("RU-C2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("ruc2k_e61", Skill.VOCABULARY, "Doğru anlamı seç", "'терминология' ne anlama gelir?", "", listOf("söylem", "inceleme/risale", "terminoloji"), listOf("terminoloji"), "Терминология должна быть точной. — Terminoloji kesin olmalı.", null, null)))))
+
+    private fun u96(): LearningUnit = LearningUnit("RU-C2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("RU-C2-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("ruc2k_e183", Skill.GRAMMAR, "Doğru seçeneği işaretle", "___ аргумент убеждает даже критиков.", "", listOf("Убедительный", "Убедительная", "Убедительно"), listOf("Убедительный"), "Eril sıfat uyumu: убедительный аргумент.", null, null),
                 LearningExercise("ruc2k_e189", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: Море — символ свободы.", "", listOf(), listOf("Море — символ свободы."), "Türkçesi: Deniz bir özgürlük simgesidir.", "Море — символ свободы.", "Море — символ свободы."),
@@ -2474,5 +2666,5 @@ object WorldCourseRU {
                 LearningExercise("ruc2k_e111", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("Обычай глубоко укоренённый."), "Söylenen cümle: Обычай глубоко укоренённый. — Âdet derinlemesine kökleşmiş.", "Обычай глубоко укоренённый.", null),
                 LearningExercise("ruc2k_e152", Skill.VOCABULARY, "Doğru çeviriyi seç", "'hâkim olmak' ifadesinin Rusça karşılığı hangisi?", "", listOf("ирония", "владеть", "лирический"), listOf("владеть"), "Örnek: Она свободно владеет пятью языками. — Beş dile akıcı şekilde hâkim.", null, null),
                 LearningExercise("ruc2k_e169", Skill.VOCABULARY, "Doğru anlamı seç", "'без акцента' ne anlama gelir?", "", listOf("zamanın ruhu", "kökleşmiş", "aksansız"), listOf("aksansız"), "Он говорит по-русски без акцента. — Aksansız Rusça konuşuyor.", null, null),
-                LearningExercise("ruc2k_e35", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Метафора держит весь текст.", listOf("Metafor bütün metni ayakta tutuyor.", "Bu kavramları ayrıştırmak gerekir.", "Dünya görüşü sarsıldı."), listOf("Metafor bütün metni ayakta tutuyor."), "Cümlenin çevirisi: Metafor bütün metni ayakta tutuyor.", null, null))))))
+                LearningExercise("ruc2k_e35", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "Метафора держит весь текст.", listOf("Metafor bütün metni ayakta tutuyor.", "Bu kavramları ayrıştırmak gerekir.", "Dünya görüşü sarsıldı."), listOf("Metafor bütün metni ayakta tutuyor."), "Cümlenin çevirisi: Metafor bütün metni ayakta tutuyor.", null, null)))))
 }

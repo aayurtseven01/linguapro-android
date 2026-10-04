@@ -1,9 +1,106 @@
 package com.linguapro.android
 
-/** Japonca (JA) tam müfredat: A1-C2, 36 ünite, 108 ders. Türkçe yönergeli, elle küratörlü içerik. */
+/** Japonca (JA) tam müfredat: A1-C2, 96 ünite (temel + Pekiştirme Kampı). Türkçe yönergeli içerik. */
 object WorldCourseJA {
-    val units: List<LearningUnit> = listOf(
-        LearningUnit("JA-A1-U1", "Selamlaşma ve Tanışma", "Selamlaş, kendini tanıt ve vedalaş.", listOf(
+    val units: List<LearningUnit> by lazy { listOf(
+        u1(),
+        u2(),
+        u3(),
+        u4(),
+        u5(),
+        u6(),
+        u7(),
+        u8(),
+        u9(),
+        u10(),
+        u11(),
+        u12(),
+        u13(),
+        u14(),
+        u15(),
+        u16(),
+        u17(),
+        u18(),
+        u19(),
+        u20(),
+        u21(),
+        u22(),
+        u23(),
+        u24(),
+        u25(),
+        u26(),
+        u27(),
+        u28(),
+        u29(),
+        u30(),
+        u31(),
+        u32(),
+        u33(),
+        u34(),
+        u35(),
+        u36(),
+        u37(),
+        u38(),
+        u39(),
+        u40(),
+        u41(),
+        u42(),
+        u43(),
+        u44(),
+        u45(),
+        u46(),
+        u47(),
+        u48(),
+        u49(),
+        u50(),
+        u51(),
+        u52(),
+        u53(),
+        u54(),
+        u55(),
+        u56(),
+        u57(),
+        u58(),
+        u59(),
+        u60(),
+        u61(),
+        u62(),
+        u63(),
+        u64(),
+        u65(),
+        u66(),
+        u67(),
+        u68(),
+        u69(),
+        u70(),
+        u71(),
+        u72(),
+        u73(),
+        u74(),
+        u75(),
+        u76(),
+        u77(),
+        u78(),
+        u79(),
+        u80(),
+        u81(),
+        u82(),
+        u83(),
+        u84(),
+        u85(),
+        u86(),
+        u87(),
+        u88(),
+        u89(),
+        u90(),
+        u91(),
+        u92(),
+        u93(),
+        u94(),
+        u95(),
+        u96()) }
+
+    private fun u1(): LearningUnit = LearningUnit("JA-A1-U1", "Selamlaşma ve Tanışma", "Selamlaş, kendini tanıt ve vedalaş.", listOf(
             LearningLesson("JA-A1-U1-L1", "Selamlaşma ve Tanışma — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'こんにちは' ne anlama gelir?", "", listOf("teşekkürler", "hoşça kal", "merhaba"), listOf("merhaba"), "こんにちは、アンナです。 — Merhaba, ben Anna.", null, null),
                 LearningExercise("jaa1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'ありがとう' ne anlama gelir?", "", listOf("memnun oldum", "teşekkürler", "lütfen (rica)"), listOf("teşekkürler"), "ありがとうございます。 — Teşekkür ederim.", null, null),
@@ -29,8 +126,9 @@ object WorldCourseJA {
             LearningLesson("JA-A1-U1-L5", "Selamlaşma ve Tanışma — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jaa1u1e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "はじめまして、メフメトです。", listOf("Hoşça kal, yarın görüşürüz!", "Memnun oldum, ben Mehmet.", "Teşekkür ederim."), listOf("Memnun oldum, ben Mehmet."), "Cümlenin çevirisi: Memnun oldum, ben Mehmet.", null, null),
                 LearningExercise("jaa1u1e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "さようなら、また明日！", listOf("Hoşça kal, yarın görüşürüz!", "Kahve lütfen.", "Memnun oldum, ben Mehmet."), listOf("Hoşça kal, yarın görüşürüz!"), "Cümlenin çevirisi: Hoşça kal, yarın görüşürüz!", null, null),
-                LearningExercise("jaa1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: こんにちは、アンナです。", "", listOf(), listOf("こんにちは、アンナです。"), "Türkçesi: Merhaba, ben Anna.", "こんにちは、アンナです。", "こんにちは、アンナです。"))))),
-        LearningUnit("JA-A1-U2", "Sayılar ve Zaman", "Sayıları say, saati ve günleri söyle.", listOf(
+                LearningExercise("jaa1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: こんにちは、アンナです。", "", listOf(), listOf("こんにちは、アンナです。"), "Türkçesi: Merhaba, ben Anna.", "こんにちは、アンナです。", "こんにちは、アンナです。")))))
+
+    private fun u2(): LearningUnit = LearningUnit("JA-A1-U2", "Sayılar ve Zaman", "Sayıları say, saati ve günleri söyle.", listOf(
             LearningLesson("JA-A1-U2-L1", "Sayılar ve Zaman — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'二' ne anlama gelir?", "", listOf("yarın", "iki", "on"), listOf("iki"), "二人の兄弟がいます。 — İki kardeşim var.", null, null),
                 LearningExercise("jaa1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'十' ne anlama gelir?", "", listOf("on", "bugün", "saat (...da)"), listOf("on"), "今、十時です。 — Saat şimdi on.", null, null),
@@ -56,8 +154,9 @@ object WorldCourseJA {
             LearningLesson("JA-A1-U2-L5", "Sayılar ve Zaman — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jaa1u2e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "今、何時ですか。", listOf("Şu an saat kaç?", "Saat şimdi on.", "Yarın görüşürüz!"), listOf("Şu an saat kaç?"), "Cümlenin çevirisi: Şu an saat kaç?", null, null),
                 LearningExercise("jaa1u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "また明日！", listOf("Bugün pazartesi.", "Şu an saat kaç?", "Yarın görüşürüz!"), listOf("Yarın görüşürüz!"), "Cümlenin çevirisi: Yarın görüşürüz!", null, null),
-                LearningExercise("jaa1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 二人の兄弟がいます。", "", listOf(), listOf("二人の兄弟がいます。"), "Türkçesi: İki kardeşim var.", "二人の兄弟がいます。", "二人の兄弟がいます。"))))),
-        LearningUnit("JA-A1-U3", "Yiyecek ve İçecek", "Temel yiyecekleri söyle ve sipariş ver.", listOf(
+                LearningExercise("jaa1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 二人の兄弟がいます。", "", listOf(), listOf("二人の兄弟がいます。"), "Türkçesi: İki kardeşim var.", "二人の兄弟がいます。", "二人の兄弟がいます。")))))
+
+    private fun u3(): LearningUnit = LearningUnit("JA-A1-U3", "Yiyecek ve İçecek", "Temel yiyecekleri söyle ve sipariş ver.", listOf(
             LearningLesson("JA-A1-U3-L1", "Yiyecek ve İçecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'水' ne anlama gelir?", "", listOf("su", "ekmek", "elma"), listOf("su"), "水をください。 — Su lütfen.", null, null),
                 LearningExercise("jaa1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'パン' ne anlama gelir?", "", listOf("kahve", "çay", "ekmek"), listOf("ekmek"), "パンは新しいです。 — Ekmek taze.", null, null),
@@ -83,8 +182,9 @@ object WorldCourseJA {
             LearningLesson("JA-A1-U3-L5", "Yiyecek ve İçecek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jaa1u3e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "お茶が好きです。", listOf("Ekmek taze.", "Elma kırmızı.", "Çayı severim."), listOf("Çayı severim."), "Cümlenin çevirisi: Çayı severim.", null, null),
                 LearningExercise("jaa1u3e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "りんごは赤いです。", listOf("Çayı severim.", "Elma kırmızı.", "Kahve içiyorum."), listOf("Elma kırmızı."), "Cümlenin çevirisi: Elma kırmızı.", null, null),
-                LearningExercise("jaa1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 水をください。", "", listOf(), listOf("水をください。"), "Türkçesi: Su lütfen.", "水をください。", "水をください。"))))),
-        LearningUnit("JA-A1-U4", "Aile ve İnsanlar", "Aile üyelerini tanıt.", listOf(
+                LearningExercise("jaa1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 水をください。", "", listOf(), listOf("水をください。"), "Türkçesi: Su lütfen.", "水をください。", "水をください。")))))
+
+    private fun u4(): LearningUnit = LearningUnit("JA-A1-U4", "Aile ve İnsanlar", "Aile üyelerini tanıt.", listOf(
             LearningLesson("JA-A1-U4-L1", "Aile ve İnsanlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'家族' ne anlama gelir?", "", listOf("anne", "ağabey", "aile"), listOf("aile"), "家族は大きいです。 — Ailem kalabalık.", null, null),
                 LearningExercise("jaa1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'母' ne anlama gelir?", "", listOf("arkadaş", "anne", "baba"), listOf("anne"), "母は家にいます。 — Annem evde.", null, null),
@@ -110,8 +210,9 @@ object WorldCourseJA {
             LearningLesson("JA-A1-U4-L5", "Aile ve İnsanlar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jaa1u4e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "彼は友達です。", listOf("Ağabeyim genç.", "O benim arkadaşım.", "Annem evde."), listOf("O benim arkadaşım."), "Cümlenin çevirisi: O benim arkadaşım.", null, null),
                 LearningExercise("jaa1u4e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "兄は若いです。", listOf("Ağabeyim genç.", "Babam çok çalışır.", "O benim arkadaşım."), listOf("Ağabeyim genç."), "Cümlenin çevirisi: Ağabeyim genç.", null, null),
-                LearningExercise("jaa1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 家族は大きいです。", "", listOf(), listOf("家族は大きいです。"), "Türkçesi: Ailem kalabalık.", "家族は大きいです。", "家族は大きいです。"))))),
-        LearningUnit("JA-A1-U5", "Günlük Yaşam ve Şehir", "Ev, iş ve şehir hakkında konuş.", listOf(
+                LearningExercise("jaa1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 家族は大きいです。", "", listOf(), listOf("家族は大きいです。"), "Türkçesi: Ailem kalabalık.", "家族は大きいです。", "家族は大きいです。")))))
+
+    private fun u5(): LearningUnit = LearningUnit("JA-A1-U5", "Günlük Yaşam ve Şehir", "Ev, iş ve şehir hakkında konuş.", listOf(
             LearningLesson("JA-A1-U5-L1", "Günlük Yaşam ve Şehir — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'家' ne anlama gelir?", "", listOf("satın alırım", "ev", "iş"), listOf("ev"), "家は古いです。 — Ev eski.", null, null),
                 LearningExercise("jaa1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'仕事' ne anlama gelir?", "", listOf("iş", "şehir / kasaba", "oturuyorum"), listOf("iş"), "仕事に行きます。 — İşe gidiyorum.", null, null),
@@ -137,8 +238,9 @@ object WorldCourseJA {
             LearningLesson("JA-A1-U5-L5", "Günlük Yaşam ve Şehir — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jaa1u5e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "東京に住んでいます。", listOf("Tokyo'da oturuyorum.", "İşe gidiyorum.", "Meyve alıyorum."), listOf("Tokyo'da oturuyorum."), "Cümlenin çevirisi: Tokyo'da oturuyorum.", null, null),
                 LearningExercise("jaa1u5e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "果物を買います。", listOf("Şehir güzel.", "Tokyo'da oturuyorum.", "Meyve alıyorum."), listOf("Meyve alıyorum."), "Cümlenin çevirisi: Meyve alıyorum.", null, null),
-                LearningExercise("jaa1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 家は古いです。", "", listOf(), listOf("家は古いです。"), "Türkçesi: Ev eski.", "家は古いです。", "家は古いです。"))))),
-        LearningUnit("JA-A1-U6", "Seyahat Temelleri", "Bilet al, yol sor, otele yerleş.", listOf(
+                LearningExercise("jaa1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 家は古いです。", "", listOf(), listOf("家は古いです。"), "Türkçesi: Ev eski.", "家は古いです。", "家は古いです。")))))
+
+    private fun u6(): LearningUnit = LearningUnit("JA-A1-U6", "Seyahat Temelleri", "Bilet al, yol sor, otele yerleş.", listOf(
             LearningLesson("JA-A1-U6-L1", "Seyahat Temelleri — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'電車' ne anlama gelir?", "", listOf("tren", "bilet", "sol"), listOf("tren"), "電車は九時に来ます。 — Tren dokuzda geliyor.", null, null),
                 LearningExercise("jaa1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'切符' ne anlama gelir?", "", listOf("otel", "havalimanı", "bilet"), listOf("bilet"), "切符を一枚ください。 — Bir bilet lütfen.", null, null),
@@ -164,8 +266,9 @@ object WorldCourseJA {
             LearningLesson("JA-A1-U6-L5", "Seyahat Temelleri — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jaa1u6e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "空港は遠いです。", listOf("Bir bilet lütfen.", "Sola dönün lütfen.", "Havalimanı uzak."), listOf("Havalimanı uzak."), "Cümlenin çevirisi: Havalimanı uzak.", null, null),
                 LearningExercise("jaa1u6e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "左に曲がってください。", listOf("Havalimanı uzak.", "Sola dönün lütfen.", "Otel merkezde."), listOf("Sola dönün lütfen."), "Cümlenin çevirisi: Sola dönün lütfen.", null, null),
-                LearningExercise("jaa1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 電車は九時に来ます。", "", listOf(), listOf("電車は九時に来ます。"), "Türkçesi: Tren dokuzda geliyor.", "電車は九時に来ます。", "電車は九時に来ます。"))))),
-        LearningUnit("JA-A1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 電車は九時に来ます。", "", listOf(), listOf("電車は九時に来ます。"), "Türkçesi: Tren dokuzda geliyor.", "電車は九時に来ます。", "電車は九時に来ます。")))))
+
+    private fun u7(): LearningUnit = LearningUnit("JA-A1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A1-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa1k_e126", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は古いです。", "", listOf("仕事", "町", "家"), listOf("家"), "Doğru cümle: 家は古いです。 — Ev eski.", null, null),
                 LearningExercise("jaa1k_e85", Skill.VOCABULARY, "Doğru anlamı seç", "'お茶' ne anlama gelir?", "", listOf("su", "çay", "saat (...da)"), listOf("çay"), "お茶が好きです。 — Çayı severim.", null, null),
@@ -189,8 +292,9 @@ object WorldCourseJA {
                 LearningExercise("jaa1k_e125", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "家は古いです。", listOf("Ev eski.", "Havalimanı uzak.", "Merhaba, ben Anna."), listOf("Ev eski."), "Cümlenin çevirisi: Ev eski.", null, null),
                 LearningExercise("jaa1k_e26", Skill.VOCABULARY, "Doğru çeviriyi seç", "'memnun oldum' ifadesinin Japonca karşılığı hangisi?", "", listOf("兄", "はじめまして", "父"), listOf("はじめまして"), "Örnek: はじめまして、メフメトです。 — Memnun oldum, ben Mehmet.", null, null),
                 LearningExercise("jaa1k_e175", Skill.VOCABULARY, "Doğru anlamı seç", "'空港' ne anlama gelir?", "", listOf("tren", "havalimanı", "oturuyorum"), listOf("havalimanı"), "空港は遠いです。 — Havalimanı uzak.", null, null),
-                LearningExercise("jaa1k_e13", Skill.VOCABULARY, "Doğru anlamı seç", "'お願いします' ne anlama gelir?", "", listOf("anne", "lütfen (rica)", "aile"), listOf("lütfen (rica)"), "コーヒーをお願いします。 — Kahve lütfen.", null, null))))),
-        LearningUnit("JA-A1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa1k_e13", Skill.VOCABULARY, "Doğru anlamı seç", "'お願いします' ne anlama gelir?", "", listOf("anne", "lütfen (rica)", "aile"), listOf("lütfen (rica)"), "コーヒーをお願いします。 — Kahve lütfen.", null, null)))))
+
+    private fun u8(): LearningUnit = LearningUnit("JA-A1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A1-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa1k_e117", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("O benim arkadaşım.", "Kahve içiyorum.", "Elma kırmızı."), listOf("O benim arkadaşım."), "Söylenen cümle: 彼は友達です。", "彼は友達です。", null),
                 LearningExercise("jaa1k_e89", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "お茶が好きです。", listOf("Çayı severim.", "İki kardeşim var.", "Saat şimdi on."), listOf("Çayı severim."), "Cümlenin çevirisi: Çayı severim.", null, null),
@@ -214,8 +318,9 @@ object WorldCourseJA {
                 LearningExercise("jaa1k_e139", Skill.VOCABULARY, "Doğru anlamı seç", "'買います' ne anlama gelir?", "", listOf("elma", "satın alırım", "kahve"), listOf("satın alırım"), "果物を買います。 — Meyve alıyorum.", null, null),
                 LearningExercise("jaa1k_e6", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___、アンナです。", "", listOf("コーヒー", "こんにちは", "パン"), listOf("こんにちは"), "Doğru cümle: こんにちは、アンナです。 — Merhaba, ben Anna.", null, null),
                 LearningExercise("jaa1k_e48", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は月曜日です。", "", listOf("今日", "町", "買います"), listOf("今日"), "Doğru cümle: 今日は月曜日です。 — Bugün pazartesi.", null, null),
-                LearningExercise("jaa1k_e36", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___人の兄弟がいます。", "", listOf("十", "今日", "二"), listOf("二"), "Doğru cümle: 二人の兄弟がいます。 — İki kardeşim var.", null, null))))),
-        LearningUnit("JA-A1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa1k_e36", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___人の兄弟がいます。", "", listOf("十", "今日", "二"), listOf("二"), "Doğru cümle: 二人の兄弟がいます。 — İki kardeşim var.", null, null)))))
+
+    private fun u9(): LearningUnit = LearningUnit("JA-A1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A1-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa1k_e172", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "左に曲がってください。", listOf("Hoşça kal, yarın görüşürüz!", "Memnun oldum, ben Mehmet.", "Sola dönün lütfen."), listOf("Sola dönün lütfen."), "Cümlenin çevirisi: Sola dönün lütfen.", null, null),
                 LearningExercise("jaa1k_e199", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 今、十時です。", "", listOf(), listOf("今、十時です。"), "Türkçesi: Saat şimdi on.", "今、十時です。", "今、十時です。"),
@@ -239,8 +344,9 @@ object WorldCourseJA {
                 LearningExercise("jaa1k_e99", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Annem evde.", "Hoşça kal, yarın görüşürüz!", "Memnun oldum, ben Mehmet."), listOf("Annem evde."), "Söylenen cümle: 母は家にいます。", "母は家にいます。", null),
                 LearningExercise("jaa1k_e14", Skill.VOCABULARY, "Doğru çeviriyi seç", "'lütfen (rica)' ifadesinin Japonca karşılığı hangisi?", "", listOf("お願いします", "電車", "切符"), listOf("お願いします"), "Örnek: コーヒーをお願いします。 — Kahve lütfen.", null, null),
                 LearningExercise("jaa1k_e155", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "電車は九時に来ます。", listOf("İki kardeşim var.", "Tren dokuzda geliyor.", "Memnun oldum, ben Mehmet."), listOf("Tren dokuzda geliyor."), "Cümlenin çevirisi: Tren dokuzda geliyor.", null, null),
-                LearningExercise("jaa1k_e130", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "仕事に行きます。", listOf("İşe gidiyorum.", "Memnun oldum, ben Mehmet.", "İki kardeşim var."), listOf("İşe gidiyorum."), "Cümlenin çevirisi: İşe gidiyorum.", null, null))))),
-        LearningUnit("JA-A1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa1k_e130", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "仕事に行きます。", listOf("İşe gidiyorum.", "Memnun oldum, ben Mehmet.", "İki kardeşim var."), listOf("İşe gidiyorum."), "Cümlenin çevirisi: İşe gidiyorum.", null, null)))))
+
+    private fun u10(): LearningUnit = LearningUnit("JA-A1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A1-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa1k_e22", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "さようなら、また明日！", listOf("Hoşça kal, yarın görüşürüz!", "Sola dönün lütfen.", "Havalimanı uzak."), listOf("Hoşça kal, yarın görüşürüz!"), "Cümlenin çevirisi: Hoşça kal, yarın görüşürüz!", null, null),
                 LearningExercise("jaa1k_e83", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "りんごは赤いです。", listOf("Babam çok çalışır.", "Elma kırmızı.", "Annem evde."), listOf("Elma kırmızı."), "Cümlenin çevirisi: Elma kırmızı.", null, null),
@@ -264,8 +370,9 @@ object WorldCourseJA {
                 LearningExercise("jaa1k_e135", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Şehir güzel.", "İşe gidiyorum.", "Meyve alıyorum."), listOf("Şehir güzel."), "Söylenen cümle: 町はきれいです。", "町はきれいです。", null),
                 LearningExercise("jaa1k_e189", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 今、十時です。", "", listOf(), listOf("今、十時です。"), "Türkçesi: Saat şimdi on.", "今、十時です。", "今、十時です。"),
                 LearningExercise("jaa1k_e8", Skill.VOCABULARY, "Doğru çeviriyi seç", "'teşekkürler' ifadesinin Japonca karşılığı hangisi?", "", listOf("家族", "ありがとう", "お茶"), listOf("ありがとう"), "Örnek: ありがとうございます。 — Teşekkür ederim.", null, null),
-                LearningExercise("jaa1k_e148", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "東京に住んでいます。", listOf("Tokyo'da oturuyorum.", "Tren dokuzda geliyor.", "Bir bilet lütfen."), listOf("Tokyo'da oturuyorum."), "Cümlenin çevirisi: Tokyo'da oturuyorum.", null, null))))),
-        LearningUnit("JA-A1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa1k_e148", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "東京に住んでいます。", listOf("Tokyo'da oturuyorum.", "Tren dokuzda geliyor.", "Bir bilet lütfen."), listOf("Tokyo'da oturuyorum."), "Cümlenin çevirisi: Tokyo'da oturuyorum.", null, null)))))
+
+    private fun u11(): LearningUnit = LearningUnit("JA-A1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A1-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa1k_e191", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: コーヒーを飲みます。", "", listOf(), listOf("コーヒーを飲みます。"), "Türkçesi: Kahve içiyorum.", "コーヒーを飲みます。", "コーヒーを飲みます。"),
                 LearningExercise("jaa1k_e123", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Tren dokuzda geliyor.", "Bir bilet lütfen.", "Ev eski."), listOf("Ev eski."), "Söylenen cümle: 家は古いです。", "家は古いです。", null),
@@ -289,8 +396,9 @@ object WorldCourseJA {
                 LearningExercise("jaa1k_e157", Skill.VOCABULARY, "Doğru anlamı seç", "'切符' ne anlama gelir?", "", listOf("memnun oldum", "bilet", "hoşça kal"), listOf("bilet"), "切符を一枚ください。 — Bir bilet lütfen.", null, null),
                 LearningExercise("jaa1k_e92", Skill.VOCABULARY, "Doğru çeviriyi seç", "'aile' ifadesinin Japonca karşılığı hangisi?", "", listOf("兄", "友達", "家族"), listOf("家族"), "Örnek: 家族は大きいです。 — Ailem kalabalık.", null, null),
                 LearningExercise("jaa1k_e95", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "家族は大きいです。", listOf("Tokyo'da oturuyorum.", "Tren dokuzda geliyor.", "Ailem kalabalık."), listOf("Ailem kalabalık."), "Cümlenin çevirisi: Ailem kalabalık.", null, null),
-                LearningExercise("jaa1k_e185", Skill.GRAMMAR, "Doğru seçeneği işaretle", "東京___住んでいます。", "", listOf("に", "を", "へ"), listOf("に"), "Yer edatı: に.", null, null))))),
-        LearningUnit("JA-A1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa1k_e185", Skill.GRAMMAR, "Doğru seçeneği işaretle", "東京___住んでいます。", "", listOf("に", "を", "へ"), listOf("に"), "Yer edatı: に.", null, null)))))
+
+    private fun u12(): LearningUnit = LearningUnit("JA-A1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A1-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa1k_e57", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Hoşça kal, yarın görüşürüz!", "Şu an saat kaç?", "Kahve lütfen."), listOf("Şu an saat kaç?"), "Söylenen cümle: 今、何時ですか。", "今、何時ですか。", null),
                 LearningExercise("jaa1k_e7", Skill.VOCABULARY, "Doğru anlamı seç", "'ありがとう' ne anlama gelir?", "", listOf("yarın", "saat (...da)", "teşekkürler"), listOf("teşekkürler"), "ありがとうございます。 — Teşekkür ederim.", null, null),
@@ -314,8 +422,9 @@ object WorldCourseJA {
                 LearningExercise("jaa1k_e77", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "コーヒーを飲みます。", listOf("Otel merkezde.", "Sola dönün lütfen.", "Kahve içiyorum."), listOf("Kahve içiyorum."), "Cümlenin çevirisi: Kahve içiyorum.", null, null),
                 LearningExercise("jaa1k_e196", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: ホテルは中心にあります。", "", listOf(), listOf("ホテルは中心にあります。"), "Türkçesi: Otel merkezde.", "ホテルは中心にあります。", "ホテルは中心にあります。"),
                 LearningExercise("jaa1k_e100", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "母は家にいます。", listOf("Şu an saat kaç?", "Su lütfen.", "Annem evde."), listOf("Annem evde."), "Cümlenin çevirisi: Annem evde.", null, null),
-                LearningExercise("jaa1k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "はじめまして、メフメトです。", listOf("Bir bilet lütfen.", "Memnun oldum, ben Mehmet.", "Tren dokuzda geliyor."), listOf("Memnun oldum, ben Mehmet."), "Cümlenin çevirisi: Memnun oldum, ben Mehmet.", null, null))))),
-        LearningUnit("JA-A1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa1k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "はじめまして、メフメトです。", listOf("Bir bilet lütfen.", "Memnun oldum, ben Mehmet.", "Tren dokuzda geliyor."), listOf("Memnun oldum, ben Mehmet."), "Cümlenin çevirisi: Memnun oldum, ben Mehmet.", null, null)))))
+
+    private fun u13(): LearningUnit = LearningUnit("JA-A1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A1-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa1k_e197", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: こんにちは、アンナです。", "", listOf(), listOf("こんにちは、アンナです。"), "Türkçesi: Merhaba, ben Anna.", "こんにちは、アンナです。", "こんにちは、アンナです。"),
                 LearningExercise("jaa1k_e87", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bugün pazartesi.", "Yarın görüşürüz!", "Çayı severim."), listOf("Çayı severim."), "Söylenen cümle: お茶が好きです。", "お茶が好きです。", null),
@@ -339,8 +448,9 @@ object WorldCourseJA {
                 LearningExercise("jaa1k_e179", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "空港は遠いです。", listOf("Havalimanı uzak.", "Ev eski.", "İşe gidiyorum."), listOf("Havalimanı uzak."), "Cümlenin çevirisi: Havalimanı uzak.", null, null),
                 LearningExercise("jaa1k_e24", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___、また明日！", "", listOf("仕事", "さようなら", "家"), listOf("さようなら"), "Doğru cümle: さようなら、また明日！ — Hoşça kal, yarın görüşürüz!", null, null),
                 LearningExercise("jaa1k_e37", Skill.VOCABULARY, "Doğru anlamı seç", "'十' ne anlama gelir?", "", listOf("on", "elma", "çay"), listOf("on"), "今、十時です。 — Saat şimdi on.", null, null),
-                LearningExercise("jaa1k_e31", Skill.VOCABULARY, "Doğru anlamı seç", "'二' ne anlama gelir?", "", listOf("bugün", "iki", "on"), listOf("iki"), "二人の兄弟がいます。 — İki kardeşim var.", null, null))))),
-        LearningUnit("JA-A1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa1k_e31", Skill.VOCABULARY, "Doğru anlamı seç", "'二' ne anlama gelir?", "", listOf("bugün", "iki", "on"), listOf("iki"), "二人の兄弟がいます。 — İki kardeşim var.", null, null)))))
+
+    private fun u14(): LearningUnit = LearningUnit("JA-A1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A1-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa1k_e174", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___に曲がってください。", "", listOf("左", "電車", "切符"), listOf("左"), "Doğru cümle: 左に曲がってください。 — Sola dönün lütfen.", null, null),
                 LearningExercise("jaa1k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は新しいです。", "", listOf("住んでいます", "電車", "パン"), listOf("パン"), "Doğru cümle: パンは新しいです。 — Ekmek taze.", null, null),
@@ -364,8 +474,9 @@ object WorldCourseJA {
                 LearningExercise("jaa1k_e18", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "コーヒーを___。", "", listOf("ホテル", "左", "お願いします"), listOf("お願いします"), "Doğru cümle: コーヒーをお願いします。 — Kahve lütfen.", null, null),
                 LearningExercise("jaa1k_e153", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Tren dokuzda geliyor.", "Merhaba, ben Anna.", "Teşekkür ederim."), listOf("Tren dokuzda geliyor."), "Söylenen cümle: 電車は九時に来ます。", "電車は九時に来ます。", null),
                 LearningExercise("jaa1k_e70", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "パンは新しいです。", listOf("Ailem kalabalık.", "Ekmek taze.", "Çayı severim."), listOf("Ekmek taze."), "Cümlenin çevirisi: Ekmek taze.", null, null),
-                LearningExercise("jaa1k_e79", Skill.VOCABULARY, "Doğru anlamı seç", "'りんご' ne anlama gelir?", "", listOf("lütfen (rica)", "hoşça kal", "elma"), listOf("elma"), "りんごは赤いです。 — Elma kırmızı.", null, null))))),
-        LearningUnit("JA-A1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa1k_e79", Skill.VOCABULARY, "Doğru anlamı seç", "'りんご' ne anlama gelir?", "", listOf("lütfen (rica)", "hoşça kal", "elma"), listOf("elma"), "りんごは赤いです。 — Elma kırmızı.", null, null)))))
+
+    private fun u15(): LearningUnit = LearningUnit("JA-A1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A1-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa1k_e102", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は家にいます。", "", listOf("母", "友達", "家"), listOf("母"), "Doğru cümle: 母は家にいます。 — Annem evde.", null, null),
                 LearningExercise("jaa1k_e59", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "今、何時ですか。", listOf("Merhaba, ben Anna.", "Teşekkür ederim.", "Şu an saat kaç?"), listOf("Şu an saat kaç?"), "Cümlenin çevirisi: Şu an saat kaç?", null, null),
@@ -389,8 +500,9 @@ object WorldCourseJA {
                 LearningExercise("jaa1k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'bugün' ifadesinin Japonca karşılığı hangisi?", "", listOf("仕事", "今日", "家"), listOf("今日"), "Örnek: 今日は月曜日です。 — Bugün pazartesi.", null, null),
                 LearningExercise("jaa1k_e176", Skill.VOCABULARY, "Doğru çeviriyi seç", "'havalimanı' ifadesinin Japonca karşılığı hangisi?", "", listOf("空港", "町", "買います"), listOf("空港"), "Örnek: 空港は遠いです。 — Havalimanı uzak.", null, null),
                 LearningExercise("jaa1k_e127", Skill.VOCABULARY, "Doğru anlamı seç", "'仕事' ne anlama gelir?", "", listOf("iş", "sol", "havalimanı"), listOf("iş"), "仕事に行きます。 — İşe gidiyorum.", null, null),
-                LearningExercise("jaa1k_e51", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("O benim arkadaşım.", "Ev eski.", "Yarın görüşürüz!"), listOf("Yarın görüşürüz!"), "Söylenen cümle: また明日！", "また明日！", null))))),
-        LearningUnit("JA-A1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa1k_e51", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("O benim arkadaşım.", "Ev eski.", "Yarın görüşürüz!"), listOf("Yarın görüşürüz!"), "Söylenen cümle: また明日！", "また明日！", null)))))
+
+    private fun u16(): LearningUnit = LearningUnit("JA-A1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A1-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa1k_e73", Skill.VOCABULARY, "Doğru anlamı seç", "'コーヒー' ne anlama gelir?", "", listOf("kahve", "tren", "bilet"), listOf("kahve"), "コーヒーを飲みます。 — Kahve içiyorum.", null, null),
                 LearningExercise("jaa1k_e40", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "今、十時です。", listOf("Saat şimdi on.", "O benim arkadaşım.", "Ev eski."), listOf("Saat şimdi on."), "Cümlenin çevirisi: Saat şimdi on.", null, null),
@@ -414,8 +526,9 @@ object WorldCourseJA {
                 LearningExercise("jaa1k_e171", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Sola dönün lütfen.", "Şu an saat kaç?", "Su lütfen."), listOf("Sola dönün lütfen."), "Söylenen cümle: 左に曲がってください。", "左に曲がってください。", null),
                 LearningExercise("jaa1k_e98", Skill.VOCABULARY, "Doğru çeviriyi seç", "'anne' ifadesinin Japonca karşılığı hangisi?", "", listOf("こんにちは", "母", "空港"), listOf("母"), "Örnek: 母は家にいます。 — Annem evde.", null, null),
                 LearningExercise("jaa1k_e104", Skill.VOCABULARY, "Doğru çeviriyi seç", "'baba' ifadesinin Japonca karşılığı hangisi?", "", listOf("父", "水", "パン"), listOf("父"), "Örnek: 父はよく働きます。 — Babam çok çalışır.", null, null),
-                LearningExercise("jaa1k_e183", Skill.GRAMMAR, "Doğru seçeneği işaretle", "コーヒー___飲みます。", "", listOf("を", "は", "に"), listOf("を"), "Nesne edatı: を.", null, null))))),
-        LearningUnit("JA-A2-U1", "Geçmişten Bahsetmek", "Geçmişte olanları anlat.", listOf(
+                LearningExercise("jaa1k_e183", Skill.GRAMMAR, "Doğru seçeneği işaretle", "コーヒー___飲みます。", "", listOf("を", "は", "に"), listOf("を"), "Nesne edatı: を.", null, null)))))
+
+    private fun u17(): LearningUnit = LearningUnit("JA-A2-U1", "Geçmişten Bahsetmek", "Geçmişte olanları anlat.", listOf(
             LearningLesson("JA-A2-U1-L1", "Geçmişten Bahsetmek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'昨日' ne anlama gelir?", "", listOf("geçen hafta", "gördü/izledi", "dün"), listOf("dün"), "昨日、働きました。 — Dün çalıştım.", null, null),
                 LearningExercise("jaa2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'先週' ne anlama gelir?", "", listOf("yolculuk", "geçen hafta", "satın aldı"), listOf("geçen hafta"), "先週、病気でした。 — Geçen hafta hastaydım.", null, null),
@@ -441,8 +554,9 @@ object WorldCourseJA {
             LearningLesson("JA-A2-U1-L5", "Geçmişten Bahsetmek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jaa2u1e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "旅行は楽しかったです。", listOf("O filmi izledim.", "Yolculuk keyifliydi.", "Geçen hafta hastaydım."), listOf("Yolculuk keyifliydi."), "Cümlenin çevirisi: Yolculuk keyifliydi.", null, null),
                 LearningExercise("jaa2u1e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "その映画を見ました。", listOf("O filmi izledim.", "Ekmek aldım.", "Yolculuk keyifliydi."), listOf("O filmi izledim."), "Cümlenin çevirisi: O filmi izledim.", null, null),
-                LearningExercise("jaa2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 昨日、働きました。", "", listOf(), listOf("昨日、働きました。"), "Türkçesi: Dün çalıştım.", "昨日、働きました。", "昨日、働きました。"))))),
-        LearningUnit("JA-A2-U2", "Alışveriş ve Para", "Fiyat sor, ödeme yap.", listOf(
+                LearningExercise("jaa2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 昨日、働きました。", "", listOf(), listOf("昨日、働きました。"), "Türkçesi: Dün çalıştım.", "昨日、働きました。", "昨日、働きました。")))))
+
+    private fun u18(): LearningUnit = LearningUnit("JA-A2-U2", "Alışveriş ve Para", "Fiyat sor, ödeme yap.", listOf(
             LearningLesson("JA-A2-U2-L1", "Alışveriş ve Para — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'お金' ne anlama gelir?", "", listOf("kaç para", "para", "pahalı"), listOf("para"), "お金が足りません。 — Param yetmiyor.", null, null),
                 LearningExercise("jaa2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'高い' ne anlama gelir?", "", listOf("pahalı", "ucuz", "ödemek"), listOf("pahalı"), "この電話は高いです。 — Bu telefon pahalı.", null, null),
@@ -468,8 +582,9 @@ object WorldCourseJA {
             LearningLesson("JA-A2-U2-L5", "Alışveriş ve Para — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jaa2u2e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "カードで払います。", listOf("Kartla ödüyorum.", "Bu telefon pahalı.", "Bu kaç para?"), listOf("Kartla ödüyorum."), "Cümlenin çevirisi: Kartla ödüyorum.", null, null),
                 LearningExercise("jaa2u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "これはいくらですか。", listOf("Ekmek ucuz.", "Kartla ödüyorum.", "Bu kaç para?"), listOf("Bu kaç para?"), "Cümlenin çevirisi: Bu kaç para?", null, null),
-                LearningExercise("jaa2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: お金が足りません。", "", listOf(), listOf("お金が足りません。"), "Türkçesi: Param yetmiyor.", "お金が足りません。", "お金が足りません。"))))),
-        LearningUnit("JA-A2-U3", "Sağlık ve Vücut", "Rahatsızlığını anlat, randevu al.", listOf(
+                LearningExercise("jaa2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: お金が足りません。", "", listOf(), listOf("お金が足りません。"), "Türkçesi: Param yetmiyor.", "お金が足りません。", "お金が足りません。")))))
+
+    private fun u19(): LearningUnit = LearningUnit("JA-A2-U3", "Sağlık ve Vücut", "Rahatsızlığını anlat, randevu al.", listOf(
             LearningLesson("JA-A2-U3-L1", "Sağlık ve Vücut — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'病気' ne anlama gelir?", "", listOf("hastalık", "doktor", "eczane"), listOf("hastalık"), "今日は病気です。 — Bugün hastayım.", null, null),
                 LearningExercise("jaa2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'医者' ne anlama gelir?", "", listOf("baş", "ağrıyor", "doktor"), listOf("doktor"), "医者は十時に来ます。 — Doktor onda geliyor.", null, null),
@@ -495,8 +610,9 @@ object WorldCourseJA {
             LearningLesson("JA-A2-U3-L5", "Sağlık ve Vücut — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jaa2u3e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "足が痛いです。", listOf("Doktor onda geliyor.", "Eczane kapalı.", "Ayağım ağrıyor."), listOf("Ayağım ağrıyor."), "Cümlenin çevirisi: Ayağım ağrıyor.", null, null),
                 LearningExercise("jaa2u3e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "薬局は閉まっています。", listOf("Ayağım ağrıyor.", "Eczane kapalı.", "Başım ağrıyor."), listOf("Eczane kapalı."), "Cümlenin çevirisi: Eczane kapalı.", null, null),
-                LearningExercise("jaa2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 今日は病気です。", "", listOf(), listOf("今日は病気です。"), "Türkçesi: Bugün hastayım.", "今日は病気です。", "今日は病気です。"))))),
-        LearningUnit("JA-A2-U4", "Hava Durumu ve Doğa", "Havayı ve mevsimleri anlat.", listOf(
+                LearningExercise("jaa2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 今日は病気です。", "", listOf(), listOf("今日は病気です。"), "Türkçesi: Bugün hastayım.", "今日は病気です。", "今日は病気です。")))))
+
+    private fun u20(): LearningUnit = LearningUnit("JA-A2-U4", "Hava Durumu ve Doğa", "Havayı ve mevsimleri anlat.", listOf(
             LearningLesson("JA-A2-U4-L1", "Hava Durumu ve Doğa — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'天気' ne anlama gelir?", "", listOf("yağmur", "soğuk", "hava durumu"), listOf("hava durumu"), "今日は天気がいいです。 — Bugün hava güzel.", null, null),
                 LearningExercise("jaa2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'雨' ne anlama gelir?", "", listOf("sıcak", "yağmur", "güneş"), listOf("yağmur"), "明日は雨が降ります。 — Yarın yağmur yağacak.", null, null),
@@ -522,8 +638,9 @@ object WorldCourseJA {
             LearningLesson("JA-A2-U4-L5", "Hava Durumu ve Doğa — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jaa2u4e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "夏は暑いです。", listOf("Kışın hava soğuk olur.", "Yazın hava sıcak olur.", "Yarın yağmur yağacak."), listOf("Yazın hava sıcak olur."), "Cümlenin çevirisi: Yazın hava sıcak olur.", null, null),
                 LearningExercise("jaa2u4e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "冬は寒いです。", listOf("Kışın hava soğuk olur.", "Güneş çıkmış durumda.", "Yazın hava sıcak olur."), listOf("Kışın hava soğuk olur."), "Cümlenin çevirisi: Kışın hava soğuk olur.", null, null),
-                LearningExercise("jaa2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 今日は天気がいいです。", "", listOf(), listOf("今日は天気がいいです。"), "Türkçesi: Bugün hava güzel.", "今日は天気がいいです。", "今日は天気がいいです。"))))),
-        LearningUnit("JA-A2-U5", "İş ve Okul", "İş ve eğitim hayatından bahset.", listOf(
+                LearningExercise("jaa2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 今日は天気がいいです。", "", listOf(), listOf("今日は天気がいいです。"), "Türkçesi: Bugün hava güzel.", "今日は天気がいいです。", "今日は天気がいいです。")))))
+
+    private fun u21(): LearningUnit = LearningUnit("JA-A2-U5", "İş ve Okul", "İş ve eğitim hayatından bahset.", listOf(
             LearningLesson("JA-A2-U5-L1", "İş ve Okul — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'オフィス' ne anlama gelir?", "", listOf("öğretmen", "ofis", "ders çalışma"), listOf("ofis"), "オフィスは中心にあります。 — Ofis merkezde.", null, null),
                 LearningExercise("jaa2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'勉強' ne anlama gelir?", "", listOf("ders çalışma", "sınav", "toplantı"), listOf("ders çalışma"), "日本語を勉強します。 — Japonca çalışıyorum.", null, null),
@@ -549,8 +666,9 @@ object WorldCourseJA {
             LearningLesson("JA-A2-U5-L5", "İş ve Okul — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jaa2u5e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "会議は九時に始まります。", listOf("Toplantı dokuzda başlıyor.", "Japonca çalışıyorum.", "Öğretmen her şeyi açıklıyor."), listOf("Toplantı dokuzda başlıyor."), "Cümlenin çevirisi: Toplantı dokuzda başlıyor.", null, null),
                 LearningExercise("jaa2u5e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "先生は全部説明します。", listOf("Sınav cuma günü.", "Toplantı dokuzda başlıyor.", "Öğretmen her şeyi açıklıyor."), listOf("Öğretmen her şeyi açıklıyor."), "Cümlenin çevirisi: Öğretmen her şeyi açıklıyor.", null, null),
-                LearningExercise("jaa2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: オフィスは中心にあります。", "", listOf(), listOf("オフィスは中心にあります。"), "Türkçesi: Ofis merkezde.", "オフィスは中心にあります。", "オフィスは中心にあります。"))))),
-        LearningUnit("JA-A2-U6", "Planlar ve Gelecek", "Gelecek planlarını anlat.", listOf(
+                LearningExercise("jaa2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: オフィスは中心にあります。", "", listOf(), listOf("オフィスは中心にあります。"), "Türkçesi: Ofis merkezde.", "オフィスは中心にあります。", "オフィスは中心にあります。")))))
+
+    private fun u22(): LearningUnit = LearningUnit("JA-A2-U6", "Planlar ve Gelecek", "Gelecek planlarını anlat.", listOf(
             LearningLesson("JA-A2-U6-L1", "Planlar ve Gelecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jaa2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'週末' ne anlama gelir?", "", listOf("hafta sonu", "plan", "gelecek yıl"), listOf("hafta sonu"), "週末は休みます。 — Hafta sonu dinlenirim.", null, null),
                 LearningExercise("jaa2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'計画' ne anlama gelir?", "", listOf("tatil/izin", "program/plan", "plan"), listOf("plan"), "夏の計画があります。 — Yaz için bir planım var.", null, null),
@@ -576,8 +694,9 @@ object WorldCourseJA {
             LearningLesson("JA-A2-U6-L5", "Planlar ve Gelecek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jaa2u6e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "明日の予定は何ですか。", listOf("Yaz için bir planım var.", "Gelecek yıl Japonya'ya gideceğim.", "Yarınki programın ne?"), listOf("Yarınki programın ne?"), "Cümlenin çevirisi: Yarınki programın ne?", null, null),
                 LearningExercise("jaa2u6e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "来年、日本へ行きます。", listOf("Yarınki programın ne?", "Gelecek yıl Japonya'ya gideceğim.", "Tatil yakında başlıyor."), listOf("Gelecek yıl Japonya'ya gideceğim."), "Cümlenin çevirisi: Gelecek yıl Japonya'ya gideceğim.", null, null),
-                LearningExercise("jaa2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 週末は休みます。", "", listOf(), listOf("週末は休みます。"), "Türkçesi: Hafta sonu dinlenirim.", "週末は休みます。", "週末は休みます。"))))),
-        LearningUnit("JA-A2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 週末は休みます。", "", listOf(), listOf("週末は休みます。"), "Türkçesi: Hafta sonu dinlenirim.", "週末は休みます。", "週末は休みます。")))))
+
+    private fun u23(): LearningUnit = LearningUnit("JA-A2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A2-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa2k_e65", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "今日は病気です。", listOf("Ofis merkezde.", "Bugün hastayım.", "Yazın hava sıcak olur."), listOf("Bugün hastayım."), "Cümlenin çevirisi: Bugün hastayım.", null, null),
                 LearningExercise("jaa2k_e59", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "カードで払います。", listOf("Dün çalıştım.", "Geçen hafta hastaydım.", "Kartla ödüyorum."), listOf("Kartla ödüyorum."), "Cümlenin çevirisi: Kartla ödüyorum.", null, null),
@@ -601,8 +720,9 @@ object WorldCourseJA {
                 LearningExercise("jaa2k_e133", Skill.VOCABULARY, "Doğru anlamı seç", "'試験' ne anlama gelir?", "", listOf("para", "pahalı", "sınav"), listOf("sınav"), "試験は金曜日です。 — Sınav cuma günü.", null, null),
                 LearningExercise("jaa2k_e194", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 日本語を勉強します。", "", listOf(), listOf("日本語を勉強します。"), "Türkçesi: Japonca çalışıyorum.", "日本語を勉強します。", "日本語を勉強します。"),
                 LearningExercise("jaa2k_e88", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "足が痛いです。", listOf("Bu telefon pahalı.", "Ayağım ağrıyor.", "Param yetmiyor."), listOf("Ayağım ağrıyor."), "Cümlenin çevirisi: Ayağım ağrıyor.", null, null),
-                LearningExercise("jaa2k_e18", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "パンを___。", "", listOf("休み", "来年", "買いました"), listOf("買いました"), "Doğru cümle: パンを買いました。 — Ekmek aldım.", null, null))))),
-        LearningUnit("JA-A2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa2k_e18", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "パンを___。", "", listOf("休み", "来年", "買いました"), listOf("買いました"), "Doğru cümle: パンを買いました。 — Ekmek aldım.", null, null)))))
+
+    private fun u24(): LearningUnit = LearningUnit("JA-A2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A2-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa2k_e135", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Sınav cuma günü.", "Japonca çalışıyorum.", "Öğretmen her şeyi açıklıyor."), listOf("Sınav cuma günü."), "Söylenen cümle: 試験は金曜日です。", "試験は金曜日です。", null),
                 LearningExercise("jaa2k_e10", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "先週、病気でした。", listOf("Toplantı dokuzda başlıyor.", "Hafta sonu dinlenirim.", "Geçen hafta hastaydım."), listOf("Geçen hafta hastaydım."), "Cümlenin çevirisi: Geçen hafta hastaydım.", null, null),
@@ -626,8 +746,9 @@ object WorldCourseJA {
                 LearningExercise("jaa2k_e138", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は金曜日です。", "", listOf("試験", "安い", "いくら"), listOf("試験"), "Doğru cümle: 試験は金曜日です。 — Sınav cuma günü.", null, null),
                 LearningExercise("jaa2k_e42", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "この電話は___です。", "", listOf("昨日", "高い", "予定"), listOf("高い"), "Doğru cümle: この電話は高いです。 — Bu telefon pahalı.", null, null),
                 LearningExercise("jaa2k_e101", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "明日は雨が降ります。", listOf("Ayağım ağrıyor.", "Yarın yağmur yağacak.", "Eczane kapalı."), listOf("Yarın yağmur yağacak."), "Cümlenin çevirisi: Yarın yağmur yağacak.", null, null),
-                LearningExercise("jaa2k_e15", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Geçen hafta hastaydım.", "O filmi izledim.", "Ekmek aldım."), listOf("Ekmek aldım."), "Söylenen cümle: パンを買いました。", "パンを買いました。", null))))),
-        LearningUnit("JA-A2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa2k_e15", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Geçen hafta hastaydım.", "O filmi izledim.", "Ekmek aldım."), listOf("Ekmek aldım."), "Söylenen cümle: パンを買いました。", "パンを買いました。", null)))))
+
+    private fun u25(): LearningUnit = LearningUnit("JA-A2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A2-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa2k_e57", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("O filmi izledim.", "Kartla ödüyorum.", "Ekmek aldım."), listOf("Kartla ödüyorum."), "Söylenen cümle: カードで払います。", "カードで払います。", null),
                 LearningExercise("jaa2k_e33", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bugün hastayım.", "Doktor onda geliyor.", "Param yetmiyor."), listOf("Param yetmiyor."), "Söylenen cümle: お金が足りません。", "お金が足りません。", null),
@@ -651,8 +772,9 @@ object WorldCourseJA {
                 LearningExercise("jaa2k_e154", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "週末は休みます。", listOf("Başım ağrıyor.", "Eczane kapalı.", "Hafta sonu dinlenirim."), listOf("Hafta sonu dinlenirim."), "Cümlenin çevirisi: Hafta sonu dinlenirim.", null, null),
                 LearningExercise("jaa2k_e111", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Dün çalıştım.", "Kışın hava soğuk olur.", "Yarınki programın ne?"), listOf("Kışın hava soğuk olur."), "Söylenen cümle: 冬は寒いです。", "冬は寒いです。", null),
                 LearningExercise("jaa2k_e19", Skill.VOCABULARY, "Doğru anlamı seç", "'見ました' ne anlama gelir?", "", listOf("gördü/izledi", "sınav", "öğretmen"), listOf("gördü/izledi"), "その映画を見ました。 — O filmi izledim.", null, null),
-                LearningExercise("jaa2k_e76", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "頭が痛いです。", listOf("Başım ağrıyor.", "Geçen hafta hastaydım.", "Ekmek aldım."), listOf("Başım ağrıyor."), "Cümlenin çevirisi: Başım ağrıyor.", null, null))))),
-        LearningUnit("JA-A2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa2k_e76", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "頭が痛いです。", listOf("Başım ağrıyor.", "Geçen hafta hastaydım.", "Ekmek aldım."), listOf("Başım ağrıyor."), "Cümlenin çevirisi: Başım ağrıyor.", null, null)))))
+
+    private fun u26(): LearningUnit = LearningUnit("JA-A2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A2-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa2k_e182", Skill.GRAMMAR, "Doğru seçeneği işaretle", "これは___ですか。", "", listOf("いくら", "いくつ", "どこ"), listOf("いくら"), "Fiyat sorma: いくらですか。", null, null),
                 LearningExercise("jaa2k_e40", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "この電話は高いです。", listOf("Bu telefon pahalı.", "Yazın hava sıcak olur.", "Ofis merkezde."), listOf("Bu telefon pahalı."), "Cümlenin çevirisi: Bu telefon pahalı.", null, null),
@@ -676,8 +798,9 @@ object WorldCourseJA {
                 LearningExercise("jaa2k_e32", Skill.VOCABULARY, "Doğru çeviriyi seç", "'para' ifadesinin Japonca karşılığı hangisi?", "", listOf("お金", "来年", "予定"), listOf("お金"), "Örnek: お金が足りません。 — Param yetmiyor.", null, null),
                 LearningExercise("jaa2k_e51", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Yazın hava sıcak olur.", "Ofis merkezde.", "Bu kaç para?"), listOf("Bu kaç para?"), "Söylenen cümle: これはいくらですか。", "これはいくらですか。", null),
                 LearningExercise("jaa2k_e199", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: この電話は高いです。", "", listOf(), listOf("この電話は高いです。"), "Türkçesi: Bu telefon pahalı.", "この電話は高いです。", "この電話は高いです。"),
-                LearningExercise("jaa2k_e47", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "パンは安いです。", listOf("Öğretmen her şeyi açıklıyor.", "Ekmek ucuz.", "Sınav cuma günü."), listOf("Ekmek ucuz."), "Cümlenin çevirisi: Ekmek ucuz.", null, null))))),
-        LearningUnit("JA-A2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa2k_e47", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "パンは安いです。", listOf("Öğretmen her şeyi açıklıyor.", "Ekmek ucuz.", "Sınav cuma günü."), listOf("Ekmek ucuz."), "Cümlenin çevirisi: Ekmek ucuz.", null, null)))))
+
+    private fun u27(): LearningUnit = LearningUnit("JA-A2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A2-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa2k_e185", Skill.GRAMMAR, "Doğru seçeneği işaretle", "日本語を___します。", "", listOf("勉強", "会議", "試験"), listOf("勉強"), "Suru fiili: 勉強します.", null, null),
                 LearningExercise("jaa2k_e68", Skill.VOCABULARY, "Doğru çeviriyi seç", "'doktor' ifadesinin Japonca karşılığı hangisi?", "", listOf("医者", "旅行", "お金"), listOf("医者"), "Örnek: 医者は十時に来ます。 — Doktor onda geliyor.", null, null),
@@ -701,8 +824,9 @@ object WorldCourseJA {
                 LearningExercise("jaa2k_e3", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bu telefon pahalı.", "Dün çalıştım.", "Param yetmiyor."), listOf("Dün çalıştım."), "Söylenen cümle: 昨日、働きました。", "昨日、働きました。", null),
                 LearningExercise("jaa2k_e134", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sınav' ifadesinin Japonca karşılığı hangisi?", "", listOf("高い", "試験", "お金"), listOf("試験"), "Örnek: 試験は金曜日です。 — Sınav cuma günü.", null, null),
                 LearningExercise("jaa2k_e28", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "旅行は楽しかったです。", listOf("Bugün hava güzel.", "Yarın yağmur yağacak.", "Yolculuk keyifliydi."), listOf("Yolculuk keyifliydi."), "Cümlenin çevirisi: Yolculuk keyifliydi.", null, null),
-                LearningExercise("jaa2k_e123", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Hafta sonu dinlenirim.", "Yaz için bir planım var.", "Ofis merkezde."), listOf("Ofis merkezde."), "Söylenen cümle: オフィスは中心にあります。", "オフィスは中心にあります。", null))))),
-        LearningUnit("JA-A2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa2k_e123", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Hafta sonu dinlenirim.", "Yaz için bir planım var.", "Ofis merkezde."), listOf("Ofis merkezde."), "Söylenen cümle: オフィスは中心にあります。", "オフィスは中心にあります。", null)))))
+
+    private fun u28(): LearningUnit = LearningUnit("JA-A2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A2-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa2k_e127", Skill.VOCABULARY, "Doğru anlamı seç", "'勉強' ne anlama gelir?", "", listOf("ders çalışma", "gelecek yıl", "program/plan"), listOf("ders çalışma"), "日本語を勉強します。 — Japonca çalışıyorum.", null, null),
                 LearningExercise("jaa2k_e128", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ders çalışma' ifadesinin Japonca karşılığı hangisi?", "", listOf("会議", "週末", "勉強"), listOf("勉強"), "Örnek: 日本語を勉強します。 — Japonca çalışıyorum.", null, null),
@@ -726,8 +850,9 @@ object WorldCourseJA {
                 LearningExercise("jaa2k_e104", Skill.VOCABULARY, "Doğru çeviriyi seç", "'güneş' ifadesinin Japonca karşılığı hangisi?", "", listOf("太陽", "病気", "医者"), listOf("太陽"), "Örnek: 太陽が出ています。 — Güneş çıkmış durumda.", null, null),
                 LearningExercise("jaa2k_e119", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "夏は暑いです。", listOf("Doktor onda geliyor.", "Yazın hava sıcak olur.", "Bugün hastayım."), listOf("Yazın hava sıcak olur."), "Cümlenin çevirisi: Yazın hava sıcak olur.", null, null),
                 LearningExercise("jaa2k_e146", Skill.VOCABULARY, "Doğru çeviriyi seç", "'toplantı' ifadesinin Japonca karşılığı hangisi?", "", listOf("休み", "来年", "会議"), listOf("会議"), "Örnek: 会議は九時に始まります。 — Toplantı dokuzda başlıyor.", null, null),
-                LearningExercise("jaa2k_e45", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Ekmek ucuz.", "Bu telefon pahalı.", "Bu kaç para?"), listOf("Ekmek ucuz."), "Söylenen cümle: パンは安いです。", "パンは安いです。", null))))),
-        LearningUnit("JA-A2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa2k_e45", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Ekmek ucuz.", "Bu telefon pahalı.", "Bu kaç para?"), listOf("Ekmek ucuz."), "Söylenen cümle: パンは安いです。", "パンは安いです。", null)))))
+
+    private fun u29(): LearningUnit = LearningUnit("JA-A2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A2-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa2k_e63", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bugün hastayım.", "Bugün hava güzel.", "Yarın yağmur yağacak."), listOf("Bugün hastayım."), "Söylenen cümle: 今日は病気です。", "今日は病気です。", null),
                 LearningExercise("jaa2k_e155", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "週末は休みます。", listOf("Param yetmiyor.", "Hafta sonu dinlenirim.", "Yolculuk keyifliydi."), listOf("Hafta sonu dinlenirim."), "Cümlenin çevirisi: Hafta sonu dinlenirim.", null, null),
@@ -751,8 +876,9 @@ object WorldCourseJA {
                 LearningExercise("jaa2k_e92", Skill.VOCABULARY, "Doğru çeviriyi seç", "'hava durumu' ifadesinin Japonca karşılığı hangisi?", "", listOf("寒い", "暑い", "天気"), listOf("天気"), "Örnek: 今日は天気がいいです。 — Bugün hava güzel.", null, null),
                 LearningExercise("jaa2k_e13", Skill.VOCABULARY, "Doğru anlamı seç", "'買いました' ne anlama gelir?", "", listOf("yağmur", "satın aldı", "hava durumu"), listOf("satın aldı"), "パンを買いました。 — Ekmek aldım.", null, null),
                 LearningExercise("jaa2k_e132", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "日本語を___します。", "", listOf("天気", "勉強", "痛い"), listOf("勉強"), "Doğru cümle: 日本語を勉強します。 — Japonca çalışıyorum.", null, null),
-                LearningExercise("jaa2k_e60", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "カードで___。", "", listOf("病気", "払います", "いくら"), listOf("払います"), "Doğru cümle: カードで払います。 — Kartla ödüyorum.", null, null))))),
-        LearningUnit("JA-A2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa2k_e60", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "カードで___。", "", listOf("病気", "払います", "いくら"), listOf("払います"), "Doğru cümle: カードで払います。 — Kartla ödüyorum.", null, null)))))
+
+    private fun u30(): LearningUnit = LearningUnit("JA-A2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A2-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa2k_e129", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Kartla ödüyorum.", "Japonca çalışıyorum.", "Bu kaç para?"), listOf("Japonca çalışıyorum."), "Söylenen cümle: 日本語を勉強します。", "日本語を勉強します。", null),
                 LearningExercise("jaa2k_e83", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "薬局は閉まっています。", listOf("Güneş çıkmış durumda.", "Eczane kapalı.", "Yarın yağmur yağacak."), listOf("Eczane kapalı."), "Cümlenin çevirisi: Eczane kapalı.", null, null),
@@ -776,8 +902,9 @@ object WorldCourseJA {
                 LearningExercise("jaa2k_e158", Skill.VOCABULARY, "Doğru çeviriyi seç", "'plan' ifadesinin Japonca karşılığı hangisi?", "", listOf("計画", "暑い", "オフィス"), listOf("計画"), "Örnek: 夏の計画があります。 — Yaz için bir planım var.", null, null),
                 LearningExercise("jaa2k_e161", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "夏の計画があります。", listOf("Yaz için bir planım var.", "Öğretmen her şeyi açıklıyor.", "Toplantı dokuzda başlıyor."), listOf("Yaz için bir planım var."), "Cümlenin çevirisi: Yaz için bir planım var.", null, null),
                 LearningExercise("jaa2k_e84", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は閉まっています。", "", listOf("薬局", "病気", "医者"), listOf("薬局"), "Doğru cümle: 薬局は閉まっています。 — Eczane kapalı.", null, null),
-                LearningExercise("jaa2k_e151", Skill.VOCABULARY, "Doğru anlamı seç", "'週末' ne anlama gelir?", "", listOf("plan", "tatil/izin", "hafta sonu"), listOf("hafta sonu"), "週末は休みます。 — Hafta sonu dinlenirim.", null, null))))),
-        LearningUnit("JA-A2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa2k_e151", Skill.VOCABULARY, "Doğru anlamı seç", "'週末' ne anlama gelir?", "", listOf("plan", "tatil/izin", "hafta sonu"), listOf("hafta sonu"), "週末は休みます。 — Hafta sonu dinlenirim.", null, null)))))
+
+    private fun u31(): LearningUnit = LearningUnit("JA-A2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A2-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa2k_e160", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "夏の計画があります。", listOf("Dün çalıştım.", "Yaz için bir planım var.", "Yarınki programın ne?"), listOf("Yaz için bir planım var."), "Cümlenin çevirisi: Yaz için bir planım var.", null, null),
                 LearningExercise("jaa2k_e74", Skill.VOCABULARY, "Doğru çeviriyi seç", "'baş' ifadesinin Japonca karşılığı hangisi?", "", listOf("天気", "雨", "頭"), listOf("頭"), "Örnek: 頭が痛いです。 — Başım ağrıyor.", null, null),
@@ -801,8 +928,9 @@ object WorldCourseJA {
                 LearningExercise("jaa2k_e82", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "薬局は閉まっています。", listOf("Kışın hava soğuk olur.", "Yazın hava sıcak olur.", "Eczane kapalı."), listOf("Eczane kapalı."), "Cümlenin çevirisi: Eczane kapalı.", null, null),
                 LearningExercise("jaa2k_e108", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___が出ています。", "", listOf("頭", "薬局", "太陽"), listOf("太陽"), "Doğru cümle: 太陽が出ています。 — Güneş çıkmış durumda.", null, null),
                 LearningExercise("jaa2k_e106", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "太陽が出ています。", listOf("Tatil yakında başlıyor.", "Güneş çıkmış durumda.", "Yaz için bir planım var."), listOf("Güneş çıkmış durumda."), "Cümlenin çevirisi: Güneş çıkmış durumda.", null, null),
-                LearningExercise("jaa2k_e64", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "今日は病気です。", listOf("Tatil yakında başlıyor.", "Gelecek yıl Japonya'ya gideceğim.", "Bugün hastayım."), listOf("Bugün hastayım."), "Cümlenin çevirisi: Bugün hastayım.", null, null))))),
-        LearningUnit("JA-A2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jaa2k_e64", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "今日は病気です。", listOf("Tatil yakında başlıyor.", "Gelecek yıl Japonya'ya gideceğim.", "Bugün hastayım."), listOf("Bugün hastayım."), "Cümlenin çevirisi: Bugün hastayım.", null, null)))))
+
+    private fun u32(): LearningUnit = LearningUnit("JA-A2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-A2-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jaa2k_e22", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "その映画を見ました。", listOf("O filmi izledim.", "Gelecek yıl Japonya'ya gideceğim.", "Yarınki programın ne?"), listOf("O filmi izledim."), "Cümlenin çevirisi: O filmi izledim.", null, null),
                 LearningExercise("jaa2k_e14", Skill.VOCABULARY, "Doğru çeviriyi seç", "'satın aldı' ifadesinin Japonca karşılığı hangisi?", "", listOf("買いました", "週末", "計画"), listOf("買いました"), "Örnek: パンを買いました。 — Ekmek aldım.", null, null),
@@ -826,8 +954,9 @@ object WorldCourseJA {
                 LearningExercise("jaa2k_e78", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___が痛いです。", "", listOf("寒い", "頭", "太陽"), listOf("頭"), "Doğru cümle: 頭が痛いです。 — Başım ağrıyor.", null, null),
                 LearningExercise("jaa2k_e93", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Japonca çalışıyorum.", "Bugün hava güzel.", "Ofis merkezde."), listOf("Bugün hava güzel."), "Söylenen cümle: 今日は天気がいいです。", "今日は天気がいいです。", null),
                 LearningExercise("jaa2k_e159", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Eczane kapalı.", "Ayağım ağrıyor.", "Yaz için bir planım var."), listOf("Yaz için bir planım var."), "Söylenen cümle: 夏の計画があります。", "夏の計画があります。", null),
-                LearningExercise("jaa2k_e85", Skill.VOCABULARY, "Doğru anlamı seç", "'痛い' ne anlama gelir?", "", listOf("hastalık", "ağrıyor", "ödemek"), listOf("ağrıyor"), "足が痛いです。 — Ayağım ağrıyor.", null, null))))),
-        LearningUnit("JA-B1-U1", "Deneyimler ve Anılar", "Anılarını ayrıntılarıyla paylaş.", listOf(
+                LearningExercise("jaa2k_e85", Skill.VOCABULARY, "Doğru anlamı seç", "'痛い' ne anlama gelir?", "", listOf("hastalık", "ağrıyor", "ödemek"), listOf("ağrıyor"), "足が痛いです。 — Ayağım ağrıyor.", null, null)))))
+
+    private fun u33(): LearningUnit = LearningUnit("JA-B1-U1", "Deneyimler ve Anılar", "Anılarını ayrıntılarıyla paylaş.", listOf(
             LearningLesson("JA-B1-U1-L1", "Deneyimler ve Anılar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'経験' ne anlama gelir?", "", listOf("hatırlıyor", "o dönemde", "deneyim"), listOf("deneyim"), "あの経験は私を変えました。 — O deneyim beni değiştirdi.", null, null),
                 LearningExercise("jab1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'覚えています' ne anlama gelir?", "", listOf("anı", "hatırlıyor", "çocukluk dönemi"), listOf("hatırlıyor"), "子供のころを覚えています。 — Çocukluğumu hatırlıyorum.", null, null),
@@ -853,8 +982,9 @@ object WorldCourseJA {
             LearningLesson("JA-B1-U1-L5", "Deneyimler ve Anılar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jab1u1e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "この思い出は大切です。", listOf("O dönemde kırsalda yaşıyorduk.", "Bu anı çok değerli.", "Çocukluğumu hatırlıyorum."), listOf("Bu anı çok değerli."), "Cümlenin çevirisi: Bu anı çok değerli.", null, null),
                 LearningExercise("jab1u1e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "当時は田舎に住んでいました。", listOf("O dönemde kırsalda yaşıyorduk.", "Çocuklukta mutluydum.", "Bu anı çok değerli."), listOf("O dönemde kırsalda yaşıyorduk."), "Cümlenin çevirisi: O dönemde kırsalda yaşıyorduk.", null, null),
-                LearningExercise("jab1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: あの経験は私を変えました。", "", listOf(), listOf("あの経験は私を変えました。"), "Türkçesi: O deneyim beni değiştirdi.", "あの経験は私を変えました。", "あの経験は私を変えました。"))))),
-        LearningUnit("JA-B1-U2", "Medya ve Teknoloji", "Teknoloji ve haberler hakkında konuş.", listOf(
+                LearningExercise("jab1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: あの経験は私を変えました。", "", listOf(), listOf("あの経験は私を変えました。"), "Türkçesi: O deneyim beni değiştirdi.", "あの経験は私を変えました。", "あの経験は私を変えました。")))))
+
+    private fun u34(): LearningUnit = LearningUnit("JA-B1-U2", "Medya ve Teknoloji", "Teknoloji ve haberler hakkında konuş.", listOf(
             LearningLesson("JA-B1-U2-L1", "Medya ve Teknoloji — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'ニュース' ne anlama gelir?", "", listOf("bağlantı", "haberler", "cihaz"), listOf("haberler"), "夜にニュースを見ます。 — Akşamları haber izlerim.", null, null),
                 LearningExercise("jab1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'端末' ne anlama gelir?", "", listOf("cihaz", "indirme", "ekran"), listOf("cihaz"), "この端末は新しいです。 — Bu cihaz yeni.", null, null),
@@ -880,8 +1010,9 @@ object WorldCourseJA {
             LearningLesson("JA-B1-U2-L5", "Medya ve Teknoloji — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jab1u2e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "画面が明るすぎます。", listOf("Ekran fazla parlak.", "Bu cihaz yeni.", "Bağlantı yavaş."), listOf("Ekran fazla parlak."), "Cümlenin çevirisi: Ekran fazla parlak.", null, null),
                 LearningExercise("jab1u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "接続が遅いです。", listOf("Uygulamayı indirmek istiyorum.", "Ekran fazla parlak.", "Bağlantı yavaş."), listOf("Bağlantı yavaş."), "Cümlenin çevirisi: Bağlantı yavaş.", null, null),
-                LearningExercise("jab1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 夜にニュースを見ます。", "", listOf(), listOf("夜にニュースを見ます。"), "Türkçesi: Akşamları haber izlerim.", "夜にニュースを見ます。", "夜にニュースを見ます。"))))),
-        LearningUnit("JA-B1-U3", "Duygular ve İlişkiler", "Duygularını ve ilişkilerini anlat.", listOf(
+                LearningExercise("jab1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 夜にニュースを見ます。", "", listOf(), listOf("夜にニュースを見ます。"), "Türkçesi: Akşamları haber izlerim.", "夜にニュースを見ます。", "夜にニュースを見ます。")))))
+
+    private fun u35(): LearningUnit = LearningUnit("JA-B1-U3", "Duygular ve İlişkiler", "Duygularını ve ilişkilerini anlat.", listOf(
             LearningLesson("JA-B1-U3-L1", "Duygular ve İlişkiler — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'友情' ne anlama gelir?", "", listOf("arkadaşlık", "güven", "kavga"), listOf("arkadaşlık"), "私たちの友情は強いです。 — Arkadaşlığımız güçlü.", null, null),
                 LearningExercise("jab1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'信頼' ne anlama gelir?", "", listOf("hayal kırıklığı", "duygu/his", "güven"), listOf("güven"), "信頼には時間がかかります。 — Güven zaman alır.", null, null),
@@ -907,8 +1038,9 @@ object WorldCourseJA {
             LearningLesson("JA-B1-U3-L5", "Duygular ve İlişkiler — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jab1u3e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "不思議な気持ちです。", listOf("Güven zaman alır.", "Pek kavga etmeyiz.", "Tuhaf bir his."), listOf("Tuhaf bir his."), "Cümlenin çevirisi: Tuhaf bir his.", null, null),
                 LearningExercise("jab1u3e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "私たちはあまりけんかしません。", listOf("Tuhaf bir his.", "Pek kavga etmeyiz.", "Sonuçtan hayal kırıklığına uğradım."), listOf("Pek kavga etmeyiz."), "Cümlenin çevirisi: Pek kavga etmeyiz.", null, null),
-                LearningExercise("jab1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 私たちの友情は強いです。", "", listOf(), listOf("私たちの友情は強いです。"), "Türkçesi: Arkadaşlığımız güçlü.", "私たちの友情は強いです。", "私たちの友情は強いです。"))))),
-        LearningUnit("JA-B1-U4", "Kültür ve Gelenekler", "Gelenekleri ve kültürü tanıt.", listOf(
+                LearningExercise("jab1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 私たちの友情は強いです。", "", listOf(), listOf("私たちの友情は強いです。"), "Türkçesi: Arkadaşlığımız güçlü.", "私たちの友情は強いです。", "私たちの友情は強いです。")))))
+
+    private fun u36(): LearningUnit = LearningUnit("JA-B1-U4", "Kültür ve Gelenekler", "Gelenekleri ve kültürü tanıt.", listOf(
             LearningLesson("JA-B1-U4-L1", "Kültür ve Gelenekler — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'習慣' ne anlama gelir?", "", listOf("festival/bayram", "gelenek", "âdet/alışkanlık"), listOf("âdet/alışkanlık"), "この習慣はとても古いです。 — Bu âdet çok eski.", null, null),
                 LearningExercise("jab1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'祭り' ne anlama gelir?", "", listOf("toplum", "festival/bayram", "kutlamak"), listOf("festival/bayram"), "祭りは三日間続きます。 — Festival üç gün sürüyor.", null, null),
@@ -934,8 +1066,9 @@ object WorldCourseJA {
             LearningLesson("JA-B1-U4-L5", "Kültür ve Gelenekler — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jab1u4e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "社会は速く変わります。", listOf("Gelenek sürüyor.", "Toplum hızla değişiyor.", "Festival üç gün sürüyor."), listOf("Toplum hızla değişiyor."), "Cümlenin çevirisi: Toplum hızla değişiyor.", null, null),
                 LearningExercise("jab1u4e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "伝統は続いています。", listOf("Gelenek sürüyor.", "Birlikte kutluyoruz.", "Toplum hızla değişiyor."), listOf("Gelenek sürüyor."), "Cümlenin çevirisi: Gelenek sürüyor.", null, null),
-                LearningExercise("jab1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: この習慣はとても古いです。", "", listOf(), listOf("この習慣はとても古いです。"), "Türkçesi: Bu âdet çok eski.", "この習慣はとても古いです。", "この習慣はとても古いです。"))))),
-        LearningUnit("JA-B1-U5", "Spor ve Sağlıklı Yaşam", "Sağlıklı yaşam alışkanlıklarını anlat.", listOf(
+                LearningExercise("jab1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: この習慣はとても古いです。", "", listOf(), listOf("この習慣はとても古いです。"), "Türkçesi: Bu âdet çok eski.", "この習慣はとても古いです。", "この習慣はとても古いです。")))))
+
+    private fun u37(): LearningUnit = LearningUnit("JA-B1-U5", "Spor ve Sağlıklı Yaşam", "Sağlıklı yaşam alışkanlıklarını anlat.", listOf(
             LearningLesson("JA-B1-U5-L1", "Spor ve Sağlıklı Yaşam — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'健康' ne anlama gelir?", "", listOf("antrenman", "sağlık", "spor/hareket"), listOf("sağlık"), "健康が一番大切です。 — Sağlık en önemlisidir.", null, null),
                 LearningExercise("jab1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'運動' ne anlama gelir?", "", listOf("spor/hareket", "yemek/beslenme", "kaçınmak"), listOf("spor/hareket"), "毎日運動するべきです。 — Her gün hareket etmeli.", null, null),
@@ -961,8 +1094,9 @@ object WorldCourseJA {
             LearningLesson("JA-B1-U5-L5", "Spor ve Sağlıklı Yaşam — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jab1u5e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "砂糖を避けます。", listOf("Şekerden kaçınırım.", "Her gün hareket etmeli.", "Haftada üç kez antrenman yaparım."), listOf("Şekerden kaçınırım."), "Cümlenin çevirisi: Şekerden kaçınırım.", null, null),
                 LearningExercise("jab1u5e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "週に三回トレーニングします。", listOf("Dengeli beslenme önemli.", "Şekerden kaçınırım.", "Haftada üç kez antrenman yaparım."), listOf("Haftada üç kez antrenman yaparım."), "Cümlenin çevirisi: Haftada üç kez antrenman yaparım.", null, null),
-                LearningExercise("jab1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 健康が一番大切です。", "", listOf(), listOf("健康が一番大切です。"), "Türkçesi: Sağlık en önemlisidir.", "健康が一番大切です。", "健康が一番大切です。"))))),
-        LearningUnit("JA-B1-U6", "Görüş Bildirmek", "Fikrini gerekçeleriyle savun.", listOf(
+                LearningExercise("jab1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 健康が一番大切です。", "", listOf(), listOf("健康が一番大切です。"), "Türkçesi: Sağlık en önemlisidir.", "健康が一番大切です。", "健康が一番大切です。")))))
+
+    private fun u38(): LearningUnit = LearningUnit("JA-B1-U6", "Görüş Bildirmek", "Fikrini gerekçeleriyle savun.", listOf(
             LearningLesson("JA-B1-U6-L1", "Görüş Bildirmek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'意見' ne anlama gelir?", "", listOf("görüş", "katılma (fikre)", "sebep"), listOf("görüş"), "これは私の意見です。 — Bu benim görüşüm.", null, null),
                 LearningExercise("jab1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'賛成' ne anlama gelir?", "", listOf("karşı çıkma", "ikna olma", "katılma (fikre)"), listOf("katılma (fikre)"), "私は賛成です。 — Ben katılıyorum.", null, null),
@@ -988,8 +1122,9 @@ object WorldCourseJA {
             LearningLesson("JA-B1-U6-L5", "Görüş Bildirmek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jab1u6e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "まだ納得できません。", listOf("Ben katılıyorum.", "İyi bir sebep var.", "Henüz ikna olamadım."), listOf("Henüz ikna olamadım."), "Cümlenin çevirisi: Henüz ikna olamadım.", null, null),
                 LearningExercise("jab1u6e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "いい理由があります。", listOf("Henüz ikna olamadım.", "İyi bir sebep var.", "O öneriye karşıyım."), listOf("İyi bir sebep var."), "Cümlenin çevirisi: İyi bir sebep var.", null, null),
-                LearningExercise("jab1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: これは私の意見です。", "", listOf(), listOf("これは私の意見です。"), "Türkçesi: Bu benim görüşüm.", "これは私の意見です。", "これは私の意見です。"))))),
-        LearningUnit("JA-B1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: これは私の意見です。", "", listOf(), listOf("これは私の意見です。"), "Türkçesi: Bu benim görüşüm.", "これは私の意見です。", "これは私の意見です。")))))
+
+    private fun u39(): LearningUnit = LearningUnit("JA-B1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B1-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab1k_e19", Skill.VOCABULARY, "Doğru anlamı seç", "'当時' ne anlama gelir?", "", listOf("o dönemde", "yemek/beslenme", "antrenman"), listOf("o dönemde"), "当時は田舎に住んでいました。 — O dönemde kırsalda yaşıyorduk.", null, null),
                 LearningExercise("jab1k_e21", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bu âdet çok eski.", "O dönemde kırsalda yaşıyorduk.", "Tuhaf bir his."), listOf("O dönemde kırsalda yaşıyorduk."), "Söylenen cümle: 当時は田舎に住んでいました。", "当時は田舎に住んでいました。", null),
@@ -1013,8 +1148,9 @@ object WorldCourseJA {
                 LearningExercise("jab1k_e159", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Pek kavga etmeyiz.", "Tuhaf bir his.", "Ben katılıyorum."), listOf("Ben katılıyorum."), "Söylenen cümle: 私は賛成です。", "私は賛成です。", null),
                 LearningExercise("jab1k_e20", Skill.VOCABULARY, "Doğru çeviriyi seç", "'o dönemde' ifadesinin Japonca karşılığı hangisi?", "", listOf("端末", "ダウンロード", "当時"), listOf("当時"), "Örnek: 当時は田舎に住んでいました。 — O dönemde kırsalda yaşıyorduk.", null, null),
                 LearningExercise("jab1k_e151", Skill.VOCABULARY, "Doğru anlamı seç", "'意見' ne anlama gelir?", "", listOf("katılma (fikre)", "karşı çıkma", "görüş"), listOf("görüş"), "これは私の意見です。 — Bu benim görüşüm.", null, null),
-                LearningExercise("jab1k_e194", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 毎日運動するべきです。", "", listOf(), listOf("毎日運動するべきです。"), "Türkçesi: Her gün hareket etmeli.", "毎日運動するべきです。", "毎日運動するべきです。"))))),
-        LearningUnit("JA-B1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab1k_e194", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 毎日運動するべきです。", "", listOf(), listOf("毎日運動するべきです。"), "Türkçesi: Her gün hareket etmeli.", "毎日運動するべきです。", "毎日運動するべきです。")))))
+
+    private fun u40(): LearningUnit = LearningUnit("JA-B1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B1-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab1k_e30", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "この___は大切です。", "", listOf("思い出", "けんか", "気持ち"), listOf("思い出"), "Doğru cümle: この思い出は大切です。 — Bu anı çok değerli.", null, null),
                 LearningExercise("jab1k_e36", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "夜に___を見ます。", "", listOf("端末", "ダウンロード", "ニュース"), listOf("ニュース"), "Doğru cümle: 夜にニュースを見ます。 — Akşamları haber izlerim.", null, null),
@@ -1038,8 +1174,9 @@ object WorldCourseJA {
                 LearningExercise("jab1k_e77", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "結果にがっかりしました。", listOf("O öneriye karşıyım.", "İyi bir sebep var.", "Sonuçtan hayal kırıklığına uğradım."), listOf("Sonuçtan hayal kırıklığına uğradım."), "Cümlenin çevirisi: Sonuçtan hayal kırıklığına uğradım.", null, null),
                 LearningExercise("jab1k_e103", Skill.VOCABULARY, "Doğru anlamı seç", "'祝います' ne anlama gelir?", "", listOf("hatırlıyor", "kutlamak", "deneyim"), listOf("kutlamak"), "一緒に祝います。 — Birlikte kutluyoruz.", null, null),
                 LearningExercise("jab1k_e114", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は続いています。", "", listOf("端末", "伝統", "ニュース"), listOf("伝統"), "Doğru cümle: 伝統は続いています。 — Gelenek sürüyor.", null, null),
-                LearningExercise("jab1k_e39", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Şekerden kaçınırım.", "Bu cihaz yeni.", "Haftada üç kez antrenman yaparım."), listOf("Bu cihaz yeni."), "Söylenen cümle: この端末は新しいです。", "この端末は新しいです。", null))))),
-        LearningUnit("JA-B1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab1k_e39", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Şekerden kaçınırım.", "Bu cihaz yeni.", "Haftada üç kez antrenman yaparım."), listOf("Bu cihaz yeni."), "Söylenen cümle: この端末は新しいです。", "この端末は新しいです。", null)))))
+
+    private fun u41(): LearningUnit = LearningUnit("JA-B1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B1-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab1k_e118", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "社会は速く変わります。", listOf("O deneyim beni değiştirdi.", "Çocukluğumu hatırlıyorum.", "Toplum hızla değişiyor."), listOf("Toplum hızla değişiyor."), "Cümlenin çevirisi: Toplum hızla değişiyor.", null, null),
                 LearningExercise("jab1k_e47", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "アプリをダウンロードしたいです。", listOf("Haftada üç kez antrenman yaparım.", "Uygulamayı indirmek istiyorum.", "Dengeli beslenme önemli."), listOf("Uygulamayı indirmek istiyorum."), "Cümlenin çevirisi: Uygulamayı indirmek istiyorum.", null, null),
@@ -1063,8 +1200,9 @@ object WorldCourseJA {
                 LearningExercise("jab1k_e54", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___が遅いです。", "", listOf("習慣", "祭り", "接続"), listOf("接続"), "Doğru cümle: 接続が遅いです。 — Bağlantı yavaş.", null, null),
                 LearningExercise("jab1k_e138", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "バランスのいい___が大事です。", "", listOf("食事", "ダウンロード", "接続"), listOf("食事"), "Doğru cümle: バランスのいい食事が大事です。 — Dengeli beslenme önemli.", null, null),
                 LearningExercise("jab1k_e119", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "社会は速く変わります。", listOf("Güven zaman alır.", "Toplum hızla değişiyor.", "Arkadaşlığımız güçlü."), listOf("Toplum hızla değişiyor."), "Cümlenin çevirisi: Toplum hızla değişiyor.", null, null),
-                LearningExercise("jab1k_e90", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "不思議な___です。", "", listOf("当時", "思い出", "気持ち"), listOf("気持ち"), "Doğru cümle: 不思議な気持ちです。 — Tuhaf bir his.", null, null))))),
-        LearningUnit("JA-B1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab1k_e90", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "不思議な___です。", "", listOf("当時", "思い出", "気持ち"), listOf("気持ち"), "Doğru cümle: 不思議な気持ちです。 — Tuhaf bir his.", null, null)))))
+
+    private fun u42(): LearningUnit = LearningUnit("JA-B1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B1-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab1k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'indirme' ifadesinin Japonca karşılığı hangisi?", "", listOf("運動", "ダウンロード", "健康"), listOf("ダウンロード"), "Örnek: アプリをダウンロードしたいです。 — Uygulamayı indirmek istiyorum.", null, null),
                 LearningExercise("jab1k_e91", Skill.VOCABULARY, "Doğru anlamı seç", "'習慣' ne anlama gelir?", "", listOf("âdet/alışkanlık", "festival/bayram", "kutlamak"), listOf("âdet/alışkanlık"), "この習慣はとても古いです。 — Bu âdet çok eski.", null, null),
@@ -1088,8 +1226,9 @@ object WorldCourseJA {
                 LearningExercise("jab1k_e55", Skill.VOCABULARY, "Doğru anlamı seç", "'画面' ne anlama gelir?", "", listOf("ekran", "anı", "haberler"), listOf("ekran"), "画面が明るすぎます。 — Ekran fazla parlak.", null, null),
                 LearningExercise("jab1k_e75", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Pek kavga etmeyiz.", "Sonuçtan hayal kırıklığına uğradım.", "Güven zaman alır."), listOf("Sonuçtan hayal kırıklığına uğradım."), "Söylenen cümle: 結果にがっかりしました。", "結果にがっかりしました。", null),
                 LearningExercise("jab1k_e134", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yemek/beslenme' ifadesinin Japonca karşılığı hangisi?", "", listOf("端末", "食事", "ニュース"), listOf("食事"), "Örnek: バランスのいい食事が大事です。 — Dengeli beslenme önemli.", null, null),
-                LearningExercise("jab1k_e171", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("İyi bir sebep var.", "Ekran fazla parlak.", "Arkadaşlığımız güçlü."), listOf("İyi bir sebep var."), "Söylenen cümle: いい理由があります。", "いい理由があります。", null))))),
-        LearningUnit("JA-B1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab1k_e171", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("İyi bir sebep var.", "Ekran fazla parlak.", "Arkadaşlığımız güçlü."), listOf("İyi bir sebep var."), "Söylenen cümle: いい理由があります。", "いい理由があります。", null)))))
+
+    private fun u43(): LearningUnit = LearningUnit("JA-B1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B1-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab1k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "この思い出は大切です。", listOf("Ben katılıyorum.", "Bu anı çok değerli.", "Bu benim görüşüm."), listOf("Bu anı çok değerli."), "Cümlenin çevirisi: Bu anı çok değerli.", null, null),
                 LearningExercise("jab1k_e61", Skill.VOCABULARY, "Doğru anlamı seç", "'友情' ne anlama gelir?", "", listOf("güven", "hayal kırıklığı", "arkadaşlık"), listOf("arkadaşlık"), "私たちの友情は強いです。 — Arkadaşlığımız güçlü.", null, null),
@@ -1113,8 +1252,9 @@ object WorldCourseJA {
                 LearningExercise("jab1k_e66", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "私たちの___は強いです。", "", listOf("友情", "覚えています", "子供のころ"), listOf("友情"), "Doğru cümle: 私たちの友情は強いです。 — Arkadaşlığımız güçlü.", null, null),
                 LearningExercise("jab1k_e198", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 当時は田舎に住んでいました。", "", listOf(), listOf("当時は田舎に住んでいました。"), "Türkçesi: O dönemde kırsalda yaşıyorduk.", "当時は田舎に住んでいました。", "当時は田舎に住んでいました。"),
                 LearningExercise("jab1k_e177", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Dengeli beslenme önemli.", "Haftada üç kez antrenman yaparım.", "Henüz ikna olamadım."), listOf("Henüz ikna olamadım."), "Söylenen cümle: まだ納得できません。", "まだ納得できません。", null),
-                LearningExercise("jab1k_e49", Skill.VOCABULARY, "Doğru anlamı seç", "'接続' ne anlama gelir?", "", listOf("sebep", "bağlantı", "karşı çıkma"), listOf("bağlantı"), "接続が遅いです。 — Bağlantı yavaş.", null, null))))),
-        LearningUnit("JA-B1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab1k_e49", Skill.VOCABULARY, "Doğru anlamı seç", "'接続' ne anlama gelir?", "", listOf("sebep", "bağlantı", "karşı çıkma"), listOf("bağlantı"), "接続が遅いです。 — Bağlantı yavaş.", null, null)))))
+
+    private fun u44(): LearningUnit = LearningUnit("JA-B1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B1-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab1k_e79", Skill.VOCABULARY, "Doğru anlamı seç", "'けんか' ne anlama gelir?", "", listOf("çocukluk dönemi", "o dönemde", "kavga"), listOf("kavga"), "私たちはあまりけんかしません。 — Pek kavga etmeyiz.", null, null),
                 LearningExercise("jab1k_e63", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Arkadaşlığımız güçlü.", "Bu âdet çok eski.", "Festival üç gün sürüyor."), listOf("Arkadaşlığımız güçlü."), "Söylenen cümle: 私たちの友情は強いです。", "私たちの友情は強いです。", null),
@@ -1138,8 +1278,9 @@ object WorldCourseJA {
                 LearningExercise("jab1k_e126", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___が一番大切です。", "", listOf("運動", "食事", "健康"), listOf("健康"), "Doğru cümle: 健康が一番大切です。 — Sağlık en önemlisidir.", null, null),
                 LearningExercise("jab1k_e109", Skill.VOCABULARY, "Doğru anlamı seç", "'伝統' ne anlama gelir?", "", listOf("gelenek", "indirme", "bağlantı"), listOf("gelenek"), "伝統は続いています。 — Gelenek sürüyor.", null, null),
                 LearningExercise("jab1k_e133", Skill.VOCABULARY, "Doğru anlamı seç", "'食事' ne anlama gelir?", "", listOf("haberler", "cihaz", "yemek/beslenme"), listOf("yemek/beslenme"), "バランスのいい食事が大事です。 — Dengeli beslenme önemli.", null, null),
-                LearningExercise("jab1k_e65", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "私たちの友情は強いです。", listOf("Sağlık en önemlisidir.", "Arkadaşlığımız güçlü.", "Toplum hızla değişiyor."), listOf("Arkadaşlığımız güçlü."), "Cümlenin çevirisi: Arkadaşlığımız güçlü.", null, null))))),
-        LearningUnit("JA-B1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab1k_e65", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "私たちの友情は強いです。", listOf("Sağlık en önemlisidir.", "Arkadaşlığımız güçlü.", "Toplum hızla değişiyor."), listOf("Arkadaşlığımız güçlü."), "Cümlenin çevirisi: Arkadaşlığımız güçlü.", null, null)))))
+
+    private fun u45(): LearningUnit = LearningUnit("JA-B1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B1-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab1k_e175", Skill.VOCABULARY, "Doğru anlamı seç", "'納得' ne anlama gelir?", "", listOf("görüş", "ikna olma", "kaçınmak"), listOf("ikna olma"), "まだ納得できません。 — Henüz ikna olamadım.", null, null),
                 LearningExercise("jab1k_e50", Skill.VOCABULARY, "Doğru çeviriyi seç", "'bağlantı' ifadesinin Japonca karşılığı hangisi?", "", listOf("接続", "覚えています", "子供のころ"), listOf("接続"), "Örnek: 接続が遅いです。 — Bağlantı yavaş.", null, null),
@@ -1163,8 +1304,9 @@ object WorldCourseJA {
                 LearningExercise("jab1k_e96", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "この___はとても古いです。", "", listOf("反対", "習慣", "賛成"), listOf("習慣"), "Doğru cümle: この習慣はとても古いです。 — Bu âdet çok eski.", null, null),
                 LearningExercise("jab1k_e122", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sağlık' ifadesinin Japonca karşılığı hangisi?", "", listOf("健康", "けんか", "気持ち"), listOf("健康"), "Örnek: 健康が一番大切です。 — Sağlık en önemlisidir.", null, null),
                 LearningExercise("jab1k_e82", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "私たちはあまりけんかしません。", listOf("Gelenek sürüyor.", "Toplum hızla değişiyor.", "Pek kavga etmeyiz."), listOf("Pek kavga etmeyiz."), "Cümlenin çevirisi: Pek kavga etmeyiz.", null, null),
-                LearningExercise("jab1k_e11", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "子供のころを覚えています。", listOf("Henüz ikna olamadım.", "Çocukluğumu hatırlıyorum.", "İyi bir sebep var."), listOf("Çocukluğumu hatırlıyorum."), "Cümlenin çevirisi: Çocukluğumu hatırlıyorum.", null, null))))),
-        LearningUnit("JA-B1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab1k_e11", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "子供のころを覚えています。", listOf("Henüz ikna olamadım.", "Çocukluğumu hatırlıyorum.", "İyi bir sebep var."), listOf("Çocukluğumu hatırlıyorum."), "Cümlenin çevirisi: Çocukluğumu hatırlıyorum.", null, null)))))
+
+    private fun u46(): LearningUnit = LearningUnit("JA-B1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B1-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab1k_e84", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "私たちはあまり___しません。", "", listOf("けんか", "友情", "信頼"), listOf("けんか"), "Doğru cümle: 私たちはあまりけんかしません。 — Pek kavga etmeyiz.", null, null),
                 LearningExercise("jab1k_e4", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "あの経験は私を変えました。", listOf("O deneyim beni değiştirdi.", "Uygulamayı indirmek istiyorum.", "Bağlantı yavaş."), listOf("O deneyim beni değiştirdi."), "Cümlenin çevirisi: O deneyim beni değiştirdi.", null, null),
@@ -1188,8 +1330,9 @@ object WorldCourseJA {
                 LearningExercise("jab1k_e185", Skill.GRAMMAR, "Doğru seçeneği işaretle", "砂糖を___ほうがいいです。", "", listOf("避けた", "避ける", "避けて"), listOf("避けた"), "Tavsiye kalıbı: た形 + ほうがいい.", null, null),
                 LearningExercise("jab1k_e121", Skill.VOCABULARY, "Doğru anlamı seç", "'健康' ne anlama gelir?", "", listOf("yemek/beslenme", "sağlık", "spor/hareket"), listOf("sağlık"), "健康が一番大切です。 — Sağlık en önemlisidir.", null, null),
                 LearningExercise("jab1k_e200", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 画面が明るすぎます。", "", listOf(), listOf("画面が明るすぎます。"), "Türkçesi: Ekran fazla parlak.", "画面が明るすぎます。", "画面が明るすぎます。"),
-                LearningExercise("jab1k_e10", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "子供のころを覚えています。", listOf("Şekerden kaçınırım.", "Bu benim görüşüm.", "Çocukluğumu hatırlıyorum."), listOf("Çocukluğumu hatırlıyorum."), "Cümlenin çevirisi: Çocukluğumu hatırlıyorum.", null, null))))),
-        LearningUnit("JA-B1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab1k_e10", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "子供のころを覚えています。", listOf("Şekerden kaçınırım.", "Bu benim görüşüm.", "Çocukluğumu hatırlıyorum."), listOf("Çocukluğumu hatırlıyorum."), "Cümlenin çevirisi: Çocukluğumu hatırlıyorum.", null, null)))))
+
+    private fun u47(): LearningUnit = LearningUnit("JA-B1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B1-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab1k_e69", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("İyi bir sebep var.", "Henüz ikna olamadım.", "Güven zaman alır."), listOf("Güven zaman alır."), "Söylenen cümle: 信頼には時間がかかります。", "信頼には時間がかかります。", null),
                 LearningExercise("jab1k_e173", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "いい理由があります。", listOf("Çocuklukta mutluydum.", "İyi bir sebep var.", "Çocukluğumu hatırlıyorum."), listOf("İyi bir sebep var."), "Cümlenin çevirisi: İyi bir sebep var.", null, null),
@@ -1213,8 +1356,9 @@ object WorldCourseJA {
                 LearningExercise("jab1k_e183", Skill.GRAMMAR, "Doğru seçeneği işaretle", "結果___がっかりしました。", "", listOf("に", "を", "で"), listOf("に"), "Edat: ...にがっかりする.", null, null),
                 LearningExercise("jab1k_e112", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "伝統は続いています。", listOf("Gelenek sürüyor.", "Pek kavga etmeyiz.", "Tuhaf bir his."), listOf("Gelenek sürüyor."), "Cümlenin çevirisi: Gelenek sürüyor.", null, null),
                 LearningExercise("jab1k_e105", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Festival üç gün sürüyor.", "Gelenek sürüyor.", "Birlikte kutluyoruz."), listOf("Birlikte kutluyoruz."), "Söylenen cümle: 一緒に祝います。", "一緒に祝います。", null),
-                LearningExercise("jab1k_e83", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "私たちはあまりけんかしません。", listOf("Birlikte kutluyoruz.", "Pek kavga etmeyiz.", "Festival üç gün sürüyor."), listOf("Pek kavga etmeyiz."), "Cümlenin çevirisi: Pek kavga etmeyiz.", null, null))))),
-        LearningUnit("JA-B1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab1k_e83", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "私たちはあまりけんかしません。", listOf("Birlikte kutluyoruz.", "Pek kavga etmeyiz.", "Festival üç gün sürüyor."), listOf("Pek kavga etmeyiz."), "Cümlenin çevirisi: Pek kavga etmeyiz.", null, null)))))
+
+    private fun u48(): LearningUnit = LearningUnit("JA-B1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B1-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab1k_e32", Skill.VOCABULARY, "Doğru çeviriyi seç", "'haberler' ifadesinin Japonca karşılığı hangisi?", "", listOf("ニュース", "理由", "納得"), listOf("ニュース"), "Örnek: 夜にニュースを見ます。 — Akşamları haber izlerim.", null, null),
                 LearningExercise("jab1k_e24", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は田舎に住んでいました。", "", listOf("運動", "当時", "健康"), listOf("当時"), "Doğru cümle: 当時は田舎に住んでいました。 — O dönemde kırsalda yaşıyorduk.", null, null),
@@ -1238,8 +1382,9 @@ object WorldCourseJA {
                 LearningExercise("jab1k_e86", Skill.VOCABULARY, "Doğru çeviriyi seç", "'duygu/his' ifadesinin Japonca karşılığı hangisi?", "", listOf("気持ち", "ダウンロード", "接続"), listOf("気持ち"), "Örnek: 不思議な気持ちです。 — Tuhaf bir his.", null, null),
                 LearningExercise("jab1k_e132", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "毎日___するべきです。", "", listOf("習慣", "運動", "気持ち"), listOf("運動"), "Doğru cümle: 毎日運動するべきです。 — Her gün hareket etmeli.", null, null),
                 LearningExercise("jab1k_e80", Skill.VOCABULARY, "Doğru çeviriyi seç", "'kavga' ifadesinin Japonca karşılığı hangisi?", "", listOf("反対", "けんか", "賛成"), listOf("けんか"), "Örnek: 私たちはあまりけんかしません。 — Pek kavga etmeyiz.", null, null),
-                LearningExercise("jab1k_e64", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "私たちの友情は強いです。", listOf("O öneriye karşıyım.", "İyi bir sebep var.", "Arkadaşlığımız güçlü."), listOf("Arkadaşlığımız güçlü."), "Cümlenin çevirisi: Arkadaşlığımız güçlü.", null, null))))),
-        LearningUnit("JA-B2-U1", "Kariyer ve İş Dünyası", "İş görüşmesi ve kariyer dilinde ustalaş.", listOf(
+                LearningExercise("jab1k_e64", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "私たちの友情は強いです。", listOf("O öneriye karşıyım.", "İyi bir sebep var.", "Arkadaşlığımız güçlü."), listOf("Arkadaşlığımız güçlü."), "Cümlenin çevirisi: Arkadaşlığımız güçlü.", null, null)))))
+
+    private fun u49(): LearningUnit = LearningUnit("JA-B2-U1", "Kariyer ve İş Dünyası", "İş görüşmesi ve kariyer dilinde ustalaş.", listOf(
             LearningLesson("JA-B2-U1-L1", "Kariyer ve İş Dünyası — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'履歴書' ne anlama gelir?", "", listOf("mülakat", "sorumluluk", "özgeçmiş"), listOf("özgeçmiş"), "履歴書は短くまとめます。 — Özgeçmişi kısa tutarım.", null, null),
                 LearningExercise("jab2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'面接' ne anlama gelir?", "", listOf("kariyer", "mülakat", "işe alım"), listOf("mülakat"), "面接はうまくいきました。 — Mülakat iyi geçti.", null, null),
@@ -1265,8 +1410,9 @@ object WorldCourseJA {
             LearningLesson("JA-B2-U1-L5", "Kariyer ve İş Dünyası — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jab2u1e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "彼女のキャリアは順調です。", listOf("Sorumluluğu üstleniyorum.", "Kariyeri yolunda gidiyor.", "Mülakat iyi geçti."), listOf("Kariyeri yolunda gidiyor."), "Cümlenin çevirisi: Kariyeri yolunda gidiyor.", null, null),
                 LearningExercise("jab2u1e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "責任を引き受けます。", listOf("Sorumluluğu üstleniyorum.", "Şirkete işe alındı.", "Kariyeri yolunda gidiyor."), listOf("Sorumluluğu üstleniyorum."), "Cümlenin çevirisi: Sorumluluğu üstleniyorum.", null, null),
-                LearningExercise("jab2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 履歴書は短くまとめます。", "", listOf(), listOf("履歴書は短くまとめます。"), "Türkçesi: Özgeçmişi kısa tutarım.", "履歴書は短くまとめます。", "履歴書は短くまとめます。"))))),
-        LearningUnit("JA-B2-U2", "Çevre ve Sürdürülebilirlik", "Çevre sorunlarını tartış.", listOf(
+                LearningExercise("jab2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 履歴書は短くまとめます。", "", listOf(), listOf("履歴書は短くまとめます。"), "Türkçesi: Özgeçmişi kısa tutarım.", "履歴書は短くまとめます。", "履歴書は短くまとめます。")))))
+
+    private fun u50(): LearningUnit = LearningUnit("JA-B2-U2", "Çevre ve Sürdürülebilirlik", "Çevre sorunlarını tartış.", listOf(
             LearningLesson("JA-B2-U2-L1", "Çevre ve Sürdürülebilirlik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'環境' ne anlama gelir?", "", listOf("çöp", "çevre", "iklim değişikliği"), listOf("çevre"), "環境を守らなければなりません。 — Çevreyi korumalıyız.", null, null),
                 LearningExercise("jab2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'気候変動' ne anlama gelir?", "", listOf("iklim değişikliği", "sürdürülebilir", "yenilenebilir"), listOf("iklim değişikliği"), "気候変動はみんなに影響します。 — İklim değişikliği herkesi etkiliyor.", null, null),
@@ -1292,8 +1438,9 @@ object WorldCourseJA {
             LearningLesson("JA-B2-U2-L5", "Çevre ve Sürdürülebilirlik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jab2u2e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "再生可能エネルギーは未来です。", listOf("Yenilenebilir enerji gelecektir.", "İklim değişikliği herkesi etkiliyor.", "Çöp ayrıştırılır."), listOf("Yenilenebilir enerji gelecektir."), "Cümlenin çevirisi: Yenilenebilir enerji gelecektir.", null, null),
                 LearningExercise("jab2u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "ごみは分別します。", listOf("Sürdürülebilir çözümler gerekli.", "Yenilenebilir enerji gelecektir.", "Çöp ayrıştırılır."), listOf("Çöp ayrıştırılır."), "Cümlenin çevirisi: Çöp ayrıştırılır.", null, null),
-                LearningExercise("jab2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 環境を守らなければなりません。", "", listOf(), listOf("環境を守らなければなりません。"), "Türkçesi: Çevreyi korumalıyız.", "環境を守らなければなりません。", "環境を守らなければなりません。"))))),
-        LearningUnit("JA-B2-U3", "Bilim ve Yenilik", "Bilimsel gelişmeleri aktar.", listOf(
+                LearningExercise("jab2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 環境を守らなければなりません。", "", listOf(), listOf("環境を守らなければなりません。"), "Türkçesi: Çevreyi korumalıyız.", "環境を守らなければなりません。", "環境を守らなければなりません。")))))
+
+    private fun u51(): LearningUnit = LearningUnit("JA-B2-U3", "Bilim ve Yenilik", "Bilimsel gelişmeleri aktar.", listOf(
             LearningLesson("JA-B2-U3-L1", "Bilim ve Yenilik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'研究' ne anlama gelir?", "", listOf("araştırma", "keşif", "kanıtlama"), listOf("araştırma"), "研究は続いています。 — Araştırma sürüyor.", null, null),
                 LearningExercise("jab2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'発見' ne anlama gelir?", "", listOf("ilerleme", "sonuç", "keşif"), listOf("keşif"), "重要な発見でした。 — Önemli bir keşifti.", null, null),
@@ -1319,8 +1466,9 @@ object WorldCourseJA {
             LearningLesson("JA-B2-U3-L5", "Bilim ve Yenilik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jab2u3e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "結果に驚きました。", listOf("Önemli bir keşifti.", "Teori kanıtlandı.", "Sonuca şaşırdık."), listOf("Sonuca şaşırdık."), "Cümlenin çevirisi: Sonuca şaşırdık.", null, null),
                 LearningExercise("jab2u3e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "理論が証明されました。", listOf("Sonuca şaşırdık.", "Teori kanıtlandı.", "İlerleme ortada."), listOf("Teori kanıtlandı."), "Cümlenin çevirisi: Teori kanıtlandı.", null, null),
-                LearningExercise("jab2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 研究は続いています。", "", listOf(), listOf("研究は続いています。"), "Türkçesi: Araştırma sürüyor.", "研究は続いています。", "研究は続いています。"))))),
-        LearningUnit("JA-B2-U4", "Toplum ve Güncel Konular", "Toplumsal konularda görüş geliştir.", listOf(
+                LearningExercise("jab2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 研究は続いています。", "", listOf(), listOf("研究は続いています。"), "Türkçesi: Araştırma sürüyor.", "研究は続いています。", "研究は続いています。")))))
+
+    private fun u52(): LearningUnit = LearningUnit("JA-B2-U4", "Toplum ve Güncel Konular", "Toplumsal konularda görüş geliştir.", listOf(
             LearningLesson("JA-B2-U4-L1", "Toplum ve Güncel Konular — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'正義' ne anlama gelir?", "", listOf("eşitlik", "yoksulluk", "adalet"), listOf("adalet"), "正義は基本的な価値です。 — Adalet temel bir değerdir.", null, null),
                 LearningExercise("jab2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'平等' ne anlama gelir?", "", listOf("tartışma", "eşitlik", "vatandaş"), listOf("eşitlik"), "法の下の平等。 — Yasa önünde eşitlik.", null, null),
@@ -1346,8 +1494,9 @@ object WorldCourseJA {
             LearningLesson("JA-B2-U4-L5", "Toplum ve Güncel Konular — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jab2u4e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "議論は続いています。", listOf("Yoksullukla mücadele etmeliyiz.", "Tartışma sürüyor.", "Yasa önünde eşitlik."), listOf("Tartışma sürüyor."), "Cümlenin çevirisi: Tartışma sürüyor.", null, null),
                 LearningExercise("jab2u4e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "貧困と戦わなければなりません。", listOf("Yoksullukla mücadele etmeliyiz.", "Her vatandaşın hakları vardır.", "Tartışma sürüyor."), listOf("Yoksullukla mücadele etmeliyiz."), "Cümlenin çevirisi: Yoksullukla mücadele etmeliyiz.", null, null),
-                LearningExercise("jab2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 正義は基本的な価値です。", "", listOf(), listOf("正義は基本的な価値です。"), "Türkçesi: Adalet temel bir değerdir.", "正義は基本的な価値です。", "正義は基本的な価値です。"))))),
-        LearningUnit("JA-B2-U5", "Sanat ve Edebiyat", "Sanat eserlerini yorumla.", listOf(
+                LearningExercise("jab2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 正義は基本的な価値です。", "", listOf(), listOf("正義は基本的な価値です。"), "Türkçesi: Adalet temel bir değerdir.", "正義は基本的な価値です。", "正義は基本的な価値です。")))))
+
+    private fun u53(): LearningUnit = LearningUnit("JA-B2-U5", "Sanat ve Edebiyat", "Sanat eserlerini yorumla.", listOf(
             LearningLesson("JA-B2-U5-L1", "Sanat ve Edebiyat — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'絵画' ne anlama gelir?", "", listOf("etkileyici", "tablo/resim", "roman"), listOf("tablo/resim"), "絵画は美術館にあります。 — Tablo müzede.", null, null),
                 LearningExercise("jab2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'小説' ne anlama gelir?", "", listOf("roman", "sergi", "yazar"), listOf("roman"), "小説は四百ページあります。 — Roman dört yüz sayfa.", null, null),
@@ -1373,8 +1522,9 @@ object WorldCourseJA {
             LearningLesson("JA-B2-U5-L5", "Sanat ve Edebiyat — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jab2u5e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "作家は今晩朗読します。", listOf("Yazar bu akşam okuma yapıyor.", "Roman dört yüz sayfa.", "Etkileyici bir eser."), listOf("Yazar bu akşam okuma yapıyor."), "Cümlenin çevirisi: Yazar bu akşam okuma yapıyor.", null, null),
                 LearningExercise("jab2u5e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "印象的な作品です。", listOf("Sergi yarın başlıyor.", "Yazar bu akşam okuma yapıyor.", "Etkileyici bir eser."), listOf("Etkileyici bir eser."), "Cümlenin çevirisi: Etkileyici bir eser.", null, null),
-                LearningExercise("jab2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 絵画は美術館にあります。", "", listOf(), listOf("絵画は美術館にあります。"), "Türkçesi: Tablo müzede.", "絵画は美術館にあります。", "絵画は美術館にあります。"))))),
-        LearningUnit("JA-B2-U6", "Tartışma ve İkna", "Karşıt görüşleri dengeli biçimde tart.", listOf(
+                LearningExercise("jab2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 絵画は美術館にあります。", "", listOf(), listOf("絵画は美術館にあります。"), "Türkçesi: Tablo müzede.", "絵画は美術館にあります。", "絵画は美術館にあります。")))))
+
+    private fun u54(): LearningUnit = LearningUnit("JA-B2-U6", "Tartışma ve İkna", "Karşıt görüşleri dengeli biçimde tart.", listOf(
             LearningLesson("JA-B2-U6-L1", "Tartışma ve İkna — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jab2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'論点' ne anlama gelir?", "", listOf("argüman/tartışma noktası", "bir yandan", "karşı argüman"), listOf("argüman/tartışma noktası"), "論点は明確です。 — Tartışma noktası net.", null, null),
                 LearningExercise("jab2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'一方で' ne anlama gelir?", "", listOf("öte yandan", "sonuç/çıkarım", "bir yandan"), listOf("bir yandan"), "一方で高いです。 — Bir yandan pahalı.", null, null),
@@ -1400,8 +1550,9 @@ object WorldCourseJA {
             LearningLesson("JA-B2-U6-L5", "Tartışma ve İkna — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jab2u6e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "結論は明らかです。", listOf("Bir yandan pahalı.", "Bir karşı argümanım var.", "Çıkarım açık."), listOf("Çıkarım açık."), "Cümlenin çevirisi: Çıkarım açık.", null, null),
                 LearningExercise("jab2u6e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "反論があります。", listOf("Çıkarım açık.", "Bir karşı argümanım var.", "Öte yandan kullanışlı."), listOf("Bir karşı argümanım var."), "Cümlenin çevirisi: Bir karşı argümanım var.", null, null),
-                LearningExercise("jab2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 論点は明確です。", "", listOf(), listOf("論点は明確です。"), "Türkçesi: Tartışma noktası net.", "論点は明確です。", "論点は明確です。"))))),
-        LearningUnit("JA-B2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 論点は明確です。", "", listOf(), listOf("論点は明確です。"), "Türkçesi: Tartışma noktası net.", "論点は明確です。", "論点は明確です。")))))
+
+    private fun u55(): LearningUnit = LearningUnit("JA-B2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B2-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab2k_e39", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Yazar bu akşam okuma yapıyor.", "İklim değişikliği herkesi etkiliyor.", "Etkileyici bir eser."), listOf("İklim değişikliği herkesi etkiliyor."), "Söylenen cümle: 気候変動はみんなに影響します。", "気候変動はみんなに影響します。", null),
                 LearningExercise("jab2k_e139", Skill.VOCABULARY, "Doğru anlamı seç", "'印象的' ne anlama gelir?", "", listOf("kanıtlama", "etkileyici", "ilerleme"), listOf("etkileyici"), "印象的な作品です。 — Etkileyici bir eser.", null, null),
@@ -1425,8 +1576,9 @@ object WorldCourseJA {
                 LearningExercise("jab2k_e89", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "結果に驚きました。", listOf("Sonuca şaşırdık.", "Çevreyi korumalıyız.", "İklim değişikliği herkesi etkiliyor."), listOf("Sonuca şaşırdık."), "Cümlenin çevirisi: Sonuca şaşırdık.", null, null),
                 LearningExercise("jab2k_e130", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "小説は四百ページあります。", listOf("Roman dört yüz sayfa.", "Kariyeri yolunda gidiyor.", "Çevreyi korumalıyız."), listOf("Roman dört yüz sayfa."), "Cümlenin çevirisi: Roman dört yüz sayfa.", null, null),
                 LearningExercise("jab2k_e51", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Tartışma sürüyor.", "Tablo müzede.", "Çöp ayrıştırılır."), listOf("Çöp ayrıştırılır."), "Söylenen cümle: ごみは分別します。", "ごみは分別します。", null),
-                LearningExercise("jab2k_e9", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Mülakat iyi geçti.", "Yoksullukla mücadele etmeliyiz.", "Tartışma sürüyor."), listOf("Mülakat iyi geçti."), "Söylenen cümle: 面接はうまくいきました。", "面接はうまくいきました。", null))))),
-        LearningUnit("JA-B2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab2k_e9", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Mülakat iyi geçti.", "Yoksullukla mücadele etmeliyiz.", "Tartışma sürüyor."), listOf("Mülakat iyi geçti."), "Söylenen cümle: 面接はうまくいきました。", "面接はうまくいきました。", null)))))
+
+    private fun u56(): LearningUnit = LearningUnit("JA-B2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B2-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab2k_e19", Skill.VOCABULARY, "Doğru anlamı seç", "'責任' ne anlama gelir?", "", listOf("sorumluluk", "sergi", "etkileyici"), listOf("sorumluluk"), "責任を引き受けます。 — Sorumluluğu üstleniyorum.", null, null),
                 LearningExercise("jab2k_e141", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Kariyeri yolunda gidiyor.", "Çevreyi korumalıyız.", "Etkileyici bir eser."), listOf("Etkileyici bir eser."), "Söylenen cümle: 印象的な作品です。", "印象的な作品です。", null),
@@ -1450,8 +1602,9 @@ object WorldCourseJA {
                 LearningExercise("jab2k_e120", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は続いています。", "", listOf("議論", "反論", "結論"), listOf("議論"), "Doğru cümle: 議論は続いています。 — Tartışma sürüyor.", null, null),
                 LearningExercise("jab2k_e113", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "貧困と戦わなければなりません。", listOf("Roman dört yüz sayfa.", "Sergi yarın başlıyor.", "Yoksullukla mücadele etmeliyiz."), listOf("Yoksullukla mücadele etmeliyiz."), "Cümlenin çevirisi: Yoksullukla mücadele etmeliyiz.", null, null),
                 LearningExercise("jab2k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sürdürülebilir' ifadesinin Japonca karşılığı hangisi?", "", listOf("小説", "持続可能", "絵画"), listOf("持続可能"), "Örnek: 持続可能な解決策が必要です。 — Sürdürülebilir çözümler gerekli.", null, null),
-                LearningExercise("jab2k_e180", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は明らかです。", "", listOf("貧困", "議論", "結論"), listOf("結論"), "Doğru cümle: 結論は明らかです。 — Çıkarım açık.", null, null))))),
-        LearningUnit("JA-B2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab2k_e180", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は明らかです。", "", listOf("貧困", "議論", "結論"), listOf("結論"), "Doğru cümle: 結論は明らかです。 — Çıkarım açık.", null, null)))))
+
+    private fun u57(): LearningUnit = LearningUnit("JA-B2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B2-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab2k_e187", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 履歴書は短くまとめます。", "", listOf(), listOf("履歴書は短くまとめます。"), "Türkçesi: Özgeçmişi kısa tutarım.", "履歴書は短くまとめます。", "履歴書は短くまとめます。"),
                 LearningExercise("jab2k_e21", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Adalet temel bir değerdir.", "Sorumluluğu üstleniyorum.", "Sonuca şaşırdık."), listOf("Sorumluluğu üstleniyorum."), "Söylenen cümle: 責任を引き受けます。", "責任を引き受けます。", null),
@@ -1475,8 +1628,9 @@ object WorldCourseJA {
                 LearningExercise("jab2k_e30", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "彼女の___は順調です。", "", listOf("キャリア", "証明", "結果"), listOf("キャリア"), "Doğru cümle: 彼女のキャリアは順調です。 — Kariyeri yolunda gidiyor.", null, null),
                 LearningExercise("jab2k_e56", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yenilenebilir' ifadesinin Japonca karşılığı hangisi?", "", listOf("進歩", "証明", "再生可能"), listOf("再生可能"), "Örnek: 再生可能エネルギーは未来です。 — Yenilenebilir enerji gelecektir.", null, null),
                 LearningExercise("jab2k_e168", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___便利です。", "", listOf("責任", "他方で", "採用"), listOf("他方で"), "Doğru cümle: 他方で便利です。 — Öte yandan kullanışlı.", null, null),
-                LearningExercise("jab2k_e134", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sergi' ifadesinin Japonca karşılığı hangisi?", "", listOf("気候変動", "展覧会", "環境"), listOf("展覧会"), "Örnek: 展覧会は明日始まります。 — Sergi yarın başlıyor.", null, null))))),
-        LearningUnit("JA-B2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab2k_e134", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sergi' ifadesinin Japonca karşılığı hangisi?", "", listOf("気候変動", "展覧会", "環境"), listOf("展覧会"), "Örnek: 展覧会は明日始まります。 — Sergi yarın başlıyor.", null, null)))))
+
+    private fun u58(): LearningUnit = LearningUnit("JA-B2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B2-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab2k_e125", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "絵画は美術館にあります。", listOf("Tablo müzede.", "Çıkarım açık.", "Özgeçmişi kısa tutarım."), listOf("Tablo müzede."), "Cümlenin çevirisi: Tablo müzede.", null, null),
                 LearningExercise("jab2k_e194", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 小説は四百ページあります。", "", listOf(), listOf("小説は四百ページあります。"), "Türkçesi: Roman dört yüz sayfa.", "小説は四百ページあります。", "小説は四百ページあります。"),
@@ -1500,8 +1654,9 @@ object WorldCourseJA {
                 LearningExercise("jab2k_e36", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___を守らなければなりません。", "", listOf("気候変動", "持続可能", "環境"), listOf("環境"), "Doğru cümle: 環境を守らなければなりません。 — Çevreyi korumalıyız.", null, null),
                 LearningExercise("jab2k_e100", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "法の下の平等。", listOf("Yenilenebilir enerji gelecektir.", "Araştırma sürüyor.", "Yasa önünde eşitlik."), listOf("Yasa önünde eşitlik."), "Cümlenin çevirisi: Yasa önünde eşitlik.", null, null),
                 LearningExercise("jab2k_e119", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "議論は続いています。", listOf("Önemli bir keşifti.", "Tartışma sürüyor.", "Araştırma sürüyor."), listOf("Tartışma sürüyor."), "Cümlenin çevirisi: Tartışma sürüyor.", null, null),
-                LearningExercise("jab2k_e170", Skill.VOCABULARY, "Doğru çeviriyi seç", "'karşı argüman' ifadesinin Japonca karşılığı hangisi?", "", listOf("進歩", "反論", "発見"), listOf("反論"), "Örnek: 反論があります。 — Bir karşı argümanım var.", null, null))))),
-        LearningUnit("JA-B2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab2k_e170", Skill.VOCABULARY, "Doğru çeviriyi seç", "'karşı argüman' ifadesinin Japonca karşılığı hangisi?", "", listOf("進歩", "反論", "発見"), listOf("反論"), "Örnek: 反論があります。 — Bir karşı argümanım var.", null, null)))))
+
+    private fun u59(): LearningUnit = LearningUnit("JA-B2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B2-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab2k_e62", Skill.VOCABULARY, "Doğru çeviriyi seç", "'araştırma' ifadesinin Japonca karşılığı hangisi?", "", listOf("作家", "研究", "印象的"), listOf("研究"), "Örnek: 研究は続いています。 — Araştırma sürüyor.", null, null),
                 LearningExercise("jab2k_e5", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "履歴書は短くまとめます。", listOf("Yenilenebilir enerji gelecektir.", "Araştırma sürüyor.", "Özgeçmişi kısa tutarım."), listOf("Özgeçmişi kısa tutarım."), "Cümlenin çevirisi: Özgeçmişi kısa tutarım.", null, null),
@@ -1525,8 +1680,9 @@ object WorldCourseJA {
                 LearningExercise("jab2k_e151", Skill.VOCABULARY, "Doğru anlamı seç", "'論点' ne anlama gelir?", "", listOf("bir yandan", "öte yandan", "argüman/tartışma noktası"), listOf("argüman/tartışma noktası"), "論点は明確です。 — Tartışma noktası net.", null, null),
                 LearningExercise("jab2k_e47", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "持続可能な解決策が必要です。", listOf("Etkileyici bir eser.", "Sürdürülebilir çözümler gerekli.", "Sergi yarın başlıyor."), listOf("Sürdürülebilir çözümler gerekli."), "Cümlenin çevirisi: Sürdürülebilir çözümler gerekli.", null, null),
                 LearningExercise("jab2k_e2", Skill.VOCABULARY, "Doğru çeviriyi seç", "'özgeçmiş' ifadesinin Japonca karşılığı hangisi?", "", listOf("責任", "キャリア", "履歴書"), listOf("履歴書"), "Örnek: 履歴書は短くまとめます。 — Özgeçmişi kısa tutarım.", null, null),
-                LearningExercise("jab2k_e132", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は四百ページあります。", "", listOf("正義", "小説", "結果"), listOf("小説"), "Doğru cümle: 小説は四百ページあります。 — Roman dört yüz sayfa.", null, null))))),
-        LearningUnit("JA-B2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab2k_e132", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は四百ページあります。", "", listOf("正義", "小説", "結果"), listOf("小説"), "Doğru cümle: 小説は四百ページあります。 — Roman dört yüz sayfa.", null, null)))))
+
+    private fun u60(): LearningUnit = LearningUnit("JA-B2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B2-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab2k_e31", Skill.VOCABULARY, "Doğru anlamı seç", "'環境' ne anlama gelir?", "", listOf("sürdürülebilir", "çevre", "iklim değişikliği"), listOf("çevre"), "環境を守らなければなりません。 — Çevreyi korumalıyız.", null, null),
                 LearningExercise("jab2k_e124", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "絵画は美術館にあります。", listOf("Yoksullukla mücadele etmeliyiz.", "Tablo müzede.", "Her vatandaşın hakları vardır."), listOf("Tablo müzede."), "Cümlenin çevirisi: Tablo müzede.", null, null),
@@ -1550,8 +1706,9 @@ object WorldCourseJA {
                 LearningExercise("jab2k_e107", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "すべての市民に権利があります。", listOf("Her vatandaşın hakları vardır.", "Şirkete işe alındı.", "Sorumluluğu üstleniyorum."), listOf("Her vatandaşın hakları vardır."), "Cümlenin çevirisi: Her vatandaşın hakları vardır.", null, null),
                 LearningExercise("jab2k_e25", Skill.VOCABULARY, "Doğru anlamı seç", "'キャリア' ne anlama gelir?", "", listOf("sonuç/çıkarım", "özgeçmiş", "kariyer"), listOf("kariyer"), "彼女のキャリアは順調です。 — Kariyeri yolunda gidiyor.", null, null),
                 LearningExercise("jab2k_e83", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "理論が証明されました。", listOf("Her vatandaşın hakları vardır.", "Teori kanıtlandı.", "Yasa önünde eşitlik."), listOf("Teori kanıtlandı."), "Cümlenin çevirisi: Teori kanıtlandı.", null, null),
-                LearningExercise("jab2k_e59", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "再生可能エネルギーは未来です。", listOf("Özgeçmişi kısa tutarım.", "Mülakat iyi geçti.", "Yenilenebilir enerji gelecektir."), listOf("Yenilenebilir enerji gelecektir."), "Cümlenin çevirisi: Yenilenebilir enerji gelecektir.", null, null))))),
-        LearningUnit("JA-B2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab2k_e59", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "再生可能エネルギーは未来です。", listOf("Özgeçmişi kısa tutarım.", "Mülakat iyi geçti.", "Yenilenebilir enerji gelecektir."), listOf("Yenilenebilir enerji gelecektir."), "Cümlenin çevirisi: Yenilenebilir enerji gelecektir.", null, null)))))
+
+    private fun u61(): LearningUnit = LearningUnit("JA-B2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B2-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab2k_e138", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は明日始まります。", "", listOf("展覧会", "持続可能", "ごみ"), listOf("展覧会"), "Doğru cümle: 展覧会は明日始まります。 — Sergi yarın başlıyor.", null, null),
                 LearningExercise("jab2k_e45", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Sürdürülebilir çözümler gerekli.", "İklim değişikliği herkesi etkiliyor.", "Çöp ayrıştırılır."), listOf("Sürdürülebilir çözümler gerekli."), "Söylenen cümle: 持続可能な解決策が必要です。", "持続可能な解決策が必要です。", null),
@@ -1575,8 +1732,9 @@ object WorldCourseJA {
                 LearningExercise("jab2k_e3", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("İklim değişikliği herkesi etkiliyor.", "Özgeçmişi kısa tutarım.", "Çevreyi korumalıyız."), listOf("Özgeçmişi kısa tutarım."), "Söylenen cümle: 履歴書は短くまとめます。", "履歴書は短くまとめます。", null),
                 LearningExercise("jab2k_e54", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は分別します。", "", listOf("正義", "平等", "ごみ"), listOf("ごみ"), "Doğru cümle: ごみは分別します。 — Çöp ayrıştırılır.", null, null),
                 LearningExercise("jab2k_e123", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Tartışma noktası net.", "Bir yandan pahalı.", "Tablo müzede."), listOf("Tablo müzede."), "Söylenen cümle: 絵画は美術館にあります。", "絵画は美術館にあります。", null),
-                LearningExercise("jab2k_e176", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sonuç/çıkarım' ifadesinin Japonca karşılığı hangisi?", "", listOf("結論", "展覧会", "印象的"), listOf("結論"), "Örnek: 結論は明らかです。 — Çıkarım açık.", null, null))))),
-        LearningUnit("JA-B2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab2k_e176", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sonuç/çıkarım' ifadesinin Japonca karşılığı hangisi?", "", listOf("結論", "展覧会", "印象的"), listOf("結論"), "Örnek: 結論は明らかです。 — Çıkarım açık.", null, null)))))
+
+    private fun u62(): LearningUnit = LearningUnit("JA-B2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B2-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab2k_e77", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "進歩は明らかです。", listOf("Öte yandan kullanışlı.", "Bir karşı argümanım var.", "İlerleme ortada."), listOf("İlerleme ortada."), "Cümlenin çevirisi: İlerleme ortada.", null, null),
                 LearningExercise("jab2k_e198", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 責任を引き受けます。", "", listOf(), listOf("責任を引き受けます。"), "Türkçesi: Sorumluluğu üstleniyorum.", "責任を引き受けます。", "責任を引き受けます。"),
@@ -1600,8 +1758,9 @@ object WorldCourseJA {
                 LearningExercise("jab2k_e86", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sonuç' ifadesinin Japonca karşılığı hangisi?", "", listOf("結果", "持続可能", "ごみ"), listOf("結果"), "Örnek: 結果に驚きました。 — Sonuca şaşırdık.", null, null),
                 LearningExercise("jab2k_e128", Skill.VOCABULARY, "Doğru çeviriyi seç", "'roman' ifadesinin Japonca karşılığı hangisi?", "", listOf("作家", "論点", "小説"), listOf("小説"), "Örnek: 小説は四百ページあります。 — Roman dört yüz sayfa.", null, null),
                 LearningExercise("jab2k_e94", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "正義は基本的な価値です。", listOf("Adalet temel bir değerdir.", "Sergi yarın başlıyor.", "Etkileyici bir eser."), listOf("Adalet temel bir değerdir."), "Cümlenin çevirisi: Adalet temel bir değerdir.", null, null),
-                LearningExercise("jab2k_e114", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___と戦わなければなりません。", "", listOf("気候変動", "貧困", "環境"), listOf("貧困"), "Doğru cümle: 貧困と戦わなければなりません。 — Yoksullukla mücadele etmeliyiz.", null, null))))),
-        LearningUnit("JA-B2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab2k_e114", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___と戦わなければなりません。", "", listOf("気候変動", "貧困", "環境"), listOf("貧困"), "Doğru cümle: 貧困と戦わなければなりません。 — Yoksullukla mücadele etmeliyiz.", null, null)))))
+
+    private fun u63(): LearningUnit = LearningUnit("JA-B2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B2-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab2k_e150", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は今晩朗読します。", "", listOf("論点", "作家", "印象的"), listOf("作家"), "Doğru cümle: 作家は今晩朗読します。 — Yazar bu akşam okuma yapıyor.", null, null),
                 LearningExercise("jab2k_e152", Skill.VOCABULARY, "Doğru çeviriyi seç", "'argüman/tartışma noktası' ifadesinin Japonca karşılığı hangisi?", "", listOf("再生可能", "論点", "ごみ"), listOf("論点"), "Örnek: 論点は明確です。 — Tartışma noktası net.", null, null),
@@ -1625,8 +1784,9 @@ object WorldCourseJA {
                 LearningExercise("jab2k_e163", Skill.VOCABULARY, "Doğru anlamı seç", "'他方で' ne anlama gelir?", "", listOf("öte yandan", "araştırma", "keşif"), listOf("öte yandan"), "他方で便利です。 — Öte yandan kullanışlı.", null, null),
                 LearningExercise("jab2k_e98", Skill.VOCABULARY, "Doğru çeviriyi seç", "'eşitlik' ifadesinin Japonca karşılığı hangisi?", "", listOf("履歴書", "平等", "結論"), listOf("平等"), "Örnek: 法の下の平等。 — Yasa önünde eşitlik.", null, null),
                 LearningExercise("jab2k_e178", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "結論は明らかです。", listOf("Roman dört yüz sayfa.", "Çıkarım açık.", "Tablo müzede."), listOf("Çıkarım açık."), "Cümlenin çevirisi: Çıkarım açık.", null, null),
-                LearningExercise("jab2k_e160", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "一方で高いです。", listOf("Özgeçmişi kısa tutarım.", "Bir yandan pahalı.", "Çıkarım açık."), listOf("Bir yandan pahalı."), "Cümlenin çevirisi: Bir yandan pahalı.", null, null))))),
-        LearningUnit("JA-B2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jab2k_e160", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "一方で高いです。", listOf("Özgeçmişi kısa tutarım.", "Bir yandan pahalı.", "Çıkarım açık."), listOf("Bir yandan pahalı."), "Cümlenin çevirisi: Bir yandan pahalı.", null, null)))))
+
+    private fun u64(): LearningUnit = LearningUnit("JA-B2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-B2-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jab2k_e78", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は明らかです。", "", listOf("貧困", "進歩", "市民"), listOf("進歩"), "Doğru cümle: 進歩は明らかです。 — İlerleme ortada.", null, null),
                 LearningExercise("jab2k_e154", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "論点は明確です。", listOf("İlerleme ortada.", "Teori kanıtlandı.", "Tartışma noktası net."), listOf("Tartışma noktası net."), "Cümlenin çevirisi: Tartışma noktası net.", null, null),
@@ -1650,8 +1810,9 @@ object WorldCourseJA {
                 LearningExercise("jab2k_e22", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "責任を引き受けます。", listOf("Sorumluluğu üstleniyorum.", "Bir karşı argümanım var.", "Çıkarım açık."), listOf("Sorumluluğu üstleniyorum."), "Cümlenin çevirisi: Sorumluluğu üstleniyorum.", null, null),
                 LearningExercise("jab2k_e33", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Araştırma sürüyor.", "Önemli bir keşifti.", "Çevreyi korumalıyız."), listOf("Çevreyi korumalıyız."), "Söylenen cümle: 環境を守らなければなりません。", "環境を守らなければなりません。", null),
                 LearningExercise("jab2k_e17", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "彼女は会社に採用されました。", listOf("Şirkete işe alındı.", "Her vatandaşın hakları vardır.", "Yoksullukla mücadele etmeliyiz."), listOf("Şirkete işe alındı."), "Cümlenin çevirisi: Şirkete işe alındı.", null, null),
-                LearningExercise("jab2k_e20", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sorumluluk' ifadesinin Japonca karşılığı hangisi?", "", listOf("気候変動", "持続可能", "責任"), listOf("責任"), "Örnek: 責任を引き受けます。 — Sorumluluğu üstleniyorum.", null, null))))),
-        LearningUnit("JA-C1-U1", "Akademik Dil", "Akademik metinleri çözümle ve üret.", listOf(
+                LearningExercise("jab2k_e20", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sorumluluk' ifadesinin Japonca karşılığı hangisi?", "", listOf("気候変動", "持続可能", "責任"), listOf("責任"), "Örnek: 責任を引き受けます。 — Sorumluluğu üstleniyorum.", null, null)))))
+
+    private fun u65(): LearningUnit = LearningUnit("JA-C1-U1", "Akademik Dil", "Akademik metinleri çözümle ve üret.", listOf(
             LearningLesson("JA-C1-U1-L1", "Akademik Dil — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'論文' ne anlama gelir?", "", listOf("çözümleme", "kaynak (alıntı)", "makale/tez"), listOf("makale/tez"), "この論文は議論を呼んでいます。 — Bu makale tartışma yaratıyor.", null, null),
                 LearningExercise("jac1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'分析' ne anlama gelir?", "", listOf("yöntem", "çözümleme", "inceleme/değerlendirme"), listOf("çözümleme"), "分析は十年のデータを扱います。 — Çözümleme on yıllık veriyi ele alıyor.", null, null),
@@ -1677,8 +1838,9 @@ object WorldCourseJA {
             LearningLesson("JA-C1-U1-L5", "Akademik Dil — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jac1u1e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "この手法は有望です。", listOf("Kaynak güvenilir.", "Bu yöntem umut verici.", "Çözümleme on yıllık veriyi ele alıyor."), listOf("Bu yöntem umut verici."), "Cümlenin çevirisi: Bu yöntem umut verici.", null, null),
                 LearningExercise("jac1u1e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "出典は信頼できます。", listOf("Kaynak güvenilir.", "Bu konuyu yarın değerlendireceğiz.", "Bu yöntem umut verici."), listOf("Kaynak güvenilir."), "Cümlenin çevirisi: Kaynak güvenilir.", null, null),
-                LearningExercise("jac1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: この論文は議論を呼んでいます。", "", listOf(), listOf("この論文は議論を呼んでいます。"), "Türkçesi: Bu makale tartışma yaratıyor.", "この論文は議論を呼んでいます。", "この論文は議論を呼んでいます。"))))),
-        LearningUnit("JA-C1-U2", "Soyut Kavramlar", "Soyut düşünceleri akıcı ifade et.", listOf(
+                LearningExercise("jac1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: この論文は議論を呼んでいます。", "", listOf(), listOf("この論文は議論を呼んでいます。"), "Türkçesi: Bu makale tartışma yaratıyor.", "この論文は議論を呼んでいます。", "この論文は議論を呼んでいます。")))))
+
+    private fun u66(): LearningUnit = LearningUnit("JA-C1-U2", "Soyut Kavramlar", "Soyut düşünceleri akıcı ifade et.", listOf(
             LearningLesson("JA-C1-U2-L1", "Soyut Kavramlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'知覚' ne anlama gelir?", "", listOf("düşünce/anlayış", "algı", "bilinç"), listOf("algı"), "知覚はよく私たちを欺きます。 — Algı bizi sık yanıltır.", null, null),
                 LearningExercise("jac1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'意識' ne anlama gelir?", "", listOf("bilinç", "kavram", "kavrayış/idrak"), listOf("bilinç"), "意識はまだ謎です。 — Bilinç hâlâ bir muamma.", null, null),
@@ -1704,8 +1866,9 @@ object WorldCourseJA {
             LearningLesson("JA-C1-U2-L5", "Soyut Kavramlar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jac1u2e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "認識は経験で変わります。", listOf("Kavrayış deneyimle değişir.", "Bilinç hâlâ bir muamma.", "Bu anlayış geniş kabul görüyor."), listOf("Kavrayış deneyimle değişir."), "Cümlenin çevirisi: Kavrayış deneyimle değişir.", null, null),
                 LearningExercise("jac1u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "この観念は広く共有されています。", listOf("Bu kavramı tanımlamak zor.", "Kavrayış deneyimle değişir.", "Bu anlayış geniş kabul görüyor."), listOf("Bu anlayış geniş kabul görüyor."), "Cümlenin çevirisi: Bu anlayış geniş kabul görüyor.", null, null),
-                LearningExercise("jac1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 知覚はよく私たちを欺きます。", "", listOf(), listOf("知覚はよく私たちを欺きます。"), "Türkçesi: Algı bizi sık yanıltır.", "知覚はよく私たちを欺きます。", "知覚はよく私たちを欺きます。"))))),
-        LearningUnit("JA-C1-U3", "Deyimler ve Mecazlar", "Deyimleri doğal bağlamda kullan.", listOf(
+                LearningExercise("jac1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 知覚はよく私たちを欺きます。", "", listOf(), listOf("知覚はよく私たちを欺きます。"), "Türkçesi: Algı bizi sık yanıltır.", "知覚はよく私たちを欺きます。", "知覚はよく私たちを欺きます。")))))
+
+    private fun u67(): LearningUnit = LearningUnit("JA-C1-U3", "Deyimler ve Mecazlar", "Deyimleri doğal bağlamda kullan.", listOf(
             LearningLesson("JA-C1-U3-L1", "Deyimler ve Mecazlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'一石二鳥' ne anlama gelir?", "", listOf("bir taşla iki kuş", "çok yoğun olmak", "boşa nasihat"), listOf("bir taşla iki kuş"), "それは一石二鳥です。 — Bu bir taşla iki kuş.", null, null),
                 LearningExercise("jac1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'猫の手も借りたい' ne anlama gelir?", "", listOf("kuyu dibindeki kurbağa", "beklenmedik şans", "çok yoğun olmak"), listOf("çok yoğun olmak"), "今日は猫の手も借りたいほど忙しいです。 — Bugün kedi pençesi bile ödünç alınacak kadar yoğunum.", null, null),
@@ -1731,8 +1894,9 @@ object WorldCourseJA {
             LearningLesson("JA-C1-U3-L5", "Deyimler ve Mecazlar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jac1u3e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "棚からぼたもちでした。", listOf("Bugün kedi pençesi bile ödünç alınacak kadar yoğunum.", "Ona söylemek atın kulağına dua okumak gibi.", "Raftan botamochi düştü; beklenmedik şanstı."), listOf("Raftan botamochi düştü; beklenmedik şanstı."), "Cümlenin çevirisi: Raftan botamochi düştü; beklenmedik şanstı.", null, null),
                 LearningExercise("jac1u3e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "彼に言っても馬の耳に念仏です。", listOf("Raftan botamochi düştü; beklenmedik şanstı.", "Ona söylemek atın kulağına dua okumak gibi.", "Kuyudaki kurbağa olma."), listOf("Ona söylemek atın kulağına dua okumak gibi."), "Cümlenin çevirisi: Ona söylemek atın kulağına dua okumak gibi.", null, null),
-                LearningExercise("jac1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: それは一石二鳥です。", "", listOf(), listOf("それは一石二鳥です。"), "Türkçesi: Bu bir taşla iki kuş.", "それは一石二鳥です。", "それは一石二鳥です。"))))),
-        LearningUnit("JA-C1-U4", "Resmî Yazışma", "Resmî mektup ve e-posta dilinde ustalaş.", listOf(
+                LearningExercise("jac1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: それは一石二鳥です。", "", listOf(), listOf("それは一石二鳥です。"), "Türkçesi: Bu bir taşla iki kuş.", "それは一石二鳥です。", "それは一石二鳥です。")))))
+
+    private fun u68(): LearningUnit = LearningUnit("JA-C1-U4", "Resmî Yazışma", "Resmî mektup ve e-posta dilinde ustalaş.", listOf(
             LearningLesson("JA-C1-U4-L1", "Resmî Yazışma — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'拝啓' ne anlama gelir?", "", listOf("ek (dosya)", "saygılarımla (mektup sonu)", "saygıdeğer (mektup girişi)"), listOf("saygıdeğer (mektup girişi)"), "拝啓 春の候、... — Saygıdeğer, bahar mevsiminde...", null, null),
                 LearningExercise("jac1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'添付' ne anlama gelir?", "", listOf("iş nezaketi selamı", "ek (dosya)", "ilişkin (resmî)"), listOf("ek (dosya)"), "履歴書を添付します。 — Özgeçmişi ekliyorum.", null, null),
@@ -1758,8 +1922,9 @@ object WorldCourseJA {
             LearningLesson("JA-C1-U4-L5", "Resmî Yazışma — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jac1u4e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "いつもお世話になっております。", listOf("Saygılarımla", "Her zaman yardımlarınız için teşekkürler.", "Özgeçmişi ekliyorum."), listOf("Her zaman yardımlarınız için teşekkürler."), "Cümlenin çevirisi: Her zaman yardımlarınız için teşekkürler.", null, null),
                 LearningExercise("jac1u4e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "敬具", listOf("Saygılarımla", "O konuya ilişkin bilgi vereceğiz.", "Her zaman yardımlarınız için teşekkürler."), listOf("Saygılarımla"), "Cümlenin çevirisi: Saygılarımla", null, null),
-                LearningExercise("jac1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 拝啓 春の候、...", "", listOf(), listOf("拝啓 春の候、..."), "Türkçesi: Saygıdeğer, bahar mevsiminde...", "拝啓 春の候、...", "拝啓 春の候、..."))))),
-        LearningUnit("JA-C1-U5", "Müzakere ve Diplomasi", "İncelikli müzakere dili kur.", listOf(
+                LearningExercise("jac1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 拝啓 春の候、...", "", listOf(), listOf("拝啓 春の候、..."), "Türkçesi: Saygıdeğer, bahar mevsiminde...", "拝啓 春の候、...", "拝啓 春の候、...")))))
+
+    private fun u69(): LearningUnit = LearningUnit("JA-C1-U5", "Müzakere ve Diplomasi", "İncelikli müzakere dili kur.", listOf(
             LearningLesson("JA-C1-U5-L1", "Müzakere ve Diplomasi — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'交渉' ne anlama gelir?", "", listOf("anlaşma/mutabakat", "müzakere", "uzlaşma"), listOf("müzakere"), "交渉は何時間も続きました。 — Müzakere saatlerce sürdü.", null, null),
                 LearningExercise("jac1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'妥協' ne anlama gelir?", "", listOf("uzlaşma", "taviz", "duruş/pozisyon"), listOf("uzlaşma"), "妥協は公平です。 — Uzlaşma adil.", null, null),
@@ -1785,8 +1950,9 @@ object WorldCourseJA {
             LearningLesson("JA-C1-U5-L5", "Müzakere ve Diplomasi — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jac1u5e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "私たちの立場は変わりません。", listOf("Duruşumuz değişmiyor.", "Uzlaşma adil.", "Mutabakat geç sağlandı."), listOf("Duruşumuz değişmiyor."), "Cümlenin çevirisi: Duruşumuz değişmiyor.", null, null),
                 LearningExercise("jac1u5e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "合意は遅く成立しました。", listOf("Taviz gerekliydi.", "Duruşumuz değişmiyor.", "Mutabakat geç sağlandı."), listOf("Mutabakat geç sağlandı."), "Cümlenin çevirisi: Mutabakat geç sağlandı.", null, null),
-                LearningExercise("jac1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 交渉は何時間も続きました。", "", listOf(), listOf("交渉は何時間も続きました。"), "Türkçesi: Müzakere saatlerce sürdü.", "交渉は何時間も続きました。", "交渉は何時間も続きました。"))))),
-        LearningUnit("JA-C1-U6", "İnce Anlam Farkları", "Yakın anlamlı ifadeleri ayırt et.", listOf(
+                LearningExercise("jac1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 交渉は何時間も続きました。", "", listOf(), listOf("交渉は何時間も続きました。"), "Türkçesi: Müzakere saatlerce sürdü.", "交渉は何時間も続きました。", "交渉は何時間も続きました。")))))
+
+    private fun u70(): LearningUnit = LearningUnit("JA-C1-U6", "İnce Anlam Farkları", "Yakın anlamlı ifadeleri ayırt et.", listOf(
             LearningLesson("JA-C1-U6-L1", "İnce Anlam Farkları — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'どうやら' ne anlama gelir?", "", listOf("anlaşılan", "sözde/adıyla bilinen", "titiz/ayrıntılı"), listOf("anlaşılan"), "どうやら彼が正しいようです。 — Anlaşılan o haklı.", null, null),
                 LearningExercise("jac1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'いわゆる' ne anlama gelir?", "", listOf("etkili", "muhtemelen", "sözde/adıyla bilinen"), listOf("sözde/adıyla bilinen"), "いわゆる専門家が話しました。 — Sözde bir uzman konuştu.", null, null),
@@ -1812,8 +1978,9 @@ object WorldCourseJA {
             LearningLesson("JA-C1-U6-L5", "İnce Anlam Farkları — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jac1u6e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "おそらく間違いでしょう。", listOf("Sözde bir uzman konuştu.", "Titiz bir plan gerekli.", "Muhtemelen bir hata."), listOf("Muhtemelen bir hata."), "Cümlenin çevirisi: Muhtemelen bir hata.", null, null),
                 LearningExercise("jac1u6e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "綿密な計画が必要です。", listOf("Muhtemelen bir hata.", "Titiz bir plan gerekli.", "Bu yöntem etkili."), listOf("Titiz bir plan gerekli."), "Cümlenin çevirisi: Titiz bir plan gerekli.", null, null),
-                LearningExercise("jac1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: どうやら彼が正しいようです。", "", listOf(), listOf("どうやら彼が正しいようです。"), "Türkçesi: Anlaşılan o haklı.", "どうやら彼が正しいようです。", "どうやら彼が正しいようです。"))))),
-        LearningUnit("JA-C1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: どうやら彼が正しいようです。", "", listOf(), listOf("どうやら彼が正しいようです。"), "Türkçesi: Anlaşılan o haklı.", "どうやら彼が正しいようです。", "どうやら彼が正しいようです。")))))
+
+    private fun u71(): LearningUnit = LearningUnit("JA-C1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C1-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac1k_e116", Skill.VOCABULARY, "Doğru çeviriyi seç", "'iş nezaketi selamı' ifadesinin Japonca karşılığı hangisi?", "", listOf("出典", "お世話になっております", "検討"), listOf("お世話になっております"), "Örnek: いつもお世話になっております。 — Her zaman yardımlarınız için teşekkürler.", null, null),
                 LearningExercise("jac1k_e141", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bu yöntem umut verici.", "Algı bizi sık yanıltır.", "Mutabakat geç sağlandı."), listOf("Mutabakat geç sağlandı."), "Söylenen cümle: 合意は遅く成立しました。", "合意は遅く成立しました。", null),
@@ -1837,8 +2004,9 @@ object WorldCourseJA {
                 LearningExercise("jac1k_e60", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は経験で変わります。", "", listOf("一石二鳥", "認識", "観念"), listOf("認識"), "Doğru cümle: 認識は経験で変わります。 — Kavrayış deneyimle değişir.", null, null),
                 LearningExercise("jac1k_e195", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 私たちの立場は変わりません。", "", listOf(), listOf("私たちの立場は変わりません。"), "Türkçesi: Duruşumuz değişmiyor.", "私たちの立場は変わりません。", "私たちの立場は変わりません。"),
                 LearningExercise("jac1k_e159", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Ona söylemek atın kulağına dua okumak gibi.", "Raftan botamochi düştü; beklenmedik şanstı.", "Sözde bir uzman konuştu."), listOf("Sözde bir uzman konuştu."), "Söylenen cümle: いわゆる専門家が話しました。", "いわゆる専門家が話しました。", null),
-                LearningExercise("jac1k_e54", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "この___は広く共有されています。", "", listOf("拝啓", "添付", "観念"), listOf("観念"), "Doğru cümle: この観念は広く共有されています。 — Bu anlayış geniş kabul görüyor.", null, null))))),
-        LearningUnit("JA-C1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac1k_e54", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "この___は広く共有されています。", "", listOf("拝啓", "添付", "観念"), listOf("観念"), "Doğru cümle: この観念は広く共有されています。 — Bu anlayış geniş kabul görüyor.", null, null)))))
+
+    private fun u72(): LearningUnit = LearningUnit("JA-C1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C1-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac1k_e8", Skill.VOCABULARY, "Doğru çeviriyi seç", "'çözümleme' ifadesinin Japonca karşılığı hangisi?", "", listOf("拝啓", "分析", "棚からぼたもち"), listOf("分析"), "Örnek: 分析は十年のデータを扱います。 — Çözümleme on yıllık veriyi ele alıyor.", null, null),
                 LearningExercise("jac1k_e84", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "彼に言っても___です。", "", listOf("馬の耳に念仏", "一石二鳥", "猫の手も借りたい"), listOf("馬の耳に念仏"), "Doğru cümle: 彼に言っても馬の耳に念仏です。 — Ona söylemek atın kulağına dua okumak gibi.", null, null),
@@ -1862,8 +2030,9 @@ object WorldCourseJA {
                 LearningExercise("jac1k_e50", Skill.VOCABULARY, "Doğru çeviriyi seç", "'düşünce/anlayış' ifadesinin Japonca karşılığı hangisi?", "", listOf("観念", "分析", "検討"), listOf("観念"), "Örnek: この観念は広く共有されています。 — Bu anlayış geniş kabul görüyor.", null, null),
                 LearningExercise("jac1k_e178", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "おそらく間違いでしょう。", listOf("Uzlaşma adil.", "Muhtemelen bir hata.", "Müzakere saatlerce sürdü."), listOf("Muhtemelen bir hata."), "Cümlenin çevirisi: Muhtemelen bir hata.", null, null),
                 LearningExercise("jac1k_e148", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "私たちの立場は変わりません。", listOf("Duruşumuz değişmiyor.", "Anlaşılan o haklı.", "Sözde bir uzman konuştu."), listOf("Duruşumuz değişmiyor."), "Cümlenin çevirisi: Duruşumuz değişmiyor.", null, null),
-                LearningExercise("jac1k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "今日は___ほど忙しいです。", "", listOf("立場", "どうやら", "猫の手も借りたい"), listOf("猫の手も借りたい"), "Doğru cümle: 今日は猫の手も借りたいほど忙しいです。 — Bugün kedi pençesi bile ödünç alınacak kadar yoğunum.", null, null))))),
-        LearningUnit("JA-C1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac1k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "今日は___ほど忙しいです。", "", listOf("立場", "どうやら", "猫の手も借りたい"), listOf("猫の手も借りたい"), "Doğru cümle: 今日は猫の手も借りたいほど忙しいです。 — Bugün kedi pençesi bile ödünç alınacak kadar yoğunum.", null, null)))))
+
+    private fun u73(): LearningUnit = LearningUnit("JA-C1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C1-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac1k_e58", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "認識は経験で変わります。", listOf("Kavrayış deneyimle değişir.", "Bu bir taşla iki kuş.", "Bugün kedi pençesi bile ödünç alınacak kadar yoğunum."), listOf("Kavrayış deneyimle değişir."), "Cümlenin çevirisi: Kavrayış deneyimle değişir.", null, null),
                 LearningExercise("jac1k_e157", Skill.VOCABULARY, "Doğru anlamı seç", "'いわゆる' ne anlama gelir?", "", listOf("yöntem", "sözde/adıyla bilinen", "kaynak (alıntı)"), listOf("sözde/adıyla bilinen"), "いわゆる専門家が話しました。 — Sözde bir uzman konuştu.", null, null),
@@ -1887,8 +2056,9 @@ object WorldCourseJA {
                 LearningExercise("jac1k_e28", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "この手法は有望です。", listOf("Saygıdeğer, bahar mevsiminde...", "Özgeçmişi ekliyorum.", "Bu yöntem umut verici."), listOf("Bu yöntem umut verici."), "Cümlenin çevirisi: Bu yöntem umut verici.", null, null),
                 LearningExercise("jac1k_e161", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "いわゆる専門家が話しました。", listOf("Sözde bir uzman konuştu.", "Mutabakat geç sağlandı.", "Duruşumuz değişmiyor."), listOf("Sözde bir uzman konuştu."), "Cümlenin çevirisi: Sözde bir uzman konuştu.", null, null),
                 LearningExercise("jac1k_e52", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "この観念は広く共有されています。", listOf("Duruşumuz değişmiyor.", "Bu anlayış geniş kabul görüyor.", "Mutabakat geç sağlandı."), listOf("Bu anlayış geniş kabul görüyor."), "Cümlenin çevirisi: Bu anlayış geniş kabul görüyor.", null, null),
-                LearningExercise("jac1k_e198", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 出典は信頼できます。", "", listOf(), listOf("出典は信頼できます。"), "Türkçesi: Kaynak güvenilir.", "出典は信頼できます。", "出典は信頼できます。"))))),
-        LearningUnit("JA-C1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac1k_e198", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 出典は信頼できます。", "", listOf(), listOf("出典は信頼できます。"), "Türkçesi: Kaynak güvenilir.", "出典は信頼できます。", "出典は信頼できます。")))))
+
+    private fun u74(): LearningUnit = LearningUnit("JA-C1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C1-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac1k_e23", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "出典は信頼できます。", listOf("Bilinç hâlâ bir muamma.", "Bu kavramı tanımlamak zor.", "Kaynak güvenilir."), listOf("Kaynak güvenilir."), "Cümlenin çevirisi: Kaynak güvenilir.", null, null),
                 LearningExercise("jac1k_e196", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: この方法は効果的です。", "", listOf(), listOf("この方法は効果的です。"), "Türkçesi: Bu yöntem etkili.", "この方法は効果的です。", "この方法は効果的です。"),
@@ -1912,8 +2082,9 @@ object WorldCourseJA {
                 LearningExercise("jac1k_e5", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "この論文は議論を呼んでいます。", listOf("Kavrayış deneyimle değişir.", "Bu bir taşla iki kuş.", "Bu makale tartışma yaratıyor."), listOf("Bu makale tartışma yaratıyor."), "Cümlenin çevirisi: Bu makale tartışma yaratıyor.", null, null),
                 LearningExercise("jac1k_e86", Skill.VOCABULARY, "Doğru çeviriyi seç", "'beklenmedik şans' ifadesinin Japonca karşılığı hangisi?", "", listOf("棚からぼたもち", "概念", "観念"), listOf("棚からぼたもち"), "Örnek: 棚からぼたもちでした。 — Raftan botamochi düştü; beklenmedik şanstı.", null, null),
                 LearningExercise("jac1k_e145", Skill.VOCABULARY, "Doğru anlamı seç", "'立場' ne anlama gelir?", "", listOf("duruş/pozisyon", "iş nezaketi selamı", "müzakere"), listOf("duruş/pozisyon"), "私たちの立場は変わりません。 — Duruşumuz değişmiyor.", null, null),
-                LearningExercise("jac1k_e74", Skill.VOCABULARY, "Doğru çeviriyi seç", "'kuyu dibindeki kurbağa' ifadesinin Japonca karşılığı hangisi?", "", listOf("拝啓", "添付", "井の中の蛙"), listOf("井の中の蛙"), "Örnek: 井の中の蛙になるな。 — Kuyudaki kurbağa olma.", null, null))))),
-        LearningUnit("JA-C1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac1k_e74", Skill.VOCABULARY, "Doğru çeviriyi seç", "'kuyu dibindeki kurbağa' ifadesinin Japonca karşılığı hangisi?", "", listOf("拝啓", "添付", "井の中の蛙"), listOf("井の中の蛙"), "Örnek: 井の中の蛙になるな。 — Kuyudaki kurbağa olma.", null, null)))))
+
+    private fun u75(): LearningUnit = LearningUnit("JA-C1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C1-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac1k_e16", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "明日この問題を検討します。", listOf("Kuyudaki kurbağa olma.", "Bu konuyu yarın değerlendireceğiz.", "Bugün kedi pençesi bile ödünç alınacak kadar yoğunum."), listOf("Bu konuyu yarın değerlendireceğiz."), "Cümlenin çevirisi: Bu konuyu yarın değerlendireceğiz.", null, null),
                 LearningExercise("jac1k_e189", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 意識はまだ謎です。", "", listOf(), listOf("意識はまだ謎です。"), "Türkçesi: Bilinç hâlâ bir muamma.", "意識はまだ謎です。", "意識はまだ謎です。"),
@@ -1937,8 +2108,9 @@ object WorldCourseJA {
                 LearningExercise("jac1k_e65", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "それは一石二鳥です。", listOf("Müzakere saatlerce sürdü.", "Bu bir taşla iki kuş.", "Her zaman yardımlarınız için teşekkürler."), listOf("Bu bir taşla iki kuş."), "Cümlenin çevirisi: Bu bir taşla iki kuş.", null, null),
                 LearningExercise("jac1k_e188", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 出典は信頼できます。", "", listOf(), listOf("出典は信頼できます。"), "Türkçesi: Kaynak güvenilir.", "出典は信頼できます。", "出典は信頼できます。"),
                 LearningExercise("jac1k_e135", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Taviz gerekliydi.", "Uzlaşma adil.", "Mutabakat geç sağlandı."), listOf("Taviz gerekliydi."), "Söylenen cümle: 譲歩が必要でした。", "譲歩が必要でした。", null),
-                LearningExercise("jac1k_e3", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bilinç hâlâ bir muamma.", "Bu makale tartışma yaratıyor.", "Algı bizi sık yanıltır."), listOf("Bu makale tartışma yaratıyor."), "Söylenen cümle: この論文は議論を呼んでいます。", "この論文は議論を呼んでいます。", null))))),
-        LearningUnit("JA-C1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac1k_e3", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bilinç hâlâ bir muamma.", "Bu makale tartışma yaratıyor.", "Algı bizi sık yanıltır."), listOf("Bu makale tartışma yaratıyor."), "Söylenen cümle: この論文は議論を呼んでいます。", "この論文は議論を呼んでいます。", null)))))
+
+    private fun u76(): LearningUnit = LearningUnit("JA-C1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C1-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac1k_e171", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Titiz bir plan gerekli.", "Kavrayış deneyimle değişir.", "Bu bir taşla iki kuş."), listOf("Titiz bir plan gerekli."), "Söylenen cümle: 綿密な計画が必要です。", "綿密な計画が必要です。", null),
                 LearningExercise("jac1k_e36", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___はよく私たちを欺きます。", "", listOf("意識", "概念", "知覚"), listOf("知覚"), "Doğru cümle: 知覚はよく私たちを欺きます。 — Algı bizi sık yanıltır.", null, null),
@@ -1962,8 +2134,9 @@ object WorldCourseJA {
                 LearningExercise("jac1k_e163", Skill.VOCABULARY, "Doğru anlamı seç", "'効果的' ne anlama gelir?", "", listOf("etkili", "bir taşla iki kuş", "çok yoğun olmak"), listOf("etkili"), "この方法は効果的です。 — Bu yöntem etkili.", null, null),
                 LearningExercise("jac1k_e68", Skill.VOCABULARY, "Doğru çeviriyi seç", "'çok yoğun olmak' ifadesinin Japonca karşılığı hangisi?", "", listOf("猫の手も借りたい", "手法", "知覚"), listOf("猫の手も借りたい"), "Örnek: 今日は猫の手も借りたいほど忙しいです。 — Bugün kedi pençesi bile ödünç alınacak kadar yoğunum.", null, null),
                 LearningExercise("jac1k_e75", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Ona söylemek atın kulağına dua okumak gibi.", "Kuyudaki kurbağa olma.", "Bugün kedi pençesi bile ödünç alınacak kadar yoğunum."), listOf("Kuyudaki kurbağa olma."), "Söylenen cümle: 井の中の蛙になるな。", "井の中の蛙になるな。", null),
-                LearningExercise("jac1k_e41", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "意識はまだ謎です。", listOf("Kaynak güvenilir.", "Bu yöntem umut verici.", "Bilinç hâlâ bir muamma."), listOf("Bilinç hâlâ bir muamma."), "Cümlenin çevirisi: Bilinç hâlâ bir muamma.", null, null))))),
-        LearningUnit("JA-C1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac1k_e41", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "意識はまだ謎です。", listOf("Kaynak güvenilir.", "Bu yöntem umut verici.", "Bilinç hâlâ bir muamma."), listOf("Bilinç hâlâ bir muamma."), "Cümlenin çevirisi: Bilinç hâlâ bir muamma.", null, null)))))
+
+    private fun u77(): LearningUnit = LearningUnit("JA-C1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C1-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac1k_e109", Skill.VOCABULARY, "Doğru anlamı seç", "'敬具' ne anlama gelir?", "", listOf("saygılarımla (mektup sonu)", "kavram", "düşünce/anlayış"), listOf("saygılarımla (mektup sonu)"), "敬具 — Saygılarımla", null, null),
                 LearningExercise("jac1k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'kavram' ifadesinin Japonca karşılığı hangisi?", "", listOf("妥協", "概念", "交渉"), listOf("概念"), "Örnek: この概念は定義しにくいです。 — Bu kavramı tanımlamak zor.", null, null),
@@ -1987,8 +2160,9 @@ object WorldCourseJA {
                 LearningExercise("jac1k_e56", Skill.VOCABULARY, "Doğru çeviriyi seç", "'kavrayış/idrak' ifadesinin Japonca karşılığı hangisi?", "", listOf("井の中の蛙", "馬の耳に念仏", "認識"), listOf("認識"), "Örnek: 認識は経験で変わります。 — Kavrayış deneyimle değişir.", null, null),
                 LearningExercise("jac1k_e11", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "分析は十年のデータを扱います。", listOf("Muhtemelen bir hata.", "Çözümleme on yıllık veriyi ele alıyor.", "Titiz bir plan gerekli."), listOf("Çözümleme on yıllık veriyi ele alıyor."), "Cümlenin çevirisi: Çözümleme on yıllık veriyi ele alıyor.", null, null),
                 LearningExercise("jac1k_e57", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Kaynak güvenilir.", "Kavrayış deneyimle değişir.", "Bu konuyu yarın değerlendireceğiz."), listOf("Kavrayış deneyimle değişir."), "Söylenen cümle: 認識は経験で変わります。", "認識は経験で変わります。", null),
-                LearningExercise("jac1k_e114", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___", "", listOf("意識", "敬具", "知覚"), listOf("敬具"), "Doğru cümle: 敬具 — Saygılarımla", null, null))))),
-        LearningUnit("JA-C1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac1k_e114", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___", "", listOf("意識", "敬具", "知覚"), listOf("敬具"), "Doğru cümle: 敬具 — Saygılarımla", null, null)))))
+
+    private fun u78(): LearningUnit = LearningUnit("JA-C1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C1-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac1k_e187", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: この論文は議論を呼んでいます。", "", listOf(), listOf("この論文は議論を呼んでいます。"), "Türkçesi: Bu makale tartışma yaratıyor.", "この論文は議論を呼んでいます。", "この論文は議論を呼んでいます。"),
                 LearningExercise("jac1k_e46", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "この概念は定義しにくいです。", listOf("Bilinç hâlâ bir muamma.", "Bu anlayış geniş kabul görüyor.", "Bu kavramı tanımlamak zor."), listOf("Bu kavramı tanımlamak zor."), "Cümlenin çevirisi: Bu kavramı tanımlamak zor.", null, null),
@@ -2012,8 +2186,9 @@ object WorldCourseJA {
                 LearningExercise("jac1k_e137", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "譲歩が必要でした。", listOf("Bu anlayış geniş kabul görüyor.", "Taviz gerekliydi.", "Bu kavramı tanımlamak zor."), listOf("Taviz gerekliydi."), "Cümlenin çevirisi: Taviz gerekliydi.", null, null),
                 LearningExercise("jac1k_e70", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "今日は猫の手も借りたいほど忙しいです。", listOf("Saygıdeğer, bahar mevsiminde...", "Bugün kedi pençesi bile ödünç alınacak kadar yoğunum.", "Raftan botamochi düştü; beklenmedik şanstı."), listOf("Bugün kedi pençesi bile ödünç alınacak kadar yoğunum."), "Cümlenin çevirisi: Bugün kedi pençesi bile ödünç alınacak kadar yoğunum.", null, null),
                 LearningExercise("jac1k_e22", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "出典は信頼できます。", listOf("Kaynak güvenilir.", "Titiz bir plan gerekli.", "Muhtemelen bir hata."), listOf("Kaynak güvenilir."), "Cümlenin çevirisi: Kaynak güvenilir.", null, null),
-                LearningExercise("jac1k_e186", Skill.GRAMMAR, "Doğru seçeneği işaretle", "___彼が正しいようです。", "", listOf("どうやら", "いわゆる", "おそらくは"), listOf("どうやら"), "どうやら...ようだ: kanıta dayalı izlenim.", null, null))))),
-        LearningUnit("JA-C1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac1k_e186", Skill.GRAMMAR, "Doğru seçeneği işaretle", "___彼が正しいようです。", "", listOf("どうやら", "いわゆる", "おそらくは"), listOf("どうやら"), "どうやら...ようだ: kanıta dayalı izlenim.", null, null)))))
+
+    private fun u79(): LearningUnit = LearningUnit("JA-C1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C1-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac1k_e33", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bu bir taşla iki kuş.", "Bugün kedi pençesi bile ödünç alınacak kadar yoğunum.", "Algı bizi sık yanıltır."), listOf("Algı bizi sık yanıltır."), "Söylenen cümle: 知覚はよく私たちを欺きます。", "知覚はよく私たちを欺きます。", null),
                 LearningExercise("jac1k_e194", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 妥協は公平です。", "", listOf(), listOf("妥協は公平です。"), "Türkçesi: Uzlaşma adil.", "妥協は公平です。", "妥協は公平です。"),
@@ -2037,8 +2212,9 @@ object WorldCourseJA {
                 LearningExercise("jac1k_e132", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___は公平です。", "", listOf("拝啓", "妥協", "棚からぼたもち"), listOf("妥協"), "Doğru cümle: 妥協は公平です。 — Uzlaşma adil.", null, null),
                 LearningExercise("jac1k_e165", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Titiz bir plan gerekli.", "Bu yöntem etkili.", "Sözde bir uzman konuştu."), listOf("Bu yöntem etkili."), "Söylenen cümle: この方法は効果的です。", "この方法は効果的です。", null),
                 LearningExercise("jac1k_e130", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "妥協は公平です。", listOf("Uzlaşma adil.", "Bu yöntem umut verici.", "Algı bizi sık yanıltır."), listOf("Uzlaşma adil."), "Cümlenin çevirisi: Uzlaşma adil.", null, null),
-                LearningExercise("jac1k_e97", Skill.VOCABULARY, "Doğru anlamı seç", "'添付' ne anlama gelir?", "", listOf("anlaşma/mutabakat", "duruş/pozisyon", "ek (dosya)"), listOf("ek (dosya)"), "履歴書を添付します。 — Özgeçmişi ekliyorum.", null, null))))),
-        LearningUnit("JA-C1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac1k_e97", Skill.VOCABULARY, "Doğru anlamı seç", "'添付' ne anlama gelir?", "", listOf("anlaşma/mutabakat", "duruş/pozisyon", "ek (dosya)"), listOf("ek (dosya)"), "履歴書を添付します。 — Özgeçmişi ekliyorum.", null, null)))))
+
+    private fun u80(): LearningUnit = LearningUnit("JA-C1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C1-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac1k_e140", Skill.VOCABULARY, "Doğru çeviriyi seç", "'anlaşma/mutabakat' ifadesinin Japonca karşılığı hangisi?", "", listOf("合意", "添付", "につきまして"), listOf("合意"), "Örnek: 合意は遅く成立しました。 — Mutabakat geç sağlandı.", null, null),
                 LearningExercise("jac1k_e139", Skill.VOCABULARY, "Doğru anlamı seç", "'合意' ne anlama gelir?", "", listOf("boşa nasihat", "anlaşma/mutabakat", "kuyu dibindeki kurbağa"), listOf("anlaşma/mutabakat"), "合意は遅く成立しました。 — Mutabakat geç sağlandı.", null, null),
@@ -2062,8 +2238,9 @@ object WorldCourseJA {
                 LearningExercise("jac1k_e82", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "彼に言っても馬の耳に念仏です。", listOf("Saygılarımla", "Her zaman yardımlarınız için teşekkürler.", "Ona söylemek atın kulağına dua okumak gibi."), listOf("Ona söylemek atın kulağına dua okumak gibi."), "Cümlenin çevirisi: Ona söylemek atın kulağına dua okumak gibi.", null, null),
                 LearningExercise("jac1k_e192", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 拝啓 春の候、...", "", listOf(), listOf("拝啓 春の候、..."), "Türkçesi: Saygıdeğer, bahar mevsiminde...", "拝啓 春の候、...", "拝啓 春の候、..."),
                 LearningExercise("jac1k_e124", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "交渉は何時間も続きました。", listOf("Saygılarımla", "Müzakere saatlerce sürdü.", "O konuya ilişkin bilgi vereceğiz."), listOf("Müzakere saatlerce sürdü."), "Cümlenin çevirisi: Müzakere saatlerce sürdü.", null, null),
-                LearningExercise("jac1k_e61", Skill.VOCABULARY, "Doğru anlamı seç", "'一石二鳥' ne anlama gelir?", "", listOf("çok yoğun olmak", "kuyu dibindeki kurbağa", "bir taşla iki kuş"), listOf("bir taşla iki kuş"), "それは一石二鳥です。 — Bu bir taşla iki kuş.", null, null))))),
-        LearningUnit("JA-C2-U1", "Üslup ve İncelik", "Üslubu bağlama göre ustaca ayarla.", listOf(
+                LearningExercise("jac1k_e61", Skill.VOCABULARY, "Doğru anlamı seç", "'一石二鳥' ne anlama gelir?", "", listOf("çok yoğun olmak", "kuyu dibindeki kurbağa", "bir taşla iki kuş"), listOf("bir taşla iki kuş"), "それは一石二鳥です。 — Bu bir taşla iki kuş.", null, null)))))
+
+    private fun u81(): LearningUnit = LearningUnit("JA-C2-U1", "Üslup ve İncelik", "Üslubu bağlama göre ustaca ayarla.", listOf(
             LearningLesson("JA-C2-U1-L1", "Üslup ve İncelik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'微妙' ne anlama gelir?", "", listOf("konuşma tonu", "özlü", "incelikli/nazik"), listOf("incelikli/nazik"), "言葉の微妙な違いは難しいです。 — Sözcüklerin incelikli farkları zordur.", null, null),
                 LearningExercise("jac2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'口調' ne anlama gelir?", "", listOf("ince/zarif", "konuşma tonu", "ima"), listOf("konuşma tonu"), "彼の口調は少し皮肉でした。 — Konuşma tonu biraz alaycıydı.", null, null),
@@ -2089,8 +2266,9 @@ object WorldCourseJA {
             LearningLesson("JA-C2-U1-L5", "Üslup ve İncelik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jac2u1e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "繊細な表現が光ります。", listOf("Yanıtı özlüydü.", "İnce ifadeler göz dolduruyor.", "Konuşma tonu biraz alaycıydı."), listOf("İnce ifadeler göz dolduruyor."), "Cümlenin çevirisi: İnce ifadeler göz dolduruyor.", null, null),
                 LearningExercise("jac2u1e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "彼の答えは簡潔でした。", listOf("Yanıtı özlüydü.", "İmayı yalnızca o fark etti.", "İnce ifadeler göz dolduruyor."), listOf("Yanıtı özlüydü."), "Cümlenin çevirisi: Yanıtı özlüydü.", null, null),
-                LearningExercise("jac2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 言葉の微妙な違いは難しいです。", "", listOf(), listOf("言葉の微妙な違いは難しいです。"), "Türkçesi: Sözcüklerin incelikli farkları zordur.", "言葉の微妙な違いは難しいです。", "言葉の微妙な違いは難しいです。"))))),
-        LearningUnit("JA-C2-U2", "Edebî Dil", "Edebî metinlerin katmanlarını çözümle.", listOf(
+                LearningExercise("jac2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 言葉の微妙な違いは難しいです。", "", listOf(), listOf("言葉の微妙な違いは難しいです。"), "Türkçesi: Sözcüklerin incelikli farkları zordur.", "言葉の微妙な違いは難しいです。", "言葉の微妙な違いは難しいです。")))))
+
+    private fun u82(): LearningUnit = LearningUnit("JA-C2-U2", "Edebî Dil", "Edebî metinlerin katmanlarını çözümle.", listOf(
             LearningLesson("JA-C2-U2-L1", "Edebî Dil — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'隠喩' ne anlama gelir?", "", listOf("lirik", "metafor", "simge"), listOf("metafor"), "隠喩が全文を貫いています。 — Metafor bütün metni kat ediyor.", null, null),
                 LearningExercise("jac2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'象徴' ne anlama gelir?", "", listOf("simge", "anlatıcı", "ironi"), listOf("simge"), "海は自由の象徴です。 — Deniz özgürlüğün simgesidir.", null, null),
@@ -2116,8 +2294,9 @@ object WorldCourseJA {
             LearningLesson("JA-C2-U2-L5", "Edebî Dil — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jac2u2e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "この文章の皮肉は明らかです。", listOf("Bu metindeki ironi çok açık.", "Deniz özgürlüğün simgesidir.", "Üslup çok lirik."), listOf("Bu metindeki ironi çok açık."), "Cümlenin çevirisi: Bu metindeki ironi çok açık.", null, null),
                 LearningExercise("jac2u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "文体はとても叙情的です。", listOf("Anlatıcı defalarca değişiyor.", "Bu metindeki ironi çok açık.", "Üslup çok lirik."), listOf("Üslup çok lirik."), "Cümlenin çevirisi: Üslup çok lirik.", null, null),
-                LearningExercise("jac2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 隠喩が全文を貫いています。", "", listOf(), listOf("隠喩が全文を貫いています。"), "Türkçesi: Metafor bütün metni kat ediyor.", "隠喩が全文を貫いています。", "隠喩が全文を貫いています。"))))),
-        LearningUnit("JA-C2-U3", "Uzmanlık Söylemi", "Uzmanlık alanı söylemine hâkim ol.", listOf(
+                LearningExercise("jac2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 隠喩が全文を貫いています。", "", listOf(), listOf("隠喩が全文を貫いています。"), "Türkçesi: Metafor bütün metni kat ediyor.", "隠喩が全文を貫いています。", "隠喩が全文を貫いています。")))))
+
+    private fun u83(): LearningUnit = LearningUnit("JA-C2-U3", "Uzmanlık Söylemi", "Uzmanlık alanı söylemine hâkim ol.", listOf(
             LearningLesson("JA-C2-U3-L1", "Uzmanlık Söylemi — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'専門用語' ne anlama gelir?", "", listOf("uzmanlık terimi", "söylem", "ikna gücü"), listOf("uzmanlık terimi"), "専門用語は正確であるべきです。 — Terimler kesin olmalı.", null, null),
                 LearningExercise("jac2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'言説' ne anlama gelir?", "", listOf("inceleme yazısı", "ayırt etme", "söylem"), listOf("söylem"), "学術的言説には規範があります。 — Akademik söylemin normları vardır.", null, null),
@@ -2143,8 +2322,9 @@ object WorldCourseJA {
             LearningLesson("JA-C2-U3-L5", "Uzmanlık Söylemi — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jac2u3e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "この二つの概念を区別すべきです。", listOf("Akademik söylemin normları vardır.", "İkna gücü yüksek bir tartışma.", "Bu iki kavram ayırt edilmeli."), listOf("Bu iki kavram ayırt edilmeli."), "Cümlenin çevirisi: Bu iki kavram ayırt edilmeli.", null, null),
                 LearningExercise("jac2u3e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "説得力のある議論です。", listOf("Bu iki kavram ayırt edilmeli.", "İkna gücü yüksek bir tartışma.", "Bu inceleme üç bölümden oluşuyor."), listOf("İkna gücü yüksek bir tartışma."), "Cümlenin çevirisi: İkna gücü yüksek bir tartışma.", null, null),
-                LearningExercise("jac2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 専門用語は正確であるべきです。", "", listOf(), listOf("専門用語は正確であるべきです。"), "Türkçesi: Terimler kesin olmalı.", "専門用語は正確であるべきです。", "専門用語は正確であるべきです。"))))),
-        LearningUnit("JA-C2-U4", "Kültürel Derinlik", "Kültürel referansları derinlemesine kavra.", listOf(
+                LearningExercise("jac2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 専門用語は正確であるべきです。", "", listOf(), listOf("専門用語は正確であるべきです。"), "Türkçesi: Terimler kesin olmalı.", "専門用語は正確であるべきです。", "専門用語は正確であるべきです。")))))
+
+    private fun u84(): LearningUnit = LearningUnit("JA-C2-U4", "Kültürel Derinlik", "Kültürel referansları derinlemesine kavra.", listOf(
             LearningLesson("JA-C2-U4-L1", "Kültürel Derinlik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'世界観' ne anlama gelir?", "", listOf("mizaç", "kökleşmiş", "dünya görüşü"), listOf("dünya görüşü"), "彼の世界観は揺らぎました。 — Dünya görüşü sarsıldı.", null, null),
                 LearningExercise("jac2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'気質' ne anlama gelir?", "", listOf("miras", "mizaç", "zamanın ruhu"), listOf("mizaç"), "地域によって気質が違います。 — Mizaç bölgeye göre değişir.", null, null),
@@ -2170,8 +2350,9 @@ object WorldCourseJA {
             LearningLesson("JA-C2-U4-L5", "Kültürel Derinlik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jac2u4e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "文化遺産は守られています。", listOf("Bu gelenek kültüre derin kök salmış.", "Kültürel miras korunuyor.", "Mizaç bölgeye göre değişir."), listOf("Kültürel miras korunuyor."), "Cümlenin çevirisi: Kültürel miras korunuyor.", null, null),
                 LearningExercise("jac2u4e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "この伝統は文化に深く根付いています。", listOf("Bu gelenek kültüre derin kök salmış.", "Bu roman zamanın ruhunu yakalıyor.", "Kültürel miras korunuyor."), listOf("Bu gelenek kültüre derin kök salmış."), "Cümlenin çevirisi: Bu gelenek kültüre derin kök salmış.", null, null),
-                LearningExercise("jac2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 彼の世界観は揺らぎました。", "", listOf(), listOf("彼の世界観は揺らぎました。"), "Türkçesi: Dünya görüşü sarsıldı.", "彼の世界観は揺らぎました。", "彼の世界観は揺らぎました。"))))),
-        LearningUnit("JA-C2-U5", "Retorik Ustalığı", "Retorik araçları etkili kullan.", listOf(
+                LearningExercise("jac2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 彼の世界観は揺らぎました。", "", listOf(), listOf("彼の世界観は揺らぎました。"), "Türkçesi: Dünya görüşü sarsıldı.", "彼の世界観は揺らぎました。", "彼の世界観は揺らぎました。")))))
+
+    private fun u85(): LearningUnit = LearningUnit("JA-C2-U5", "Retorik Ustalığı", "Retorik araçları etkili kullan.", listOf(
             LearningLesson("JA-C2-U5-L1", "Retorik Ustalığı — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'修辞' ne anlama gelir?", "", listOf("keskin", "retorik", "mecazlı ifade"), listOf("retorik"), "彼の修辞は見事です。 — Retoriği kusursuz.", null, null),
                 LearningExercise("jac2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'比喩表現' ne anlama gelir?", "", listOf("mecazlı ifade", "belagat", "üslup heybeti"), listOf("mecazlı ifade"), "比喩表現がさりげなく効いています。 — Mecazlı ifadeler incelikle etki ediyor.", null, null),
@@ -2197,8 +2378,9 @@ object WorldCourseJA {
             LearningLesson("JA-C2-U5-L5", "Retorik Ustalığı — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jac2u5e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "文章に風格があります。", listOf("Yazıda asil bir hava var.", "Mecazlı ifadeler incelikle etki ediyor.", "Eleştirisi son derece keskin."), listOf("Yazıda asil bir hava var."), "Cümlenin çevirisi: Yazıda asil bir hava var.", null, null),
                 LearningExercise("jac2u5e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "彼の批評は非常に鋭いです。", listOf("Belagati meşhur.", "Yazıda asil bir hava var.", "Eleştirisi son derece keskin."), listOf("Eleştirisi son derece keskin."), "Cümlenin çevirisi: Eleştirisi son derece keskin.", null, null),
-                LearningExercise("jac2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 彼の修辞は見事です。", "", listOf(), listOf("彼の修辞は見事です。"), "Türkçesi: Retoriği kusursuz.", "彼の修辞は見事です。", "彼の修辞は見事です。"))))),
-        LearningUnit("JA-C2-U6", "Ana Dil Düzeyinde Akıcılık", "Ana dil konuşuru düzeyinde incelik kazan.", listOf(
+                LearningExercise("jac2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 彼の修辞は見事です。", "", listOf(), listOf("彼の修辞は見事です。"), "Türkçesi: Retoriği kusursuz.", "彼の修辞は見事です。", "彼の修辞は見事です。")))))
+
+    private fun u86(): LearningUnit = LearningUnit("JA-C2-U6", "Ana Dil Düzeyinde Akıcılık", "Ana dil konuşuru düzeyinde incelik kazan.", listOf(
             LearningLesson("JA-C2-U6-L1", "Ana Dil Düzeyinde Akıcılık — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("jac2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'使いこなす' ne anlama gelir?", "", listOf("ustaca kullanmak", "rahatlıkla", "doğal telaffuz"), listOf("ustaca kullanmak"), "彼女は五か国語を使いこなします。 — Beş dili ustaca kullanıyor.", null, null),
                 LearningExercise("jac2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'楽々と' ne anlama gelir?", "", listOf("rafinelik", "akıcı", "rahatlıkla"), listOf("rahatlıkla"), "楽々と文体を切り替えます。 — Üslubu rahatlıkla değiştiriyor.", null, null),
@@ -2224,8 +2406,9 @@ object WorldCourseJA {
             LearningLesson("JA-C2-U6-L5", "Ana Dil Düzeyinde Akıcılık — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("jac2u6e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "彼女は日本語を流暢に話します。", listOf("Üslubu rahatlıkla değiştiriyor.", "Doğal bir telaffuzla konuşuyor.", "Japoncayı akıcı konuşuyor."), listOf("Japoncayı akıcı konuşuyor."), "Cümlenin çevirisi: Japoncayı akıcı konuşuyor.", null, null),
                 LearningExercise("jac2u6e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "自然な発音で話します。", listOf("Japoncayı akıcı konuşuyor.", "Doğal bir telaffuzla konuşuyor.", "Rafine bir ifade."), listOf("Doğal bir telaffuzla konuşuyor."), "Cümlenin çevirisi: Doğal bir telaffuzla konuşuyor.", null, null),
-                LearningExercise("jac2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 彼女は五か国語を使いこなします。", "", listOf(), listOf("彼女は五か国語を使いこなします。"), "Türkçesi: Beş dili ustaca kullanıyor.", "彼女は五か国語を使いこなします。", "彼女は五か国語を使いこなします。"))))),
-        LearningUnit("JA-C2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 彼女は五か国語を使いこなします。", "", listOf(), listOf("彼女は五か国語を使いこなします。"), "Türkçesi: Beş dili ustaca kullanıyor.", "彼女は五か国語を使いこなします。", "彼女は五か国語を使いこなします。")))))
+
+    private fun u87(): LearningUnit = LearningUnit("JA-C2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C2-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac2k_e27", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("İnce ifadeler göz dolduruyor.", "Rafine bir ifade.", "Doğal bir telaffuzla konuşuyor."), listOf("İnce ifadeler göz dolduruyor."), "Söylenen cümle: 繊細な表現が光ります。", "繊細な表現が光ります。", null),
                 LearningExercise("jac2k_e102", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "地域によって___が違います。", "", listOf("気質", "遺産", "修辞"), listOf("気質"), "Doğru cümle: 地域によって気質が違います。 — Mizaç bölgeye göre değişir.", null, null),
@@ -2249,8 +2432,9 @@ object WorldCourseJA {
                 LearningExercise("jac2k_e140", Skill.VOCABULARY, "Doğru çeviriyi seç", "'keskin' ifadesinin Japonca karşılığı hangisi?", "", listOf("鋭い", "気質", "時代精神"), listOf("鋭い"), "Örnek: 彼の批評は非常に鋭いです。 — Eleştirisi son derece keskin.", null, null),
                 LearningExercise("jac2k_e22", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "彼の答えは簡潔でした。", listOf("Yanıtı özlüydü.", "Doğal bir telaffuzla konuşuyor.", "Japoncayı akıcı konuşuyor."), listOf("Yanıtı özlüydü."), "Cümlenin çevirisi: Yanıtı özlüydü.", null, null),
                 LearningExercise("jac2k_e26", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ince/zarif' ifadesinin Japonca karşılığı hangisi?", "", listOf("根付いた", "繊細", "時代精神"), listOf("繊細"), "Örnek: 繊細な表現が光ります。 — İnce ifadeler göz dolduruyor.", null, null),
-                LearningExercise("jac2k_e103", Skill.VOCABULARY, "Doğru anlamı seç", "'時代精神' ne anlama gelir?", "", listOf("konuşma tonu", "zamanın ruhu", "incelikli/nazik"), listOf("zamanın ruhu"), "この小説は時代精神を捉えています。 — Bu roman zamanın ruhunu yakalıyor.", null, null))))),
-        LearningUnit("JA-C2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac2k_e103", Skill.VOCABULARY, "Doğru anlamı seç", "'時代精神' ne anlama gelir?", "", listOf("konuşma tonu", "zamanın ruhu", "incelikli/nazik"), listOf("zamanın ruhu"), "この小説は時代精神を捉えています。 — Bu roman zamanın ruhunu yakalıyor.", null, null)))))
+
+    private fun u88(): LearningUnit = LearningUnit("JA-C2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C2-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac2k_e63", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Terimler kesin olmalı.", "Dünya görüşü sarsıldı.", "Mizaç bölgeye göre değişir."), listOf("Terimler kesin olmalı."), "Söylenen cümle: 専門用語は正確であるべきです。", "専門用語は正確であるべきです。", null),
                 LearningExercise("jac2k_e112", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "この伝統は文化に深く根付いています。", listOf("Bu gelenek kültüre derin kök salmış.", "İkna gücü yüksek bir tartışma.", "Bu iki kavram ayırt edilmeli."), listOf("Bu gelenek kültüre derin kök salmış."), "Cümlenin çevirisi: Bu gelenek kültüre derin kök salmış.", null, null),
@@ -2274,8 +2458,9 @@ object WorldCourseJA {
                 LearningExercise("jac2k_e46", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "語り手が何度も変わります。", listOf("Deniz özgürlüğün simgesidir.", "Üslup çok lirik.", "Anlatıcı defalarca değişiyor."), listOf("Anlatıcı defalarca değişiyor."), "Cümlenin çevirisi: Anlatıcı defalarca değişiyor.", null, null),
                 LearningExercise("jac2k_e15", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Konuşma tonu biraz alaycıydı.", "Yanıtı özlüydü.", "İmayı yalnızca o fark etti."), listOf("İmayı yalnızca o fark etti."), "Söylenen cümle: 彼女だけがほのめかしに気づきました。", "彼女だけがほのめかしに気づきました。", null),
                 LearningExercise("jac2k_e8", Skill.VOCABULARY, "Doğru çeviriyi seç", "'konuşma tonu' ifadesinin Japonca karşılığı hangisi?", "", listOf("世界観", "口調", "区別"), listOf("口調"), "Örnek: 彼の口調は少し皮肉でした。 — Konuşma tonu biraz alaycıydı.", null, null),
-                LearningExercise("jac2k_e167", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "洗練された表現です。", listOf("Bu inceleme üç bölümden oluşuyor.", "İkna gücü yüksek bir tartışma.", "Rafine bir ifade."), listOf("Rafine bir ifade."), "Cümlenin çevirisi: Rafine bir ifade.", null, null))))),
-        LearningUnit("JA-C2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac2k_e167", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "洗練された表現です。", listOf("Bu inceleme üç bölümden oluşuyor.", "İkna gücü yüksek bir tartışma.", "Rafine bir ifade."), listOf("Rafine bir ifade."), "Cümlenin çevirisi: Rafine bir ifade.", null, null)))))
+
+    private fun u89(): LearningUnit = LearningUnit("JA-C2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C2-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac2k_e71", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "学術的言説には規範があります。", listOf("Akademik söylemin normları vardır.", "Üslup çok lirik.", "Bu metindeki ironi çok açık."), listOf("Akademik söylemin normları vardır."), "Cümlenin çevirisi: Akademik söylemin normları vardır.", null, null),
                 LearningExercise("jac2k_e151", Skill.VOCABULARY, "Doğru anlamı seç", "'使いこなす' ne anlama gelir?", "", listOf("rahatlıkla", "rafinelik", "ustaca kullanmak"), listOf("ustaca kullanmak"), "彼女は五か国語を使いこなします。 — Beş dili ustaca kullanıyor.", null, null),
@@ -2299,8 +2484,9 @@ object WorldCourseJA {
                 LearningExercise("jac2k_e85", Skill.VOCABULARY, "Doğru anlamı seç", "'区別' ne anlama gelir?", "", listOf("uzmanlık terimi", "ayırt etme", "ironi"), listOf("ayırt etme"), "この二つの概念を区別すべきです。 — Bu iki kavram ayırt edilmeli.", null, null),
                 LearningExercise("jac2k_e188", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 彼の答えは簡潔でした。", "", listOf(), listOf("彼の答えは簡潔でした。"), "Türkçesi: Yanıtı özlüydü.", "彼の答えは簡潔でした。", "彼の答えは簡潔でした。"),
                 LearningExercise("jac2k_e153", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Beş dili ustaca kullanıyor.", "Sözcüklerin incelikli farkları zordur.", "Konuşma tonu biraz alaycıydı."), listOf("Beş dili ustaca kullanıyor."), "Söylenen cümle: 彼女は五か国語を使いこなします。", "彼女は五か国語を使いこなします。", null),
-                LearningExercise("jac2k_e174", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___で話します。", "", listOf("自然な発音", "使いこなす", "楽々と"), listOf("自然な発音"), "Doğru cümle: 自然な発音で話します。 — Doğal bir telaffuzla konuşuyor.", null, null))))),
-        LearningUnit("JA-C2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac2k_e174", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___で話します。", "", listOf("自然な発音", "使いこなす", "楽々と"), listOf("自然な発音"), "Doğru cümle: 自然な発音で話します。 — Doğal bir telaffuzla konuşuyor.", null, null)))))
+
+    private fun u90(): LearningUnit = LearningUnit("JA-C2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C2-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac2k_e143", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "彼の批評は非常に鋭いです。", listOf("Eleştirisi son derece keskin.", "Üslubu rahatlıkla değiştiriyor.", "Rafine bir ifade."), listOf("Eleştirisi son derece keskin."), "Cümlenin çevirisi: Eleştirisi son derece keskin.", null, null),
                 LearningExercise("jac2k_e181", Skill.GRAMMAR, "Doğru seçeneği işaretle", "彼のスピーチは短くて___でした。", "", listOf("簡潔", "簡単さ", "簡略に"), listOf("簡潔"), "Na-sıfat: 簡潔でした.", null, null),
@@ -2324,8 +2510,9 @@ object WorldCourseJA {
                 LearningExercise("jac2k_e129", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bu metindeki ironi çok açık.", "Mecazlı ifadeler incelikle etki ediyor.", "Üslup çok lirik."), listOf("Mecazlı ifadeler incelikle etki ediyor."), "Söylenen cümle: 比喩表現がさりげなく効いています。", "比喩表現がさりげなく効いています。", null),
                 LearningExercise("jac2k_e37", Skill.VOCABULARY, "Doğru anlamı seç", "'象徴' ne anlama gelir?", "", listOf("simge", "ikna gücü", "ayırt etme"), listOf("simge"), "海は自由の象徴です。 — Deniz özgürlüğün simgesidir.", null, null),
                 LearningExercise("jac2k_e78", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "この___は三部構成です。", "", listOf("根付いた", "論考", "時代精神"), listOf("論考"), "Doğru cümle: この論考は三部構成です。 — Bu inceleme üç bölümden oluşuyor.", null, null),
-                LearningExercise("jac2k_e1", Skill.VOCABULARY, "Doğru anlamı seç", "'微妙' ne anlama gelir?", "", listOf("incelikli/nazik", "konuşma tonu", "ima"), listOf("incelikli/nazik"), "言葉の微妙な違いは難しいです。 — Sözcüklerin incelikli farkları zordur.", null, null))))),
-        LearningUnit("JA-C2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac2k_e1", Skill.VOCABULARY, "Doğru anlamı seç", "'微妙' ne anlama gelir?", "", listOf("incelikli/nazik", "konuşma tonu", "ima"), listOf("incelikli/nazik"), "言葉の微妙な違いは難しいです。 — Sözcüklerin incelikli farkları zordur.", null, null)))))
+
+    private fun u91(): LearningUnit = LearningUnit("JA-C2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C2-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac2k_e179", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "彼女は日本語を流暢に話します。", listOf("Japoncayı akıcı konuşuyor.", "Retoriği kusursuz.", "Mecazlı ifadeler incelikle etki ediyor."), listOf("Japoncayı akıcı konuşuyor."), "Cümlenin çevirisi: Japoncayı akıcı konuşuyor.", null, null),
                 LearningExercise("jac2k_e12", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "彼の___は少し皮肉でした。", "", listOf("口調", "繊細", "隠喩"), listOf("口調"), "Doğru cümle: 彼の口調は少し皮肉でした。 — Konuşma tonu biraz alaycıydı.", null, null),
@@ -2349,8 +2536,9 @@ object WorldCourseJA {
                 LearningExercise("jac2k_e166", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "洗練された表現です。", listOf("Rafine bir ifade.", "Mizaç bölgeye göre değişir.", "Bu roman zamanın ruhunu yakalıyor."), listOf("Rafine bir ifade."), "Cümlenin çevirisi: Rafine bir ifade.", null, null),
                 LearningExercise("jac2k_e164", Skill.VOCABULARY, "Doğru çeviriyi seç", "'rafinelik' ifadesinin Japonca karşılığı hangisi?", "", listOf("微妙", "口調", "洗練"), listOf("洗練"), "Örnek: 洗練された表現です。 — Rafine bir ifade.", null, null),
                 LearningExercise("jac2k_e104", Skill.VOCABULARY, "Doğru çeviriyi seç", "'zamanın ruhu' ifadesinin Japonca karşılığı hangisi?", "", listOf("時代精神", "専門用語", "言説"), listOf("時代精神"), "Örnek: この小説は時代精神を捉えています。 — Bu roman zamanın ruhunu yakalıyor.", null, null),
-                LearningExercise("jac2k_e199", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 海は自由の象徴です。", "", listOf(), listOf("海は自由の象徴です。"), "Türkçesi: Deniz özgürlüğün simgesidir.", "海は自由の象徴です。", "海は自由の象徴です。"))))),
-        LearningUnit("JA-C2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac2k_e199", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 海は自由の象徴です。", "", listOf(), listOf("海は自由の象徴です。"), "Türkçesi: Deniz özgürlüğün simgesidir.", "海は自由の象徴です。", "海は自由の象徴です。")))))
+
+    private fun u92(): LearningUnit = LearningUnit("JA-C2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C2-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac2k_e195", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 文章に風格があります。", "", listOf(), listOf("文章に風格があります。"), "Türkçesi: Yazıda asil bir hava var.", "文章に風格があります。", "文章に風格があります。"),
                 LearningExercise("jac2k_e76", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "この論考は三部構成です。", listOf("Bu inceleme üç bölümden oluşuyor.", "Konuşma tonu biraz alaycıydı.", "İmayı yalnızca o fark etti."), listOf("Bu inceleme üç bölümden oluşuyor."), "Cümlenin çevirisi: Bu inceleme üç bölümden oluşuyor.", null, null),
@@ -2374,8 +2562,9 @@ object WorldCourseJA {
                 LearningExercise("jac2k_e95", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "彼の世界観は揺らぎました。", listOf("Yazıda asil bir hava var.", "Beş dili ustaca kullanıyor.", "Dünya görüşü sarsıldı."), listOf("Dünya görüşü sarsıldı."), "Cümlenin çevirisi: Dünya görüşü sarsıldı.", null, null),
                 LearningExercise("jac2k_e192", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 彼の世界観は揺らぎました。", "", listOf(), listOf("彼の世界観は揺らぎました。"), "Türkçesi: Dünya görüşü sarsıldı.", "彼の世界観は揺らぎました。", "彼の世界観は揺らぎました。"),
                 LearningExercise("jac2k_e18", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "彼女だけが___に気づきました。", "", listOf("洗練", "自然な発音", "ほのめかし"), listOf("ほのめかし"), "Doğru cümle: 彼女だけがほのめかしに気づきました。 — İmayı yalnızca o fark etti.", null, null),
-                LearningExercise("jac2k_e93", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Mecazlı ifadeler incelikle etki ediyor.", "Dünya görüşü sarsıldı.", "Retoriği kusursuz."), listOf("Dünya görüşü sarsıldı."), "Söylenen cümle: 彼の世界観は揺らぎました。", "彼の世界観は揺らぎました。", null))))),
-        LearningUnit("JA-C2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac2k_e93", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Mecazlı ifadeler incelikle etki ediyor.", "Dünya görüşü sarsıldı.", "Retoriği kusursuz."), listOf("Dünya görüşü sarsıldı."), "Söylenen cümle: 彼の世界観は揺らぎました。", "彼の世界観は揺らぎました。", null)))))
+
+    private fun u93(): LearningUnit = LearningUnit("JA-C2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C2-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac2k_e69", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Doğal bir telaffuzla konuşuyor.", "Japoncayı akıcı konuşuyor.", "Akademik söylemin normları vardır."), listOf("Akademik söylemin normları vardır."), "Söylenen cümle: 学術的言説には規範があります。", "学術的言説には規範があります。", null),
                 LearningExercise("jac2k_e98", Skill.VOCABULARY, "Doğru çeviriyi seç", "'mizaç' ifadesinin Japonca karşılığı hangisi?", "", listOf("微妙", "気質", "流暢"), listOf("気質"), "Örnek: 地域によって気質が違います。 — Mizaç bölgeye göre değişir.", null, null),
@@ -2399,8 +2588,9 @@ object WorldCourseJA {
                 LearningExercise("jac2k_e191", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: この論考は三部構成です。", "", listOf(), listOf("この論考は三部構成です。"), "Türkçesi: Bu inceleme üç bölümden oluşuyor.", "この論考は三部構成です。", "この論考は三部構成です。"),
                 LearningExercise("jac2k_e108", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "この小説は___を捉えています。", "", listOf("論考", "説得力", "時代精神"), listOf("時代精神"), "Doğru cümle: この小説は時代精神を捉えています。 — Bu roman zamanın ruhunu yakalıyor.", null, null),
                 LearningExercise("jac2k_e56", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ironi' ifadesinin Japonca karşılığı hangisi?", "", listOf("論考", "説得力", "皮肉"), listOf("皮肉"), "Örnek: この文章の皮肉は明らかです。 — Bu metindeki ironi çok açık.", null, null),
-                LearningExercise("jac2k_e198", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 彼の答えは簡潔でした。", "", listOf(), listOf("彼の答えは簡潔でした。"), "Türkçesi: Yanıtı özlüydü.", "彼の答えは簡潔でした。", "彼の答えは簡潔でした。"))))),
-        LearningUnit("JA-C2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac2k_e198", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 彼の答えは簡潔でした。", "", listOf(), listOf("彼の答えは簡潔でした。"), "Türkçesi: Yanıtı özlüydü.", "彼の答えは簡潔でした。", "彼の答えは簡潔でした。")))))
+
+    private fun u94(): LearningUnit = LearningUnit("JA-C2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C2-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac2k_e52", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "文体はとても叙情的です。", listOf("Yazıda asil bir hava var.", "Üslup çok lirik.", "Eleştirisi son derece keskin."), listOf("Üslup çok lirik."), "Cümlenin çevirisi: Üslup çok lirik.", null, null),
                 LearningExercise("jac2k_e48", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___が何度も変わります。", "", listOf("語り手", "雄弁", "鋭い"), listOf("語り手"), "Doğru cümle: 語り手が何度も変わります。 — Anlatıcı defalarca değişiyor.", null, null),
@@ -2424,8 +2614,9 @@ object WorldCourseJA {
                 LearningExercise("jac2k_e49", Skill.VOCABULARY, "Doğru anlamı seç", "'叙情的' ne anlama gelir?", "", listOf("doğal telaffuz", "lirik", "rafinelik"), listOf("lirik"), "文体はとても叙情的です。 — Üslup çok lirik.", null, null),
                 LearningExercise("jac2k_e115", Skill.VOCABULARY, "Doğru anlamı seç", "'遺産' ne anlama gelir?", "", listOf("ayırt etme", "dünya görüşü", "miras"), listOf("miras"), "文化遺産は守られています。 — Kültürel miras korunuyor.", null, null),
                 LearningExercise("jac2k_e54", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "文体はとても___です。", "", listOf("世界観", "気質", "叙情的"), listOf("叙情的"), "Doğru cümle: 文体はとても叙情的です。 — Üslup çok lirik.", null, null),
-                LearningExercise("jac2k_e171", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Doğal bir telaffuzla konuşuyor.", "Bu metindeki ironi çok açık.", "Terimler kesin olmalı."), listOf("Doğal bir telaffuzla konuşuyor."), "Söylenen cümle: 自然な発音で話します。", "自然な発音で話します。", null))))),
-        LearningUnit("JA-C2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac2k_e171", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Doğal bir telaffuzla konuşuyor.", "Bu metindeki ironi çok açık.", "Terimler kesin olmalı."), listOf("Doğal bir telaffuzla konuşuyor."), "Söylenen cümle: 自然な発音で話します。", "自然な発音で話します。", null)))))
+
+    private fun u95(): LearningUnit = LearningUnit("JA-C2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C2-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac2k_e200", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: この文章の皮肉は明らかです。", "", listOf(), listOf("この文章の皮肉は明らかです。"), "Türkçesi: Bu metindeki ironi çok açık.", "この文章の皮肉は明らかです。", "この文章の皮肉は明らかです。"),
                 LearningExercise("jac2k_e34", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "隠喩が全文を貫いています。", listOf("Yanıtı özlüydü.", "Metafor bütün metni kat ediyor.", "İmayı yalnızca o fark etti."), listOf("Metafor bütün metni kat ediyor."), "Cümlenin çevirisi: Metafor bütün metni kat ediyor.", null, null),
@@ -2449,8 +2640,9 @@ object WorldCourseJA {
                 LearningExercise("jac2k_e152", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ustaca kullanmak' ifadesinin Japonca karşılığı hangisi?", "", listOf("皮肉", "使いこなす", "叙情的"), listOf("使いこなす"), "Örnek: 彼女は五か国語を使いこなします。 — Beş dili ustaca kullanıyor.", null, null),
                 LearningExercise("jac2k_e5", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "言葉の微妙な違いは難しいです。", listOf("Bu metindeki ironi çok açık.", "Terimler kesin olmalı.", "Sözcüklerin incelikli farkları zordur."), listOf("Sözcüklerin incelikli farkları zordur."), "Cümlenin çevirisi: Sözcüklerin incelikli farkları zordur.", null, null),
                 LearningExercise("jac2k_e43", Skill.VOCABULARY, "Doğru anlamı seç", "'語り手' ne anlama gelir?", "", listOf("retorik", "mecazlı ifade", "anlatıcı"), listOf("anlatıcı"), "語り手が何度も変わります。 — Anlatıcı defalarca değişiyor.", null, null),
-                LearningExercise("jac2k_e134", Skill.VOCABULARY, "Doğru çeviriyi seç", "'belagat' ifadesinin Japonca karşılığı hangisi?", "", listOf("象徴", "雄弁", "隠喩"), listOf("雄弁"), "Örnek: 彼女の雄弁は有名です。 — Belagati meşhur.", null, null))))),
-        LearningUnit("JA-C2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("jac2k_e134", Skill.VOCABULARY, "Doğru çeviriyi seç", "'belagat' ifadesinin Japonca karşılığı hangisi?", "", listOf("象徴", "雄弁", "隠喩"), listOf("雄弁"), "Örnek: 彼女の雄弁は有名です。 — Belagati meşhur.", null, null)))))
+
+    private fun u96(): LearningUnit = LearningUnit("JA-C2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("JA-C2-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("jac2k_e149", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "文章に風格があります。", listOf("Dünya görüşü sarsıldı.", "Mizaç bölgeye göre değişir.", "Yazıda asil bir hava var."), listOf("Yazıda asil bir hava var."), "Cümlenin çevirisi: Yazıda asil bir hava var.", null, null),
                 LearningExercise("jac2k_e117", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Kültürel miras korunuyor.", "Bu inceleme üç bölümden oluşuyor.", "İkna gücü yüksek bir tartışma."), listOf("Kültürel miras korunuyor."), "Söylenen cümle: 文化遺産は守られています。", "文化遺産は守られています。", null),
@@ -2474,5 +2666,5 @@ object WorldCourseJA {
                 LearningExercise("jac2k_e101", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "地域によって気質が違います。", listOf("Bu iki kavram ayırt edilmeli.", "Mizaç bölgeye göre değişir.", "İkna gücü yüksek bir tartışma."), listOf("Mizaç bölgeye göre değişir."), "Cümlenin çevirisi: Mizaç bölgeye göre değişir.", null, null),
                 LearningExercise("jac2k_e42", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "海は自由の___です。", "", listOf("微妙", "象徴", "流暢"), listOf("象徴"), "Doğru cümle: 海は自由の象徴です。 — Deniz özgürlüğün simgesidir.", null, null),
                 LearningExercise("jac2k_e131", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "比喩表現がさりげなく効いています。", listOf("Bu gelenek kültüre derin kök salmış.", "Kültürel miras korunuyor.", "Mecazlı ifadeler incelikle etki ediyor."), listOf("Mecazlı ifadeler incelikle etki ediyor."), "Cümlenin çevirisi: Mecazlı ifadeler incelikle etki ediyor.", null, null),
-                LearningExercise("jac2k_e145", Skill.VOCABULARY, "Doğru anlamı seç", "'風格' ne anlama gelir?", "", listOf("üslup heybeti", "miras", "retorik"), listOf("üslup heybeti"), "文章に風格があります。 — Yazıda asil bir hava var.", null, null))))))
+                LearningExercise("jac2k_e145", Skill.VOCABULARY, "Doğru anlamı seç", "'風格' ne anlama gelir?", "", listOf("üslup heybeti", "miras", "retorik"), listOf("üslup heybeti"), "文章に風格があります。 — Yazıda asil bir hava var.", null, null)))))
 }

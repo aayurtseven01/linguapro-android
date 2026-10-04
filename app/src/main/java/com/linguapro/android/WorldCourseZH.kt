@@ -1,9 +1,106 @@
 package com.linguapro.android
 
-/** Çince (ZH) tam müfredat: A1-C2, 36 ünite, 108 ders. Türkçe yönergeli, elle küratörlü içerik. */
+/** Çince (ZH) tam müfredat: A1-C2, 96 ünite (temel + Pekiştirme Kampı). Türkçe yönergeli içerik. */
 object WorldCourseZH {
-    val units: List<LearningUnit> = listOf(
-        LearningUnit("ZH-A1-U1", "Selamlaşma ve Tanışma", "Selamlaş, kendini tanıt ve vedalaş.", listOf(
+    val units: List<LearningUnit> by lazy { listOf(
+        u1(),
+        u2(),
+        u3(),
+        u4(),
+        u5(),
+        u6(),
+        u7(),
+        u8(),
+        u9(),
+        u10(),
+        u11(),
+        u12(),
+        u13(),
+        u14(),
+        u15(),
+        u16(),
+        u17(),
+        u18(),
+        u19(),
+        u20(),
+        u21(),
+        u22(),
+        u23(),
+        u24(),
+        u25(),
+        u26(),
+        u27(),
+        u28(),
+        u29(),
+        u30(),
+        u31(),
+        u32(),
+        u33(),
+        u34(),
+        u35(),
+        u36(),
+        u37(),
+        u38(),
+        u39(),
+        u40(),
+        u41(),
+        u42(),
+        u43(),
+        u44(),
+        u45(),
+        u46(),
+        u47(),
+        u48(),
+        u49(),
+        u50(),
+        u51(),
+        u52(),
+        u53(),
+        u54(),
+        u55(),
+        u56(),
+        u57(),
+        u58(),
+        u59(),
+        u60(),
+        u61(),
+        u62(),
+        u63(),
+        u64(),
+        u65(),
+        u66(),
+        u67(),
+        u68(),
+        u69(),
+        u70(),
+        u71(),
+        u72(),
+        u73(),
+        u74(),
+        u75(),
+        u76(),
+        u77(),
+        u78(),
+        u79(),
+        u80(),
+        u81(),
+        u82(),
+        u83(),
+        u84(),
+        u85(),
+        u86(),
+        u87(),
+        u88(),
+        u89(),
+        u90(),
+        u91(),
+        u92(),
+        u93(),
+        u94(),
+        u95(),
+        u96()) }
+
+    private fun u1(): LearningUnit = LearningUnit("ZH-A1-U1", "Selamlaşma ve Tanışma", "Selamlaş, kendini tanıt ve vedalaş.", listOf(
             LearningLesson("ZH-A1-U1-L1", "Selamlaşma ve Tanışma — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zha1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'你好' ne anlama gelir?", "", listOf("teşekkürler", "hoşça kal", "merhaba"), listOf("merhaba"), "你好，我是安娜。 — Merhaba, ben Anna.", null, null),
                 LearningExercise("zha1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'谢谢' ne anlama gelir?", "", listOf("benim adım", "teşekkürler", "lütfen"), listOf("teşekkürler"), "谢谢你！ — Teşekkür ederim!", null, null),
@@ -29,8 +126,9 @@ object WorldCourseZH {
             LearningLesson("ZH-A1-U1-L5", "Selamlaşma ve Tanışma — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zha1u1e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我叫王明。", listOf("Hoşça kal, yarın görüşürüz!", "Benim adım Wang Ming.", "Teşekkür ederim!"), listOf("Benim adım Wang Ming."), "Cümlenin çevirisi: Benim adım Wang Ming.", null, null),
                 LearningExercise("zha1u1e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "再见，明天见！", listOf("Hoşça kal, yarın görüşürüz!", "Lütfen oturun.", "Benim adım Wang Ming."), listOf("Hoşça kal, yarın görüşürüz!"), "Cümlenin çevirisi: Hoşça kal, yarın görüşürüz!", null, null),
-                LearningExercise("zha1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 你好，我是安娜。", "", listOf(), listOf("你好，我是安娜。"), "Türkçesi: Merhaba, ben Anna.", "你好，我是安娜。", "你好，我是安娜。"))))),
-        LearningUnit("ZH-A1-U2", "Sayılar ve Zaman", "Sayıları say, saati ve günleri söyle.", listOf(
+                LearningExercise("zha1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 你好，我是安娜。", "", listOf(), listOf("你好，我是安娜。"), "Türkçesi: Merhaba, ben Anna.", "你好，我是安娜。", "你好，我是安娜。")))))
+
+    private fun u2(): LearningUnit = LearningUnit("ZH-A1-U2", "Sayılar ve Zaman", "Sayıları say, saati ve günleri söyle.", listOf(
             LearningLesson("ZH-A1-U2-L1", "Sayılar ve Zaman — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zha1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'二' ne anlama gelir?", "", listOf("yarın", "iki", "on"), listOf("iki"), "二月很冷。 — Şubat çok soğuk.", null, null),
                 LearningExercise("zha1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'十' ne anlama gelir?", "", listOf("on", "bugün", "saat (...da)"), listOf("on"), "现在十点。 — Saat şimdi on.", null, null),
@@ -56,8 +154,9 @@ object WorldCourseZH {
             LearningLesson("ZH-A1-U2-L5", "Sayılar ve Zaman — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zha1u2e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "现在几点？", listOf("Saat kaç?", "Saat şimdi on.", "Yarın görüşürüz!"), listOf("Saat kaç?"), "Cümlenin çevirisi: Saat kaç?", null, null),
                 LearningExercise("zha1u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "明天见！", listOf("Bugün pazartesi.", "Saat kaç?", "Yarın görüşürüz!"), listOf("Yarın görüşürüz!"), "Cümlenin çevirisi: Yarın görüşürüz!", null, null),
-                LearningExercise("zha1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 二月很冷。", "", listOf(), listOf("二月很冷。"), "Türkçesi: Şubat çok soğuk.", "二月很冷。", "二月很冷。"))))),
-        LearningUnit("ZH-A1-U3", "Yiyecek ve İçecek", "Temel yiyecekleri söyle ve sipariş ver.", listOf(
+                LearningExercise("zha1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 二月很冷。", "", listOf(), listOf("二月很冷。"), "Türkçesi: Şubat çok soğuk.", "二月很冷。", "二月很冷。")))))
+
+    private fun u3(): LearningUnit = LearningUnit("ZH-A1-U3", "Yiyecek ve İçecek", "Temel yiyecekleri söyle ve sipariş ver.", listOf(
             LearningLesson("ZH-A1-U3-L1", "Yiyecek ve İçecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zha1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'水' ne anlama gelir?", "", listOf("su", "ekmek", "elma"), listOf("su"), "请给我水。 — Lütfen bana su verin.", null, null),
                 LearningExercise("zha1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'面包' ne anlama gelir?", "", listOf("kahve", "çay", "ekmek"), listOf("ekmek"), "面包很新鲜。 — Ekmek çok taze.", null, null),
@@ -83,8 +182,9 @@ object WorldCourseZH {
             LearningLesson("ZH-A1-U3-L5", "Yiyecek ve İçecek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zha1u3e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我喜欢茶。", listOf("Ekmek çok taze.", "Elma kırmızı.", "Çayı severim."), listOf("Çayı severim."), "Cümlenin çevirisi: Çayı severim.", null, null),
                 LearningExercise("zha1u3e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "苹果是红色的。", listOf("Çayı severim.", "Elma kırmızı.", "Kahve içiyorum."), listOf("Elma kırmızı."), "Cümlenin çevirisi: Elma kırmızı.", null, null),
-                LearningExercise("zha1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 请给我水。", "", listOf(), listOf("请给我水。"), "Türkçesi: Lütfen bana su verin.", "请给我水。", "请给我水。"))))),
-        LearningUnit("ZH-A1-U4", "Aile ve İnsanlar", "Aile üyelerini tanıt.", listOf(
+                LearningExercise("zha1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 请给我水。", "", listOf(), listOf("请给我水。"), "Türkçesi: Lütfen bana su verin.", "请给我水。", "请给我水。")))))
+
+    private fun u4(): LearningUnit = LearningUnit("ZH-A1-U4", "Aile ve İnsanlar", "Aile üyelerini tanıt.", listOf(
             LearningLesson("ZH-A1-U4-L1", "Aile ve İnsanlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zha1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'家' ne anlama gelir?", "", listOf("anne", "ağabey", "ev / aile"), listOf("ev / aile"), "我家很大。 — Ailem kalabalık.", null, null),
                 LearningExercise("zha1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'妈妈' ne anlama gelir?", "", listOf("arkadaş", "anne", "baba"), listOf("anne"), "妈妈在家。 — Annem evde.", null, null),
@@ -110,8 +210,9 @@ object WorldCourseZH {
             LearningLesson("ZH-A1-U4-L5", "Aile ve İnsanlar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zha1u4e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "他是我的朋友。", listOf("Ağabeyim genç.", "O benim arkadaşım.", "Annem evde."), listOf("O benim arkadaşım."), "Cümlenin çevirisi: O benim arkadaşım.", null, null),
                 LearningExercise("zha1u4e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我哥哥很年轻。", listOf("Ağabeyim genç.", "Babam işte çok meşgul.", "O benim arkadaşım."), listOf("Ağabeyim genç."), "Cümlenin çevirisi: Ağabeyim genç.", null, null),
-                LearningExercise("zha1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我家很大。", "", listOf(), listOf("我家很大。"), "Türkçesi: Ailem kalabalık.", "我家很大。", "我家很大。"))))),
-        LearningUnit("ZH-A1-U5", "Günlük Yaşam ve Şehir", "Ev, iş ve şehir hakkında konuş.", listOf(
+                LearningExercise("zha1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我家很大。", "", listOf(), listOf("我家很大。"), "Türkçesi: Ailem kalabalık.", "我家很大。", "我家很大。")))))
+
+    private fun u5(): LearningUnit = LearningUnit("ZH-A1-U5", "Günlük Yaşam ve Şehir", "Ev, iş ve şehir hakkında konuş.", listOf(
             LearningLesson("ZH-A1-U5-L1", "Günlük Yaşam ve Şehir — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zha1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'房子' ne anlama gelir?", "", listOf("satın almak", "ev (bina)", "iş"), listOf("ev (bina)"), "房子很旧。 — Ev çok eski.", null, null),
                 LearningExercise("zha1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'工作' ne anlama gelir?", "", listOf("iş", "şehir", "oturmak"), listOf("iş"), "我去工作。 — İşe gidiyorum.", null, null),
@@ -137,8 +238,9 @@ object WorldCourseZH {
             LearningLesson("ZH-A1-U5-L5", "Günlük Yaşam ve Şehir — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zha1u5e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我住在北京。", listOf("Pekin'de oturuyorum.", "İşe gidiyorum.", "Meyve alıyoruz."), listOf("Pekin'de oturuyorum."), "Cümlenin çevirisi: Pekin'de oturuyorum.", null, null),
                 LearningExercise("zha1u5e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我们买水果。", listOf("Bu şehir çok güzel.", "Pekin'de oturuyorum.", "Meyve alıyoruz."), listOf("Meyve alıyoruz."), "Cümlenin çevirisi: Meyve alıyoruz.", null, null),
-                LearningExercise("zha1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 房子很旧。", "", listOf(), listOf("房子很旧。"), "Türkçesi: Ev çok eski.", "房子很旧。", "房子很旧。"))))),
-        LearningUnit("ZH-A1-U6", "Seyahat Temelleri", "Bilet al, yol sor, otele yerleş.", listOf(
+                LearningExercise("zha1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 房子很旧。", "", listOf(), listOf("房子很旧。"), "Türkçesi: Ev çok eski.", "房子很旧。", "房子很旧。")))))
+
+    private fun u6(): LearningUnit = LearningUnit("ZH-A1-U6", "Seyahat Temelleri", "Bilet al, yol sor, otele yerleş.", listOf(
             LearningLesson("ZH-A1-U6-L1", "Seyahat Temelleri — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zha1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'火车' ne anlama gelir?", "", listOf("tren", "bilet", "sol"), listOf("tren"), "火车九点到。 — Tren dokuzda varıyor.", null, null),
                 LearningExercise("zha1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'票' ne anlama gelir?", "", listOf("otel", "havalimanı", "bilet"), listOf("bilet"), "一张票，谢谢。 — Bir bilet, teşekkürler.", null, null),
@@ -164,8 +266,9 @@ object WorldCourseZH {
             LearningLesson("ZH-A1-U6-L5", "Seyahat Temelleri — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zha1u6e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "机场很远。", listOf("Bir bilet, teşekkürler.", "Lütfen sola gidin.", "Havalimanı çok uzak."), listOf("Havalimanı çok uzak."), "Cümlenin çevirisi: Havalimanı çok uzak.", null, null),
                 LearningExercise("zha1u6e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "请往左走。", listOf("Havalimanı çok uzak.", "Lütfen sola gidin.", "Otel şehir merkezinde."), listOf("Lütfen sola gidin."), "Cümlenin çevirisi: Lütfen sola gidin.", null, null),
-                LearningExercise("zha1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 火车九点到。", "", listOf(), listOf("火车九点到。"), "Türkçesi: Tren dokuzda varıyor.", "火车九点到。", "火车九点到。"))))),
-        LearningUnit("ZH-A1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 火车九点到。", "", listOf(), listOf("火车九点到。"), "Türkçesi: Tren dokuzda varıyor.", "火车九点到。", "火车九点到。")))))
+
+    private fun u7(): LearningUnit = LearningUnit("ZH-A1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A1-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha1k_e35", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "二月很冷。", listOf("Şubat çok soğuk.", "Çayı severim.", "Ailem kalabalık."), listOf("Şubat çok soğuk."), "Cümlenin çevirisi: Şubat çok soğuk.", null, null),
                 LearningExercise("zha1k_e115", Skill.VOCABULARY, "Doğru anlamı seç", "'朋友' ne anlama gelir?", "", listOf("çay", "ev / aile", "arkadaş"), listOf("arkadaş"), "他是我的朋友。 — O benim arkadaşım.", null, null),
@@ -189,8 +292,9 @@ object WorldCourseZH {
                 LearningExercise("zha1k_e193", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我哥哥很年轻。", "", listOf(), listOf("我哥哥很年轻。"), "Türkçesi: Ağabeyim genç.", "我哥哥很年轻。", "我哥哥很年轻。"),
                 LearningExercise("zha1k_e34", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "二月很冷。", listOf("Hoşça kal, yarın görüşürüz!", "Şubat çok soğuk.", "Lütfen oturun."), listOf("Şubat çok soğuk."), "Cümlenin çevirisi: Şubat çok soğuk.", null, null),
                 LearningExercise("zha1k_e141", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Benim adım Wang Ming.", "Şubat çok soğuk.", "Meyve alıyoruz."), listOf("Meyve alıyoruz."), "Söylenen cümle: 我们买水果。", "我们买水果。", null),
-                LearningExercise("zha1k_e69", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Lütfen sola gidin.", "Havalimanı çok uzak.", "Ekmek çok taze."), listOf("Ekmek çok taze."), "Söylenen cümle: 面包很新鲜。", "面包很新鲜。", null))))),
-        LearningUnit("ZH-A1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha1k_e69", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Lütfen sola gidin.", "Havalimanı çok uzak.", "Ekmek çok taze."), listOf("Ekmek çok taze."), "Söylenen cümle: 面包很新鲜。", "面包很新鲜。", null)))))
+
+    private fun u8(): LearningUnit = LearningUnit("ZH-A1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A1-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha1k_e186", Skill.GRAMMAR, "Doğru seçeneği işaretle", "火车九点___。", "", listOf("到", "去", "来"), listOf("到"), "Varmak fiili 到: 九点到 (dokuzda varır).", null, null),
                 LearningExercise("zha1k_e63", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Lütfen bana su verin.", "Ailem kalabalık.", "Annem evde."), listOf("Lütfen bana su verin."), "Söylenen cümle: 请给我水。", "请给我水。", null),
@@ -214,8 +318,9 @@ object WorldCourseZH {
                 LearningExercise("zha1k_e30", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___王明。", "", listOf("我叫", "苹果", "茶"), listOf("我叫"), "Doğru cümle: 我叫王明。 — Benim adım Wang Ming.", null, null),
                 LearningExercise("zha1k_e183", Skill.GRAMMAR, "Doğru seçeneği işaretle", "我___咖啡。", "", listOf("喝", "吃", "看"), listOf("喝"), "İçmek fiili 喝: 我喝咖啡 (kahve içiyorum).", null, null),
                 LearningExercise("zha1k_e168", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___在市中心。", "", listOf("再见", "酒店", "请"), listOf("酒店"), "Doğru cümle: 酒店在市中心。 — Otel şehir merkezinde.", null, null),
-                LearningExercise("zha1k_e131", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我去工作。", listOf("Ağabeyim genç.", "O benim arkadaşım.", "İşe gidiyorum."), listOf("İşe gidiyorum."), "Cümlenin çevirisi: İşe gidiyorum.", null, null))))),
-        LearningUnit("ZH-A1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha1k_e131", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我去工作。", listOf("Ağabeyim genç.", "O benim arkadaşım.", "İşe gidiyorum."), listOf("İşe gidiyorum."), "Cümlenin çevirisi: İşe gidiyorum.", null, null)))))
+
+    private fun u9(): LearningUnit = LearningUnit("ZH-A1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A1-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha1k_e51", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("O benim arkadaşım.", "Ev çok eski.", "Yarın görüşürüz!"), listOf("Yarın görüşürüz!"), "Söylenen cümle: 明天见！", "明天见！", null),
                 LearningExercise("zha1k_e160", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "一张票，谢谢。", listOf("Merhaba, ben Anna.", "Bir bilet, teşekkürler.", "Havalimanı çok uzak."), listOf("Bir bilet, teşekkürler."), "Cümlenin çevirisi: Bir bilet, teşekkürler.", null, null),
@@ -239,8 +344,9 @@ object WorldCourseZH {
                 LearningExercise("zha1k_e144", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "我们___水果。", "", listOf("你好", "谢谢", "买"), listOf("买"), "Doğru cümle: 我们买水果。 — Meyve alıyoruz.", null, null),
                 LearningExercise("zha1k_e5", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "你好，我是安娜。", listOf("Saat kaç?", "Lütfen bana su verin.", "Merhaba, ben Anna."), listOf("Merhaba, ben Anna."), "Cümlenin çevirisi: Merhaba, ben Anna.", null, null),
                 LearningExercise("zha1k_e16", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "请坐。", listOf("Kahve içiyorum.", "Lütfen oturun.", "Ekmek çok taze."), listOf("Lütfen oturun."), "Cümlenin çevirisi: Lütfen oturun.", null, null),
-                LearningExercise("zha1k_e139", Skill.VOCABULARY, "Doğru anlamı seç", "'买' ne anlama gelir?", "", listOf("elma", "satın almak", "kahve"), listOf("satın almak"), "我们买水果。 — Meyve alıyoruz.", null, null))))),
-        LearningUnit("ZH-A1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha1k_e139", Skill.VOCABULARY, "Doğru anlamı seç", "'买' ne anlama gelir?", "", listOf("elma", "satın almak", "kahve"), listOf("satın almak"), "我们买水果。 — Meyve alıyoruz.", null, null)))))
+
+    private fun u10(): LearningUnit = LearningUnit("ZH-A1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A1-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha1k_e133", Skill.VOCABULARY, "Doğru anlamı seç", "'城市' ne anlama gelir?", "", listOf("iki", "on", "şehir"), listOf("şehir"), "这个城市很漂亮。 — Bu şehir çok güzel.", null, null),
                 LearningExercise("zha1k_e130", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我去工作。", listOf("İşe gidiyorum.", "Benim adım Wang Ming.", "Şubat çok soğuk."), listOf("İşe gidiyorum."), "Cümlenin çevirisi: İşe gidiyorum.", null, null),
@@ -264,8 +370,9 @@ object WorldCourseZH {
                 LearningExercise("zha1k_e21", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Ailem kalabalık.", "Hoşça kal, yarın görüşürüz!", "Çayı severim."), listOf("Hoşça kal, yarın görüşürüz!"), "Söylenen cümle: 再见，明天见！", "再见，明天见！", null),
                 LearningExercise("zha1k_e173", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "请往左走。", listOf("Lütfen oturun.", "Lütfen sola gidin.", "Teşekkür ederim!"), listOf("Lütfen sola gidin."), "Cümlenin çevirisi: Lütfen sola gidin.", null, null),
                 LearningExercise("zha1k_e100", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "妈妈在家。", listOf("Saat kaç?", "Lütfen bana su verin.", "Annem evde."), listOf("Annem evde."), "Cümlenin çevirisi: Annem evde.", null, null),
-                LearningExercise("zha1k_e195", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我住在北京。", "", listOf(), listOf("我住在北京。"), "Türkçesi: Pekin'de oturuyorum.", "我住在北京。", "我住在北京。"))))),
-        LearningUnit("ZH-A1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha1k_e195", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我住在北京。", "", listOf(), listOf("我住在北京。"), "Türkçesi: Pekin'de oturuyorum.", "我住在北京。", "我住在北京。")))))
+
+    private fun u11(): LearningUnit = LearningUnit("ZH-A1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A1-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha1k_e55", Skill.VOCABULARY, "Doğru anlamı seç", "'点' ne anlama gelir?", "", listOf("saat (...da)", "benim adım", "iki"), listOf("saat (...da)"), "现在几点？ — Saat kaç?", null, null),
                 LearningExercise("zha1k_e99", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Annem evde.", "Hoşça kal, yarın görüşürüz!", "Benim adım Wang Ming."), listOf("Annem evde."), "Söylenen cümle: 妈妈在家。", "妈妈在家。", null),
@@ -289,8 +396,9 @@ object WorldCourseZH {
                 LearningExercise("zha1k_e108", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___工作很忙。", "", listOf("咖啡", "苹果", "爸爸"), listOf("爸爸"), "Doğru cümle: 爸爸工作很忙。 — Babam işte çok meşgul.", null, null),
                 LearningExercise("zha1k_e162", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "一张___，谢谢。", "", listOf("点", "水", "票"), listOf("票"), "Doğru cümle: 一张票，谢谢。 — Bir bilet, teşekkürler.", null, null),
                 LearningExercise("zha1k_e58", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "现在几点？", listOf("Saat kaç?", "Lütfen bana su verin.", "Ekmek çok taze."), listOf("Saat kaç?"), "Cümlenin çevirisi: Saat kaç?", null, null),
-                LearningExercise("zha1k_e103", Skill.VOCABULARY, "Doğru anlamı seç", "'爸爸' ne anlama gelir?", "", listOf("teşekkürler", "baba", "merhaba"), listOf("baba"), "爸爸工作很忙。 — Babam işte çok meşgul.", null, null))))),
-        LearningUnit("ZH-A1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha1k_e103", Skill.VOCABULARY, "Doğru anlamı seç", "'爸爸' ne anlama gelir?", "", listOf("teşekkürler", "baba", "merhaba"), listOf("baba"), "爸爸工作很忙。 — Babam işte çok meşgul.", null, null)))))
+
+    private fun u12(): LearningUnit = LearningUnit("ZH-A1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A1-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha1k_e25", Skill.VOCABULARY, "Doğru anlamı seç", "'我叫' ne anlama gelir?", "", listOf("havalimanı", "merhaba", "benim adım"), listOf("benim adım"), "我叫王明。 — Benim adım Wang Ming.", null, null),
                 LearningExercise("zha1k_e176", Skill.VOCABULARY, "Doğru çeviriyi seç", "'havalimanı' ifadesinin Çince karşılığı hangisi?", "", listOf("机场", "城市", "买"), listOf("机场"), "Örnek: 机场很远。 — Havalimanı çok uzak.", null, null),
@@ -314,8 +422,9 @@ object WorldCourseZH {
                 LearningExercise("zha1k_e97", Skill.VOCABULARY, "Doğru anlamı seç", "'妈妈' ne anlama gelir?", "", listOf("satın almak", "oturmak", "anne"), listOf("anne"), "妈妈在家。 — Annem evde.", null, null),
                 LearningExercise("zha1k_e45", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bugün pazartesi.", "Saat şimdi on.", "Yarın görüşürüz!"), listOf("Bugün pazartesi."), "Söylenen cümle: 今天星期一。", "今天星期一。", null),
                 LearningExercise("zha1k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我叫王明。", listOf("Bir bilet, teşekkürler.", "Benim adım Wang Ming.", "Tren dokuzda varıyor."), listOf("Benim adım Wang Ming."), "Cümlenin çevirisi: Benim adım Wang Ming.", null, null),
-                LearningExercise("zha1k_e175", Skill.VOCABULARY, "Doğru anlamı seç", "'机场' ne anlama gelir?", "", listOf("tren", "havalimanı", "oturmak"), listOf("havalimanı"), "机场很远。 — Havalimanı çok uzak.", null, null))))),
-        LearningUnit("ZH-A1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha1k_e175", Skill.VOCABULARY, "Doğru anlamı seç", "'机场' ne anlama gelir?", "", listOf("tren", "havalimanı", "oturmak"), listOf("havalimanı"), "机场很远。 — Havalimanı çok uzak.", null, null)))))
+
+    private fun u13(): LearningUnit = LearningUnit("ZH-A1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A1-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha1k_e14", Skill.VOCABULARY, "Doğru çeviriyi seç", "'lütfen' ifadesinin Çince karşılığı hangisi?", "", listOf("请", "火车", "票"), listOf("请"), "Örnek: 请坐。 — Lütfen oturun.", null, null),
                 LearningExercise("zha1k_e113", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我哥哥很年轻。", listOf("İşe gidiyorum.", "Bu şehir çok güzel.", "Ağabeyim genç."), listOf("Ağabeyim genç."), "Cümlenin çevirisi: Ağabeyim genç.", null, null),
@@ -339,8 +448,9 @@ object WorldCourseZH {
                 LearningExercise("zha1k_e164", Skill.VOCABULARY, "Doğru çeviriyi seç", "'otel' ifadesinin Çince karşılığı hangisi?", "", listOf("你好", "谢谢", "酒店"), listOf("酒店"), "Örnek: 酒店在市中心。 — Otel şehir merkezinde.", null, null),
                 LearningExercise("zha1k_e24", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___，明天见！", "", listOf("工作", "再见", "房子"), listOf("再见"), "Doğru cümle: 再见，明天见！ — Hoşça kal, yarın görüşürüz!", null, null),
                 LearningExercise("zha1k_e107", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "爸爸工作很忙。", listOf("Babam işte çok meşgul.", "Lütfen oturun.", "Hoşça kal, yarın görüşürüz!"), listOf("Babam işte çok meşgul."), "Cümlenin çevirisi: Babam işte çok meşgul.", null, null),
-                LearningExercise("zha1k_e145", Skill.VOCABULARY, "Doğru anlamı seç", "'住' ne anlama gelir?", "", listOf("oturmak", "arkadaş", "ev (bina)"), listOf("oturmak"), "我住在北京。 — Pekin'de oturuyorum.", null, null))))),
-        LearningUnit("ZH-A1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha1k_e145", Skill.VOCABULARY, "Doğru anlamı seç", "'住' ne anlama gelir?", "", listOf("oturmak", "arkadaş", "ev (bina)"), listOf("oturmak"), "我住在北京。 — Pekin'de oturuyorum.", null, null)))))
+
+    private fun u14(): LearningUnit = LearningUnit("ZH-A1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A1-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha1k_e95", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我家很大。", listOf("Pekin'de oturuyorum.", "Tren dokuzda varıyor.", "Ailem kalabalık."), listOf("Ailem kalabalık."), "Cümlenin çevirisi: Ailem kalabalık.", null, null),
                 LearningExercise("zha1k_e64", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "请给我水。", listOf("Otel şehir merkezinde.", "Lütfen sola gidin.", "Lütfen bana su verin."), listOf("Lütfen bana su verin."), "Cümlenin çevirisi: Lütfen bana su verin.", null, null),
@@ -364,8 +474,9 @@ object WorldCourseZH {
                 LearningExercise("zha1k_e136", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这个城市很漂亮。", listOf("İşe gidiyorum.", "Meyve alıyoruz.", "Bu şehir çok güzel."), listOf("Bu şehir çok güzel."), "Cümlenin çevirisi: Bu şehir çok güzel.", null, null),
                 LearningExercise("zha1k_e10", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "谢谢你！", listOf("Pekin'de oturuyorum.", "Tren dokuzda varıyor.", "Teşekkür ederim!"), listOf("Teşekkür ederim!"), "Cümlenin çevirisi: Teşekkür ederim!", null, null),
                 LearningExercise("zha1k_e110", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ağabey' ifadesinin Çince karşılığı hangisi?", "", listOf("工作", "城市", "哥哥"), listOf("哥哥"), "Örnek: 我哥哥很年轻。 — Ağabeyim genç.", null, null),
-                LearningExercise("zha1k_e60", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "现在几___？", "", listOf("水", "点", "明天"), listOf("点"), "Doğru cümle: 现在几点？ — Saat kaç?", null, null))))),
-        LearningUnit("ZH-A1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha1k_e60", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "现在几___？", "", listOf("水", "点", "明天"), listOf("点"), "Doğru cümle: 现在几点？ — Saat kaç?", null, null)))))
+
+    private fun u15(): LearningUnit = LearningUnit("ZH-A1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A1-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha1k_e123", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Tren dokuzda varıyor.", "Bir bilet, teşekkürler.", "Ev çok eski."), listOf("Ev çok eski."), "Söylenen cümle: 房子很旧。", "房子很旧。", null),
                 LearningExercise("zha1k_e9", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Teşekkür ederim!", "Ağabeyim genç.", "O benim arkadaşım."), listOf("Teşekkür ederim!"), "Söylenen cümle: 谢谢你！", "谢谢你！", null),
@@ -389,8 +500,9 @@ object WorldCourseZH {
                 LearningExercise("zha1k_e67", Skill.VOCABULARY, "Doğru anlamı seç", "'面包' ne anlama gelir?", "", listOf("arkadaş", "ekmek", "ağabey"), listOf("ekmek"), "面包很新鲜。 — Ekmek çok taze.", null, null),
                 LearningExercise("zha1k_e56", Skill.VOCABULARY, "Doğru çeviriyi seç", "'saat (...da)' ifadesinin Çince karşılığı hangisi?", "", listOf("咖啡", "苹果", "点"), listOf("点"), "Örnek: 现在几点？ — Saat kaç?", null, null),
                 LearningExercise("zha1k_e129", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Saat kaç?", "İşe gidiyorum.", "Yarın görüşürüz!"), listOf("İşe gidiyorum."), "Söylenen cümle: 我去工作。", "我去工作。", null),
-                LearningExercise("zha1k_e124", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "房子很旧。", listOf("Ağabeyim genç.", "Ev çok eski.", "Babam işte çok meşgul."), listOf("Ev çok eski."), "Cümlenin çevirisi: Ev çok eski.", null, null))))),
-        LearningUnit("ZH-A1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha1k_e124", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "房子很旧。", listOf("Ağabeyim genç.", "Ev çok eski.", "Babam işte çok meşgul."), listOf("Ev çok eski."), "Cümlenin çevirisi: Ev çok eski.", null, null)))))
+
+    private fun u16(): LearningUnit = LearningUnit("ZH-A1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A1-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha1k_e122", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ev (bina)' ifadesinin Çince karşılığı hangisi?", "", listOf("房子", "苹果", "茶"), listOf("房子"), "Örnek: 房子很旧。 — Ev çok eski.", null, null),
                 LearningExercise("zha1k_e120", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "他是我的___。", "", listOf("朋友", "左", "机场"), listOf("朋友"), "Doğru cümle: 他是我的朋友。 — O benim arkadaşım.", null, null),
@@ -414,8 +526,9 @@ object WorldCourseZH {
                 LearningExercise("zha1k_e71", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "面包很新鲜。", listOf("Ekmek çok taze.", "Yarın görüşürüz!", "Saat kaç?"), listOf("Ekmek çok taze."), "Cümlenin çevirisi: Ekmek çok taze.", null, null),
                 LearningExercise("zha1k_e40", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "现在十点。", listOf("Saat şimdi on.", "O benim arkadaşım.", "Ev çok eski."), listOf("Saat şimdi on."), "Cümlenin çevirisi: Saat şimdi on.", null, null),
                 LearningExercise("zha1k_e6", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___，我是安娜。", "", listOf("咖啡", "你好", "面包"), listOf("你好"), "Doğru cümle: 你好，我是安娜。 — Merhaba, ben Anna.", null, null),
-                LearningExercise("zha1k_e190", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 现在几点？", "", listOf(), listOf("现在几点？"), "Türkçesi: Saat kaç?", "现在几点？", "现在几点？"))))),
-        LearningUnit("ZH-A2-U1", "Geçmişten Bahsetmek", "Geçmişte olanları anlat.", listOf(
+                LearningExercise("zha1k_e190", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 现在几点？", "", listOf(), listOf("现在几点？"), "Türkçesi: Saat kaç?", "现在几点？", "现在几点？")))))
+
+    private fun u17(): LearningUnit = LearningUnit("ZH-A2-U1", "Geçmişten Bahsetmek", "Geçmişte olanları anlat.", listOf(
             LearningLesson("ZH-A2-U1-L1", "Geçmişten Bahsetmek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zha2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'昨天' ne anlama gelir?", "", listOf("geçen hafta", "gördü/izledi", "dün"), listOf("dün"), "昨天我工作了。 — Dün çalıştım.", null, null),
                 LearningExercise("zha2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'上个星期' ne anlama gelir?", "", listOf("yolculuk", "geçen hafta", "satın aldı"), listOf("geçen hafta"), "上个星期我生病了。 — Geçen hafta hastalandım.", null, null),
@@ -441,8 +554,9 @@ object WorldCourseZH {
             LearningLesson("ZH-A2-U1-L5", "Geçmişten Bahsetmek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zha2u1e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "那次旅行很棒。", listOf("O filmi izledim.", "O yolculuk harikaydı.", "Geçen hafta hastalandım."), listOf("O yolculuk harikaydı."), "Cümlenin çevirisi: O yolculuk harikaydı.", null, null),
                 LearningExercise("zha2u1e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我看了那部电影。", listOf("O filmi izledim.", "Ekmek aldım.", "O yolculuk harikaydı."), listOf("O filmi izledim."), "Cümlenin çevirisi: O filmi izledim.", null, null),
-                LearningExercise("zha2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 昨天我工作了。", "", listOf(), listOf("昨天我工作了。"), "Türkçesi: Dün çalıştım.", "昨天我工作了。", "昨天我工作了。"))))),
-        LearningUnit("ZH-A2-U2", "Alışveriş ve Para", "Fiyat sor, ödeme yap.", listOf(
+                LearningExercise("zha2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 昨天我工作了。", "", listOf(), listOf("昨天我工作了。"), "Türkçesi: Dün çalıştım.", "昨天我工作了。", "昨天我工作了。")))))
+
+    private fun u18(): LearningUnit = LearningUnit("ZH-A2-U2", "Alışveriş ve Para", "Fiyat sor, ödeme yap.", listOf(
             LearningLesson("ZH-A2-U2-L1", "Alışveriş ve Para — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zha2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'钱' ne anlama gelir?", "", listOf("kaç para", "para", "pahalı"), listOf("para"), "我没有很多钱。 — Çok param yok.", null, null),
                 LearningExercise("zha2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'贵' ne anlama gelir?", "", listOf("pahalı", "ucuz", "ödemek"), listOf("pahalı"), "这个手机很贵。 — Bu telefon çok pahalı.", null, null),
@@ -468,8 +582,9 @@ object WorldCourseZH {
             LearningLesson("ZH-A2-U2-L5", "Alışveriş ve Para — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zha2u2e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我来付钱。", listOf("Ben ödeyeyim.", "Bu telefon çok pahalı.", "Bu kaç para?"), listOf("Ben ödeyeyim."), "Cümlenin çevirisi: Ben ödeyeyim.", null, null),
                 LearningExercise("zha2u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这个多少钱？", listOf("Ekmek çok ucuz.", "Ben ödeyeyim.", "Bu kaç para?"), listOf("Bu kaç para?"), "Cümlenin çevirisi: Bu kaç para?", null, null),
-                LearningExercise("zha2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我没有很多钱。", "", listOf(), listOf("我没有很多钱。"), "Türkçesi: Çok param yok.", "我没有很多钱。", "我没有很多钱。"))))),
-        LearningUnit("ZH-A2-U3", "Sağlık ve Vücut", "Rahatsızlığını anlat, randevu al.", listOf(
+                LearningExercise("zha2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我没有很多钱。", "", listOf(), listOf("我没有很多钱。"), "Türkçesi: Çok param yok.", "我没有很多钱。", "我没有很多钱。")))))
+
+    private fun u19(): LearningUnit = LearningUnit("ZH-A2-U3", "Sağlık ve Vücut", "Rahatsızlığını anlat, randevu al.", listOf(
             LearningLesson("ZH-A2-U3-L1", "Sağlık ve Vücut — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zha2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'生病' ne anlama gelir?", "", listOf("hastalanmak", "doktor", "eczane"), listOf("hastalanmak"), "我生病了。 — Hastalandım.", null, null),
                 LearningExercise("zha2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'医生' ne anlama gelir?", "", listOf("baş", "ağrımak", "doktor"), listOf("doktor"), "医生十点来。 — Doktor onda geliyor.", null, null),
@@ -495,8 +610,9 @@ object WorldCourseZH {
             LearningLesson("ZH-A2-U3-L5", "Sağlık ve Vücut — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zha2u3e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我的腿很疼。", listOf("Doktor onda geliyor.", "Eczane kapandı.", "Bacağım çok ağrıyor."), listOf("Bacağım çok ağrıyor."), "Cümlenin çevirisi: Bacağım çok ağrıyor.", null, null),
                 LearningExercise("zha2u3e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "药店关门了。", listOf("Bacağım çok ağrıyor.", "Eczane kapandı.", "Başım ağrıyor."), listOf("Eczane kapandı."), "Cümlenin çevirisi: Eczane kapandı.", null, null),
-                LearningExercise("zha2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我生病了。", "", listOf(), listOf("我生病了。"), "Türkçesi: Hastalandım.", "我生病了。", "我生病了。"))))),
-        LearningUnit("ZH-A2-U4", "Hava Durumu ve Doğa", "Havayı ve mevsimleri anlat.", listOf(
+                LearningExercise("zha2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我生病了。", "", listOf(), listOf("我生病了。"), "Türkçesi: Hastalandım.", "我生病了。", "我生病了。")))))
+
+    private fun u20(): LearningUnit = LearningUnit("ZH-A2-U4", "Hava Durumu ve Doğa", "Havayı ve mevsimleri anlat.", listOf(
             LearningLesson("ZH-A2-U4-L1", "Hava Durumu ve Doğa — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zha2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'天气' ne anlama gelir?", "", listOf("yağmur yağmak", "soğuk", "hava durumu"), listOf("hava durumu"), "今天天气很好。 — Bugün hava çok güzel.", null, null),
                 LearningExercise("zha2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'下雨' ne anlama gelir?", "", listOf("sıcak", "yağmur yağmak", "güneş"), listOf("yağmur yağmak"), "明天会下雨。 — Yarın yağmur yağacak.", null, null),
@@ -522,8 +638,9 @@ object WorldCourseZH {
             LearningLesson("ZH-A2-U4-L5", "Hava Durumu ve Doğa — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zha2u4e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "夏天很热。", listOf("Kışın hava çok soğuk.", "Yazın hava çok sıcak.", "Yarın yağmur yağacak."), listOf("Yazın hava çok sıcak."), "Cümlenin çevirisi: Yazın hava çok sıcak.", null, null),
                 LearningExercise("zha2u4e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "冬天很冷。", listOf("Kışın hava çok soğuk.", "Güneş çıktı.", "Yazın hava çok sıcak."), listOf("Kışın hava çok soğuk."), "Cümlenin çevirisi: Kışın hava çok soğuk.", null, null),
-                LearningExercise("zha2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 今天天气很好。", "", listOf(), listOf("今天天气很好。"), "Türkçesi: Bugün hava çok güzel.", "今天天气很好。", "今天天气很好。"))))),
-        LearningUnit("ZH-A2-U5", "İş ve Okul", "İş ve eğitim hayatından bahset.", listOf(
+                LearningExercise("zha2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 今天天气很好。", "", listOf(), listOf("今天天气很好。"), "Türkçesi: Bugün hava çok güzel.", "今天天气很好。", "今天天气很好。")))))
+
+    private fun u21(): LearningUnit = LearningUnit("ZH-A2-U5", "İş ve Okul", "İş ve eğitim hayatından bahset.", listOf(
             LearningLesson("ZH-A2-U5-L1", "İş ve Okul — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zha2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'办公室' ne anlama gelir?", "", listOf("öğretmen", "ofis", "öğrenmek/çalışmak"), listOf("ofis"), "办公室在市中心。 — Ofis şehir merkezinde.", null, null),
                 LearningExercise("zha2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'学习' ne anlama gelir?", "", listOf("öğrenmek/çalışmak", "sınav", "toplantı yapmak"), listOf("öğrenmek/çalışmak"), "我在学习汉语。 — Çince çalışıyorum.", null, null),
@@ -549,8 +666,9 @@ object WorldCourseZH {
             LearningLesson("ZH-A2-U5-L5", "İş ve Okul — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zha2u5e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我们九点开会。", listOf("Dokuzda toplantı yapıyoruz.", "Çince çalışıyorum.", "Öğretmen çok net açıklıyor."), listOf("Dokuzda toplantı yapıyoruz."), "Cümlenin çevirisi: Dokuzda toplantı yapıyoruz.", null, null),
                 LearningExercise("zha2u5e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "老师解释得很清楚。", listOf("Sınav cuma günü.", "Dokuzda toplantı yapıyoruz.", "Öğretmen çok net açıklıyor."), listOf("Öğretmen çok net açıklıyor."), "Cümlenin çevirisi: Öğretmen çok net açıklıyor.", null, null),
-                LearningExercise("zha2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 办公室在市中心。", "", listOf(), listOf("办公室在市中心。"), "Türkçesi: Ofis şehir merkezinde.", "办公室在市中心。", "办公室在市中心。"))))),
-        LearningUnit("ZH-A2-U6", "Planlar ve Gelecek", "Gelecek planlarını anlat.", listOf(
+                LearningExercise("zha2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 办公室在市中心。", "", listOf(), listOf("办公室在市中心。"), "Türkçesi: Ofis şehir merkezinde.", "办公室在市中心。", "办公室在市中心。")))))
+
+    private fun u22(): LearningUnit = LearningUnit("ZH-A2-U6", "Planlar ve Gelecek", "Gelecek planlarını anlat.", listOf(
             LearningLesson("ZH-A2-U6-L1", "Planlar ve Gelecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zha2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'周末' ne anlama gelir?", "", listOf("hafta sonu", "plan", "tatil"), listOf("hafta sonu"), "周末我休息。 — Hafta sonu dinlenirim.", null, null),
                 LearningExercise("zha2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'计划' ne anlama gelir?", "", listOf("gezmek/turizm", "gelecek", "plan"), listOf("plan"), "我有一个夏天的计划。 — Yaz için bir planım var.", null, null),
@@ -576,8 +694,9 @@ object WorldCourseZH {
             LearningLesson("ZH-A2-U6-L5", "Planlar ve Gelecek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zha2u6e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "将来我想住在国外。", listOf("Yaz için bir planım var.", "Tatil yakında başlıyor.", "Gelecekte yurt dışında yaşamak istiyorum."), listOf("Gelecekte yurt dışında yaşamak istiyorum."), "Cümlenin çevirisi: Gelecekte yurt dışında yaşamak istiyorum.", null, null),
                 LearningExercise("zha2u6e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "假期快开始了。", listOf("Gelecekte yurt dışında yaşamak istiyorum.", "Tatil yakında başlıyor.", "Geziye çıkmayı severim."), listOf("Tatil yakında başlıyor."), "Cümlenin çevirisi: Tatil yakında başlıyor.", null, null),
-                LearningExercise("zha2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 周末我休息。", "", listOf(), listOf("周末我休息。"), "Türkçesi: Hafta sonu dinlenirim.", "周末我休息。", "周末我休息。"))))),
-        LearningUnit("ZH-A2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 周末我休息。", "", listOf(), listOf("周末我休息。"), "Türkçesi: Hafta sonu dinlenirim.", "周末我休息。", "周末我休息。")))))
+
+    private fun u23(): LearningUnit = LearningUnit("ZH-A2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A2-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha2k_e116", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sıcak' ifadesinin Çince karşılığı hangisi?", "", listOf("看了", "热", "买了"), listOf("热"), "Örnek: 夏天很热。 — Yazın hava çok sıcak.", null, null),
                 LearningExercise("zha2k_e172", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "假期快开始了。", listOf("O filmi izledim.", "O yolculuk harikaydı.", "Tatil yakında başlıyor."), listOf("Tatil yakında başlıyor."), "Cümlenin çevirisi: Tatil yakında başlıyor.", null, null),
@@ -601,8 +720,9 @@ object WorldCourseZH {
                 LearningExercise("zha2k_e41", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这个手机很贵。", listOf("O filmi izledim.", "O yolculuk harikaydı.", "Bu telefon çok pahalı."), listOf("Bu telefon çok pahalı."), "Cümlenin çevirisi: Bu telefon çok pahalı.", null, null),
                 LearningExercise("zha2k_e94", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "今天天气很好。", listOf("Bugün hava çok güzel.", "Sınav cuma günü.", "Öğretmen çok net açıklıyor."), listOf("Bugün hava çok güzel."), "Cümlenin çevirisi: Bugün hava çok güzel.", null, null),
                 LearningExercise("zha2k_e167", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我喜欢去旅游。", listOf("Başım ağrıyor.", "Eczane kapandı.", "Geziye çıkmayı severim."), listOf("Geziye çıkmayı severim."), "Cümlenin çevirisi: Geziye çıkmayı severim.", null, null),
-                LearningExercise("zha2k_e1", Skill.VOCABULARY, "Doğru anlamı seç", "'昨天' ne anlama gelir?", "", listOf("dün", "geçen hafta", "satın aldı"), listOf("dün"), "昨天我工作了。 — Dün çalıştım.", null, null))))),
-        LearningUnit("ZH-A2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha2k_e1", Skill.VOCABULARY, "Doğru anlamı seç", "'昨天' ne anlama gelir?", "", listOf("dün", "geçen hafta", "satın aldı"), listOf("dün"), "昨天我工作了。 — Dün çalıştım.", null, null)))))
+
+    private fun u24(): LearningUnit = LearningUnit("ZH-A2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A2-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha2k_e37", Skill.VOCABULARY, "Doğru anlamı seç", "'贵' ne anlama gelir?", "", listOf("pahalı", "eczane", "ağrımak"), listOf("pahalı"), "这个手机很贵。 — Bu telefon çok pahalı.", null, null),
                 LearningExercise("zha2k_e22", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我看了那部电影。", listOf("O filmi izledim.", "Tatil yakında başlıyor.", "Gelecekte yurt dışında yaşamak istiyorum."), listOf("O filmi izledim."), "Cümlenin çevirisi: O filmi izledim.", null, null),
@@ -626,8 +746,9 @@ object WorldCourseZH {
                 LearningExercise("zha2k_e24", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "我___那部电影。", "", listOf("学习", "看了", "办公室"), listOf("看了"), "Doğru cümle: 我看了那部电影。 — O filmi izledim.", null, null),
                 LearningExercise("zha2k_e113", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "冬天很冷。", listOf("Çince çalışıyorum.", "Sınav cuma günü.", "Kışın hava çok soğuk."), listOf("Kışın hava çok soğuk."), "Cümlenin çevirisi: Kışın hava çok soğuk.", null, null),
                 LearningExercise("zha2k_e117", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Yazın hava çok sıcak.", "Başım ağrıyor.", "Eczane kapandı."), listOf("Yazın hava çok sıcak."), "Söylenen cümle: 夏天很热。", "夏天很热。", null),
-                LearningExercise("zha2k_e128", Skill.VOCABULARY, "Doğru çeviriyi seç", "'öğrenmek/çalışmak' ifadesinin Çince karşılığı hangisi?", "", listOf("开会", "周末", "学习"), listOf("学习"), "Örnek: 我在学习汉语。 — Çince çalışıyorum.", null, null))))),
-        LearningUnit("ZH-A2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha2k_e128", Skill.VOCABULARY, "Doğru çeviriyi seç", "'öğrenmek/çalışmak' ifadesinin Çince karşılığı hangisi?", "", listOf("开会", "周末", "学习"), listOf("学习"), "Örnek: 我在学习汉语。 — Çince çalışıyorum.", null, null)))))
+
+    private fun u25(): LearningUnit = LearningUnit("ZH-A2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A2-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha2k_e165", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Tatil yakında başlıyor.", "Geziye çıkmayı severim.", "Yaz için bir planım var."), listOf("Geziye çıkmayı severim."), "Söylenen cümle: 我喜欢去旅游。", "我喜欢去旅游。", null),
                 LearningExercise("zha2k_e92", Skill.VOCABULARY, "Doğru çeviriyi seç", "'hava durumu' ifadesinin Çince karşılığı hangisi?", "", listOf("冷", "热", "天气"), listOf("天气"), "Örnek: 今天天气很好。 — Bugün hava çok güzel.", null, null),
@@ -651,8 +772,9 @@ object WorldCourseZH {
                 LearningExercise("zha2k_e61", Skill.VOCABULARY, "Doğru anlamı seç", "'生病' ne anlama gelir?", "", listOf("doktor", "baş", "hastalanmak"), listOf("hastalanmak"), "我生病了。 — Hastalandım.", null, null),
                 LearningExercise("zha2k_e195", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我们九点开会。", "", listOf(), listOf("我们九点开会。"), "Türkçesi: Dokuzda toplantı yapıyoruz.", "我们九点开会。", "我们九点开会。"),
                 LearningExercise("zha2k_e63", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Hastalandım.", "Bugün hava çok güzel.", "Yarın yağmur yağacak."), listOf("Hastalandım."), "Söylenen cümle: 我生病了。", "我生病了。", null),
-                LearningExercise("zha2k_e171", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Tatil yakında başlıyor.", "Ben ödeyeyim.", "Hastalandım."), listOf("Tatil yakında başlıyor."), "Söylenen cümle: 假期快开始了。", "假期快开始了。", null))))),
-        LearningUnit("ZH-A2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha2k_e171", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Tatil yakında başlıyor.", "Ben ödeyeyim.", "Hastalandım."), listOf("Tatil yakında başlıyor."), "Söylenen cümle: 假期快开始了。", "假期快开始了。", null)))))
+
+    private fun u26(): LearningUnit = LearningUnit("ZH-A2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A2-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha2k_e199", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这个手机很贵。", "", listOf(), listOf("这个手机很贵。"), "Türkçesi: Bu telefon çok pahalı.", "这个手机很贵。", "这个手机很贵。"),
                 LearningExercise("zha2k_e11", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "上个星期我生病了。", listOf("Gelecekte yurt dışında yaşamak istiyorum.", "Geçen hafta hastalandım.", "Tatil yakında başlıyor."), listOf("Geçen hafta hastalandım."), "Cümlenin çevirisi: Geçen hafta hastalandım.", null, null),
@@ -676,8 +798,9 @@ object WorldCourseZH {
                 LearningExercise("zha2k_e45", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Ekmek çok ucuz.", "Bu telefon çok pahalı.", "Bu kaç para?"), listOf("Ekmek çok ucuz."), "Söylenen cümle: 面包很便宜。", "面包很便宜。", null),
                 LearningExercise("zha2k_e198", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我看了那部电影。", "", listOf(), listOf("我看了那部电影。"), "Türkçesi: O filmi izledim.", "我看了那部电影。", "我看了那部电影。"),
                 LearningExercise("zha2k_e166", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我喜欢去旅游。", listOf("Geziye çıkmayı severim.", "Yarın yağmur yağacak.", "Güneş çıktı."), listOf("Geziye çıkmayı severim."), "Cümlenin çevirisi: Geziye çıkmayı severim.", null, null),
-                LearningExercise("zha2k_e39", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Dokuzda toplantı yapıyoruz.", "Bu telefon çok pahalı.", "Öğretmen çok net açıklıyor."), listOf("Bu telefon çok pahalı."), "Söylenen cümle: 这个手机很贵。", "这个手机很贵。", null))))),
-        LearningUnit("ZH-A2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha2k_e39", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Dokuzda toplantı yapıyoruz.", "Bu telefon çok pahalı.", "Öğretmen çok net açıklıyor."), listOf("Bu telefon çok pahalı."), "Söylenen cümle: 这个手机很贵。", "这个手机很贵。", null)))))
+
+    private fun u27(): LearningUnit = LearningUnit("ZH-A2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A2-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha2k_e36", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "我没有很多___。", "", listOf("贵", "便宜", "钱"), listOf("钱"), "Doğru cümle: 我没有很多钱。 — Çok param yok.", null, null),
                 LearningExercise("zha2k_e99", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Yarın yağmur yağacak.", "O filmi izledim.", "O yolculuk harikaydı."), listOf("Yarın yağmur yağacak."), "Söylenen cümle: 明天会下雨。", "明天会下雨。", null),
@@ -701,8 +824,9 @@ object WorldCourseZH {
                 LearningExercise("zha2k_e194", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我在学习汉语。", "", listOf(), listOf("我在学习汉语。"), "Türkçesi: Çince çalışıyorum.", "我在学习汉语。", "我在学习汉语。"),
                 LearningExercise("zha2k_e32", Skill.VOCABULARY, "Doğru çeviriyi seç", "'para' ifadesinin Çince karşılığı hangisi?", "", listOf("钱", "假期", "将来"), listOf("钱"), "Örnek: 我没有很多钱。 — Çok param yok.", null, null),
                 LearningExercise("zha2k_e136", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "考试在星期五。", listOf("Çince çalışıyorum.", "Öğretmen çok net açıklıyor.", "Sınav cuma günü."), listOf("Sınav cuma günü."), "Cümlenin çevirisi: Sınav cuma günü.", null, null),
-                LearningExercise("zha2k_e9", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Geçen hafta hastalandım.", "Kışın hava çok soğuk.", "Yazın hava çok sıcak."), listOf("Geçen hafta hastalandım."), "Söylenen cümle: 上个星期我生病了。", "上个星期我生病了。", null))))),
-        LearningUnit("ZH-A2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha2k_e9", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Geçen hafta hastalandım.", "Kışın hava çok soğuk.", "Yazın hava çok sıcak."), listOf("Geçen hafta hastalandım."), "Söylenen cümle: 上个星期我生病了。", "上个星期我生病了。", null)))))
+
+    private fun u28(): LearningUnit = LearningUnit("ZH-A2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A2-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha2k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ucuz' ifadesinin Çince karşılığı hangisi?", "", listOf("学习", "便宜", "办公室"), listOf("便宜"), "Örnek: 面包很便宜。 — Ekmek çok ucuz.", null, null),
                 LearningExercise("zha2k_e16", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我买了面包。", listOf("Başım ağrıyor.", "Ekmek aldım.", "Doktor onda geliyor."), listOf("Ekmek aldım."), "Cümlenin çevirisi: Ekmek aldım.", null, null),
@@ -726,8 +850,9 @@ object WorldCourseZH {
                 LearningExercise("zha2k_e21", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bugün hava çok güzel.", "O filmi izledim.", "Bacağım çok ağrıyor."), listOf("O filmi izledim."), "Söylenen cümle: 我看了那部电影。", "我看了那部电影。", null),
                 LearningExercise("zha2k_e145", Skill.VOCABULARY, "Doğru anlamı seç", "'开会' ne anlama gelir?", "", listOf("toplantı yapmak", "sıcak", "ofis"), listOf("toplantı yapmak"), "我们九点开会。 — Dokuzda toplantı yapıyoruz.", null, null),
                 LearningExercise("zha2k_e58", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我来付钱。", listOf("Ben ödeyeyim.", "Hastalandım.", "Doktor onda geliyor."), listOf("Ben ödeyeyim."), "Cümlenin çevirisi: Ben ödeyeyim.", null, null),
-                LearningExercise("zha2k_e56", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ödemek' ifadesinin Çince karşılığı hangisi?", "", listOf("头", "药店", "付钱"), listOf("付钱"), "Örnek: 我来付钱。 — Ben ödeyeyim.", null, null))))),
-        LearningUnit("ZH-A2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha2k_e56", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ödemek' ifadesinin Çince karşılığı hangisi?", "", listOf("头", "药店", "付钱"), listOf("付钱"), "Örnek: 我来付钱。 — Ben ödeyeyim.", null, null)))))
+
+    private fun u29(): LearningUnit = LearningUnit("ZH-A2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A2-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha2k_e148", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我们九点开会。", listOf("Dokuzda toplantı yapıyoruz.", "Hafta sonu dinlenirim.", "Yaz için bir planım var."), listOf("Dokuzda toplantı yapıyoruz."), "Cümlenin çevirisi: Dokuzda toplantı yapıyoruz.", null, null),
                 LearningExercise("zha2k_e109", Skill.VOCABULARY, "Doğru anlamı seç", "'冷' ne anlama gelir?", "", listOf("soğuk", "ucuz", "kaç para"), listOf("soğuk"), "冬天很冷。 — Kışın hava çok soğuk.", null, null),
@@ -751,8 +876,9 @@ object WorldCourseZH {
                 LearningExercise("zha2k_e80", Skill.VOCABULARY, "Doğru çeviriyi seç", "'eczane' ifadesinin Çince karşılığı hangisi?", "", listOf("旅游", "药店", "计划"), listOf("药店"), "Örnek: 药店关门了。 — Eczane kapandı.", null, null),
                 LearningExercise("zha2k_e138", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___在星期五。", "", listOf("考试", "便宜", "多少钱"), listOf("考试"), "Doğru cümle: 考试在星期五。 — Sınav cuma günü.", null, null),
                 LearningExercise("zha2k_e190", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我来付钱。", "", listOf(), listOf("我来付钱。"), "Türkçesi: Ben ödeyeyim.", "我来付钱。", "我来付钱。"),
-                LearningExercise("zha2k_e184", Skill.GRAMMAR, "Doğru seçeneği işaretle", "明天___下雨。", "", listOf("会", "要是", "是"), listOf("会"), "Gelecek tahmini: 会下雨.", null, null))))),
-        LearningUnit("ZH-A2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha2k_e184", Skill.GRAMMAR, "Doğru seçeneği işaretle", "明天___下雨。", "", listOf("会", "要是", "是"), listOf("会"), "Gelecek tahmini: 会下雨.", null, null)))))
+
+    private fun u30(): LearningUnit = LearningUnit("ZH-A2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A2-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha2k_e69", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Tatil yakında başlıyor.", "Gelecekte yurt dışında yaşamak istiyorum.", "Doktor onda geliyor."), listOf("Doktor onda geliyor."), "Söylenen cümle: 医生十点来。", "医生十点来。", null),
                 LearningExercise("zha2k_e98", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yağmur yağmak' ifadesinin Çince karşılığı hangisi?", "", listOf("昨天", "下雨", "将来"), listOf("下雨"), "Örnek: 明天会下雨。 — Yarın yağmur yağacak.", null, null),
@@ -776,8 +902,9 @@ object WorldCourseZH {
                 LearningExercise("zha2k_e161", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我有一个夏天的计划。", listOf("Yaz için bir planım var.", "Öğretmen çok net açıklıyor.", "Dokuzda toplantı yapıyoruz."), listOf("Yaz için bir planım var."), "Cümlenin çevirisi: Yaz için bir planım var.", null, null),
                 LearningExercise("zha2k_e102", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "明天会___。", "", listOf("下雨", "热", "办公室"), listOf("下雨"), "Doğru cümle: 明天会下雨。 — Yarın yağmur yağacak.", null, null),
                 LearningExercise("zha2k_e129", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Ben ödeyeyim.", "Çince çalışıyorum.", "Bu kaç para?"), listOf("Çince çalışıyorum."), "Söylenen cümle: 我在学习汉语。", "我在学习汉语。", null),
-                LearningExercise("zha2k_e188", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我看了那部电影。", "", listOf(), listOf("我看了那部电影。"), "Türkçesi: O filmi izledim.", "我看了那部电影。", "我看了那部电影。"))))),
-        LearningUnit("ZH-A2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha2k_e188", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我看了那部电影。", "", listOf(), listOf("我看了那部电影。"), "Türkçesi: O filmi izledim.", "我看了那部电影。", "我看了那部电影。")))))
+
+    private fun u31(): LearningUnit = LearningUnit("ZH-A2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A2-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha2k_e143", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "老师解释得很清楚。", listOf("Öğretmen çok net açıklıyor.", "Yaz için bir planım var.", "Geziye çıkmayı severim."), listOf("Öğretmen çok net açıklıyor."), "Cümlenin çevirisi: Öğretmen çok net açıklıyor.", null, null),
                 LearningExercise("zha2k_e153", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Hafta sonu dinlenirim.", "Dün çalıştım.", "Geçen hafta hastalandım."), listOf("Hafta sonu dinlenirim."), "Söylenen cümle: 周末我休息。", "周末我休息。", null),
@@ -801,8 +928,9 @@ object WorldCourseZH {
                 LearningExercise("zha2k_e96", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "今天___很好。", "", listOf("旅游", "天气", "计划"), listOf("天气"), "Doğru cümle: 今天天气很好。 — Bugün hava çok güzel.", null, null),
                 LearningExercise("zha2k_e5", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "昨天我工作了。", listOf("Ben ödeyeyim.", "Hastalandım.", "Dün çalıştım."), listOf("Dün çalıştım."), "Cümlenin çevirisi: Dün çalıştım.", null, null),
                 LearningExercise("zha2k_e30", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "那次___很棒。", "", listOf("旅行", "药店", "疼"), listOf("旅行"), "Doğru cümle: 那次旅行很棒。 — O yolculuk harikaydı.", null, null),
-                LearningExercise("zha2k_e183", Skill.GRAMMAR, "Doğru seçeneği işaretle", "我头___。", "", listOf("疼", "病", "累"), listOf("疼"), "Ağrı kalıbı: 头疼 (baş ağrısı).", null, null))))),
-        LearningUnit("ZH-A2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zha2k_e183", Skill.GRAMMAR, "Doğru seçeneği işaretle", "我头___。", "", listOf("疼", "病", "累"), listOf("疼"), "Ağrı kalıbı: 头疼 (baş ağrısı).", null, null)))))
+
+    private fun u32(): LearningUnit = LearningUnit("ZH-A2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-A2-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zha2k_e8", Skill.VOCABULARY, "Doğru çeviriyi seç", "'geçen hafta' ifadesinin Çince karşılığı hangisi?", "", listOf("天气", "上个星期", "疼"), listOf("上个星期"), "Örnek: 上个星期我生病了。 — Geçen hafta hastalandım.", null, null),
                 LearningExercise("zha2k_e118", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "夏天很热。", listOf("Dün çalıştım.", "Geçen hafta hastalandım.", "Yazın hava çok sıcak."), listOf("Yazın hava çok sıcak."), "Cümlenin çevirisi: Yazın hava çok sıcak.", null, null),
@@ -826,8 +954,9 @@ object WorldCourseZH {
                 LearningExercise("zha2k_e162", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "我有一个夏天的___。", "", listOf("付钱", "生病", "计划"), listOf("计划"), "Doğru cümle: 我有一个夏天的计划。 — Yaz için bir planım var.", null, null),
                 LearningExercise("zha2k_e150", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "我们九点___。", "", listOf("周末", "开会", "老师"), listOf("开会"), "Doğru cümle: 我们九点开会。 — Dokuzda toplantı yapıyoruz.", null, null),
                 LearningExercise("zha2k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___十点来。", "", listOf("开会", "周末", "医生"), listOf("医生"), "Doğru cümle: 医生十点来。 — Doktor onda geliyor.", null, null),
-                LearningExercise("zha2k_e71", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "医生十点来。", listOf("Doktor onda geliyor.", "Bu kaç para?", "Ben ödeyeyim."), listOf("Doktor onda geliyor."), "Cümlenin çevirisi: Doktor onda geliyor.", null, null))))),
-        LearningUnit("ZH-B1-U1", "Deneyimler ve Anılar", "Anılarını ayrıntılarıyla paylaş.", listOf(
+                LearningExercise("zha2k_e71", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "医生十点来。", listOf("Doktor onda geliyor.", "Bu kaç para?", "Ben ödeyeyim."), listOf("Doktor onda geliyor."), "Cümlenin çevirisi: Doktor onda geliyor.", null, null)))))
+
+    private fun u33(): LearningUnit = LearningUnit("ZH-B1-U1", "Deneyimler ve Anılar", "Anılarını ayrıntılarıyla paylaş.", listOf(
             LearningLesson("ZH-B1-U1-L1", "Deneyimler ve Anılar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhb1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'经验' ne anlama gelir?", "", listOf("hatırlamak", "o zamanlar", "deneyim"), listOf("deneyim"), "这次经验改变了我。 — Bu deneyim beni değiştirdi.", null, null),
                 LearningExercise("zhb1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'记得' ne anlama gelir?", "", listOf("anı", "hatırlamak", "çocukluk"), listOf("hatırlamak"), "我记得我的童年。 — Çocukluğumu hatırlıyorum.", null, null),
@@ -853,8 +982,9 @@ object WorldCourseZH {
             LearningLesson("ZH-B1-U1-L5", "Deneyimler ve Anılar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhb1u1e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这个回忆很珍贵。", listOf("O zamanlar kırsalda yaşıyorduk.", "Bu anı çok değerli.", "Çocukluğumu hatırlıyorum."), listOf("Bu anı çok değerli."), "Cümlenin çevirisi: Bu anı çok değerli.", null, null),
                 LearningExercise("zhb1u1e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "那时候我们住在农村。", listOf("O zamanlar kırsalda yaşıyorduk.", "Çocukluğum çok mutluydu.", "Bu anı çok değerli."), listOf("O zamanlar kırsalda yaşıyorduk."), "Cümlenin çevirisi: O zamanlar kırsalda yaşıyorduk.", null, null),
-                LearningExercise("zhb1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这次经验改变了我。", "", listOf(), listOf("这次经验改变了我。"), "Türkçesi: Bu deneyim beni değiştirdi.", "这次经验改变了我。", "这次经验改变了我。"))))),
-        LearningUnit("ZH-B1-U2", "Medya ve Teknoloji", "Teknoloji ve haberler hakkında konuş.", listOf(
+                LearningExercise("zhb1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这次经验改变了我。", "", listOf(), listOf("这次经验改变了我。"), "Türkçesi: Bu deneyim beni değiştirdi.", "这次经验改变了我。", "这次经验改变了我。")))))
+
+    private fun u34(): LearningUnit = LearningUnit("ZH-B1-U2", "Medya ve Teknoloji", "Teknoloji ve haberler hakkında konuş.", listOf(
             LearningLesson("ZH-B1-U2-L1", "Medya ve Teknoloji — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhb1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'新闻' ne anlama gelir?", "", listOf("ağ/internet", "haberler", "cihaz"), listOf("haberler"), "我晚上看新闻。 — Akşamları haber izlerim.", null, null),
                 LearningExercise("zhb1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'设备' ne anlama gelir?", "", listOf("cihaz", "indirmek", "ekran"), listOf("cihaz"), "这个设备是新的。 — Bu cihaz yeni.", null, null),
@@ -880,8 +1010,9 @@ object WorldCourseZH {
             LearningLesson("ZH-B1-U2-L5", "Medya ve Teknoloji — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhb1u2e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "屏幕太亮了。", listOf("Ekran fazla parlak.", "Bu cihaz yeni.", "İnternet çok yavaş."), listOf("Ekran fazla parlak."), "Cümlenin çevirisi: Ekran fazla parlak.", null, null),
                 LearningExercise("zhb1u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "网络很慢。", listOf("Bu uygulamayı indirmek istiyorum.", "Ekran fazla parlak.", "İnternet çok yavaş."), listOf("İnternet çok yavaş."), "Cümlenin çevirisi: İnternet çok yavaş.", null, null),
-                LearningExercise("zhb1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我晚上看新闻。", "", listOf(), listOf("我晚上看新闻。"), "Türkçesi: Akşamları haber izlerim.", "我晚上看新闻。", "我晚上看新闻。"))))),
-        LearningUnit("ZH-B1-U3", "Duygular ve İlişkiler", "Duygularını ve ilişkilerini anlat.", listOf(
+                LearningExercise("zhb1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我晚上看新闻。", "", listOf(), listOf("我晚上看新闻。"), "Türkçesi: Akşamları haber izlerim.", "我晚上看新闻。", "我晚上看新闻。")))))
+
+    private fun u35(): LearningUnit = LearningUnit("ZH-B1-U3", "Duygular ve İlişkiler", "Duygularını ve ilişkilerini anlat.", listOf(
             LearningLesson("ZH-B1-U3-L1", "Duygular ve İlişkiler — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhb1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'友谊' ne anlama gelir?", "", listOf("arkadaşlık", "güven", "kavga etmek"), listOf("arkadaşlık"), "我们的友谊很深。 — Arkadaşlığımız çok derin.", null, null),
                 LearningExercise("zhb1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'信任' ne anlama gelir?", "", listOf("hayal kırıklığı", "duygu", "güven"), listOf("güven"), "信任需要时间。 — Güven zaman ister.", null, null),
@@ -907,8 +1038,9 @@ object WorldCourseZH {
             LearningLesson("ZH-B1-U3-L5", "Duygular ve İlişkiler — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhb1u3e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这是一种奇怪的感情。", listOf("Güven zaman ister.", "Çok nadir kavga ederiz.", "Bu tuhaf bir duygu."), listOf("Bu tuhaf bir duygu."), "Cümlenin çevirisi: Bu tuhaf bir duygu.", null, null),
                 LearningExercise("zhb1u3e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我们很少吵架。", listOf("Bu tuhaf bir duygu.", "Çok nadir kavga ederiz.", "Sonuçtan çok hayal kırıklığına uğradım."), listOf("Çok nadir kavga ederiz."), "Cümlenin çevirisi: Çok nadir kavga ederiz.", null, null),
-                LearningExercise("zhb1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我们的友谊很深。", "", listOf(), listOf("我们的友谊很深。"), "Türkçesi: Arkadaşlığımız çok derin.", "我们的友谊很深。", "我们的友谊很深。"))))),
-        LearningUnit("ZH-B1-U4", "Kültür ve Gelenekler", "Gelenekleri ve kültürü tanıt.", listOf(
+                LearningExercise("zhb1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我们的友谊很深。", "", listOf(), listOf("我们的友谊很深。"), "Türkçesi: Arkadaşlığımız çok derin.", "我们的友谊很深。", "我们的友谊很深。")))))
+
+    private fun u36(): LearningUnit = LearningUnit("ZH-B1-U4", "Kültür ve Gelenekler", "Gelenekleri ve kültürü tanıt.", listOf(
             LearningLesson("ZH-B1-U4-L1", "Kültür ve Gelenekler — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhb1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'风俗' ne anlama gelir?", "", listOf("bayram", "gelenek", "âdet"), listOf("âdet"), "这个风俗很古老。 — Bu âdet çok eski.", null, null),
                 LearningExercise("zhb1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'节日' ne anlama gelir?", "", listOf("toplum", "bayram", "kutlamak"), listOf("bayram"), "节日有三天。 — Bayram üç gün sürüyor.", null, null),
@@ -934,8 +1066,9 @@ object WorldCourseZH {
             LearningLesson("ZH-B1-U4-L5", "Kültür ve Gelenekler — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhb1u4e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "社会变化很快。", listOf("Gelenek varlığını sürdürüyor.", "Toplum hızla değişiyor.", "Bayram üç gün sürüyor."), listOf("Toplum hızla değişiyor."), "Cümlenin çevirisi: Toplum hızla değişiyor.", null, null),
                 LearningExercise("zhb1u4e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "传统继续存在。", listOf("Gelenek varlığını sürdürüyor.", "Birlikte kutluyoruz.", "Toplum hızla değişiyor."), listOf("Gelenek varlığını sürdürüyor."), "Cümlenin çevirisi: Gelenek varlığını sürdürüyor.", null, null),
-                LearningExercise("zhb1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这个风俗很古老。", "", listOf(), listOf("这个风俗很古老。"), "Türkçesi: Bu âdet çok eski.", "这个风俗很古老。", "这个风俗很古老。"))))),
-        LearningUnit("ZH-B1-U5", "Spor ve Sağlıklı Yaşam", "Sağlıklı yaşam alışkanlıklarını anlat.", listOf(
+                LearningExercise("zhb1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这个风俗很古老。", "", listOf(), listOf("这个风俗很古老。"), "Türkçesi: Bu âdet çok eski.", "这个风俗很古老。", "这个风俗很古老。")))))
+
+    private fun u37(): LearningUnit = LearningUnit("ZH-B1-U5", "Spor ve Sağlıklı Yaşam", "Sağlıklı yaşam alışkanlıklarını anlat.", listOf(
             LearningLesson("ZH-B1-U5-L1", "Spor ve Sağlıklı Yaşam — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhb1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'健康' ne anlama gelir?", "", listOf("egzersiz yapmak", "sağlık", "spor/hareket"), listOf("sağlık"), "健康最重要。 — Sağlık en önemlisi.", null, null),
                 LearningExercise("zhb1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'运动' ne anlama gelir?", "", listOf("spor/hareket", "beslenme", "kaçınmak"), listOf("spor/hareket"), "每天运动很重要。 — Her gün spor yapmak önemli.", null, null),
@@ -961,8 +1094,9 @@ object WorldCourseZH {
             LearningLesson("ZH-B1-U5-L5", "Spor ve Sağlıklı Yaşam — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhb1u5e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我们应该避免吃太多糖。", listOf("Fazla şekerden kaçınmalıyız.", "Her gün spor yapmak önemli.", "Haftada üç kez egzersiz yaparım."), listOf("Fazla şekerden kaçınmalıyız."), "Cümlenin çevirisi: Fazla şekerden kaçınmalıyız.", null, null),
                 LearningExercise("zhb1u5e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我每周锻炼三次。", listOf("Sağlıklı beslenme kilittir.", "Fazla şekerden kaçınmalıyız.", "Haftada üç kez egzersiz yaparım."), listOf("Haftada üç kez egzersiz yaparım."), "Cümlenin çevirisi: Haftada üç kez egzersiz yaparım.", null, null),
-                LearningExercise("zhb1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 健康最重要。", "", listOf(), listOf("健康最重要。"), "Türkçesi: Sağlık en önemlisi.", "健康最重要。", "健康最重要。"))))),
-        LearningUnit("ZH-B1-U6", "Görüş Bildirmek", "Fikrini gerekçeleriyle savun.", listOf(
+                LearningExercise("zhb1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 健康最重要。", "", listOf(), listOf("健康最重要。"), "Türkçesi: Sağlık en önemlisi.", "健康最重要。", "健康最重要。")))))
+
+    private fun u38(): LearningUnit = LearningUnit("ZH-B1-U6", "Görüş Bildirmek", "Fikrini gerekçeleriyle savun.", listOf(
             LearningLesson("ZH-B1-U6-L1", "Görüş Bildirmek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhb1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'意见' ne anlama gelir?", "", listOf("görüş", "katılmak (fikre)", "sebep"), listOf("görüş"), "这是我的意见。 — Bu benim görüşüm.", null, null),
                 LearningExercise("zhb1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'同意' ne anlama gelir?", "", listOf("karşı çıkmak", "ikna etmek", "katılmak (fikre)"), listOf("katılmak (fikre)"), "我同意他的看法。 — Onun görüşüne katılıyorum.", null, null),
@@ -988,8 +1122,9 @@ object WorldCourseZH {
             LearningLesson("ZH-B1-U6-L5", "Görüş Bildirmek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhb1u6e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "你说服不了我。", listOf("Onun görüşüne katılıyorum.", "İyi bir sebep var.", "Beni ikna edemezsin."), listOf("Beni ikna edemezsin."), "Cümlenin çevirisi: Beni ikna edemezsin.", null, null),
                 LearningExercise("zhb1u6e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "有一个好原因。", listOf("Beni ikna edemezsin.", "İyi bir sebep var.", "Bu fikre karşıyım."), listOf("İyi bir sebep var."), "Cümlenin çevirisi: İyi bir sebep var.", null, null),
-                LearningExercise("zhb1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这是我的意见。", "", listOf(), listOf("这是我的意见。"), "Türkçesi: Bu benim görüşüm.", "这是我的意见。", "这是我的意见。"))))),
-        LearningUnit("ZH-B1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这是我的意见。", "", listOf(), listOf("这是我的意见。"), "Türkçesi: Bu benim görüşüm.", "这是我的意见。", "这是我的意见。")))))
+
+    private fun u39(): LearningUnit = LearningUnit("ZH-B1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B1-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb1k_e105", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bayram üç gün sürüyor.", "Gelenek varlığını sürdürüyor.", "Birlikte kutluyoruz."), listOf("Birlikte kutluyoruz."), "Söylenen cümle: 我们一起庆祝。", "我们一起庆祝。", null),
                 LearningExercise("zhb1k_e195", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我们应该避免吃太多糖。", "", listOf(), listOf("我们应该避免吃太多糖。"), "Türkçesi: Fazla şekerden kaçınmalıyız.", "我们应该避免吃太多糖。", "我们应该避免吃太多糖。"),
@@ -1013,8 +1148,9 @@ object WorldCourseZH {
                 LearningExercise("zhb1k_e53", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "网络很慢。", listOf("İnternet çok yavaş.", "Güven zaman ister.", "Sonuçtan çok hayal kırıklığına uğradım."), listOf("İnternet çok yavaş."), "Cümlenin çevirisi: İnternet çok yavaş.", null, null),
                 LearningExercise("zhb1k_e97", Skill.VOCABULARY, "Doğru anlamı seç", "'节日' ne anlama gelir?", "", listOf("egzersiz yapmak", "kaçınmak", "bayram"), listOf("bayram"), "节日有三天。 — Bayram üç gün sürüyor.", null, null),
                 LearningExercise("zhb1k_e152", Skill.VOCABULARY, "Doğru çeviriyi seç", "'görüş' ifadesinin Çince karşılığı hangisi?", "", listOf("屏幕", "意见", "网络"), listOf("意见"), "Örnek: 这是我的意见。 — Bu benim görüşüm.", null, null),
-                LearningExercise("zhb1k_e165", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("İyi bir sebep var.", "Bu fikre karşıyım.", "Onun görüşüne katılıyorum."), listOf("Bu fikre karşıyım."), "Söylenen cümle: 我反对这个想法。", "我反对这个想法。", null))))),
-        LearningUnit("ZH-B1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb1k_e165", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("İyi bir sebep var.", "Bu fikre karşıyım.", "Onun görüşüne katılıyorum."), listOf("Bu fikre karşıyım."), "Söylenen cümle: 我反对这个想法。", "我反对这个想法。", null)))))
+
+    private fun u40(): LearningUnit = LearningUnit("ZH-B1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B1-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb1k_e3", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bu cihaz yeni.", "Bu deneyim beni değiştirdi.", "Akşamları haber izlerim."), listOf("Bu deneyim beni değiştirdi."), "Söylenen cümle: 这次经验改变了我。", "这次经验改变了我。", null),
                 LearningExercise("zhb1k_e64", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我们的友谊很深。", listOf("Bu fikre karşıyım.", "İyi bir sebep var.", "Arkadaşlığımız çok derin."), listOf("Arkadaşlığımız çok derin."), "Cümlenin çevirisi: Arkadaşlığımız çok derin.", null, null),
@@ -1038,8 +1174,9 @@ object WorldCourseZH {
                 LearningExercise("zhb1k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___需要时间。", "", listOf("避免", "意见", "信任"), listOf("信任"), "Doğru cümle: 信任需要时间。 — Güven zaman ister.", null, null),
                 LearningExercise("zhb1k_e144", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "我每周___三次。", "", listOf("经验", "记得", "锻炼"), listOf("锻炼"), "Doğru cümle: 我每周锻炼三次。 — Haftada üç kez egzersiz yaparım.", null, null),
                 LearningExercise("zhb1k_e79", Skill.VOCABULARY, "Doğru anlamı seç", "'吵架' ne anlama gelir?", "", listOf("çocukluk", "o zamanlar", "kavga etmek"), listOf("kavga etmek"), "我们很少吵架。 — Çok nadir kavga ederiz.", null, null),
-                LearningExercise("zhb1k_e131", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "每天运动很重要。", listOf("Gelenek varlığını sürdürüyor.", "Toplum hızla değişiyor.", "Her gün spor yapmak önemli."), listOf("Her gün spor yapmak önemli."), "Cümlenin çevirisi: Her gün spor yapmak önemli.", null, null))))),
-        LearningUnit("ZH-B1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb1k_e131", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "每天运动很重要。", listOf("Gelenek varlığını sürdürüyor.", "Toplum hızla değişiyor.", "Her gün spor yapmak önemli."), listOf("Her gün spor yapmak önemli."), "Cümlenin çevirisi: Her gün spor yapmak önemli.", null, null)))))
+
+    private fun u41(): LearningUnit = LearningUnit("ZH-B1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B1-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb1k_e9", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Çocukluğumu hatırlıyorum.", "Gelenek varlığını sürdürüyor.", "Toplum hızla değişiyor."), listOf("Çocukluğumu hatırlıyorum."), "Söylenen cümle: 我记得我的童年。", "我记得我的童年。", null),
                 LearningExercise("zhb1k_e54", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___很慢。", "", listOf("风俗", "节日", "网络"), listOf("网络"), "Doğru cümle: 网络很慢。 — İnternet çok yavaş.", null, null),
@@ -1063,8 +1200,9 @@ object WorldCourseZH {
                 LearningExercise("zhb1k_e158", Skill.VOCABULARY, "Doğru çeviriyi seç", "'katılmak (fikre)' ifadesinin Çince karşılığı hangisi?", "", listOf("同意", "社会", "健康"), listOf("同意"), "Örnek: 我同意他的看法。 — Onun görüşüne katılıyorum.", null, null),
                 LearningExercise("zhb1k_e28", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这个回忆很珍贵。", listOf("Bu âdet çok eski.", "Bayram üç gün sürüyor.", "Bu anı çok değerli."), listOf("Bu anı çok değerli."), "Cümlenin çevirisi: Bu anı çok değerli.", null, null),
                 LearningExercise("zhb1k_e190", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 屏幕太亮了。", "", listOf(), listOf("屏幕太亮了。"), "Türkçesi: Ekran fazla parlak.", "屏幕太亮了。", "屏幕太亮了。"),
-                LearningExercise("zhb1k_e22", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "那时候我们住在农村。", listOf("O zamanlar kırsalda yaşıyorduk.", "İyi bir sebep var.", "Beni ikna edemezsin."), listOf("O zamanlar kırsalda yaşıyorduk."), "Cümlenin çevirisi: O zamanlar kırsalda yaşıyorduk.", null, null))))),
-        LearningUnit("ZH-B1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb1k_e22", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "那时候我们住在农村。", listOf("O zamanlar kırsalda yaşıyorduk.", "İyi bir sebep var.", "Beni ikna edemezsin."), listOf("O zamanlar kırsalda yaşıyorduk."), "Cümlenin çevirisi: O zamanlar kırsalda yaşıyorduk.", null, null)))))
+
+    private fun u42(): LearningUnit = LearningUnit("ZH-B1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B1-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb1k_e61", Skill.VOCABULARY, "Doğru anlamı seç", "'友谊' ne anlama gelir?", "", listOf("güven", "hayal kırıklığı", "arkadaşlık"), listOf("arkadaşlık"), "我们的友谊很深。 — Arkadaşlığımız çok derin.", null, null),
                 LearningExercise("zhb1k_e133", Skill.VOCABULARY, "Doğru anlamı seç", "'饮食' ne anlama gelir?", "", listOf("haberler", "cihaz", "beslenme"), listOf("beslenme"), "健康的饮食很关键。 — Sağlıklı beslenme kilittir.", null, null),
@@ -1088,8 +1226,9 @@ object WorldCourseZH {
                 LearningExercise("zhb1k_e33", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Arkadaşlığımız çok derin.", "Güven zaman ister.", "Akşamları haber izlerim."), listOf("Akşamları haber izlerim."), "Söylenen cümle: 我晚上看新闻。", "我晚上看新闻。", null),
                 LearningExercise("zhb1k_e74", Skill.VOCABULARY, "Doğru çeviriyi seç", "'hayal kırıklığı' ifadesinin Çince karşılığı hangisi?", "", listOf("风俗", "节日", "失望"), listOf("失望"), "Örnek: 我对结果很失望。 — Sonuçtan çok hayal kırıklığına uğradım.", null, null),
                 LearningExercise("zhb1k_e95", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这个风俗很古老。", listOf("Fazla şekerden kaçınmalıyız.", "Bu benim görüşüm.", "Bu âdet çok eski."), listOf("Bu âdet çok eski."), "Cümlenin çevirisi: Bu âdet çok eski.", null, null),
-                LearningExercise("zhb1k_e139", Skill.VOCABULARY, "Doğru anlamı seç", "'锻炼' ne anlama gelir?", "", listOf("kavga etmek", "egzersiz yapmak", "hayal kırıklığı"), listOf("egzersiz yapmak"), "我每周锻炼三次。 — Haftada üç kez egzersiz yaparım.", null, null))))),
-        LearningUnit("ZH-B1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb1k_e139", Skill.VOCABULARY, "Doğru anlamı seç", "'锻炼' ne anlama gelir?", "", listOf("kavga etmek", "egzersiz yapmak", "hayal kırıklığı"), listOf("egzersiz yapmak"), "我每周锻炼三次。 — Haftada üç kez egzersiz yaparım.", null, null)))))
+
+    private fun u43(): LearningUnit = LearningUnit("ZH-B1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B1-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb1k_e75", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Çok nadir kavga ederiz.", "Sonuçtan çok hayal kırıklığına uğradım.", "Güven zaman ister."), listOf("Sonuçtan çok hayal kırıklığına uğradım."), "Söylenen cümle: 我对结果很失望。", "我对结果很失望。", null),
                 LearningExercise("zhb1k_e129", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Ekran fazla parlak.", "Her gün spor yapmak önemli.", "İnternet çok yavaş."), listOf("Her gün spor yapmak önemli."), "Söylenen cümle: 每天运动很重要。", "每天运动很重要。", null),
@@ -1113,8 +1252,9 @@ object WorldCourseZH {
                 LearningExercise("zhb1k_e164", Skill.VOCABULARY, "Doğru çeviriyi seç", "'karşı çıkmak' ifadesinin Çince karşılığı hangisi?", "", listOf("经验", "记得", "反对"), listOf("反对"), "Örnek: 我反对这个想法。 — Bu fikre karşıyım.", null, null),
                 LearningExercise("zhb1k_e130", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "每天运动很重要。", listOf("Her gün spor yapmak önemli.", "Bu anı çok değerli.", "Akşamları haber izlerim."), listOf("Her gün spor yapmak önemli."), "Cümlenin çevirisi: Her gün spor yapmak önemli.", null, null),
                 LearningExercise("zhb1k_e163", Skill.VOCABULARY, "Doğru anlamı seç", "'反对' ne anlama gelir?", "", listOf("karşı çıkmak", "arkadaşlık", "güven"), listOf("karşı çıkmak"), "我反对这个想法。 — Bu fikre karşıyım.", null, null),
-                LearningExercise("zhb1k_e180", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "你___不了我。", "", listOf("传统", "社会", "说服"), listOf("说服"), "Doğru cümle: 你说服不了我。 — Beni ikna edemezsin.", null, null))))),
-        LearningUnit("ZH-B1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb1k_e180", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "你___不了我。", "", listOf("传统", "社会", "说服"), listOf("说服"), "Doğru cümle: 你说服不了我。 — Beni ikna edemezsin.", null, null)))))
+
+    private fun u44(): LearningUnit = LearningUnit("ZH-B1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B1-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb1k_e89", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这是一种奇怪的感情。", listOf("Bu tuhaf bir duygu.", "Akşamları haber izlerim.", "Bu cihaz yeni."), listOf("Bu tuhaf bir duygu."), "Cümlenin çevirisi: Bu tuhaf bir duygu.", null, null),
                 LearningExercise("zhb1k_e19", Skill.VOCABULARY, "Doğru anlamı seç", "'那时候' ne anlama gelir?", "", listOf("o zamanlar", "beslenme", "egzersiz yapmak"), listOf("o zamanlar"), "那时候我们住在农村。 — O zamanlar kırsalda yaşıyorduk.", null, null),
@@ -1138,8 +1278,9 @@ object WorldCourseZH {
                 LearningExercise("zhb1k_e31", Skill.VOCABULARY, "Doğru anlamı seç", "'新闻' ne anlama gelir?", "", listOf("indirmek", "haberler", "cihaz"), listOf("haberler"), "我晚上看新闻。 — Akşamları haber izlerim.", null, null),
                 LearningExercise("zhb1k_e167", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我反对这个想法。", listOf("Sonuçtan çok hayal kırıklığına uğradım.", "Çok nadir kavga ederiz.", "Bu fikre karşıyım."), listOf("Bu fikre karşıyım."), "Cümlenin çevirisi: Bu fikre karşıyım.", null, null),
                 LearningExercise("zhb1k_e14", Skill.VOCABULARY, "Doğru çeviriyi seç", "'çocukluk' ifadesinin Çince karşılığı hangisi?", "", listOf("童年", "意见", "同意"), listOf("童年"), "Örnek: 我的童年很快乐。 — Çocukluğum çok mutluydu.", null, null),
-                LearningExercise("zhb1k_e80", Skill.VOCABULARY, "Doğru çeviriyi seç", "'kavga etmek' ifadesinin Çince karşılığı hangisi?", "", listOf("反对", "吵架", "同意"), listOf("吵架"), "Örnek: 我们很少吵架。 — Çok nadir kavga ederiz.", null, null))))),
-        LearningUnit("ZH-B1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb1k_e80", Skill.VOCABULARY, "Doğru çeviriyi seç", "'kavga etmek' ifadesinin Çince karşılığı hangisi?", "", listOf("反对", "吵架", "同意"), listOf("吵架"), "Örnek: 我们很少吵架。 — Çok nadir kavga ederiz.", null, null)))))
+
+    private fun u45(): LearningUnit = LearningUnit("ZH-B1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B1-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb1k_e101", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "节日有三天。", listOf("Bu tuhaf bir duygu.", "Bayram üç gün sürüyor.", "Çok nadir kavga ederiz."), listOf("Bayram üç gün sürüyor."), "Cümlenin çevirisi: Bayram üç gün sürüyor.", null, null),
                 LearningExercise("zhb1k_e151", Skill.VOCABULARY, "Doğru anlamı seç", "'意见' ne anlama gelir?", "", listOf("katılmak (fikre)", "karşı çıkmak", "görüş"), listOf("görüş"), "这是我的意见。 — Bu benim görüşüm.", null, null),
@@ -1163,8 +1304,9 @@ object WorldCourseZH {
                 LearningExercise("zhb1k_e37", Skill.VOCABULARY, "Doğru anlamı seç", "'设备' ne anlama gelir?", "", listOf("cihaz", "kavga etmek", "duygu"), listOf("cihaz"), "这个设备是新的。 — Bu cihaz yeni.", null, null),
                 LearningExercise("zhb1k_e196", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我反对这个想法。", "", listOf(), listOf("我反对这个想法。"), "Türkçesi: Bu fikre karşıyım.", "我反对这个想法。", "我反对这个想法。"),
                 LearningExercise("zhb1k_e66", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "我们的___很深。", "", listOf("友谊", "记得", "童年"), listOf("友谊"), "Doğru cümle: 我们的友谊很深。 — Arkadaşlığımız çok derin.", null, null),
-                LearningExercise("zhb1k_e192", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这个风俗很古老。", "", listOf(), listOf("这个风俗很古老。"), "Türkçesi: Bu âdet çok eski.", "这个风俗很古老。", "这个风俗很古老。"))))),
-        LearningUnit("ZH-B1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb1k_e192", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这个风俗很古老。", "", listOf(), listOf("这个风俗很古老。"), "Türkçesi: Bu âdet çok eski.", "这个风俗很古老。", "这个风俗很古老。")))))
+
+    private fun u46(): LearningUnit = LearningUnit("ZH-B1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B1-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb1k_e67", Skill.VOCABULARY, "Doğru anlamı seç", "'信任' ne anlama gelir?", "", listOf("toplum", "güven", "gelenek"), listOf("güven"), "信任需要时间。 — Güven zaman ister.", null, null),
                 LearningExercise("zhb1k_e24", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___我们住在农村。", "", listOf("运动", "那时候", "健康"), listOf("那时候"), "Doğru cümle: 那时候我们住在农村。 — O zamanlar kırsalda yaşıyorduk.", null, null),
@@ -1188,8 +1330,9 @@ object WorldCourseZH {
                 LearningExercise("zhb1k_e96", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "这个___很古老。", "", listOf("反对", "风俗", "同意"), listOf("风俗"), "Doğru cümle: 这个风俗很古老。 — Bu âdet çok eski.", null, null),
                 LearningExercise("zhb1k_e191", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我对结果很失望。", "", listOf(), listOf("我对结果很失望。"), "Türkçesi: Sonuçtan çok hayal kırıklığına uğradım.", "我对结果很失望。", "我对结果很失望。"),
                 LearningExercise("zhb1k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这个回忆很珍贵。", listOf("Onun görüşüne katılıyorum.", "Bu anı çok değerli.", "Bu benim görüşüm."), listOf("Bu anı çok değerli."), "Cümlenin çevirisi: Bu anı çok değerli.", null, null),
-                LearningExercise("zhb1k_e11", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我记得我的童年。", listOf("Beni ikna edemezsin.", "Çocukluğumu hatırlıyorum.", "İyi bir sebep var."), listOf("Çocukluğumu hatırlıyorum."), "Cümlenin çevirisi: Çocukluğumu hatırlıyorum.", null, null))))),
-        LearningUnit("ZH-B1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb1k_e11", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我记得我的童年。", listOf("Beni ikna edemezsin.", "Çocukluğumu hatırlıyorum.", "İyi bir sebep var."), listOf("Çocukluğumu hatırlıyorum."), "Cümlenin çevirisi: Çocukluğumu hatırlıyorum.", null, null)))))
+
+    private fun u47(): LearningUnit = LearningUnit("ZH-B1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B1-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb1k_e182", Skill.GRAMMAR, "Doğru seçeneği işaretle", "我已经下载___这个应用。", "", listOf("了", "过着", "的"), listOf("了"), "Tamamlanma: 下载了.", null, null),
                 LearningExercise("zhb1k_e25", Skill.VOCABULARY, "Doğru anlamı seç", "'回忆' ne anlama gelir?", "", listOf("ikna etmek", "deneyim", "anı"), listOf("anı"), "这个回忆很珍贵。 — Bu anı çok değerli.", null, null),
@@ -1213,8 +1356,9 @@ object WorldCourseZH {
                 LearningExercise("zhb1k_e45", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bu uygulamayı indirmek istiyorum.", "Bu cihaz yeni.", "İnternet çok yavaş."), listOf("Bu uygulamayı indirmek istiyorum."), "Söylenen cümle: 我想下载这个应用。", "我想下载这个应用。", null),
                 LearningExercise("zhb1k_e90", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "这是一种奇怪的___。", "", listOf("那时候", "回忆", "感情"), listOf("感情"), "Doğru cümle: 这是一种奇怪的感情。 — Bu tuhaf bir duygu.", null, null),
                 LearningExercise("zhb1k_e55", Skill.VOCABULARY, "Doğru anlamı seç", "'屏幕' ne anlama gelir?", "", listOf("ekran", "anı", "haberler"), listOf("ekran"), "屏幕太亮了。 — Ekran fazla parlak.", null, null),
-                LearningExercise("zhb1k_e73", Skill.VOCABULARY, "Doğru anlamı seç", "'失望' ne anlama gelir?", "", listOf("hayal kırıklığı", "görüş", "katılmak (fikre)"), listOf("hayal kırıklığı"), "我对结果很失望。 — Sonuçtan çok hayal kırıklığına uğradım.", null, null))))),
-        LearningUnit("ZH-B1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb1k_e73", Skill.VOCABULARY, "Doğru anlamı seç", "'失望' ne anlama gelir?", "", listOf("hayal kırıklığı", "görüş", "katılmak (fikre)"), listOf("hayal kırıklığı"), "我对结果很失望。 — Sonuçtan çok hayal kırıklığına uğradım.", null, null)))))
+
+    private fun u48(): LearningUnit = LearningUnit("ZH-B1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B1-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb1k_e169", Skill.VOCABULARY, "Doğru anlamı seç", "'原因' ne anlama gelir?", "", listOf("kutlamak", "gelenek", "sebep"), listOf("sebep"), "有一个好原因。 — İyi bir sebep var.", null, null),
                 LearningExercise("zhb1k_e8", Skill.VOCABULARY, "Doğru çeviriyi seç", "'hatırlamak' ifadesinin Çince karşılığı hangisi?", "", listOf("风俗", "记得", "感情"), listOf("记得"), "Örnek: 我记得我的童年。 — Çocukluğumu hatırlıyorum.", null, null),
@@ -1238,8 +1382,9 @@ object WorldCourseZH {
                 LearningExercise("zhb1k_e119", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "社会变化很快。", listOf("Güven zaman ister.", "Toplum hızla değişiyor.", "Arkadaşlığımız çok derin."), listOf("Toplum hızla değişiyor."), "Cümlenin çevirisi: Toplum hızla değişiyor.", null, null),
                 LearningExercise("zhb1k_e155", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这是我的意见。", listOf("Akşamları haber izlerim.", "Bu benim görüşüm.", "Bu anı çok değerli."), listOf("Bu benim görüşüm."), "Cümlenin çevirisi: Bu benim görüşüm.", null, null),
                 LearningExercise("zhb1k_e121", Skill.VOCABULARY, "Doğru anlamı seç", "'健康' ne anlama gelir?", "", listOf("beslenme", "sağlık", "spor/hareket"), listOf("sağlık"), "健康最重要。 — Sağlık en önemlisi.", null, null),
-                LearningExercise("zhb1k_e160", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我同意他的看法。", listOf("Bu deneyim beni değiştirdi.", "Onun görüşüne katılıyorum.", "Beni ikna edemezsin."), listOf("Onun görüşüne katılıyorum."), "Cümlenin çevirisi: Onun görüşüne katılıyorum.", null, null))))),
-        LearningUnit("ZH-B2-U1", "Kariyer ve İş Dünyası", "İş görüşmesi ve kariyer dilinde ustalaş.", listOf(
+                LearningExercise("zhb1k_e160", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我同意他的看法。", listOf("Bu deneyim beni değiştirdi.", "Onun görüşüne katılıyorum.", "Beni ikna edemezsin."), listOf("Onun görüşüne katılıyorum."), "Cümlenin çevirisi: Onun görüşüne katılıyorum.", null, null)))))
+
+    private fun u49(): LearningUnit = LearningUnit("ZH-B2-U1", "Kariyer ve İş Dünyası", "İş görüşmesi ve kariyer dilinde ustalaş.", listOf(
             LearningLesson("ZH-B2-U1-L1", "Kariyer ve İş Dünyası — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhb2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'简历' ne anlama gelir?", "", listOf("mülakat", "sorumluluk", "özgeçmiş"), listOf("özgeçmiş"), "简历要简短。 — Özgeçmiş kısa olmalı.", null, null),
                 LearningExercise("zhb2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'面试' ne anlama gelir?", "", listOf("meslek/kariyer", "mülakat", "işe alım"), listOf("mülakat"), "面试很顺利。 — Mülakat çok iyi geçti.", null, null),
@@ -1265,8 +1410,9 @@ object WorldCourseZH {
             LearningLesson("ZH-B2-U1-L5", "Kariyer ve İş Dünyası — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhb2u1e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "她的职业发展很快。", listOf("Sorumluluğu üstleniyorum.", "Kariyeri hızla gelişiyor.", "Mülakat çok iyi geçti."), listOf("Kariyeri hızla gelişiyor."), "Cümlenin çevirisi: Kariyeri hızla gelişiyor.", null, null),
                 LearningExercise("zhb2u1e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我承担责任。", listOf("Sorumluluğu üstleniyorum.", "Şirket yeni eleman alıyor.", "Kariyeri hızla gelişiyor."), listOf("Sorumluluğu üstleniyorum."), "Cümlenin çevirisi: Sorumluluğu üstleniyorum.", null, null),
-                LearningExercise("zhb2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 简历要简短。", "", listOf(), listOf("简历要简短。"), "Türkçesi: Özgeçmiş kısa olmalı.", "简历要简短。", "简历要简短。"))))),
-        LearningUnit("ZH-B2-U2", "Çevre ve Sürdürülebilirlik", "Çevre sorunlarını tartış.", listOf(
+                LearningExercise("zhb2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 简历要简短。", "", listOf(), listOf("简历要简短。"), "Türkçesi: Özgeçmiş kısa olmalı.", "简历要简短。", "简历要简短。")))))
+
+    private fun u50(): LearningUnit = LearningUnit("ZH-B2-U2", "Çevre ve Sürdürülebilirlik", "Çevre sorunlarını tartış.", listOf(
             LearningLesson("ZH-B2-U2-L1", "Çevre ve Sürdürülebilirlik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhb2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'环境' ne anlama gelir?", "", listOf("çöp", "çevre", "iklim değişikliği"), listOf("çevre"), "我们必须保护环境。 — Çevreyi korumalıyız.", null, null),
                 LearningExercise("zhb2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'气候变化' ne anlama gelir?", "", listOf("iklim değişikliği", "sürdürülebilir", "yenilenebilir"), listOf("iklim değişikliği"), "气候变化影响所有人。 — İklim değişikliği herkesi etkiliyor.", null, null),
@@ -1292,8 +1438,9 @@ object WorldCourseZH {
             LearningLesson("ZH-B2-U2-L5", "Çevre ve Sürdürülebilirlik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhb2u2e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "可再生能源是未来。", listOf("Yenilenebilir enerji gelecektir.", "İklim değişikliği herkesi etkiliyor.", "Çöp ayrıştırılmalı."), listOf("Yenilenebilir enerji gelecektir."), "Cümlenin çevirisi: Yenilenebilir enerji gelecektir.", null, null),
                 LearningExercise("zhb2u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "垃圾要分类。", listOf("Sürdürülebilir çözümlere ihtiyacımız var.", "Yenilenebilir enerji gelecektir.", "Çöp ayrıştırılmalı."), listOf("Çöp ayrıştırılmalı."), "Cümlenin çevirisi: Çöp ayrıştırılmalı.", null, null),
-                LearningExercise("zhb2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我们必须保护环境。", "", listOf(), listOf("我们必须保护环境。"), "Türkçesi: Çevreyi korumalıyız.", "我们必须保护环境。", "我们必须保护环境。"))))),
-        LearningUnit("ZH-B2-U3", "Bilim ve Yenilik", "Bilimsel gelişmeleri aktar.", listOf(
+                LearningExercise("zhb2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我们必须保护环境。", "", listOf(), listOf("我们必须保护环境。"), "Türkçesi: Çevreyi korumalıyız.", "我们必须保护环境。", "我们必须保护环境。")))))
+
+    private fun u51(): LearningUnit = LearningUnit("ZH-B2-U3", "Bilim ve Yenilik", "Bilimsel gelişmeleri aktar.", listOf(
             LearningLesson("ZH-B2-U3-L1", "Bilim ve Yenilik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhb2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'研究' ne anlama gelir?", "", listOf("araştırma", "keşif", "kanıtlamak"), listOf("araştırma"), "研究在继续。 — Araştırma devam ediyor.", null, null),
                 LearningExercise("zhb2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'发现' ne anlama gelir?", "", listOf("ilerleme", "sonuç", "keşif"), listOf("keşif"), "这是一个重要的发现。 — Bu önemli bir keşif.", null, null),
@@ -1319,8 +1466,9 @@ object WorldCourseZH {
             LearningLesson("ZH-B2-U3-L5", "Bilim ve Yenilik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhb2u3e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "结果让我们吃惊。", listOf("Bu önemli bir keşif.", "Veriler bunu kanıtlayabilir.", "Sonuç bizi şaşırtıyor."), listOf("Sonuç bizi şaşırtıyor."), "Cümlenin çevirisi: Sonuç bizi şaşırtıyor.", null, null),
                 LearningExercise("zhb2u3e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "数据可以证明这一点。", listOf("Sonuç bizi şaşırtıyor.", "Veriler bunu kanıtlayabilir.", "İlerleme çok belirgin."), listOf("Veriler bunu kanıtlayabilir."), "Cümlenin çevirisi: Veriler bunu kanıtlayabilir.", null, null),
-                LearningExercise("zhb2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 研究在继续。", "", listOf(), listOf("研究在继续。"), "Türkçesi: Araştırma devam ediyor.", "研究在继续。", "研究在继续。"))))),
-        LearningUnit("ZH-B2-U4", "Toplum ve Güncel Konular", "Toplumsal konularda görüş geliştir.", listOf(
+                LearningExercise("zhb2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 研究在继续。", "", listOf(), listOf("研究在继续。"), "Türkçesi: Araştırma devam ediyor.", "研究在继续。", "研究在继续。")))))
+
+    private fun u52(): LearningUnit = LearningUnit("ZH-B2-U4", "Toplum ve Güncel Konular", "Toplumsal konularda görüş geliştir.", listOf(
             LearningLesson("ZH-B2-U4-L1", "Toplum ve Güncel Konular — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhb2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'公正' ne anlama gelir?", "", listOf("eşitlik", "yoksulluk", "adalet/hakkaniyet"), listOf("adalet/hakkaniyet"), "公正是基本价值。 — Hakkaniyet temel bir değerdir.", null, null),
                 LearningExercise("zhb2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'平等' ne anlama gelir?", "", listOf("tartışma", "eşitlik", "vatandaş"), listOf("eşitlik"), "法律面前人人平等。 — Yasa önünde herkes eşittir.", null, null),
@@ -1346,8 +1494,9 @@ object WorldCourseZH {
             LearningLesson("ZH-B2-U4-L5", "Toplum ve Güncel Konular — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhb2u4e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "讨论还在继续。", listOf("Yoksulluğu ortadan kaldırmalıyız.", "Tartışma hâlâ sürüyor.", "Yasa önünde herkes eşittir."), listOf("Tartışma hâlâ sürüyor."), "Cümlenin çevirisi: Tartışma hâlâ sürüyor.", null, null),
                 LearningExercise("zhb2u4e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我们要消除贫困。", listOf("Yoksulluğu ortadan kaldırmalıyız.", "Her vatandaşın hakları vardır.", "Tartışma hâlâ sürüyor."), listOf("Yoksulluğu ortadan kaldırmalıyız."), "Cümlenin çevirisi: Yoksulluğu ortadan kaldırmalıyız.", null, null),
-                LearningExercise("zhb2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 公正是基本价值。", "", listOf(), listOf("公正是基本价值。"), "Türkçesi: Hakkaniyet temel bir değerdir.", "公正是基本价值。", "公正是基本价值。"))))),
-        LearningUnit("ZH-B2-U5", "Sanat ve Edebiyat", "Sanat eserlerini yorumla.", listOf(
+                LearningExercise("zhb2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 公正是基本价值。", "", listOf(), listOf("公正是基本价值。"), "Türkçesi: Hakkaniyet temel bir değerdir.", "公正是基本价值。", "公正是基本价值。")))))
+
+    private fun u53(): LearningUnit = LearningUnit("ZH-B2-U5", "Sanat ve Edebiyat", "Sanat eserlerini yorumla.", listOf(
             LearningLesson("ZH-B2-U5-L1", "Sanat ve Edebiyat — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhb2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'画' ne anlama gelir?", "", listOf("derin etki bırakan", "tablo/resim", "roman"), listOf("tablo/resim"), "这幅画在博物馆里。 — Bu tablo müzede.", null, null),
                 LearningExercise("zhb2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'小说' ne anlama gelir?", "", listOf("roman", "sergi", "yazar"), listOf("roman"), "这本小说有四百页。 — Bu roman dört yüz sayfa.", null, null),
@@ -1373,8 +1522,9 @@ object WorldCourseZH {
             LearningLesson("ZH-B2-U5-L5", "Sanat ve Edebiyat — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhb2u5e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "作家今晚朗读。", listOf("Yazar bu akşam okuma yapıyor.", "Bu roman dört yüz sayfa.", "Bu eser insanda derin etki bırakıyor."), listOf("Yazar bu akşam okuma yapıyor."), "Cümlenin çevirisi: Yazar bu akşam okuma yapıyor.", null, null),
                 LearningExercise("zhb2u5e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这部作品让人印象深刻。", listOf("Sergi yarın açılıyor.", "Yazar bu akşam okuma yapıyor.", "Bu eser insanda derin etki bırakıyor."), listOf("Bu eser insanda derin etki bırakıyor."), "Cümlenin çevirisi: Bu eser insanda derin etki bırakıyor.", null, null),
-                LearningExercise("zhb2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这幅画在博物馆里。", "", listOf(), listOf("这幅画在博物馆里。"), "Türkçesi: Bu tablo müzede.", "这幅画在博物馆里。", "这幅画在博物馆里。"))))),
-        LearningUnit("ZH-B2-U6", "Tartışma ve İkna", "Karşıt görüşleri dengeli biçimde tart.", listOf(
+                LearningExercise("zhb2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这幅画在博物馆里。", "", listOf(), listOf("这幅画在博物馆里。"), "Türkçesi: Bu tablo müzede.", "这幅画在博物馆里。", "这幅画在博物馆里。")))))
+
+    private fun u54(): LearningUnit = LearningUnit("ZH-B2-U6", "Tartışma ve İkna", "Karşıt görüşleri dengeli biçimde tart.", listOf(
             LearningLesson("ZH-B2-U6-L1", "Tartışma ve İkna — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhb2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'论点' ne anlama gelir?", "", listOf("argüman", "bir yandan", "karşı çıkmak/çürütmek"), listOf("argüman"), "这个论点很有力。 — Bu argüman çok güçlü.", null, null),
                 LearningExercise("zhb2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'一方面' ne anlama gelir?", "", listOf("öte yandan", "çıkarım/sonuç", "bir yandan"), listOf("bir yandan"), "一方面很贵。 — Bir yandan çok pahalı.", null, null),
@@ -1400,8 +1550,9 @@ object WorldCourseZH {
             LearningLesson("ZH-B2-U6-L5", "Tartışma ve İkna — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhb2u6e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "结论很清楚。", listOf("Bir yandan çok pahalı.", "Bu iddiaya karşı çıkmak zorundayım.", "Çıkarım çok açık."), listOf("Çıkarım çok açık."), "Cümlenin çevirisi: Çıkarım çok açık.", null, null),
                 LearningExercise("zhb2u6e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我必须反驳这个说法。", listOf("Çıkarım çok açık.", "Bu iddiaya karşı çıkmak zorundayım.", "Öte yandan çok faydalı."), listOf("Bu iddiaya karşı çıkmak zorundayım."), "Cümlenin çevirisi: Bu iddiaya karşı çıkmak zorundayım.", null, null),
-                LearningExercise("zhb2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这个论点很有力。", "", listOf(), listOf("这个论点很有力。"), "Türkçesi: Bu argüman çok güçlü.", "这个论点很有力。", "这个论点很有力。"))))),
-        LearningUnit("ZH-B2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这个论点很有力。", "", listOf(), listOf("这个论点很有力。"), "Türkçesi: Bu argüman çok güçlü.", "这个论点很有力。", "这个论点很有力。")))))
+
+    private fun u55(): LearningUnit = LearningUnit("ZH-B2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B2-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb2k_e189", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 气候变化影响所有人。", "", listOf(), listOf("气候变化影响所有人。"), "Türkçesi: İklim değişikliği herkesi etkiliyor.", "气候变化影响所有人。", "气候变化影响所有人。"),
                 LearningExercise("zhb2k_e122", Skill.VOCABULARY, "Doğru çeviriyi seç", "'tablo/resim' ifadesinin Çince karşılığı hangisi?", "", listOf("画", "证明", "结果"), listOf("画"), "Örnek: 这幅画在博物馆里。 — Bu tablo müzede.", null, null),
@@ -1425,8 +1576,9 @@ object WorldCourseZH {
                 LearningExercise("zhb2k_e46", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我们需要可持续的方案。", listOf("İklim değişikliği herkesi etkiliyor.", "Çöp ayrıştırılmalı.", "Sürdürülebilir çözümlere ihtiyacımız var."), listOf("Sürdürülebilir çözümlere ihtiyacımız var."), "Cümlenin çevirisi: Sürdürülebilir çözümlere ihtiyacımız var.", null, null),
                 LearningExercise("zhb2k_e171", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bu iddiaya karşı çıkmak zorundayım.", "Yenilenebilir enerji gelecektir.", "Araştırma devam ediyor."), listOf("Bu iddiaya karşı çıkmak zorundayım."), "Söylenen cümle: 我必须反驳这个说法。", "我必须反驳这个说法。", null),
                 LearningExercise("zhb2k_e138", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___明天开幕。", "", listOf("展览", "可持续", "垃圾"), listOf("展览"), "Doğru cümle: 展览明天开幕。 — Sergi yarın açılıyor.", null, null),
-                LearningExercise("zhb2k_e73", Skill.VOCABULARY, "Doğru anlamı seç", "'进步' ne anlama gelir?", "", listOf("ilerleme", "argüman", "bir yandan"), listOf("ilerleme"), "进步很明显。 — İlerleme çok belirgin.", null, null))))),
-        LearningUnit("ZH-B2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb2k_e73", Skill.VOCABULARY, "Doğru anlamı seç", "'进步' ne anlama gelir?", "", listOf("ilerleme", "argüman", "bir yandan"), listOf("ilerleme"), "进步很明显。 — İlerleme çok belirgin.", null, null)))))
+
+    private fun u56(): LearningUnit = LearningUnit("ZH-B2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B2-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb2k_e176", Skill.VOCABULARY, "Doğru çeviriyi seç", "'çıkarım/sonuç' ifadesinin Çince karşılığı hangisi?", "", listOf("结论", "展览", "印象深刻"), listOf("结论"), "Örnek: 结论很清楚。 — Çıkarım çok açık.", null, null),
                 LearningExercise("zhb2k_e56", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yenilenebilir' ifadesinin Çince karşılığı hangisi?", "", listOf("进步", "证明", "可再生"), listOf("可再生"), "Örnek: 可再生能源是未来。 — Yenilenebilir enerji gelecektir.", null, null),
@@ -1450,8 +1602,9 @@ object WorldCourseZH {
                 LearningExercise("zhb2k_e105", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Yasa önünde herkes eşittir.", "Yoksulluğu ortadan kaldırmalıyız.", "Her vatandaşın hakları vardır."), listOf("Her vatandaşın hakları vardır."), "Söylenen cümle: 每个公民都有权利。", "每个公民都有权利。", null),
                 LearningExercise("zhb2k_e84", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "数据可以___这一点。", "", listOf("证明", "研究", "发现"), listOf("证明"), "Doğru cümle: 数据可以证明这一点。 — Veriler bunu kanıtlayabilir.", null, null),
                 LearningExercise("zhb2k_e174", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "我必须___这个说法。", "", listOf("反驳", "论点", "一方面"), listOf("反驳"), "Doğru cümle: 我必须反驳这个说法。 — Bu iddiaya karşı çıkmak zorundayım.", null, null),
-                LearningExercise("zhb2k_e78", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___很明显。", "", listOf("贫困", "进步", "公民"), listOf("进步"), "Doğru cümle: 进步很明显。 — İlerleme çok belirgin.", null, null))))),
-        LearningUnit("ZH-B2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb2k_e78", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___很明显。", "", listOf("贫困", "进步", "公民"), listOf("进步"), "Doğru cümle: 进步很明显。 — İlerleme çok belirgin.", null, null)))))
+
+    private fun u57(): LearningUnit = LearningUnit("ZH-B2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B2-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb2k_e198", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我承担责任。", "", listOf(), listOf("我承担责任。"), "Türkçesi: Sorumluluğu üstleniyorum.", "我承担责任。", "我承担责任。"),
                 LearningExercise("zhb2k_e6", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___要简短。", "", listOf("进步", "简历", "发现"), listOf("简历"), "Doğru cümle: 简历要简短。 — Özgeçmiş kısa olmalı.", null, null),
@@ -1475,8 +1628,9 @@ object WorldCourseZH {
                 LearningExercise("zhb2k_e157", Skill.VOCABULARY, "Doğru anlamı seç", "'一方面' ne anlama gelir?", "", listOf("meslek/kariyer", "bir yandan", "sorumluluk"), listOf("bir yandan"), "一方面很贵。 — Bir yandan çok pahalı.", null, null),
                 LearningExercise("zhb2k_e35", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我们必须保护环境。", listOf("Çevreyi korumalıyız.", "Sonuç bizi şaşırtıyor.", "Hakkaniyet temel bir değerdir."), listOf("Çevreyi korumalıyız."), "Cümlenin çevirisi: Çevreyi korumalıyız.", null, null),
                 LearningExercise("zhb2k_e110", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yoksulluk' ifadesinin Çince karşılığı hangisi?", "", listOf("小说", "展览", "贫困"), listOf("贫困"), "Örnek: 我们要消除贫困。 — Yoksulluğu ortadan kaldırmalıyız.", null, null),
-                LearningExercise("zhb2k_e152", Skill.VOCABULARY, "Doğru çeviriyi seç", "'argüman' ifadesinin Çince karşılığı hangisi?", "", listOf("可再生", "论点", "垃圾"), listOf("论点"), "Örnek: 这个论点很有力。 — Bu argüman çok güçlü.", null, null))))),
-        LearningUnit("ZH-B2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb2k_e152", Skill.VOCABULARY, "Doğru çeviriyi seç", "'argüman' ifadesinin Çince karşılığı hangisi?", "", listOf("可再生", "论点", "垃圾"), listOf("论点"), "Örnek: 这个论点很有力。 — Bu argüman çok güçlü.", null, null)))))
+
+    private fun u58(): LearningUnit = LearningUnit("ZH-B2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B2-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb2k_e136", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "展览明天开幕。", listOf("Bu roman dört yüz sayfa.", "Bu eser insanda derin etki bırakıyor.", "Sergi yarın açılıyor."), listOf("Sergi yarın açılıyor."), "Cümlenin çevirisi: Sergi yarın açılıyor.", null, null),
                 LearningExercise("zhb2k_e16", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "公司在招聘新人。", listOf("İlerleme çok belirgin.", "Şirket yeni eleman alıyor.", "Bu önemli bir keşif."), listOf("Şirket yeni eleman alıyor."), "Cümlenin çevirisi: Şirket yeni eleman alıyor.", null, null),
@@ -1500,8 +1654,9 @@ object WorldCourseZH {
                 LearningExercise("zhb2k_e154", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这个论点很有力。", listOf("İlerleme çok belirgin.", "Veriler bunu kanıtlayabilir.", "Bu argüman çok güçlü."), listOf("Bu argüman çok güçlü."), "Cümlenin çevirisi: Bu argüman çok güçlü.", null, null),
                 LearningExercise("zhb2k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "这是一个重要的___。", "", listOf("作家", "论点", "发现"), listOf("发现"), "Doğru cümle: 这是一个重要的发现。 — Bu önemli bir keşif.", null, null),
                 LearningExercise("zhb2k_e117", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Tartışma hâlâ sürüyor.", "İlerleme çok belirgin.", "Veriler bunu kanıtlayabilir."), listOf("Tartışma hâlâ sürüyor."), "Söylenen cümle: 讨论还在继续。", "讨论还在继续。", null),
-                LearningExercise("zhb2k_e101", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "法律面前人人平等。", listOf("Sonuç bizi şaşırtıyor.", "Yasa önünde herkes eşittir.", "Veriler bunu kanıtlayabilir."), listOf("Yasa önünde herkes eşittir."), "Cümlenin çevirisi: Yasa önünde herkes eşittir.", null, null))))),
-        LearningUnit("ZH-B2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb2k_e101", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "法律面前人人平等。", listOf("Sonuç bizi şaşırtıyor.", "Yasa önünde herkes eşittir.", "Veriler bunu kanıtlayabilir."), listOf("Yasa önünde herkes eşittir."), "Cümlenin çevirisi: Yasa önünde herkes eşittir.", null, null)))))
+
+    private fun u59(): LearningUnit = LearningUnit("ZH-B2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B2-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb2k_e119", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "讨论还在继续。", listOf("Bu önemli bir keşif.", "Tartışma hâlâ sürüyor.", "Araştırma devam ediyor."), listOf("Tartışma hâlâ sürüyor."), "Cümlenin çevirisi: Tartışma hâlâ sürüyor.", null, null),
                 LearningExercise("zhb2k_e148", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "作家今晚朗读。", listOf("Yazar bu akşam okuma yapıyor.", "Bu argüman çok güçlü.", "Bir yandan çok pahalı."), listOf("Yazar bu akşam okuma yapıyor."), "Cümlenin çevirisi: Yazar bu akşam okuma yapıyor.", null, null),
@@ -1525,8 +1680,9 @@ object WorldCourseZH {
                 LearningExercise("zhb2k_e57", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Sorumluluğu üstleniyorum.", "Yenilenebilir enerji gelecektir.", "Şirket yeni eleman alıyor."), listOf("Yenilenebilir enerji gelecektir."), "Söylenen cümle: 可再生能源是未来。", "可再生能源是未来。", null),
                 LearningExercise("zhb2k_e1", Skill.VOCABULARY, "Doğru anlamı seç", "'简历' ne anlama gelir?", "", listOf("özgeçmiş", "mülakat", "işe alım"), listOf("özgeçmiş"), "简历要简短。 — Özgeçmiş kısa olmalı.", null, null),
                 LearningExercise("zhb2k_e184", Skill.GRAMMAR, "Doğru seçeneği işaretle", "___很难，我们还是继续。", "", listOf("虽然", "因为", "所以"), listOf("虽然"), "Zıtlık: 虽然...还是... (-e rağmen).", null, null),
-                LearningExercise("zhb2k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sürdürülebilir' ifadesinin Çince karşılığı hangisi?", "", listOf("小说", "可持续", "画"), listOf("可持续"), "Örnek: 我们需要可持续的方案。 — Sürdürülebilir çözümlere ihtiyacımız var.", null, null))))),
-        LearningUnit("ZH-B2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb2k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sürdürülebilir' ifadesinin Çince karşılığı hangisi?", "", listOf("小说", "可持续", "画"), listOf("可持续"), "Örnek: 我们需要可持续的方案。 — Sürdürülebilir çözümlere ihtiyacımız var.", null, null)))))
+
+    private fun u60(): LearningUnit = LearningUnit("ZH-B2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B2-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb2k_e193", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我们要消除贫困。", "", listOf(), listOf("我们要消除贫困。"), "Türkçesi: Yoksulluğu ortadan kaldırmalıyız.", "我们要消除贫困。", "我们要消除贫困。"),
                 LearningExercise("zhb2k_e60", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___能源是未来。", "", listOf("研究", "可再生", "垃圾"), listOf("可再生"), "Doğru cümle: 可再生能源是未来。 — Yenilenebilir enerji gelecektir.", null, null),
@@ -1550,8 +1706,9 @@ object WorldCourseZH {
                 LearningExercise("zhb2k_e89", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "结果让我们吃惊。", listOf("Sonuç bizi şaşırtıyor.", "Çevreyi korumalıyız.", "İklim değişikliği herkesi etkiliyor."), listOf("Sonuç bizi şaşırtıyor."), "Cümlenin çevirisi: Sonuç bizi şaşırtıyor.", null, null),
                 LearningExercise("zhb2k_e12", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___很顺利。", "", listOf("面试", "职业", "环境"), listOf("面试"), "Doğru cümle: 面试很顺利。 — Mülakat çok iyi geçti.", null, null),
                 LearningExercise("zhb2k_e8", Skill.VOCABULARY, "Doğru çeviriyi seç", "'mülakat' ifadesinin Çince karşılığı hangisi?", "", listOf("公正", "面试", "结果"), listOf("面试"), "Örnek: 面试很顺利。 — Mülakat çok iyi geçti.", null, null),
-                LearningExercise("zhb2k_e49", Skill.VOCABULARY, "Doğru anlamı seç", "'垃圾' ne anlama gelir?", "", listOf("karşı çıkmak/çürütmek", "çöp", "öte yandan"), listOf("çöp"), "垃圾要分类。 — Çöp ayrıştırılmalı.", null, null))))),
-        LearningUnit("ZH-B2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb2k_e49", Skill.VOCABULARY, "Doğru anlamı seç", "'垃圾' ne anlama gelir?", "", listOf("karşı çıkmak/çürütmek", "çöp", "öte yandan"), listOf("çöp"), "垃圾要分类。 — Çöp ayrıştırılmalı.", null, null)))))
+
+    private fun u61(): LearningUnit = LearningUnit("ZH-B2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B2-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb2k_e156", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "这个___很有力。", "", listOf("论点", "平等", "公民"), listOf("论点"), "Doğru cümle: 这个论点很有力。 — Bu argüman çok güçlü.", null, null),
                 LearningExercise("zhb2k_e11", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "面试很顺利。", listOf("Çıkarım çok açık.", "Mülakat çok iyi geçti.", "Bu iddiaya karşı çıkmak zorundayım."), listOf("Mülakat çok iyi geçti."), "Cümlenin çevirisi: Mülakat çok iyi geçti.", null, null),
@@ -1575,8 +1732,9 @@ object WorldCourseZH {
                 LearningExercise("zhb2k_e112", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我们要消除贫困。", listOf("Yoksulluğu ortadan kaldırmalıyız.", "Veriler bunu kanıtlayabilir.", "Sonuç bizi şaşırtıyor."), listOf("Yoksulluğu ortadan kaldırmalıyız."), "Cümlenin çevirisi: Yoksulluğu ortadan kaldırmalıyız.", null, null),
                 LearningExercise("zhb2k_e196", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 另一方面很有用。", "", listOf(), listOf("另一方面很有用。"), "Türkçesi: Öte yandan çok faydalı.", "另一方面很有用。", "另一方面很有用。"),
                 LearningExercise("zhb2k_e27", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Kariyeri hızla gelişiyor.", "Öte yandan çok faydalı.", "Bu iddiaya karşı çıkmak zorundayım."), listOf("Kariyeri hızla gelişiyor."), "Söylenen cümle: 她的职业发展很快。", "她的职业发展很快。", null),
-                LearningExercise("zhb2k_e51", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Tartışma hâlâ sürüyor.", "Bu tablo müzede.", "Çöp ayrıştırılmalı."), listOf("Çöp ayrıştırılmalı."), "Söylenen cümle: 垃圾要分类。", "垃圾要分类。", null))))),
-        LearningUnit("ZH-B2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb2k_e51", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Tartışma hâlâ sürüyor.", "Bu tablo müzede.", "Çöp ayrıştırılmalı."), listOf("Çöp ayrıştırılmalı."), "Söylenen cümle: 垃圾要分类。", "垃圾要分类。", null)))))
+
+    private fun u62(): LearningUnit = LearningUnit("ZH-B2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B2-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb2k_e36", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "我们必须保护___。", "", listOf("气候变化", "可持续", "环境"), listOf("环境"), "Doğru cümle: 我们必须保护环境。 — Çevreyi korumalıyız.", null, null),
                 LearningExercise("zhb2k_e118", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "讨论还在继续。", listOf("Özgeçmiş kısa olmalı.", "Mülakat çok iyi geçti.", "Tartışma hâlâ sürüyor."), listOf("Tartışma hâlâ sürüyor."), "Cümlenin çevirisi: Tartışma hâlâ sürüyor.", null, null),
@@ -1600,8 +1758,9 @@ object WorldCourseZH {
                 LearningExercise("zhb2k_e97", Skill.VOCABULARY, "Doğru anlamı seç", "'平等' ne anlama gelir?", "", listOf("derin etki bırakan", "yazar", "eşitlik"), listOf("eşitlik"), "法律面前人人平等。 — Yasa önünde herkes eşittir.", null, null),
                 LearningExercise("zhb2k_e186", Skill.GRAMMAR, "Doğru seçeneği işaretle", "一方面很贵，___很有用。", "", listOf("另一方面", "一方面", "另外面"), listOf("另一方面"), "Kalıp: 一方面...另一方面...", null, null),
                 LearningExercise("zhb2k_e9", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Mülakat çok iyi geçti.", "Yoksulluğu ortadan kaldırmalıyız.", "Tartışma hâlâ sürüyor."), listOf("Mülakat çok iyi geçti."), "Söylenen cümle: 面试很顺利。", "面试很顺利。", null),
-                LearningExercise("zhb2k_e63", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Araştırma devam ediyor.", "Hakkaniyet temel bir değerdir.", "Yasa önünde herkes eşittir."), listOf("Araştırma devam ediyor."), "Söylenen cümle: 研究在继续。", "研究在继续。", null))))),
-        LearningUnit("ZH-B2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb2k_e63", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Araştırma devam ediyor.", "Hakkaniyet temel bir değerdir.", "Yasa önünde herkes eşittir."), listOf("Araştırma devam ediyor."), "Söylenen cümle: 研究在继续。", "研究在继续。", null)))))
+
+    private fun u63(): LearningUnit = LearningUnit("ZH-B2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B2-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb2k_e134", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sergi' ifadesinin Çince karşılığı hangisi?", "", listOf("气候变化", "展览", "环境"), listOf("展览"), "Örnek: 展览明天开幕。 — Sergi yarın açılıyor.", null, null),
                 LearningExercise("zhb2k_e139", Skill.VOCABULARY, "Doğru anlamı seç", "'印象深刻' ne anlama gelir?", "", listOf("kanıtlamak", "derin etki bırakan", "ilerleme"), listOf("derin etki bırakan"), "这部作品让人印象深刻。 — Bu eser insanda derin etki bırakıyor.", null, null),
@@ -1625,8 +1784,9 @@ object WorldCourseZH {
                 LearningExercise("zhb2k_e177", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Sergi yarın açılıyor.", "Bu eser insanda derin etki bırakıyor.", "Çıkarım çok açık."), listOf("Çıkarım çok açık."), "Söylenen cümle: 结论很清楚。", "结论很清楚。", null),
                 LearningExercise("zhb2k_e30", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "她的___发展很快。", "", listOf("职业", "证明", "结果"), listOf("职业"), "Doğru cümle: 她的职业发展很快。 — Kariyeri hızla gelişiyor.", null, null),
                 LearningExercise("zhb2k_e126", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "这幅___在博物馆里。", "", listOf("小说", "展览", "画"), listOf("画"), "Doğru cümle: 这幅画在博物馆里。 — Bu tablo müzede.", null, null),
-                LearningExercise("zhb2k_e130", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这本小说有四百页。", listOf("Bu roman dört yüz sayfa.", "Kariyeri hızla gelişiyor.", "Çevreyi korumalıyız."), listOf("Bu roman dört yüz sayfa."), "Cümlenin çevirisi: Bu roman dört yüz sayfa.", null, null))))),
-        LearningUnit("ZH-B2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhb2k_e130", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这本小说有四百页。", listOf("Bu roman dört yüz sayfa.", "Kariyeri hızla gelişiyor.", "Çevreyi korumalıyız."), listOf("Bu roman dört yüz sayfa."), "Cümlenin çevirisi: Bu roman dört yüz sayfa.", null, null)))))
+
+    private fun u64(): LearningUnit = LearningUnit("ZH-B2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-B2-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhb2k_e192", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 公正是基本价值。", "", listOf(), listOf("公正是基本价值。"), "Türkçesi: Hakkaniyet temel bir değerdir.", "公正是基本价值。", "公正是基本价值。"),
                 LearningExercise("zhb2k_e23", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我承担责任。", listOf("İklim değişikliği herkesi etkiliyor.", "Sürdürülebilir çözümlere ihtiyacımız var.", "Sorumluluğu üstleniyorum."), listOf("Sorumluluğu üstleniyorum."), "Cümlenin çevirisi: Sorumluluğu üstleniyorum.", null, null),
@@ -1650,8 +1810,9 @@ object WorldCourseZH {
                 LearningExercise("zhb2k_e7", Skill.VOCABULARY, "Doğru anlamı seç", "'面试' ne anlama gelir?", "", listOf("çöp", "yenilenebilir", "mülakat"), listOf("mülakat"), "面试很顺利。 — Mülakat çok iyi geçti.", null, null),
                 LearningExercise("zhb2k_e13", Skill.VOCABULARY, "Doğru anlamı seç", "'招聘' ne anlama gelir?", "", listOf("eşitlik", "işe alım", "adalet/hakkaniyet"), listOf("işe alım"), "公司在招聘新人。 — Şirket yeni eleman alıyor.", null, null),
                 LearningExercise("zhb2k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "她的职业发展很快。", listOf("Bir yandan çok pahalı.", "Kariyeri hızla gelişiyor.", "Bu argüman çok güçlü."), listOf("Kariyeri hızla gelişiyor."), "Cümlenin çevirisi: Kariyeri hızla gelişiyor.", null, null),
-                LearningExercise("zhb2k_e103", Skill.VOCABULARY, "Doğru anlamı seç", "'公民' ne anlama gelir?", "", listOf("mülakat", "vatandaş", "özgeçmiş"), listOf("vatandaş"), "每个公民都有权利。 — Her vatandaşın hakları vardır.", null, null))))),
-        LearningUnit("ZH-C1-U1", "Akademik Dil", "Akademik metinleri çözümle ve üret.", listOf(
+                LearningExercise("zhb2k_e103", Skill.VOCABULARY, "Doğru anlamı seç", "'公民' ne anlama gelir?", "", listOf("mülakat", "vatandaş", "özgeçmiş"), listOf("vatandaş"), "每个公民都有权利。 — Her vatandaşın hakları vardır.", null, null)))))
+
+    private fun u65(): LearningUnit = LearningUnit("ZH-C1-U1", "Akademik Dil", "Akademik metinleri çözümle ve üret.", listOf(
             LearningLesson("ZH-C1-U1-L1", "Akademik Dil — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhc1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'论文' ne anlama gelir?", "", listOf("çözümleme", "kaynak", "makale/tez"), listOf("makale/tez"), "这篇论文有争议。 — Bu makale tartışmalı.", null, null),
                 LearningExercise("zhc1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'分析' ne anlama gelir?", "", listOf("yöntem", "çözümleme", "irdelemek"), listOf("çözümleme"), "分析覆盖十年的数据。 — Çözümleme on yıllık veriyi kapsıyor.", null, null),
@@ -1677,8 +1838,9 @@ object WorldCourseZH {
             LearningLesson("ZH-C1-U1-L5", "Akademik Dil — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhc1u1e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这个方法很有前途。", listOf("Kaynak çok güvenilir.", "Bu yöntem umut verici.", "Çözümleme on yıllık veriyi kapsıyor."), listOf("Bu yöntem umut verici."), "Cümlenin çevirisi: Bu yöntem umut verici.", null, null),
                 LearningExercise("zhc1u1e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "来源很可靠。", listOf("Kaynak çok güvenilir.", "Bu soruyu yarın irdeleyeceğiz.", "Bu yöntem umut verici."), listOf("Kaynak çok güvenilir."), "Cümlenin çevirisi: Kaynak çok güvenilir.", null, null),
-                LearningExercise("zhc1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这篇论文有争议。", "", listOf(), listOf("这篇论文有争议。"), "Türkçesi: Bu makale tartışmalı.", "这篇论文有争议。", "这篇论文有争议。"))))),
-        LearningUnit("ZH-C1-U2", "Soyut Kavramlar", "Soyut düşünceleri akıcı ifade et.", listOf(
+                LearningExercise("zhc1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这篇论文有争议。", "", listOf(), listOf("这篇论文有争议。"), "Türkçesi: Bu makale tartışmalı.", "这篇论文有争议。", "这篇论文有争议。")))))
+
+    private fun u66(): LearningUnit = LearningUnit("ZH-C1-U2", "Soyut Kavramlar", "Soyut düşünceleri akıcı ifade et.", listOf(
             LearningLesson("ZH-C1-U2-L1", "Soyut Kavramlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhc1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'感知' ne anlama gelir?", "", listOf("düşünce/anlayış", "algı", "bilinç"), listOf("algı"), "我们的感知常常骗我们。 — Algımız bizi sık kandırır.", null, null),
                 LearningExercise("zhc1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'意识' ne anlama gelir?", "", listOf("bilinç", "kavram", "kavrayış/biliş"), listOf("bilinç"), "意识仍然是个谜。 — Bilinç hâlâ bir muamma.", null, null),
@@ -1704,8 +1866,9 @@ object WorldCourseZH {
             LearningLesson("ZH-C1-U2-L5", "Soyut Kavramlar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhc1u2e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "认知随经验而变化。", listOf("Biliş deneyimle değişir.", "Bilinç hâlâ bir muamma.", "Bu anlayış çok yaygın."), listOf("Biliş deneyimle değişir."), "Cümlenin çevirisi: Biliş deneyimle değişir.", null, null),
                 LearningExercise("zhc1u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这种观念很普遍。", listOf("Bu kavramı tanımlamak zor.", "Biliş deneyimle değişir.", "Bu anlayış çok yaygın."), listOf("Bu anlayış çok yaygın."), "Cümlenin çevirisi: Bu anlayış çok yaygın.", null, null),
-                LearningExercise("zhc1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我们的感知常常骗我们。", "", listOf(), listOf("我们的感知常常骗我们。"), "Türkçesi: Algımız bizi sık kandırır.", "我们的感知常常骗我们。", "我们的感知常常骗我们。"))))),
-        LearningUnit("ZH-C1-U3", "Deyimler ve Mecazlar", "Deyimleri doğal bağlamda kullan.", listOf(
+                LearningExercise("zhc1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 我们的感知常常骗我们。", "", listOf(), listOf("我们的感知常常骗我们。"), "Türkçesi: Algımız bizi sık kandırır.", "我们的感知常常骗我们。", "我们的感知常常骗我们。")))))
+
+    private fun u67(): LearningUnit = LearningUnit("ZH-C1-U3", "Deyimler ve Mecazlar", "Deyimleri doğal bağlamda kullan.", listOf(
             LearningLesson("ZH-C1-U3-L1", "Deyimler ve Mecazlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhc1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'一石二鸟' ne anlama gelir?", "", listOf("bir taşla iki kuş", "gereksiz ekleme yapmak", "boşa anlatmak"), listOf("bir taşla iki kuş"), "这样做一石二鸟。 — Böyle yapmak bir taşla iki kuş.", null, null),
                 LearningExercise("zhc1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'画蛇添足' ne anlama gelir?", "", listOf("kuyu dibindeki kurbağa", "iş işten geçmeden önlem almak", "gereksiz ekleme yapmak"), listOf("gereksiz ekleme yapmak"), "这段话是画蛇添足。 — Bu paragraf yılana ayak çizmek gibi.", null, null),
@@ -1731,8 +1894,9 @@ object WorldCourseZH {
             LearningLesson("ZH-C1-U3-L5", "Deyimler ve Mecazlar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhc1u3e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "亡羊补牢，为时不晚。", listOf("Bu paragraf yılana ayak çizmek gibi.", "Ona anlatmak öküz önünde ut çalmak gibi.", "Koyun kaçtıktan sonra ağılı onarmak için geç değildir."), listOf("Koyun kaçtıktan sonra ağılı onarmak için geç değildir."), "Cümlenin çevirisi: Koyun kaçtıktan sonra ağılı onarmak için geç değildir.", null, null),
                 LearningExercise("zhc1u3e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "跟他解释就是对牛弹琴。", listOf("Koyun kaçtıktan sonra ağılı onarmak için geç değildir.", "Ona anlatmak öküz önünde ut çalmak gibi.", "Kuyu dibindeki kurbağa olma."), listOf("Ona anlatmak öküz önünde ut çalmak gibi."), "Cümlenin çevirisi: Ona anlatmak öküz önünde ut çalmak gibi.", null, null),
-                LearningExercise("zhc1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这样做一石二鸟。", "", listOf(), listOf("这样做一石二鸟。"), "Türkçesi: Böyle yapmak bir taşla iki kuş.", "这样做一石二鸟。", "这样做一石二鸟。"))))),
-        LearningUnit("ZH-C1-U4", "Resmî Yazışma", "Resmî mektup ve e-posta dilinde ustalaş.", listOf(
+                LearningExercise("zhc1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这样做一石二鸟。", "", listOf(), listOf("这样做一石二鸟。"), "Türkçesi: Böyle yapmak bir taşla iki kuş.", "这样做一石二鸟。", "这样做一石二鸟。")))))
+
+    private fun u68(): LearningUnit = LearningUnit("ZH-C1-U4", "Resmî Yazışma", "Resmî mektup ve e-posta dilinde ustalaş.", listOf(
             LearningLesson("ZH-C1-U4-L1", "Resmî Yazışma — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhc1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'尊敬的' ne anlama gelir?", "", listOf("ek (dosya)", "saygılarımla", "sayın"), listOf("sayın"), "尊敬的王先生： — Sayın Bay Wang:", null, null),
                 LearningExercise("zhc1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'附件' ne anlama gelir?", "", listOf("işbu yazıyla", "ek (dosya)", "ilişkin"), listOf("ek (dosya)"), "简历请见附件。 — Özgeçmiş için eke bakınız.", null, null),
@@ -1758,8 +1922,9 @@ object WorldCourseZH {
             LearningLesson("ZH-C1-U4-L5", "Resmî Yazışma — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhc1u4e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "特此通知。", listOf("Saygılarımla!", "İşbu yazıyla bildirilir.", "Özgeçmiş için eke bakınız."), listOf("İşbu yazıyla bildirilir."), "Cümlenin çevirisi: İşbu yazıyla bildirilir.", null, null),
                 LearningExercise("zhc1u4e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "此致敬礼！", listOf("Saygılarımla!", "Talebinize ilişkin daha sonra yanıt vereceğiz.", "İşbu yazıyla bildirilir."), listOf("Saygılarımla!"), "Cümlenin çevirisi: Saygılarımla!", null, null),
-                LearningExercise("zhc1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 尊敬的王先生：", "", listOf(), listOf("尊敬的王先生："), "Türkçesi: Sayın Bay Wang:", "尊敬的王先生：", "尊敬的王先生："))))),
-        LearningUnit("ZH-C1-U5", "Müzakere ve Diplomasi", "İncelikli müzakere dili kur.", listOf(
+                LearningExercise("zhc1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 尊敬的王先生：", "", listOf(), listOf("尊敬的王先生："), "Türkçesi: Sayın Bay Wang:", "尊敬的王先生：", "尊敬的王先生：")))))
+
+    private fun u69(): LearningUnit = LearningUnit("ZH-C1-U5", "Müzakere ve Diplomasi", "İncelikli müzakere dili kur.", listOf(
             LearningLesson("ZH-C1-U5-L1", "Müzakere ve Diplomasi — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhc1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'谈判' ne anlama gelir?", "", listOf("anlaşma", "müzakere", "uzlaşma"), listOf("müzakere"), "谈判进行了几个小时。 — Müzakere saatlerce sürdü.", null, null),
                 LearningExercise("zhc1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'妥协' ne anlama gelir?", "", listOf("uzlaşma", "taviz", "duruş/pozisyon"), listOf("uzlaşma"), "妥协是公平的。 — Uzlaşma adil.", null, null),
@@ -1785,8 +1950,9 @@ object WorldCourseZH {
             LearningLesson("ZH-C1-U5-L5", "Müzakere ve Diplomasi — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhc1u5e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "我们的立场不变。", listOf("Duruşumuz değişmiyor.", "Uzlaşma adil.", "Anlaşma geç imzalandı."), listOf("Duruşumuz değişmiyor."), "Cümlenin çevirisi: Duruşumuz değişmiyor.", null, null),
                 LearningExercise("zhc1u5e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "协议签得很晚。", listOf("Taviz gerekliydi.", "Duruşumuz değişmiyor.", "Anlaşma geç imzalandı."), listOf("Anlaşma geç imzalandı."), "Cümlenin çevirisi: Anlaşma geç imzalandı.", null, null),
-                LearningExercise("zhc1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 谈判进行了几个小时。", "", listOf(), listOf("谈判进行了几个小时。"), "Türkçesi: Müzakere saatlerce sürdü.", "谈判进行了几个小时。", "谈判进行了几个小时。"))))),
-        LearningUnit("ZH-C1-U6", "İnce Anlam Farkları", "Yakın anlamlı ifadeleri ayırt et.", listOf(
+                LearningExercise("zhc1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 谈判进行了几个小时。", "", listOf(), listOf("谈判进行了几个小时。"), "Türkçesi: Müzakere saatlerce sürdü.", "谈判进行了几个小时。", "谈判进行了几个小时。")))))
+
+    private fun u70(): LearningUnit = LearningUnit("ZH-C1-U6", "İnce Anlam Farkları", "Yakın anlamlı ifadeleri ayırt et.", listOf(
             LearningLesson("ZH-C1-U6-L1", "İnce Anlam Farkları — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhc1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'显然' ne anlama gelir?", "", listOf("açıkça/besbelli", "söylenene göre", "titiz/ince"), listOf("açıkça/besbelli"), "显然他是对的。 — Besbelli o haklı.", null, null),
                 LearningExercise("zhc1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'据说' ne anlama gelir?", "", listOf("etkili", "sözde", "söylenene göre"), listOf("söylenene göre"), "据说他病了。 — Söylenene göre hastaymış.", null, null),
@@ -1812,8 +1978,9 @@ object WorldCourseZH {
             LearningLesson("ZH-C1-U6-L5", "İnce Anlam Farkları — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhc1u6e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "一位所谓的专家发言了。", listOf("Söylenene göre hastaymış.", "İşi çok titiz.", "Sözde bir uzman konuştu."), listOf("Sözde bir uzman konuştu."), "Cümlenin çevirisi: Sözde bir uzman konuştu.", null, null),
                 LearningExercise("zhc1u6e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "他的工作很细致。", listOf("Sözde bir uzman konuştu.", "İşi çok titiz.", "Bu yöntem çok etkili."), listOf("İşi çok titiz."), "Cümlenin çevirisi: İşi çok titiz.", null, null),
-                LearningExercise("zhc1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 显然他是对的。", "", listOf(), listOf("显然他是对的。"), "Türkçesi: Besbelli o haklı.", "显然他是对的。", "显然他是对的。"))))),
-        LearningUnit("ZH-C1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 显然他是对的。", "", listOf(), listOf("显然他是对的。"), "Türkçesi: Besbelli o haklı.", "显然他是对的。", "显然他是对的。")))))
+
+    private fun u71(): LearningUnit = LearningUnit("ZH-C1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C1-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc1k_e37", Skill.VOCABULARY, "Doğru anlamı seç", "'意识' ne anlama gelir?", "", listOf("bilinç", "boşa anlatmak", "iş işten geçmeden önlem almak"), listOf("bilinç"), "意识仍然是个谜。 — Bilinç hâlâ bir muamma.", null, null),
                 LearningExercise("zhc1k_e194", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 妥协是公平的。", "", listOf(), listOf("妥协是公平的。"), "Türkçesi: Uzlaşma adil.", "妥协是公平的。", "妥协是公平的。"),
@@ -1837,8 +2004,9 @@ object WorldCourseZH {
                 LearningExercise("zhc1k_e112", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "此致敬礼！", listOf("Saygılarımla!", "Ona anlatmak öküz önünde ut çalmak gibi.", "Koyun kaçtıktan sonra ağılı onarmak için geç değildir."), listOf("Saygılarımla!"), "Cümlenin çevirisi: Saygılarımla!", null, null),
                 LearningExercise("zhc1k_e162", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___他病了。", "", listOf("认知", "一石二鸟", "据说"), listOf("据说"), "Doğru cümle: 据说他病了。 — Söylenene göre hastaymış.", null, null),
                 LearningExercise("zhc1k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "这段话是___。", "", listOf("立场", "显然", "画蛇添足"), listOf("画蛇添足"), "Doğru cümle: 这段话是画蛇添足。 — Bu paragraf yılana ayak çizmek gibi.", null, null),
-                LearningExercise("zhc1k_e111", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bu makale tartışmalı.", "Saygılarımla!", "Sözde bir uzman konuştu."), listOf("Saygılarımla!"), "Söylenen cümle: 此致敬礼！", "此致敬礼！", null))))),
-        LearningUnit("ZH-C1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc1k_e111", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bu makale tartışmalı.", "Saygılarımla!", "Sözde bir uzman konuştu."), listOf("Saygılarımla!"), "Söylenen cümle: 此致敬礼！", "此致敬礼！", null)))))
+
+    private fun u72(): LearningUnit = LearningUnit("ZH-C1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C1-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc1k_e175", Skill.VOCABULARY, "Doğru anlamı seç", "'所谓' ne anlama gelir?", "", listOf("açıkça/besbelli", "sözde", "duruş/pozisyon"), listOf("sözde"), "一位所谓的专家发言了。 — Sözde bir uzman konuştu.", null, null),
                 LearningExercise("zhc1k_e106", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "关于您的请求，我们稍后回复。", listOf("Bu yöntem çok etkili.", "Talebinize ilişkin daha sonra yanıt vereceğiz.", "Söylenene göre hastaymış."), listOf("Talebinize ilişkin daha sonra yanıt vereceğiz."), "Cümlenin çevirisi: Talebinize ilişkin daha sonra yanıt vereceğiz.", null, null),
@@ -1862,8 +2030,9 @@ object WorldCourseZH {
                 LearningExercise("zhc1k_e90", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___，为时不晚。", "", listOf("来源", "方法", "亡羊补牢"), listOf("亡羊补牢"), "Doğru cümle: 亡羊补牢，为时不晚。 — Koyun kaçtıktan sonra ağılı onarmak için geç değildir.", null, null),
                 LearningExercise("zhc1k_e117", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("İşbu yazıyla bildirilir.", "Kuyu dibindeki kurbağa olma.", "Ona anlatmak öküz önünde ut çalmak gibi."), listOf("İşbu yazıyla bildirilir."), "Söylenen cümle: 特此通知。", "特此通知。", null),
                 LearningExercise("zhc1k_e31", Skill.VOCABULARY, "Doğru anlamı seç", "'感知' ne anlama gelir?", "", listOf("kavram", "algı", "bilinç"), listOf("algı"), "我们的感知常常骗我们。 — Algımız bizi sık kandırır.", null, null),
-                LearningExercise("zhc1k_e200", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 认知随经验而变化。", "", listOf(), listOf("认知随经验而变化。"), "Türkçesi: Biliş deneyimle değişir.", "认知随经验而变化。", "认知随经验而变化。"))))),
-        LearningUnit("ZH-C1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc1k_e200", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 认知随经验而变化。", "", listOf(), listOf("认知随经验而变化。"), "Türkçesi: Biliş deneyimle değişir.", "认知随经验而变化。", "认知随经验而变化。")))))
+
+    private fun u73(): LearningUnit = LearningUnit("ZH-C1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C1-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc1k_e56", Skill.VOCABULARY, "Doğru çeviriyi seç", "'kavrayış/biliş' ifadesinin Çince karşılığı hangisi?", "", listOf("井底之蛙", "对牛弹琴", "认知"), listOf("认知"), "Örnek: 认知随经验而变化。 — Biliş deneyimle değişir.", null, null),
                 LearningExercise("zhc1k_e42", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___仍然是个谜。", "", listOf("论文", "意识", "所谓"), listOf("意识"), "Doğru cümle: 意识仍然是个谜。 — Bilinç hâlâ bir muamma.", null, null),
@@ -1887,8 +2056,9 @@ object WorldCourseZH {
                 LearningExercise("zhc1k_e71", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这段话是画蛇添足。", listOf("Bu paragraf yılana ayak çizmek gibi.", "Bu anlayış çok yaygın.", "Biliş deneyimle değişir."), listOf("Bu paragraf yılana ayak çizmek gibi."), "Cümlenin çevirisi: Bu paragraf yılana ayak çizmek gibi.", null, null),
                 LearningExercise("zhc1k_e94", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "尊敬的王先生：", listOf("Sayın Bay Wang:", "Taviz gerekliydi.", "Anlaşma geç imzalandı."), listOf("Sayın Bay Wang:"), "Cümlenin çevirisi: Sayın Bay Wang:", null, null),
                 LearningExercise("zhc1k_e55", Skill.VOCABULARY, "Doğru anlamı seç", "'认知' ne anlama gelir?", "", listOf("kavrayış/biliş", "yöntem", "algı"), listOf("kavrayış/biliş"), "认知随经验而变化。 — Biliş deneyimle değişir.", null, null),
-                LearningExercise("zhc1k_e80", Skill.VOCABULARY, "Doğru çeviriyi seç", "'boşa anlatmak' ifadesinin Çince karşılığı hangisi?", "", listOf("有效", "对牛弹琴", "据说"), listOf("对牛弹琴"), "Örnek: 跟他解释就是对牛弹琴。 — Ona anlatmak öküz önünde ut çalmak gibi.", null, null))))),
-        LearningUnit("ZH-C1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc1k_e80", Skill.VOCABULARY, "Doğru çeviriyi seç", "'boşa anlatmak' ifadesinin Çince karşılığı hangisi?", "", listOf("有效", "对牛弹琴", "据说"), listOf("对牛弹琴"), "Örnek: 跟他解释就是对牛弹琴。 — Ona anlatmak öküz önünde ut çalmak gibi.", null, null)))))
+
+    private fun u74(): LearningUnit = LearningUnit("ZH-C1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C1-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc1k_e105", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Özgeçmiş için eke bakınız.", "Saygılarımla!", "Talebinize ilişkin daha sonra yanıt vereceğiz."), listOf("Talebinize ilişkin daha sonra yanıt vereceğiz."), "Söylenen cümle: 关于您的请求，我们稍后回复。", "关于您的请求，我们稍后回复。", null),
                 LearningExercise("zhc1k_e163", Skill.VOCABULARY, "Doğru anlamı seç", "'有效' ne anlama gelir?", "", listOf("etkili", "bir taşla iki kuş", "gereksiz ekleme yapmak"), listOf("etkili"), "这个方法很有效。 — Bu yöntem çok etkili.", null, null),
@@ -1912,8 +2082,9 @@ object WorldCourseZH {
                 LearningExercise("zhc1k_e188", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 来源很可靠。", "", listOf(), listOf("来源很可靠。"), "Türkçesi: Kaynak çok güvenilir.", "来源很可靠。", "来源很可靠。"),
                 LearningExercise("zhc1k_e43", Skill.VOCABULARY, "Doğru anlamı seç", "'概念' ne anlama gelir?", "", listOf("müzakere", "uzlaşma", "kavram"), listOf("kavram"), "这个概念很难定义。 — Bu kavramı tanımlamak zor.", null, null),
                 LearningExercise("zhc1k_e76", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "别做井底之蛙。", listOf("Kuyu dibindeki kurbağa olma.", "Çözümleme on yıllık veriyi kapsıyor.", "Bu soruyu yarın irdeleyeceğiz."), listOf("Kuyu dibindeki kurbağa olma."), "Cümlenin çevirisi: Kuyu dibindeki kurbağa olma.", null, null),
-                LearningExercise("zhc1k_e146", Skill.VOCABULARY, "Doğru çeviriyi seç", "'duruş/pozisyon' ifadesinin Çince karşılığı hangisi?", "", listOf("有效", "细致", "立场"), listOf("立场"), "Örnek: 我们的立场不变。 — Duruşumuz değişmiyor.", null, null))))),
-        LearningUnit("ZH-C1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc1k_e146", Skill.VOCABULARY, "Doğru çeviriyi seç", "'duruş/pozisyon' ifadesinin Çince karşılığı hangisi?", "", listOf("有效", "细致", "立场"), listOf("立场"), "Örnek: 我们的立场不变。 — Duruşumuz değişmiyor.", null, null)))))
+
+    private fun u75(): LearningUnit = LearningUnit("ZH-C1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C1-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc1k_e196", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这个方法很有效。", "", listOf(), listOf("这个方法很有效。"), "Türkçesi: Bu yöntem çok etkili.", "这个方法很有效。", "这个方法很有效。"),
                 LearningExercise("zhc1k_e82", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "跟他解释就是对牛弹琴。", listOf("Saygılarımla!", "İşbu yazıyla bildirilir.", "Ona anlatmak öküz önünde ut çalmak gibi."), listOf("Ona anlatmak öküz önünde ut çalmak gibi."), "Cümlenin çevirisi: Ona anlatmak öküz önünde ut çalmak gibi.", null, null),
@@ -1937,8 +2108,9 @@ object WorldCourseZH {
                 LearningExercise("zhc1k_e126", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___进行了几个小时。", "", listOf("妥协", "让步", "谈判"), listOf("谈判"), "Doğru cümle: 谈判进行了几个小时。 — Müzakere saatlerce sürdü.", null, null),
                 LearningExercise("zhc1k_e161", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "据说他病了。", listOf("Söylenene göre hastaymış.", "Anlaşma geç imzalandı.", "Duruşumuz değişmiyor."), listOf("Söylenene göre hastaymış."), "Cümlenin çevirisi: Söylenene göre hastaymış.", null, null),
                 LearningExercise("zhc1k_e191", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 别做井底之蛙。", "", listOf(), listOf("别做井底之蛙。"), "Türkçesi: Kuyu dibindeki kurbağa olma.", "别做井底之蛙。", "别做井底之蛙。"),
-                LearningExercise("zhc1k_e14", Skill.VOCABULARY, "Doğru çeviriyi seç", "'irdelemek' ifadesinin Çince karşılığı hangisi?", "", listOf("探讨", "显然", "据说"), listOf("探讨"), "Örnek: 我们明天探讨这个问题。 — Bu soruyu yarın irdeleyeceğiz.", null, null))))),
-        LearningUnit("ZH-C1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc1k_e14", Skill.VOCABULARY, "Doğru çeviriyi seç", "'irdelemek' ifadesinin Çince karşılığı hangisi?", "", listOf("探讨", "显然", "据说"), listOf("探讨"), "Örnek: 我们明天探讨这个问题。 — Bu soruyu yarın irdeleyeceğiz.", null, null)))))
+
+    private fun u76(): LearningUnit = LearningUnit("ZH-C1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C1-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc1k_e170", Skill.VOCABULARY, "Doğru çeviriyi seç", "'titiz/ince' ifadesinin Çince karşılığı hangisi?", "", listOf("井底之蛙", "细致", "画蛇添足"), listOf("细致"), "Örnek: 他的工作很细致。 — İşi çok titiz.", null, null),
                 LearningExercise("zhc1k_e95", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "尊敬的王先生：", listOf("Duruşumuz değişmiyor.", "Besbelli o haklı.", "Sayın Bay Wang:"), listOf("Sayın Bay Wang:"), "Cümlenin çevirisi: Sayın Bay Wang:", null, null),
@@ -1962,8 +2134,9 @@ object WorldCourseZH {
                 LearningExercise("zhc1k_e133", Skill.VOCABULARY, "Doğru anlamı seç", "'让步' ne anlama gelir?", "", listOf("algı", "bilinç", "taviz"), listOf("taviz"), "让步是必要的。 — Taviz gerekliydi.", null, null),
                 LearningExercise("zhc1k_e193", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 此致敬礼！", "", listOf(), listOf("此致敬礼！"), "Türkçesi: Saygılarımla!", "此致敬礼！", "此致敬礼！"),
                 LearningExercise("zhc1k_e52", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这种观念很普遍。", listOf("Duruşumuz değişmiyor.", "Bu anlayış çok yaygın.", "Anlaşma geç imzalandı."), listOf("Bu anlayış çok yaygın."), "Cümlenin çevirisi: Bu anlayış çok yaygın.", null, null),
-                LearningExercise("zhc1k_e6", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "这篇___有争议。", "", listOf("井底之蛙", "论文", "画蛇添足"), listOf("论文"), "Doğru cümle: 这篇论文有争议。 — Bu makale tartışmalı.", null, null))))),
-        LearningUnit("ZH-C1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc1k_e6", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "这篇___有争议。", "", listOf("井底之蛙", "论文", "画蛇添足"), listOf("论文"), "Doğru cümle: 这篇论文有争议。 — Bu makale tartışmalı.", null, null)))))
+
+    private fun u77(): LearningUnit = LearningUnit("ZH-C1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C1-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc1k_e36", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "我们的___常常骗我们。", "", listOf("意识", "概念", "感知"), listOf("感知"), "Doğru cümle: 我们的感知常常骗我们。 — Algımız bizi sık kandırır.", null, null),
                 LearningExercise("zhc1k_e171", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("İşi çok titiz.", "Biliş deneyimle değişir.", "Böyle yapmak bir taşla iki kuş."), listOf("İşi çok titiz."), "Söylenen cümle: 他的工作很细致。", "他的工作很细致。", null),
@@ -1987,8 +2160,9 @@ object WorldCourseZH {
                 LearningExercise("zhc1k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'kavram' ifadesinin Çince karşılığı hangisi?", "", listOf("妥协", "概念", "谈判"), listOf("概念"), "Örnek: 这个概念很难定义。 — Bu kavramı tanımlamak zor.", null, null),
                 LearningExercise("zhc1k_e97", Skill.VOCABULARY, "Doğru anlamı seç", "'附件' ne anlama gelir?", "", listOf("anlaşma", "duruş/pozisyon", "ek (dosya)"), listOf("ek (dosya)"), "简历请见附件。 — Özgeçmiş için eke bakınız.", null, null),
                 LearningExercise("zhc1k_e143", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "协议签得很晚。", listOf("Anlaşma geç imzalandı.", "Söylenene göre hastaymış.", "Bu yöntem çok etkili."), listOf("Anlaşma geç imzalandı."), "Cümlenin çevirisi: Anlaşma geç imzalandı.", null, null),
-                LearningExercise("zhc1k_e197", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这篇论文有争议。", "", listOf(), listOf("这篇论文有争议。"), "Türkçesi: Bu makale tartışmalı.", "这篇论文有争议。", "这篇论文有争议。"))))),
-        LearningUnit("ZH-C1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc1k_e197", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这篇论文有争议。", "", listOf(), listOf("这篇论文有争议。"), "Türkçesi: Bu makale tartışmalı.", "这篇论文有争议。", "这篇论文有争议。")))))
+
+    private fun u78(): LearningUnit = LearningUnit("ZH-C1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C1-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc1k_e86", Skill.VOCABULARY, "Doğru çeviriyi seç", "'iş işten geçmeden önlem almak' ifadesinin Çince karşılığı hangisi?", "", listOf("亡羊补牢", "概念", "观念"), listOf("亡羊补牢"), "Örnek: 亡羊补牢，为时不晚。 — Koyun kaçtıktan sonra ağılı onarmak için geç değildir.", null, null),
                 LearningExercise("zhc1k_e10", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "分析覆盖十年的数据。", listOf("Duruşumuz değişmiyor.", "Besbelli o haklı.", "Çözümleme on yıllık veriyi kapsıyor."), listOf("Çözümleme on yıllık veriyi kapsıyor."), "Cümlenin çevirisi: Çözümleme on yıllık veriyi kapsıyor.", null, null),
@@ -2012,8 +2186,9 @@ object WorldCourseZH {
                 LearningExercise("zhc1k_e142", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "协议签得很晚。", listOf("Biliş deneyimle değişir.", "Anlaşma geç imzalandı.", "Bu anlayış çok yaygın."), listOf("Anlaşma geç imzalandı."), "Cümlenin çevirisi: Anlaşma geç imzalandı.", null, null),
                 LearningExercise("zhc1k_e53", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这种观念很普遍。", listOf("Bu anlayış çok yaygın.", "Bu paragraf yılana ayak çizmek gibi.", "Kuyu dibindeki kurbağa olma."), listOf("Bu anlayış çok yaygın."), "Cümlenin çevirisi: Bu anlayış çok yaygın.", null, null),
                 LearningExercise("zhc1k_e116", Skill.VOCABULARY, "Doğru çeviriyi seç", "'işbu yazıyla' ifadesinin Çince karşılığı hangisi?", "", listOf("来源", "特此", "探讨"), listOf("特此"), "Örnek: 特此通知。 — İşbu yazıyla bildirilir.", null, null),
-                LearningExercise("zhc1k_e11", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "分析覆盖十年的数据。", listOf("Sözde bir uzman konuştu.", "Çözümleme on yıllık veriyi kapsıyor.", "İşi çok titiz."), listOf("Çözümleme on yıllık veriyi kapsıyor."), "Cümlenin çevirisi: Çözümleme on yıllık veriyi kapsıyor.", null, null))))),
-        LearningUnit("ZH-C1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc1k_e11", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "分析覆盖十年的数据。", listOf("Sözde bir uzman konuştu.", "Çözümleme on yıllık veriyi kapsıyor.", "İşi çok titiz."), listOf("Çözümleme on yıllık veriyi kapsıyor."), "Cümlenin çevirisi: Çözümleme on yıllık veriyi kapsıyor.", null, null)))))
+
+    private fun u79(): LearningUnit = LearningUnit("ZH-C1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C1-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc1k_e96", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___王先生：", "", listOf("有效", "尊敬的", "据说"), listOf("尊敬的"), "Doğru cümle: 尊敬的王先生： — Sayın Bay Wang:", null, null),
                 LearningExercise("zhc1k_e176", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sözde' ifadesinin Çince karşılığı hangisi?", "", listOf("所谓", "让步", "协议"), listOf("所谓"), "Örnek: 一位所谓的专家发言了。 — Sözde bir uzman konuştu.", null, null),
@@ -2037,8 +2212,9 @@ object WorldCourseZH {
                 LearningExercise("zhc1k_e40", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "意识仍然是个谜。", listOf("Bilinç hâlâ bir muamma.", "İşbu yazıyla bildirilir.", "Müzakere saatlerce sürdü."), listOf("Bilinç hâlâ bir muamma."), "Cümlenin çevirisi: Bilinç hâlâ bir muamma.", null, null),
                 LearningExercise("zhc1k_e109", Skill.VOCABULARY, "Doğru anlamı seç", "'此致敬礼' ne anlama gelir?", "", listOf("saygılarımla", "kavram", "düşünce/anlayış"), listOf("saygılarımla"), "此致敬礼！ — Saygılarımla!", null, null),
                 LearningExercise("zhc1k_e132", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___是公平的。", "", listOf("尊敬的", "妥协", "亡羊补牢"), listOf("妥协"), "Doğru cümle: 妥协是公平的。 — Uzlaşma adil.", null, null),
-                LearningExercise("zhc1k_e141", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bu yöntem umut verici.", "Algımız bizi sık kandırır.", "Anlaşma geç imzalandı."), listOf("Anlaşma geç imzalandı."), "Söylenen cümle: 协议签得很晚。", "协议签得很晚。", null))))),
-        LearningUnit("ZH-C1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc1k_e141", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Bu yöntem umut verici.", "Algımız bizi sık kandırır.", "Anlaşma geç imzalandı."), listOf("Anlaşma geç imzalandı."), "Söylenen cümle: 协议签得很晚。", "协议签得很晚。", null)))))
+
+    private fun u80(): LearningUnit = LearningUnit("ZH-C1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C1-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc1k_e130", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "妥协是公平的。", listOf("Uzlaşma adil.", "Bu yöntem umut verici.", "Algımız bizi sık kandırır."), listOf("Uzlaşma adil."), "Cümlenin çevirisi: Uzlaşma adil.", null, null),
                 LearningExercise("zhc1k_e169", Skill.VOCABULARY, "Doğru anlamı seç", "'细致' ne anlama gelir?", "", listOf("ilişkin", "saygılarımla", "titiz/ince"), listOf("titiz/ince"), "他的工作很细致。 — İşi çok titiz.", null, null),
@@ -2062,8 +2238,9 @@ object WorldCourseZH {
                 LearningExercise("zhc1k_e12", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___覆盖十年的数据。", "", listOf("分析", "方法", "感知"), listOf("分析"), "Doğru cümle: 分析覆盖十年的数据。 — Çözümleme on yıllık veriyi kapsıyor.", null, null),
                 LearningExercise("zhc1k_e181", Skill.GRAMMAR, "Doğru seçeneği işaretle", "___研究显示，数字在增长。", "", listOf("据", "靠", "凭着"), listOf("据"), "Akademik atıf: 据研究显示 (araştırmaya göre).", null, null),
                 LearningExercise("zhc1k_e48", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "这个___很难定义。", "", listOf("概念", "让步", "协议"), listOf("概念"), "Doğru cümle: 这个概念很难定义。 — Bu kavramı tanımlamak zor.", null, null),
-                LearningExercise("zhc1k_e164", Skill.VOCABULARY, "Doğru çeviriyi seç", "'etkili' ifadesinin Çince karşılığı hangisi?", "", listOf("论文", "分析", "有效"), listOf("有效"), "Örnek: 这个方法很有效。 — Bu yöntem çok etkili.", null, null))))),
-        LearningUnit("ZH-C2-U1", "Üslup ve İncelik", "Üslubu bağlama göre ustaca ayarla.", listOf(
+                LearningExercise("zhc1k_e164", Skill.VOCABULARY, "Doğru çeviriyi seç", "'etkili' ifadesinin Çince karşılığı hangisi?", "", listOf("论文", "分析", "有效"), listOf("有效"), "Örnek: 这个方法很有效。 — Bu yöntem çok etkili.", null, null)))))
+
+    private fun u81(): LearningUnit = LearningUnit("ZH-C2-U1", "Üslup ve İncelik", "Üslubu bağlama göre ustaca ayarla.", listOf(
             LearningLesson("ZH-C2-U1-L1", "Üslup ve İncelik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhc2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'微妙' ne anlama gelir?", "", listOf("ses tonu/eda", "özlü", "incelikli/nazik"), listOf("incelikli/nazik"), "语言的微妙之处很难掌握。 — Dilin incelikli yanlarını kavramak zor.", null, null),
                 LearningExercise("zhc2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'语气' ne anlama gelir?", "", listOf("ince işlenmiş", "ses tonu/eda", "ima"), listOf("ses tonu/eda"), "他的语气有点讽刺。 — Edası biraz alaycıydı.", null, null),
@@ -2089,8 +2266,9 @@ object WorldCourseZH {
             LearningLesson("ZH-C2-U1-L5", "Üslup ve İncelik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhc2u1e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "他的描写非常细腻。", listOf("Yanıtı çok özlüydü.", "Betimlemesi son derece ince.", "Edası biraz alaycıydı."), listOf("Betimlemesi son derece ince."), "Cümlenin çevirisi: Betimlemesi son derece ince.", null, null),
                 LearningExercise("zhc2u1e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "他的回答很简洁。", listOf("Yanıtı çok özlüydü.", "İmayı yalnızca o anladı.", "Betimlemesi son derece ince."), listOf("Yanıtı çok özlüydü."), "Cümlenin çevirisi: Yanıtı çok özlüydü.", null, null),
-                LearningExercise("zhc2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 语言的微妙之处很难掌握。", "", listOf(), listOf("语言的微妙之处很难掌握。"), "Türkçesi: Dilin incelikli yanlarını kavramak zor.", "语言的微妙之处很难掌握。", "语言的微妙之处很难掌握。"))))),
-        LearningUnit("ZH-C2-U2", "Edebî Dil", "Edebî metinlerin katmanlarını çözümle.", listOf(
+                LearningExercise("zhc2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 语言的微妙之处很难掌握。", "", listOf(), listOf("语言的微妙之处很难掌握。"), "Türkçesi: Dilin incelikli yanlarını kavramak zor.", "语言的微妙之处很难掌握。", "语言的微妙之处很难掌握。")))))
+
+    private fun u82(): LearningUnit = LearningUnit("ZH-C2-U2", "Edebî Dil", "Edebî metinlerin katmanlarını çözümle.", listOf(
             LearningLesson("ZH-C2-U2-L1", "Edebî Dil — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhc2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'隐喻' ne anlama gelir?", "", listOf("lirik", "metafor", "simge"), listOf("metafor"), "隐喻贯穿全文。 — Metafor bütün metni kat ediyor.", null, null),
                 LearningExercise("zhc2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'象征' ne anlama gelir?", "", listOf("simge", "anlatı", "hiciv/ironi"), listOf("simge"), "大海是自由的象征。 — Deniz özgürlüğün simgesidir.", null, null),
@@ -2116,8 +2294,9 @@ object WorldCourseZH {
             LearningLesson("ZH-C2-U2-L5", "Edebî Dil — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhc2u2e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "文中的讽刺很明显。", listOf("Metindeki ironi çok belirgin.", "Deniz özgürlüğün simgesidir.", "Üslup son derece lirik."), listOf("Metindeki ironi çok belirgin."), "Cümlenin çevirisi: Metindeki ironi çok belirgin.", null, null),
                 LearningExercise("zhc2u2e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "文风非常抒情。", listOf("Anlatı perspektifi durmadan değişiyor.", "Metindeki ironi çok belirgin.", "Üslup son derece lirik."), listOf("Üslup son derece lirik."), "Cümlenin çevirisi: Üslup son derece lirik.", null, null),
-                LearningExercise("zhc2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 隐喻贯穿全文。", "", listOf(), listOf("隐喻贯穿全文。"), "Türkçesi: Metafor bütün metni kat ediyor.", "隐喻贯穿全文。", "隐喻贯穿全文。"))))),
-        LearningUnit("ZH-C2-U3", "Uzmanlık Söylemi", "Uzmanlık alanı söylemine hâkim ol.", listOf(
+                LearningExercise("zhc2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 隐喻贯穿全文。", "", listOf(), listOf("隐喻贯穿全文。"), "Türkçesi: Metafor bütün metni kat ediyor.", "隐喻贯穿全文。", "隐喻贯穿全文。")))))
+
+    private fun u83(): LearningUnit = LearningUnit("ZH-C2-U3", "Uzmanlık Söylemi", "Uzmanlık alanı söylemine hâkim ol.", listOf(
             LearningLesson("ZH-C2-U3-L1", "Uzmanlık Söylemi — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhc2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'术语' ne anlama gelir?", "", listOf("terim", "söylem/metin", "güçlü/sağlam"), listOf("terim"), "术语必须准确。 — Terimler kesin olmalı.", null, null),
                 LearningExercise("zhc2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'语篇' ne anlama gelir?", "", listOf("bilimsel eser", "ayırt etmek", "söylem/metin"), listOf("söylem/metin"), "学术语篇有自己的规范。 — Akademik söylemin kendi normları vardır.", null, null),
@@ -2143,8 +2322,9 @@ object WorldCourseZH {
             LearningLesson("ZH-C2-U3-L5", "Uzmanlık Söylemi — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhc2u3e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "必须区分这两个概念。", listOf("Akademik söylemin kendi normları vardır.", "Bu kanıtlama çok güçlü.", "Bu iki kavramı ayırt etmek şart."), listOf("Bu iki kavramı ayırt etmek şart."), "Cümlenin çevirisi: Bu iki kavramı ayırt etmek şart.", null, null),
                 LearningExercise("zhc2u3e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这个论证很有力。", listOf("Bu iki kavramı ayırt etmek şart.", "Bu kanıtlama çok güçlü.", "Bu eser üç ciltten oluşuyor."), listOf("Bu kanıtlama çok güçlü."), "Cümlenin çevirisi: Bu kanıtlama çok güçlü.", null, null),
-                LearningExercise("zhc2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 术语必须准确。", "", listOf(), listOf("术语必须准确。"), "Türkçesi: Terimler kesin olmalı.", "术语必须准确。", "术语必须准确。"))))),
-        LearningUnit("ZH-C2-U4", "Kültürel Derinlik", "Kültürel referansları derinlemesine kavra.", listOf(
+                LearningExercise("zhc2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 术语必须准确。", "", listOf(), listOf("术语必须准确。"), "Türkçesi: Terimler kesin olmalı.", "术语必须准确。", "术语必须准确。")))))
+
+    private fun u84(): LearningUnit = LearningUnit("ZH-C2-U4", "Kültürel Derinlik", "Kültürel referansları derinlemesine kavra.", listOf(
             LearningLesson("ZH-C2-U4-L1", "Kültürel Derinlik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhc2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'世界观' ne anlama gelir?", "", listOf("zihniyet/ruh hali", "kökleşmiş", "dünya görüşü"), listOf("dünya görüşü"), "他的世界观被动摇了。 — Dünya görüşü sarsıldı.", null, null),
                 LearningExercise("zhc2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'心态' ne anlama gelir?", "", listOf("miras", "zihniyet/ruh hali", "zamanın ruhu"), listOf("zihniyet/ruh hali"), "各地心态不同。 — Zihniyet yerden yere değişir.", null, null),
@@ -2170,8 +2350,9 @@ object WorldCourseZH {
             LearningLesson("ZH-C2-U4-L5", "Kültürel Derinlik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhc2u4e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "文化遗产受到保护。", listOf("Bu gelenek kökleşmiş durumda.", "Kültürel miras korunuyor.", "Zihniyet yerden yere değişir."), listOf("Kültürel miras korunuyor."), "Cümlenin çevirisi: Kültürel miras korunuyor.", null, null),
                 LearningExercise("zhc2u4e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这个传统根深蒂固。", listOf("Bu gelenek kökleşmiş durumda.", "Bu roman zamanın ruhunu yakalıyor.", "Kültürel miras korunuyor."), listOf("Bu gelenek kökleşmiş durumda."), "Cümlenin çevirisi: Bu gelenek kökleşmiş durumda.", null, null),
-                LearningExercise("zhc2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 他的世界观被动摇了。", "", listOf(), listOf("他的世界观被动摇了。"), "Türkçesi: Dünya görüşü sarsıldı.", "他的世界观被动摇了。", "他的世界观被动摇了。"))))),
-        LearningUnit("ZH-C2-U5", "Retorik Ustalığı", "Retorik araçları etkili kullan.", listOf(
+                LearningExercise("zhc2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 他的世界观被动摇了。", "", listOf(), listOf("他的世界观被动摇了。"), "Türkçesi: Dünya görüşü sarsıldı.", "他的世界观被动摇了。", "他的世界观被动摇了。")))))
+
+    private fun u85(): LearningUnit = LearningUnit("ZH-C2-U5", "Retorik Ustalığı", "Retorik araçları etkili kullan.", listOf(
             LearningLesson("ZH-C2-U5-L1", "Retorik Ustalığı — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhc2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'修辞' ne anlama gelir?", "", listOf("keskin", "retorik", "söz sanatı"), listOf("retorik"), "他的修辞很出色。 — Retoriği çok başarılı.", null, null),
                 LearningExercise("zhc2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'修辞手法' ne anlama gelir?", "", listOf("söz sanatı", "etkileme gücü", "heybet/enerji"), listOf("söz sanatı"), "这种修辞手法效果微妙。 — Bu söz sanatının etkisi incelikli.", null, null),
@@ -2197,8 +2378,9 @@ object WorldCourseZH {
             LearningLesson("ZH-C2-U5-L5", "Retorik Ustalığı — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhc2u5e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "文章气势磅礴。", listOf("Yazının anlatım gücü görkemli.", "Bu söz sanatının etkisi incelikli.", "Eleştirisi son derece keskin."), listOf("Yazının anlatım gücü görkemli."), "Cümlenin çevirisi: Yazının anlatım gücü görkemli.", null, null),
                 LearningExercise("zhc2u5e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "他的批评非常犀利。", listOf("Konuşması çok etkileyici.", "Yazının anlatım gücü görkemli.", "Eleştirisi son derece keskin."), listOf("Eleştirisi son derece keskin."), "Cümlenin çevirisi: Eleştirisi son derece keskin.", null, null),
-                LearningExercise("zhc2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 他的修辞很出色。", "", listOf(), listOf("他的修辞很出色。"), "Türkçesi: Retoriği çok başarılı.", "他的修辞很出色。", "他的修辞很出色。"))))),
-        LearningUnit("ZH-C2-U6", "Ana Dil Düzeyinde Akıcılık", "Ana dil konuşuru düzeyinde incelik kazan.", listOf(
+                LearningExercise("zhc2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 他的修辞很出色。", "", listOf(), listOf("他的修辞很出色。"), "Türkçesi: Retoriği çok başarılı.", "他的修辞很出色。", "他的修辞很出色。")))))
+
+    private fun u86(): LearningUnit = LearningUnit("ZH-C2-U6", "Ana Dil Düzeyinde Akıcılık", "Ana dil konuşuru düzeyinde incelik kazan.", listOf(
             LearningLesson("ZH-C2-U6-L1", "Ana Dil Düzeyinde Akıcılık — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("zhc2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'精通' ne anlama gelir?", "", listOf("ustaca hâkim olmak", "hiç zorlanmadan", "halis/yerli gibi"), listOf("ustaca hâkim olmak"), "她精通五种语言。 — Beş dile ustalıkla hâkim.", null, null),
                 LearningExercise("zhc2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'毫不费力' ne anlama gelir?", "", listOf("ustalığın zirvesi", "akıcı", "hiç zorlanmadan"), listOf("hiç zorlanmadan"), "她毫不费力地转换语体。 — Dil düzeyini hiç zorlanmadan değiştiriyor.", null, null),
@@ -2224,8 +2406,9 @@ object WorldCourseZH {
             LearningLesson("ZH-C2-U6-L5", "Ana Dil Düzeyinde Akıcılık — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("zhc2u6e14", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "她说得很流利。", listOf("Dil düzeyini hiç zorlanmadan değiştiriyor.", "Yerli gibi halis bir Çince konuşuyor.", "Çok akıcı konuşuyor."), listOf("Çok akıcı konuşuyor."), "Cümlenin çevirisi: Çok akıcı konuşuyor.", null, null),
                 LearningExercise("zhc2u6e15", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "他说一口地道的中文。", listOf("Çok akıcı konuşuyor.", "Yerli gibi halis bir Çince konuşuyor.", "Çincesi ustalığın zirvesinde."), listOf("Yerli gibi halis bir Çince konuşuyor."), "Cümlenin çevirisi: Yerli gibi halis bir Çince konuşuyor.", null, null),
-                LearningExercise("zhc2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 她精通五种语言。", "", listOf(), listOf("她精通五种语言。"), "Türkçesi: Beş dile ustalıkla hâkim.", "她精通五种语言。", "她精通五种语言。"))))),
-        LearningUnit("ZH-C2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 她精通五种语言。", "", listOf(), listOf("她精通五种语言。"), "Türkçesi: Beş dile ustalıkla hâkim.", "她精通五种语言。", "她精通五种语言。")))))
+
+    private fun u87(): LearningUnit = LearningUnit("ZH-C2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C2-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc2k_e35", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "隐喻贯穿全文。", listOf("Metafor bütün metni kat ediyor.", "Bu iki kavramı ayırt etmek şart.", "Dünya görüşü sarsıldı."), listOf("Metafor bütün metni kat ediyor."), "Cümlenin çevirisi: Metafor bütün metni kat ediyor.", null, null),
                 LearningExercise("zhc2k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "学术___有自己的规范。", "", listOf("气势", "精通", "语篇"), listOf("语篇"), "Doğru cümle: 学术语篇有自己的规范。 — Akademik söylemin kendi normları vardır.", null, null),
@@ -2249,8 +2432,9 @@ object WorldCourseZH {
                 LearningExercise("zhc2k_e33", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Terimler kesin olmalı.", "Akademik söylemin kendi normları vardır.", "Metafor bütün metni kat ediyor."), listOf("Metafor bütün metni kat ediyor."), "Söylenen cümle: 隐喻贯穿全文。", "隐喻贯穿全文。", null),
                 LearningExercise("zhc2k_e100", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "各地心态不同。", listOf("Metindeki ironi çok belirgin.", "Terimler kesin olmalı.", "Zihniyet yerden yere değişir."), listOf("Zihniyet yerden yere değişir."), "Cümlenin çevirisi: Zihniyet yerden yere değişir.", null, null),
                 LearningExercise("zhc2k_e194", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 这种修辞手法效果微妙。", "", listOf(), listOf("这种修辞手法效果微妙。"), "Türkçesi: Bu söz sanatının etkisi incelikli.", "这种修辞手法效果微妙。", "这种修辞手法效果微妙。"),
-                LearningExercise("zhc2k_e5", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "语言的微妙之处很难掌握。", listOf("Metindeki ironi çok belirgin.", "Terimler kesin olmalı.", "Dilin incelikli yanlarını kavramak zor."), listOf("Dilin incelikli yanlarını kavramak zor."), "Cümlenin çevirisi: Dilin incelikli yanlarını kavramak zor.", null, null))))),
-        LearningUnit("ZH-C2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc2k_e5", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "语言的微妙之处很难掌握。", listOf("Metindeki ironi çok belirgin.", "Terimler kesin olmalı.", "Dilin incelikli yanlarını kavramak zor."), listOf("Dilin incelikli yanlarını kavramak zor."), "Cümlenin çevirisi: Dilin incelikli yanlarını kavramak zor.", null, null)))))
+
+    private fun u88(): LearningUnit = LearningUnit("ZH-C2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C2-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc2k_e97", Skill.VOCABULARY, "Doğru anlamı seç", "'心态' ne anlama gelir?", "", listOf("keskin", "heybet/enerji", "zihniyet/ruh hali"), listOf("zihniyet/ruh hali"), "各地心态不同。 — Zihniyet yerden yere değişir.", null, null),
                 LearningExercise("zhc2k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "他的描写非常细腻。", listOf("Dil düzeyini hiç zorlanmadan değiştiriyor.", "Betimlemesi son derece ince.", "Beş dile ustalıkla hâkim."), listOf("Betimlemesi son derece ince."), "Cümlenin çevirisi: Betimlemesi son derece ince.", null, null),
@@ -2274,8 +2458,9 @@ object WorldCourseZH {
                 LearningExercise("zhc2k_e65", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "术语必须准确。", listOf("Retoriği çok başarılı.", "Terimler kesin olmalı.", "Kültürel miras korunuyor."), listOf("Terimler kesin olmalı."), "Cümlenin çevirisi: Terimler kesin olmalı.", null, null),
                 LearningExercise("zhc2k_e131", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这种修辞手法效果微妙。", listOf("Bu gelenek kökleşmiş durumda.", "Kültürel miras korunuyor.", "Bu söz sanatının etkisi incelikli."), listOf("Bu söz sanatının etkisi incelikli."), "Cümlenin çevirisi: Bu söz sanatının etkisi incelikli.", null, null),
                 LearningExercise("zhc2k_e8", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ses tonu/eda' ifadesinin Çince karşılığı hangisi?", "", listOf("世界观", "语气", "区分"), listOf("语气"), "Örnek: 他的语气有点讽刺。 — Edası biraz alaycıydı.", null, null),
-                LearningExercise("zhc2k_e70", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "学术语篇有自己的规范。", listOf("Dünya görüşü sarsıldı.", "Akademik söylemin kendi normları vardır.", "Bu iki kavramı ayırt etmek şart."), listOf("Akademik söylemin kendi normları vardır."), "Cümlenin çevirisi: Akademik söylemin kendi normları vardır.", null, null))))),
-        LearningUnit("ZH-C2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc2k_e70", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "学术语篇有自己的规范。", listOf("Dünya görüşü sarsıldı.", "Akademik söylemin kendi normları vardır.", "Bu iki kavramı ayırt etmek şart."), listOf("Akademik söylemin kendi normları vardır."), "Cümlenin çevirisi: Akademik söylemin kendi normları vardır.", null, null)))))
+
+    private fun u89(): LearningUnit = LearningUnit("ZH-C2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C2-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc2k_e119", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "文化遗产受到保护。", listOf("Akademik söylemin kendi normları vardır.", "Kültürel miras korunuyor.", "Terimler kesin olmalı."), listOf("Kültürel miras korunuyor."), "Cümlenin çevirisi: Kültürel miras korunuyor.", null, null),
                 LearningExercise("zhc2k_e12", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "他的___有点讽刺。", "", listOf("语气", "细腻", "隐喻"), listOf("语气"), "Doğru cümle: 他的语气有点讽刺。 — Edası biraz alaycıydı.", null, null),
@@ -2299,8 +2484,9 @@ object WorldCourseZH {
                 LearningExercise("zhc2k_e106", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这部小说抓住了时代精神。", listOf("Çincesi ustalığın zirvesinde.", "Bu roman zamanın ruhunu yakalıyor.", "Dil düzeyini hiç zorlanmadan değiştiriyor."), listOf("Bu roman zamanın ruhunu yakalıyor."), "Cümlenin çevirisi: Bu roman zamanın ruhunu yakalıyor.", null, null),
                 LearningExercise("zhc2k_e161", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "她毫不费力地转换语体。", listOf("Dil düzeyini hiç zorlanmadan değiştiriyor.", "Eleştirisi son derece keskin.", "Yazının anlatım gücü görkemli."), listOf("Dil düzeyini hiç zorlanmadan değiştiriyor."), "Cümlenin çevirisi: Dil düzeyini hiç zorlanmadan değiştiriyor.", null, null),
                 LearningExercise("zhc2k_e137", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "他的演讲很有感染力。", listOf("Üslup son derece lirik.", "Konuşması çok etkileyici.", "Anlatı perspektifi durmadan değişiyor."), listOf("Konuşması çok etkileyici."), "Cümlenin çevirisi: Konuşması çok etkileyici.", null, null),
-                LearningExercise("zhc2k_e85", Skill.VOCABULARY, "Doğru anlamı seç", "'区分' ne anlama gelir?", "", listOf("terim", "ayırt etmek", "hiciv/ironi"), listOf("ayırt etmek"), "必须区分这两个概念。 — Bu iki kavramı ayırt etmek şart.", null, null))))),
-        LearningUnit("ZH-C2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc2k_e85", Skill.VOCABULARY, "Doğru anlamı seç", "'区分' ne anlama gelir?", "", listOf("terim", "ayırt etmek", "hiciv/ironi"), listOf("ayırt etmek"), "必须区分这两个概念。 — Bu iki kavramı ayırt etmek şart.", null, null)))))
+
+    private fun u90(): LearningUnit = LearningUnit("ZH-C2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C2-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc2k_e6", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "语言的___之处很难掌握。", "", listOf("论著", "微妙", "语篇"), listOf("微妙"), "Doğru cümle: 语言的微妙之处很难掌握。 — Dilin incelikli yanlarını kavramak zor.", null, null),
                 LearningExercise("zhc2k_e40", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "大海是自由的象征。", listOf("Deniz özgürlüğün simgesidir.", "Kültürel miras korunuyor.", "Retoriği çok başarılı."), listOf("Deniz özgürlüğün simgesidir."), "Cümlenin çevirisi: Deniz özgürlüğün simgesidir.", null, null),
@@ -2324,8 +2510,9 @@ object WorldCourseZH {
                 LearningExercise("zhc2k_e174", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "他说一口___的中文。", "", listOf("地道", "精通", "毫不费力"), listOf("地道"), "Doğru cümle: 他说一口地道的中文。 — Yerli gibi halis bir Çince konuşuyor.", null, null),
                 LearningExercise("zhc2k_e7", Skill.VOCABULARY, "Doğru anlamı seç", "'语气' ne anlama gelir?", "", listOf("lirik", "hiciv/ironi", "ses tonu/eda"), listOf("ses tonu/eda"), "他的语气有点讽刺。 — Edası biraz alaycıydı.", null, null),
                 LearningExercise("zhc2k_e36", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___贯穿全文。", "", listOf("象征", "叙事", "隐喻"), listOf("隐喻"), "Doğru cümle: 隐喻贯穿全文。 — Metafor bütün metni kat ediyor.", null, null),
-                LearningExercise("zhc2k_e121", Skill.VOCABULARY, "Doğru anlamı seç", "'修辞' ne anlama gelir?", "", listOf("etkileme gücü", "retorik", "söz sanatı"), listOf("retorik"), "他的修辞很出色。 — Retoriği çok başarılı.", null, null))))),
-        LearningUnit("ZH-C2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc2k_e121", Skill.VOCABULARY, "Doğru anlamı seç", "'修辞' ne anlama gelir?", "", listOf("etkileme gücü", "retorik", "söz sanatı"), listOf("retorik"), "他的修辞很出色。 — Retoriği çok başarılı.", null, null)))))
+
+    private fun u91(): LearningUnit = LearningUnit("ZH-C2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C2-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc2k_e43", Skill.VOCABULARY, "Doğru anlamı seç", "'叙事' ne anlama gelir?", "", listOf("retorik", "söz sanatı", "anlatı"), listOf("anlatı"), "叙事视角不断变化。 — Anlatı perspektifi durmadan değişiyor.", null, null),
                 LearningExercise("zhc2k_e154", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "她精通五种语言。", listOf("Bu eser üç ciltten oluşuyor.", "Bu kanıtlama çok güçlü.", "Beş dile ustalıkla hâkim."), listOf("Beş dile ustalıkla hâkim."), "Cümlenin çevirisi: Beş dile ustalıkla hâkim.", null, null),
@@ -2349,8 +2536,9 @@ object WorldCourseZH {
                 LearningExercise("zhc2k_e14", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ima' ifadesinin Çince karşılığı hangisi?", "", listOf("暗示", "精通", "毫不费力"), listOf("暗示"), "Örnek: 只有她听懂了那个暗示。 — İmayı yalnızca o anladı.", null, null),
                 LearningExercise("zhc2k_e45", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Anlatı perspektifi durmadan değişiyor.", "Deniz özgürlüğün simgesidir.", "Üslup son derece lirik."), listOf("Anlatı perspektifi durmadan değişiyor."), "Söylenen cümle: 叙事视角不断变化。", "叙事视角不断变化。", null),
                 LearningExercise("zhc2k_e48", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___视角不断变化。", "", listOf("叙事", "感染力", "犀利"), listOf("叙事"), "Doğru cümle: 叙事视角不断变化。 — Anlatı perspektifi durmadan değişiyor.", null, null),
-                LearningExercise("zhc2k_e176", Skill.VOCABULARY, "Doğru çeviriyi seç", "'akıcı' ifadesinin Çince karşılığı hangisi?", "", listOf("流利", "感染力", "犀利"), listOf("流利"), "Örnek: 她说得很流利。 — Çok akıcı konuşuyor.", null, null))))),
-        LearningUnit("ZH-C2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc2k_e176", Skill.VOCABULARY, "Doğru çeviriyi seç", "'akıcı' ifadesinin Çince karşılığı hangisi?", "", listOf("流利", "感染力", "犀利"), listOf("流利"), "Örnek: 她说得很流利。 — Çok akıcı konuşuyor.", null, null)))))
+
+    private fun u92(): LearningUnit = LearningUnit("ZH-C2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C2-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc2k_e82", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这个论证很有力。", listOf("Bu gelenek kökleşmiş durumda.", "Kültürel miras korunuyor.", "Bu kanıtlama çok güçlü."), listOf("Bu kanıtlama çok güçlü."), "Cümlenin çevirisi: Bu kanıtlama çok güçlü.", null, null),
                 LearningExercise("zhc2k_e146", Skill.VOCABULARY, "Doğru çeviriyi seç", "'heybet/enerji' ifadesinin Çince karşılığı hangisi?", "", listOf("炉火纯青", "地道", "气势"), listOf("气势"), "Örnek: 文章气势磅礴。 — Yazının anlatım gücü görkemli.", null, null),
@@ -2374,8 +2562,9 @@ object WorldCourseZH {
                 LearningExercise("zhc2k_e105", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Zihniyet yerden yere değişir.", "Bu gelenek kökleşmiş durumda.", "Bu roman zamanın ruhunu yakalıyor."), listOf("Bu roman zamanın ruhunu yakalıyor."), "Söylenen cümle: 这部小说抓住了时代精神。", "这部小说抓住了时代精神。", null),
                 LearningExercise("zhc2k_e66", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___必须准确。", "", listOf("术语", "语气", "暗示"), listOf("术语"), "Doğru cümle: 术语必须准确。 — Terimler kesin olmalı.", null, null),
                 LearningExercise("zhc2k_e37", Skill.VOCABULARY, "Doğru anlamı seç", "'象征' ne anlama gelir?", "", listOf("simge", "güçlü/sağlam", "ayırt etmek"), listOf("simge"), "大海是自由的象征。 — Deniz özgürlüğün simgesidir.", null, null),
-                LearningExercise("zhc2k_e71", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "学术语篇有自己的规范。", listOf("Akademik söylemin kendi normları vardır.", "Üslup son derece lirik.", "Metindeki ironi çok belirgin."), listOf("Akademik söylemin kendi normları vardır."), "Cümlenin çevirisi: Akademik söylemin kendi normları vardır.", null, null))))),
-        LearningUnit("ZH-C2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc2k_e71", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "学术语篇有自己的规范。", listOf("Akademik söylemin kendi normları vardır.", "Üslup son derece lirik.", "Metindeki ironi çok belirgin."), listOf("Akademik söylemin kendi normları vardır."), "Cümlenin çevirisi: Akademik söylemin kendi normları vardır.", null, null)))))
+
+    private fun u93(): LearningUnit = LearningUnit("ZH-C2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C2-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc2k_e114", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "这个传统___。", "", listOf("象征", "根深蒂固", "隐喻"), listOf("根深蒂固"), "Doğru cümle: 这个传统根深蒂固。 — Bu gelenek kökleşmiş durumda.", null, null),
                 LearningExercise("zhc2k_e60", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "文中的___很明显。", "", listOf("术语", "讽刺", "抒情"), listOf("讽刺"), "Doğru cümle: 文中的讽刺很明显。 — Metindeki ironi çok belirgin.", null, null),
@@ -2399,8 +2588,9 @@ object WorldCourseZH {
                 LearningExercise("zhc2k_e19", Skill.VOCABULARY, "Doğru anlamı seç", "'简洁' ne anlama gelir?", "", listOf("özlü", "etkileme gücü", "keskin"), listOf("özlü"), "他的回答很简洁。 — Yanıtı çok özlüydü.", null, null),
                 LearningExercise("zhc2k_e34", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "隐喻贯穿全文。", listOf("Yanıtı çok özlüydü.", "Metafor bütün metni kat ediyor.", "İmayı yalnızca o anladı."), listOf("Metafor bütün metni kat ediyor."), "Cümlenin çevirisi: Metafor bütün metni kat ediyor.", null, null),
                 LearningExercise("zhc2k_e186", Skill.GRAMMAR, "Doğru seçeneği işaretle", "她的中文说得很___。", "", listOf("地道", "道地上", "地方"), listOf("地道"), "Övgü: 说得很地道 (ana dili gibi konuşmak).", null, null),
-                LearningExercise("zhc2k_e84", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "这个论证很___。", "", listOf("有力", "术语", "语篇"), listOf("有力"), "Doğru cümle: 这个论证很有力。 — Bu kanıtlama çok güçlü.", null, null))))),
-        LearningUnit("ZH-C2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc2k_e84", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "这个论证很___。", "", listOf("有力", "术语", "语篇"), listOf("有力"), "Doğru cümle: 这个论证很有力。 — Bu kanıtlama çok güçlü.", null, null)))))
+
+    private fun u94(): LearningUnit = LearningUnit("ZH-C2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C2-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc2k_e169", Skill.VOCABULARY, "Doğru anlamı seç", "'地道' ne anlama gelir?", "", listOf("zamanın ruhu", "kökleşmiş", "halis/yerli gibi"), listOf("halis/yerli gibi"), "他说一口地道的中文。 — Yerli gibi halis bir Çince konuşuyor.", null, null),
                 LearningExercise("zhc2k_e92", Skill.VOCABULARY, "Doğru çeviriyi seç", "'dünya görüşü' ifadesinin Çince karşılığı hangisi?", "", listOf("根深蒂固", "遗产", "世界观"), listOf("世界观"), "Örnek: 他的世界观被动摇了。 — Dünya görüşü sarsıldı.", null, null),
@@ -2424,8 +2614,9 @@ object WorldCourseZH {
                 LearningExercise("zhc2k_e78", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "这部___分三卷。", "", listOf("根深蒂固", "论著", "时代精神"), listOf("论著"), "Doğru cümle: 这部论著分三卷。 — Bu eser üç ciltten oluşuyor.", null, null),
                 LearningExercise("zhc2k_e188", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 他的回答很简洁。", "", listOf(), listOf("他的回答很简洁。"), "Türkçesi: Yanıtı çok özlüydü.", "他的回答很简洁。", "他的回答很简洁。"),
                 LearningExercise("zhc2k_e116", Skill.VOCABULARY, "Doğru çeviriyi seç", "'miras' ifadesinin Çince karşılığı hangisi?", "", listOf("简洁", "遗产", "暗示"), listOf("遗产"), "Örnek: 文化遗产受到保护。 — Kültürel miras korunuyor.", null, null),
-                LearningExercise("zhc2k_e196", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 他的中文已经炉火纯青。", "", listOf(), listOf("他的中文已经炉火纯青。"), "Türkçesi: Çincesi ustalığın zirvesinde.", "他的中文已经炉火纯青。", "他的中文已经炉火纯青。"))))),
-        LearningUnit("ZH-C2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc2k_e196", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 他的中文已经炉火纯青。", "", listOf(), listOf("他的中文已经炉火纯青。"), "Türkçesi: Çincesi ustalığın zirvesinde.", "他的中文已经炉火纯青。", "他的中文已经炉火纯青。")))))
+
+    private fun u95(): LearningUnit = LearningUnit("ZH-C2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C2-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc2k_e101", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "各地心态不同。", listOf("Bu iki kavramı ayırt etmek şart.", "Zihniyet yerden yere değişir.", "Bu kanıtlama çok güçlü."), listOf("Zihniyet yerden yere değişir."), "Cümlenin çevirisi: Zihniyet yerden yere değişir.", null, null),
                 LearningExercise("zhc2k_e39", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Yazının anlatım gücü görkemli.", "Deniz özgürlüğün simgesidir.", "Eleştirisi son derece keskin."), listOf("Deniz özgürlüğün simgesidir."), "Söylenen cümle: 大海是自由的象征。", "大海是自由的象征。", null),
@@ -2449,8 +2640,9 @@ object WorldCourseZH {
                 LearningExercise("zhc2k_e108", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "这部小说抓住了___。", "", listOf("论著", "有力", "时代精神"), listOf("时代精神"), "Doğru cümle: 这部小说抓住了时代精神。 — Bu roman zamanın ruhunu yakalıyor.", null, null),
                 LearningExercise("zhc2k_e111", Skill.LISTENING, "Dinle ve anlamı seç", "Cümle ne anlatıyor?", "", listOf("Dilin incelikli yanlarını kavramak zor.", "Bu gelenek kökleşmiş durumda.", "Çok akıcı konuşuyor."), listOf("Bu gelenek kökleşmiş durumda."), "Söylenen cümle: 这个传统根深蒂固。", "这个传统根深蒂固。", null),
                 LearningExercise("zhc2k_e20", Skill.VOCABULARY, "Doğru çeviriyi seç", "'özlü' ifadesinin Çince karşılığı hangisi?", "", listOf("象征", "叙事", "简洁"), listOf("简洁"), "Örnek: 他的回答很简洁。 — Yanıtı çok özlüydü.", null, null),
-                LearningExercise("zhc2k_e200", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 文中的讽刺很明显。", "", listOf(), listOf("文中的讽刺很明显。"), "Türkçesi: Metindeki ironi çok belirgin.", "文中的讽刺很明显。", "文中的讽刺很明显。"))))),
-        LearningUnit("ZH-C2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("zhc2k_e200", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 文中的讽刺很明显。", "", listOf(), listOf("文中的讽刺很明显。"), "Türkçesi: Metindeki ironi çok belirgin.", "文中的讽刺很明显。", "文中的讽刺很明显。")))))
+
+    private fun u96(): LearningUnit = LearningUnit("ZH-C2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("ZH-C2-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("zhc2k_e187", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 语言的微妙之处很难掌握。", "", listOf(), listOf("语言的微妙之处很难掌握。"), "Türkçesi: Dilin incelikli yanlarını kavramak zor.", "语言的微妙之处很难掌握。", "语言的微妙之处很难掌握。"),
                 LearningExercise("zhc2k_e76", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "这部论著分三卷。", listOf("Bu eser üç ciltten oluşuyor.", "Edası biraz alaycıydı.", "İmayı yalnızca o anladı."), listOf("Bu eser üç ciltten oluşuyor."), "Cümlenin çevirisi: Bu eser üç ciltten oluşuyor.", null, null),
@@ -2474,5 +2666,5 @@ object WorldCourseZH {
                 LearningExercise("zhc2k_e23", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "他的回答很简洁。", listOf("Deniz özgürlüğün simgesidir.", "Anlatı perspektifi durmadan değişiyor.", "Yanıtı çok özlüydü."), listOf("Yanıtı çok özlüydü."), "Cümlenin çevirisi: Yanıtı çok özlüydü.", null, null),
                 LearningExercise("zhc2k_e190", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 文中的讽刺很明显。", "", listOf(), listOf("文中的讽刺很明显。"), "Türkçesi: Metindeki ironi çok belirgin.", "文中的讽刺很明显。", "文中的讽刺很明显。"),
                 LearningExercise("zhc2k_e185", Skill.GRAMMAR, "Doğru seçeneği işaretle", "他的批评非常___。", "", listOf("犀利", "锋利了", "利害的"), listOf("犀利"), "Sıfat: 犀利的批评 (keskin eleştiri).", null, null),
-                LearningExercise("zhc2k_e189", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 大海是自由的象征。", "", listOf(), listOf("大海是自由的象征。"), "Türkçesi: Deniz özgürlüğün simgesidir.", "大海是自由的象征。", "大海是自由的象征。"))))))
+                LearningExercise("zhc2k_e189", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 大海是自由的象征。", "", listOf(), listOf("大海是自由的象征。"), "Türkçesi: Deniz özgürlüğün simgesidir.", "大海是自由的象征。", "大海是自由的象征。")))))
 }

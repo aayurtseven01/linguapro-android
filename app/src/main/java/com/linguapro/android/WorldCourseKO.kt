@@ -1,9 +1,106 @@
 package com.linguapro.android
 
-/** Korece (KO) tam müfredat: A1-C2, 36 ünite, 108 ders. Türkçe yönergeli, elle küratörlü içerik. */
+/** Korece (KO) tam müfredat: A1-C2, 96 ünite (temel + Pekiştirme Kampı). Türkçe yönergeli içerik. */
 object WorldCourseKO {
-    val units: List<LearningUnit> = listOf(
-        LearningUnit("KO-A1-U1", "Selamlaşma ve Tanışma", "Selamlaş, kendini tanıt ve vedalaş.", listOf(
+    val units: List<LearningUnit> by lazy { listOf(
+        u1(),
+        u2(),
+        u3(),
+        u4(),
+        u5(),
+        u6(),
+        u7(),
+        u8(),
+        u9(),
+        u10(),
+        u11(),
+        u12(),
+        u13(),
+        u14(),
+        u15(),
+        u16(),
+        u17(),
+        u18(),
+        u19(),
+        u20(),
+        u21(),
+        u22(),
+        u23(),
+        u24(),
+        u25(),
+        u26(),
+        u27(),
+        u28(),
+        u29(),
+        u30(),
+        u31(),
+        u32(),
+        u33(),
+        u34(),
+        u35(),
+        u36(),
+        u37(),
+        u38(),
+        u39(),
+        u40(),
+        u41(),
+        u42(),
+        u43(),
+        u44(),
+        u45(),
+        u46(),
+        u47(),
+        u48(),
+        u49(),
+        u50(),
+        u51(),
+        u52(),
+        u53(),
+        u54(),
+        u55(),
+        u56(),
+        u57(),
+        u58(),
+        u59(),
+        u60(),
+        u61(),
+        u62(),
+        u63(),
+        u64(),
+        u65(),
+        u66(),
+        u67(),
+        u68(),
+        u69(),
+        u70(),
+        u71(),
+        u72(),
+        u73(),
+        u74(),
+        u75(),
+        u76(),
+        u77(),
+        u78(),
+        u79(),
+        u80(),
+        u81(),
+        u82(),
+        u83(),
+        u84(),
+        u85(),
+        u86(),
+        u87(),
+        u88(),
+        u89(),
+        u90(),
+        u91(),
+        u92(),
+        u93(),
+        u94(),
+        u95(),
+        u96()) }
+
+    private fun u1(): LearningUnit = LearningUnit("KO-A1-U1", "Selamlaşma ve Tanışma", "Selamlaş, kendini tanıt ve vedalaş.", listOf(
             LearningLesson("KO-A1-U1-L1", "Selamlaşma ve Tanışma — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koa1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'안녕하세요' ne anlama gelir?", "", listOf("teşekkürler", "hoşça kalın", "merhaba"), listOf("merhaba"), "안녕하세요, 안나예요. — Merhaba, ben Anna.", null, null),
                 LearningExercise("koa1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'감사합니다' ne anlama gelir?", "", listOf("ben (konu)", "teşekkürler", "lütfen (verin)"), listOf("teşekkürler"), "정말 감사합니다. — Gerçekten teşekkür ederim.", null, null),
@@ -29,8 +126,9 @@ object WorldCourseKO {
             LearningLesson("KO-A1-U1-L5", "Selamlaşma ve Tanışma — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koa1u1e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ben Mehmet'im.", "", listOf(), listOf("저는 메흐메트예요."), "Doğru cümle: 저는 메흐메트예요.", null, "저는 메흐메트예요."),
                 LearningExercise("koa1u1e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Hoşça kalın, yarın görüşürüz!", "", listOf(), listOf("안녕히 가세요, 내일 봐요!"), "Doğru cümle: 안녕히 가세요, 내일 봐요!", null, "안녕히 가세요, 내일 봐요!"),
-                LearningExercise("koa1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 안녕하세요, 안나예요.", "", listOf(), listOf("안녕하세요, 안나예요."), "Türkçesi: Merhaba, ben Anna.", "안녕하세요, 안나예요.", "안녕하세요, 안나예요."))))),
-        LearningUnit("KO-A1-U2", "Sayılar ve Zaman", "Sayıları say, saati ve günleri söyle.", listOf(
+                LearningExercise("koa1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 안녕하세요, 안나예요.", "", listOf(), listOf("안녕하세요, 안나예요."), "Türkçesi: Merhaba, ben Anna.", "안녕하세요, 안나예요.", "안녕하세요, 안나예요.")))))
+
+    private fun u2(): LearningUnit = LearningUnit("KO-A1-U2", "Sayılar ve Zaman", "Sayıları say, saati ve günleri söyle.", listOf(
             LearningLesson("KO-A1-U2-L1", "Sayılar ve Zaman — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koa1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'둘' ne anlama gelir?", "", listOf("yarın", "iki", "on"), listOf("iki"), "둘 다 좋아요. — İkisi de iyi.", null, null),
                 LearningExercise("koa1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'열' ne anlama gelir?", "", listOf("on", "bugün", "zaman"), listOf("on"), "지금 열 시예요. — Saat şimdi on.", null, null),
@@ -56,8 +154,9 @@ object WorldCourseKO {
             LearningLesson("KO-A1-U2-L5", "Sayılar ve Zaman — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koa1u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Zaman yok.", "", listOf(), listOf("시간이 없어요."), "Doğru cümle: 시간이 없어요.", null, "시간이 없어요."),
                 LearningExercise("koa1u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yarın görüşürüz!", "", listOf(), listOf("내일 봐요!"), "Doğru cümle: 내일 봐요!", null, "내일 봐요!"),
-                LearningExercise("koa1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 둘 다 좋아요.", "", listOf(), listOf("둘 다 좋아요."), "Türkçesi: İkisi de iyi.", "둘 다 좋아요.", "둘 다 좋아요."))))),
-        LearningUnit("KO-A1-U3", "Yiyecek ve İçecek", "Temel yiyecekleri söyle ve sipariş ver.", listOf(
+                LearningExercise("koa1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 둘 다 좋아요.", "", listOf(), listOf("둘 다 좋아요."), "Türkçesi: İkisi de iyi.", "둘 다 좋아요.", "둘 다 좋아요.")))))
+
+    private fun u3(): LearningUnit = LearningUnit("KO-A1-U3", "Yiyecek ve İçecek", "Temel yiyecekleri söyle ve sipariş ver.", listOf(
             LearningLesson("KO-A1-U3-L1", "Yiyecek ve İçecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koa1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'물' ne anlama gelir?", "", listOf("su", "ekmek", "elma"), listOf("su"), "물 주세요. — Su lütfen.", null, null),
                 LearningExercise("koa1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'빵' ne anlama gelir?", "", listOf("kahve", "çay", "ekmek"), listOf("ekmek"), "빵이 신선해요. — Ekmek taze.", null, null),
@@ -83,8 +182,9 @@ object WorldCourseKO {
             LearningLesson("KO-A1-U3-L5", "Yiyecek ve İçecek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koa1u3e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Çayı severim.", "", listOf(), listOf("차를 좋아해요."), "Doğru cümle: 차를 좋아해요.", null, "차를 좋아해요."),
                 LearningExercise("koa1u3e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Elma kırmızı.", "", listOf(), listOf("사과가 빨개요."), "Doğru cümle: 사과가 빨개요.", null, "사과가 빨개요."),
-                LearningExercise("koa1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 물 주세요.", "", listOf(), listOf("물 주세요."), "Türkçesi: Su lütfen.", "물 주세요.", "물 주세요."))))),
-        LearningUnit("KO-A1-U4", "Aile ve İnsanlar", "Aile üyelerini tanıt.", listOf(
+                LearningExercise("koa1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 물 주세요.", "", listOf(), listOf("물 주세요."), "Türkçesi: Su lütfen.", "물 주세요.", "물 주세요.")))))
+
+    private fun u4(): LearningUnit = LearningUnit("KO-A1-U4", "Aile ve İnsanlar", "Aile üyelerini tanıt.", listOf(
             LearningLesson("KO-A1-U4-L1", "Aile ve İnsanlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koa1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'가족' ne anlama gelir?", "", listOf("anne", "ağabey", "aile"), listOf("aile"), "가족이 많아요. — Ailem kalabalık.", null, null),
                 LearningExercise("koa1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'어머니' ne anlama gelir?", "", listOf("arkadaş", "anne", "baba"), listOf("anne"), "어머니는 집에 계세요. — Annem evde.", null, null),
@@ -110,8 +210,9 @@ object WorldCourseKO {
             LearningLesson("KO-A1-U4-L5", "Aile ve İnsanlar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koa1u4e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: O benim arkadaşım.", "", listOf(), listOf("그는 제 친구예요."), "Doğru cümle: 그는 제 친구예요.", null, "그는 제 친구예요."),
                 LearningExercise("koa1u4e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ağabeyim genç.", "", listOf(), listOf("형은 젊어요."), "Doğru cümle: 형은 젊어요.", null, "형은 젊어요."),
-                LearningExercise("koa1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 가족이 많아요.", "", listOf(), listOf("가족이 많아요."), "Türkçesi: Ailem kalabalık.", "가족이 많아요.", "가족이 많아요."))))),
-        LearningUnit("KO-A1-U5", "Günlük Yaşam ve Şehir", "Ev, iş ve şehir hakkında konuş.", listOf(
+                LearningExercise("koa1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 가족이 많아요.", "", listOf(), listOf("가족이 많아요."), "Türkçesi: Ailem kalabalık.", "가족이 많아요.", "가족이 많아요.")))))
+
+    private fun u5(): LearningUnit = LearningUnit("KO-A1-U5", "Günlük Yaşam ve Şehir", "Ev, iş ve şehir hakkında konuş.", listOf(
             LearningLesson("KO-A1-U5-L1", "Günlük Yaşam ve Şehir — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koa1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'집' ne anlama gelir?", "", listOf("satın almak", "ev", "iş"), listOf("ev"), "집이 오래됐어요. — Ev eski.", null, null),
                 LearningExercise("koa1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'일' ne anlama gelir?", "", listOf("iş", "şehir", "yaşamak"), listOf("iş"), "일하러 가요. — İşe gidiyorum.", null, null),
@@ -137,8 +238,9 @@ object WorldCourseKO {
             LearningLesson("KO-A1-U5-L5", "Günlük Yaşam ve Şehir — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koa1u5e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Seul'de yaşıyorum.", "", listOf(), listOf("서울에 살아요."), "Doğru cümle: 서울에 살아요.", null, "서울에 살아요."),
                 LearningExercise("koa1u5e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Meyve alıyorum.", "", listOf(), listOf("과일을 사요."), "Doğru cümle: 과일을 사요.", null, "과일을 사요."),
-                LearningExercise("koa1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 집이 오래됐어요.", "", listOf(), listOf("집이 오래됐어요."), "Türkçesi: Ev eski.", "집이 오래됐어요.", "집이 오래됐어요."))))),
-        LearningUnit("KO-A1-U6", "Seyahat Temelleri", "Bilet al, yol sor, otele yerleş.", listOf(
+                LearningExercise("koa1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 집이 오래됐어요.", "", listOf(), listOf("집이 오래됐어요."), "Türkçesi: Ev eski.", "집이 오래됐어요.", "집이 오래됐어요.")))))
+
+    private fun u6(): LearningUnit = LearningUnit("KO-A1-U6", "Seyahat Temelleri", "Bilet al, yol sor, otele yerleş.", listOf(
             LearningLesson("KO-A1-U6-L1", "Seyahat Temelleri — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koa1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'기차' ne anlama gelir?", "", listOf("tren", "bilet", "sol"), listOf("tren"), "기차가 아홉 시에 와요. — Tren dokuzda geliyor.", null, null),
                 LearningExercise("koa1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'표' ne anlama gelir?", "", listOf("otel", "havalimanı", "bilet"), listOf("bilet"), "표 한 장 주세요. — Bir bilet lütfen.", null, null),
@@ -164,8 +266,9 @@ object WorldCourseKO {
             LearningLesson("KO-A1-U6-L5", "Seyahat Temelleri — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koa1u6e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Havalimanı uzak.", "", listOf(), listOf("공항이 멀어요."), "Doğru cümle: 공항이 멀어요.", null, "공항이 멀어요."),
                 LearningExercise("koa1u6e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sola gidin.", "", listOf(), listOf("왼쪽으로 가세요."), "Doğru cümle: 왼쪽으로 가세요.", null, "왼쪽으로 가세요."),
-                LearningExercise("koa1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 기차가 아홉 시에 와요.", "", listOf(), listOf("기차가 아홉 시에 와요."), "Türkçesi: Tren dokuzda geliyor.", "기차가 아홉 시에 와요.", "기차가 아홉 시에 와요."))))),
-        LearningUnit("KO-A1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 기차가 아홉 시에 와요.", "", listOf(), listOf("기차가 아홉 시에 와요."), "Türkçesi: Tren dokuzda geliyor.", "기차가 아홉 시에 와요.", "기차가 아홉 시에 와요.")))))
+
+    private fun u7(): LearningUnit = LearningUnit("KO-A1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A1-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa1k_e168", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___은 시내에 있어요.", "", listOf("안녕히 가세요", "호텔", "주세요"), listOf("호텔"), "Doğru cümle: 호텔은 시내에 있어요. — Otel şehir merkezinde.", null, null),
                 LearningExercise("koa1k_e2", Skill.VOCABULARY, "Doğru çeviriyi seç", "'merhaba' ifadesinin Korece karşılığı hangisi?", "", listOf("안녕히 가세요", "저는", "안녕하세요"), listOf("안녕하세요"), "Örnek: 안녕하세요, 안나예요. — Merhaba, ben Anna.", null, null),
@@ -189,8 +292,9 @@ object WorldCourseKO {
                 LearningExercise("koa1k_e157", Skill.VOCABULARY, "Doğru anlamı seç", "'표' ne anlama gelir?", "", listOf("ben (konu)", "bilet", "hoşça kalın"), listOf("bilet"), "표 한 장 주세요. — Bir bilet lütfen.", null, null),
                 LearningExercise("koa1k_e42", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "지금 ___ 시예요.", "", listOf("안녕하세요", "열", "공항"), listOf("열"), "Doğru cümle: 지금 열 시예요. — Saat şimdi on.", null, null),
                 LearningExercise("koa1k_e198", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 안녕히 가세요, 내일 봐요!", "", listOf(), listOf("안녕히 가세요, 내일 봐요!"), "Türkçesi: Hoşça kalın, yarın görüşürüz!", "안녕히 가세요, 내일 봐요!", "안녕히 가세요, 내일 봐요!"),
-                LearningExercise("koa1k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "저는 메흐메트예요.", listOf("Bir bilet lütfen.", "Ben Mehmet'im.", "Tren dokuzda geliyor."), listOf("Ben Mehmet'im."), "Cümlenin çevirisi: Ben Mehmet'im.", null, null))))),
-        LearningUnit("KO-A1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa1k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "저는 메흐메트예요.", listOf("Bir bilet lütfen.", "Ben Mehmet'im.", "Tren dokuzda geliyor."), listOf("Ben Mehmet'im."), "Cümlenin çevirisi: Ben Mehmet'im.", null, null)))))
+
+    private fun u8(): LearningUnit = LearningUnit("KO-A1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A1-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa1k_e17", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "커피 주세요.", listOf("Kahve lütfen.", "Babam çok çalışır.", "Ağabeyim genç."), listOf("Kahve lütfen."), "Cümlenin çevirisi: Kahve lütfen.", null, null),
                 LearningExercise("koa1k_e99", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("어머니는 집에 계세요."), "Söylenen cümle: 어머니는 집에 계세요. — Annem evde.", "어머니는 집에 계세요.", null),
@@ -214,8 +318,9 @@ object WorldCourseKO {
                 LearningExercise("koa1k_e170", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sol' ifadesinin Korece karşılığı hangisi?", "", listOf("커피", "왼쪽", "빵"), listOf("왼쪽"), "Örnek: 왼쪽으로 가세요. — Sola gidin.", null, null),
                 LearningExercise("koa1k_e142", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Meyve alıyorum.", "", listOf(), listOf("과일을 사요."), "Doğru cümle: 과일을 사요.", null, "과일을 사요."),
                 LearningExercise("koa1k_e150", Skill.VOCABULARY, "Doğru anlamı seç", "'살다' ne anlama gelir?", "", listOf("tren", "yaşamak", "satın almak"), listOf("yaşamak"), "서울에 살아요. — Seul'de yaşıyorum.", null, null),
-                LearningExercise("koa1k_e161", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "표 한 장 주세요.", listOf("Bir bilet lütfen.", "Meyve alıyorum.", "Seul'de yaşıyorum."), listOf("Bir bilet lütfen."), "Cümlenin çevirisi: Bir bilet lütfen.", null, null))))),
-        LearningUnit("KO-A1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa1k_e161", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "표 한 장 주세요.", listOf("Bir bilet lütfen.", "Meyve alıyorum.", "Seul'de yaşıyorum."), listOf("Bir bilet lütfen."), "Cümlenin çevirisi: Bir bilet lütfen.", null, null)))))
+
+    private fun u9(): LearningUnit = LearningUnit("KO-A1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A1-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa1k_e146", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yaşamak' ifadesinin Korece karşılığı hangisi?", "", listOf("호텔", "왼쪽", "살다"), listOf("살다"), "Örnek: 서울에 살아요. — Seul'de yaşıyorum.", null, null),
                 LearningExercise("koa1k_e41", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "지금 열 시예요.", listOf("Hoşça kalın, yarın görüşürüz!", "Ben Mehmet'im.", "Saat şimdi on."), listOf("Saat şimdi on."), "Cümlenin çevirisi: Saat şimdi on.", null, null),
@@ -239,8 +344,9 @@ object WorldCourseKO {
                 LearningExercise("koa1k_e189", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 지금 열 시예요.", "", listOf(), listOf("지금 열 시예요."), "Türkçesi: Saat şimdi on.", "지금 열 시예요.", "지금 열 시예요."),
                 LearningExercise("koa1k_e140", Skill.VOCABULARY, "Doğru çeviriyi seç", "'satın almak' ifadesinin Korece karşılığı hangisi?", "", listOf("사다", "어머니", "아버지"), listOf("사다"), "Örnek: 과일을 사요. — Meyve alıyorum.", null, null),
                 LearningExercise("koa1k_e12", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "정말 ___.", "", listOf("감사합니다", "저는", "둘"), listOf("감사합니다"), "Doğru cümle: 정말 감사합니다. — Gerçekten teşekkür ederim.", null, null),
-                LearningExercise("koa1k_e84", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___가 빨개요.", "", listOf("사과", "물", "빵"), listOf("사과"), "Doğru cümle: 사과가 빨개요. — Elma kırmızı.", null, null))))),
-        LearningUnit("KO-A1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa1k_e84", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___가 빨개요.", "", listOf("사과", "물", "빵"), listOf("사과"), "Doğru cümle: 사과가 빨개요. — Elma kırmızı.", null, null)))))
+
+    private fun u10(): LearningUnit = LearningUnit("KO-A1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A1-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa1k_e127", Skill.VOCABULARY, "Doğru anlamı seç", "'일' ne anlama gelir?", "", listOf("iş", "sol", "havalimanı"), listOf("iş"), "일하러 가요. — İşe gidiyorum.", null, null),
                 LearningExercise("koa1k_e154", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Tren dokuzda geliyor.", "", listOf(), listOf("기차가 아홉 시에 와요."), "Doğru cümle: 기차가 아홉 시에 와요.", null, "기차가 아홉 시에 와요."),
@@ -264,8 +370,9 @@ object WorldCourseKO {
                 LearningExercise("koa1k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'bugün' ifadesinin Korece karşılığı hangisi?", "", listOf("일", "오늘", "집"), listOf("오늘"), "Örnek: 오늘은 월요일이에요. — Bugün pazartesi.", null, null),
                 LearningExercise("koa1k_e43", Skill.VOCABULARY, "Doğru anlamı seç", "'오늘' ne anlama gelir?", "", listOf("ev", "iş", "bugün"), listOf("bugün"), "오늘은 월요일이에요. — Bugün pazartesi.", null, null),
                 LearningExercise("koa1k_e57", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("시간이 없어요."), "Söylenen cümle: 시간이 없어요. — Zaman yok.", "시간이 없어요.", null),
-                LearningExercise("koa1k_e171", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("왼쪽으로 가세요."), "Söylenen cümle: 왼쪽으로 가세요. — Sola gidin.", "왼쪽으로 가세요.", null))))),
-        LearningUnit("KO-A1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa1k_e171", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("왼쪽으로 가세요."), "Söylenen cümle: 왼쪽으로 가세요. — Sola gidin.", "왼쪽으로 가세요.", null)))))
+
+    private fun u11(): LearningUnit = LearningUnit("KO-A1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A1-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa1k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___이 신선해요.", "", listOf("살다", "기차", "빵"), listOf("빵"), "Doğru cümle: 빵이 신선해요. — Ekmek taze.", null, null),
                 LearningExercise("koa1k_e71", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "빵이 신선해요.", listOf("Ekmek taze.", "Yarın görüşürüz!", "Zaman yok."), listOf("Ekmek taze."), "Cümlenin çevirisi: Ekmek taze.", null, null),
@@ -289,8 +396,9 @@ object WorldCourseKO {
                 LearningExercise("koa1k_e1", Skill.VOCABULARY, "Doğru anlamı seç", "'안녕하세요' ne anlama gelir?", "", listOf("merhaba", "teşekkürler", "lütfen (verin)"), listOf("merhaba"), "안녕하세요, 안나예요. — Merhaba, ben Anna.", null, null),
                 LearningExercise("koa1k_e78", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___를 마셔요.", "", listOf("형", "커피", "아버지"), listOf("커피"), "Doğru cümle: 커피를 마셔요. — Kahve içiyorum.", null, null),
                 LearningExercise("koa1k_e166", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Otel şehir merkezinde.", "", listOf(), listOf("호텔은 시내에 있어요."), "Doğru cümle: 호텔은 시내에 있어요.", null, "호텔은 시내에 있어요."),
-                LearningExercise("koa1k_e8", Skill.VOCABULARY, "Doğru çeviriyi seç", "'teşekkürler' ifadesinin Korece karşılığı hangisi?", "", listOf("가족", "감사합니다", "차"), listOf("감사합니다"), "Örnek: 정말 감사합니다. — Gerçekten teşekkür ederim.", null, null))))),
-        LearningUnit("KO-A1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa1k_e8", Skill.VOCABULARY, "Doğru çeviriyi seç", "'teşekkürler' ifadesinin Korece karşılığı hangisi?", "", listOf("가족", "감사합니다", "차"), listOf("감사합니다"), "Örnek: 정말 감사합니다. — Gerçekten teşekkür ederim.", null, null)))))
+
+    private fun u12(): LearningUnit = LearningUnit("KO-A1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A1-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa1k_e22", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Hoşça kalın, yarın görüşürüz!", "", listOf(), listOf("안녕히 가세요, 내일 봐요!"), "Doğru cümle: 안녕히 가세요, 내일 봐요!", null, "안녕히 가세요, 내일 봐요!"),
                 LearningExercise("koa1k_e188", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 안녕히 가세요, 내일 봐요!", "", listOf(), listOf("안녕히 가세요, 내일 봐요!"), "Türkçesi: Hoşça kalın, yarın görüşürüz!", "안녕히 가세요, 내일 봐요!", "안녕히 가세요, 내일 봐요!"),
@@ -314,8 +422,9 @@ object WorldCourseKO {
                 LearningExercise("koa1k_e181", Skill.GRAMMAR, "Doğru seçeneği işaretle", "저___ 학생이에요.", "", listOf("는", "가", "를"), listOf("는"), "Konu edatı: 는.", null, null),
                 LearningExercise("koa1k_e67", Skill.VOCABULARY, "Doğru anlamı seç", "'빵' ne anlama gelir?", "", listOf("arkadaş", "ekmek", "ağabey"), listOf("ekmek"), "빵이 신선해요. — Ekmek taze.", null, null),
                 LearningExercise("koa1k_e176", Skill.VOCABULARY, "Doğru çeviriyi seç", "'havalimanı' ifadesinin Korece karşılığı hangisi?", "", listOf("공항", "도시", "사다"), listOf("공항"), "Örnek: 공항이 멀어요. — Havalimanı uzak.", null, null),
-                LearningExercise("koa1k_e66", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ 주세요.", "", listOf("물", "감사합니다", "주세요"), listOf("물"), "Doğru cümle: 물 주세요. — Su lütfen.", null, null))))),
-        LearningUnit("KO-A1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa1k_e66", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ 주세요.", "", listOf("물", "감사합니다", "주세요"), listOf("물"), "Doğru cümle: 물 주세요. — Su lütfen.", null, null)))))
+
+    private fun u13(): LearningUnit = LearningUnit("KO-A1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A1-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa1k_e87", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("차를 좋아해요."), "Söylenen cümle: 차를 좋아해요. — Çayı severim.", "차를 좋아해요.", null),
                 LearningExercise("koa1k_e124", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ev eski.", "", listOf(), listOf("집이 오래됐어요."), "Doğru cümle: 집이 오래됐어요.", null, "집이 오래됐어요."),
@@ -339,8 +448,9 @@ object WorldCourseKO {
                 LearningExercise("koa1k_e86", Skill.VOCABULARY, "Doğru çeviriyi seç", "'çay' ifadesinin Korece karşılığı hangisi?", "", listOf("차", "오늘", "내일"), listOf("차"), "Örnek: 차를 좋아해요. — Çayı severim.", null, null),
                 LearningExercise("koa1k_e10", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Gerçekten teşekkür ederim.", "", listOf(), listOf("정말 감사합니다."), "Doğru cümle: 정말 감사합니다.", null, "정말 감사합니다."),
                 LearningExercise("koa1k_e5", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "안녕하세요, 안나예요.", listOf("Zaman yok.", "Su lütfen.", "Merhaba, ben Anna."), listOf("Merhaba, ben Anna."), "Cümlenin çevirisi: Merhaba, ben Anna.", null, null),
-                LearningExercise("koa1k_e193", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 형은 젊어요.", "", listOf(), listOf("형은 젊어요."), "Türkçesi: Ağabeyim genç.", "형은 젊어요.", "형은 젊어요."))))),
-        LearningUnit("KO-A1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa1k_e193", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 형은 젊어요.", "", listOf(), listOf("형은 젊어요."), "Türkçesi: Ağabeyim genç.", "형은 젊어요.", "형은 젊어요.")))))
+
+    private fun u14(): LearningUnit = LearningUnit("KO-A1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A1-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa1k_e15", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("커피 주세요."), "Söylenen cümle: 커피 주세요. — Kahve lütfen.", "커피 주세요.", null),
                 LearningExercise("koa1k_e37", Skill.VOCABULARY, "Doğru anlamı seç", "'열' ne anlama gelir?", "", listOf("on", "elma", "çay"), listOf("on"), "지금 열 시예요. — Saat şimdi on.", null, null),
@@ -364,8 +474,9 @@ object WorldCourseKO {
                 LearningExercise("koa1k_e191", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 커피를 마셔요.", "", listOf(), listOf("커피를 마셔요."), "Türkçesi: Kahve içiyorum.", "커피를 마셔요.", "커피를 마셔요."),
                 LearningExercise("koa1k_e162", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ 한 장 주세요.", "", listOf("시간", "물", "표"), listOf("표"), "Doğru cümle: 표 한 장 주세요. — Bir bilet lütfen.", null, null),
                 LearningExercise("koa1k_e153", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("기차가 아홉 시에 와요."), "Söylenen cümle: 기차가 아홉 시에 와요. — Tren dokuzda geliyor.", "기차가 아홉 시에 와요.", null),
-                LearningExercise("koa1k_e70", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ekmek taze.", "", listOf(), listOf("빵이 신선해요."), "Doğru cümle: 빵이 신선해요.", null, "빵이 신선해요."))))),
-        LearningUnit("KO-A1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa1k_e70", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ekmek taze.", "", listOf(), listOf("빵이 신선해요."), "Doğru cümle: 빵이 신선해요.", null, "빵이 신선해요.")))))
+
+    private fun u15(): LearningUnit = LearningUnit("KO-A1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A1-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa1k_e36", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ 다 좋아요.", "", listOf("열", "오늘", "둘"), listOf("둘"), "Doğru cümle: 둘 다 좋아요. — İkisi de iyi.", null, null),
                 LearningExercise("koa1k_e199", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 지금 열 시예요.", "", listOf(), listOf("지금 열 시예요."), "Türkçesi: Saat şimdi on.", "지금 열 시예요.", "지금 열 시예요."),
@@ -389,8 +500,9 @@ object WorldCourseKO {
                 LearningExercise("koa1k_e119", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "그는 제 친구예요.", listOf("Ekmek taze.", "O benim arkadaşım.", "Su lütfen."), listOf("O benim arkadaşım."), "Cümlenin çevirisi: O benim arkadaşım.", null, null),
                 LearningExercise("koa1k_e53", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "내일 봐요!", listOf("Yarın görüşürüz!", "Ekmek taze.", "Kahve içiyorum."), listOf("Yarın görüşürüz!"), "Cümlenin çevirisi: Yarın görüşürüz!", null, null),
                 LearningExercise("koa1k_e20", Skill.VOCABULARY, "Doğru çeviriyi seç", "'hoşça kalın' ifadesinin Korece karşılığı hangisi?", "", listOf("열", "오늘", "안녕히 가세요"), listOf("안녕히 가세요"), "Örnek: 안녕히 가세요, 내일 봐요! — Hoşça kalın, yarın görüşürüz!", null, null),
-                LearningExercise("koa1k_e95", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "가족이 많아요.", listOf("Seul'de yaşıyorum.", "Tren dokuzda geliyor.", "Ailem kalabalık."), listOf("Ailem kalabalık."), "Cümlenin çevirisi: Ailem kalabalık.", null, null))))),
-        LearningUnit("KO-A1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa1k_e95", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "가족이 많아요.", listOf("Seul'de yaşıyorum.", "Tren dokuzda geliyor.", "Ailem kalabalık."), listOf("Ailem kalabalık."), "Cümlenin çevirisi: Ailem kalabalık.", null, null)))))
+
+    private fun u16(): LearningUnit = LearningUnit("KO-A1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A1-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa1k_e175", Skill.VOCABULARY, "Doğru anlamı seç", "'공항' ne anlama gelir?", "", listOf("tren", "havalimanı", "yaşamak"), listOf("havalimanı"), "공항이 멀어요. — Havalimanı uzak.", null, null),
                 LearningExercise("koa1k_e110", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ağabey' ifadesinin Korece karşılığı hangisi?", "", listOf("일", "도시", "형"), listOf("형"), "Örnek: 형은 젊어요. — Ağabeyim genç.", null, null),
@@ -414,8 +526,9 @@ object WorldCourseKO {
                 LearningExercise("koa1k_e164", Skill.VOCABULARY, "Doğru çeviriyi seç", "'otel' ifadesinin Korece karşılığı hangisi?", "", listOf("안녕하세요", "감사합니다", "호텔"), listOf("호텔"), "Örnek: 호텔은 시내에 있어요. — Otel şehir merkezinde.", null, null),
                 LearningExercise("koa1k_e129", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("일하러 가요."), "Söylenen cümle: 일하러 가요. — İşe gidiyorum.", "일하러 가요.", null),
                 LearningExercise("koa1k_e173", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "왼쪽으로 가세요.", listOf("Kahve lütfen.", "Sola gidin.", "Gerçekten teşekkür ederim."), listOf("Sola gidin."), "Cümlenin çevirisi: Sola gidin.", null, null),
-                LearningExercise("koa1k_e122", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ev' ifadesinin Korece karşılığı hangisi?", "", listOf("집", "사과", "차"), listOf("집"), "Örnek: 집이 오래됐어요. — Ev eski.", null, null))))),
-        LearningUnit("KO-A2-U1", "Geçmişten Bahsetmek", "Geçmişte olanları anlat.", listOf(
+                LearningExercise("koa1k_e122", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ev' ifadesinin Korece karşılığı hangisi?", "", listOf("집", "사과", "차"), listOf("집"), "Örnek: 집이 오래됐어요. — Ev eski.", null, null)))))
+
+    private fun u17(): LearningUnit = LearningUnit("KO-A2-U1", "Geçmişten Bahsetmek", "Geçmişte olanları anlat.", listOf(
             LearningLesson("KO-A2-U1-L1", "Geçmişten Bahsetmek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koa2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'어제' ne anlama gelir?", "", listOf("geçen hafta", "gördü/izledi", "dün"), listOf("dün"), "어제 일했어요. — Dün çalıştım.", null, null),
                 LearningExercise("koa2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'지난주' ne anlama gelir?", "", listOf("yolculuk", "geçen hafta", "satın aldı"), listOf("geçen hafta"), "지난주에 아팠어요. — Geçen hafta hastaydım.", null, null),
@@ -441,8 +554,9 @@ object WorldCourseKO {
             LearningLesson("KO-A2-U1-L5", "Geçmişten Bahsetmek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koa2u1e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yolculuk keyifliydi.", "", listOf(), listOf("여행이 즐거웠어요."), "Doğru cümle: 여행이 즐거웠어요.", null, "여행이 즐거웠어요."),
                 LearningExercise("koa2u1e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: O filmi izledim.", "", listOf(), listOf("그 영화를 봤어요."), "Doğru cümle: 그 영화를 봤어요.", null, "그 영화를 봤어요."),
-                LearningExercise("koa2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 어제 일했어요.", "", listOf(), listOf("어제 일했어요."), "Türkçesi: Dün çalıştım.", "어제 일했어요.", "어제 일했어요."))))),
-        LearningUnit("KO-A2-U2", "Alışveriş ve Para", "Fiyat sor, ödeme yap.", listOf(
+                LearningExercise("koa2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 어제 일했어요.", "", listOf(), listOf("어제 일했어요."), "Türkçesi: Dün çalıştım.", "어제 일했어요.", "어제 일했어요.")))))
+
+    private fun u18(): LearningUnit = LearningUnit("KO-A2-U2", "Alışveriş ve Para", "Fiyat sor, ödeme yap.", listOf(
             LearningLesson("KO-A2-U2-L1", "Alışveriş ve Para — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koa2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'돈' ne anlama gelir?", "", listOf("kaç para", "para", "pahalı"), listOf("para"), "돈이 부족해요. — Param yetmiyor.", null, null),
                 LearningExercise("koa2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'비싸요' ne anlama gelir?", "", listOf("pahalı", "ucuz", "hesabı ödemek"), listOf("pahalı"), "이 전화는 비싸요. — Bu telefon pahalı.", null, null),
@@ -468,8 +582,9 @@ object WorldCourseKO {
             LearningLesson("KO-A2-U2-L5", "Alışveriş ve Para — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koa2u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Hesabı ben ödeyeyim.", "", listOf(), listOf("제가 계산할게요."), "Doğru cümle: 제가 계산할게요.", null, "제가 계산할게요."),
                 LearningExercise("koa2u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu kaç para?", "", listOf(), listOf("이거 얼마예요?"), "Doğru cümle: 이거 얼마예요?", null, "이거 얼마예요?"),
-                LearningExercise("koa2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 돈이 부족해요.", "", listOf(), listOf("돈이 부족해요."), "Türkçesi: Param yetmiyor.", "돈이 부족해요.", "돈이 부족해요."))))),
-        LearningUnit("KO-A2-U3", "Sağlık ve Vücut", "Rahatsızlığını anlat, randevu al.", listOf(
+                LearningExercise("koa2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 돈이 부족해요.", "", listOf(), listOf("돈이 부족해요."), "Türkçesi: Param yetmiyor.", "돈이 부족해요.", "돈이 부족해요.")))))
+
+    private fun u19(): LearningUnit = LearningUnit("KO-A2-U3", "Sağlık ve Vücut", "Rahatsızlığını anlat, randevu al.", listOf(
             LearningLesson("KO-A2-U3-L1", "Sağlık ve Vücut — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koa2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'아파요' ne anlama gelir?", "", listOf("ağrıyor/hasta", "doktor", "eczane"), listOf("ağrıyor/hasta"), "머리가 아파요. — Başım ağrıyor.", null, null),
                 LearningExercise("koa2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'의사' ne anlama gelir?", "", listOf("baş", "hastane", "doktor"), listOf("doktor"), "의사가 열 시에 와요. — Doktor onda geliyor.", null, null),
@@ -495,8 +610,9 @@ object WorldCourseKO {
             LearningLesson("KO-A2-U3-L5", "Sağlık ve Vücut — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koa2u3e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Hastaneye gitmem gerek.", "", listOf(), listOf("병원에 가야 해요."), "Doğru cümle: 병원에 가야 해요.", null, "병원에 가야 해요."),
                 LearningExercise("koa2u3e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Eczane kapandı.", "", listOf(), listOf("약국이 문을 닫았어요."), "Doğru cümle: 약국이 문을 닫았어요.", null, "약국이 문을 닫았어요."),
-                LearningExercise("koa2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 머리가 아파요.", "", listOf(), listOf("머리가 아파요."), "Türkçesi: Başım ağrıyor.", "머리가 아파요.", "머리가 아파요."))))),
-        LearningUnit("KO-A2-U4", "Hava Durumu ve Doğa", "Havayı ve mevsimleri anlat.", listOf(
+                LearningExercise("koa2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 머리가 아파요.", "", listOf(), listOf("머리가 아파요."), "Türkçesi: Başım ağrıyor.", "머리가 아파요.", "머리가 아파요.")))))
+
+    private fun u20(): LearningUnit = LearningUnit("KO-A2-U4", "Hava Durumu ve Doğa", "Havayı ve mevsimleri anlat.", listOf(
             LearningLesson("KO-A2-U4-L1", "Hava Durumu ve Doğa — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koa2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'날씨' ne anlama gelir?", "", listOf("yağmur", "soğuk", "hava durumu"), listOf("hava durumu"), "오늘 날씨가 좋아요. — Bugün hava güzel.", null, null),
                 LearningExercise("koa2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'비' ne anlama gelir?", "", listOf("sıcak", "yağmur", "güneş"), listOf("yağmur"), "내일 비가 와요. — Yarın yağmur yağacak.", null, null),
@@ -522,8 +638,9 @@ object WorldCourseKO {
             LearningLesson("KO-A2-U4-L5", "Hava Durumu ve Doğa — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koa2u4e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yazın hava sıcak olur.", "", listOf(), listOf("여름은 더워요."), "Doğru cümle: 여름은 더워요.", null, "여름은 더워요."),
                 LearningExercise("koa2u4e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kışın hava soğuk olur.", "", listOf(), listOf("겨울은 추워요."), "Doğru cümle: 겨울은 추워요.", null, "겨울은 추워요."),
-                LearningExercise("koa2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 오늘 날씨가 좋아요.", "", listOf(), listOf("오늘 날씨가 좋아요."), "Türkçesi: Bugün hava güzel.", "오늘 날씨가 좋아요.", "오늘 날씨가 좋아요."))))),
-        LearningUnit("KO-A2-U5", "İş ve Okul", "İş ve eğitim hayatından bahset.", listOf(
+                LearningExercise("koa2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 오늘 날씨가 좋아요.", "", listOf(), listOf("오늘 날씨가 좋아요."), "Türkçesi: Bugün hava güzel.", "오늘 날씨가 좋아요.", "오늘 날씨가 좋아요.")))))
+
+    private fun u21(): LearningUnit = LearningUnit("KO-A2-U5", "İş ve Okul", "İş ve eğitim hayatından bahset.", listOf(
             LearningLesson("KO-A2-U5-L1", "İş ve Okul — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koa2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'사무실' ne anlama gelir?", "", listOf("öğretmen", "ofis", "ders çalışmak"), listOf("ofis"), "사무실이 시내에 있어요. — Ofis şehir merkezinde.", null, null),
                 LearningExercise("koa2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'공부해요' ne anlama gelir?", "", listOf("ders çalışmak", "sınav", "toplantı"), listOf("ders çalışmak"), "한국어를 공부해요. — Korece çalışıyorum.", null, null),
@@ -549,8 +666,9 @@ object WorldCourseKO {
             LearningLesson("KO-A2-U5-L5", "İş ve Okul — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koa2u5e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Toplantı dokuzda başlıyor.", "", listOf(), listOf("회의는 아홉 시에 시작해요."), "Doğru cümle: 회의는 아홉 시에 시작해요.", null, "회의는 아홉 시에 시작해요."),
                 LearningExercise("koa2u5e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Öğretmen her şeyi açıklıyor.", "", listOf(), listOf("선생님이 다 설명해요."), "Doğru cümle: 선생님이 다 설명해요.", null, "선생님이 다 설명해요."),
-                LearningExercise("koa2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 사무실이 시내에 있어요.", "", listOf(), listOf("사무실이 시내에 있어요."), "Türkçesi: Ofis şehir merkezinde.", "사무실이 시내에 있어요.", "사무실이 시내에 있어요."))))),
-        LearningUnit("KO-A2-U6", "Planlar ve Gelecek", "Gelecek planlarını anlat.", listOf(
+                LearningExercise("koa2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 사무실이 시내에 있어요.", "", listOf(), listOf("사무실이 시내에 있어요."), "Türkçesi: Ofis şehir merkezinde.", "사무실이 시내에 있어요.", "사무실이 시내에 있어요.")))))
+
+    private fun u22(): LearningUnit = LearningUnit("KO-A2-U6", "Planlar ve Gelecek", "Gelecek planlarını anlat.", listOf(
             LearningLesson("KO-A2-U6-L1", "Planlar ve Gelecek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koa2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'주말' ne anlama gelir?", "", listOf("hafta sonu", "plan", "gelecek yıl"), listOf("hafta sonu"), "주말에 쉬어요. — Hafta sonu dinlenirim.", null, null),
                 LearningExercise("koa2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'계획' ne anlama gelir?", "", listOf("tatil/izin", "gelecek", "plan"), listOf("plan"), "여름 계획이 있어요. — Yaz için bir planım var.", null, null),
@@ -576,8 +694,9 @@ object WorldCourseKO {
             LearningLesson("KO-A2-U6-L5", "Planlar ve Gelecek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koa2u6e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Geleceğe hazırlanıyorum.", "", listOf(), listOf("미래를 준비해요."), "Doğru cümle: 미래를 준비해요.", null, "미래를 준비해요."),
                 LearningExercise("koa2u6e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Gelecek yıl Kore'ye gidiyorum.", "", listOf(), listOf("내년에 한국에 가요."), "Doğru cümle: 내년에 한국에 가요.", null, "내년에 한국에 가요."),
-                LearningExercise("koa2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 주말에 쉬어요.", "", listOf(), listOf("주말에 쉬어요."), "Türkçesi: Hafta sonu dinlenirim.", "주말에 쉬어요.", "주말에 쉬어요."))))),
-        LearningUnit("KO-A2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 주말에 쉬어요.", "", listOf(), listOf("주말에 쉬어요."), "Türkçesi: Hafta sonu dinlenirim.", "주말에 쉬어요.", "주말에 쉬어요.")))))
+
+    private fun u23(): LearningUnit = LearningUnit("KO-A2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A2-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa2k_e90", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___에 가야 해요.", "", listOf("봤어요", "여행", "병원"), listOf("병원"), "Doğru cümle: 병원에 가야 해요. — Hastaneye gitmem gerek.", null, null),
                 LearningExercise("koa2k_e36", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___이 부족해요.", "", listOf("비싸요", "싸요", "돈"), listOf("돈"), "Doğru cümle: 돈이 부족해요. — Param yetmiyor.", null, null),
@@ -601,8 +720,9 @@ object WorldCourseKO {
                 LearningExercise("koa2k_e15", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("빵을 샀어요."), "Söylenen cümle: 빵을 샀어요. — Ekmek aldım.", "빵을 샀어요.", null),
                 LearningExercise("koa2k_e82", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Eczane kapandı.", "", listOf(), listOf("약국이 문을 닫았어요."), "Doğru cümle: 약국이 문을 닫았어요.", null, "약국이 문을 닫았어요."),
                 LearningExercise("koa2k_e133", Skill.VOCABULARY, "Doğru anlamı seç", "'시험' ne anlama gelir?", "", listOf("para", "pahalı", "sınav"), listOf("sınav"), "시험은 금요일이에요. — Sınav cuma günü.", null, null),
-                LearningExercise("koa2k_e8", Skill.VOCABULARY, "Doğru çeviriyi seç", "'geçen hafta' ifadesinin Korece karşılığı hangisi?", "", listOf("날씨", "지난주", "병원"), listOf("지난주"), "Örnek: 지난주에 아팠어요. — Geçen hafta hastaydım.", null, null))))),
-        LearningUnit("KO-A2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa2k_e8", Skill.VOCABULARY, "Doğru çeviriyi seç", "'geçen hafta' ifadesinin Korece karşılığı hangisi?", "", listOf("날씨", "지난주", "병원"), listOf("지난주"), "Örnek: 지난주에 아팠어요. — Geçen hafta hastaydım.", null, null)))))
+
+    private fun u24(): LearningUnit = LearningUnit("KO-A2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A2-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa2k_e16", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ekmek aldım.", "", listOf(), listOf("빵을 샀어요."), "Doğru cümle: 빵을 샀어요.", null, "빵을 샀어요."),
                 LearningExercise("koa2k_e67", Skill.VOCABULARY, "Doğru anlamı seç", "'의사' ne anlama gelir?", "", listOf("sıcak", "doktor", "soğuk"), listOf("doktor"), "의사가 열 시에 와요. — Doktor onda geliyor.", null, null),
@@ -626,8 +746,9 @@ object WorldCourseKO {
                 LearningExercise("koa2k_e26", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yolculuk' ifadesinin Korece karşılığı hangisi?", "", listOf("추워요", "여행", "해"), listOf("여행"), "Örnek: 여행이 즐거웠어요. — Yolculuk keyifliydi.", null, null),
                 LearningExercise("koa2k_e94", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bugün hava güzel.", "", listOf(), listOf("오늘 날씨가 좋아요."), "Doğru cümle: 오늘 날씨가 좋아요.", null, "오늘 날씨가 좋아요."),
                 LearningExercise("koa2k_e97", Skill.VOCABULARY, "Doğru anlamı seç", "'비' ne anlama gelir?", "", listOf("öğretmen", "toplantı", "yağmur"), listOf("yağmur"), "내일 비가 와요. — Yarın yağmur yağacak.", null, null),
-                LearningExercise("koa2k_e84", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___이 문을 닫았어요.", "", listOf("약국", "아파요", "의사"), listOf("약국"), "Doğru cümle: 약국이 문을 닫았어요. — Eczane kapandı.", null, null))))),
-        LearningUnit("KO-A2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa2k_e84", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___이 문을 닫았어요.", "", listOf("약국", "아파요", "의사"), listOf("약국"), "Doğru cümle: 약국이 문을 닫았어요. — Eczane kapandı.", null, null)))))
+
+    private fun u25(): LearningUnit = LearningUnit("KO-A2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A2-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa2k_e190", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 제가 계산할게요.", "", listOf(), listOf("제가 계산할게요."), "Türkçesi: Hesabı ben ödeyeyim.", "제가 계산할게요.", "제가 계산할게요."),
                 LearningExercise("koa2k_e129", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("한국어를 공부해요."), "Söylenen cümle: 한국어를 공부해요. — Korece çalışıyorum.", "한국어를 공부해요.", null),
@@ -651,8 +772,9 @@ object WorldCourseKO {
                 LearningExercise("koa2k_e38", Skill.VOCABULARY, "Doğru çeviriyi seç", "'pahalı' ifadesinin Korece karşılığı hangisi?", "", listOf("계산해요", "아파요", "비싸요"), listOf("비싸요"), "Örnek: 이 전화는 비싸요. — Bu telefon pahalı.", null, null),
                 LearningExercise("koa2k_e3", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("어제 일했어요."), "Söylenen cümle: 어제 일했어요. — Dün çalıştım.", "어제 일했어요.", null),
                 LearningExercise("koa2k_e96", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "오늘 ___가 좋아요.", "", listOf("휴가", "날씨", "계획"), listOf("날씨"), "Doğru cümle: 오늘 날씨가 좋아요. — Bugün hava güzel.", null, null),
-                LearningExercise("koa2k_e167", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "휴가가 곧 시작돼요.", listOf("Başım ağır.", "Eczane kapandı.", "Tatil yakında başlıyor."), listOf("Tatil yakında başlıyor."), "Cümlenin çevirisi: Tatil yakında başlıyor.", null, null))))),
-        LearningUnit("KO-A2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa2k_e167", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "휴가가 곧 시작돼요.", listOf("Başım ağır.", "Eczane kapandı.", "Tatil yakında başlıyor."), listOf("Tatil yakında başlıyor."), "Cümlenin çevirisi: Tatil yakında başlıyor.", null, null)))))
+
+    private fun u26(): LearningUnit = LearningUnit("KO-A2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A2-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa2k_e23", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "그 영화를 봤어요.", listOf("Bu telefon pahalı.", "Ekmek ucuz.", "O filmi izledim."), listOf("O filmi izledim."), "Cümlenin çevirisi: O filmi izledim.", null, null),
                 LearningExercise("koa2k_e131", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "한국어를 공부해요.", listOf("Kışın hava soğuk olur.", "Yazın hava sıcak olur.", "Korece çalışıyorum."), listOf("Korece çalışıyorum."), "Cümlenin çevirisi: Korece çalışıyorum.", null, null),
@@ -676,8 +798,9 @@ object WorldCourseKO {
                 LearningExercise("koa2k_e141", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("선생님이 다 설명해요."), "Söylenen cümle: 선생님이 다 설명해요. — Öğretmen her şeyi açıklıyor.", "선생님이 다 설명해요.", null),
                 LearningExercise("koa2k_e86", Skill.VOCABULARY, "Doğru çeviriyi seç", "'hastane' ifadesinin Korece karşılığı hangisi?", "", listOf("병원", "싸요", "얼마예요"), listOf("병원"), "Örnek: 병원에 가야 해요. — Hastaneye gitmem gerek.", null, null),
                 LearningExercise("koa2k_e145", Skill.VOCABULARY, "Doğru anlamı seç", "'회의' ne anlama gelir?", "", listOf("toplantı", "sıcak", "ofis"), listOf("toplantı"), "회의는 아홉 시에 시작해요. — Toplantı dokuzda başlıyor.", null, null),
-                LearningExercise("koa2k_e171", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("내년에 한국에 가요."), "Söylenen cümle: 내년에 한국에 가요. — Gelecek yıl Kore'ye gidiyorum.", "내년에 한국에 가요.", null))))),
-        LearningUnit("KO-A2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa2k_e171", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("내년에 한국에 가요."), "Söylenen cümle: 내년에 한국에 가요. — Gelecek yıl Kore'ye gidiyorum.", "내년에 한국에 가요.", null)))))
+
+    private fun u27(): LearningUnit = LearningUnit("KO-A2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A2-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa2k_e47", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "빵이 싸요.", listOf("Öğretmen her şeyi açıklıyor.", "Ekmek ucuz.", "Sınav cuma günü."), listOf("Ekmek ucuz."), "Cümlenin çevirisi: Ekmek ucuz.", null, null),
                 LearningExercise("koa2k_e6", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ 일했어요.", "", listOf("머리", "어제", "의사"), listOf("어제"), "Doğru cümle: 어제 일했어요. — Dün çalıştım.", null, null),
@@ -701,8 +824,9 @@ object WorldCourseKO {
                 LearningExercise("koa2k_e128", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ders çalışmak' ifadesinin Korece karşılığı hangisi?", "", listOf("회의", "주말", "공부해요"), listOf("공부해요"), "Örnek: 한국어를 공부해요. — Korece çalışıyorum.", null, null),
                 LearningExercise("koa2k_e172", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Gelecek yıl Kore'ye gidiyorum.", "", listOf(), listOf("내년에 한국에 가요."), "Doğru cümle: 내년에 한국에 가요.", null, "내년에 한국에 가요."),
                 LearningExercise("koa2k_e116", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sıcak' ifadesinin Korece karşılığı hangisi?", "", listOf("봤어요", "더워요", "샀어요"), listOf("더워요"), "Örnek: 여름은 더워요. — Yazın hava sıcak olur.", null, null),
-                LearningExercise("koa2k_e124", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ofis şehir merkezinde.", "", listOf(), listOf("사무실이 시내에 있어요."), "Doğru cümle: 사무실이 시내에 있어요.", null, "사무실이 시내에 있어요."))))),
-        LearningUnit("KO-A2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa2k_e124", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ofis şehir merkezinde.", "", listOf(), listOf("사무실이 시내에 있어요."), "Doğru cümle: 사무실이 시내에 있어요.", null, "사무실이 시내에 있어요.")))))
+
+    private fun u28(): LearningUnit = LearningUnit("KO-A2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A2-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa2k_e85", Skill.VOCABULARY, "Doğru anlamı seç", "'병원' ne anlama gelir?", "", listOf("ağrıyor/hasta", "hastane", "hesabı ödemek"), listOf("hastane"), "병원에 가야 해요. — Hastaneye gitmem gerek.", null, null),
                 LearningExercise("koa2k_e55", Skill.VOCABULARY, "Doğru anlamı seç", "'계산해요' ne anlama gelir?", "", listOf("hesabı ödemek", "yolculuk", "para"), listOf("hesabı ödemek"), "제가 계산할게요. — Hesabı ben ödeyeyim.", null, null),
@@ -726,8 +850,9 @@ object WorldCourseKO {
                 LearningExercise("koa2k_e95", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "오늘 날씨가 좋아요.", listOf("Toplantı dokuzda başlıyor.", "Hafta sonu dinlenirim.", "Bugün hava güzel."), listOf("Bugün hava güzel."), "Cümlenin çevirisi: Bugün hava güzel.", null, null),
                 LearningExercise("koa2k_e71", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "의사가 열 시에 와요.", listOf("Doktor onda geliyor.", "Bu kaç para?", "Hesabı ben ödeyeyim."), listOf("Doktor onda geliyor."), "Cümlenin çevirisi: Doktor onda geliyor.", null, null),
                 LearningExercise("koa2k_e154", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Hafta sonu dinlenirim.", "", listOf(), listOf("주말에 쉬어요."), "Doğru cümle: 주말에 쉬어요.", null, "주말에 쉬어요."),
-                LearningExercise("koa2k_e193", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 겨울은 추워요.", "", listOf(), listOf("겨울은 추워요."), "Türkçesi: Kışın hava soğuk olur.", "겨울은 추워요.", "겨울은 추워요."))))),
-        LearningUnit("KO-A2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa2k_e193", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 겨울은 추워요.", "", listOf(), listOf("겨울은 추워요."), "Türkçesi: Kışın hava soğuk olur.", "겨울은 추워요.", "겨울은 추워요.")))))
+
+    private fun u29(): LearningUnit = LearningUnit("KO-A2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A2-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa2k_e150", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___는 아홉 시에 시작해요.", "", listOf("주말", "회의", "선생님"), listOf("회의"), "Doğru cümle: 회의는 아홉 시에 시작해요. — Toplantı dokuzda başlıyor.", null, null),
                 LearningExercise("koa2k_e22", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: O filmi izledim.", "", listOf(), listOf("그 영화를 봤어요."), "Doğru cümle: 그 영화를 봤어요.", null, "그 영화를 봤어요."),
@@ -751,8 +876,9 @@ object WorldCourseKO {
                 LearningExercise("koa2k_e115", Skill.VOCABULARY, "Doğru anlamı seç", "'더워요' ne anlama gelir?", "", listOf("hastane", "hava durumu", "sıcak"), listOf("sıcak"), "여름은 더워요. — Yazın hava sıcak olur.", null, null),
                 LearningExercise("koa2k_e198", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 그 영화를 봤어요.", "", listOf(), listOf("그 영화를 봤어요."), "Türkçesi: O filmi izledim.", "그 영화를 봤어요.", "그 영화를 봤어요."),
                 LearningExercise("koa2k_e46", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ekmek ucuz.", "", listOf(), listOf("빵이 싸요."), "Doğru cümle: 빵이 싸요.", null, "빵이 싸요."),
-                LearningExercise("koa2k_e51", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("이거 얼마예요?"), "Söylenen cümle: 이거 얼마예요? — Bu kaç para?", "이거 얼마예요?", null))))),
-        LearningUnit("KO-A2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa2k_e51", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("이거 얼마예요?"), "Söylenen cümle: 이거 얼마예요? — Bu kaç para?", "이거 얼마예요?", null)))))
+
+    private fun u30(): LearningUnit = LearningUnit("KO-A2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A2-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa2k_e155", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "주말에 쉬어요.", listOf("Param yetmiyor.", "Hafta sonu dinlenirim.", "Yolculuk keyifliydi."), listOf("Hafta sonu dinlenirim."), "Cümlenin çevirisi: Hafta sonu dinlenirim.", null, null),
                 LearningExercise("koa2k_e88", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Hastaneye gitmem gerek.", "", listOf(), listOf("병원에 가야 해요."), "Doğru cümle: 병원에 가야 해요.", null, "병원에 가야 해요."),
@@ -776,8 +902,9 @@ object WorldCourseKO {
                 LearningExercise("koa2k_e81", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("약국이 문을 닫았어요."), "Söylenen cümle: 약국이 문을 닫았어요. — Eczane kapandı.", "약국이 문을 닫았어요.", null),
                 LearningExercise("koa2k_e113", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "겨울은 추워요.", listOf("Korece çalışıyorum.", "Sınav cuma günü.", "Kışın hava soğuk olur."), listOf("Kışın hava soğuk olur."), "Cümlenin çevirisi: Kışın hava soğuk olur.", null, null),
                 LearningExercise("koa2k_e195", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 회의는 아홉 시에 시작해요.", "", listOf(), listOf("회의는 아홉 시에 시작해요."), "Türkçesi: Toplantı dokuzda başlıyor.", "회의는 아홉 시에 시작해요.", "회의는 아홉 시에 시작해요."),
-                LearningExercise("koa2k_e53", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "이거 얼마예요?", listOf("Bu kaç para?", "Doktor onda geliyor.", "Başım ağır."), listOf("Bu kaç para?"), "Cümlenin çevirisi: Bu kaç para?", null, null))))),
-        LearningUnit("KO-A2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa2k_e53", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "이거 얼마예요?", listOf("Bu kaç para?", "Doktor onda geliyor.", "Başım ağır."), listOf("Bu kaç para?"), "Cümlenin çevirisi: Bu kaç para?", null, null)))))
+
+    private fun u31(): LearningUnit = LearningUnit("KO-A2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A2-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa2k_e127", Skill.VOCABULARY, "Doğru anlamı seç", "'공부해요' ne anlama gelir?", "", listOf("ders çalışmak", "gelecek yıl", "gelecek"), listOf("ders çalışmak"), "한국어를 공부해요. — Korece çalışıyorum.", null, null),
                 LearningExercise("koa2k_e7", Skill.VOCABULARY, "Doğru anlamı seç", "'지난주' ne anlama gelir?", "", listOf("kaç para", "hesabı ödemek", "geçen hafta"), listOf("geçen hafta"), "지난주에 아팠어요. — Geçen hafta hastaydım.", null, null),
@@ -801,8 +928,9 @@ object WorldCourseKO {
                 LearningExercise("koa2k_e107", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "해가 났어요.", listOf("Güneş çıktı.", "Ekmek aldım.", "O filmi izledim."), listOf("Güneş çıktı."), "Cümlenin çevirisi: Güneş çıktı.", null, null),
                 LearningExercise("koa2k_e83", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "약국이 문을 닫았어요.", listOf("Güneş çıktı.", "Eczane kapandı.", "Yarın yağmur yağacak."), listOf("Eczane kapandı."), "Cümlenin çevirisi: Eczane kapandı.", null, null),
                 LearningExercise("koa2k_e24", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "그 영화를 ___.", "", listOf("공부해요", "봤어요", "사무실"), listOf("봤어요"), "Doğru cümle: 그 영화를 봤어요. — O filmi izledim.", null, null),
-                LearningExercise("koa2k_e98", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yağmur' ifadesinin Korece karşılığı hangisi?", "", listOf("어제", "비", "미래"), listOf("비"), "Örnek: 내일 비가 와요. — Yarın yağmur yağacak.", null, null))))),
-        LearningUnit("KO-A2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koa2k_e98", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yağmur' ifadesinin Korece karşılığı hangisi?", "", listOf("어제", "비", "미래"), listOf("비"), "Örnek: 내일 비가 와요. — Yarın yağmur yağacak.", null, null)))))
+
+    private fun u32(): LearningUnit = LearningUnit("KO-A2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-A2-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koa2k_e163", Skill.VOCABULARY, "Doğru anlamı seç", "'휴가' ne anlama gelir?", "", listOf("tatil/izin", "ağrıyor/hasta", "doktor"), listOf("tatil/izin"), "휴가가 곧 시작돼요. — Tatil yakında başlıyor.", null, null),
                 LearningExercise("koa2k_e99", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("내일 비가 와요."), "Söylenen cümle: 내일 비가 와요. — Yarın yağmur yağacak.", "내일 비가 와요.", null),
@@ -826,8 +954,9 @@ object WorldCourseKO {
                 LearningExercise("koa2k_e69", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("의사가 열 시에 와요."), "Söylenen cümle: 의사가 열 시에 와요. — Doktor onda geliyor.", "의사가 열 시에 와요.", null),
                 LearningExercise("koa2k_e165", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("휴가가 곧 시작돼요."), "Söylenen cümle: 휴가가 곧 시작돼요. — Tatil yakında başlıyor.", "휴가가 곧 시작돼요.", null),
                 LearningExercise("koa2k_e146", Skill.VOCABULARY, "Doğru çeviriyi seç", "'toplantı' ifadesinin Korece karşılığı hangisi?", "", listOf("휴가", "내년", "회의"), listOf("회의"), "Örnek: 회의는 아홉 시에 시작해요. — Toplantı dokuzda başlıyor.", null, null),
-                LearningExercise("koa2k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ucuz' ifadesinin Korece karşılığı hangisi?", "", listOf("공부해요", "싸요", "사무실"), listOf("싸요"), "Örnek: 빵이 싸요. — Ekmek ucuz.", null, null))))),
-        LearningUnit("KO-B1-U1", "Deneyimler ve Anılar", "Anılarını ayrıntılarıyla paylaş.", listOf(
+                LearningExercise("koa2k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ucuz' ifadesinin Korece karşılığı hangisi?", "", listOf("공부해요", "싸요", "사무실"), listOf("싸요"), "Örnek: 빵이 싸요. — Ekmek ucuz.", null, null)))))
+
+    private fun u33(): LearningUnit = LearningUnit("KO-B1-U1", "Deneyimler ve Anılar", "Anılarını ayrıntılarıyla paylaş.", listOf(
             LearningLesson("KO-B1-U1-L1", "Deneyimler ve Anılar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("kob1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'경험' ne anlama gelir?", "", listOf("hatırlamak", "o zamanlar", "deneyim"), listOf("deneyim"), "그 경험이 저를 바꿨어요. — O deneyim beni değiştirdi.", null, null),
                 LearningExercise("kob1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'기억해요' ne anlama gelir?", "", listOf("anı", "hatırlamak", "çocukluk"), listOf("hatırlamak"), "어린 시절을 기억해요. — Çocukluğumu hatırlıyorum.", null, null),
@@ -853,8 +982,9 @@ object WorldCourseKO {
             LearningLesson("KO-B1-U1-L5", "Deneyimler ve Anılar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("kob1u1e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu anı çok değerli.", "", listOf(), listOf("이 추억은 소중해요."), "Doğru cümle: 이 추억은 소중해요.", null, "이 추억은 소중해요."),
                 LearningExercise("kob1u1e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: O zamanlar kırsalda yaşıyorduk.", "", listOf(), listOf("그때 우리는 시골에 살았어요."), "Doğru cümle: 그때 우리는 시골에 살았어요.", null, "그때 우리는 시골에 살았어요."),
-                LearningExercise("kob1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 그 경험이 저를 바꿨어요.", "", listOf(), listOf("그 경험이 저를 바꿨어요."), "Türkçesi: O deneyim beni değiştirdi.", "그 경험이 저를 바꿨어요.", "그 경험이 저를 바꿨어요."))))),
-        LearningUnit("KO-B1-U2", "Medya ve Teknoloji", "Teknoloji ve haberler hakkında konuş.", listOf(
+                LearningExercise("kob1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 그 경험이 저를 바꿨어요.", "", listOf(), listOf("그 경험이 저를 바꿨어요."), "Türkçesi: O deneyim beni değiştirdi.", "그 경험이 저를 바꿨어요.", "그 경험이 저를 바꿨어요.")))))
+
+    private fun u34(): LearningUnit = LearningUnit("KO-B1-U2", "Medya ve Teknoloji", "Teknoloji ve haberler hakkında konuş.", listOf(
             LearningLesson("KO-B1-U2-L1", "Medya ve Teknoloji — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("kob1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'뉴스' ne anlama gelir?", "", listOf("bağlantı", "haberler", "cihaz"), listOf("haberler"), "저녁에 뉴스를 봐요. — Akşamları haber izlerim.", null, null),
                 LearningExercise("kob1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'기기' ne anlama gelir?", "", listOf("cihaz", "indirme", "ekran"), listOf("cihaz"), "이 기기는 새것이에요. — Bu cihaz yeni.", null, null),
@@ -880,8 +1010,9 @@ object WorldCourseKO {
             LearningLesson("KO-B1-U2-L5", "Medya ve Teknoloji — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("kob1u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ekran fazla parlak.", "", listOf(), listOf("화면이 너무 밝아요."), "Doğru cümle: 화면이 너무 밝아요.", null, "화면이 너무 밝아요."),
                 LearningExercise("kob1u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bağlantı yavaş.", "", listOf(), listOf("연결이 느려요."), "Doğru cümle: 연결이 느려요.", null, "연결이 느려요."),
-                LearningExercise("kob1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 저녁에 뉴스를 봐요.", "", listOf(), listOf("저녁에 뉴스를 봐요."), "Türkçesi: Akşamları haber izlerim.", "저녁에 뉴스를 봐요.", "저녁에 뉴스를 봐요."))))),
-        LearningUnit("KO-B1-U3", "Duygular ve İlişkiler", "Duygularını ve ilişkilerini anlat.", listOf(
+                LearningExercise("kob1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 저녁에 뉴스를 봐요.", "", listOf(), listOf("저녁에 뉴스를 봐요."), "Türkçesi: Akşamları haber izlerim.", "저녁에 뉴스를 봐요.", "저녁에 뉴스를 봐요.")))))
+
+    private fun u35(): LearningUnit = LearningUnit("KO-B1-U3", "Duygular ve İlişkiler", "Duygularını ve ilişkilerini anlat.", listOf(
             LearningLesson("KO-B1-U3-L1", "Duygular ve İlişkiler — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("kob1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'우정' ne anlama gelir?", "", listOf("arkadaşlık", "güven", "tartışmak/kavga etmek"), listOf("arkadaşlık"), "우리 우정은 강해요. — Arkadaşlığımız güçlü.", null, null),
                 LearningExercise("kob1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'신뢰' ne anlama gelir?", "", listOf("hayal kırıklığı", "duygu", "güven"), listOf("güven"), "신뢰는 시간이 걸려요. — Güven zaman alır.", null, null),
@@ -907,8 +1038,9 @@ object WorldCourseKO {
             LearningLesson("KO-B1-U3-L5", "Duygular ve İlişkiler — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("kob1u3e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Tuhaf bir duygu.", "", listOf(), listOf("이상한 감정이에요."), "Doğru cümle: 이상한 감정이에요.", null, "이상한 감정이에요."),
                 LearningExercise("kob1u3e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Neredeyse hiç kavga etmeyiz.", "", listOf(), listOf("우리는 거의 안 다퉈요."), "Doğru cümle: 우리는 거의 안 다퉈요.", null, "우리는 거의 안 다퉈요."),
-                LearningExercise("kob1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 우리 우정은 강해요.", "", listOf(), listOf("우리 우정은 강해요."), "Türkçesi: Arkadaşlığımız güçlü.", "우리 우정은 강해요.", "우리 우정은 강해요."))))),
-        LearningUnit("KO-B1-U4", "Kültür ve Gelenekler", "Gelenekleri ve kültürü tanıt.", listOf(
+                LearningExercise("kob1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 우리 우정은 강해요.", "", listOf(), listOf("우리 우정은 강해요."), "Türkçesi: Arkadaşlığımız güçlü.", "우리 우정은 강해요.", "우리 우정은 강해요.")))))
+
+    private fun u36(): LearningUnit = LearningUnit("KO-B1-U4", "Kültür ve Gelenekler", "Gelenekleri ve kültürü tanıt.", listOf(
             LearningLesson("KO-B1-U4-L1", "Kültür ve Gelenekler — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("kob1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'풍습' ne anlama gelir?", "", listOf("festival/bayram", "toplum", "âdet"), listOf("âdet"), "이 풍습은 아주 오래됐어요. — Bu âdet çok eski.", null, null),
                 LearningExercise("kob1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'축제' ne anlama gelir?", "", listOf("düzenlenmek", "festival/bayram", "gelenek"), listOf("festival/bayram"), "축제는 사흘 동안 계속돼요. — Festival üç gün sürüyor.", null, null),
@@ -934,8 +1066,9 @@ object WorldCourseKO {
             LearningLesson("KO-B1-U4-L5", "Kültür ve Gelenekler — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("kob1u4e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Festival mayısta düzenlenir.", "", listOf(), listOf("축제는 오월에 열려요."), "Doğru cümle: 축제는 오월에 열려요.", null, "축제는 오월에 열려요."),
                 LearningExercise("kob1u4e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Toplum hızla değişiyor.", "", listOf(), listOf("사회가 빨리 변해요."), "Doğru cümle: 사회가 빨리 변해요.", null, "사회가 빨리 변해요."),
-                LearningExercise("kob1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 이 풍습은 아주 오래됐어요.", "", listOf(), listOf("이 풍습은 아주 오래됐어요."), "Türkçesi: Bu âdet çok eski.", "이 풍습은 아주 오래됐어요.", "이 풍습은 아주 오래됐어요."))))),
-        LearningUnit("KO-B1-U5", "Spor ve Sağlıklı Yaşam", "Sağlıklı yaşam alışkanlıklarını anlat.", listOf(
+                LearningExercise("kob1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 이 풍습은 아주 오래됐어요.", "", listOf(), listOf("이 풍습은 아주 오래됐어요."), "Türkçesi: Bu âdet çok eski.", "이 풍습은 아주 오래됐어요.", "이 풍습은 아주 오래됐어요.")))))
+
+    private fun u37(): LearningUnit = LearningUnit("KO-B1-U5", "Spor ve Sağlıklı Yaşam", "Sağlıklı yaşam alışkanlıklarını anlat.", listOf(
             LearningLesson("KO-B1-U5-L1", "Spor ve Sağlıklı Yaşam — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("kob1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'건강' ne anlama gelir?", "", listOf("kaçınmak", "sağlık", "spor yapmak"), listOf("sağlık"), "건강이 제일 중요해요. — Sağlık en önemlisi.", null, null),
                 LearningExercise("kob1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'운동해요' ne anlama gelir?", "", listOf("spor yapmak", "beslenme düzeni", "alışkanlık"), listOf("spor yapmak"), "매일 운동해요. — Her gün spor yaparım.", null, null),
@@ -961,8 +1094,9 @@ object WorldCourseKO {
             LearningLesson("KO-B1-U5-L5", "Spor ve Sağlıklı Yaşam — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("kob1u5e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: İyi alışkanlıklar ediniyorum.", "", listOf(), listOf("좋은 습관을 만들어요."), "Doğru cümle: 좋은 습관을 만들어요.", null, "좋은 습관을 만들어요."),
                 LearningExercise("kob1u5e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Şekerden kaçınırım.", "", listOf(), listOf("설탕을 피해요."), "Doğru cümle: 설탕을 피해요.", null, "설탕을 피해요."),
-                LearningExercise("kob1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 건강이 제일 중요해요.", "", listOf(), listOf("건강이 제일 중요해요."), "Türkçesi: Sağlık en önemlisi.", "건강이 제일 중요해요.", "건강이 제일 중요해요."))))),
-        LearningUnit("KO-B1-U6", "Görüş Bildirmek", "Fikrini gerekçeleriyle savun.", listOf(
+                LearningExercise("kob1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 건강이 제일 중요해요.", "", listOf(), listOf("건강이 제일 중요해요."), "Türkçesi: Sağlık en önemlisi.", "건강이 제일 중요해요.", "건강이 제일 중요해요.")))))
+
+    private fun u38(): LearningUnit = LearningUnit("KO-B1-U6", "Görüş Bildirmek", "Fikrini gerekçeleriyle savun.", listOf(
             LearningLesson("KO-B1-U6-L1", "Görüş Bildirmek — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("kob1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'의견' ne anlama gelir?", "", listOf("görüş", "katılma (fikre)", "sebep"), listOf("görüş"), "이것이 제 의견이에요. — Bu benim görüşüm.", null, null),
                 LearningExercise("kob1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'찬성' ne anlama gelir?", "", listOf("karşı çıkma", "ikna", "katılma (fikre)"), listOf("katılma (fikre)"), "저는 찬성해요. — Ben katılıyorum.", null, null),
@@ -988,8 +1122,9 @@ object WorldCourseKO {
             LearningLesson("KO-B1-U6-L5", "Görüş Bildirmek — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("kob1u6e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Beni ikna edemezsiniz.", "", listOf(), listOf("저를 설득할 수 없어요."), "Doğru cümle: 저를 설득할 수 없어요.", null, "저를 설득할 수 없어요."),
                 LearningExercise("kob1u6e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: İyi bir sebep var.", "", listOf(), listOf("좋은 이유가 있어요."), "Doğru cümle: 좋은 이유가 있어요.", null, "좋은 이유가 있어요."),
-                LearningExercise("kob1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 이것이 제 의견이에요.", "", listOf(), listOf("이것이 제 의견이에요."), "Türkçesi: Bu benim görüşüm.", "이것이 제 의견이에요.", "이것이 제 의견이에요."))))),
-        LearningUnit("KO-B1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 이것이 제 의견이에요.", "", listOf(), listOf("이것이 제 의견이에요."), "Türkçesi: Bu benim görüşüm.", "이것이 제 의견이에요.", "이것이 제 의견이에요.")))))
+
+    private fun u39(): LearningUnit = LearningUnit("KO-B1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B1-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob1k_e25", Skill.VOCABULARY, "Doğru anlamı seç", "'추억' ne anlama gelir?", "", listOf("ikna", "deneyim", "anı"), listOf("anı"), "이 추억은 소중해요. — Bu anı çok değerli.", null, null),
                 LearningExercise("kob1k_e87", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("이상한 감정이에요."), "Söylenen cümle: 이상한 감정이에요. — Tuhaf bir duygu.", "이상한 감정이에요.", null),
@@ -1013,8 +1148,9 @@ object WorldCourseKO {
                 LearningExercise("kob1k_e81", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("우리는 거의 안 다퉈요."), "Söylenen cümle: 우리는 거의 안 다퉈요. — Neredeyse hiç kavga etmeyiz.", "우리는 거의 안 다퉈요.", null),
                 LearningExercise("kob1k_e8", Skill.VOCABULARY, "Doğru çeviriyi seç", "'hatırlamak' ifadesinin Korece karşılığı hangisi?", "", listOf("풍습", "기억해요", "감정"), listOf("기억해요"), "Örnek: 어린 시절을 기억해요. — Çocukluğumu hatırlıyorum.", null, null),
                 LearningExercise("kob1k_e57", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("화면이 너무 밝아요."), "Söylenen cümle: 화면이 너무 밝아요. — Ekran fazla parlak.", "화면이 너무 밝아요.", null),
-                LearningExercise("kob1k_e115", Skill.VOCABULARY, "Doğru anlamı seç", "'열려요' ne anlama gelir?", "", listOf("duygu", "âdet", "düzenlenmek"), listOf("düzenlenmek"), "축제는 오월에 열려요. — Festival mayısta düzenlenir.", null, null))))),
-        LearningUnit("KO-B1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob1k_e115", Skill.VOCABULARY, "Doğru anlamı seç", "'열려요' ne anlama gelir?", "", listOf("duygu", "âdet", "düzenlenmek"), listOf("düzenlenmek"), "축제는 오월에 열려요. — Festival mayısta düzenlenir.", null, null)))))
+
+    private fun u40(): LearningUnit = LearningUnit("KO-B1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B1-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob1k_e189", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 이 기기는 새것이에요.", "", listOf(), listOf("이 기기는 새것이에요."), "Türkçesi: Bu cihaz yeni.", "이 기기는 새것이에요.", "이 기기는 새것이에요."),
                 LearningExercise("kob1k_e28", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu anı çok değerli.", "", listOf(), listOf("이 추억은 소중해요."), "Doğru cümle: 이 추억은 소중해요.", null, "이 추억은 소중해요."),
@@ -1038,8 +1174,9 @@ object WorldCourseKO {
                 LearningExercise("kob1k_e162", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "저는 ___해요.", "", listOf("화면", "우정", "찬성"), listOf("찬성"), "Doğru cümle: 저는 찬성해요. — Ben katılıyorum.", null, null),
                 LearningExercise("kob1k_e7", Skill.VOCABULARY, "Doğru anlamı seç", "'기억해요' ne anlama gelir?", "", listOf("bağlantı", "ekran", "hatırlamak"), listOf("hatırlamak"), "어린 시절을 기억해요. — Çocukluğumu hatırlıyorum.", null, null),
                 LearningExercise("kob1k_e84", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "우리는 거의 안 ___.", "", listOf("다퉈요", "우정", "신뢰"), listOf("다퉈요"), "Doğru cümle: 우리는 거의 안 다퉈요. — Neredeyse hiç kavga etmeyiz.", null, null),
-                LearningExercise("kob1k_e161", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "저는 찬성해요.", listOf("Ben katılıyorum.", "Şekerden kaçınırım.", "İyi alışkanlıklar ediniyorum."), listOf("Ben katılıyorum."), "Cümlenin çevirisi: Ben katılıyorum.", null, null))))),
-        LearningUnit("KO-B1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob1k_e161", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "저는 찬성해요.", listOf("Ben katılıyorum.", "Şekerden kaçınırım.", "İyi alışkanlıklar ediniyorum."), listOf("Ben katılıyorum."), "Cümlenin çevirisi: Ben katılıyorum.", null, null)))))
+
+    private fun u41(): LearningUnit = LearningUnit("KO-B1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B1-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob1k_e61", Skill.VOCABULARY, "Doğru anlamı seç", "'우정' ne anlama gelir?", "", listOf("güven", "hayal kırıklığı", "arkadaşlık"), listOf("arkadaşlık"), "우리 우정은 강해요. — Arkadaşlığımız güçlü.", null, null),
                 LearningExercise("kob1k_e59", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "화면이 너무 밝아요.", listOf("O deneyim beni değiştirdi.", "Çocukluğumu hatırlıyorum.", "Ekran fazla parlak."), listOf("Ekran fazla parlak."), "Cümlenin çevirisi: Ekran fazla parlak.", null, null),
@@ -1063,8 +1200,9 @@ object WorldCourseKO {
                 LearningExercise("kob1k_e42", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "이 ___는 새것이에요.", "", listOf("경험", "기기", "설득"), listOf("기기"), "Doğru cümle: 이 기기는 새것이에요. — Bu cihaz yeni.", null, null),
                 LearningExercise("kob1k_e143", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "설탕을 피해요.", listOf("Şekerden kaçınırım.", "Ben katılıyorum.", "O düşünceye karşıyım."), listOf("Şekerden kaçınırım."), "Cümlenin çevirisi: Şekerden kaçınırım.", null, null),
                 LearningExercise("kob1k_e124", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sağlık en önemlisi.", "", listOf(), listOf("건강이 제일 중요해요."), "Doğru cümle: 건강이 제일 중요해요.", null, "건강이 제일 중요해요."),
-                LearningExercise("kob1k_e182", Skill.GRAMMAR, "Doğru seçeneği işaretle", "앱을 다운로드___ 싶어요.", "", listOf("하고", "해서", "하면"), listOf("하고"), "İstek kalıbı: -고 싶어요.", null, null))))),
-        LearningUnit("KO-B1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob1k_e182", Skill.GRAMMAR, "Doğru seçeneği işaretle", "앱을 다운로드___ 싶어요.", "", listOf("하고", "해서", "하면"), listOf("하고"), "İstek kalıbı: -고 싶어요.", null, null)))))
+
+    private fun u42(): LearningUnit = LearningUnit("KO-B1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B1-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob1k_e167", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "그 생각에 반대해요.", listOf("Sonuçtan hayal kırıklığına uğradım.", "Neredeyse hiç kavga etmeyiz.", "O düşünceye karşıyım."), listOf("O düşünceye karşıyım."), "Cümlenin çevirisi: O düşünceye karşıyım.", null, null),
                 LearningExercise("kob1k_e11", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "어린 시절을 기억해요.", listOf("Beni ikna edemezsiniz.", "Çocukluğumu hatırlıyorum.", "İyi bir sebep var."), listOf("Çocukluğumu hatırlıyorum."), "Cümlenin çevirisi: Çocukluğumu hatırlıyorum.", null, null),
@@ -1088,8 +1226,9 @@ object WorldCourseKO {
                 LearningExercise("kob1k_e152", Skill.VOCABULARY, "Doğru çeviriyi seç", "'görüş' ifadesinin Korece karşılığı hangisi?", "", listOf("화면", "의견", "연결"), listOf("의견"), "Örnek: 이것이 제 의견이에요. — Bu benim görüşüm.", null, null),
                 LearningExercise("kob1k_e18", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___은 행복했어요.", "", listOf("반대", "이유", "어린 시절"), listOf("어린 시절"), "Doğru cümle: 어린 시절은 행복했어요. — Çocukluğum mutluydu.", null, null),
                 LearningExercise("kob1k_e50", Skill.VOCABULARY, "Doğru çeviriyi seç", "'bağlantı' ifadesinin Korece karşılığı hangisi?", "", listOf("연결", "기억해요", "어린 시절"), listOf("연결"), "Örnek: 연결이 느려요. — Bağlantı yavaş.", null, null),
-                LearningExercise("kob1k_e23", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "그때 우리는 시골에 살았어요.", listOf("Bu cihaz yeni.", "Uygulamayı indirmek istiyorum.", "O zamanlar kırsalda yaşıyorduk."), listOf("O zamanlar kırsalda yaşıyorduk."), "Cümlenin çevirisi: O zamanlar kırsalda yaşıyorduk.", null, null))))),
-        LearningUnit("KO-B1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob1k_e23", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "그때 우리는 시골에 살았어요.", listOf("Bu cihaz yeni.", "Uygulamayı indirmek istiyorum.", "O zamanlar kırsalda yaşıyorduk."), listOf("O zamanlar kırsalda yaşıyorduk."), "Cümlenin çevirisi: O zamanlar kırsalda yaşıyorduk.", null, null)))))
+
+    private fun u43(): LearningUnit = LearningUnit("KO-B1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B1-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob1k_e134", Skill.VOCABULARY, "Doğru çeviriyi seç", "'beslenme düzeni' ifadesinin Korece karşılığı hangisi?", "", listOf("기기", "식단", "뉴스"), listOf("식단"), "Örnek: 건강한 식단이 중요해요. — Sağlıklı beslenme düzeni önemli.", null, null),
                 LearningExercise("kob1k_e151", Skill.VOCABULARY, "Doğru anlamı seç", "'의견' ne anlama gelir?", "", listOf("katılma (fikre)", "karşı çıkma", "görüş"), listOf("görüş"), "이것이 제 의견이에요. — Bu benim görüşüm.", null, null),
@@ -1113,8 +1252,9 @@ object WorldCourseKO {
                 LearningExercise("kob1k_e180", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "저를 ___할 수 없어요.", "", listOf("사회", "열려요", "설득"), listOf("설득"), "Doğru cümle: 저를 설득할 수 없어요. — Beni ikna edemezsiniz.", null, null),
                 LearningExercise("kob1k_e2", Skill.VOCABULARY, "Doğru çeviriyi seç", "'deneyim' ifadesinin Korece karşılığı hangisi?", "", listOf("그때", "추억", "경험"), listOf("경험"), "Örnek: 그 경험이 저를 바꿨어요. — O deneyim beni değiştirdi.", null, null),
                 LearningExercise("kob1k_e15", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("어린 시절은 행복했어요."), "Söylenen cümle: 어린 시절은 행복했어요. — Çocukluğum mutluydu.", "어린 시절은 행복했어요.", null),
-                LearningExercise("kob1k_e142", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Şekerden kaçınırım.", "", listOf(), listOf("설탕을 피해요."), "Doğru cümle: 설탕을 피해요.", null, "설탕을 피해요."))))),
-        LearningUnit("KO-B1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob1k_e142", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Şekerden kaçınırım.", "", listOf(), listOf("설탕을 피해요."), "Doğru cümle: 설탕을 피해요.", null, "설탕을 피해요.")))))
+
+    private fun u44(): LearningUnit = LearningUnit("KO-B1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B1-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob1k_e193", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 사회가 빨리 변해요.", "", listOf(), listOf("사회가 빨리 변해요."), "Türkçesi: Toplum hızla değişiyor.", "사회가 빨리 변해요.", "사회가 빨리 변해요."),
                 LearningExercise("kob1k_e31", Skill.VOCABULARY, "Doğru anlamı seç", "'뉴스' ne anlama gelir?", "", listOf("indirme", "haberler", "cihaz"), listOf("haberler"), "저녁에 뉴스를 봐요. — Akşamları haber izlerim.", null, null),
@@ -1138,8 +1278,9 @@ object WorldCourseKO {
                 LearningExercise("kob1k_e175", Skill.VOCABULARY, "Doğru anlamı seç", "'설득' ne anlama gelir?", "", listOf("görüş", "ikna", "alışkanlık"), listOf("ikna"), "저를 설득할 수 없어요. — Beni ikna edemezsiniz.", null, null),
                 LearningExercise("kob1k_e170", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sebep' ifadesinin Korece karşılığı hangisi?", "", listOf("실망", "이유", "신뢰"), listOf("이유"), "Örnek: 좋은 이유가 있어요. — İyi bir sebep var.", null, null),
                 LearningExercise("kob1k_e127", Skill.VOCABULARY, "Doğru anlamı seç", "'운동해요' ne anlama gelir?", "", listOf("spor yapmak", "sebep", "ikna"), listOf("spor yapmak"), "매일 운동해요. — Her gün spor yaparım.", null, null),
-                LearningExercise("kob1k_e82", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Neredeyse hiç kavga etmeyiz.", "", listOf(), listOf("우리는 거의 안 다퉈요."), "Doğru cümle: 우리는 거의 안 다퉈요.", null, "우리는 거의 안 다퉈요."))))),
-        LearningUnit("KO-B1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob1k_e82", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Neredeyse hiç kavga etmeyiz.", "", listOf(), listOf("우리는 거의 안 다퉈요."), "Doğru cümle: 우리는 거의 안 다퉈요.", null, "우리는 거의 안 다퉈요.")))))
+
+    private fun u45(): LearningUnit = LearningUnit("KO-B1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B1-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob1k_e195", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 좋은 습관을 만들어요.", "", listOf(), listOf("좋은 습관을 만들어요."), "Türkçesi: İyi alışkanlıklar ediniyorum.", "좋은 습관을 만들어요.", "좋은 습관을 만들어요."),
                 LearningExercise("kob1k_e70", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Güven zaman alır.", "", listOf(), listOf("신뢰는 시간이 걸려요."), "Doğru cümle: 신뢰는 시간이 걸려요.", null, "신뢰는 시간이 걸려요."),
@@ -1163,8 +1304,9 @@ object WorldCourseKO {
                 LearningExercise("kob1k_e78", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "결과에 ___했어요.", "", listOf("사회", "실망", "전통"), listOf("실망"), "Doğru cümle: 결과에 실망했어요. — Sonuçtan hayal kırıklığına uğradım.", null, null),
                 LearningExercise("kob1k_e183", Skill.GRAMMAR, "Doğru seçeneği işaretle", "결과___ 실망했어요.", "", listOf("에", "를", "가"), listOf("에"), "Edat: ...에 실망하다.", null, null),
                 LearningExercise("kob1k_e67", Skill.VOCABULARY, "Doğru anlamı seç", "'신뢰' ne anlama gelir?", "", listOf("düzenlenmek", "güven", "toplum"), listOf("güven"), "신뢰는 시간이 걸려요. — Güven zaman alır.", null, null),
-                LearningExercise("kob1k_e110", Skill.VOCABULARY, "Doğru çeviriyi seç", "'toplum' ifadesinin Korece karşılığı hangisi?", "", listOf("운동해요", "식단", "사회"), listOf("사회"), "Örnek: 사회가 빨리 변해요. — Toplum hızla değişiyor.", null, null))))),
-        LearningUnit("KO-B1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob1k_e110", Skill.VOCABULARY, "Doğru çeviriyi seç", "'toplum' ifadesinin Korece karşılığı hangisi?", "", listOf("운동해요", "식단", "사회"), listOf("사회"), "Örnek: 사회가 빨리 변해요. — Toplum hızla değişiyor.", null, null)))))
+
+    private fun u46(): LearningUnit = LearningUnit("KO-B1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B1-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob1k_e108", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___이 이어지고 있어요.", "", listOf("실망", "다퉈요", "전통"), listOf("전통"), "Doğru cümle: 전통이 이어지고 있어요. — Gelenek sürüyor.", null, null),
                 LearningExercise("kob1k_e159", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("저는 찬성해요."), "Söylenen cümle: 저는 찬성해요. — Ben katılıyorum.", "저는 찬성해요.", null),
@@ -1188,8 +1330,9 @@ object WorldCourseKO {
                 LearningExercise("kob1k_e125", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "건강이 제일 중요해요.", listOf("Sağlık en önemlisi.", "Beni ikna edemezsiniz.", "O deneyim beni değiştirdi."), listOf("Sağlık en önemlisi."), "Cümlenin çevirisi: Sağlık en önemlisi.", null, null),
                 LearningExercise("kob1k_e43", Skill.VOCABULARY, "Doğru anlamı seç", "'다운로드' ne anlama gelir?", "", listOf("sağlık", "spor yapmak", "indirme"), listOf("indirme"), "앱을 다운로드하고 싶어요. — Uygulamayı indirmek istiyorum.", null, null),
                 LearningExercise("kob1k_e85", Skill.VOCABULARY, "Doğru anlamı seç", "'감정' ne anlama gelir?", "", listOf("arkadaşlık", "duygu", "ekran"), listOf("duygu"), "이상한 감정이에요. — Tuhaf bir duygu.", null, null),
-                LearningExercise("kob1k_e35", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "저녁에 뉴스를 봐요.", listOf("Akşamları haber izlerim.", "Tuhaf bir duygu.", "Bu âdet çok eski."), listOf("Akşamları haber izlerim."), "Cümlenin çevirisi: Akşamları haber izlerim.", null, null))))),
-        LearningUnit("KO-B1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob1k_e35", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "저녁에 뉴스를 봐요.", listOf("Akşamları haber izlerim.", "Tuhaf bir duygu.", "Bu âdet çok eski."), listOf("Akşamları haber izlerim."), "Cümlenin çevirisi: Akşamları haber izlerim.", null, null)))))
+
+    private fun u47(): LearningUnit = LearningUnit("KO-B1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B1-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob1k_e46", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Uygulamayı indirmek istiyorum.", "", listOf(), listOf("앱을 다운로드하고 싶어요."), "Doğru cümle: 앱을 다운로드하고 싶어요.", null, "앱을 다운로드하고 싶어요."),
                 LearningExercise("kob1k_e16", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Çocukluğum mutluydu.", "", listOf(), listOf("어린 시절은 행복했어요."), "Doğru cümle: 어린 시절은 행복했어요.", null, "어린 시절은 행복했어요."),
@@ -1213,8 +1356,9 @@ object WorldCourseKO {
                 LearningExercise("kob1k_e95", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "이 풍습은 아주 오래됐어요.", listOf("İyi alışkanlıklar ediniyorum.", "Bu benim görüşüm.", "Bu âdet çok eski."), listOf("Bu âdet çok eski."), "Cümlenin çevirisi: Bu âdet çok eski.", null, null),
                 LearningExercise("kob1k_e111", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("사회가 빨리 변해요."), "Söylenen cümle: 사회가 빨리 변해요. — Toplum hızla değişiyor.", "사회가 빨리 변해요.", null),
                 LearningExercise("kob1k_e56", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ekran' ifadesinin Korece karşılığı hangisi?", "", listOf("실망", "다퉈요", "화면"), listOf("화면"), "Örnek: 화면이 너무 밝아요. — Ekran fazla parlak.", null, null),
-                LearningExercise("kob1k_e13", Skill.VOCABULARY, "Doğru anlamı seç", "'어린 시절' ne anlama gelir?", "", listOf("festival/bayram", "çocukluk", "âdet"), listOf("çocukluk"), "어린 시절은 행복했어요. — Çocukluğum mutluydu.", null, null))))),
-        LearningUnit("KO-B1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob1k_e13", Skill.VOCABULARY, "Doğru anlamı seç", "'어린 시절' ne anlama gelir?", "", listOf("festival/bayram", "çocukluk", "âdet"), listOf("çocukluk"), "어린 시절은 행복했어요. — Çocukluğum mutluydu.", null, null)))))
+
+    private fun u48(): LearningUnit = LearningUnit("KO-B1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B1-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob1k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "이 추억은 소중해요.", listOf("Ben katılıyorum.", "Bu anı çok değerli.", "Bu benim görüşüm."), listOf("Bu anı çok değerli."), "Cümlenin çevirisi: Bu anı çok değerli.", null, null),
                 LearningExercise("kob1k_e157", Skill.VOCABULARY, "Doğru anlamı seç", "'찬성' ne anlama gelir?", "", listOf("anı", "katılma (fikre)", "o zamanlar"), listOf("katılma (fikre)"), "저는 찬성해요. — Ben katılıyorum.", null, null),
@@ -1238,8 +1382,9 @@ object WorldCourseKO {
                 LearningExercise("kob1k_e33", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("저녁에 뉴스를 봐요."), "Söylenen cümle: 저녁에 뉴스를 봐요. — Akşamları haber izlerim.", "저녁에 뉴스를 봐요.", null),
                 LearningExercise("kob1k_e12", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "어린 시절을 ___.", "", listOf("기억해요", "추억", "뉴스"), listOf("기억해요"), "Doğru cümle: 어린 시절을 기억해요. — Çocukluğumu hatırlıyorum.", null, null),
                 LearningExercise("kob1k_e68", Skill.VOCABULARY, "Doğru çeviriyi seç", "'güven' ifadesinin Korece karşılığı hangisi?", "", listOf("신뢰", "추억", "뉴스"), listOf("신뢰"), "Örnek: 신뢰는 시간이 걸려요. — Güven zaman alır.", null, null),
-                LearningExercise("kob1k_e121", Skill.VOCABULARY, "Doğru anlamı seç", "'건강' ne anlama gelir?", "", listOf("beslenme düzeni", "sağlık", "spor yapmak"), listOf("sağlık"), "건강이 제일 중요해요. — Sağlık en önemlisi.", null, null))))),
-        LearningUnit("KO-B2-U1", "Kariyer ve İş Dünyası", "İş görüşmesi ve kariyer dilinde ustalaş.", listOf(
+                LearningExercise("kob1k_e121", Skill.VOCABULARY, "Doğru anlamı seç", "'건강' ne anlama gelir?", "", listOf("beslenme düzeni", "sağlık", "spor yapmak"), listOf("sağlık"), "건강이 제일 중요해요. — Sağlık en önemlisi.", null, null)))))
+
+    private fun u49(): LearningUnit = LearningUnit("KO-B2-U1", "Kariyer ve İş Dünyası", "İş görüşmesi ve kariyer dilinde ustalaş.", listOf(
             LearningLesson("KO-B2-U1-L1", "Kariyer ve İş Dünyası — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("kob2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'이력서' ne anlama gelir?", "", listOf("mülakat", "sorumluluk", "özgeçmiş"), listOf("özgeçmiş"), "이력서는 짧게 써요. — Özgeçmişi kısa yazarım.", null, null),
                 LearningExercise("kob2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'면접' ne anlama gelir?", "", listOf("kariyer", "mülakat", "işe alım"), listOf("mülakat"), "면접이 잘 됐어요. — Mülakat iyi geçti.", null, null),
@@ -1265,8 +1410,9 @@ object WorldCourseKO {
             LearningLesson("KO-B2-U1-L5", "Kariyer ve İş Dünyası — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("kob2u1e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kariyeri hızla ilerliyor.", "", listOf(), listOf("경력이 빨리 쌓이고 있어요."), "Doğru cümle: 경력이 빨리 쌓이고 있어요.", null, "경력이 빨리 쌓이고 있어요."),
                 LearningExercise("kob2u1e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sorumluluğu üstleneceğim.", "", listOf(), listOf("책임을 질게요."), "Doğru cümle: 책임을 질게요.", null, "책임을 질게요."),
-                LearningExercise("kob2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 이력서는 짧게 써요.", "", listOf(), listOf("이력서는 짧게 써요."), "Türkçesi: Özgeçmişi kısa yazarım.", "이력서는 짧게 써요.", "이력서는 짧게 써요."))))),
-        LearningUnit("KO-B2-U2", "Çevre ve Sürdürülebilirlik", "Çevre sorunlarını tartış.", listOf(
+                LearningExercise("kob2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 이력서는 짧게 써요.", "", listOf(), listOf("이력서는 짧게 써요."), "Türkçesi: Özgeçmişi kısa yazarım.", "이력서는 짧게 써요.", "이력서는 짧게 써요.")))))
+
+    private fun u50(): LearningUnit = LearningUnit("KO-B2-U2", "Çevre ve Sürdürülebilirlik", "Çevre sorunlarını tartış.", listOf(
             LearningLesson("KO-B2-U2-L1", "Çevre ve Sürdürülebilirlik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("kob2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'환경' ne anlama gelir?", "", listOf("çöp", "çevre", "iklim değişikliği"), listOf("çevre"), "환경을 보호해야 해요. — Çevreyi korumalıyız.", null, null),
                 LearningExercise("kob2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'기후 변화' ne anlama gelir?", "", listOf("iklim değişikliği", "sürdürülebilir", "yenilenebilir"), listOf("iklim değişikliği"), "기후 변화는 모두에게 영향을 줘요. — İklim değişikliği herkesi etkiliyor.", null, null),
@@ -1292,8 +1438,9 @@ object WorldCourseKO {
             LearningLesson("KO-B2-U2-L5", "Çevre ve Sürdürülebilirlik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("kob2u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yenilenebilir enerji gelecektir.", "", listOf(), listOf("재생 가능 에너지가 미래예요."), "Doğru cümle: 재생 가능 에너지가 미래예요.", null, "재생 가능 에너지가 미래예요."),
                 LearningExercise("kob2u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Çöpü ayrıştırıyoruz.", "", listOf(), listOf("쓰레기를 분리해요."), "Doğru cümle: 쓰레기를 분리해요.", null, "쓰레기를 분리해요."),
-                LearningExercise("kob2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 환경을 보호해야 해요.", "", listOf(), listOf("환경을 보호해야 해요."), "Türkçesi: Çevreyi korumalıyız.", "환경을 보호해야 해요.", "환경을 보호해야 해요."))))),
-        LearningUnit("KO-B2-U3", "Bilim ve Yenilik", "Bilimsel gelişmeleri aktar.", listOf(
+                LearningExercise("kob2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 환경을 보호해야 해요.", "", listOf(), listOf("환경을 보호해야 해요."), "Türkçesi: Çevreyi korumalıyız.", "환경을 보호해야 해요.", "환경을 보호해야 해요.")))))
+
+    private fun u51(): LearningUnit = LearningUnit("KO-B2-U3", "Bilim ve Yenilik", "Bilimsel gelişmeleri aktar.", listOf(
             LearningLesson("KO-B2-U3-L1", "Bilim ve Yenilik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("kob2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'연구' ne anlama gelir?", "", listOf("araştırma", "keşif", "kanıtlama"), listOf("araştırma"), "연구가 계속되고 있어요. — Araştırma devam ediyor.", null, null),
                 LearningExercise("kob2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'발견' ne anlama gelir?", "", listOf("ilerleme/gelişme", "sonuç", "keşif"), listOf("keşif"), "중요한 발견이었어요. — Önemli bir keşifti.", null, null),
@@ -1319,8 +1466,9 @@ object WorldCourseKO {
             LearningLesson("KO-B2-U3-L5", "Bilim ve Yenilik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("kob2u3e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sonuca şaşırdık.", "", listOf(), listOf("결과에 놀랐어요."), "Doğru cümle: 결과에 놀랐어요.", null, "결과에 놀랐어요."),
                 LearningExercise("kob2u3e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Teori kanıtlandı.", "", listOf(), listOf("이론이 증명되었어요."), "Doğru cümle: 이론이 증명되었어요.", null, "이론이 증명되었어요."),
-                LearningExercise("kob2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 연구가 계속되고 있어요.", "", listOf(), listOf("연구가 계속되고 있어요."), "Türkçesi: Araştırma devam ediyor.", "연구가 계속되고 있어요.", "연구가 계속되고 있어요."))))),
-        LearningUnit("KO-B2-U4", "Toplum ve Güncel Konular", "Toplumsal konularda görüş geliştir.", listOf(
+                LearningExercise("kob2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 연구가 계속되고 있어요.", "", listOf(), listOf("연구가 계속되고 있어요."), "Türkçesi: Araştırma devam ediyor.", "연구가 계속되고 있어요.", "연구가 계속되고 있어요.")))))
+
+    private fun u52(): LearningUnit = LearningUnit("KO-B2-U4", "Toplum ve Güncel Konular", "Toplumsal konularda görüş geliştir.", listOf(
             LearningLesson("KO-B2-U4-L1", "Toplum ve Güncel Konular — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("kob2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'정의' ne anlama gelir?", "", listOf("eşitlik", "yoksulluk", "adalet"), listOf("adalet"), "정의는 기본 가치예요. — Adalet temel bir değerdir.", null, null),
                 LearningExercise("kob2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'평등' ne anlama gelir?", "", listOf("tartışma", "eşitlik", "vatandaş"), listOf("eşitlik"), "법 앞의 평등. — Yasa önünde eşitlik.", null, null),
@@ -1346,8 +1494,9 @@ object WorldCourseKO {
             LearningLesson("KO-B2-U4-L5", "Toplum ve Güncel Konular — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("kob2u4e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Tartışma sürüyor.", "", listOf(), listOf("토론이 계속돼요."), "Doğru cümle: 토론이 계속돼요.", null, "토론이 계속돼요."),
                 LearningExercise("kob2u4e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yoksullukla mücadele etmeliyiz.", "", listOf(), listOf("빈곤과 싸워야 해요."), "Doğru cümle: 빈곤과 싸워야 해요.", null, "빈곤과 싸워야 해요."),
-                LearningExercise("kob2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 정의는 기본 가치예요.", "", listOf(), listOf("정의는 기본 가치예요."), "Türkçesi: Adalet temel bir değerdir.", "정의는 기본 가치예요.", "정의는 기본 가치예요."))))),
-        LearningUnit("KO-B2-U5", "Sanat ve Edebiyat", "Sanat eserlerini yorumla.", listOf(
+                LearningExercise("kob2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 정의는 기본 가치예요.", "", listOf(), listOf("정의는 기본 가치예요."), "Türkçesi: Adalet temel bir değerdir.", "정의는 기본 가치예요.", "정의는 기본 가치예요.")))))
+
+    private fun u53(): LearningUnit = LearningUnit("KO-B2-U5", "Sanat ve Edebiyat", "Sanat eserlerini yorumla.", listOf(
             LearningLesson("KO-B2-U5-L1", "Sanat ve Edebiyat — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("kob2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'그림' ne anlama gelir?", "", listOf("etkileyici", "tablo/resim", "roman"), listOf("tablo/resim"), "그림이 박물관에 있어요. — Tablo müzede.", null, null),
                 LearningExercise("kob2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'소설' ne anlama gelir?", "", listOf("roman", "sergi", "yazar"), listOf("roman"), "소설은 사백 페이지예요. — Roman dört yüz sayfa.", null, null),
@@ -1373,8 +1522,9 @@ object WorldCourseKO {
             LearningLesson("KO-B2-U5-L5", "Sanat ve Edebiyat — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("kob2u5e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yazar bu akşam okuma yapıyor.", "", listOf(), listOf("작가가 오늘 밤 낭독해요."), "Doğru cümle: 작가가 오늘 밤 낭독해요.", null, "작가가 오늘 밤 낭독해요."),
                 LearningExercise("kob2u5e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Etkileyici bir eser.", "", listOf(), listOf("인상적인 작품이에요."), "Doğru cümle: 인상적인 작품이에요.", null, "인상적인 작품이에요."),
-                LearningExercise("kob2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 그림이 박물관에 있어요.", "", listOf(), listOf("그림이 박물관에 있어요."), "Türkçesi: Tablo müzede.", "그림이 박물관에 있어요.", "그림이 박물관에 있어요."))))),
-        LearningUnit("KO-B2-U6", "Tartışma ve İkna", "Karşıt görüşleri dengeli biçimde tart.", listOf(
+                LearningExercise("kob2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 그림이 박물관에 있어요.", "", listOf(), listOf("그림이 박물관에 있어요."), "Türkçesi: Tablo müzede.", "그림이 박물관에 있어요.", "그림이 박물관에 있어요.")))))
+
+    private fun u54(): LearningUnit = LearningUnit("KO-B2-U6", "Tartışma ve İkna", "Karşıt görüşleri dengeli biçimde tart.", listOf(
             LearningLesson("KO-B2-U6-L1", "Tartışma ve İkna — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("kob2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'논점' ne anlama gelir?", "", listOf("tartışma noktası", "bir yandan", "karşı argüman"), listOf("tartışma noktası"), "논점이 명확해요. — Tartışma noktası net.", null, null),
                 LearningExercise("kob2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'한편' ne anlama gelir?", "", listOf("öte yandan", "sonuç/çıkarım", "bir yandan"), listOf("bir yandan"), "한편으로는 비싸요. — Bir yandan pahalı.", null, null),
@@ -1400,8 +1550,9 @@ object WorldCourseKO {
             LearningLesson("KO-B2-U6-L5", "Tartışma ve İkna — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("kob2u6e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Çıkarım açık.", "", listOf(), listOf("결론이 분명해요."), "Doğru cümle: 결론이 분명해요.", null, "결론이 분명해요."),
                 LearningExercise("kob2u6e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bir karşı argümanım var.", "", listOf(), listOf("반박이 있어요."), "Doğru cümle: 반박이 있어요.", null, "반박이 있어요."),
-                LearningExercise("kob2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 논점이 명확해요.", "", listOf(), listOf("논점이 명확해요."), "Türkçesi: Tartışma noktası net.", "논점이 명확해요.", "논점이 명확해요."))))),
-        LearningUnit("KO-B2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 논점이 명확해요.", "", listOf(), listOf("논점이 명확해요."), "Türkçesi: Tartışma noktası net.", "논점이 명확해요.", "논점이 명확해요.")))))
+
+    private fun u55(): LearningUnit = LearningUnit("KO-B2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B2-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob2k_e175", Skill.VOCABULARY, "Doğru anlamı seç", "'결론' ne anlama gelir?", "", listOf("tartışma noktası", "sonuç/çıkarım", "yazar"), listOf("sonuç/çıkarım"), "결론이 분명해요. — Çıkarım açık.", null, null),
                 LearningExercise("kob2k_e193", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 빈곤과 싸워야 해요.", "", listOf(), listOf("빈곤과 싸워야 해요."), "Türkçesi: Yoksullukla mücadele etmeliyiz.", "빈곤과 싸워야 해요.", "빈곤과 싸워야 해요."),
@@ -1425,8 +1576,9 @@ object WorldCourseKO {
                 LearningExercise("kob2k_e152", Skill.VOCABULARY, "Doğru çeviriyi seç", "'tartışma noktası' ifadesinin Korece karşılığı hangisi?", "", listOf("재생 가능", "논점", "쓰레기"), listOf("논점"), "Örnek: 논점이 명확해요. — Tartışma noktası net.", null, null),
                 LearningExercise("kob2k_e191", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 발전이 뚜렷해요.", "", listOf(), listOf("발전이 뚜렷해요."), "Türkçesi: Gelişme belirgin.", "발전이 뚜렷해요.", "발전이 뚜렷해요."),
                 LearningExercise("kob2k_e77", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "발전이 뚜렷해요.", listOf("Öte yandan faydalı.", "Bir karşı argümanım var.", "Gelişme belirgin."), listOf("Gelişme belirgin."), "Cümlenin çevirisi: Gelişme belirgin.", null, null),
-                LearningExercise("kob2k_e108", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "모든 ___에게 권리가 있어요.", "", listOf("발전", "증명", "시민"), listOf("시민"), "Doğru cümle: 모든 시민에게 권리가 있어요. — Her vatandaşın hakları vardır.", null, null))))),
-        LearningUnit("KO-B2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob2k_e108", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "모든 ___에게 권리가 있어요.", "", listOf("발전", "증명", "시민"), listOf("시민"), "Doğru cümle: 모든 시민에게 권리가 있어요. — Her vatandaşın hakları vardır.", null, null)))))
+
+    private fun u56(): LearningUnit = LearningUnit("KO-B2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B2-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob2k_e150", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___가 오늘 밤 낭독해요.", "", listOf("논점", "작가", "인상적"), listOf("작가"), "Doğru cümle: 작가가 오늘 밤 낭독해요. — Yazar bu akşam okuma yapıyor.", null, null),
                 LearningExercise("kob2k_e100", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yasa önünde eşitlik.", "", listOf(), listOf("법 앞의 평등."), "Doğru cümle: 법 앞의 평등.", null, "법 앞의 평등."),
@@ -1450,8 +1602,9 @@ object WorldCourseKO {
                 LearningExercise("kob2k_e7", Skill.VOCABULARY, "Doğru anlamı seç", "'면접' ne anlama gelir?", "", listOf("çöp", "yenilenebilir", "mülakat"), listOf("mülakat"), "면접이 잘 됐어요. — Mülakat iyi geçti.", null, null),
                 LearningExercise("kob2k_e4", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Özgeçmişi kısa yazarım.", "", listOf(), listOf("이력서는 짧게 써요."), "Doğru cümle: 이력서는 짧게 써요.", null, "이력서는 짧게 써요."),
                 LearningExercise("kob2k_e41", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "기후 변화는 모두에게 영향을 줘요.", listOf("Sorumluluğu üstleneceğim.", "Kariyeri hızla ilerliyor.", "İklim değişikliği herkesi etkiliyor."), listOf("İklim değişikliği herkesi etkiliyor."), "Cümlenin çevirisi: İklim değişikliği herkesi etkiliyor.", null, null),
-                LearningExercise("kob2k_e130", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Roman dört yüz sayfa.", "", listOf(), listOf("소설은 사백 페이지예요."), "Doğru cümle: 소설은 사백 페이지예요.", null, "소설은 사백 페이지예요."))))),
-        LearningUnit("KO-B2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob2k_e130", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Roman dört yüz sayfa.", "", listOf(), listOf("소설은 사백 페이지예요."), "Doğru cümle: 소설은 사백 페이지예요.", null, "소설은 사백 페이지예요.")))))
+
+    private fun u57(): LearningUnit = LearningUnit("KO-B2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B2-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob2k_e54", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___를 분리해요.", "", listOf("정의", "평등", "쓰레기"), listOf("쓰레기"), "Doğru cümle: 쓰레기를 분리해요. — Çöpü ayrıştırıyoruz.", null, null),
                 LearningExercise("kob2k_e184", Skill.GRAMMAR, "Doğru seçeneği işaretle", "어렵___ 계속해요.", "", listOf("지만", "니까", "려고"), listOf("지만"), "Zıtlık eki: -지만 (-e rağmen).", null, null),
@@ -1475,8 +1628,9 @@ object WorldCourseKO {
                 LearningExercise("kob2k_e174", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___이 있어요.", "", listOf("반박", "논점", "한편"), listOf("반박"), "Doğru cümle: 반박이 있어요. — Bir karşı argümanım var.", null, null),
                 LearningExercise("kob2k_e51", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("쓰레기를 분리해요."), "Söylenen cümle: 쓰레기를 분리해요. — Çöpü ayrıştırıyoruz.", "쓰레기를 분리해요.", null),
                 LearningExercise("kob2k_e192", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 정의는 기본 가치예요.", "", listOf(), listOf("정의는 기본 가치예요."), "Türkçesi: Adalet temel bir değerdir.", "정의는 기본 가치예요.", "정의는 기본 가치예요."),
-                LearningExercise("kob2k_e98", Skill.VOCABULARY, "Doğru çeviriyi seç", "'eşitlik' ifadesinin Korece karşılığı hangisi?", "", listOf("이력서", "평등", "결론"), listOf("평등"), "Örnek: 법 앞의 평등. — Yasa önünde eşitlik.", null, null))))),
-        LearningUnit("KO-B2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob2k_e98", Skill.VOCABULARY, "Doğru çeviriyi seç", "'eşitlik' ifadesinin Korece karşılığı hangisi?", "", listOf("이력서", "평등", "결론"), listOf("평등"), "Örnek: 법 앞의 평등. — Yasa önünde eşitlik.", null, null)))))
+
+    private fun u58(): LearningUnit = LearningUnit("KO-B2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B2-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob2k_e95", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "정의는 기본 가치예요.", listOf("Yazar bu akşam okuma yapıyor.", "Tartışma noktası net.", "Adalet temel bir değerdir."), listOf("Adalet temel bir değerdir."), "Cümlenin çevirisi: Adalet temel bir değerdir.", null, null),
                 LearningExercise("kob2k_e71", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "중요한 발견이었어요.", listOf("Önemli bir keşifti.", "Çöpü ayrıştırıyoruz.", "Yenilenebilir enerji gelecektir."), listOf("Önemli bir keşifti."), "Cümlenin çevirisi: Önemli bir keşifti.", null, null),
@@ -1500,8 +1654,9 @@ object WorldCourseKO {
                 LearningExercise("kob2k_e40", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: İklim değişikliği herkesi etkiliyor.", "", listOf(), listOf("기후 변화는 모두에게 영향을 줘요."), "Doğru cümle: 기후 변화는 모두에게 영향을 줘요.", null, "기후 변화는 모두에게 영향을 줘요."),
                 LearningExercise("kob2k_e117", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("토론이 계속돼요."), "Söylenen cümle: 토론이 계속돼요. — Tartışma sürüyor.", "토론이 계속돼요.", null),
                 LearningExercise("kob2k_e76", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Gelişme belirgin.", "", listOf(), listOf("발전이 뚜렷해요."), "Doğru cümle: 발전이 뚜렷해요.", null, "발전이 뚜렷해요."),
-                LearningExercise("kob2k_e190", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 재생 가능 에너지가 미래예요.", "", listOf(), listOf("재생 가능 에너지가 미래예요."), "Türkçesi: Yenilenebilir enerji gelecektir.", "재생 가능 에너지가 미래예요.", "재생 가능 에너지가 미래예요."))))),
-        LearningUnit("KO-B2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob2k_e190", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 재생 가능 에너지가 미래예요.", "", listOf(), listOf("재생 가능 에너지가 미래예요."), "Türkçesi: Yenilenebilir enerji gelecektir.", "재생 가능 에너지가 미래예요.", "재생 가능 에너지가 미래예요.")))))
+
+    private fun u59(): LearningUnit = LearningUnit("KO-B2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B2-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob2k_e22", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sorumluluğu üstleneceğim.", "", listOf(), listOf("책임을 질게요."), "Doğru cümle: 책임을 질게요.", null, "책임을 질게요."),
                 LearningExercise("kob2k_e13", Skill.VOCABULARY, "Doğru anlamı seç", "'채용' ne anlama gelir?", "", listOf("eşitlik", "işe alım", "adalet"), listOf("işe alım"), "그녀는 회사에 채용되었어요. — Şirkete işe alındı.", null, null),
@@ -1525,8 +1680,9 @@ object WorldCourseKO {
                 LearningExercise("kob2k_e199", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 기후 변화는 모두에게 영향을 줘요.", "", listOf(), listOf("기후 변화는 모두에게 영향을 줘요."), "Türkçesi: İklim değişikliği herkesi etkiliyor.", "기후 변화는 모두에게 영향을 줘요.", "기후 변화는 모두에게 영향을 줘요."),
                 LearningExercise("kob2k_e24", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___을 질게요.", "", listOf("소설", "책임", "그림"), listOf("책임"), "Doğru cümle: 책임을 질게요. — Sorumluluğu üstleneceğim.", null, null),
                 LearningExercise("kob2k_e97", Skill.VOCABULARY, "Doğru anlamı seç", "'평등' ne anlama gelir?", "", listOf("etkileyici", "yazar", "eşitlik"), listOf("eşitlik"), "법 앞의 평등. — Yasa önünde eşitlik.", null, null),
-                LearningExercise("kob2k_e105", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("모든 시민에게 권리가 있어요."), "Söylenen cümle: 모든 시민에게 권리가 있어요. — Her vatandaşın hakları vardır.", "모든 시민에게 권리가 있어요.", null))))),
-        LearningUnit("KO-B2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob2k_e105", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("모든 시민에게 권리가 있어요."), "Söylenen cümle: 모든 시민에게 권리가 있어요. — Her vatandaşın hakları vardır.", "모든 시민에게 권리가 있어요.", null)))))
+
+    private fun u60(): LearningUnit = LearningUnit("KO-B2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B2-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob2k_e11", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "면접이 잘 됐어요.", listOf("Çıkarım açık.", "Mülakat iyi geçti.", "Bir karşı argümanım var."), listOf("Mülakat iyi geçti."), "Cümlenin çevirisi: Mülakat iyi geçti.", null, null),
                 LearningExercise("kob2k_e14", Skill.VOCABULARY, "Doğru çeviriyi seç", "'işe alım' ifadesinin Korece karşılığı hangisi?", "", listOf("채용", "논점", "한편"), listOf("채용"), "Örnek: 그녀는 회사에 채용되었어요. — Şirkete işe alındı.", null, null),
@@ -1550,8 +1706,9 @@ object WorldCourseKO {
                 LearningExercise("kob2k_e111", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("빈곤과 싸워야 해요."), "Söylenen cümle: 빈곤과 싸워야 해요. — Yoksullukla mücadele etmeliyiz.", "빈곤과 싸워야 해요.", null),
                 LearningExercise("kob2k_e27", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("경력이 빨리 쌓이고 있어요."), "Söylenen cümle: 경력이 빨리 쌓이고 있어요. — Kariyeri hızla ilerliyor.", "경력이 빨리 쌓이고 있어요.", null),
                 LearningExercise("kob2k_e178", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Çıkarım açık.", "", listOf(), listOf("결론이 분명해요."), "Doğru cümle: 결론이 분명해요.", null, "결론이 분명해요."),
-                LearningExercise("kob2k_e187", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 이력서는 짧게 써요.", "", listOf(), listOf("이력서는 짧게 써요."), "Türkçesi: Özgeçmişi kısa yazarım.", "이력서는 짧게 써요.", "이력서는 짧게 써요."))))),
-        LearningUnit("KO-B2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob2k_e187", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 이력서는 짧게 써요.", "", listOf(), listOf("이력서는 짧게 써요."), "Türkçesi: Özgeçmişi kısa yazarım.", "이력서는 짧게 써요.", "이력서는 짧게 써요.")))))
+
+    private fun u61(): LearningUnit = LearningUnit("KO-B2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B2-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob2k_e69", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("중요한 발견이었어요."), "Söylenen cümle: 중요한 발견이었어요. — Önemli bir keşifti.", "중요한 발견이었어요.", null),
                 LearningExercise("kob2k_e112", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yoksullukla mücadele etmeliyiz.", "", listOf(), listOf("빈곤과 싸워야 해요."), "Doğru cümle: 빈곤과 싸워야 해요.", null, "빈곤과 싸워야 해요."),
@@ -1575,8 +1732,9 @@ object WorldCourseKO {
                 LearningExercise("kob2k_e120", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___이 계속돼요.", "", listOf("토론", "반박", "결론"), listOf("토론"), "Doğru cümle: 토론이 계속돼요. — Tartışma sürüyor.", null, null),
                 LearningExercise("kob2k_e176", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sonuç/çıkarım' ifadesinin Korece karşılığı hangisi?", "", listOf("결론", "전시회", "인상적"), listOf("결론"), "Örnek: 결론이 분명해요. — Çıkarım açık.", null, null),
                 LearningExercise("kob2k_e3", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("이력서는 짧게 써요."), "Söylenen cümle: 이력서는 짧게 써요. — Özgeçmişi kısa yazarım.", "이력서는 짧게 써요.", null),
-                LearningExercise("kob2k_e34", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Çevreyi korumalıyız.", "", listOf(), listOf("환경을 보호해야 해요."), "Doğru cümle: 환경을 보호해야 해요.", null, "환경을 보호해야 해요."))))),
-        LearningUnit("KO-B2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob2k_e34", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Çevreyi korumalıyız.", "", listOf(), listOf("환경을 보호해야 해요."), "Doğru cümle: 환경을 보호해야 해요.", null, "환경을 보호해야 해요.")))))
+
+    private fun u62(): LearningUnit = LearningUnit("KO-B2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B2-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob2k_e196", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 반면에 유용해요.", "", listOf(), listOf("반면에 유용해요."), "Türkçesi: Öte yandan faydalı.", "반면에 유용해요.", "반면에 유용해요."),
                 LearningExercise("kob2k_e136", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sergi yarın açılıyor.", "", listOf(), listOf("전시회가 내일 열려요."), "Doğru cümle: 전시회가 내일 열려요.", null, "전시회가 내일 열려요."),
@@ -1600,8 +1758,9 @@ object WorldCourseKO {
                 LearningExercise("kob2k_e57", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("재생 가능 에너지가 미래예요."), "Söylenen cümle: 재생 가능 에너지가 미래예요. — Yenilenebilir enerji gelecektir.", "재생 가능 에너지가 미래예요.", null),
                 LearningExercise("kob2k_e126", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___이 박물관에 있어요.", "", listOf("소설", "전시회", "그림"), listOf("그림"), "Doğru cümle: 그림이 박물관에 있어요. — Tablo müzede.", null, null),
                 LearningExercise("kob2k_e106", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Her vatandaşın hakları vardır.", "", listOf(), listOf("모든 시민에게 권리가 있어요."), "Doğru cümle: 모든 시민에게 권리가 있어요.", null, "모든 시민에게 권리가 있어요."),
-                LearningExercise("kob2k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "중요한 ___이었어요.", "", listOf("작가", "논점", "발견"), listOf("발견"), "Doğru cümle: 중요한 발견이었어요. — Önemli bir keşifti.", null, null))))),
-        LearningUnit("KO-B2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob2k_e72", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "중요한 ___이었어요.", "", listOf("작가", "논점", "발견"), listOf("발견"), "Doğru cümle: 중요한 발견이었어요. — Önemli bir keşifti.", null, null)))))
+
+    private fun u63(): LearningUnit = LearningUnit("KO-B2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B2-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob2k_e35", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "환경을 보호해야 해요.", listOf("Çevreyi korumalıyız.", "Sonuca şaşırdık.", "Adalet temel bir değerdir."), listOf("Çevreyi korumalıyız."), "Cümlenin çevirisi: Çevreyi korumalıyız.", null, null),
                 LearningExercise("kob2k_e109", Skill.VOCABULARY, "Doğru anlamı seç", "'빈곤' ne anlama gelir?", "", listOf("yoksulluk", "sürdürülebilir", "çöp"), listOf("yoksulluk"), "빈곤과 싸워야 해요. — Yoksullukla mücadele etmeliyiz.", null, null),
@@ -1625,8 +1784,9 @@ object WorldCourseKO {
                 LearningExercise("kob2k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'sürdürülebilir' ifadesinin Korece karşılığı hangisi?", "", listOf("소설", "지속 가능", "그림"), listOf("지속 가능"), "Örnek: 지속 가능한 해결책이 필요해요. — Sürdürülebilir çözümler gerekli.", null, null),
                 LearningExercise("kob2k_e158", Skill.VOCABULARY, "Doğru çeviriyi seç", "'bir yandan' ifadesinin Korece karşılığı hangisi?", "", listOf("한편", "토론", "그림"), listOf("한편"), "Örnek: 한편으로는 비싸요. — Bir yandan pahalı.", null, null),
                 LearningExercise("kob2k_e42", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___는 모두에게 영향을 줘요.", "", listOf("이력서", "기후 변화", "결론"), listOf("기후 변화"), "Doğru cümle: 기후 변화는 모두에게 영향을 줘요. — İklim değişikliği herkesi etkiliyor.", null, null),
-                LearningExercise("kob2k_e38", Skill.VOCABULARY, "Doğru çeviriyi seç", "'iklim değişikliği' ifadesinin Korece karşılığı hangisi?", "", listOf("재생 가능", "연구", "기후 변화"), listOf("기후 변화"), "Örnek: 기후 변화는 모두에게 영향을 줘요. — İklim değişikliği herkesi etkiliyor.", null, null))))),
-        LearningUnit("KO-B2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("kob2k_e38", Skill.VOCABULARY, "Doğru çeviriyi seç", "'iklim değişikliği' ifadesinin Korece karşılığı hangisi?", "", listOf("재생 가능", "연구", "기후 변화"), listOf("기후 변화"), "Örnek: 기후 변화는 모두에게 영향을 줘요. — İklim değişikliği herkesi etkiliyor.", null, null)))))
+
+    private fun u64(): LearningUnit = LearningUnit("KO-B2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-B2-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("kob2k_e198", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 책임을 질게요.", "", listOf(), listOf("책임을 질게요."), "Türkçesi: Sorumluluğu üstleneceğim.", "책임을 질게요.", "책임을 질게요."),
                 LearningExercise("kob2k_e137", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "전시회가 내일 열려요.", listOf("Çöpü ayrıştırıyoruz.", "Sergi yarın açılıyor.", "Sürdürülebilir çözümler gerekli."), listOf("Sergi yarın açılıyor."), "Cümlenin çevirisi: Sergi yarın açılıyor.", null, null),
@@ -1650,8 +1810,9 @@ object WorldCourseKO {
                 LearningExercise("kob2k_e114", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___과 싸워야 해요.", "", listOf("기후 변화", "빈곤", "환경"), listOf("빈곤"), "Doğru cümle: 빈곤과 싸워야 해요. — Yoksullukla mücadele etmeliyiz.", null, null),
                 LearningExercise("kob2k_e123", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("그림이 박물관에 있어요."), "Söylenen cümle: 그림이 박물관에 있어요. — Tablo müzede.", "그림이 박물관에 있어요.", null),
                 LearningExercise("kob2k_e80", Skill.VOCABULARY, "Doğru çeviriyi seç", "'kanıtlama' ifadesinin Korece karşılığı hangisi?", "", listOf("반면에", "증명", "한편"), listOf("증명"), "Örnek: 이론이 증명되었어요. — Teori kanıtlandı.", null, null),
-                LearningExercise("kob2k_e162", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___으로는 비싸요.", "", listOf("재생 가능", "연구", "한편"), listOf("한편"), "Doğru cümle: 한편으로는 비싸요. — Bir yandan pahalı.", null, null))))),
-        LearningUnit("KO-C1-U1", "Akademik Dil", "Akademik metinleri çözümle ve üret.", listOf(
+                LearningExercise("kob2k_e162", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___으로는 비싸요.", "", listOf("재생 가능", "연구", "한편"), listOf("한편"), "Doğru cümle: 한편으로는 비싸요. — Bir yandan pahalı.", null, null)))))
+
+    private fun u65(): LearningUnit = LearningUnit("KO-C1-U1", "Akademik Dil", "Akademik metinleri çözümle ve üret.", listOf(
             LearningLesson("KO-C1-U1-L1", "Akademik Dil — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koc1u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'논문' ne anlama gelir?", "", listOf("çözümleme", "kaynak (alıntı)", "makale/tez"), listOf("makale/tez"), "이 논문은 논란이 돼요. — Bu makale tartışma yaratıyor.", null, null),
                 LearningExercise("koc1u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'분석' ne anlama gelir?", "", listOf("yöntem bilimi", "çözümleme", "inceleme"), listOf("çözümleme"), "분석은 십 년의 데이터를 다뤄요. — Çözümleme on yıllık veriyi ele alıyor.", null, null),
@@ -1677,8 +1838,9 @@ object WorldCourseKO {
             LearningLesson("KO-C1-U1-L5", "Akademik Dil — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koc1u1e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu metodoloji umut verici.", "", listOf(), listOf("이 방법론은 유망해요."), "Doğru cümle: 이 방법론은 유망해요.", null, "이 방법론은 유망해요."),
                 LearningExercise("koc1u1e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kaynak güvenilir.", "", listOf(), listOf("출처가 믿을 만해요."), "Doğru cümle: 출처가 믿을 만해요.", null, "출처가 믿을 만해요."),
-                LearningExercise("koc1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 이 논문은 논란이 돼요.", "", listOf(), listOf("이 논문은 논란이 돼요."), "Türkçesi: Bu makale tartışma yaratıyor.", "이 논문은 논란이 돼요.", "이 논문은 논란이 돼요."))))),
-        LearningUnit("KO-C1-U2", "Soyut Kavramlar", "Soyut düşünceleri akıcı ifade et.", listOf(
+                LearningExercise("koc1u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 이 논문은 논란이 돼요.", "", listOf(), listOf("이 논문은 논란이 돼요."), "Türkçesi: Bu makale tartışma yaratıyor.", "이 논문은 논란이 돼요.", "이 논문은 논란이 돼요.")))))
+
+    private fun u66(): LearningUnit = LearningUnit("KO-C1-U2", "Soyut Kavramlar", "Soyut düşünceleri akıcı ifade et.", listOf(
             LearningLesson("KO-C1-U2-L1", "Soyut Kavramlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koc1u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'지각' ne anlama gelir?", "", listOf("düşünce/anlayış", "algı", "bilinç"), listOf("algı"), "지각은 우리를 자주 속여요. — Algı bizi sık yanıltır.", null, null),
                 LearningExercise("koc1u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'의식' ne anlama gelir?", "", listOf("bilinç", "kavram", "kavrayış"), listOf("bilinç"), "의식은 아직 수수께끼예요. — Bilinç hâlâ bir muamma.", null, null),
@@ -1704,8 +1866,9 @@ object WorldCourseKO {
             LearningLesson("KO-C1-U2-L5", "Soyut Kavramlar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koc1u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kavrayış deneyimle değişir.", "", listOf(), listOf("인식은 경험에 따라 변해요."), "Doğru cümle: 인식은 경험에 따라 변해요.", null, "인식은 경험에 따라 변해요."),
                 LearningExercise("koc1u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu anlayış yaygın.", "", listOf(), listOf("이 관념은 널리 퍼져 있어요."), "Doğru cümle: 이 관념은 널리 퍼져 있어요.", null, "이 관념은 널리 퍼져 있어요."),
-                LearningExercise("koc1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 지각은 우리를 자주 속여요.", "", listOf(), listOf("지각은 우리를 자주 속여요."), "Türkçesi: Algı bizi sık yanıltır.", "지각은 우리를 자주 속여요.", "지각은 우리를 자주 속여요."))))),
-        LearningUnit("KO-C1-U3", "Deyimler ve Mecazlar", "Deyimleri doğal bağlamda kullan.", listOf(
+                LearningExercise("koc1u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 지각은 우리를 자주 속여요.", "", listOf(), listOf("지각은 우리를 자주 속여요."), "Türkçesi: Algı bizi sık yanıltır.", "지각은 우리를 자주 속여요.", "지각은 우리를 자주 속여요.")))))
+
+    private fun u67(): LearningUnit = LearningUnit("KO-C1-U3", "Deyimler ve Mecazlar", "Deyimleri doğal bağlamda kullan.", listOf(
             LearningLesson("KO-C1-U3-L1", "Deyimler ve Mecazlar — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koc1u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'일석이조' ne anlama gelir?", "", listOf("bir taşla iki kuş", "güzele güzellik katmak", "boşa nasihat"), listOf("bir taşla iki kuş"), "그렇게 하면 일석이조예요. — Öyle yaparsan bir taşla iki kuş.", null, null),
                 LearningExercise("koc1u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'금상첨화' ne anlama gelir?", "", listOf("kuyu dibindeki kurbağa", "damlaya damlaya göl olur", "güzele güzellik katmak"), listOf("güzele güzellik katmak"), "날씨까지 좋으니 금상첨화네요. — Hava da güzel olunca üstüne tüy dikti.", null, null),
@@ -1731,8 +1894,9 @@ object WorldCourseKO {
             LearningLesson("KO-C1-U3-L5", "Deyimler ve Mecazlar — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koc1u3e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Damlaya damlaya göl olur.", "", listOf(), listOf("티끌 모아 태산이에요."), "Doğru cümle: 티끌 모아 태산이에요.", null, "티끌 모아 태산이에요."),
                 LearningExercise("koc1u3e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ona söylemek öküz kulağına sutra okumak gibi.", "", listOf(), listOf("그에게 말해도 소 귀에 경 읽기예요."), "Doğru cümle: 그에게 말해도 소 귀에 경 읽기예요.", null, "그에게 말해도 소 귀에 경 읽기예요."),
-                LearningExercise("koc1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 그렇게 하면 일석이조예요.", "", listOf(), listOf("그렇게 하면 일석이조예요."), "Türkçesi: Öyle yaparsan bir taşla iki kuş.", "그렇게 하면 일석이조예요.", "그렇게 하면 일석이조예요."))))),
-        LearningUnit("KO-C1-U4", "Resmî Yazışma", "Resmî mektup ve e-posta dilinde ustalaş.", listOf(
+                LearningExercise("koc1u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 그렇게 하면 일석이조예요.", "", listOf(), listOf("그렇게 하면 일석이조예요."), "Türkçesi: Öyle yaparsan bir taşla iki kuş.", "그렇게 하면 일석이조예요.", "그렇게 하면 일석이조예요.")))))
+
+    private fun u68(): LearningUnit = LearningUnit("KO-C1-U4", "Resmî Yazışma", "Resmî mektup ve e-posta dilinde ustalaş.", listOf(
             LearningLesson("KO-C1-U4-L1", "Resmî Yazışma — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koc1u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'귀하' ne anlama gelir?", "", listOf("ek (dosya)", "saygılarımla (mektup sonu)", "sayın (resmî)"), listOf("sayın (resmî)"), "김민수 귀하 — Sayın Kim Minsu", null, null),
                 LearningExercise("koc1u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'첨부' ne anlama gelir?", "", listOf("söz (saygı dili)", "ek (dosya)", "ilişkin"), listOf("ek (dosya)"), "이력서를 첨부합니다. — Özgeçmişi ekliyorum.", null, null),
@@ -1758,8 +1922,9 @@ object WorldCourseKO {
             LearningLesson("KO-C1-U4-L5", "Resmî Yazışma — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koc1u4e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Teşekkürlerimi sunarım.", "", listOf(), listOf("감사의 말씀을 드립니다."), "Doğru cümle: 감사의 말씀을 드립니다.", null, "감사의 말씀을 드립니다."),
                 LearningExercise("koc1u4e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Saygılarımla, Ali Kaya", "", listOf(), listOf("알리 카야 드림"), "Doğru cümle: 알리 카야 드림", null, "알리 카야 드림"),
-                LearningExercise("koc1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 김민수 귀하", "", listOf(), listOf("김민수 귀하"), "Türkçesi: Sayın Kim Minsu", "김민수 귀하", "김민수 귀하"))))),
-        LearningUnit("KO-C1-U5", "Müzakere ve Diplomasi", "İncelikli müzakere dili kur.", listOf(
+                LearningExercise("koc1u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 김민수 귀하", "", listOf(), listOf("김민수 귀하"), "Türkçesi: Sayın Kim Minsu", "김민수 귀하", "김민수 귀하")))))
+
+    private fun u69(): LearningUnit = LearningUnit("KO-C1-U5", "Müzakere ve Diplomasi", "İncelikli müzakere dili kur.", listOf(
             LearningLesson("KO-C1-U5-L1", "Müzakere ve Diplomasi — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koc1u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'협상' ne anlama gelir?", "", listOf("anlaşma/mutabakat", "müzakere", "uzlaşma"), listOf("müzakere"), "협상이 몇 시간 동안 계속됐어요. — Müzakere saatlerce sürdü.", null, null),
                 LearningExercise("koc1u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'타협' ne anlama gelir?", "", listOf("uzlaşma", "taviz", "duruş/pozisyon"), listOf("uzlaşma"), "타협이 공정해요. — Uzlaşma adil.", null, null),
@@ -1785,8 +1950,9 @@ object WorldCourseKO {
             LearningLesson("KO-C1-U5-L5", "Müzakere ve Diplomasi — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koc1u5e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Duruşumuz değişmiyor.", "", listOf(), listOf("우리 입장은 변하지 않아요."), "Doğru cümle: 우리 입장은 변하지 않아요.", null, "우리 입장은 변하지 않아요."),
                 LearningExercise("koc1u5e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Mutabakat geç sağlandı.", "", listOf(), listOf("합의가 늦게 이루어졌어요."), "Doğru cümle: 합의가 늦게 이루어졌어요.", null, "합의가 늦게 이루어졌어요."),
-                LearningExercise("koc1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 협상이 몇 시간 동안 계속됐어요.", "", listOf(), listOf("협상이 몇 시간 동안 계속됐어요."), "Türkçesi: Müzakere saatlerce sürdü.", "협상이 몇 시간 동안 계속됐어요.", "협상이 몇 시간 동안 계속됐어요."))))),
-        LearningUnit("KO-C1-U6", "İnce Anlam Farkları", "Yakın anlamlı ifadeleri ayırt et.", listOf(
+                LearningExercise("koc1u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 협상이 몇 시간 동안 계속됐어요.", "", listOf(), listOf("협상이 몇 시간 동안 계속됐어요."), "Türkçesi: Müzakere saatlerce sürdü.", "협상이 몇 시간 동안 계속됐어요.", "협상이 몇 시간 동안 계속됐어요.")))))
+
+    private fun u70(): LearningUnit = LearningUnit("KO-C1-U6", "İnce Anlam Farkları", "Yakın anlamlı ifadeleri ayırt et.", listOf(
             LearningLesson("KO-C1-U6-L1", "İnce Anlam Farkları — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koc1u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'분명히' ne anlama gelir?", "", listOf("açıkça/besbelli", "sözde", "titizlikle"), listOf("açıkça/besbelli"), "분명히 그가 옳아요. — Besbelli o haklı.", null, null),
                 LearningExercise("koc1u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'이른바' ne anlama gelir?", "", listOf("etkili", "muhtemelen", "sözde"), listOf("sözde"), "이른바 전문가가 말했어요. — Sözde bir uzman konuştu.", null, null),
@@ -1812,8 +1978,9 @@ object WorldCourseKO {
             LearningLesson("KO-C1-U6-L5", "İnce Anlam Farkları — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koc1u6e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Muhtemelen bir hata.", "", listOf(), listOf("아마도 실수일 거예요."), "Doğru cümle: 아마도 실수일 거예요.", null, "아마도 실수일 거예요."),
                 LearningExercise("koc1u6e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Titizlikle inceledik.", "", listOf(), listOf("면밀히 검토했어요."), "Doğru cümle: 면밀히 검토했어요.", null, "면밀히 검토했어요."),
-                LearningExercise("koc1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 분명히 그가 옳아요.", "", listOf(), listOf("분명히 그가 옳아요."), "Türkçesi: Besbelli o haklı.", "분명히 그가 옳아요.", "분명히 그가 옳아요."))))),
-        LearningUnit("KO-C1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc1u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 분명히 그가 옳아요.", "", listOf(), listOf("분명히 그가 옳아요."), "Türkçesi: Besbelli o haklı.", "분명히 그가 옳아요.", "분명히 그가 옳아요.")))))
+
+    private fun u71(): LearningUnit = LearningUnit("KO-C1-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C1-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc1k_e42", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___은 아직 수수께끼예요.", "", listOf("논문", "의식", "아마도"), listOf("의식"), "Doğru cümle: 의식은 아직 수수께끼예요. — Bilinç hâlâ bir muamma.", null, null),
                 LearningExercise("koc1k_e78", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___가 되지 마세요.", "", listOf("드림", "우물 안 개구리", "관련하여"), listOf("우물 안 개구리"), "Doğru cümle: 우물 안 개구리가 되지 마세요. — Kuyudaki kurbağa olmayın.", null, null),
@@ -1837,8 +2004,9 @@ object WorldCourseKO {
                 LearningExercise("koc1k_e141", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("합의가 늦게 이루어졌어요."), "Söylenen cümle: 합의가 늦게 이루어졌어요. — Mutabakat geç sağlandı.", "합의가 늦게 이루어졌어요.", null),
                 LearningExercise("koc1k_e156", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ 그가 옳아요.", "", listOf("분명히", "첨부", "관련하여"), listOf("분명히"), "Doğru cümle: 분명히 그가 옳아요. — Besbelli o haklı.", null, null),
                 LearningExercise("koc1k_e36", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___은 우리를 자주 속여요.", "", listOf("의식", "개념", "지각"), listOf("지각"), "Doğru cümle: 지각은 우리를 자주 속여요. — Algı bizi sık yanıltır.", null, null),
-                LearningExercise("koc1k_e159", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("이른바 전문가가 말했어요."), "Söylenen cümle: 이른바 전문가가 말했어요. — Sözde bir uzman konuştu.", "이른바 전문가가 말했어요.", null))))),
-        LearningUnit("KO-C1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc1k_e159", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("이른바 전문가가 말했어요."), "Söylenen cümle: 이른바 전문가가 말했어요. — Sözde bir uzman konuştu.", "이른바 전문가가 말했어요.", null)))))
+
+    private fun u72(): LearningUnit = LearningUnit("KO-C1-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C1-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc1k_e118", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Teşekkürlerimi sunarım.", "", listOf(), listOf("감사의 말씀을 드립니다."), "Doğru cümle: 감사의 말씀을 드립니다.", null, "감사의 말씀을 드립니다."),
                 LearningExercise("koc1k_e90", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___이에요.", "", listOf("출처", "방법론", "티끌 모아 태산"), listOf("티끌 모아 태산"), "Doğru cümle: 티끌 모아 태산이에요. — Damlaya damlaya göl olur.", null, null),
@@ -1862,8 +2030,9 @@ object WorldCourseKO {
                 LearningExercise("koc1k_e157", Skill.VOCABULARY, "Doğru anlamı seç", "'이른바' ne anlama gelir?", "", listOf("yöntem bilimi", "sözde", "kaynak (alıntı)"), listOf("sözde"), "이른바 전문가가 말했어요. — Sözde bir uzman konuştu.", null, null),
                 LearningExercise("koc1k_e169", Skill.VOCABULARY, "Doğru anlamı seç", "'면밀히' ne anlama gelir?", "", listOf("ilişkin", "saygılarımla (mektup sonu)", "titizlikle"), listOf("titizlikle"), "면밀히 검토했어요. — Titizlikle inceledik.", null, null),
                 LearningExercise("koc1k_e37", Skill.VOCABULARY, "Doğru anlamı seç", "'의식' ne anlama gelir?", "", listOf("bilinç", "boşa nasihat", "damlaya damlaya göl olur"), listOf("bilinç"), "의식은 아직 수수께끼예요. — Bilinç hâlâ bir muamma.", null, null),
-                LearningExercise("koc1k_e55", Skill.VOCABULARY, "Doğru anlamı seç", "'인식' ne anlama gelir?", "", listOf("kavrayış", "yöntem bilimi", "algı"), listOf("kavrayış"), "인식은 경험에 따라 변해요. — Kavrayış deneyimle değişir.", null, null))))),
-        LearningUnit("KO-C1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc1k_e55", Skill.VOCABULARY, "Doğru anlamı seç", "'인식' ne anlama gelir?", "", listOf("kavrayış", "yöntem bilimi", "algı"), listOf("kavrayış"), "인식은 경험에 따라 변해요. — Kavrayış deneyimle değişir.", null, null)))))
+
+    private fun u73(): LearningUnit = LearningUnit("KO-C1-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C1-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc1k_e58", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kavrayış deneyimle değişir.", "", listOf(), listOf("인식은 경험에 따라 변해요."), "Doğru cümle: 인식은 경험에 따라 변해요.", null, "인식은 경험에 따라 변해요."),
                 LearningExercise("koc1k_e137", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "양보가 필요했어요.", listOf("Bu anlayış yaygın.", "Taviz gerekliydi.", "Bu kavramı tanımlamak zor."), listOf("Taviz gerekliydi."), "Cümlenin çevirisi: Taviz gerekliydi.", null, null),
@@ -1887,8 +2056,9 @@ object WorldCourseKO {
                 LearningExercise("koc1k_e82", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ona söylemek öküz kulağına sutra okumak gibi.", "", listOf(), listOf("그에게 말해도 소 귀에 경 읽기예요."), "Doğru cümle: 그에게 말해도 소 귀에 경 읽기예요.", null, "그에게 말해도 소 귀에 경 읽기예요."),
                 LearningExercise("koc1k_e160", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sözde bir uzman konuştu.", "", listOf(), listOf("이른바 전문가가 말했어요."), "Doğru cümle: 이른바 전문가가 말했어요.", null, "이른바 전문가가 말했어요."),
                 LearningExercise("koc1k_e95", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "김민수 귀하", listOf("Duruşumuz değişmiyor.", "Besbelli o haklı.", "Sayın Kim Minsu"), listOf("Sayın Kim Minsu"), "Cümlenin çevirisi: Sayın Kim Minsu", null, null),
-                LearningExercise("koc1k_e98", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ek (dosya)' ifadesinin Korece karşılığı hangisi?", "", listOf("논문", "첨부", "아마도"), listOf("첨부"), "Örnek: 이력서를 첨부합니다. — Özgeçmişi ekliyorum.", null, null))))),
-        LearningUnit("KO-C1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc1k_e98", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ek (dosya)' ifadesinin Korece karşılığı hangisi?", "", listOf("논문", "첨부", "아마도"), listOf("첨부"), "Örnek: 이력서를 첨부합니다. — Özgeçmişi ekliyorum.", null, null)))))
+
+    private fun u74(): LearningUnit = LearningUnit("KO-C1-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C1-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc1k_e99", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("이력서를 첨부합니다."), "Söylenen cümle: 이력서를 첨부합니다. — Özgeçmişi ekliyorum.", "이력서를 첨부합니다.", null),
                 LearningExercise("koc1k_e189", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 의식은 아직 수수께끼예요.", "", listOf(), listOf("의식은 아직 수수께끼예요."), "Türkçesi: Bilinç hâlâ bir muamma.", "의식은 아직 수수께끼예요.", "의식은 아직 수수께끼예요."),
@@ -1912,8 +2082,9 @@ object WorldCourseKO {
                 LearningExercise("koc1k_e145", Skill.VOCABULARY, "Doğru anlamı seç", "'입장' ne anlama gelir?", "", listOf("duruş/pozisyon", "söz (saygı dili)", "müzakere"), listOf("duruş/pozisyon"), "우리 입장은 변하지 않아요. — Duruşumuz değişmiyor.", null, null),
                 LearningExercise("koc1k_e96", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "김민수 ___", "", listOf("효과적", "귀하", "이른바"), listOf("귀하"), "Doğru cümle: 김민수 귀하 — Sayın Kim Minsu", null, null),
                 LearningExercise("koc1k_e18", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "내일 이 문제를 ___해요.", "", listOf("효과적", "면밀히", "검토"), listOf("검토"), "Doğru cümle: 내일 이 문제를 검토해요. — Bu konuyu yarın inceleyeceğiz.", null, null),
-                LearningExercise("koc1k_e128", Skill.VOCABULARY, "Doğru çeviriyi seç", "'uzlaşma' ifadesinin Korece karşılığı hangisi?", "", listOf("입장", "분명히", "타협"), listOf("타협"), "Örnek: 타협이 공정해요. — Uzlaşma adil.", null, null))))),
-        LearningUnit("KO-C1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc1k_e128", Skill.VOCABULARY, "Doğru çeviriyi seç", "'uzlaşma' ifadesinin Korece karşılığı hangisi?", "", listOf("입장", "분명히", "타협"), listOf("타협"), "Örnek: 타협이 공정해요. — Uzlaşma adil.", null, null)))))
+
+    private fun u75(): LearningUnit = LearningUnit("KO-C1-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C1-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc1k_e41", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "의식은 아직 수수께끼예요.", listOf("Kaynak güvenilir.", "Bu metodoloji umut verici.", "Bilinç hâlâ bir muamma."), listOf("Bilinç hâlâ bir muamma."), "Cümlenin çevirisi: Bilinç hâlâ bir muamma.", null, null),
                 LearningExercise("koc1k_e86", Skill.VOCABULARY, "Doğru çeviriyi seç", "'damlaya damlaya göl olur' ifadesinin Korece karşılığı hangisi?", "", listOf("티끌 모아 태산", "개념", "관념"), listOf("티끌 모아 태산"), "Örnek: 티끌 모아 태산이에요. — Damlaya damlaya göl olur.", null, null),
@@ -1937,8 +2108,9 @@ object WorldCourseKO {
                 LearningExercise("koc1k_e17", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "내일 이 문제를 검토해요.", listOf("Bu konuyu yarın inceleyeceğiz.", "Talebinize ilişkin size yazıyoruz.", "Saygılarımla, Ali Kaya"), listOf("Bu konuyu yarın inceleyeceğiz."), "Cümlenin çevirisi: Bu konuyu yarın inceleyeceğiz.", null, null),
                 LearningExercise("koc1k_e51", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("이 관념은 널리 퍼져 있어요."), "Söylenen cümle: 이 관념은 널리 퍼져 있어요. — Bu anlayış yaygın.", "이 관념은 널리 퍼져 있어요.", null),
                 LearningExercise("koc1k_e61", Skill.VOCABULARY, "Doğru anlamı seç", "'일석이조' ne anlama gelir?", "", listOf("güzele güzellik katmak", "kuyu dibindeki kurbağa", "bir taşla iki kuş"), listOf("bir taşla iki kuş"), "그렇게 하면 일석이조예요. — Öyle yaparsan bir taşla iki kuş.", null, null),
-                LearningExercise("koc1k_e147", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("우리 입장은 변하지 않아요."), "Söylenen cümle: 우리 입장은 변하지 않아요. — Duruşumuz değişmiyor.", "우리 입장은 변하지 않아요.", null))))),
-        LearningUnit("KO-C1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc1k_e147", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("우리 입장은 변하지 않아요."), "Söylenen cümle: 우리 입장은 변하지 않아요. — Duruşumuz değişmiyor.", "우리 입장은 변하지 않아요.", null)))))
+
+    private fun u76(): LearningUnit = LearningUnit("KO-C1-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C1-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc1k_e56", Skill.VOCABULARY, "Doğru çeviriyi seç", "'kavrayış' ifadesinin Korece karşılığı hangisi?", "", listOf("우물 안 개구리", "소 귀에 경 읽기", "인식"), listOf("인식"), "Örnek: 인식은 경험에 따라 변해요. — Kavrayış deneyimle değişir.", null, null),
                 LearningExercise("koc1k_e44", Skill.VOCABULARY, "Doğru çeviriyi seç", "'kavram' ifadesinin Korece karşılığı hangisi?", "", listOf("타협", "개념", "협상"), listOf("개념"), "Örnek: 이 개념은 정의하기 어려워요. — Bu kavramı tanımlamak zor.", null, null),
@@ -1962,8 +2134,9 @@ object WorldCourseKO {
                 LearningExercise("koc1k_e180", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___ 실수일 거예요.", "", listOf("드림", "말씀", "아마도"), listOf("아마도"), "Doğru cümle: 아마도 실수일 거예요. — Muhtemelen bir hata.", null, null),
                 LearningExercise("koc1k_e192", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 김민수 귀하", "", listOf(), listOf("김민수 귀하"), "Türkçesi: Sayın Kim Minsu", "김민수 귀하", "김민수 귀하"),
                 LearningExercise("koc1k_e126", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___이 몇 시간 동안 계속됐어요.", "", listOf("타협", "양보", "협상"), listOf("협상"), "Doğru cümle: 협상이 몇 시간 동안 계속됐어요. — Müzakere saatlerce sürdü.", null, null),
-                LearningExercise("koc1k_e3", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("이 논문은 논란이 돼요."), "Söylenen cümle: 이 논문은 논란이 돼요. — Bu makale tartışma yaratıyor.", "이 논문은 논란이 돼요.", null))))),
-        LearningUnit("KO-C1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc1k_e3", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("이 논문은 논란이 돼요."), "Söylenen cümle: 이 논문은 논란이 돼요. — Bu makale tartışma yaratıyor.", "이 논문은 논란이 돼요.", null)))))
+
+    private fun u77(): LearningUnit = LearningUnit("KO-C1-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C1-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc1k_e111", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("알리 카야 드림"), "Söylenen cümle: 알리 카야 드림 — Saygılarımla, Ali Kaya", "알리 카야 드림", null),
                 LearningExercise("koc1k_e166", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu yöntem etkili.", "", listOf(), listOf("이 방법은 효과적이에요."), "Doğru cümle: 이 방법은 효과적이에요.", null, "이 방법은 효과적이에요."),
@@ -1987,8 +2160,9 @@ object WorldCourseKO {
                 LearningExercise("koc1k_e100", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Özgeçmişi ekliyorum.", "", listOf(), listOf("이력서를 첨부합니다."), "Doğru cümle: 이력서를 첨부합니다.", null, "이력서를 첨부합니다."),
                 LearningExercise("koc1k_e80", Skill.VOCABULARY, "Doğru çeviriyi seç", "'boşa nasihat' ifadesinin Korece karşılığı hangisi?", "", listOf("효과적", "소 귀에 경 읽기", "이른바"), listOf("소 귀에 경 읽기"), "Örnek: 그에게 말해도 소 귀에 경 읽기예요. — Ona söylemek öküz kulağına sutra okumak gibi.", null, null),
                 LearningExercise("koc1k_e178", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Muhtemelen bir hata.", "", listOf(), listOf("아마도 실수일 거예요."), "Doğru cümle: 아마도 실수일 거예요.", null, "아마도 실수일 거예요."),
-                LearningExercise("koc1k_e177", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("아마도 실수일 거예요."), "Söylenen cümle: 아마도 실수일 거예요. — Muhtemelen bir hata.", "아마도 실수일 거예요.", null))))),
-        LearningUnit("KO-C1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc1k_e177", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("아마도 실수일 거예요."), "Söylenen cümle: 아마도 실수일 거예요. — Muhtemelen bir hata.", "아마도 실수일 거예요.", null)))))
+
+    private fun u78(): LearningUnit = LearningUnit("KO-C1-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C1-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc1k_e4", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu makale tartışma yaratıyor.", "", listOf(), listOf("이 논문은 논란이 돼요."), "Doğru cümle: 이 논문은 논란이 돼요.", null, "이 논문은 논란이 돼요."),
                 LearningExercise("koc1k_e30", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "이 ___은 유망해요.", "", listOf("방법론", "소 귀에 경 읽기", "티끌 모아 태산"), listOf("방법론"), "Doğru cümle: 이 방법론은 유망해요. — Bu metodoloji umut verici.", null, null),
@@ -2012,8 +2186,9 @@ object WorldCourseKO {
                 LearningExercise("koc1k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "이 방법론은 유망해요.", listOf("Sözde bir uzman konuştu.", "Bu metodoloji umut verici.", "Besbelli o haklı."), listOf("Bu metodoloji umut verici."), "Cümlenin çevirisi: Bu metodoloji umut verici.", null, null),
                 LearningExercise("koc1k_e182", Skill.GRAMMAR, "Doğru seçeneği işaretle", "모든 것은 관점에 ___ 달라져요.", "", listOf("따라", "대해", "위해"), listOf("따라"), "Kalıp: ...에 따라 (-e göre/bağlı olarak).", null, null),
                 LearningExercise("koc1k_e2", Skill.VOCABULARY, "Doğru çeviriyi seç", "'makale/tez' ifadesinin Korece karşılığı hangisi?", "", listOf("출처", "방법론", "논문"), listOf("논문"), "Örnek: 이 논문은 논란이 돼요. — Bu makale tartışma yaratıyor.", null, null),
-                LearningExercise("koc1k_e127", Skill.VOCABULARY, "Doğru anlamı seç", "'타협' ne anlama gelir?", "", listOf("uzlaşma", "titizlikle", "muhtemelen"), listOf("uzlaşma"), "타협이 공정해요. — Uzlaşma adil.", null, null))))),
-        LearningUnit("KO-C1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc1k_e127", Skill.VOCABULARY, "Doğru anlamı seç", "'타협' ne anlama gelir?", "", listOf("uzlaşma", "titizlikle", "muhtemelen"), listOf("uzlaşma"), "타협이 공정해요. — Uzlaşma adil.", null, null)))))
+
+    private fun u79(): LearningUnit = LearningUnit("KO-C1-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C1-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc1k_e176", Skill.VOCABULARY, "Doğru çeviriyi seç", "'muhtemelen' ifadesinin Korece karşılığı hangisi?", "", listOf("아마도", "양보", "합의"), listOf("아마도"), "Örnek: 아마도 실수일 거예요. — Muhtemelen bir hata.", null, null),
                 LearningExercise("koc1k_e43", Skill.VOCABULARY, "Doğru anlamı seç", "'개념' ne anlama gelir?", "", listOf("müzakere", "uzlaşma", "kavram"), listOf("kavram"), "이 개념은 정의하기 어려워요. — Bu kavramı tanımlamak zor.", null, null),
@@ -2037,8 +2212,9 @@ object WorldCourseKO {
                 LearningExercise("koc1k_e94", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Sayın Kim Minsu", "", listOf(), listOf("김민수 귀하"), "Doğru cümle: 김민수 귀하", null, "김민수 귀하"),
                 LearningExercise("koc1k_e179", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "아마도 실수일 거예요.", listOf("Muhtemelen bir hata.", "Müzakere saatlerce sürdü.", "Uzlaşma adil."), listOf("Muhtemelen bir hata."), "Cümlenin çevirisi: Muhtemelen bir hata.", null, null),
                 LearningExercise("koc1k_e70", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Hava da güzel olunca üstüne tüy dikti.", "", listOf(), listOf("날씨까지 좋으니 금상첨화네요."), "Doğru cümle: 날씨까지 좋으니 금상첨화네요.", null, "날씨까지 좋으니 금상첨화네요."),
-                LearningExercise("koc1k_e120", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "감사의 ___을 드립니다.", "", listOf("말씀", "면밀히", "아마도"), listOf("말씀"), "Doğru cümle: 감사의 말씀을 드립니다. — Teşekkürlerimi sunarım.", null, null))))),
-        LearningUnit("KO-C1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc1k_e120", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "감사의 ___을 드립니다.", "", listOf("말씀", "면밀히", "아마도"), listOf("말씀"), "Doğru cümle: 감사의 말씀을 드립니다. — Teşekkürlerimi sunarım.", null, null)))))
+
+    private fun u80(): LearningUnit = LearningUnit("KO-C1-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C1-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc1k_e26", Skill.VOCABULARY, "Doğru çeviriyi seç", "'yöntem bilimi' ifadesinin Korece karşılığı hangisi?", "", listOf("드림", "방법론", "관련하여"), listOf("방법론"), "Örnek: 이 방법론은 유망해요. — Bu metodoloji umut verici.", null, null),
                 LearningExercise("koc1k_e11", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "분석은 십 년의 데이터를 다뤄요.", listOf("Muhtemelen bir hata.", "Çözümleme on yıllık veriyi ele alıyor.", "Titizlikle inceledik."), listOf("Çözümleme on yıllık veriyi ele alıyor."), "Cümlenin çevirisi: Çözümleme on yıllık veriyi ele alıyor.", null, null),
@@ -2062,8 +2238,9 @@ object WorldCourseKO {
                 LearningExercise("koc1k_e5", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "이 논문은 논란이 돼요.", listOf("Kavrayış deneyimle değişir.", "Öyle yaparsan bir taşla iki kuş.", "Bu makale tartışma yaratıyor."), listOf("Bu makale tartışma yaratıyor."), "Cümlenin çevirisi: Bu makale tartışma yaratıyor.", null, null),
                 LearningExercise("koc1k_e88", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Damlaya damlaya göl olur.", "", listOf(), listOf("티끌 모아 태산이에요."), "Doğru cümle: 티끌 모아 태산이에요.", null, "티끌 모아 태산이에요."),
                 LearningExercise("koc1k_e10", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Çözümleme on yıllık veriyi ele alıyor.", "", listOf(), listOf("분석은 십 년의 데이터를 다뤄요."), "Doğru cümle: 분석은 십 년의 데이터를 다뤄요.", null, "분석은 십 년의 데이터를 다뤄요."),
-                LearningExercise("koc1k_e115", Skill.VOCABULARY, "Doğru anlamı seç", "'말씀' ne anlama gelir?", "", listOf("damlaya damlaya göl olur", "sayın (resmî)", "söz (saygı dili)"), listOf("söz (saygı dili)"), "감사의 말씀을 드립니다. — Teşekkürlerimi sunarım.", null, null))))),
-        LearningUnit("KO-C2-U1", "Üslup ve İncelik", "Üslubu bağlama göre ustaca ayarla.", listOf(
+                LearningExercise("koc1k_e115", Skill.VOCABULARY, "Doğru anlamı seç", "'말씀' ne anlama gelir?", "", listOf("damlaya damlaya göl olur", "sayın (resmî)", "söz (saygı dili)"), listOf("söz (saygı dili)"), "감사의 말씀을 드립니다. — Teşekkürlerimi sunarım.", null, null)))))
+
+    private fun u81(): LearningUnit = LearningUnit("KO-C2-U1", "Üslup ve İncelik", "Üslubu bağlama göre ustaca ayarla.", listOf(
             LearningLesson("KO-C2-U1-L1", "Üslup ve İncelik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koc2u1e1", Skill.VOCABULARY, "Doğru anlamı seç", "'미묘함' ne anlama gelir?", "", listOf("konuşma tonu", "özlü", "incelik"), listOf("incelik"), "언어의 미묘함은 늦게 배워요. — Dilin inceliklerini geç öğrenirsin.", null, null),
                 LearningExercise("koc2u1e2", Skill.VOCABULARY, "Doğru anlamı seç", "'어조' ne anlama gelir?", "", listOf("ince/zarif", "konuşma tonu", "ima"), listOf("konuşma tonu"), "그의 어조는 약간 비꼬는 듯했어요. — Tonu hafif alaycıydı.", null, null),
@@ -2089,8 +2266,9 @@ object WorldCourseKO {
             LearningLesson("KO-C2-U1-L5", "Üslup ve İncelik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koc2u1e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: İnce ifadeler göze çarpıyor.", "", listOf(), listOf("섬세한 표현이 돋보여요."), "Doğru cümle: 섬세한 표현이 돋보여요.", null, "섬세한 표현이 돋보여요."),
                 LearningExercise("koc2u1e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yanıtı özlüydü.", "", listOf(), listOf("그의 대답은 간결했어요."), "Doğru cümle: 그의 대답은 간결했어요.", null, "그의 대답은 간결했어요."),
-                LearningExercise("koc2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 언어의 미묘함은 늦게 배워요.", "", listOf(), listOf("언어의 미묘함은 늦게 배워요."), "Türkçesi: Dilin inceliklerini geç öğrenirsin.", "언어의 미묘함은 늦게 배워요.", "언어의 미묘함은 늦게 배워요."))))),
-        LearningUnit("KO-C2-U2", "Edebî Dil", "Edebî metinlerin katmanlarını çözümle.", listOf(
+                LearningExercise("koc2u1e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 언어의 미묘함은 늦게 배워요.", "", listOf(), listOf("언어의 미묘함은 늦게 배워요."), "Türkçesi: Dilin inceliklerini geç öğrenirsin.", "언어의 미묘함은 늦게 배워요.", "언어의 미묘함은 늦게 배워요.")))))
+
+    private fun u82(): LearningUnit = LearningUnit("KO-C2-U2", "Edebî Dil", "Edebî metinlerin katmanlarını çözümle.", listOf(
             LearningLesson("KO-C2-U2-L1", "Edebî Dil — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koc2u2e1", Skill.VOCABULARY, "Doğru anlamı seç", "'은유' ne anlama gelir?", "", listOf("lirik", "metafor", "simge"), listOf("metafor"), "은유가 글 전체를 관통해요. — Metafor bütün metni kat ediyor.", null, null),
                 LearningExercise("koc2u2e2", Skill.VOCABULARY, "Doğru anlamı seç", "'상징' ne anlama gelir?", "", listOf("simge", "anlatıcı", "hiciv"), listOf("simge"), "바다는 자유의 상징이에요. — Deniz özgürlüğün simgesidir.", null, null),
@@ -2116,8 +2294,9 @@ object WorldCourseKO {
             LearningLesson("KO-C2-U2-L5", "Edebî Dil — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koc2u2e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu metindeki hiciv çok açık.", "", listOf(), listOf("이 글의 풍자는 분명해요."), "Doğru cümle: 이 글의 풍자는 분명해요.", null, "이 글의 풍자는 분명해요."),
                 LearningExercise("koc2u2e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Üslup çok lirik.", "", listOf(), listOf("문체가 아주 서정적이에요."), "Doğru cümle: 문체가 아주 서정적이에요.", null, "문체가 아주 서정적이에요."),
-                LearningExercise("koc2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 은유가 글 전체를 관통해요.", "", listOf(), listOf("은유가 글 전체를 관통해요."), "Türkçesi: Metafor bütün metni kat ediyor.", "은유가 글 전체를 관통해요.", "은유가 글 전체를 관통해요."))))),
-        LearningUnit("KO-C2-U3", "Uzmanlık Söylemi", "Uzmanlık alanı söylemine hâkim ol.", listOf(
+                LearningExercise("koc2u2e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 은유가 글 전체를 관통해요.", "", listOf(), listOf("은유가 글 전체를 관통해요."), "Türkçesi: Metafor bütün metni kat ediyor.", "은유가 글 전체를 관통해요.", "은유가 글 전체를 관통해요.")))))
+
+    private fun u83(): LearningUnit = LearningUnit("KO-C2-U3", "Uzmanlık Söylemi", "Uzmanlık alanı söylemine hâkim ol.", listOf(
             LearningLesson("KO-C2-U3-L1", "Uzmanlık Söylemi — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koc2u3e1", Skill.VOCABULARY, "Doğru anlamı seç", "'전문 용어' ne anlama gelir?", "", listOf("uzmanlık terimi", "söylem", "ikna gücü"), listOf("uzmanlık terimi"), "전문 용어는 정확해야 해요. — Terimler kesin olmalı.", null, null),
                 LearningExercise("koc2u3e2", Skill.VOCABULARY, "Doğru anlamı seç", "'담론' ne anlama gelir?", "", listOf("inceleme yazısı", "ayırt etme", "söylem"), listOf("söylem"), "학술 담론에는 규범이 있어요. — Akademik söylemin normları vardır.", null, null),
@@ -2143,8 +2322,9 @@ object WorldCourseKO {
             LearningLesson("KO-C2-U3-L5", "Uzmanlık Söylemi — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koc2u3e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu iki kavram ayırt edilmeli.", "", listOf(), listOf("이 두 개념을 구별해야 해요."), "Doğru cümle: 이 두 개념을 구별해야 해요.", null, "이 두 개념을 구별해야 해요."),
                 LearningExercise("koc2u3e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: İkna gücü yüksek bir kanıtlama.", "", listOf(), listOf("설득력 있는 논증이에요."), "Doğru cümle: 설득력 있는 논증이에요.", null, "설득력 있는 논증이에요."),
-                LearningExercise("koc2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 전문 용어는 정확해야 해요.", "", listOf(), listOf("전문 용어는 정확해야 해요."), "Türkçesi: Terimler kesin olmalı.", "전문 용어는 정확해야 해요.", "전문 용어는 정확해야 해요."))))),
-        LearningUnit("KO-C2-U4", "Kültürel Derinlik", "Kültürel referansları derinlemesine kavra.", listOf(
+                LearningExercise("koc2u3e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 전문 용어는 정확해야 해요.", "", listOf(), listOf("전문 용어는 정확해야 해요."), "Türkçesi: Terimler kesin olmalı.", "전문 용어는 정확해야 해요.", "전문 용어는 정확해야 해요.")))))
+
+    private fun u84(): LearningUnit = LearningUnit("KO-C2-U4", "Kültürel Derinlik", "Kültürel referansları derinlemesine kavra.", listOf(
             LearningLesson("KO-C2-U4-L1", "Kültürel Derinlik — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koc2u4e1", Skill.VOCABULARY, "Doğru anlamı seç", "'세계관' ne anlama gelir?", "", listOf("mizaç", "kökleşmiş", "dünya görüşü"), listOf("dünya görüşü"), "그의 세계관이 흔들렸어요. — Dünya görüşü sarsıldı.", null, null),
                 LearningExercise("koc2u4e2", Skill.VOCABULARY, "Doğru anlamı seç", "'기질' ne anlama gelir?", "", listOf("miras", "mizaç", "zamanın ruhu"), listOf("mizaç"), "지역마다 기질이 달라요. — Mizaç bölgeye göre değişir.", null, null),
@@ -2170,8 +2350,9 @@ object WorldCourseKO {
             LearningLesson("KO-C2-U4-L5", "Kültürel Derinlik — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koc2u4e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kültürel miras korunuyor.", "", listOf(), listOf("문화유산이 보존돼요."), "Doğru cümle: 문화유산이 보존돼요.", null, "문화유산이 보존돼요."),
                 LearningExercise("koc2u4e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kökleşmiş bir gelenek.", "", listOf(), listOf("뿌리 깊은 전통이에요."), "Doğru cümle: 뿌리 깊은 전통이에요.", null, "뿌리 깊은 전통이에요."),
-                LearningExercise("koc2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 그의 세계관이 흔들렸어요.", "", listOf(), listOf("그의 세계관이 흔들렸어요."), "Türkçesi: Dünya görüşü sarsıldı.", "그의 세계관이 흔들렸어요.", "그의 세계관이 흔들렸어요."))))),
-        LearningUnit("KO-C2-U5", "Retorik Ustalığı", "Retorik araçları etkili kullan.", listOf(
+                LearningExercise("koc2u4e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 그의 세계관이 흔들렸어요.", "", listOf(), listOf("그의 세계관이 흔들렸어요."), "Türkçesi: Dünya görüşü sarsıldı.", "그의 세계관이 흔들렸어요.", "그의 세계관이 흔들렸어요.")))))
+
+    private fun u85(): LearningUnit = LearningUnit("KO-C2-U5", "Retorik Ustalığı", "Retorik araçları etkili kullan.", listOf(
             LearningLesson("KO-C2-U5-L1", "Retorik Ustalığı — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koc2u5e1", Skill.VOCABULARY, "Doğru anlamı seç", "'수사학' ne anlama gelir?", "", listOf("keskin", "retorik", "söz sanatı"), listOf("retorik"), "그의 수사학은 뛰어나요. — Retoriği üstün.", null, null),
                 LearningExercise("koc2u5e2", Skill.VOCABULARY, "Doğru anlamı seç", "'수사법' ne anlama gelir?", "", listOf("söz sanatı", "belagat", "asalet/zarafet"), listOf("söz sanatı"), "수사법이 은근하게 작동해요. — Söz sanatı incelikle işliyor.", null, null),
@@ -2197,8 +2378,9 @@ object WorldCourseKO {
             LearningLesson("KO-C2-U5-L5", "Retorik Ustalığı — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koc2u5e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Yazıda asil bir hava var.", "", listOf(), listOf("글에 기품이 있어요."), "Doğru cümle: 글에 기품이 있어요.", null, "글에 기품이 있어요."),
                 LearningExercise("koc2u5e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Eleştirisi son derece keskin.", "", listOf(), listOf("그의 비평은 매우 날카로워요."), "Doğru cümle: 그의 비평은 매우 날카로워요.", null, "그의 비평은 매우 날카로워요."),
-                LearningExercise("koc2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 그의 수사학은 뛰어나요.", "", listOf(), listOf("그의 수사학은 뛰어나요."), "Türkçesi: Retoriği üstün.", "그의 수사학은 뛰어나요.", "그의 수사학은 뛰어나요."))))),
-        LearningUnit("KO-C2-U6", "Ana Dil Düzeyinde Akıcılık", "Ana dil konuşuru düzeyinde incelik kazan.", listOf(
+                LearningExercise("koc2u5e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 그의 수사학은 뛰어나요.", "", listOf(), listOf("그의 수사학은 뛰어나요."), "Türkçesi: Retoriği üstün.", "그의 수사학은 뛰어나요.", "그의 수사학은 뛰어나요.")))))
+
+    private fun u86(): LearningUnit = LearningUnit("KO-C2-U6", "Ana Dil Düzeyinde Akıcılık", "Ana dil konuşuru düzeyinde incelik kazan.", listOf(
             LearningLesson("KO-C2-U6-L1", "Ana Dil Düzeyinde Akıcılık — Kelimeler", "Bu konunun temel kelimelerini tanı.", listOf(
                 LearningExercise("koc2u6e1", Skill.VOCABULARY, "Doğru anlamı seç", "'구사해요' ne anlama gelir?", "", listOf("ustaca kullanmak", "serbestçe/istediği gibi", "ana dili düzeyi"), listOf("ustaca kullanmak"), "그녀는 한국어를 자유자재로 구사해요. — Koreceyi serbestçe ve ustaca kullanıyor.", null, null),
                 LearningExercise("koc2u6e2", Skill.VOCABULARY, "Doğru anlamı seç", "'자유자재' ne anlama gelir?", "", listOf("rafinelik", "akıcı", "serbestçe/istediği gibi"), listOf("serbestçe/istediği gibi"), "자유자재로 문체를 바꿔요. — Üslubu istediği gibi değiştiriyor.", null, null),
@@ -2224,8 +2406,9 @@ object WorldCourseKO {
             LearningLesson("KO-C2-U6-L5", "Ana Dil Düzeyinde Akıcılık — Cümle Atölyesi", "Cümleleri kendin kurarak kalıpları pekiştir.", listOf(
                 LearningExercise("koc2u6e14", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Korecesi akıcı.", "", listOf(), listOf("그녀는 한국어가 유창해요."), "Doğru cümle: 그녀는 한국어가 유창해요.", null, "그녀는 한국어가 유창해요."),
                 LearningExercise("koc2u6e15", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ana dili düzeyinde konuşuyor.", "", listOf(), listOf("원어민 수준으로 말해요."), "Doğru cümle: 원어민 수준으로 말해요.", null, "원어민 수준으로 말해요."),
-                LearningExercise("koc2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 그녀는 한국어를 자유자재로 구사해요.", "", listOf(), listOf("그녀는 한국어를 자유자재로 구사해요."), "Türkçesi: Koreceyi serbestçe ve ustaca kullanıyor.", "그녀는 한국어를 자유자재로 구사해요.", "그녀는 한국어를 자유자재로 구사해요."))))),
-        LearningUnit("KO-C2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc2u6e16", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 그녀는 한국어를 자유자재로 구사해요.", "", listOf(), listOf("그녀는 한국어를 자유자재로 구사해요."), "Türkçesi: Koreceyi serbestçe ve ustaca kullanıyor.", "그녀는 한국어를 자유자재로 구사해요.", "그녀는 한국어를 자유자재로 구사해요.")))))
+
+    private fun u87(): LearningUnit = LearningUnit("KO-C2-K1", "Pekiştirme Kampı 1", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C2-K1-L1", "Pekiştirme Kampı 1 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc2k_e52", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Üslup çok lirik.", "", listOf(), listOf("문체가 아주 서정적이에요."), "Doğru cümle: 문체가 아주 서정적이에요.", null, "문체가 아주 서정적이에요."),
                 LearningExercise("koc2k_e171", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("원어민 수준으로 말해요."), "Söylenen cümle: 원어민 수준으로 말해요. — Ana dili düzeyinde konuşuyor.", "원어민 수준으로 말해요.", null),
@@ -2249,8 +2432,9 @@ object WorldCourseKO {
                 LearningExercise("koc2k_e35", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "은유가 글 전체를 관통해요.", listOf("Metafor bütün metni kat ediyor.", "Bu iki kavram ayırt edilmeli.", "Dünya görüşü sarsıldı."), listOf("Metafor bütün metni kat ediyor."), "Cümlenin çevirisi: Metafor bütün metni kat ediyor.", null, null),
                 LearningExercise("koc2k_e130", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Söz sanatı incelikle işliyor.", "", listOf(), listOf("수사법이 은근하게 작동해요."), "Doğru cümle: 수사법이 은근하게 작동해요.", null, "수사법이 은근하게 작동해요."),
                 LearningExercise("koc2k_e98", Skill.VOCABULARY, "Doğru çeviriyi seç", "'mizaç' ifadesinin Korece karşılığı hangisi?", "", listOf("미묘함", "기질", "유창"), listOf("기질"), "Örnek: 지역마다 기질이 달라요. — Mizaç bölgeye göre değişir.", null, null),
-                LearningExercise("koc2k_e88", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu iki kavram ayırt edilmeli.", "", listOf(), listOf("이 두 개념을 구별해야 해요."), "Doğru cümle: 이 두 개념을 구별해야 해요.", null, "이 두 개념을 구별해야 해요."))))),
-        LearningUnit("KO-C2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc2k_e88", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu iki kavram ayırt edilmeli.", "", listOf(), listOf("이 두 개념을 구별해야 해요."), "Doğru cümle: 이 두 개념을 구별해야 해요.", null, "이 두 개념을 구별해야 해요.")))))
+
+    private fun u88(): LearningUnit = LearningUnit("KO-C2-K2", "Pekiştirme Kampı 2", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C2-K2-L1", "Pekiştirme Kampı 2 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc2k_e67", Skill.VOCABULARY, "Doğru anlamı seç", "'담론' ne anlama gelir?", "", listOf("miras", "söylem", "kökleşmiş"), listOf("söylem"), "학술 담론에는 규범이 있어요. — Akademik söylemin normları vardır.", null, null),
                 LearningExercise("koc2k_e100", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Mizaç bölgeye göre değişir.", "", listOf(), listOf("지역마다 기질이 달라요."), "Doğru cümle: 지역마다 기질이 달라요.", null, "지역마다 기질이 달라요."),
@@ -2274,8 +2458,9 @@ object WorldCourseKO {
                 LearningExercise("koc2k_e33", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("은유가 글 전체를 관통해요."), "Söylenen cümle: 은유가 글 전체를 관통해요. — Metafor bütün metni kat ediyor.", "은유가 글 전체를 관통해요.", null),
                 LearningExercise("koc2k_e129", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("수사법이 은근하게 작동해요."), "Söylenen cümle: 수사법이 은근하게 작동해요. — Söz sanatı incelikle işliyor.", "수사법이 은근하게 작동해요.", null),
                 LearningExercise("koc2k_e9", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("그의 어조는 약간 비꼬는 듯했어요."), "Söylenen cümle: 그의 어조는 약간 비꼬는 듯했어요. — Tonu hafif alaycıydı.", "그의 어조는 약간 비꼬는 듯했어요.", null),
-                LearningExercise("koc2k_e15", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("그녀만 암시를 알아차렸어요."), "Söylenen cümle: 그녀만 암시를 알아차렸어요. — İmayı yalnızca o fark etti.", "그녀만 암시를 알아차렸어요.", null))))),
-        LearningUnit("KO-C2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc2k_e15", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("그녀만 암시를 알아차렸어요."), "Söylenen cümle: 그녀만 암시를 알아차렸어요. — İmayı yalnızca o fark etti.", "그녀만 암시를 알아차렸어요.", null)))))
+
+    private fun u89(): LearningUnit = LearningUnit("KO-C2-K3", "Pekiştirme Kampı 3", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C2-K3-L1", "Pekiştirme Kampı 3 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc2k_e123", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("그의 수사학은 뛰어나요."), "Söylenen cümle: 그의 수사학은 뛰어나요. — Retoriği üstün.", "그의 수사학은 뛰어나요.", null),
                 LearningExercise("koc2k_e70", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Akademik söylemin normları vardır.", "", listOf(), listOf("학술 담론에는 규범이 있어요."), "Doğru cümle: 학술 담론에는 규범이 있어요.", null, "학술 담론에는 규범이 있어요."),
@@ -2299,8 +2484,9 @@ object WorldCourseKO {
                 LearningExercise("koc2k_e96", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "그의 ___이 흔들렸어요.", "", listOf("세련", "세계관", "자유자재"), listOf("세계관"), "Doğru cümle: 그의 세계관이 흔들렸어요. — Dünya görüşü sarsıldı.", null, null),
                 LearningExercise("koc2k_e113", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "뿌리 깊은 전통이에요.", listOf("Söz sanatı incelikle işliyor.", "Belagati meşhur.", "Kökleşmiş bir gelenek."), listOf("Kökleşmiş bir gelenek."), "Cümlenin çevirisi: Kökleşmiş bir gelenek.", null, null),
                 LearningExercise("koc2k_e5", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "언어의 미묘함은 늦게 배워요.", listOf("Bu metindeki hiciv çok açık.", "Terimler kesin olmalı.", "Dilin inceliklerini geç öğrenirsin."), listOf("Dilin inceliklerini geç öğrenirsin."), "Cümlenin çevirisi: Dilin inceliklerini geç öğrenirsin.", null, null),
-                LearningExercise("koc2k_e143", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "그의 비평은 매우 날카로워요.", listOf("Eleştirisi son derece keskin.", "Üslubu istediği gibi değiştiriyor.", "Rafine bir ifade."), listOf("Eleştirisi son derece keskin."), "Cümlenin çevirisi: Eleştirisi son derece keskin.", null, null))))),
-        LearningUnit("KO-C2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc2k_e143", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "그의 비평은 매우 날카로워요.", listOf("Eleştirisi son derece keskin.", "Üslubu istediği gibi değiştiriyor.", "Rafine bir ifade."), listOf("Eleştirisi son derece keskin."), "Cümlenin çevirisi: Eleştirisi son derece keskin.", null, null)))))
+
+    private fun u90(): LearningUnit = LearningUnit("KO-C2-K4", "Pekiştirme Kampı 4", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C2-K4-L1", "Pekiştirme Kampı 4 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc2k_e187", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 언어의 미묘함은 늦게 배워요.", "", listOf(), listOf("언어의 미묘함은 늦게 배워요."), "Türkçesi: Dilin inceliklerini geç öğrenirsin.", "언어의 미묘함은 늦게 배워요.", "언어의 미묘함은 늦게 배워요."),
                 LearningExercise("koc2k_e87", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("이 두 개념을 구별해야 해요."), "Söylenen cümle: 이 두 개념을 구별해야 해요. — Bu iki kavram ayırt edilmeli.", "이 두 개념을 구별해야 해요.", null),
@@ -2324,8 +2510,9 @@ object WorldCourseKO {
                 LearningExercise("koc2k_e154", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Koreceyi serbestçe ve ustaca kullanıyor.", "", listOf(), listOf("그녀는 한국어를 자유자재로 구사해요."), "Doğru cümle: 그녀는 한국어를 자유자재로 구사해요.", null, "그녀는 한국어를 자유자재로 구사해요."),
                 LearningExercise("koc2k_e59", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "이 글의 풍자는 분명해요.", listOf("Dilin inceliklerini geç öğrenirsin.", "Tonu hafif alaycıydı.", "Bu metindeki hiciv çok açık."), listOf("Bu metindeki hiciv çok açık."), "Cümlenin çevirisi: Bu metindeki hiciv çok açık.", null, null),
                 LearningExercise("koc2k_e173", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "원어민 수준으로 말해요.", listOf("İmayı yalnızca o fark etti.", "Ana dili düzeyinde konuşuyor.", "Tonu hafif alaycıydı."), listOf("Ana dili düzeyinde konuşuyor."), "Cümlenin çevirisi: Ana dili düzeyinde konuşuyor.", null, null),
-                LearningExercise("koc2k_e199", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 바다는 자유의 상징이에요.", "", listOf(), listOf("바다는 자유의 상징이에요."), "Türkçesi: Deniz özgürlüğün simgesidir.", "바다는 자유의 상징이에요.", "바다는 자유의 상징이에요."))))),
-        LearningUnit("KO-C2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc2k_e199", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 바다는 자유의 상징이에요.", "", listOf(), listOf("바다는 자유의 상징이에요."), "Türkçesi: Deniz özgürlüğün simgesidir.", "바다는 자유의 상징이에요.", "바다는 자유의 상징이에요.")))))
+
+    private fun u91(): LearningUnit = LearningUnit("KO-C2-K5", "Pekiştirme Kampı 5", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C2-K5-L1", "Pekiştirme Kampı 5 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc2k_e195", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 글에 기품이 있어요.", "", listOf(), listOf("글에 기품이 있어요."), "Türkçesi: Yazıda asil bir hava var.", "글에 기품이 있어요.", "글에 기품이 있어요."),
                 LearningExercise("koc2k_e139", Skill.VOCABULARY, "Doğru anlamı seç", "'날카로운' ne anlama gelir?", "", listOf("ikna gücü", "keskin", "inceleme yazısı"), listOf("keskin"), "그의 비평은 매우 날카로워요. — Eleştirisi son derece keskin.", null, null),
@@ -2349,8 +2536,9 @@ object WorldCourseKO {
                 LearningExercise("koc2k_e76", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Bu inceleme üç bölümden oluşuyor.", "", listOf(), listOf("이 논고는 세 부분이에요."), "Doğru cümle: 이 논고는 세 부분이에요.", null, "이 논고는 세 부분이에요."),
                 LearningExercise("koc2k_e29", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "섬세한 표현이 돋보여요.", listOf("Üslubu istediği gibi değiştiriyor.", "İnce ifadeler göze çarpıyor.", "Koreceyi serbestçe ve ustaca kullanıyor."), listOf("İnce ifadeler göze çarpıyor."), "Cümlenin çevirisi: İnce ifadeler göze çarpıyor.", null, null),
                 LearningExercise("koc2k_e62", Skill.VOCABULARY, "Doğru çeviriyi seç", "'uzmanlık terimi' ifadesinin Korece karşılığı hangisi?", "", listOf("기품", "전문 용어", "날카로운"), listOf("전문 용어"), "Örnek: 전문 용어는 정확해야 해요. — Terimler kesin olmalı.", null, null),
-                LearningExercise("koc2k_e20", Skill.VOCABULARY, "Doğru çeviriyi seç", "'özlü' ifadesinin Korece karşılığı hangisi?", "", listOf("상징", "서술자", "간결"), listOf("간결"), "Örnek: 그의 대답은 간결했어요. — Yanıtı özlüydü.", null, null))))),
-        LearningUnit("KO-C2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc2k_e20", Skill.VOCABULARY, "Doğru çeviriyi seç", "'özlü' ifadesinin Korece karşılığı hangisi?", "", listOf("상징", "서술자", "간결"), listOf("간결"), "Örnek: 그의 대답은 간결했어요. — Yanıtı özlüydü.", null, null)))))
+
+    private fun u92(): LearningUnit = LearningUnit("KO-C2-K6", "Pekiştirme Kampı 6", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C2-K6-L1", "Pekiştirme Kampı 6 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc2k_e38", Skill.VOCABULARY, "Doğru çeviriyi seç", "'simge' ifadesinin Korece karşılığı hangisi?", "", listOf("풍자", "전문 용어", "상징"), listOf("상징"), "Örnek: 바다는 자유의 상징이에요. — Deniz özgürlüğün simgesidir.", null, null),
                 LearningExercise("koc2k_e68", Skill.VOCABULARY, "Doğru çeviriyi seç", "'söylem' ifadesinin Korece karşılığı hangisi?", "", listOf("담론", "섬세", "은유"), listOf("담론"), "Örnek: 학술 담론에는 규범이 있어요. — Akademik söylemin normları vardır.", null, null),
@@ -2374,8 +2562,9 @@ object WorldCourseKO {
                 LearningExercise("koc2k_e53", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "문체가 아주 서정적이에요.", listOf("Üslup çok lirik.", "Akademik söylemin normları vardır.", "Bu inceleme üç bölümden oluşuyor."), listOf("Üslup çok lirik."), "Cümlenin çevirisi: Üslup çok lirik.", null, null),
                 LearningExercise("koc2k_e16", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: İmayı yalnızca o fark etti.", "", listOf(), listOf("그녀만 암시를 알아차렸어요."), "Doğru cümle: 그녀만 암시를 알아차렸어요.", null, "그녀만 암시를 알아차렸어요."),
                 LearningExercise("koc2k_e180", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "그녀는 한국어가 ___해요.", "", listOf("뿌리 깊은", "유산", "유창"), listOf("유창"), "Doğru cümle: 그녀는 한국어가 유창해요. — Korecesi akıcı.", null, null),
-                LearningExercise("koc2k_e122", Skill.VOCABULARY, "Doğru çeviriyi seç", "'retorik' ifadesinin Korece karşılığı hangisi?", "", listOf("수사학", "설득력", "구별"), listOf("수사학"), "Örnek: 그의 수사학은 뛰어나요. — Retoriği üstün.", null, null))))),
-        LearningUnit("KO-C2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc2k_e122", Skill.VOCABULARY, "Doğru çeviriyi seç", "'retorik' ifadesinin Korece karşılığı hangisi?", "", listOf("수사학", "설득력", "구별"), listOf("수사학"), "Örnek: 그의 수사학은 뛰어나요. — Retoriği üstün.", null, null)))))
+
+    private fun u93(): LearningUnit = LearningUnit("KO-C2-K7", "Pekiştirme Kampı 7", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C2-K7-L1", "Pekiştirme Kampı 7 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc2k_e176", Skill.VOCABULARY, "Doğru çeviriyi seç", "'akıcı' ifadesinin Korece karşılığı hangisi?", "", listOf("유창", "웅변", "날카로운"), listOf("유창"), "Örnek: 그녀는 한국어가 유창해요. — Korecesi akıcı.", null, null),
                 LearningExercise("koc2k_e55", Skill.VOCABULARY, "Doğru anlamı seç", "'풍자' ne anlama gelir?", "", listOf("hiciv", "ince/zarif", "metafor"), listOf("hiciv"), "이 글의 풍자는 분명해요. — Bu metindeki hiciv çok açık.", null, null),
@@ -2399,8 +2588,9 @@ object WorldCourseKO {
                 LearningExercise("koc2k_e69", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("학술 담론에는 규범이 있어요."), "Söylenen cümle: 학술 담론에는 규범이 있어요. — Akademik söylemin normları vardır.", "학술 담론에는 규범이 있어요.", null),
                 LearningExercise("koc2k_e23", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "그의 대답은 간결했어요.", listOf("Deniz özgürlüğün simgesidir.", "Anlatıcı sürekli değişiyor.", "Yanıtı özlüydü."), listOf("Yanıtı özlüydü."), "Cümlenin çevirisi: Yanıtı özlüydü.", null, null),
                 LearningExercise("koc2k_e159", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("자유자재로 문체를 바꿔요."), "Söylenen cümle: 자유자재로 문체를 바꿔요. — Üslubu istediği gibi değiştiriyor.", "자유자재로 문체를 바꿔요.", null),
-                LearningExercise("koc2k_e118", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kültürel miras korunuyor.", "", listOf(), listOf("문화유산이 보존돼요."), "Doğru cümle: 문화유산이 보존돼요.", null, "문화유산이 보존돼요."))))),
-        LearningUnit("KO-C2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc2k_e118", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Kültürel miras korunuyor.", "", listOf(), listOf("문화유산이 보존돼요."), "Doğru cümle: 문화유산이 보존돼요.", null, "문화유산이 보존돼요.")))))
+
+    private fun u94(): LearningUnit = LearningUnit("KO-C2-K8", "Pekiştirme Kampı 8", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C2-K8-L1", "Pekiştirme Kampı 8 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc2k_e162", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "___로 문체를 바꿔요.", "", listOf("풍자", "전문 용어", "자유자재"), listOf("자유자재"), "Doğru cümle: 자유자재로 문체를 바꿔요. — Üslubu istediği gibi değiştiriyor.", null, null),
                 LearningExercise("koc2k_e47", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "서술자가 계속 바뀌어요.", listOf("Eleştirisi son derece keskin.", "Anlatıcı sürekli değişiyor.", "Belagati meşhur."), listOf("Anlatıcı sürekli değişiyor."), "Cümlenin çevirisi: Anlatıcı sürekli değişiyor.", null, null),
@@ -2424,8 +2614,9 @@ object WorldCourseKO {
                 LearningExercise("koc2k_e40", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Deniz özgürlüğün simgesidir.", "", listOf(), listOf("바다는 자유의 상징이에요."), "Doğru cümle: 바다는 자유의 상징이에요.", null, "바다는 자유의 상징이에요."),
                 LearningExercise("koc2k_e190", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 이 글의 풍자는 분명해요.", "", listOf(), listOf("이 글의 풍자는 분명해요."), "Türkçesi: Bu metindeki hiciv çok açık.", "이 글의 풍자는 분명해요.", "이 글의 풍자는 분명해요."),
                 LearningExercise("koc2k_e188", Skill.SPEAKING, "İfadeyi sesli söyle", "Söyle: 그의 대답은 간결했어요.", "", listOf(), listOf("그의 대답은 간결했어요."), "Türkçesi: Yanıtı özlüydü.", "그의 대답은 간결했어요.", "그의 대답은 간결했어요."),
-                LearningExercise("koc2k_e4", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Dilin inceliklerini geç öğrenirsin.", "", listOf(), listOf("언어의 미묘함은 늦게 배워요."), "Doğru cümle: 언어의 미묘함은 늦게 배워요.", null, "언어의 미묘함은 늦게 배워요."))))),
-        LearningUnit("KO-C2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc2k_e4", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Dilin inceliklerini geç öğrenirsin.", "", listOf(), listOf("언어의 미묘함은 늦게 배워요."), "Doğru cümle: 언어의 미묘함은 늦게 배워요.", null, "언어의 미묘함은 늦게 배워요.")))))
+
+    private fun u95(): LearningUnit = LearningUnit("KO-C2-K9", "Pekiştirme Kampı 9", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C2-K9-L1", "Pekiştirme Kampı 9 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc2k_e120", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "문화___이 보존돼요.", "", listOf("유산", "원어민 수준", "유창"), listOf("유산"), "Doğru cümle: 문화유산이 보존돼요. — Kültürel miras korunuyor.", null, null),
                 LearningExercise("koc2k_e26", Skill.VOCABULARY, "Doğru çeviriyi seç", "'ince/zarif' ifadesinin Korece karşılığı hangisi?", "", listOf("뿌리 깊은", "섬세", "시대정신"), listOf("섬세"), "Örnek: 섬세한 표현이 돋보여요. — İnce ifadeler göze çarpıyor.", null, null),
@@ -2449,8 +2640,9 @@ object WorldCourseKO {
                 LearningExercise("koc2k_e124", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Retoriği üstün.", "", listOf(), listOf("그의 수사학은 뛰어나요."), "Doğru cümle: 그의 수사학은 뛰어나요.", null, "그의 수사학은 뛰어나요."),
                 LearningExercise("koc2k_e75", Skill.LISTENING, "Dinle ve duyduğun cümleyi yaz", "Duyduğun cümleyi yaz", "", listOf(), listOf("이 논고는 세 부분이에요."), "Söylenen cümle: 이 논고는 세 부분이에요. — Bu inceleme üç bölümden oluşuyor.", "이 논고는 세 부분이에요.", null),
                 LearningExercise("koc2k_e149", Skill.READING, "Cümleyi oku ve doğru anlamı seç", "Okuduğun cümle ne anlatıyor?", "글에 기품이 있어요.", listOf("Dünya görüşü sarsıldı.", "Mizaç bölgeye göre değişir.", "Yazıda asil bir hava var."), listOf("Yazıda asil bir hava var."), "Cümlenin çevirisi: Yazıda asil bir hava var.", null, null),
-                LearningExercise("koc2k_e91", Skill.VOCABULARY, "Doğru anlamı seç", "'세계관' ne anlama gelir?", "", listOf("dünya görüşü", "mizaç", "zamanın ruhu"), listOf("dünya görüşü"), "그의 세계관이 흔들렸어요. — Dünya görüşü sarsıldı.", null, null))))),
-        LearningUnit("KO-C2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
+                LearningExercise("koc2k_e91", Skill.VOCABULARY, "Doğru anlamı seç", "'세계관' ne anlama gelir?", "", listOf("dünya görüşü", "mizaç", "zamanın ruhu"), listOf("dünya görüşü"), "그의 세계관이 흔들렸어요. — Dünya görüşü sarsıldı.", null, null)))))
+
+    private fun u96(): LearningUnit = LearningUnit("KO-C2-K10", "Pekiştirme Kampı 10", "1-6. ünitelerin tüm kelimeleri: serpiştirilmiş tekrar, çapraz çeldiriciler.", listOf(
             LearningLesson("KO-C2-K10-L1", "Pekiştirme Kampı 10 — Tur 1", "Seviyenin kelimelerini çapraz sorularla sağlamlaştır.", listOf(
                 LearningExercise("koc2k_e172", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Ana dili düzeyinde konuşuyor.", "", listOf(), listOf("원어민 수준으로 말해요."), "Doğru cümle: 원어민 수준으로 말해요.", null, "원어민 수준으로 말해요."),
                 LearningExercise("koc2k_e158", Skill.VOCABULARY, "Doğru çeviriyi seç", "'serbestçe/istediği gibi' ifadesinin Korece karşılığı hangisi?", "", listOf("자유자재", "유산", "수사학"), listOf("자유자재"), "Örnek: 자유자재로 문체를 바꿔요. — Üslubu istediği gibi değiştiriyor.", null, null),
@@ -2474,5 +2666,5 @@ object WorldCourseKO {
                 LearningExercise("koc2k_e150", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "글에 ___이 있어요.", "", listOf("구사해요", "기품", "날카로운"), listOf("기품"), "Doğru cümle: 글에 기품이 있어요. — Yazıda asil bir hava var.", null, null),
                 LearningExercise("koc2k_e185", Skill.GRAMMAR, "Doğru seçeneği işaretle", "그의 비평은 매우 ___.", "", listOf("날카로워요", "날카롭다요", "날카롭게요"), listOf("날카로워요"), "İ-eum uyumu: 날카로워요.", null, null),
                 LearningExercise("koc2k_e78", Skill.VOCABULARY, "Boşluğu doğru ifadeyle tamamla", "이 ___는 세 부분이에요.", "", listOf("뿌리 깊은", "논고", "시대정신"), listOf("논고"), "Doğru cümle: 이 논고는 세 부분이에요. — Bu inceleme üç bölümden oluşuyor.", null, null),
-                LearningExercise("koc2k_e10", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Tonu hafif alaycıydı.", "", listOf(), listOf("그의 어조는 약간 비꼬는 듯했어요."), "Doğru cümle: 그의 어조는 약간 비꼬는 듯했어요.", null, "그의 어조는 약간 비꼬는 듯했어요."))))))
+                LearningExercise("koc2k_e10", Skill.WRITING, "Fişlerle cümleyi kur", "Karşılığını kur: Tonu hafif alaycıydı.", "", listOf(), listOf("그의 어조는 약간 비꼬는 듯했어요."), "Doğru cümle: 그의 어조는 약간 비꼬는 듯했어요.", null, "그의 어조는 약간 비꼬는 듯했어요.")))))
 }
