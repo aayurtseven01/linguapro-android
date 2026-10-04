@@ -1,5 +1,16 @@
 package com.linguapro.android.ui.home
 
+import android.content.Context
+import androidx.room.withTransaction
+import com.linguapro.android.data.LocalAccountDataCleaner
+import com.linguapro.android.data.local.LinguaDatabase
+import com.linguapro.android.data.local.PendingLessonEvent
+import com.linguapro.android.data.sync.LessonSyncWorker
+import dagger.hilt.android.qualifiers.ApplicationContext
+import java.util.UUID
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.flow.flow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.linguapro.android.LearningLesson
@@ -30,6 +41,9 @@ private data class LearnerContext(val learnerId: String = "guest", val level: St
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class LearningDashboardViewModel @Inject constructor(
+    @ApplicationContext private val context: Context,
+    private val database: LinguaDatabase,
+    private val accountDataCleaner: LocalAccountDataCleaner,
     private val learningRepository: LearningRepository,
     private val settingsRepository: UserSettingsRepository,
     private val reviewScheduleRepository: ReviewScheduleRepository
@@ -54,8 +68,21 @@ class LearningDashboardViewModel @Inject constructor(
         }
     }
     private val reviewClock = MutableStateFlow(System.currentTimeMillis())
-    private val dueReviewCards = combine(learnerContext, reviewClock) { context, now -> context.learnerId to now }
+    private val clockTicks = flow {
+        while (kotlin.coroutines.coroutineContext.isActive) {
+            emit(System.currentTimeMillis())
+            delay(60_000)
+        }
+    }
+    private val tickingClock = combine(reviewClock, clockTicks) { manual, tick -> maxOf(manual, tick) }
+    private val dueReviewCards = combine(learnerContext, tickingClock) { context, now -> context.learnerId to now }
         .flatMapLatest { (learnerId, now) -> reviewScheduleRepository.observeDue(learnerId, now) }
+
+    val pendingSyncCount = learnerContext.flatMapLatest { (learnerId, _) ->
+        database.pendingLessonEventDao().observeCount(learnerId)
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), 0)
+
+    val errorMessage = MutableStateFlow<String?>(null)
 
     val uiState: StateFlow<LearningDashboardState> = combine(
         progress,
@@ -76,22 +103,51 @@ class LearningDashboardViewModel @Inject constructor(
     fun setLearnerContext(learnerKey: String, level: String) {
         learnerContext.value = LearnerContext(learnerKey.ifBlank { "guest" }, level)
         reviewClock.value = System.currentTimeMillis()
+        if (learnerKey.isNotBlank()) LessonSyncWorker.schedule(context)
     }
 
-    fun recordLesson(learnerKey: String, level: String, lessonId: String, scorePercent: Int?, vocabularyIds: List<String>) {
+    fun recordLesson(
+        learnerKey: String, level: String, lessonId: String, scorePercent: Int?,
+        vocabularyIds: List<String>, countsTowardCourse: Boolean = true, done: (Boolean) -> Unit = {}
+    ) {
         val learnerId = learnerKey.ifBlank { "guest" }
         viewModelScope.launch {
-            learningRepository.recordLesson(learnerId, level, lessonId, scorePercent)
-            val now = System.currentTimeMillis()
-            vocabularyIds.forEach { reviewScheduleRepository.addVocabularyForReview(learnerId, it, now) }
-            reviewClock.value = now
+            try {
+                val now = System.currentTimeMillis()
+                database.withTransaction {
+                    if (countsTowardCourse) learningRepository.recordLesson(learnerId, level, lessonId, scorePercent, now)
+                    if (learnerKey.isNotBlank()) database.pendingLessonEventDao().enqueue(
+                        PendingLessonEvent(UUID.randomUUID().toString(), learnerId, lessonId, scorePercent, countsTowardCourse, now)
+                    )
+                    vocabularyIds.forEach { reviewScheduleRepository.addVocabularyForReview(learnerId, it, now) }
+                }
+                if (learnerKey.isNotBlank()) LessonSyncWorker.schedule(context)
+                reviewClock.value = now
+                done(true)
+            } catch (error: Exception) {
+                if (error is kotlinx.coroutines.CancellationException) throw error
+                errorMessage.value = "Ders cihazına kaydedilemedi. Lütfen tekrar dene."
+                done(false)
+            }
+        }
+    }
+
+    fun clearAccountData(uid: String, done: (String?) -> Unit) {
+        viewModelScope.launch {
+            try {
+                accountDataCleaner.clear(uid)
+                done(null)
+            } catch (error: Exception) {
+                if (error is kotlinx.coroutines.CancellationException) throw error
+                done("Bulut hesabı silindi ancak cihazdaki temizleme tamamlanamadı.")
+            }
         }
     }
 
     fun gradeReview(card: ReviewCardEntity, grade: ReviewGrade) {
         val learnerId = learnerContext.value.learnerId
         viewModelScope.launch {
-            runCatching {
+            try {
                 reviewScheduleRepository.grade(
                     learnerId,
                     card.vocabularyId,
@@ -99,10 +155,15 @@ class LearningDashboardViewModel @Inject constructor(
                     grade,
                     System.currentTimeMillis()
                 )
+            } catch (error: Exception) {
+                if (error is kotlinx.coroutines.CancellationException) throw error
+                errorMessage.value = "Tekrar sonucu kaydedilemedi. Lütfen yeniden dene."
             }
             reviewClock.value = System.currentTimeMillis()
         }
     }
+
+    fun setDailyGoal(minutes: Int) = viewModelScope.launch { settingsRepository.setDailyGoal(minutes) }
 }
 
 data class LearningDashboardState(

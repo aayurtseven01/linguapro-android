@@ -155,6 +155,7 @@ fun LearningLessonScreen(
             }
             override fun onResults(results: Bundle?) {
                 isListening = false; micLevel = 0f
+                if (submitted) return
                 val recognized = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.firstOrNull().orEmpty()
                 if (recognized.isNotBlank()) {
                     speechText = recognized
@@ -167,7 +168,6 @@ fun LearningLessonScreen(
                     if (isCorrect) correctCount++
                     submitted = true
                     playFeedbackTone(soundOn, isCorrect)
-                    if (isCorrect) { comboStreak++; if (comboStreak % 5 == 0) comboCelebrate = comboStreak } else comboStreak = 0
                     if (isCorrect) { comboStreak++; if (comboStreak % 5 == 0) comboCelebrate = comboStreak } else comboStreak = 0
                 }
             }
@@ -500,6 +500,7 @@ fun LearningLessonScreen(
                     if (isCorrect) correctCount++
                     submitted = true
                     playFeedbackTone(soundOn, isCorrect)
+                    if (isCorrect) { comboStreak++; if (comboStreak % 5 == 0) comboCelebrate = comboStreak } else comboStreak = 0
                 }
             }
         }

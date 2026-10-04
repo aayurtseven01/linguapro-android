@@ -180,3 +180,16 @@ test('usernames: first claim wins, cannot be overwritten, owner can release', as
   await assertFails(deleteDoc(doc(bob, 'usernames/kaptan')));
   await assertSucceeds(deleteDoc(doc(alice, 'usernames/kaptan')));
 });
+
+test('course completions are owner-scoped, bounded and immutable', async () => {
+  const alice = env.authenticatedContext('alice').firestore();
+  const bob = env.authenticatedContext('bob').firestore();
+  const completion = doc(alice, 'users/alice/lessonCompletions/A1-U1-L1');
+  await assertSucceeds(setDoc(completion, { lessonId: 'A1-U1-L1', score: 90, completedAt: serverTimestamp() }));
+  await assertFails(setDoc(completion, { lessonId: 'A1-U1-L1', score: 100, completedAt: serverTimestamp() }));
+  await assertFails(setDoc(doc(alice, 'users/alice/lessonCompletions/A1-U1-L2'), { lessonId: 'another-id', score: 90, completedAt: serverTimestamp() }));
+  await assertFails(setDoc(doc(alice, 'users/alice/lessonCompletions/A1-U1-L3'), { lessonId: 'A1-U1-L3', score: 101, completedAt: serverTimestamp() }));
+  await assertFails(getDoc(doc(bob, completion.path)));
+  await assertFails(deleteDoc(doc(bob, completion.path)));
+  await assertSucceeds(deleteDoc(completion));
+});

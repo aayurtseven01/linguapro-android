@@ -74,6 +74,19 @@ service cloud.firestore {
         allow delete: if signedInAs(userId);
       }
 
+      // Stable lesson ids make retries and repeated lessons count once toward the course.
+      match /lessonCompletions/{lessonId} {
+        allow read, delete: if signedInAs(userId);
+        allow create: if signedInAs(userId)
+          && request.resource.data.keys().hasOnly(['lessonId', 'score', 'completedAt'])
+          && request.resource.data.keys().hasAll(['lessonId', 'completedAt'])
+          && request.resource.data.lessonId == lessonId
+          && request.resource.data.completedAt == request.time
+          && (!('score' in request.resource.data)
+            || (request.resource.data.score is int && request.resource.data.score >= 0 && request.resource.data.score <= 100));
+        allow update: if false;
+      }
+
       // Arkadas listesi: yalnizca sahibi okur/yazar/siler.
       match /friends/{friendId} {
         allow read, create, update, delete: if signedInAs(userId);
