@@ -529,7 +529,9 @@ fun LearningLessonScreen(
                     submitted = true
                     result = null
                 } else {
-                    val isCorrect = AnswerChecker.matches(typedAnswer, exercise.acceptedAnswers)
+                    val isCorrect = if (exercise.skill == Skill.SPEAKING && exercise.options.isEmpty())
+                        AnswerChecker.matches(typedAnswer, exercise.acceptedAnswers)
+                    else AnswerChecker.matchesClosed(typedAnswer, exercise.acceptedAnswers)
                     result = isCorrect
                     onExerciseResult(exercise.id, exercise.skill, isCorrect)
                     gradedCount++

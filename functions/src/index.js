@@ -134,20 +134,19 @@ exports.deleteAccount = onCall({ enforceAppCheck: true }, async (request) => {
   if (deleting.exists) await deleting.ref.update({ deletionRequested: true });
   // RTDN and XP triggers check profile existence; remove the profile tree before releasing identity.
   await db.recursiveDelete(db.collection('users').doc(uid));
-  for (const name of ['leaderboard', 'activity', 'usernames', 'billingPurchaseTokens']) {
-    const docs = await db.collection(name).where('uid', '==', uid).get();
-    if (!docs.empty) {
-      const writer = db.bulkWriter();
-      for (const doc of docs.docs) writer.delete(doc.ref);
-      await writer.close();
+  async function deleteQuery(query) {
+    while (true) {
+      const docs = await query.limit(200).get();
+      if (docs.empty) return;
+      const batch = db.batch();
+      for (const doc of docs.docs) batch.delete(doc.ref);
+      await batch.commit();
     }
   }
-  const friendships = await db.collectionGroup('friends').where('uid', '==', uid).get();
-  if (!friendships.empty) {
-    const writer = db.bulkWriter();
-    for (const doc of friendships.docs) writer.delete(doc.ref);
-    await writer.close();
+  for (const name of ['leaderboard', 'activity', 'usernames', 'billingPurchaseTokens']) {
+    await deleteQuery(db.collection(name).where('uid', '==', uid));
   }
+  await deleteQuery(db.collectionGroup('friends').where('uid', '==', uid));
   try { await getAuth().deleteUser(uid); } catch (error) {
     if (error.code !== 'auth/user-not-found') throw new HttpsError('unavailable', 'Hesap silme tamamlanamadı. Yeniden dene.');
   }

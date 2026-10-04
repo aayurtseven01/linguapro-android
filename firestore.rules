@@ -105,7 +105,18 @@ service cloud.firestore {
 
       // Arkadas listesi: yalnizca sahibi okur/yazar/siler.
       match /friends/{friendId} {
-        allow read, create, update, delete: if signedInAs(userId);
+        allow read, delete: if signedInAs(userId);
+        allow create, update: if activeAccount(userId)
+          && friendId != userId
+          && exists(/databases/$(database)/documents/users/$(friendId))
+          && get(/databases/$(database)/documents/users/$(friendId)).data.get('deletionRequested', false) == false
+          && request.resource.data.keys().hasOnly(['uid', 'username', 'avatar', 'addedAt'])
+          && request.resource.data.uid == friendId
+          && request.resource.data.username is string
+          && request.resource.data.username.size() <= 20
+          && request.resource.data.avatar is string
+          && request.resource.data.avatar.size() <= 120
+          && request.resource.data.addedAt is int;
       }
     }
 

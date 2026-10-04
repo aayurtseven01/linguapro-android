@@ -2,6 +2,7 @@
 
 const { createHash } = require('node:crypto');
 const DEFAULT_PRODUCTS = ['linguapro_pro_monthly', 'linguapro_pro_yearly'];
+const COURSE_IDS = new Set(require('./course-ids.json'));
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 
 function weekKey(now) {
@@ -20,9 +21,8 @@ function studyAward(lessonId, score, completedAt) {
   if (typeof lessonId !== 'string' || lessonId.length > 100) return null;
   const language = '(?:EN|DE|FR|ES|PT|IT|RU|ZH|JA|KO)';
   const level = '(?:A[12]|B[12]|C[12])';
-  const course = new RegExp(`^(?:${language}-)?${level}-U[1-9][0-9]{0,2}-(?:L[1-9]|CP)$`);
   const practice = new RegExp(`^${language}-(?:WORDS|${level}-(?:REFRESH|PRO))$`);
-  if (!course.test(lessonId) && !practice.test(lessonId)) return null;
+  if (!COURSE_IDS.has(lessonId) && !practice.test(lessonId)) return null;
   if (score != null && (!Number.isInteger(score) || score < 0 || score > 100)) return null;
   if (!Number.isFinite(completedAt)) return null;
   const day = new Date(completedAt).toISOString().slice(0, 10);

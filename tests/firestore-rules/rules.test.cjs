@@ -196,11 +196,18 @@ test('reserved names cannot be impersonated in the leaderboard or activity feed'
 
 test('friends: only the owner manages their own list', async () => {
   const alice = env.authenticatedContext('alice').firestore();
+  const bob = env.authenticatedContext('bob').firestore();
+  await assertSucceeds(setDoc(doc(alice, 'users/alice'), profile('alice')));
+  await assertSucceeds(setDoc(doc(bob, 'users/bob'), profile('bob')));
   await assertSucceeds(setDoc(doc(alice, 'users/alice/friends/bob'), { uid: 'bob', username: 'bob_tr', avatar: '', addedAt: 1 }));
   const mallory = env.authenticatedContext('mallory').firestore();
   await assertFails(setDoc(doc(mallory, 'users/alice/friends/mallory'), { uid: 'mallory', username: 'm', avatar: '', addedAt: 1 }));
   await assertFails(getDocs(collection(mallory, 'users/alice/friends')));
   await assertSucceeds(deleteDoc(doc(alice, 'users/alice/friends/bob')));
+  await env.withSecurityRulesDisabled(async (ctx) => {
+    await updateDoc(doc(ctx.firestore(), 'users/bob'), { deletionRequested: true });
+  });
+  await assertFails(setDoc(doc(alice, 'users/alice/friends/bob'), { uid: 'bob', username: 'bob_tr', avatar: '', addedAt: 1 }));
 });
 
 test('usernames: first claim wins, cannot be overwritten, owner can release', async () => {

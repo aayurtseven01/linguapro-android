@@ -33,6 +33,8 @@ test('XP awards are bounded and repeat attempts share the same daily reward key'
   assert.equal(studyAward('A1-U1-L1', 60, now).id, studyAward('A1-U1-L1', 90, now + 1000).id);
   assert.notEqual(studyAward('A1-U1-L1', 90, now).id, studyAward('A1-U1-L1', 90, now + 86400000).id);
   assert.equal(studyAward('fake', 100, now), null);
+  assert.equal(studyAward('A1-U999-L1', 100, now), null);
+  assert.equal(studyAward('A1-JSON-U1-L1', 90, now).xp, 19);
   assert.equal(studyAward('A1-U1-L1', 999999, now), null);
   assert.equal(studyAward('A1-U1-L1', 20.5, now), null);
 });
