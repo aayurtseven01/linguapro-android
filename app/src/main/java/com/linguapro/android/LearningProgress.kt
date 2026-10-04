@@ -9,7 +9,8 @@ data class LearningProgress(
     val streakDays: Int = 0,
     val totalXp: Int = 0,
     val todayXp: Int = 0,
-    val lastStudyDate: String = ""
+    val lastStudyDate: String = "",
+    val streakFreezes: Int = 0
 ) {
     val dailyGoalPercent: Int get() = (todayXp * 100 / DAILY_XP_GOAL).coerceIn(0, 100)
     val dailyGoalReached: Boolean get() = todayXp >= DAILY_XP_GOAL
@@ -32,12 +33,19 @@ class LearningProgressStore(context: Context, learnerKey: String) {
 
     fun read(today: LocalDate = LocalDate.now()): LearningProgress {
         val lastDate = prefs.getString(KEY_DATE, "").orEmpty()
+        val freezes = prefs.getInt(KEY_FREEZES, 0)
         val streak = prefs.getInt(KEY_STREAK, 0).let { saved ->
             val parsed = runCatching { LocalDate.parse(lastDate) }.getOrNull()
-            if (parsed == null || ChronoUnit.DAYS.between(parsed, today) > 1) 0 else saved
+            when {
+                parsed == null -> 0
+                ChronoUnit.DAYS.between(parsed, today) <= 1 -> saved
+                // Dün atlandı ama Seri Dondurucu hazır: seri görünümde korunur, sonraki derste tüketilir.
+                StreakFreezeLogic.shouldConsume(parsed, today, freezes) -> saved
+                else -> 0
+            }
         }
         val todayXp = if (lastDate == today.toString()) prefs.getInt(KEY_TODAY_XP, 0) else 0
-        return LearningProgress(streak, prefs.getInt(KEY_TOTAL_XP, 0), todayXp, lastDate)
+        return LearningProgress(streak, prefs.getInt(KEY_TOTAL_XP, 0), todayXp, lastDate, freezes)
     }
 
     fun recordLesson(score: Int?, today: LocalDate = LocalDate.now()): LearningProgress {
@@ -45,7 +53,11 @@ class LearningProgressStore(context: Context, learnerKey: String) {
         val priorStreak = prefs.getInt(KEY_STREAK, 0)
         val oldTodayXp = if (priorDate == today) prefs.getInt(KEY_TODAY_XP, 0) else 0
         val awardedXp = LessonScoring.xpForCompletion(score)
-        val streak = StreakLogic.nextStreak(priorStreak, priorDate, today)
+        val freezes = prefs.getInt(KEY_FREEZES, 0)
+        val consumeFreeze = StreakFreezeLogic.shouldConsume(priorDate, today, freezes)
+        val effectivePrior = if (consumeFreeze) today.minusDays(1) else priorDate
+        if (consumeFreeze) prefs.edit().putInt(KEY_FREEZES, freezes - 1).apply()
+        val streak = StreakLogic.nextStreak(priorStreak, effectivePrior, today)
         val todayXp = oldTodayXp + awardedXp
         prefs.edit()
             .putString(KEY_DATE, today.toString())
@@ -60,7 +72,11 @@ class LearningProgressStore(context: Context, learnerKey: String) {
     fun addBonusXp(xp: Int, today: LocalDate = LocalDate.now()): LearningProgress {
         val priorDate = runCatching { LocalDate.parse(prefs.getString(KEY_DATE, "").orEmpty()) }.getOrNull()
         val oldTodayXp = if (priorDate == today) prefs.getInt(KEY_TODAY_XP, 0) else 0
-        val streak = StreakLogic.nextStreak(prefs.getInt(KEY_STREAK, 0), priorDate, today)
+        val freezes = prefs.getInt(KEY_FREEZES, 0)
+        val consumeFreeze = StreakFreezeLogic.shouldConsume(priorDate, today, freezes)
+        val effectivePrior = if (consumeFreeze) today.minusDays(1) else priorDate
+        if (consumeFreeze) prefs.edit().putInt(KEY_FREEZES, freezes - 1).apply()
+        val streak = StreakLogic.nextStreak(prefs.getInt(KEY_STREAK, 0), effectivePrior, today)
         prefs.edit()
             .putString(KEY_DATE, today.toString())
             .putInt(KEY_STREAK, streak)
@@ -70,10 +86,17 @@ class LearningProgressStore(context: Context, learnerKey: String) {
         return read(today)
     }
 
+    /** Elmas Dükkânı: Seri Dondurucu satın alımı. */
+    fun addStreakFreeze(today: LocalDate = LocalDate.now()): LearningProgress {
+        prefs.edit().putInt(KEY_FREEZES, prefs.getInt(KEY_FREEZES, 0) + 1).apply()
+        return read(today)
+    }
+
     private companion object {
         const val KEY_DATE = "last_study_date"
         const val KEY_STREAK = "streak_days"
         const val KEY_TODAY_XP = "today_xp"
         const val KEY_TOTAL_XP = "total_xp"
+        const val KEY_FREEZES = "streak_freezes"
     }
 }

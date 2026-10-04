@@ -323,6 +323,10 @@ private fun LinguaApp() {
     val social = remember { com.linguapro.android.data.SocialRepository() }
     val questStore = remember(context, courseUid) { QuestProgressStore(context, courseUid) }
     var questVersion by remember { mutableIntStateOf(0) }
+    val gemStore = remember(context, courseUid) { GemStore(context, courseUid) }
+    var gems by remember(courseUid) { mutableIntStateOf(gemStore.gems()) }
+    var claimedChests by remember(courseUid) { mutableStateOf(gemStore.claimedChests()) }
+    var showGemShop by remember { mutableStateOf(false) }
     val syncBoard: () -> Unit = syncBoard@{
         if (accountUid.isBlank() || username.isBlank()) return@syncBoard
         social.upsertBoard(accountUid, username, userName, LevelSystem.levelFor(learningProgress.totalXp), learningProgress.totalXp, avatarCode) { }
@@ -520,7 +524,8 @@ private fun LinguaApp() {
                             questStore.setClaimed(day, quest.id)
                             learningProgress = progressStore.addBonusXp(quest.rewardXp)
                             questVersion++
-                            android.widget.Toast.makeText(context, "+${quest.rewardXp} XP — görev ödülü!", android.widget.Toast.LENGTH_SHORT).show()
+                            gems = gemStore.add(5)
+                            android.widget.Toast.makeText(context, "+${quest.rewardXp} XP +5 💎 — görev ödülü!", android.widget.Toast.LENGTH_SHORT).show()
                             if (DailyQuests.questsFor(day).all { questStore.claimed(day, it.id) } && accountUid.isNotBlank() && username.isNotBlank()) {
                                 social.postActivity(accountUid, username, avatarCode, "Günün tüm görevlerini tamamladı! 🏆") { }
                             }
@@ -528,6 +533,16 @@ private fun LinguaApp() {
                         }
                     },
                     onSocial = { go(AppRoute.Social) },
+                    gems = gems,
+                    onOpenShop = { showGemShop = true },
+                    chestsClaimed = claimedChests,
+                    onClaimChest = { chestUnitId ->
+                        if (gemStore.claimChest(chestUnitId)) {
+                            claimedChests = claimedChests + chestUnitId
+                            gems = gemStore.add(20)
+                            android.widget.Toast.makeText(context, "🎁 Sandık açıldı: +20 💎", android.widget.Toast.LENGTH_SHORT).show()
+                        }
+                    },
                     dailyWords = remember(courseLang) { DailyWords.wordsFor(courseLang, DailyWords.todayEpochDay()) },
                     onDailyWords = {
                         selectedLessonId = "$courseLang-WORDS"
@@ -536,6 +551,49 @@ private fun LinguaApp() {
                         go(AppRoute.Lesson)
                     }
                 )
+                if (showGemShop) {
+                    AlertDialog(
+                        onDismissRequest = { showGemShop = false },
+                        containerColor = Panel,
+                        title = { Text("💎 Elmas Dükkânı — $gems", fontWeight = FontWeight.Bold, fontSize = 17.sp) },
+                        text = {
+                            Column {
+                                Text("🧊 Seri Dondurucu", color = Gold, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                                Text("Bir gün çalışamazsan serin bozulmaz. Sahip olduğun: ${learningProgress.streakFreezes}", color = Muted, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 2.dp))
+                                Surface(
+                                    onClick = {
+                                        if (gemStore.spend(200)) {
+                                            learningProgress = progressStore.addStreakFreeze()
+                                            gems = gemStore.gems()
+                                            android.widget.Toast.makeText(context, "🧊 Seri Dondurucu hazır!", android.widget.Toast.LENGTH_SHORT).show()
+                                        } else android.widget.Toast.makeText(context, "Yetersiz elmas — 200 💎 gerekli.", android.widget.Toast.LENGTH_SHORT).show()
+                                    },
+                                    color = Gold, shape = RoundedCornerShape(12.dp), modifier = Modifier.padding(top = 7.dp)
+                                ) { Text("200 💎 — Satın al", color = Navy, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 12.dp, vertical = 7.dp)) }
+                                Spacer(Modifier.height(15.dp))
+                                Text("🎟️ Çifte XP Bileti", color = Gold, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                                val doubleActive = coursePrefs.getBoolean("doublexp_$courseUid", false)
+                                Text(if (doubleActive) "Aktif! Sıradaki dersin XP'si iki kat yazılacak." else "Sıradaki dersten iki kat XP kazan.", color = Muted, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 2.dp))
+                                if (!doubleActive) {
+                                    Surface(
+                                        onClick = {
+                                            if (gemStore.spend(150)) {
+                                                coursePrefs.edit().putBoolean("doublexp_$courseUid", true).apply()
+                                                gems = gemStore.gems()
+                                                showGemShop = false
+                                                android.widget.Toast.makeText(context, "🎟️ Çifte XP hazır — hadi derse!", android.widget.Toast.LENGTH_SHORT).show()
+                                            } else android.widget.Toast.makeText(context, "Yetersiz elmas — 150 💎 gerekli.", android.widget.Toast.LENGTH_SHORT).show()
+                                        },
+                                        color = Gold, shape = RoundedCornerShape(12.dp), modifier = Modifier.padding(top = 7.dp)
+                                    ) { Text("150 💎 — Satın al", color = Navy, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 12.dp, vertical = 7.dp)) }
+                                }
+                                Spacer(Modifier.height(13.dp))
+                                Text("Elmas kazan: ders +2 (%90+ → +4) • Checkpoint +10 • görev +5 • sandık +20 • seviye +15", color = Muted, fontSize = 11.sp, lineHeight = 15.sp)
+                            }
+                        },
+                        confirmButton = { TextButton(onClick = { showGemShop = false }) { Text("Kapat", color = OnBg) } }
+                    )
+                }
             }
             composable<AppRoute.Practice> {
                 PracticeScreen(
@@ -648,6 +706,18 @@ private fun LinguaApp() {
                         }
                         if (activeLesson.id.endsWith("-CP") && (score ?: 0) >= 80 && accountUid.isNotBlank() && username.isNotBlank()) {
                             social.postActivity(accountUid, username, avatarCode, "Bir Checkpoint'i %$score ile geçti! 🏁") { }
+                        }
+                        // Elmas kazanımları: ders +2 (%90+ → +4), geçilen Checkpoint +10, seviye atlama +15
+                        var gemGain = if (score != null && score >= 90) 4 else 2
+                        if (activeLesson.id.endsWith("-CP") && (score ?: 0) >= 80) gemGain += 10
+                        if (levelAfter > levelBefore) gemGain += 15
+                        gems = gemStore.add(gemGain)
+                        // Çifte XP Bileti: bir sonraki ders iki kat XP verir, kullanınca tükenir
+                        if (coursePrefs.getBoolean("doublexp_$courseUid", false)) {
+                            coursePrefs.edit().putBoolean("doublexp_$courseUid", false).apply()
+                            val doubleBonus = LessonScoring.xpForCompletion(score)
+                            learningProgress = progressStore.addBonusXp(doubleBonus)
+                            android.widget.Toast.makeText(context, "🎟️ Çifte XP bileti: +$doubleBonus bonus!", android.widget.Toast.LENGTH_SHORT).show()
                         }
                         syncBoard()
                         go(AppRoute.Home)
@@ -914,7 +984,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 }
 
 @Composable
-private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit, dailyWords: List<TargetVocabulary> = emptyList(), onDailyWords: () -> Unit = {}, dailyQuests: List<QuestUi> = emptyList(), onClaimQuest: (DailyQuest) -> Unit = {}, onSocial: () -> Unit = {}) {
+private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit, dailyWords: List<TargetVocabulary> = emptyList(), onDailyWords: () -> Unit = {}, dailyQuests: List<QuestUi> = emptyList(), onClaimQuest: (DailyQuest) -> Unit = {}, onSocial: () -> Unit = {}, gems: Int = 0, onOpenShop: () -> Unit = {}, chestsClaimed: Set<String> = emptySet(), onClaimChest: (String) -> Unit = {}) {
     val langName = WorldCatalog.language(langCode).nameTr
     val moduleList = courseUnits
     val courseLessonCount = moduleList.sumOf { it.lessons.size }
@@ -926,6 +996,9 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         Spacer(Modifier.height(14.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
             Column { Text("Merhaba, $name!", color = OnBg, fontSize = 26.sp, fontWeight = FontWeight.Bold); Text("$langName yolculuğuna devam et", color = OnBgSoft, fontSize = 13.sp) }
+            Surface(onClick = onOpenShop, color = Color(0x33FFFFFF), shape = RoundedCornerShape(16.dp), modifier = Modifier.padding(end = 6.dp)) {
+                Text("💎 $gems", color = OnBg, fontSize = 13.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp))
+            }
             IconButton(onClick = onProfile) { Icon(Icons.Default.AccountCircle, "Profili aç", tint = OnBg, modifier = Modifier.size(30.dp)) }
         }
         Spacer(Modifier.height(12.dp))
@@ -1164,7 +1237,29 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                         if (nodeCurrent) Text(pathLesson.title, color = OnBgSoft, fontSize = 10.sp, maxLines = 1, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 4.dp).width(150.dp))
                     }
                 }
-            } }
+            }
+                // Ünite ortasında elmas sandığı: ilk 3 ders bitince açılır, bir kez alınır
+                if (li == 2 && unit.lessons.size >= 5) item {
+                    val chestUnlocked = lessonPointer >= unitStart + 3
+                    val chestTaken = unit.id in chestsClaimed
+                    val chestOffset = (kotlin.math.sin((unitStart + li + 0.5) * 1.05) * 86).dp
+                    Box(Modifier.fillMaxWidth().padding(vertical = 3.dp), contentAlignment = Alignment.Center) {
+                        Surface(
+                            onClick = { if (chestUnlocked && !chestTaken) onClaimChest(unit.id) else if (!chestUnlocked) onLocked() },
+                            color = if (chestTaken) Panel2 else if (chestUnlocked) PinkAccent else Panel2,
+                            shape = CircleShape,
+                            shadowElevation = if (chestUnlocked && !chestTaken) 8.dp else 2.dp,
+                            border = if (chestUnlocked && !chestTaken) BorderStroke(2.dp, Color(0xFFF5F1FF)) else null,
+                            modifier = Modifier.offset(x = chestOffset).size(52.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+                                if (chestTaken) Text("✓", color = Gold, fontSize = 20.sp, fontWeight = FontWeight.ExtraBold)
+                                else Text("🎁", fontSize = 22.sp)
+                            }
+                        }
+                    }
+                }
+            }
             item { Spacer(Modifier.height(14.dp)) }
         }
         item { Column {

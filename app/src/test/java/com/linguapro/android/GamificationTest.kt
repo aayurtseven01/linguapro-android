@@ -3,6 +3,7 @@ package com.linguapro.android
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import java.time.LocalDate
 
 class GamificationTest {
 
@@ -73,5 +74,18 @@ class GamificationTest {
         val fromGarbage = AvatarConfig.decode("x=9;;;g=7;t=-3;banana")
         assertTrue(fromGarbage.gender in 0..1)
         assertTrue(fromGarbage.skin in 0..3)
+    }
+
+    // --- Seri Dondurucu ---
+
+    @Test
+    fun streakFreezeConsumesOnlyOnExactOneMissedDay() {
+        val today = LocalDate.of(2026, 10, 10)
+        assertTrue(StreakFreezeLogic.shouldConsume(today.minusDays(2), today, 1))   // dün atlandı + dondurucu var
+        assertFalse(StreakFreezeLogic.shouldConsume(today.minusDays(2), today, 0))  // dondurucu yok
+        assertFalse(StreakFreezeLogic.shouldConsume(today.minusDays(1), today, 3))  // atlama yok
+        assertFalse(StreakFreezeLogic.shouldConsume(today, today, 3))               // aynı gün
+        assertFalse(StreakFreezeLogic.shouldConsume(today.minusDays(3), today, 3))  // 2+ gün atlandı: kurtarmaz
+        assertFalse(StreakFreezeLogic.shouldConsume(null, today, 3))                // hiç çalışılmamış
     }
 }
