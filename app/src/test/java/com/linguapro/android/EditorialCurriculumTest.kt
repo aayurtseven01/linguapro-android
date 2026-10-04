@@ -8,6 +8,24 @@ import kotlinx.serialization.json.Json
 import com.linguapro.android.data.content.CoursePackValidator
 
 class EditorialCurriculumTest {
+    @Test fun everyWorldLanguageHasAnAuthoredIntroductoryScenario() {
+        WorldCatalog.languages.filterNot { it.code == "EN" }.forEach { language ->
+            val lesson = WorldCatalog.units(language.code, "A1").first().lessons.first()
+            assertEquals("${language.code}-A1-U1-L1", lesson.id)
+            assertEquals(8, lesson.exercises.size)
+            assertEquals(Skill.entries.toSet(), lesson.exercises.map { it.skill }.toSet())
+            assertTrue(lesson.exercises.all { it.id.startsWith("world-editorial-") })
+            assertTrue(lesson.grammarFocus!!.commonTurkishErrorTr.isNotBlank())
+            lesson.exercises.filter { it.options.isNotEmpty() }.forEach { question ->
+                assertEquals(1, question.options.count { AnswerChecker.matchesClosed(it, question.acceptedAnswers) })
+            }
+        }
+        val korean = WorldCatalog.units("KO", "A1").first().lessons.first()
+        assertTrue(korean.grammarFocus!!.commonTurkishErrorTr.contains("안녕히 계세요"))
+        val portuguese = WorldCatalog.units("PT", "A1").first().lessons.first()
+        assertTrue(portuguese.grammarFocus!!.explanationTr.contains("Brezilya"))
+    }
+
     @Test fun installedSupplementalPackStillMeetsItsSchemaAfterEditorialRevision() {
         val original = Json { ignoreUnknownKeys = true }.decodeFromString<CourseContentPack>(
             File("src/main/assets/course_content_v1.json").readText())
@@ -44,6 +62,8 @@ class EditorialCurriculumTest {
         report.writeText(buildString {
             appendLine("Rewritten English lessons: ${revised.size}")
             appendLine("New teaching activities: ${revised.sumOf { it.exercises.size }}")
+            appendLine("Rewritten world introduction lessons: 9")
+            appendLine("New world introduction activities: 72")
             appendLine("New assessment activities: 35")
             appendLine("Legacy vocabulary tasks with explicit meaning: ${teachingExercises.count { it.prompt.startsWith("Anlam:") }}")
             appendLine("Scenario lesson IDs: ${revised.joinToString { it.id }}")
