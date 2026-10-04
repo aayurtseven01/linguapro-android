@@ -67,7 +67,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import com.linguapro.android.data.AccountResult
+import com.linguapro.android.ui.auth.AuthViewModel
+import com.linguapro.android.ui.auth.AuthRequest
 import com.linguapro.android.data.FirebaseAccountRepository
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.linguapro.android.ui.home.LearningDashboardViewModel
@@ -808,10 +809,20 @@ private fun RegisterScreen(
     var email by rememberSaveable { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var error by rememberSaveable { mutableStateOf("") }
-    var busy by rememberSaveable { mutableStateOf(false) }
+    val authViewModel: AuthViewModel = androidx.lifecycle.viewmodel.compose.viewModel(
+        factory = remember(accounts) { AuthViewModel.Factory(accounts) }
+    )
+    val authState by authViewModel.state.collectAsState()
+    val busy = authState.busy
     var info by rememberSaveable { mutableStateOf("") }
     var acceptedLegal by rememberSaveable { mutableStateOf(false) }
     var legalDialog by rememberSaveable { mutableStateOf("") }
+    LaunchedEffect(authState.result) {
+        val result = authState.result ?: return@LaunchedEffect
+        authViewModel.consumeResult()
+        if (result.isSuccess) onContinue(result.displayName.ifBlank { name }, result.email.ifBlank { email }, result.uid.orEmpty())
+        else error = result.error ?: "İşlem tamamlanamadı."
+    }
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp)) {
         BackRow(if (isLogin) "Hesabına giriş yap" else "Hesap oluştur", onBack)
         Spacer(Modifier.height(22.dp))
@@ -836,13 +847,7 @@ private fun RegisterScreen(
             } else if (!isLogin && name.isBlank()) {
                 error = "Adını gir."
             } else {
-                busy = true
-                val done: (AccountResult) -> Unit = { result ->
-                    busy = false
-                    if (result.isSuccess) onContinue(result.displayName.ifBlank { name }, result.email.ifBlank { email }, result.uid.orEmpty())
-                    else error = result.error ?: "İşlem tamamlanamadı."
-                }
-                if (isLogin) accounts.signIn(email, password, done) else accounts.register(name, email, password, done)
+                authViewModel.submit(AuthRequest(isLogin, name, email, password))
             }
         }, enabled = !busy && acceptedLegal)
         if (isLogin) {
@@ -853,7 +858,7 @@ private fun RegisterScreen(
         }
         Text(
             if (isLogin) "Hesabın yok mu? Kayıt ol" else "Zaten hesabın var mı? Giriş yap",
-            color = Gold, fontSize = 13.sp, modifier = Modifier.align(Alignment.CenterHorizontally).clickable { isLogin = !isLogin; error = ""; info = "" }.padding(10.dp)
+            color = Gold, fontSize = 13.sp, modifier = Modifier.align(Alignment.CenterHorizontally).clickable(enabled = !busy) { isLogin = !isLogin; error = ""; info = "" }.padding(10.dp)
         )
         if (!isLogin) {
             Spacer(Modifier.height(12.dp))
@@ -861,7 +866,7 @@ private fun RegisterScreen(
                 InfoCard("Firebase yapılandırması bulunamadı. Gerçek hesap için Firebase Console kurulumu gerekir; aşağıdaki misafir akışı hesap oluşturmaz.")
                 Spacer(Modifier.height(8.dp))
             }
-            OutlinedButton(onClick = { onContinue(name.ifBlank { "Misafir Öğrenci" }, email, "") }, enabled = acceptedLegal, modifier = Modifier.fillMaxWidth()) {
+            OutlinedButton(onClick = { onContinue(name.ifBlank { "Misafir Öğrenci" }, email, "") }, enabled = acceptedLegal && !busy, modifier = Modifier.fillMaxWidth()) {
                 Text("Misafir olarak keşfet (hesap açmaz)", color = OnBg)
             }
         }
