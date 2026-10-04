@@ -33,7 +33,7 @@ class ProductionEditorialTest {
     @Test fun wordLessonsTeachContextThenRequireRecallWithoutShowingTheAnswer() {
         val units = CourseCatalog.levels.flatMap { CourseCatalog.units(it) }
         val lessons = units.flatMap { it.lessons }.filter { lesson -> lesson.exercises.any { it.id.matches(Regex("[abc][12]v[0-9]+e[0-9]+-recall")) } }
-        assertEquals(66, lessons.size)
+        assertEquals(65, lessons.size)
         var recalled = 0
         lessons.forEach { lesson ->
             val tasks = lesson.exercises.filter { it.id.endsWith("-recall") }
@@ -50,10 +50,19 @@ class ProductionEditorialTest {
                 assertTrue(word.exampleTr.isNotBlank())
             }
         }
-        assertEquals(198, recalled)
+        assertEquals(195, recalled)
         val enrol = lessons.flatMap { it.exercises }.single { it.id == "b1v17e1-recall" }
         assertTrue(AnswerChecker.matchesClosed("enroll", enrol.acceptedAnswers))
         assertFalse(AnswerChecker.matchesClosed("leave", enrol.acceptedAnswers))
+    }
+
+    @Test fun editorialContextSupportsTheClaimWithoutInventingDepartmentClosures() {
+        val lesson = CourseCatalog.units("C2").first().lessons.first()
+        val reply = lesson.exercises.single { it.id == "editorial-c2-u1-l1-reply" }
+        assertTrue(reply.context.contains(reply.acceptedAnswers.single(), ignoreCase = true))
+        assertFalse(reply.acceptedAnswers.single().contains("close three departments"))
+        assertTrue(lesson.exercises.single { it.id == "editorial-c2-u1-l1-vocab" }.context.isNotBlank())
+        assertFalse(lesson.exercises.single { it.skill == Skill.WRITING }.explanationTr.contains("little", ignoreCase = true))
     }
 
     @Test fun repeatedEditorialApplicationDoesNotDuplicateExercisesOrVocabulary() {
@@ -110,8 +119,8 @@ class ProductionEditorialTest {
         File(folder, "production-editorial.txt").writeText(buildString {
             appendLine("English lessons exported for editorial review (including checkpoints and supplemental pack): ${all.size}")
             appendLine("Independent task-sized writing models and checklists: ${WritingModels.all().size}")
-            appendLine("Word lessons with context and controlled recall: 66")
-            appendLine("New controlled recall tasks: 198")
+            appendLine("Word lessons with context and controlled recall: 65")
+            appendLine("New controlled recall tasks: 195")
             appendLine("Core target vocabulary records: ${CourseCatalog.allLessons().sumOf { it.targetVocabulary.size }}")
             appendLine("Models are examples, not unique answers. Writing length checks do not grade meaning or CEFR proficiency.")
         })

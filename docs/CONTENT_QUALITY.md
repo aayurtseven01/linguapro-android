@@ -24,7 +24,7 @@ Independent language-editor review, learner trials, calibrated difficulty, profe
 ## Production and word-lesson editorial revision
 
 - All 126 writing tasks now have separately authored model responses that satisfy their stated sentence or word limits, rather than repeating the source passage. Each task has three self-review criteria. B1–C2 show a live word count and transparent length feedback; alternative answers remain ungraded.
-- 66 existing vocabulary lessons now introduce words in English example sentences and add 198 controlled typed-recall activities. These examples also populate target-vocabulary records for review. Common British/American spelling variants are accepted where relevant.
+- 65 existing vocabulary lessons now introduce words in English example sentences and add 195 controlled typed-recall activities. These examples also populate target-vocabulary records for review. Common British/American spelling variants are accepted where relevant.
 - Nineteen volume grammar questions were clarified or corrected, including C2 inversion word order. Five supplemental grammar checks and additional conjunction/conditional prompts now specify the intended meaning or target structure. Completed sentences reinforce grammar explanations.
 - Lexical repairs cover source citation, outlining a presentation, narrative plot, idioms, and context-sensitive advanced vocabulary. This is a targeted revision, not a claim that every retained exercise was individually rewritten.
 - Writing checks no longer flag correct base forms such as “doesn't pass” and no longer equate unrelated non-Latin answers after stripping their characters. Unicode punctuation and canonical text normalization are supported.

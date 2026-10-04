@@ -22,7 +22,7 @@ object EditorialCurriculum {
     ): LearningLesson {
         val prefix = "editorial-${id.lowercase()}"
         return LearningLesson(id, title, outcome, listOf(
-            activity("$prefix-vocab", Skill.VOCABULARY, vocab),
+            activity("$prefix-vocab", Skill.VOCABULARY, vocab, passage = dialogue),
             activity("$prefix-listen-main", Skill.LISTENING, listen, audio = dialogue),
             activity("$prefix-listen-detail", Skill.LISTENING, detail, audio = dialogue),
             activity("$prefix-grammar", Skill.GRAMMAR, grammar),
@@ -32,7 +32,7 @@ object EditorialCurriculum {
                 "Say: $speak", acceptedAnswers = listOf(speak), explanationTr = "$speakTr\nBu görev model cümleyi tekrar etme alıştırmasıdır.",
                 modelAudioText = speak, sampleAnswer = speak),
             LearningExercise("$prefix-write", Skill.WRITING, "Verilen anlamı İngilizce yaz",
-                writingTr, acceptedAnswers = answers, explanationTr = "${rule.explanationTr}\nÖrnek: ${answers.first()}", sampleAnswer = answers.first())
+                writingTr, acceptedAnswers = answers, explanationTr = "Verilen anlamı ve istenen ifadeleri koru. Aşağıdaki yanıt bir örnektir; aynı anlamı farklı doğru cümlelerle de anlatabilirsin.\nÖrnek: ${answers.first()}", sampleAnswer = answers.first())
         ), words, rule)
     }
     private fun g(title: String, explanation: String, form: String, en: String, tr: String, error: String) =
@@ -205,7 +205,7 @@ object EditorialCurriculum {
             c("Why did employees object to the wording?", "It minimised the magnitude of the closures.", "It openly exaggerated the closures.", "It used a precise numerical description.", "Minor adjustments ile departmanların bütünüyle kapanması arasındaki fark, ifadenin küçültücü olduğunu gösterir."),
             c("In this context, 'tightening our belts' means...", "reducing spending", "changing the dress code", "expanding every department", "Deyim maddi kısıntı yapmayı anlatır. Kemer veya kıyafet burada gerçek anlamda kullanılmıyor."),
             c("Little ___ how extensive the cuts would be.", "did they realise", "they did realised", "they realising", "Sınırlayıcı little başa geldiğinde devrik yapı gerekir: did + özne + yalın fiil."),
-            c("Choose a neutral, transparent alternative to 'minor adjustments'.", "The company will close three departments.", "A few tiny improvements are on the way.", "Nothing of consequence will change.", "Somut kapanma bilgisini açıkça verir; diğer ifadeler kararı küçültür veya gizler."),
+            c("Choose a transparent description of the cuts mentioned in this conversation.", "Three teams have lost half their staff.", "A few tiny improvements are on the way.", "Nothing of consequence will change.", "Konuşma üç ekibin personelinin yarısını kaybettiğini söylüyor; tüm departmanların kapandığını söylemiyor. Diğer seçenekler kesintinin ölçeğini gizliyor."),
             "We shouldn't throw in the towel before testing the plan.", "Planı denemeden vazgeçmemeliyiz.", "Planı denemeden vazgeçmemeliyiz. (throw in the towel / before testing kullan.)", listOf("We shouldn't throw in the towel before testing the plan.", "We should not throw in the towel before testing the plan."),
             g("Little ile devrik yapı", "Olumsuz veya sınırlayıcı little başta olduğunda yardımcı fiil öznenin önüne geçer.", "Little + did + özne + yalın fiil", "Little did they realise how serious it was.", "Ne kadar ciddi olduğunu pek fark etmediler.", "Did'den sonra realised değil realise kullan."),
             listOf(w("tighten-belts", "tighten our belts", "harcamaları kısmak", "deyim", "We need to tighten our belts.", "Harcamalarımızı kısmamız gerekiyor."), w("throw-towel", "throw in the towel", "pes etmek / vazgeçmek", "deyim", "Don't throw in the towel yet.", "Henüz pes etme."))),
