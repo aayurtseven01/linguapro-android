@@ -5,6 +5,16 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class AnswerCheckerTest {
+    @Test fun closedAnswersDoNotAcceptSimilarButIncorrectPlacesOrAccents() {
+        assertFalse(AnswerChecker.matchesClosed("I live in Paris", listOf("I live in London")))
+        assertFalse(AnswerChecker.matchesClosed("ou", listOf("où")))
+        assertTrue(AnswerChecker.matchesClosed("Hello, I'm Anna!", listOf("hello im Anna")))
+    }
+
+    @Test fun shadowingDoesNotAcceptChangedContentWordsOrCjkNegation() {
+        assertFalse(AnswerChecker.matches("I would like to reserve a table for four", listOf("I would like to reserve a table for two")))
+        assertFalse(AnswerChecker.matches("我不喜欢喝咖啡和茶", listOf("我喜欢喝咖啡和茶")))
+    }
     @Test fun acceptsCaseAndPunctuationDifferences() {
         assertTrue(AnswerChecker.matches("hello, I'm Anna!", listOf("Hello I'm Anna")))
     }

@@ -23,6 +23,7 @@ class LinguaProApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        if (com.google.firebase.FirebaseApp.getApps(this).isNotEmpty()) AppCheckSetup.install()
         appScope.launch {
             courseSeedInitializer.installIfNeeded().onFailure { error ->
                 Log.e("LinguaPro", "Kurs içeriği yerel veritabanına yüklenemedi.", error)

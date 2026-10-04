@@ -5,6 +5,13 @@ import java.util.Locale
 
 /** Lightweight offline checker for closed-answer and shadowing practice; not an AI language grader. */
 object AnswerChecker {
+    /** Closed questions must not accept a distractor through speech-recognition tolerance. */
+    fun matchesClosed(response: String, accepted: List<String>): Boolean {
+        fun key(value: String): String = Normalizer.normalize(value.lowercase(Locale.ROOT), Normalizer.Form.NFC)
+            .replace("'", "").replace(Regex("[^\\p{L}\\p{N}\\p{M}]+"), " ").trim()
+        val responseKey = key(response)
+        return responseKey.isNotBlank() && accepted.any { key(it) == responseKey }
+    }
     fun normalize(value: String): String = Normalizer.normalize(value.lowercase(Locale.ROOT), Normalizer.Form.NFD)
         .replace(Regex("\\p{Mn}+"), "")
         .replace("'", "")
@@ -44,9 +51,16 @@ object AnswerChecker {
                     val lcs = longestCommonSubsequence(responseWords, targetWords).toFloat()
                     val recall = lcs / targetWords.size.coerceAtLeast(1)
                     val precision = lcs / responseWords.size.coerceAtLeast(1)
-                    val wordMatch = precision >= 0.72f && recall >= 0.72f
+                    val fillers = setOf("a", "an", "the", "please", "uh", "um")
+                    // Missing articles/fillers are tolerated; changing a name, number, verb or place is not.
+                    val sameContent = responseWords.filterNot { it in fillers } == targetWords.filterNot { it in fillers }
+                    val wordMatch = precision >= 0.72f && recall >= 0.72f && sameContent
+                    val cjk = normalizedTarget.any { it in '\u3400'..'\u9fff' || it in '\u3040'..'\u30ff' || it in '\uac00'..'\ud7af' }
+                    val cjkNegationMismatch = listOf("不", "没", "ない", "ません").any {
+                        normalizedTarget.contains(it) != normalizedResponse.contains(it)
+                    }
                     // Boşluk kullanmayan yazı sistemleri (Çince/Japonca): karakter-ikilisi benzerliği.
-                    wordMatch || (targetWords.size == 1 && normalizedTarget.length >= 4 &&
+                    wordMatch || (cjk && !cjkNegationMismatch && targetWords.size == 1 && normalizedTarget.length >= 4 &&
                         bigramSimilarity(normalizedResponse.replace(" ", ""), normalizedTarget) >= 0.8f)
                 }
             }

@@ -78,7 +78,7 @@ fun LearningLessonScreen(
     exerciseIndex: Int,
     onBack: () -> Unit,
     onExerciseResult: (exerciseId: String, skill: Skill, correct: Boolean) -> Unit,
-    onDone: (Int?) -> Unit,
+    onDone: (Int?, Int) -> Unit,
     ttsAccent: String = "en-US",
     speechRate: Float = 1.0f
 ) {
@@ -94,6 +94,35 @@ fun LearningLessonScreen(
     var correctCount by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableIntStateOf(0) }
     var gradedCount by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableIntStateOf(0) }
     var lessonFinished by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableStateOf(false) }
+    var savedStudyMillis by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableLongStateOf(0L) }
+    val studyClock = remember(lesson.id, exerciseIndex, attempt) { ActiveStudyClock(savedStudyMillis) }
+    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
+    val isFinished by rememberUpdatedState(lessonFinished)
+    LaunchedEffect(studyClock) {
+        while (true) { delay(1000); savedStudyMillis = studyClock.elapsedMillis(android.os.SystemClock.elapsedRealtime()) }
+    }
+    DisposableEffect(lifecycleOwner, studyClock) {
+        if (lifecycleOwner.lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.STARTED) && !isFinished) {
+            studyClock.resume(android.os.SystemClock.elapsedRealtime())
+        }
+        val observer = androidx.lifecycle.LifecycleEventObserver { _, event ->
+            val now = android.os.SystemClock.elapsedRealtime()
+            if (event == androidx.lifecycle.Lifecycle.Event.ON_START && !isFinished) studyClock.resume(now)
+            if (event == androidx.lifecycle.Lifecycle.Event.ON_STOP) { studyClock.pause(now); savedStudyMillis = studyClock.elapsedMillis(now) }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            val now = android.os.SystemClock.elapsedRealtime()
+            studyClock.pause(now); savedStudyMillis = studyClock.elapsedMillis(now)
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+    LaunchedEffect(lessonFinished) {
+        if (lessonFinished) {
+            val now = android.os.SystemClock.elapsedRealtime()
+            studyClock.pause(now); savedStudyMillis = studyClock.elapsedMillis(now)
+        }
+    }
     var finalScore by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableIntStateOf(0) }
     var ttsReady by remember { mutableStateOf(false) }
     val soundPrefs = LocalContext.current.getSharedPreferences("lingua_course", android.content.Context.MODE_PRIVATE)
@@ -148,8 +177,12 @@ fun LearningLessonScreen(
             override fun onEndOfSpeech() { micLevel = 0f }
             override fun onError(error: Int) {
                 isListening = false; micLevel = 0f
-                if (error == SpeechRecognizer.ERROR_NO_MATCH || error == SpeechRecognizer.ERROR_SPEECH_TIMEOUT) {
-                    speechMessage = "Ses algılanamadı. Tekrar dene veya cümleyi aşağıya yaz."
+                speechMessage = when (error) {
+                    SpeechRecognizer.ERROR_NO_MATCH, SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> "Ses algılanamadı. Tekrar dene veya cümleyi aşağıya yaz."
+                    SpeechRecognizer.ERROR_NETWORK, SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> "Konuşma tanıma için bağlantı kurulamadı. Cümleyi yazarak devam edebilirsin."
+                    SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> "Mikrofon iznini kontrol et veya cümleyi aşağıya yaz."
+                    SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> "Konuşma tanıma meşgul. Biraz bekleyip tekrar dene."
+                    else -> "Konuşma tanıma tamamlanamadı. Tekrar dene veya cümleyi aşağıya yaz."
                 }
             }
             override fun onPartialResults(partialResults: Bundle?) {
@@ -158,6 +191,7 @@ fun LearningLessonScreen(
             }
             override fun onResults(results: Bundle?) {
                 isListening = false; micLevel = 0f
+                if (submitted) return
                 val recognized = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.firstOrNull().orEmpty()
                 if (recognized.isNotBlank()) {
                     speechText = recognized
@@ -193,7 +227,10 @@ fun LearningLessonScreen(
     }
 
     if (lessonFinished) {
-        LessonCompletion(lesson = lesson, correct = correctCount, graded = gradedCount, score = finalScore, onContinue = { onDone(finalScore.takeIf { it >= 0 }) }, onRetry = { attempt++ })
+        LessonCompletion(lesson = lesson, correct = correctCount, graded = gradedCount, score = finalScore, onContinue = {
+            val seconds = (studyClock.elapsedMillis(android.os.SystemClock.elapsedRealtime()) / 1000).coerceIn(0L, 7200L).toInt()
+            onDone(finalScore.takeIf { it >= 0 }, seconds)
+        }, onRetry = { attempt++ })
         return
     }
 
@@ -349,7 +386,7 @@ fun LearningLessonScreen(
             Column(Modifier.fillMaxWidth().padding(18.dp)) {
                 Text(skillLabel(exercise.skill).uppercase(Locale.forLanguageTag("tr-TR")), color = LessonGold, fontWeight = FontWeight.Bold, fontSize = 12.sp)
                 Text(exercise.instructionTr, color = LessonMuted, fontSize = 13.sp, modifier = Modifier.padding(top = 6.dp, bottom = 14.dp))
-                if (exercise.skill == Skill.READING && exercise.context.isNotBlank()) {
+                if ((exercise.skill == Skill.READING || exercise.skill == Skill.WRITING || exercise.skill == Skill.VOCABULARY) && exercise.context.isNotBlank()) {
                     Surface(color = LessonPanel2, shape = RoundedCornerShape(14.dp)) {
                         Text(exercise.context, fontSize = 16.sp, lineHeight = 25.sp, modifier = Modifier.fillMaxWidth().padding(14.dp))
                     }
@@ -420,6 +457,22 @@ fun LearningLessonScreen(
                 } else {
                     Text(if (isDictation) "Duyduğun cümleyi yaz" else exercise.prompt, fontSize = 21.sp, fontWeight = FontWeight.Bold, lineHeight = 28.sp)
                     Spacer(Modifier.height(14.dp))
+                }
+
+                if (exercise.skill == Skill.WRITING) {
+                    exercise.writingRequirements?.let { requirements ->
+                        Text("Yanıtını kontrol ederken", color = LessonGold, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                        requirements.checklistTr.forEach { criterion ->
+                            Text("• $criterion", color = LessonMuted, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 4.dp))
+                        }
+                        val minimum = requirements.minimumWords
+                        val maximum = requirements.maximumWords
+                        if (minimum != null && maximum != null) {
+                            val count = answer.trim().split(Regex("\\s+")).count { it.isNotBlank() }
+                            Text("Kelime sayısı: $count • Hedef: $minimum–$maximum", color = LessonGold, fontSize = 12.sp, modifier = Modifier.padding(top = 8.dp))
+                        }
+                        Spacer(Modifier.height(12.dp))
+                    }
                 }
 
                 if (isWordBank) {
@@ -576,7 +629,7 @@ fun LearningLessonScreen(
                             Text("Açık uçlu yazı henüz otomatik puanlanmıyor. Yanıtını aşağıdaki örnekle karşılaştır.", color = LessonMuted, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 5.dp))
                             val sample = exercise.sampleAnswer ?: exercise.acceptedAnswers.firstOrNull().orEmpty()
                             if (sample.isNotBlank()) Text("Örnek yanıt: $sample", color = LessonGold, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 6.dp))
-                            val coaching = WritingCoach.review(answer, sample)
+                            val coaching = WritingCoach.review(answer, sample, exercise.writingRequirements)
                             coaching.strengths.forEach { Text("✓ $it", color = LessonMint, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 5.dp)) }
                             coaching.suggestions.forEach { Text("• $it", color = LessonGold, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 4.dp)) }
                             Text("Otomatik dilbilgisi puanı verilmez; öneriler temel biçim kontrolüdür.", color = LessonMuted, fontSize = 10.sp, lineHeight = 14.sp, modifier = Modifier.padding(top = 6.dp))
@@ -610,8 +663,11 @@ fun LearningLessonScreen(
                     val isCorrect = when {
                         // Cümle kurma: fişler hedeften geldiği için doğru dizilim birebir eşleşmedir
                         isBuilder -> typedAnswer.trim() == exercise.acceptedAnswers.first().trim()
+                        // Dikte: konuşma tanıma toleransıyla denetlenir
                         isDictation -> AnswerChecker.matches(typedAnswer, listOf(modelText))
-                        else -> AnswerChecker.matches(typedAnswer, exercise.acceptedAnswers)
+                        // Konuşma (serbest): tolerans; KAPALI sorular: çeldirici toleransla geçemez
+                        exercise.skill == Skill.SPEAKING && exercise.options.isEmpty() -> AnswerChecker.matches(typedAnswer, exercise.acceptedAnswers)
+                        else -> AnswerChecker.matchesClosed(typedAnswer, exercise.acceptedAnswers)
                     }
                     result = isCorrect
                     onExerciseResult(exercise.id, exercise.skill, isCorrect)

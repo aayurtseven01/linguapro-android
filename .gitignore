@@ -3,6 +3,9 @@
 /local.properties
 /firebase-debug.log
 node_modules/
+/functions/.env
+/functions/.env.*
+!/functions/.env.example
 /.firebase/
 /.idea/
 /build/

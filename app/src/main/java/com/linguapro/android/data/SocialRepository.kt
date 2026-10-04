@@ -10,7 +10,9 @@ data class BoardEntry(
     val displayName: String = "",
     val level: Int = 1,
     val totalXp: Int = 0,
-    val avatar: String = ""
+    val avatar: String = "",
+    val weeklyXp: Int = 0,
+    val weekKey: String = ""
 )
 
 /** Bülten (akış) öğesi. */
@@ -38,19 +40,29 @@ class SocialRepository {
             "uid" to uid,
             "username" to username.lowercase().trim(),
             "displayName" to displayName.take(40),
-            "level" to level,
-            "totalXp" to totalXp,
             "avatar" to avatar.take(120)
         )
-        d.collection("leaderboard").document(uid).set(data)
+        d.collection("leaderboard").document(uid).set(data, com.google.firebase.firestore.SetOptions.merge())
             .addOnSuccessListener { done(null) }
             .addOnFailureListener { done(it.localizedMessage ?: "Lig kaydı güncellenemedi.") }
     }
 
-    /** En yüksek XP'li 50 kullanıcı. */
+    fun loadIdentity(uid: String, done: (BoardEntry?) -> Unit) {
+        val d = db() ?: return done(null)
+        d.collection("leaderboard").document(uid).get()
+            .addOnSuccessListener { doc ->
+                val entry = doc.toBoard()
+                if (entry != null) done(entry)
+                else d.collection("usernames").whereEqualTo("uid", uid).limit(1).get()
+                    .addOnSuccessListener { names -> done(names.documents.firstOrNull()?.let { BoardEntry(uid = uid, username = it.id) }) }
+                    .addOnFailureListener { done(null) }
+            }.addOnFailureListener { done(null) }
+    }
+
+    /** En yüksek doğrulanmış XP'li 50 kullanıcı. */
     fun fetchTop(done: (List<BoardEntry>, String?) -> Unit) {
         val d = db() ?: return done(emptyList(), "Çevrimiçi özellikler için Firebase gerekli.")
-        d.collection("leaderboard").orderBy("totalXp", Query.Direction.DESCENDING).limit(50).get()
+        d.collection("leaderboard").whereEqualTo("weekKey", com.linguapro.android.WeeklyLeague.weekKey()).orderBy("verifiedWeekXp", Query.Direction.DESCENDING).limit(50).get()
             .addOnSuccessListener { snap -> done(snap.documents.mapNotNull { it.toBoard() }, null) }
             .addOnFailureListener { done(emptyList(), it.localizedMessage ?: "Lig tablosu yüklenemedi.") }
     }
@@ -70,9 +82,16 @@ class SocialRepository {
     fun claimUsername(uid: String, username: String, done: (String?) -> Unit) {
         val d = db() ?: return done("Çevrimiçi özellikler için Firebase gerekli.")
         val key = username.lowercase().trim()
-        d.collection("usernames").document(key).set(mapOf("uid" to uid))
+        if (!key.matches(Regex("[a-z0-9_.]{3,20}"))) return done("3–20 karakter kullan: a-z, rakam, nokta ve alt çizgi.")
+        val ref = d.collection("usernames").document(key)
+        d.runTransaction { tx ->
+            val existing = tx.get(ref)
+            if (existing.exists() && existing.getString("uid") != uid) throw IllegalStateException("USERNAME_TAKEN")
+            if (!existing.exists()) tx.set(ref, mapOf("uid" to uid))
+            null
+        }
             .addOnSuccessListener { done(null) }
-            .addOnFailureListener { done("Bu kullanıcı adı alınmış, başka bir tane dene.") }
+            .addOnFailureListener { done(if (it.message?.contains("USERNAME_TAKEN") == true) "Bu kullanıcı adı alınmış." else "Ad kaydedilemedi. İnternet bağlantını kontrol edip tekrar dene.") }
     }
 
     fun addFriend(uid: String, friend: BoardEntry, done: (String?) -> Unit) {
@@ -169,9 +188,11 @@ class SocialRepository {
             uid = u,
             username = getString("username") ?: return null,
             displayName = getString("displayName") ?: "",
-            level = (getLong("level") ?: 1L).toInt(),
-            totalXp = (getLong("totalXp") ?: 0L).toInt(),
-            avatar = getString("avatar") ?: ""
+            level = com.linguapro.android.LevelSystem.levelFor((getLong("verifiedXp") ?: 0L).toInt()),
+            totalXp = (getLong("verifiedXp") ?: 0L).toInt(),
+            avatar = getString("avatar") ?: "",
+            weeklyXp = (getLong("verifiedWeekXp") ?: 0L).toInt(),
+            weekKey = getString("weekKey") ?: ""
         )
     }
 }

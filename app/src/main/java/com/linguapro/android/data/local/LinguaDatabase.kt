@@ -6,8 +6,8 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(
-    entities = [LessonEntity::class, VocabularyEntity::class, ReviewCardEntity::class, LessonProgressEntity::class, ContentPackEntity::class],
-    version = 4,
+    entities = [LessonEntity::class, VocabularyEntity::class, ReviewCardEntity::class, LessonProgressEntity::class, ContentPackEntity::class, PendingLessonEvent::class],
+    version = 5,
     exportSchema = false
 )
 abstract class LinguaDatabase : RoomDatabase() {
@@ -16,8 +16,18 @@ abstract class LinguaDatabase : RoomDatabase() {
     abstract fun reviewCardDao(): ReviewCardDao
     abstract fun lessonProgressDao(): LessonProgressDao
     abstract fun contentPackDao(): ContentPackDao
+    abstract fun pendingLessonEventDao(): PendingLessonEventDao
 
     companion object {
+        val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("""CREATE TABLE IF NOT EXISTS pending_lesson_events (
+                    id TEXT NOT NULL, learnerId TEXT NOT NULL, lessonId TEXT NOT NULL,
+                    scorePercent INTEGER, countsTowardCourse INTEGER NOT NULL,
+                    createdAtEpochMillis INTEGER NOT NULL, PRIMARY KEY(id))""".trimIndent())
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_pending_lesson_events_learnerId ON pending_lesson_events(learnerId)")
+            }
+        }
         val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL(

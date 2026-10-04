@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "1.0.0",
+  "contentVersion": "2026-10-04-editorial-production-v5",
   "units": [
     {
       "id": "A1-JSON-U1",
@@ -406,7 +406,7 @@
             "explanationTr": "Rutin ve alışkanlıklarda present simple kullanılır. He/she/it ile fiile çoğunlukla -s eklenir.",
             "form": "I/you/we/they + fiil; he/she/it + fiil-s",
             "englishExample": "I start work at nine. She starts at nine.",
-            "turkishEquivalent": "İşe dokuzda başlarım. O dokuza başlar.",
+            "turkishEquivalent": "İşe dokuzda başlarım. O dokuzda başlar.",
             "commonTurkishErrorTr": "Türkçe fiilde kişi eki kullanır; İngilizce olumlu cümlede he/she/it için -s ekini unutma.",
             "checkPromptTr": "Doğru fiili seç: She ___ work at nine.",
             "correctAnswer": "starts",
@@ -718,8 +718,8 @@
             {
               "id": "A2-JSON-U1-L2-E2",
               "skill": "GRAMMAR",
-              "instructionTr": "Dilbilgisi odağını uygula.",
-              "prompt": "Cümleyi tamamla: We ___ on Friday.",
+              "instructionTr": "Belirtilen anlamı ve hedef yapıyı koru.",
+              "prompt": "Tamamlanmış geçmiş zamanı seç: We ___ on Friday.",
               "context": "Özne + fiilin geçmiş biçimi",
               "options": [
                 "arrive",
@@ -869,7 +869,7 @@
             "englishExample": "We arrived on Saturday and explored the old town.",
             "turkishEquivalent": "Cumartesi vardık ve eski şehri gezdik.",
             "commonTurkishErrorTr": "Türkçedeki -miş her zaman present perfect değildir; zaman belirliyse past simple çoğunlukla uygundur.",
-            "checkPromptTr": "Cümleyi tamamla: We ___ on Friday.",
+            "checkPromptTr": "Tamamlanmış geçmiş zamanı seç: We ___ on Friday.",
             "correctAnswer": "arrived",
             "checkOptions": [
               "arrive",
@@ -952,8 +952,8 @@
             {
               "id": "B1-JSON-U1-L1-E2",
               "skill": "GRAMMAR",
-              "instructionTr": "Dilbilgisi odağını uygula.",
-              "prompt": "Boşluğu doldur: I ___ the first draft.",
+              "instructionTr": "Belirtilen anlamı ve hedef yapıyı koru.",
+              "prompt": "Present perfect yapısını seç: I ___ the first draft.",
               "context": "have/has + V3; last week/yesterday + past simple",
               "options": [
                 "finished",
@@ -1103,7 +1103,7 @@
             "englishExample": "I've finished the draft. I sent it yesterday.",
             "turkishEquivalent": "Taslağı bitirdim. Dün gönderdim.",
             "commonTurkishErrorTr": "Türkçedeki -di/-miş ayrımı İngilizce zamanla birebir örtüşmez; zaman ifadesine ve bugünkü sonuca bak.",
-            "checkPromptTr": "Boşluğu doldur: I ___ the first draft.",
+            "checkPromptTr": "Present perfect yapısını seç: I ___ the first draft.",
             "correctAnswer": "have finished",
             "checkOptions": [
               "finished",
@@ -1413,8 +1413,8 @@
             {
               "id": "B2-JSON-U1-L1-E2",
               "skill": "GRAMMAR",
-              "instructionTr": "Dilbilgisi odağını uygula.",
-              "prompt": "Boşluğu doldur: The results ___ indicate a trend.",
+              "instructionTr": "Belirtilen anlamı ve hedef yapıyı koru.",
+              "prompt": "Kesin olmayan bir olasılığı ifade et: The results ___ indicate a trend.",
               "context": "The data may/might + fiil; it appears that…",
               "options": [
                 "may",
@@ -1564,7 +1564,7 @@
             "englishExample": "The results may indicate a positive trend.",
             "turkishEquivalent": "Sonuçlar olumlu bir eğilime işaret ediyor olabilir.",
             "commonTurkishErrorTr": "Türkçedeki kesinlik bildiren ifade İngilizce akademik metinde fazla güçlü kalabilir; örneklem ve sınırlılıkları belirt.",
-            "checkPromptTr": "Boşluğu doldur: The results ___ indicate a trend.",
+            "checkPromptTr": "Kesin olmayan bir olasılığı ifade et: The results ___ indicate a trend.",
             "correctAnswer": "may",
             "checkOptions": [
               "may",
@@ -1640,8 +1640,8 @@
             {
               "id": "B2-JSON-U1-L2-E2",
               "skill": "GRAMMAR",
-              "instructionTr": "Dilbilgisi odağını uygula.",
-              "prompt": "Cümleyi tamamla: We can meet the date provided that we ___ the release.",
+              "instructionTr": "Belirtilen anlamı ve hedef yapıyı koru.",
+              "prompt": "Koşul bölümünde present simple kullan: We can meet the date provided that we ___ the release.",
               "context": "Öneri + provided that + koşul",
               "options": [
                 "narrow",
@@ -1791,7 +1791,7 @@
             "englishExample": "We can meet the deadline provided that we add one reviewer.",
             "turkishEquivalent": "Bir gözden geçiren daha eklememiz koşuluyla son tarihe yetişebiliriz.",
             "commonTurkishErrorTr": "Türkçe koşul eki cümle içinde farklı yerde görünebilir; İngilizcede koşul bağlacından sonra özne ve fiil gerekir.",
-            "checkPromptTr": "Cümleyi tamamla: We can meet the date provided that we ___ the release.",
+            "checkPromptTr": "Koşul bölümünde present simple kullan: We can meet the date provided that we ___ the release.",
             "correctAnswer": "narrow",
             "checkOptions": [
               "narrow",
@@ -2101,8 +2101,8 @@
             {
               "id": "C1-JSON-U1-L2-E2",
               "skill": "GRAMMAR",
-              "instructionTr": "Dilbilgisi odağını uygula.",
-              "prompt": "Bağlacı seç: The plans converge on access, ___ they differ on cost.",
+              "instructionTr": "Belirtilen anlamı ve hedef yapıyı koru.",
+              "prompt": "İki görüşü karşılaştıran karşıtlık bağlacını seç: The plans converge on access, ___ they differ on cost.",
               "context": "A, whereas B; insofar as + cümle",
               "options": [
                 "whereas",
@@ -2252,7 +2252,7 @@
             "englishExample": "The plans converge on access, whereas they differ on cost.",
             "turkishEquivalent": "Planlar erişim konusunda örtüşüyor, maliyet konusunda ayrışıyor.",
             "commonTurkishErrorTr": "Türkçedeki ama/fakat her bağlamda aynı ilişkiyi vermez; karşıtlık mı, kapsam sınırlaması mı kurduğunu seç.",
-            "checkPromptTr": "Bağlacı seç: The plans converge on access, ___ they differ on cost.",
+            "checkPromptTr": "İki görüşü karşılaştıran karşıtlık bağlacını seç: The plans converge on access, ___ they differ on cost.",
             "correctAnswer": "whereas",
             "checkOptions": [
               "whereas",

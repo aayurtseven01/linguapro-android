@@ -73,6 +73,7 @@ fun SocialScreen(
 ) {
     var tab by remember { mutableIntStateOf(0) }
     var board by remember { mutableStateOf<List<BoardEntry>>(emptyList()) }
+    var ownBoard by remember(uid) { mutableStateOf<BoardEntry?>(null) }
     var friends by remember { mutableStateOf<List<BoardEntry>>(emptyList()) }
     var feed by remember { mutableStateOf<List<FeedItem>>(emptyList()) }
     var statusMessage by remember { mutableStateOf("") }
@@ -84,6 +85,7 @@ fun SocialScreen(
     LaunchedEffect(refresh, uid) {
         social.fetchTop { list, err -> board = list; if (err != null) statusMessage = err }
         if (uid.isNotBlank()) {
+            social.loadIdentity(uid) { ownBoard = it }
             social.loadFriends(uid) { list, _ ->
                 friends = list
                 social.loadFeed(list.map { it.uid } + uid) { items, _ -> feed = items }
@@ -191,12 +193,13 @@ fun SocialScreen(
             // ---- Lig ----
             1 -> {
                 val myRank = board.indexOfFirst { it.uid == uid }
+                Text("Haftalık lig • Pazartesi 00:00 UTC’de yenilenir. Bir dersten günde bir kez lig XP’si kazanılır.", color = ScMuted, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(bottom = 10.dp))
                 Surface(color = ScPanel, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp)) {
                     Row(Modifier.padding(13.dp), verticalAlignment = Alignment.CenterVertically) {
                         AvatarView(AvatarConfig.decode(avatarCode), 38.dp)
                         Column(Modifier.weight(1f).padding(start = 10.dp)) {
                             Text("@$username", color = ScGold, fontSize = 13.sp, fontWeight = FontWeight.Bold)
-                            Text("Seviye ${LevelSystem.levelFor(totalXp)} • $totalXp XP", color = ScMuted, fontSize = 11.sp)
+                            Text("Bu hafta ${if (ownBoard?.weekKey == WeeklyLeague.weekKey()) ownBoard?.weeklyXp ?: 0 else 0} XP • seviye ${ownBoard?.level ?: 1}", color = ScMuted, fontSize = 11.sp)
                         }
                         Surface(onClick = onEditAvatar, color = ScPanel2, shape = RoundedCornerShape(10.dp), modifier = Modifier.padding(end = 10.dp)) {
                             Text("✎", color = ScGold, fontSize = 14.sp, modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp))
@@ -218,7 +221,7 @@ fun SocialScreen(
                                 Text("@${entry.username}", color = ScText, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                                 Text("Seviye ${entry.level}", color = ScMuted, fontSize = 10.sp)
                             }
-                            Text("${entry.totalXp} XP", color = ScGold, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                            Text("${entry.weeklyXp} XP", color = ScGold, fontSize = 12.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -300,3 +303,4 @@ fun SocialScreen(
         Spacer(Modifier.height(24.dp))
     }
 }
+

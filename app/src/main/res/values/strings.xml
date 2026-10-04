@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">LinguaPro</string>
     <string name="reminder_channel">Hatırlatmalar</string>
-    <string name="reminder_title">Bugünkü İngilizce tekrarın hazır</string>
+    <string name="reminder_title">Bugünkü dil tekrarın hazır</string>
     <string name="reminder_body">Kısa bir tekrar yap ve çalışma serini sürdür.</string>
     <string name="settings_title">Ayarlar</string>
     <string name="settings_back">Geri</string>
@@ -28,8 +28,8 @@
     <string name="review_return">Ana sayfaya dön</string>
     <string name="review_due_count">Bekleyen kart: %1$d</string>
     <string name="review_instruction">Önce yanıtı aklından getir. Yazabilir, sonra kartın arkasını açıp kendini değerlendirebilirsin.</string>
-    <string name="review_tr_to_en">Türkçeden İngilizceye</string>
-    <string name="review_en_to_tr">İngilizceden Türkçeye</string>
+    <string name="review_tr_to_en">Türkçeden öğrendiğin dile</string>
+    <string name="review_en_to_tr">Öğrendiğin dilden Türkçeye</string>
     <string name="review_answer_hint">Yanıtını yaz (isteğe bağlı)</string>
     <string name="review_reveal">Yanıtı göster</string>
     <string name="review_answer_label">Kartın arka yüzü</string>
@@ -40,3 +40,4 @@
     <string name="review_easy">Kolay</string>
     <string name="review_feedback_note">Zorluk seçimi SM-2 tabanlı aralığı günceller. Bu kart puanı dil yeterliği sertifikası değildir.</string>
 </resources>
+

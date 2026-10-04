@@ -10,8 +10,10 @@ data class LearningProgress(
     val totalXp: Int = 0,
     val todayXp: Int = 0,
     val lastStudyDate: String = "",
-    val streakFreezes: Int = 0
+    val streakFreezes: Int = 0,
+    val todayStudySeconds: Int = 0
 ) {
+    fun studyGoalPercent(minutes: Int): Int = (todayStudySeconds.toLong() * 100 / (minutes.coerceAtLeast(1) * 60)).toInt().coerceIn(0, 100)
     val dailyGoalPercent: Int get() = (todayXp * 100 / DAILY_XP_GOAL).coerceIn(0, 100)
     val dailyGoalReached: Boolean get() = todayXp >= DAILY_XP_GOAL
 
@@ -45,10 +47,11 @@ class LearningProgressStore(context: Context, learnerKey: String) {
             }
         }
         val todayXp = if (lastDate == today.toString()) prefs.getInt(KEY_TODAY_XP, 0) else 0
-        return LearningProgress(streak, prefs.getInt(KEY_TOTAL_XP, 0), todayXp, lastDate, freezes)
+        val studySeconds = if (lastDate == today.toString()) prefs.getInt(KEY_STUDY_SECONDS, 0) else 0
+        return LearningProgress(streak, prefs.getInt(KEY_TOTAL_XP, 0), todayXp, lastDate, streakFreezes = freezes, todayStudySeconds = studySeconds)
     }
 
-    fun recordLesson(score: Int?, today: LocalDate = LocalDate.now()): LearningProgress {
+    fun recordLesson(score: Int?, today: LocalDate = LocalDate.now(), studiedSeconds: Int = 0): LearningProgress {
         val priorDate = runCatching { LocalDate.parse(prefs.getString(KEY_DATE, "").orEmpty()) }.getOrNull()
         val priorStreak = prefs.getInt(KEY_STREAK, 0)
         val oldTodayXp = if (priorDate == today) prefs.getInt(KEY_TODAY_XP, 0) else 0
@@ -59,13 +62,15 @@ class LearningProgressStore(context: Context, learnerKey: String) {
         if (consumeFreeze) prefs.edit().putInt(KEY_FREEZES, freezes - 1).apply()
         val streak = StreakLogic.nextStreak(priorStreak, effectivePrior, today)
         val todayXp = oldTodayXp + awardedXp
+        val studySeconds = (if (priorDate == today) prefs.getInt(KEY_STUDY_SECONDS, 0) else 0) + studiedSeconds.coerceIn(0, 7200)
         prefs.edit()
             .putString(KEY_DATE, today.toString())
             .putInt(KEY_STREAK, streak)
             .putInt(KEY_TODAY_XP, todayXp)
             .putInt(KEY_TOTAL_XP, prefs.getInt(KEY_TOTAL_XP, 0) + awardedXp)
+            .putInt(KEY_STUDY_SECONDS, studySeconds)
             .apply()
-        return LearningProgress(streak, prefs.getInt(KEY_TOTAL_XP, 0), todayXp, today.toString())
+        return LearningProgress(streak, prefs.getInt(KEY_TOTAL_XP, 0), todayXp, today.toString(), studySeconds)
     }
 
     /** Gunluk gorev odulu gibi ders disi XP ekler; seri ve gunluk hedef sayaclarini da gunceller. */
@@ -82,6 +87,7 @@ class LearningProgressStore(context: Context, learnerKey: String) {
             .putInt(KEY_STREAK, streak)
             .putInt(KEY_TODAY_XP, oldTodayXp + xp)
             .putInt(KEY_TOTAL_XP, prefs.getInt(KEY_TOTAL_XP, 0) + xp)
+            .putInt(KEY_STUDY_SECONDS, if (priorDate == today) prefs.getInt(KEY_STUDY_SECONDS, 0) else 0)
             .apply()
         return read(today)
     }
@@ -93,6 +99,7 @@ class LearningProgressStore(context: Context, learnerKey: String) {
     }
 
     private companion object {
+        const val KEY_STUDY_SECONDS = "study_seconds"
         const val KEY_DATE = "last_study_date"
         const val KEY_STREAK = "streak_days"
         const val KEY_TODAY_XP = "today_xp"

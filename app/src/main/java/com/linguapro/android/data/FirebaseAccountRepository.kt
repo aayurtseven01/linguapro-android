@@ -3,14 +3,23 @@ package com.linguapro.android.data
 import android.content.Context
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.EmailAuthProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import java.util.UUID
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 
 /** Firebase-backed account/profile boundary. UI never talks to Firebase SDKs directly. */
 class FirebaseAccountRepository(context: Context) {
+    private val actionScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private val appContext = context.applicationContext
     val isConfigured: Boolean get() = FirebaseApp.getApps(appContext).isNotEmpty()
 
@@ -84,70 +93,31 @@ class FirebaseAccountRepository(context: Context) {
 
     fun signOut() { if (isConfigured) auth().signOut() }
 
-    /**
-     * Hesap ve veri silme (Google Play zorunlulugu): once Firestore'daki ders gecmisi
-     * parti parti silinir, ardindan profil belgesi ve Authentication hesabi kaldirilir.
-     * Basarida callback(null), hatada kullaniciya gosterilecek Turkce mesaj doner.
-     */
-    fun deleteAccount(uid: String, callback: (String?) -> Unit) {
-        if (!isConfigured) { callback("Firebase yapılandırılmamış; silinecek bulut hesabı yok."); return }
+    /** Authenticate again BEFORE deleting any data. Every failed deletion stops the chain. */
+    fun deleteAccount(uid: String, password: String, callback: (String?) -> Unit) {
+        if (!isConfigured) { callback("Firebase yapılandırılmamış."); return }
         val user = auth().currentUser
-        if (user == null || user.uid != uid) { callback("Oturum doğrulanamadı. Çıkıp yeniden giriş yaptıktan sonra tekrar dene."); return }
-        val events = store().collection("users").document(uid).collection("lessonEvents")
-
-        // Sosyal temizlik: her koleksiyon parti parti, bitene kadar dongulu silinir (200+ kayit kalinti birakmaz).
-        fun deleteQueryLoop(nextBatch: () -> com.google.firebase.firestore.Query, then: () -> Unit) {
-            nextBatch().limit(200).get()
-                .addOnCompleteListener { task ->
-                    val docs = task.result?.documents.orEmpty()
-                    if (docs.isEmpty()) { then(); return@addOnCompleteListener }
-                    val batch = store().batch()
-                    docs.forEach { batch.delete(it.reference) }
-                    batch.commit().addOnCompleteListener { deleteQueryLoop(nextBatch, then) }
-                }
+        if (user == null || user.uid != uid || user.email.isNullOrBlank()) {
+            callback("Oturum doğrulanamadı. Yeniden giriş yapıp tekrar dene.")
+            return
         }
-
-        fun deleteSocial(then: () -> Unit) {
-            store().collection("leaderboard").document(uid).delete()
-                .addOnCompleteListener {
-                    deleteQueryLoop({ store().collection("users").document(uid).collection("friends") }) {
-                        deleteQueryLoop({ store().collection("activity").whereEqualTo("uid", uid) }) {
-                            deleteQueryLoop({ store().collection("usernames").whereEqualTo("uid", uid) }) { then() }
-                        }
-                    }
-                }
+        if (password.isBlank()) { callback("Silmek için mevcut şifreni gir."); return }
+        actionScope.launch {
+            try {
+                user.reauthenticate(EmailAuthProvider.getCredential(user.email!!, password)).await()
+            } catch (error: Exception) {
+                callback(authMessage(error))
+                return@launch
+            }
+            try {
+                user.getIdToken(true).await()
+                val response = FirebaseFunctions.getInstance().getHttpsCallable("deleteAccount").call().await()
+                check((response.data as? Map<*, *>)?.get("deleted") == true)
+                callback(null)
+            } catch (error: Exception) {
+                callback("Silme tamamlanamadı. Bazı veriler silinmiş olabilir; aynı işlemi yeniden deneyebilirsin. " + safeMessage(error))
+            }
         }
-
-        fun deleteProfileThenUser() {
-            store().collection("users").document(uid).delete()
-                .addOnSuccessListener {
-                    user.delete()
-                        .addOnSuccessListener { callback(null) }
-                        .addOnFailureListener { e ->
-                            callback(
-                                if (e is com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException)
-                                    "Güvenlik gereği bu işlem yakın zamanda giriş ister. Çıkış yapıp yeniden giriş yaptıktan sonra tekrar dene."
-                                else e.localizedMessage ?: "Hesap silinemedi."
-                            )
-                        }
-                }
-                .addOnFailureListener { e -> callback(e.localizedMessage ?: "Profil verisi silinemedi.") }
-        }
-
-        fun deleteEventsBatch() {
-            events.limit(200).get()
-                .addOnSuccessListener { snapshot ->
-                    if (snapshot.isEmpty) { deleteProfileThenUser(); return@addOnSuccessListener }
-                    val batch = store().batch()
-                    snapshot.documents.forEach { batch.delete(it.reference) }
-                    batch.commit()
-                        .addOnSuccessListener { deleteEventsBatch() }
-                        .addOnFailureListener { e -> callback(e.localizedMessage ?: "Ders geçmişi silinemedi.") }
-                }
-                .addOnFailureListener { e -> callback(e.localizedMessage ?: "Ders geçmişi okunamadı.") }
-        }
-
-        deleteSocial { deleteEventsBatch() }
     }
 
     fun loadProfile(uid: String, callback: (AccountProfile?) -> Unit) {
@@ -175,25 +145,45 @@ class FirebaseAccountRepository(context: Context) {
         ).addOnSuccessListener { callback(null) }.addOnFailureListener { callback(safeMessage(it)) }
     }
 
-    fun recordLesson(uid: String, lessonId: String, score: Int?, countsTowardCourse: Boolean = true, callback: (String?) -> Unit) {
-        val event = mutableMapOf<String, Any>("lessonId" to lessonId, "completedAt" to FieldValue.serverTimestamp())
-        score?.let { event["score"] = it.coerceIn(0, 100) }
-        store().collection("users").document(uid).collection("lessonEvents").add(event)
-            .addOnSuccessListener {
-                val profileUpdates = mutableMapOf<String, Any>(
-                    "lastStudiedAt" to FieldValue.serverTimestamp(),
-                    "updatedAt" to FieldValue.serverTimestamp()
-                )
-                if (countsTowardCourse) {
-                    profileUpdates["completedLessons"] = FieldValue.increment(1)
-                    // Seviye sayacı yalnızca kimliği CEFR seviyesiyle başlayan (İngilizce) dersler için artar;
-                    // diğer dillerin ilerlemesi cihazda dil+seviye bazında tutulur. A1'e geri düşme yok.
-                    val cefrLevel = lessonId.substringBefore('-').takeIf { it in CEFR_LEVELS }
-                    if (cefrLevel != null) profileUpdates["completedByLevel$cefrLevel"] = FieldValue.increment(1)
+    /** Atomic, retry-safe upload. Attempts and unique course completions have separate ids. */
+    fun recordLesson(
+        uid: String,
+        lessonId: String,
+        score: Int?,
+        countsTowardCourse: Boolean = true,
+        eventId: String = UUID.randomUUID().toString(),
+        callback: (String?) -> Unit
+    ) {
+        if (!isConfigured || currentUser()?.uid != uid) {
+            callback("İlerlemeyi eşitlemek için hesabınla giriş yap."); return
+        }
+        if (lessonId.isBlank() || '/' in lessonId || eventId.isBlank() || '/' in eventId) {
+            callback("Ders kaydı geçersiz."); return
+        }
+        val profile = store().collection("users").document(uid)
+        val attempt = profile.collection("lessonEvents").document(eventId)
+        val completion = profile.collection("lessonCompletions").document(lessonId)
+        store().runTransaction { transaction ->
+            val existingAttempt = transaction.get(attempt)
+            if (existingAttempt.exists()) return@runTransaction null
+            val firstCompletion = countsTowardCourse && !transaction.get(completion).exists()
+            val event = mutableMapOf<String, Any>("lessonId" to lessonId, "completedAt" to FieldValue.serverTimestamp())
+            score?.let { event["score"] = it.coerceIn(0, 100) }
+            transaction.set(attempt, event)
+            val updates = mutableMapOf<String, Any>(
+                "lastStudiedAt" to FieldValue.serverTimestamp(),
+                "updatedAt" to FieldValue.serverTimestamp()
+            )
+            if (firstCompletion) {
+                transaction.set(completion, event)
+                updates["completedLessons"] = FieldValue.increment(1)
+                lessonId.substringBefore('-').takeIf { it in CEFR_LEVELS }?.let {
+                    updates["completedByLevel$it"] = FieldValue.increment(1)
                 }
-                store().collection("users").document(uid).update(profileUpdates)
-                    .addOnSuccessListener { callback(null) }.addOnFailureListener { callback(safeMessage(it)) }
             }
+            transaction.update(profile, updates)
+            null
+        }.addOnSuccessListener { callback(null) }
             .addOnFailureListener { callback(safeMessage(it)) }
     }
 
@@ -235,3 +225,4 @@ data class AccountResult(
         fun Error(message: String, uid: String? = null, name: String = "", email: String = "") = AccountResult(uid, name, email, message)
     }
 }
+
