@@ -123,7 +123,18 @@ fun SocialScreen(
                     Text("Arkadaşların seni bu adla bulur. 3-20 karakter; küçük harf, rakam, nokta ve alt çizgi.", color = ScMuted, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 5.dp))
                     OutlinedTextField(
                         value = nameDraft,
-                        onValueChange = { nameDraft = it.lowercase().filter { ch -> ch.isLetterOrDigit() || ch == '.' || ch == '_' }.take(20) },
+                        onValueChange = { raw ->
+                            statusMessage = ""
+                            val folded = raw.lowercase().map { ch ->
+                                when (ch) {
+                                    'ı' -> 'i'; 'ğ' -> 'g'; 'ü' -> 'u'; 'ş' -> 's'; 'ö' -> 'o'; 'ç' -> 'c'
+                                    'â' -> 'a'; 'î' -> 'i'; 'û' -> 'u'
+                                    else -> ch
+                                }
+                            }
+                            nameDraft = folded.filter { it in 'a'..'z' || it in '0'..'9' || it == '.' || it == '_' }
+                                .joinToString("").take(20)
+                        },
                         singleLine = true,
                         label = { Text("kullanıcı adı") },
                         modifier = Modifier.fillMaxWidth().padding(top = 10.dp),
@@ -140,6 +151,9 @@ fun SocialScreen(
                         modifier = Modifier.padding(top = 12.dp)
                     ) {
                         Text("Kaydet ve katıl", color = if (nameDraft.length >= 3) ScNavy else ScMuted, fontSize = 13.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 16.dp, vertical = 9.dp))
+                    }
+                    if (statusMessage.isNotBlank()) {
+                        Text(statusMessage, color = ScPink, fontSize = 12.sp, lineHeight = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 10.dp))
                     }
                 }
             }
