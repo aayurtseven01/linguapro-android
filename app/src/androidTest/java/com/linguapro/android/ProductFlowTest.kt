@@ -74,8 +74,10 @@ class ProductFlowTest {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val target = File(context.filesDir, "qa-screenshots/$name.png")
         target.parentFile!!.mkdirs()
-        val roots = compose.onAllNodes(isRoot())
-        val bitmap = roots[roots.fetchSemanticsNodes().lastIndex].captureToImage().asAndroidBitmap()
+        val root = if (name == "delete-confirmation") {
+            compose.onNode(isRoot() and hasAnyDescendant(hasText("Evet, kalıcı olarak sil")))
+        } else compose.onRoot()
+        val bitmap = root.captureToImage().asAndroidBitmap()
         target.outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
     }
 }
