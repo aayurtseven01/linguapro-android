@@ -327,7 +327,7 @@ fun LearningLessonScreen(
             Column(Modifier.fillMaxWidth().padding(18.dp)) {
                 Text(skillLabel(exercise.skill).uppercase(Locale.forLanguageTag("tr-TR")), color = LessonGold, fontWeight = FontWeight.Bold, fontSize = 12.sp)
                 Text(exercise.instructionTr, color = LessonMuted, fontSize = 13.sp, modifier = Modifier.padding(top = 6.dp, bottom = 14.dp))
-                if (exercise.skill == Skill.READING && exercise.context.isNotBlank()) {
+                if ((exercise.skill == Skill.READING || exercise.skill == Skill.WRITING) && exercise.context.isNotBlank()) {
                     Surface(color = LessonPanel2, shape = RoundedCornerShape(14.dp)) {
                         Text(exercise.context, fontSize = 16.sp, lineHeight = 25.sp, modifier = Modifier.fillMaxWidth().padding(14.dp))
                     }

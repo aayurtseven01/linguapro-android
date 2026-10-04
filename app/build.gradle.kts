@@ -85,3 +85,8 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.6.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
 }
+
+// Preserve content audit reports when the unit-test task is restored from cache.
+tasks.matching { it.name == "testDebugUnitTest" }.configureEach {
+    outputs.dir(layout.buildDirectory.dir("reports/catalog"))
+}
