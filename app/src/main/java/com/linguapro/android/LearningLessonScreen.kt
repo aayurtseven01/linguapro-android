@@ -102,6 +102,8 @@ fun LearningLessonScreen(
     var selected by rememberSaveable(lesson.id, index.intValue, attempt) { mutableIntStateOf(-1) }
     var answer by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf("") }
     var submitted by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf(false) }
+    var writingSubmissionError by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf<String?>(null) }
+    LaunchedEffect(answer) { writingSubmissionError = null }
     var result by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf<Boolean?>(null) }
     var speechText by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf("") }
     var speechMessage by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf("") }
@@ -714,6 +716,9 @@ fun LearningLessonScreen(
             }
         }
         Spacer(Modifier.height(16.dp))
+        writingSubmissionError?.let { message ->
+            Text(message, color = LessonPink, fontSize = 13.sp, modifier = Modifier.padding(bottom = 8.dp))
+        }
         LessonButton(
             if (submitted && result == false) "Tekrar dene" else if (submitted && index.intValue == lesson.exercises.lastIndex) "Dersi tamamla" else if (submitted) "Sonraki etkinlik" else "Yanıtı kontrol et",
             Modifier.then(if (submitted && result != false) Modifier.breathe(1f, 1.015f, 1300) else Modifier)
@@ -732,11 +737,13 @@ fun LearningLessonScreen(
                 } else index.intValue++
             } else {
                 val typedAnswer = if (exercise.options.isNotEmpty() && !isDictation) exercise.options.getOrNull(selected).orEmpty() else answer
-                if (typedAnswer.isBlank()) return@LessonButton
                 if (exercise.skill == Skill.WRITING && !isBuilder) {
+                    writingSubmissionError = WritingCoach.submissionError(typedAnswer, exercise.writingRequirements)
+                    if (writingSubmissionError != null) return@LessonButton
                     submitted = true
                     result = null
                 } else {
+                    if (typedAnswer.isBlank()) return@LessonButton
                     val isCorrect = when {
                         // Cümle kurma: fişler hedeften geldiği için doğru dizilim birebir eşleşmedir
                         isBuilder -> typedAnswer.trim() == exercise.acceptedAnswers.first().trim()
@@ -1033,3 +1040,4 @@ private fun ListeningMic(active: Boolean, level: Float, modifier: Modifier = Mod
         }
     }
 }
+
