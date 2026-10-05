@@ -12,10 +12,9 @@ object AnswerChecker {
         val responseKey = key(response)
         return responseKey.isNotBlank() && accepted.any { key(it) == responseKey }
     }
-    fun normalize(value: String): String = Normalizer.normalize(value.lowercase(Locale.ROOT), Normalizer.Form.NFD)
-        .replace(Regex("\\p{Mn}+"), "")
+    fun normalize(value: String): String = Normalizer.normalize(value.lowercase(Locale.ROOT), Normalizer.Form.NFC)
         .replace("'", "")
-        .replace(Regex("[^\\p{L}\\p{N}]+"), " ")
+        .replace(Regex("[^\\p{L}\\p{N}\\p{M}]+"), " ")
         .trim()
 
     /** Olumsuzluk belirteçleri: yanıt ile hedef arasında olumsuzluk uyuşmazlığı varsa yanıt reddedilir. */
@@ -55,13 +54,10 @@ object AnswerChecker {
                     // Missing articles/fillers are tolerated; changing a name, number, verb or place is not.
                     val sameContent = responseWords.filterNot { it in fillers } == targetWords.filterNot { it in fillers }
                     val wordMatch = precision >= 0.72f && recall >= 0.72f && sameContent
+                    // Never infer semantic correctness from character similarity. CJK spacing
+                    // may vary in speech recognition, but characters must remain unchanged.
                     val cjk = normalizedTarget.any { it in '\u3400'..'\u9fff' || it in '\u3040'..'\u30ff' || it in '\uac00'..'\ud7af' }
-                    val cjkNegationMismatch = listOf("不", "没", "ない", "ません").any {
-                        normalizedTarget.contains(it) != normalizedResponse.contains(it)
-                    }
-                    // Boşluk kullanmayan yazı sistemleri (Çince/Japonca): karakter-ikilisi benzerliği.
-                    wordMatch || (cjk && !cjkNegationMismatch && targetWords.size == 1 && normalizedTarget.length >= 4 &&
-                        bigramSimilarity(normalizedResponse.replace(" ", ""), normalizedTarget) >= 0.8f)
+                    wordMatch || (cjk && normalizedResponse.replace(" ", "") == normalizedTarget.replace(" ", ""))
                 }
             }
         }
@@ -75,11 +71,4 @@ object AnswerChecker {
         return dp[a.size][b.size]
     }
 
-    private fun bigramSimilarity(a: String, b: String): Float {
-        if (a.length < 2 || b.length < 2) return if (a == b) 1f else 0f
-        val bigramsA = (0 until a.length - 1).map { a.substring(it, it + 2) }.toSet()
-        val bigramsB = (0 until b.length - 1).map { b.substring(it, it + 2) }.toSet()
-        val intersection = bigramsA.intersect(bigramsB).size
-        return 2f * intersection / (bigramsA.size + bigramsB.size)
-    }
 }
