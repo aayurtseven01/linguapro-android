@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.linguapro.android.ui.components.pressScale
 
 @Composable
 internal fun ProfileScreen(name: String, email: String, level: String, completed: Int, progress: LearningProgress, username: String, avatarCode: String, onEditAvatar: () -> Unit, onSocial: () -> Unit, onBack: () -> Unit, onSettings: () -> Unit, onSignOut: () -> Unit, onDeleteAccount: (String) -> Unit, deletionBusy: Boolean = false, onPro: () -> Unit = {}) {
@@ -55,17 +56,17 @@ internal fun ProfileScreen(name: String, email: String, level: String, completed
         Spacer(Modifier.height(18.dp))
         Text("Hesap ve gizlilik", color = OnBg, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         Text("Ders kayıtların önce cihazına kaydedilir, bağlantı geldiğinde hesabınla eşitlenir. Çalışma serisi ve beceri özeti bu cihazda tutulur. Lig XP’si sunucuda ayrı hesaplanır.", color = OnBgSoft, fontSize = 12.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 7.dp, bottom = 15.dp))
-        OutlinedButton(onClick = onPro, modifier = Modifier.fillMaxWidth()) { Text("Lingua Pro • kişisel pratik", color = Gold) }
+        OutlinedButton(onClick = onPro, modifier = Modifier.fillMaxWidth().pressScale()) { Text("Lingua Pro • kişisel pratik", color = Gold) }
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onEditAvatar, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Avatarını düzenle", color = OnBg) }
+        OutlinedButton(onClick = onEditAvatar, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth().pressScale()) { Text("Avatarını düzenle", color = OnBg) }
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onSocial, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Topluluk: Bülten • Lig • Arkadaşlar", color = OnBg) }
+        OutlinedButton(onClick = onSocial, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth().pressScale()) { Text("Topluluk: Bülten • Lig • Arkadaşlar", color = OnBg) }
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onSettings, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Öğrenme ayarları", color = OnBg) }
+        OutlinedButton(onClick = onSettings, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth().pressScale()) { Text("Öğrenme ayarları", color = OnBg) }
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onSignOut, enabled = !deletionBusy, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth()) { Text("Oturumu kapat", color = OnBg) }
+        OutlinedButton(onClick = onSignOut, enabled = !deletionBusy, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth().pressScale()) { Text("Oturumu kapat", color = OnBg) }
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = { confirmDelete = true }, enabled = !deletionBusy, border = BorderStroke(1.dp, PinkAccent), modifier = Modifier.fillMaxWidth()) { Text(if (deletionBusy) "Hesap siliniyor…" else "Hesabı ve verileri sil", color = PinkAccent) }
+        OutlinedButton(onClick = { confirmDelete = true }, enabled = !deletionBusy, border = BorderStroke(1.dp, PinkAccent), modifier = Modifier.fillMaxWidth().pressScale()) { Text(if (deletionBusy) "Hesap siliniyor…" else "Hesabı ve verileri sil", color = PinkAccent) }
         Spacer(Modifier.height(20.dp))
     }
     if (confirmDelete) {

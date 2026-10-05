@@ -15,8 +15,10 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
@@ -48,6 +50,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.linguapro.android.ui.components.PopOnChange
+import com.linguapro.android.ui.components.enterOnChange
+import com.linguapro.android.ui.components.popIn
+import com.linguapro.android.ui.components.pressScale
+import com.linguapro.android.ui.components.rememberHaptics
 import kotlinx.coroutines.delay
 import java.util.Locale
 
@@ -132,6 +139,7 @@ fun LearningLessonScreen(
     var wrongStreak by rememberSaveable(lesson.id, attempt) { mutableIntStateOf(0) }
     val assistActive = wrongStreak >= 2
     val context = LocalContext.current
+    val haptics = rememberHaptics()
     val tts = remember { mutableStateOf<TextToSpeech?>(null) }
 
     val courseSpeechTag = remember(lesson.id, ttsAccent) { WorldCatalog.speechTagForLesson(lesson.id, ttsAccent) }
@@ -204,6 +212,7 @@ fun LearningLessonScreen(
                     if (isCorrect) correctCount++
                     submitted = true
                     playFeedbackTone(soundOn, isCorrect)
+                    if (isCorrect) haptics.confirm() else haptics.reject()
                     if (isCorrect) { comboStreak++; if (comboStreak % 5 == 0) comboCelebrate = comboStreak } else comboStreak = 0
                     wrongStreak = if (isCorrect) 0 else wrongStreak + 1
                 }
@@ -266,26 +275,30 @@ fun LearningLessonScreen(
         }
         Text(lesson.canDo, color = Color(0xFFCBBDE8), fontSize = 13.sp, modifier = Modifier.padding(start = 6.dp, top = 3.dp, bottom = 14.dp))
         if (comboStreak >= 2) {
-            Text(
-                "KOMBO x$comboStreak",
-                color = LessonCombo, fontSize = 13.sp, fontWeight = FontWeight.ExtraBold, letterSpacing = 1.5.sp,
-                modifier = Modifier.align(Alignment.CenterHorizontally).padding(bottom = 4.dp)
-            )
+            PopOnChange(comboStreak, modifier = Modifier.align(Alignment.CenterHorizontally).padding(bottom = 4.dp)) {
+                Text(
+                    "KOMBO x$comboStreak",
+                    color = LessonCombo, fontSize = 13.sp, fontWeight = FontWeight.ExtraBold, letterSpacing = 1.5.sp,
+                    modifier = Modifier.popIn()
+                )
+            }
         }
-        // Parça parça dolan ilerleme çubuğu
+        // Parça parça dolan ilerleme çubuğu: her doğru cevapta yeni segment yayla dolar
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             repeat(lesson.exercises.size) { seg ->
-                Box(
-                    Modifier
-                        .weight(1f)
-                        .height(7.dp)
-                        .background(if (seg <= index.intValue) LessonGold else Color(0x30FFFFFF), RoundedCornerShape(4.dp))
+                val segFill by animateFloatAsState(
+                    targetValue = if (seg <= index.intValue) 1f else 0f,
+                    animationSpec = spring(stiffness = 260f, dampingRatio = 0.85f),
+                    label = "segFill"
                 )
+                Box(Modifier.weight(1f).height(7.dp).background(Color(0x30FFFFFF), RoundedCornerShape(4.dp))) {
+                    Box(Modifier.fillMaxWidth(segFill).fillMaxHeight().background(LessonGold, RoundedCornerShape(4.dp)))
+                }
             }
         }
         if (comboCelebrate > 0) {
             LaunchedEffect(comboCelebrate) { kotlinx.coroutines.delay(1600); comboCelebrate = 0 }
-            Surface(color = LessonGold, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth().padding(top = 12.dp)) {
+            Surface(color = LessonGold, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth().padding(top = 12.dp).popIn()) {
                 Text(
                     "🔥 Üst üste $comboCelebrate!",
                     color = LessonNavy, fontSize = 22.sp, fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center,
@@ -324,7 +337,7 @@ fun LearningLessonScreen(
                                     color = if (done) LessonGold else if (picked) Color(0xFF3E2B6E) else LessonPanel2,
                                     shape = RoundedCornerShape(12.dp),
                                     border = BorderStroke(if (picked) 2.dp else 1.dp, if (picked) LessonGold else Color(0x26FFFFFF)),
-                                    modifier = Modifier.fillMaxWidth()
+                                    modifier = Modifier.fillMaxWidth().pressScale()
                                 ) {
                                     Text(word.termEn, color = if (done) LessonNavy else LessonText, fontSize = 13.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, maxLines = 2, modifier = Modifier.padding(horizontal = 6.dp, vertical = 10.dp))
                                 }
@@ -348,7 +361,7 @@ fun LearningLessonScreen(
                                     color = if (done) LessonGold else LessonPanel2,
                                     shape = RoundedCornerShape(12.dp),
                                     border = BorderStroke(1.dp, Color(0x26FFFFFF)),
-                                    modifier = Modifier.fillMaxWidth()
+                                    modifier = Modifier.fillMaxWidth().pressScale()
                                 ) {
                                     Text(word.translationTr, color = if (done) LessonNavy else LessonText, fontSize = 13.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, maxLines = 2, modifier = Modifier.padding(horizontal = 6.dp, vertical = 10.dp))
                                 }
@@ -382,7 +395,7 @@ fun LearningLessonScreen(
                 shake.animateTo(0f, tween(42))
             }
         }
-        Surface(color = LessonPanel, shadowElevation = 2.dp, shape = RoundedCornerShape(22.dp), modifier = Modifier.graphicsLayer { translationX = shake.value }) {
+        Surface(color = LessonPanel, shadowElevation = 2.dp, shape = RoundedCornerShape(22.dp), modifier = Modifier.enterOnChange(exercise.id).graphicsLayer { translationX = shake.value }) {
             Column(Modifier.fillMaxWidth().padding(18.dp)) {
                 Text(skillLabel(exercise.skill).uppercase(Locale.forLanguageTag("tr-TR")), color = LessonGold, fontWeight = FontWeight.Bold, fontSize = 12.sp)
                 Text(exercise.instructionTr, color = LessonMuted, fontSize = 13.sp, modifier = Modifier.padding(top = 6.dp, bottom = 14.dp))
@@ -486,7 +499,7 @@ fun LearningLessonScreen(
                                 color = if (chosen) Color(0x14FFFFFF) else LessonPanel2,
                                 shape = RoundedCornerShape(14.dp),
                                 border = BorderStroke(1.dp, if (chosen) Color(0x59C6FF4A) else Color(0x26FFFFFF)),
-                                modifier = Modifier.weight(1f)
+                                modifier = Modifier.weight(1f).pressScale()
                             ) {
                                 Text(
                                     option,
@@ -510,12 +523,20 @@ fun LearningLessonScreen(
                             rowItems.forEach { (optionIndex, option) ->
                                 val chosen = selected == optionIndex
                                 val eliminated = optionIndex == eliminatedIdx
+                                val revealCorrect = submitted && result == false && optionIndex == correctIdx
                                 Surface(
                                     onClick = { if (!submitted && !eliminated) selected = optionIndex },
                                     color = if (eliminated) Color(0x0DFFFFFF) else if (chosen) Color(0xFF3E2B6E) else LessonPanel2,
                                     shape = RoundedCornerShape(18.dp),
-                                    border = BorderStroke(if (chosen) 2.dp else 1.dp, if (chosen) LessonGold else Color(0x26FFFFFF)),
-                                    modifier = Modifier.weight(1f).height(96.dp)
+                                    border = BorderStroke(
+                                        if (chosen || revealCorrect) 2.dp else 1.dp,
+                                        when {
+                                            chosen -> LessonGold
+                                            revealCorrect -> LessonGold
+                                            else -> Color(0x26FFFFFF)
+                                        }
+                                    ),
+                                    modifier = Modifier.weight(1f).height(96.dp).pressScale()
                                 ) {
                                     Box(Modifier.fillMaxSize().padding(10.dp), contentAlignment = Alignment.Center) {
                                         Text(if (eliminated) "✕" else option, color = if (eliminated) Color(0x33F5F1FF) else LessonText, fontSize = 15.sp, lineHeight = 20.sp, textAlign = TextAlign.Center, fontWeight = if (chosen) FontWeight.Bold else FontWeight.Medium)
@@ -567,7 +588,8 @@ fun LearningLessonScreen(
                                             answer = next.joinToString(" ") { builderTileWords[it] }
                                         }
                                     },
-                                    color = LessonGold, shape = RoundedCornerShape(10.dp)
+                                    color = LessonGold, shape = RoundedCornerShape(10.dp),
+                                    modifier = Modifier.popIn()
                                 ) {
                                     Text(builderTileWords[tileIndex], color = LessonNavy, fontSize = 14.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 11.dp, vertical = 8.dp))
                                 }
@@ -588,7 +610,8 @@ fun LearningLessonScreen(
                                 },
                                 color = if (used) Color(0x0DFFFFFF) else LessonPanel2,
                                 shape = RoundedCornerShape(10.dp),
-                                border = BorderStroke(1.dp, if (used) Color(0x14FFFFFF) else Color(0x26FFFFFF))
+                                border = BorderStroke(1.dp, if (used) Color(0x14FFFFFF) else Color(0x26FFFFFF)),
+                                modifier = Modifier.pressScale()
                             ) {
                                 Text(word, color = if (used) Color(0x26F5F1FF) else LessonText, fontSize = 14.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 11.dp, vertical = 8.dp))
                             }
@@ -620,7 +643,7 @@ fun LearningLessonScreen(
             val onFeedbackSoft = if (isWriting) LessonMuted else Color(0xCC1A0E2E)
             Surface(color = if (isWriting) LessonPanel2 else if (correct) LessonGold else LessonPink, shape = RoundedCornerShape(16.dp), modifier = Modifier.padding(top = 14.dp)) {
                 Row(Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.Top) {
-                    Icon(if (isWriting || correct) Icons.Default.CheckCircle else Icons.Default.Close, null, tint = if (isWriting) LessonGold else Color(0xFF1A0E2E))
+                    Icon(if (isWriting || correct) Icons.Default.CheckCircle else Icons.Default.Close, null, tint = if (isWriting) LessonGold else Color(0xFF1A0E2E), modifier = Modifier.popIn())
                     Column(Modifier.padding(start = 10.dp)) {
                         Text(if (isWriting) "Yanıtın kaydedildi" else if (correct) "Doğru yanıt" else "Bir kez daha düşün", color = onFeedback, fontWeight = FontWeight.Bold)
                         Text(exercise.explanationTr, color = onFeedbackSoft, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 4.dp))
@@ -675,6 +698,7 @@ fun LearningLessonScreen(
                     if (isCorrect) correctCount++
                     submitted = true
                     playFeedbackTone(soundOn, isCorrect)
+                    if (isCorrect) haptics.confirm() else haptics.reject()
                     if (isCorrect) { comboStreak++; if (comboStreak % 5 == 0) comboCelebrate = comboStreak } else comboStreak = 0
                     wrongStreak = if (isCorrect) 0 else wrongStreak + 1
                 }
@@ -698,10 +722,12 @@ private fun LessonCompletion(lesson: LearningLesson, correct: Int, graded: Int, 
         else -> "Ders tamamlandı"
     }
     val soundPrefs = LocalContext.current.getSharedPreferences("lingua_course", android.content.Context.MODE_PRIVATE)
+    val haptics = rememberHaptics()
     val ringProgress = remember { Animatable(0f) }
     var shownXp by remember { mutableIntStateOf(0) }
     LaunchedEffect(Unit) {
         playCompletionMelody(soundPrefs.getBoolean("sound_on", true))
+        haptics.confirm()
         ringProgress.animateTo(if (isScored) score / 100f else 1f, tween(1100))
     }
     LaunchedEffect(Unit) {
@@ -710,8 +736,8 @@ private fun LessonCompletion(lesson: LearningLesson, correct: Int, graded: Int, 
     }
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
         if (score >= 80) ConfettiBurst(Modifier.fillMaxWidth().height(64.dp))
-        // Çizilerek dolan sonuç halkası + 0'dan sayan XP
-        Box(contentAlignment = Alignment.Center, modifier = Modifier.size(152.dp)) {
+        // Çizilerek dolan sonuç halkası + 0'dan sayan XP; kartlar sırayla belirir
+        Box(contentAlignment = Alignment.Center, modifier = Modifier.size(152.dp).popIn()) {
             Canvas(Modifier.fillMaxSize()) {
                 val strokeWidth = 13.dp.toPx()
                 drawArc(color = Color(0x26FFFFFF), startAngle = -90f, sweepAngle = 360f, useCenter = false, style = Stroke(strokeWidth, cap = StrokeCap.Round))
@@ -722,13 +748,13 @@ private fun LessonCompletion(lesson: LearningLesson, correct: Int, graded: Int, 
                 Text("+$shownXp XP", color = LessonGold, fontSize = 15.sp, fontWeight = FontWeight.Bold)
             }
         }
-        Text(headline, color = LessonText, fontSize = 27.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 14.dp))
+        Text(headline, color = LessonText, fontSize = 27.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 14.dp).popIn(delayMillis = 260))
         Text(lesson.title, color = Color(0xFFCBBDE8), fontSize = 15.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 5.dp))
         if (isCheckpoint && !checkpointPassed) {
             Text("Bu üniteyi geçmek için en az %80 doğruluk gerekli. Ünite derslerini tekrar edip yeniden dene.", color = Color(0xFFFFD2D2), fontSize = 13.sp, lineHeight = 18.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 10.dp))
         }
         Spacer(Modifier.height(20.dp))
-        Surface(color = LessonPanel, shadowElevation = 2.dp, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
+        Surface(color = LessonPanel, shadowElevation = 2.dp, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth().popIn(delayMillis = 520)) {
             Column(Modifier.padding(18.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(if (isScored) "$correct doğru yanıt • $graded otomatik değerlendirilen deneme" else "Açık uçlu yazma etkinliğini tamamladın; otomatik puan üretilmedi.", color = LessonMuted, fontSize = 12.sp, lineHeight = 17.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 6.dp))
                 Text("${lesson.exercises.size} etkinliği tamamladın.", color = LessonText, fontSize = 13.sp, modifier = Modifier.padding(top = 8.dp))
@@ -740,10 +766,10 @@ private fun LessonCompletion(lesson: LearningLesson, correct: Int, graded: Int, 
         Spacer(Modifier.height(20.dp))
         val checkpointFailed = isCheckpoint && !checkpointPassed
         if (checkpointFailed && onRetry != null) {
-            LessonButton("Yeniden dene", onRetry)
+            LessonButton("Yeniden dene", onRetry, Modifier.popIn(delayMillis = 680))
             Spacer(Modifier.height(10.dp))
         }
-        LessonButton("Öğrenme yoluma dön", onContinue)
+        LessonButton("Öğrenme yoluma dön", onContinue, Modifier.popIn(delayMillis = 780))
     }
 }
 
@@ -874,8 +900,8 @@ private fun LessonColumn(content: @Composable ColumnScope.() -> Unit) {
 }
 
 @Composable
-private fun LessonButton(label: String, onClick: () -> Unit) {
-    Button(onClick = onClick, modifier = Modifier.fillMaxWidth().height(54.dp), shape = RoundedCornerShape(15.dp), colors = ButtonDefaults.buttonColors(containerColor = LessonGold, contentColor = LessonNavy)) {
+private fun LessonButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+    Button(onClick = onClick, modifier = modifier.fillMaxWidth().height(54.dp).pressScale(), shape = RoundedCornerShape(15.dp), colors = ButtonDefaults.buttonColors(containerColor = LessonGold, contentColor = LessonNavy)) {
         Text(label, fontWeight = FontWeight.Bold, fontSize = 15.sp)
     }
 }

@@ -35,6 +35,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.linguapro.android.ui.components.PopOnChange
+import com.linguapro.android.ui.components.pressScale
 
 /** Avatar yapılandırması: cinsiyet, ten, saç stili/rengi, göz rengi, gözlük, kıyafet. */
 data class AvatarConfig(
@@ -167,7 +169,8 @@ private fun OptionRow(label: String, options: List<String>, selected: Int, onSel
             Surface(
                 onClick = { onSelect(i) },
                 color = if (chosen) EdGold else EdPanel2,
-                shape = RoundedCornerShape(14.dp)
+                shape = RoundedCornerShape(14.dp),
+                modifier = Modifier.pressScale()
             ) {
                 Text(opt, color = if (chosen) EdNavy else EdText, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 13.dp, vertical = 8.dp))
             }
@@ -185,7 +188,7 @@ private fun ColorRow(label: String, colors: List<Color>, selected: Int, onSelect
                 color = c,
                 shape = RoundedCornerShape(50),
                 border = androidx.compose.foundation.BorderStroke(if (i == selected) 3.dp else 1.dp, if (i == selected) EdGold else Color(0x33FFFFFF)),
-                modifier = Modifier.size(34.dp)
+                modifier = Modifier.size(34.dp).pressScale()
             ) {}
         }
     }
@@ -203,7 +206,7 @@ fun AvatarEditorScreen(initialCode: String, onSave: (String) -> Unit, onBack: ()
     ) {
         Spacer(Modifier.height(16.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Surface(onClick = onBack, color = EdPanel, shape = RoundedCornerShape(12.dp)) {
+            Surface(onClick = onBack, color = EdPanel, shape = RoundedCornerShape(12.dp), modifier = Modifier.pressScale()) {
                 Text("←", color = EdText, fontSize = 20.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
             }
             Text("Avatarını Oluştur", color = EdText, fontSize = 21.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 12.dp))
@@ -211,7 +214,7 @@ fun AvatarEditorScreen(initialCode: String, onSave: (String) -> Unit, onBack: ()
         Spacer(Modifier.height(14.dp))
         Surface(color = EdPanel, shape = RoundedCornerShape(22.dp), modifier = Modifier.fillMaxWidth()) {
             Column(Modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                AvatarView(cfg, 160.dp)
+                PopOnChange(cfg) { AvatarView(cfg, 160.dp) }
             }
         }
         Surface(color = EdPanel, shape = RoundedCornerShape(22.dp), modifier = Modifier.fillMaxWidth().padding(top = 12.dp)) {
@@ -231,14 +234,14 @@ fun AvatarEditorScreen(initialCode: String, onSave: (String) -> Unit, onBack: ()
         Spacer(Modifier.height(16.dp))
         Button(
             onClick = { onSave(cfg.encode()) },
-            modifier = Modifier.fillMaxWidth().height(52.dp),
+            modifier = Modifier.fillMaxWidth().height(52.dp).pressScale(),
             shape = RoundedCornerShape(15.dp),
             colors = ButtonDefaults.buttonColors(containerColor = EdGold, contentColor = EdNavy)
         ) { Text("Kaydet", fontWeight = FontWeight.Bold, fontSize = 15.sp) }
         Spacer(Modifier.height(10.dp))
         Button(
             onClick = onBack,
-            modifier = Modifier.fillMaxWidth().height(48.dp),
+            modifier = Modifier.fillMaxWidth().height(48.dp).pressScale(),
             shape = RoundedCornerShape(15.dp),
             colors = ButtonDefaults.buttonColors(containerColor = EdPanel2, contentColor = EdText)
         ) { Text("Vazgeç", fontWeight = FontWeight.Bold, fontSize = 14.sp) }

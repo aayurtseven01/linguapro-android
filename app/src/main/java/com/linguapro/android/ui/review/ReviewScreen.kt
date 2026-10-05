@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import com.linguapro.android.R
 import com.linguapro.android.data.local.ReviewCardEntity
 import com.linguapro.android.domain.usecase.ReviewGrade
+import com.linguapro.android.ui.components.pressScale
 
 @Composable
 fun ReviewScreen(
@@ -94,7 +95,7 @@ fun ReviewScreen(
 
 @Composable
 private fun GradeButton(label: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
-    OutlinedButton(onClick = onClick, modifier = modifier) { Text(label) }
+    OutlinedButton(onClick = onClick, modifier = modifier.pressScale()) { Text(label) }
 }
 
 @Preview(showBackground = true)

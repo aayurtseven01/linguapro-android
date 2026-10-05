@@ -2,6 +2,16 @@ package com.linguapro.android
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
+import com.linguapro.android.ui.components.popIn
+import com.linguapro.android.ui.components.pressScale
+import com.linguapro.android.ui.components.staggerIn
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -111,7 +121,7 @@ fun SocialScreen(
     ) {
         Spacer(Modifier.height(14.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Surface(onClick = onBack, color = ScPanel, shape = RoundedCornerShape(12.dp)) {
+            Surface(onClick = onBack, color = ScPanel, shape = RoundedCornerShape(12.dp), modifier = Modifier.pressScale()) {
                 Text("←", color = ScText, fontSize = 20.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
             }
             Text("Topluluk", color = ScText, fontSize = 22.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 12.dp))
@@ -163,7 +173,7 @@ fun SocialScreen(
                         },
                         color = if (nameDraft.length >= 3 && !savingName) ScGold else ScPanel2,
                         shape = RoundedCornerShape(14.dp),
-                        modifier = Modifier.padding(top = 12.dp)
+                        modifier = Modifier.padding(top = 12.dp).pressScale()
                     ) {
                         Text(if (savingName) "Kaydediliyor…" else "Kaydet ve katıl", color = if (nameDraft.length >= 3 && !savingName) ScNavy else ScMuted, fontSize = 13.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 16.dp, vertical = 9.dp))
                     }
@@ -195,7 +205,18 @@ fun SocialScreen(
             Text(statusMessage, color = ScPink, fontSize = 12.sp, modifier = Modifier.padding(bottom = 8.dp))
         }
 
-        when (tab) {
+        // Sekmeler: içerik yön hissiyle kayarak değişir
+        AnimatedContent(
+            targetState = tab,
+            transitionSpec = {
+                val dir = if (targetState > initialState) 1 else -1
+                (slideInHorizontally(tween(260)) { it / 3 * dir } + fadeIn(tween(260))) togetherWith
+                    (slideOutHorizontally(tween(180)) { -it / 3 * dir } + fadeOut(tween(150)))
+            },
+            label = "socialTabs"
+        ) { activeTab ->
+            Column {
+        when (activeTab) {
             // ---- Bülten ----
             0 -> {
                 if (feed.isEmpty()) {
@@ -203,8 +224,8 @@ fun SocialScreen(
                         Text("Bülten boş. Arkadaş ekle; onların başarıları (seviye atlama, Checkpoint, günlük görevler) burada görünecek.", color = ScMuted, fontSize = 13.sp, lineHeight = 19.sp, modifier = Modifier.padding(16.dp))
                     }
                 }
-                feed.forEach { item ->
-                    Surface(color = ScPanel, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)) {
+                feed.forEachIndexed { i, item ->
+                    Surface(color = ScPanel, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp).staggerIn(i)) {
                         Row(Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
                             AvatarView(AvatarConfig.decode(item.avatar), 40.dp)
                             Column(Modifier.weight(1f).padding(start = 10.dp)) {
@@ -230,7 +251,7 @@ fun SocialScreen(
                             Text("@$username", color = ScGold, fontSize = 13.sp, fontWeight = FontWeight.Bold)
                             Text("Bu hafta ${if (ownBoard?.weekKey == WeeklyLeague.weekKey()) ownBoard?.weeklyXp ?: 0 else 0} XP • seviye ${ownBoard?.level ?: 1}", color = ScMuted, fontSize = 11.sp)
                         }
-                        Surface(onClick = onEditAvatar, color = ScPanel2, shape = RoundedCornerShape(10.dp), modifier = Modifier.padding(end = 10.dp)) {
+                        Surface(onClick = onEditAvatar, color = ScPanel2, shape = RoundedCornerShape(10.dp), modifier = Modifier.padding(end = 10.dp).pressScale()) {
                             Text("✎", color = ScGold, fontSize = 14.sp, modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp))
                         }
                         Text(if (myRank >= 0) "#${myRank + 1}" else "#50+", color = ScPink, fontSize = 17.sp, fontWeight = FontWeight.Bold)
@@ -238,7 +259,7 @@ fun SocialScreen(
                 }
                 board.forEachIndexed { i, entry ->
                     val mine = entry.uid == uid
-                    Surface(color = if (mine) Color(0xFF3E2B6E) else ScPanel, shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 6.dp)) {
+                    Surface(color = if (mine) Color(0xFF3E2B6E) else ScPanel, shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 6.dp).staggerIn(i)) {
                         Row(Modifier.padding(horizontal = 12.dp, vertical = 9.dp), verticalAlignment = Alignment.CenterVertically) {
                             Text(
                                 when (i) { 0 -> "🥇"; 1 -> "🥈"; 2 -> "🥉"; else -> "${i + 1}" },
@@ -277,13 +298,13 @@ fun SocialScreen(
                             statusMessage = err ?: if (r.isEmpty()) "'$searchQuery' bulunamadı." else ""
                         }
                     },
-                    color = ScGold, shape = RoundedCornerShape(14.dp), modifier = Modifier.padding(top = 10.dp)
+                    color = ScGold, shape = RoundedCornerShape(14.dp), modifier = Modifier.padding(top = 10.dp).pressScale()
                 ) {
                     Text("Ara", color = ScNavy, fontSize = 13.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 18.dp, vertical = 9.dp))
                 }
-                searchResults.forEach { result ->
+                searchResults.forEachIndexed { i, result ->
                     val already = friends.any { it.uid == result.uid }
-                    Surface(color = ScPanel, shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+                    Surface(color = ScPanel, shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp).staggerIn(i)) {
                         Row(Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
                             AvatarView(AvatarConfig.decode(result.avatar), 34.dp)
                             Column(Modifier.weight(1f).padding(start = 10.dp)) {
@@ -296,7 +317,8 @@ fun SocialScreen(
                                         if (err == null) { statusMessage = "@${result.username} eklendi!"; refresh++ } else statusMessage = err
                                     }
                                 },
-                                color = if (already) ScPanel2 else ScGold, shape = RoundedCornerShape(12.dp)
+                                color = if (already) ScPanel2 else ScGold, shape = RoundedCornerShape(12.dp),
+                                modifier = Modifier.pressScale()
                             ) {
                                 Text(if (already) "Ekli ✓" else "+ Ekle", color = if (already) ScMuted else ScNavy, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 12.dp, vertical = 7.dp))
                             }
@@ -308,8 +330,8 @@ fun SocialScreen(
                 if (friends.isEmpty()) {
                     Text("Henüz arkadaşın yok. Yukarıdan kullanıcı adıyla ara ve ekle.", color = ScMuted, fontSize = 12.sp, modifier = Modifier.padding(top = 6.dp))
                 }
-                friends.forEach { friend ->
-                    Surface(color = ScPanel, shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+                friends.forEachIndexed { i, friend ->
+                    Surface(color = ScPanel, shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp).staggerIn(i)) {
                         Row(Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
                             AvatarView(AvatarConfig.decode(friend.avatar), 34.dp)
                             Text("@${friend.username}", color = ScText, fontSize = 13.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f).padding(start = 10.dp))
@@ -327,6 +349,8 @@ fun SocialScreen(
                         }
                     }
                 }
+            }
+        }
             }
         }
         Spacer(Modifier.height(24.dp))

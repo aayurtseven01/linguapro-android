@@ -18,8 +18,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-internal fun FeatureLine(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String) {
-    Row(Modifier.fillMaxWidth().padding(vertical = 7.dp), verticalAlignment = Alignment.CenterVertically) {
+internal fun FeatureLine(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String, index: Int = -1) {
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .padding(vertical = 7.dp)
+            .then(if (index >= 0) Modifier.staggerIn(index) else Modifier),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Box(Modifier.size(38.dp).background(Panel2, CircleShape), contentAlignment = Alignment.Center) { Icon(icon, null, tint = Gold, modifier = Modifier.size(20.dp)) }
         Text(text, color = OnBg, fontSize = 14.sp, modifier = Modifier.padding(start = 12.dp))
     }
@@ -50,6 +56,7 @@ internal fun PrimaryButton(text: String, onClick: () -> Unit, enabled: Boolean =
         modifier = Modifier
             .fillMaxWidth()
             .height(54.dp)
+            .pressScale()
             .shadow(14.dp, RoundedCornerShape(16.dp), ambientColor = Color(0x59C6FF4A), spotColor = Color(0x66C6FF4A)),
         shape = RoundedCornerShape(16.dp),
         elevation = ButtonDefaults.buttonElevation(0.dp, 0.dp, 0.dp, 0.dp, 0.dp),

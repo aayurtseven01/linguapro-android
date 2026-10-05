@@ -33,7 +33,7 @@ internal fun PlanScreen(plan: String, onPlan: (String) -> Unit, onBack: () -> Un
             Triple("20", "Yoğun çalışma", "Günde 20 dakika • daha fazla pratik")).forEach { (minutes, title, detail) ->
             Surface(onClick = { onPlan(minutes) }, color = if (plan == minutes) Panel2 else Panel,
                 border = BorderStroke(if (plan == minutes) 2.dp else 1.dp, if (plan == minutes) Gold else Panel2),
-                shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp)) {
+                shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp).pressScale()) {
                 Row(Modifier.padding(18.dp), verticalAlignment = Alignment.CenterVertically) {
                     Icon(if (plan == minutes) Icons.Default.CheckCircle else Icons.Default.RadioButtonUnchecked, null, tint = if (plan == minutes) Gold else Muted)
                     Column(Modifier.padding(start = 14.dp)) {

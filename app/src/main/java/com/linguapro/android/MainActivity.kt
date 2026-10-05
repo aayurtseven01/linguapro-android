@@ -42,16 +42,19 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
@@ -597,7 +600,6 @@ private fun LinguaApp() {
                             learningProgress = progressStore.addBonusXp(quest.rewardXp)
                             questVersion++
                             gems = gemStore.add(5)
-                            android.widget.Toast.makeText(context, "+${quest.rewardXp} XP +5 💎 — görev ödülü!", android.widget.Toast.LENGTH_SHORT).show()
                             if (DailyQuests.questsFor(day).all { questStore.claimed(day, it.id) } && accountUid.isNotBlank() && username.isNotBlank()) {
                                 social.postActivity(accountUid, username, avatarCode, "Günün tüm görevlerini tamamladı! 🏆") { }
                             }
@@ -614,7 +616,6 @@ private fun LinguaApp() {
                         if (gemStore.claimChest(chestUnitId)) {
                             claimedChests = claimedChests + chestUnitId
                             gems = gemStore.add(20)
-                            android.widget.Toast.makeText(context, "🎁 Sandık açıldı: +20 💎", android.widget.Toast.LENGTH_SHORT).show()
                         }
                     },
                     dailyWords = remember(courseLang, today) { DailyWords.wordsFor(courseLang, today) },
@@ -907,13 +908,13 @@ private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
         Spacer(Modifier.height(34.dp))
         Text("Daha iyi bir sen,\ndaha geniş bir dünya.", color = OnBg, fontSize = 29.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, lineHeight = 36.sp)
         Spacer(Modifier.height(12.dp))
-        Text("Seviyene göre kişisel plan, kısa dersler ve konuşma pratiğiyle adım adım ilerle.", color = OnBgSoft, textAlign = TextAlign.Center, fontSize = 16.sp, lineHeight = 24.sp)
+        Text("Seviyene göre kişisel plan, kısa dersler ve konuşma pratiğiyle adım adım ilerle.", color = OnBgSoft, textAlign = TextAlign.Center, fontSize = 16.sp, lineHeight = 24.sp, modifier = Modifier.popIn(delayMillis = 260))
         Spacer(Modifier.height(24.dp))
-        FeatureLine(Icons.Default.School, "Sana özel öğrenme programı")
-        FeatureLine(Icons.Default.RecordVoiceOver, "Örnek sesle konuşma ve tekrar çalışması")
-        FeatureLine(Icons.Default.TrendingUp, "A1’den C2’ye gelişim takibi")
+        FeatureLine(Icons.Default.School, "Sana özel öğrenme programı", index = 0)
+        FeatureLine(Icons.Default.RecordVoiceOver, "Örnek sesle konuşma ve tekrar çalışması", index = 1)
+        FeatureLine(Icons.Default.TrendingUp, "A1’den C2’ye gelişim takibi", index = 2)
         Spacer(Modifier.height(24.dp))
-        PrimaryButton("Hemen Başla", onStart)
+        Box(Modifier.popIn(delayMillis = 480)) { PrimaryButton("Hemen Başla", onStart) }
         Spacer(Modifier.height(12.dp))
         Text("Zaten hesabın var mı? Giriş yap", color = OnBg, fontSize = 13.sp, textAlign = TextAlign.Center, modifier = Modifier.clickable(onClick = onLogin).padding(10.dp))
         Spacer(Modifier.height(24.dp))
@@ -1037,11 +1038,12 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
         Text("İngilizce seviyeni belirlemek için soruları yanıtla.", color = OnBgSoft, modifier = Modifier.padding(top = 4.dp))
         Spacer(Modifier.height(18.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            LinearProgressIndicator(progress = { (index + 1f) / questions.size }, modifier = Modifier.weight(1f).height(8.dp), color = Color(0xFFFFFFFF), trackColor = Color(0x44FFFFFF))
+            val quizProgress by animateFloatAsState(targetValue = (index + 1f) / questions.size, animationSpec = tween(420, easing = FastOutSlowInEasing), label = "quizProgress")
+            LinearProgressIndicator(progress = { quizProgress }, modifier = Modifier.weight(1f).height(8.dp), color = Color(0xFFFFFFFF), trackColor = Color(0x44FFFFFF))
             Text("  ${index + 1} / ${questions.size}", color = OnBgSoft, fontSize = 13.sp)
         }
         Spacer(Modifier.height(22.dp))
-        Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(24.dp)) {
+        Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(24.dp), modifier = Modifier.fillMaxWidth().enterOnChange(index)) {
             Column(Modifier.fillMaxWidth().padding(20.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) { Icon(Icons.Default.School, null, tint = Gold); Text("  ${q.level} • ${skillLabel(q.skill).uppercase()}", color = Gold, fontSize = 13.sp, fontWeight = FontWeight.Bold) }
                 Text("Doğru seçeneği işaretle.", color = Muted, fontSize = 13.sp, modifier = Modifier.padding(top = 5.dp, bottom = 16.dp))
@@ -1054,7 +1056,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
                 Spacer(Modifier.height(20.dp))
                 q.answers.forEachIndexed { i, answer ->
                     val isSelected = selected == i
-                    Surface(onClick = { onSelect(i) }, color = if (isSelected) Color(0xFF3E2B6E) else Panel2, shape = RoundedCornerShape(14.dp), border = BorderStroke(if (isSelected) 2.dp else 1.dp, if (isSelected) Gold else Color(0x26FFFFFF)), modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp)) {
+                    Surface(onClick = { onSelect(i) }, color = if (isSelected) Color(0xFF3E2B6E) else Panel2, shape = RoundedCornerShape(14.dp), border = BorderStroke(if (isSelected) 2.dp else 1.dp, if (isSelected) Gold else Color(0x26FFFFFF)), modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp).pressScale()) {
                         Row(Modifier.padding(horizontal = 15.dp, vertical = 15.dp), verticalAlignment = Alignment.CenterVertically) {
                             Icon(if (isSelected) Icons.Default.RadioButtonChecked else Icons.Default.RadioButtonUnchecked, null, tint = if (isSelected) Gold else Muted)
                             Text(answer, fontSize = 16.sp, modifier = Modifier.padding(start = 14.dp))
@@ -1078,22 +1080,40 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
     val courseLessonCount = moduleList.sumOf { it.lessons.size }
     val lessonPointer = completed.coerceAtMost(courseLessonCount)
     val unitStartOffsets = run { var acc = 0; moduleList.map { u -> acc.also { acc += u.lessons.size } } }
+    // Ödül anları için ekran-orta kutlama katmanı (sandık, görev)
+    var celebration by remember { mutableStateOf<Celebration?>(null) }
+    val pathListState = rememberLazyListState()
+    // Açılışta patika doğrudan sıradaki üniteye atlar: 500+ derslik yolda yerini kaybetme yok
+    LaunchedEffect(moduleList, lessonPointer) {
+        var targetUnit = -1
+        for (i in moduleList.indices) {
+            val start = unitStartOffsets.getOrElse(i) { 0 }
+            if (lessonPointer >= start && lessonPointer < start + moduleList[i].lessons.size) { targetUnit = i; break }
+        }
+        if (targetUnit < 0 && moduleList.isNotEmpty()) targetUnit = moduleList.lastIndex
+        if (targetUnit > 0) {
+            var itemIndex = 1 // 0: başlık/bento bloğu
+            for (i in 0 until targetUnit) itemIndex += 1 + moduleList[i].lessons.size + if (moduleList[i].lessons.size >= 5) 1 else 0
+            if (itemIndex >= 3) runCatching { pathListState.scrollToItem(itemIndex) }
+        }
+    }
+    Box(Modifier.fillMaxSize()) {
     // Patika artık LazyColumn: yüzlerce düğüm yalnızca ekrana girerken oluşturulur (düşük cihaz performansı).
-    LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(horizontal = 18.dp)) {
+    LazyColumn(Modifier.fillMaxSize(), state = pathListState, contentPadding = PaddingValues(horizontal = 18.dp)) {
         item { Column {
         Spacer(Modifier.height(14.dp))
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+        Row(Modifier.fillMaxWidth().staggerIn(0), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
             Column { Text("Merhaba, $name!", color = OnBg, fontSize = 26.sp, fontWeight = FontWeight.Bold); Text("$langName yolculuğuna devam et", color = OnBgSoft, fontSize = 13.sp) }
-            Surface(onClick = onOpenShop, color = Color(0x33FFFFFF), shape = RoundedCornerShape(16.dp), modifier = Modifier.padding(end = 6.dp)) {
-                Text("💎 $gems", color = OnBg, fontSize = 13.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp))
+            Surface(onClick = onOpenShop, color = Color(0x33FFFFFF), shape = RoundedCornerShape(16.dp), modifier = Modifier.padding(end = 6.dp).pressScale()) {
+                PopOnChange(gems) { RollingNumber(gems, color = OnBg, fontSize = 13.sp, fontWeight = FontWeight.Bold, prefix = "💎 ") }
             }
             IconButton(onClick = onProfile) { Icon(Icons.Default.AccountCircle, "Profili aç", tint = OnBg, modifier = Modifier.size(30.dp)) }
         }
         Spacer(Modifier.height(12.dp))
-        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(Modifier.fillMaxWidth().staggerIn(1).horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             WorldCatalog.languages.forEach { lang ->
                 val chosen = lang.code == langCode
-                Surface(onClick = { onSelectLanguage(lang.code) }, color = if (chosen) Panel else Color(0x33FFFFFF), shape = RoundedCornerShape(20.dp)) {
+                Surface(onClick = { onSelectLanguage(lang.code) }, color = if (chosen) Panel else Color(0x33FFFFFF), shape = RoundedCornerShape(20.dp), modifier = Modifier.pressScale()) {
                     Row(Modifier.padding(horizontal = 12.dp, vertical = 7.dp), verticalAlignment = Alignment.CenterVertically) {
                         Text(lang.flag, fontSize = 15.sp)
                         Text(lang.nameTr, color = if (chosen) Gold else OnBg, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 6.dp))
@@ -1106,7 +1126,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
             Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 WorldCatalog.availableLevels(langCode).forEach { lv ->
                     val chosen = lv == level
-                    Surface(onClick = { onSelectLevel(lv) }, color = if (chosen) Panel else Color(0x33FFFFFF), shape = RoundedCornerShape(20.dp)) {
+                    Surface(onClick = { onSelectLevel(lv) }, color = if (chosen) Panel else Color(0x33FFFFFF), shape = RoundedCornerShape(20.dp), modifier = Modifier.pressScale()) {
                         Text(lv, color = if (chosen) Gold else OnBg, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 14.dp, vertical = 7.dp))
                     }
                 }
@@ -1115,7 +1135,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         val levelLessonTotal = courseUnits.sumOf { it.lessons.size }
         if (levelLessonTotal > 0 && completed >= levelLessonTotal) {
             Spacer(Modifier.height(12.dp))
-            Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth()) {
+            Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth().popIn()) {
                 Column(Modifier.padding(16.dp)) {
                     Text("🎉 $level seviyesini tamamladın!", color = Color(0xFFF5F1FF), fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     Text(
@@ -1143,8 +1163,8 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
             val flat = courseUnits.flatMap { it.lessons }
             flat.getOrNull(completed.coerceAtLeast(0))?.title ?: flat.lastOrNull()?.title ?: "Yeni derse başla"
         }
-        Row(Modifier.fillMaxWidth().height(168.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Surface(onClick = onStartLesson, color = Gold, shape = RoundedCornerShape(26.dp), modifier = Modifier.weight(1.35f).fillMaxHeight()) {
+        Row(Modifier.fillMaxWidth().height(168.dp).staggerIn(2), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Surface(onClick = onStartLesson, color = Gold, shape = RoundedCornerShape(26.dp), modifier = Modifier.weight(1.35f).fillMaxHeight().clip(RoundedCornerShape(26.dp)).pressScale().shineSweep()) {
                 Column(Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.SpaceBetween) {
                     Text("SIRADAKİ DERS", color = Color(0x991A0E2E), fontSize = 10.sp, fontWeight = FontWeight.ExtraBold, letterSpacing = 1.5.sp)
                     Text(nextLessonTitle, color = Navy, fontSize = 17.sp, fontWeight = FontWeight.ExtraBold, lineHeight = 22.sp, maxLines = 3)
@@ -1154,11 +1174,10 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
             Column(Modifier.weight(1f).fillMaxHeight(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Surface(color = PinkAccent, shape = RoundedCornerShape(26.dp), modifier = Modifier.weight(1f).fillMaxWidth()) {
                     Column(Modifier.fillMaxSize().padding(horizontal = 14.dp), verticalArrangement = Arrangement.Center) {
-                        val flamePulse = if (progress.streakDays > 0) {
-                            val flameAnim = rememberInfiniteTransition(label = "flame")
-                            flameAnim.animateFloat(1f, 1.15f, infiniteRepeatable(tween(700), RepeatMode.Reverse), label = "flamePulse").value
-                        } else 1f
-                        Text("🔥 ${progress.streakDays}", color = Color(0xFF330C20), fontSize = 19.sp, fontWeight = FontWeight.ExtraBold, modifier = Modifier.graphicsLayer { scaleX = flamePulse; scaleY = flamePulse })
+                        Text(
+                            "🔥 ${progress.streakDays}", color = Color(0xFF330C20), fontSize = 19.sp, fontWeight = FontWeight.ExtraBold,
+                            modifier = if (progress.streakDays > 0) Modifier.flameFlicker() else Modifier
+                        )
                         Text("gün seri", color = Color(0xB3330C20), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                     }
                 }
@@ -1171,7 +1190,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
             }
         }
         Spacer(Modifier.height(10.dp))
-        Surface(onClick = onDailyRefresh, color = Panel, border = BorderStroke(1.dp, Color(0x59C6FF4A)), shape = RoundedCornerShape(26.dp), modifier = Modifier.fillMaxWidth()) {
+        Surface(onClick = onDailyRefresh, color = Panel, border = BorderStroke(1.dp, Color(0x59C6FF4A)), shape = RoundedCornerShape(26.dp), modifier = Modifier.fillMaxWidth().staggerIn(3).pressScale()) {
             Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
                 Text("🔄", fontSize = 22.sp)
                 Column(Modifier.weight(1f).padding(start = 10.dp)) {
@@ -1185,13 +1204,13 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
             val storyTotal = StoryCatalog.storiesFor(langCode).size
             if (storyTotal > 0) {
                 Spacer(Modifier.height(12.dp))
-                Surface(onClick = onStories, color = Panel, border = BorderStroke(1.dp, Color(0x59FF5CA8)), shape = RoundedCornerShape(26.dp), modifier = Modifier.fillMaxWidth()) {
+                Surface(onClick = onStories, color = Panel, border = BorderStroke(1.dp, Color(0x59FF5CA8)), shape = RoundedCornerShape(26.dp), modifier = Modifier.fillMaxWidth().staggerIn(4).pressScale()) {
                     Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
                         Text("📖", fontSize = 22.sp)
                         Column(Modifier.weight(1f).padding(start = 10.dp)) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Text("Hikâyeler", color = PinkAccent, fontWeight = FontWeight.Bold, fontSize = 14.sp)
-                                Surface(color = PinkAccent, shape = RoundedCornerShape(8.dp), modifier = Modifier.padding(start = 8.dp)) {
+                                Surface(color = PinkAccent, shape = RoundedCornerShape(8.dp), modifier = Modifier.padding(start = 8.dp).popIn(delayMillis = 800)) {
                                     Text("YENİ", color = Color(0xFF330C20), fontSize = 9.sp, fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp))
                                 }
                             }
@@ -1204,7 +1223,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         }
         if (dailyQuests.isNotEmpty()) {
             Spacer(Modifier.height(12.dp))
-            Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth()) {
+            Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().staggerIn(5)) {
                 Column(Modifier.padding(14.dp)) {
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                         Text("🗓️ Günlük Görevler", color = Gold, fontWeight = FontWeight.Bold, fontSize = 14.sp)
@@ -1217,17 +1236,29 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                             Column(Modifier.weight(1f).padding(start = 9.dp, end = 9.dp)) {
                                 Text(questUi.quest.title, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                                 Box(Modifier.fillMaxWidth().height(6.dp).background(Panel2, RoundedCornerShape(3.dp))) {
+                                    val questFill by animateFloatAsState(
+                                        targetValue = (questUi.progress.toFloat() / questUi.quest.target).coerceIn(0f, 1f),
+                                        animationSpec = spring(stiffness = 220f, dampingRatio = 0.85f),
+                                        label = "questFill"
+                                    )
                                     Box(
                                         Modifier
-                                            .fillMaxWidth((questUi.progress.toFloat() / questUi.quest.target).coerceIn(0f, 1f))
+                                            .fillMaxWidth(questFill)
                                             .height(6.dp)
                                             .background(Gold, RoundedCornerShape(3.dp))
                                     )
                                 }
                             }
                             when {
-                                questUi.claimed -> Text("✓", color = Gold, fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                                done -> Surface(onClick = { onClaimQuest(questUi.quest) }, color = Gold, shape = RoundedCornerShape(12.dp)) {
+                                questUi.claimed -> Text("✓", color = Gold, fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.popIn())
+                                done -> Surface(
+                                    onClick = {
+                                        celebration = Celebration("⚡", "+${questUi.quest.rewardXp} XP", "+5 💎 görev ödülü alındı!")
+                                        onClaimQuest(questUi.quest)
+                                    },
+                                    color = Gold, shape = RoundedCornerShape(12.dp),
+                                    modifier = Modifier.breathe()
+                                ) {
                                     Text("+${questUi.quest.rewardXp} XP al", color = Navy, fontSize = 11.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp))
                                 }
                                 else -> Text("${questUi.progress}/${questUi.quest.target}", color = Muted, fontSize = 11.sp)
@@ -1239,7 +1270,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         }
         if (dailyWords.isNotEmpty()) {
             Spacer(Modifier.height(12.dp))
-            Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth()) {
+            Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().staggerIn(6)) {
                 Column(Modifier.padding(14.dp)) {
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                         Text("📚 Günün 5 Kelimesi", color = Gold, fontWeight = FontWeight.Bold, fontSize = 14.sp)
@@ -1253,7 +1284,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                             Text(" • ${word.translationTr}", color = Muted, fontSize = 13.sp)
                         }
                     }
-                    Surface(onClick = onDailyWords, color = Gold, shape = RoundedCornerShape(14.dp), modifier = Modifier.padding(top = 12.dp)) {
+                    Surface(onClick = onDailyWords, color = Gold, shape = RoundedCornerShape(14.dp), modifier = Modifier.padding(top = 12.dp).pressScale()) {
                         Text("Çalış ve tekrar et", color = Navy, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp))
                     }
                 }
@@ -1261,7 +1292,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         }
         if (dueReviewCount > 0) {
             Spacer(Modifier.height(12.dp))
-            Surface(onClick = onReview, color = Color(0xFF342457), shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth()) {
+            Surface(onClick = onReview, color = Color(0xFF342457), shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().staggerIn(7).pressScale()) {
                 Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
                     Icon(Icons.Default.Style, contentDescription = null, tint = Gold)
                     Column(Modifier.weight(1f).padding(start = 10.dp)) {
@@ -1275,7 +1306,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         val focusSkill = SkillProgressLogic.weakest(skillStats)
         if (focusSkill != null) {
             Spacer(Modifier.height(14.dp))
-            Surface(color = Color(0xFF342457), shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().clickable(onClick = onPractice)) {
+            Surface(color = Color(0xFF342457), shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().staggerIn(8).pressScale().clickable(onClick = onPractice)) {
                 Row(Modifier.padding(13.dp), verticalAlignment = Alignment.CenterVertically) {
                     Icon(Icons.Default.AutoAwesome, null, tint = Gold)
                     Column(Modifier.weight(1f).padding(start = 10.dp)) {
@@ -1291,7 +1322,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
             InfoCard("$pendingSyncCount ders kaydı cihazında güvende. İnternet bağlantısında hesabınla eşitlenecek.")
             Spacer(Modifier.height(12.dp))
         }
-        Surface(onClick = onPro, color = Panel2, shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, Gold), modifier = Modifier.fillMaxWidth().padding(bottom = 18.dp)) {
+        Surface(onClick = onPro, color = Panel2, shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, Gold), modifier = Modifier.fillMaxWidth().staggerIn(9).pressScale().padding(bottom = 18.dp)) {
             Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
                 Icon(Icons.Default.AutoAwesome, null, tint = Gold)
                 Column(Modifier.weight(1f).padding(start = 12.dp)) {
@@ -1301,7 +1332,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                 Icon(Icons.Default.ChevronRight, "Lingua Pro’yu aç", tint = Gold)
             }
         }
-        Text("$level Seviyesindeki Yolculuğun", color = OnBg, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+        Text("$level Seviyesindeki Yolculuğun", color = OnBg, fontSize = 20.sp, fontWeight = FontWeight.Bold, modifier = Modifier.popIn(delayMillis = 500))
         Text("Hedeflerine adım adım ilerle", color = OnBgSoft, fontSize = 14.sp, modifier = Modifier.padding(top = 3.dp, bottom = 14.dp))
         } }
         // Duolingo tarzı kıvrımlı patika: her düğüm ayrı tembel öğe
@@ -1341,7 +1372,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.offset(x = xOffset)) {
                         val pulse = if (nodeCurrent) {
                             val nodeAnim = rememberInfiniteTransition(label = "pathNode")
-                            nodeAnim.animateFloat(1f, 1.1f, infiniteRepeatable(tween(650), RepeatMode.Reverse), label = "pulse").value
+                            nodeAnim.animateFloat(1f, 1.08f, infiniteRepeatable(tween(650), RepeatMode.Reverse), label = "pulse").value
                         } else 1f
                         Surface(
                             onClick = { if (nodeCurrent) onStartLesson() else if (!nodeDone) onLocked() },
@@ -1349,7 +1380,11 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                             shape = CircleShape,
                             shadowElevation = if (nodeCurrent) 8.dp else 2.dp,
                             border = if (nodeCurrent) BorderStroke(3.dp, Color(0xFFF5F1FF)) else null,
-                            modifier = Modifier.size(60.dp).graphicsLayer { scaleX = pulse; scaleY = pulse }
+                            modifier = Modifier
+                                .size(60.dp)
+                                .then(if (nodeCurrent) Modifier.nodeGlow() else Modifier)
+                                .graphicsLayer { scaleX = pulse; scaleY = pulse }
+                                .pressScale()
                         ) {
                             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                                 if (isCp) Text("🏆", fontSize = 24.sp)
@@ -1371,17 +1406,22 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                     val chestTaken = unit.id in chestsClaimed
                     val chestOffset = (kotlin.math.sin((unitStart + li + 0.5) * 1.05) * 86).dp
                     Box(Modifier.fillMaxWidth().padding(vertical = 3.dp), contentAlignment = Alignment.Center) {
-                        val chestPulse = if (chestUnlocked && !chestTaken) {
-                            val chestAnim = rememberInfiniteTransition(label = "chest")
-                            chestAnim.animateFloat(1f, 1.12f, infiniteRepeatable(tween(520), RepeatMode.Reverse), label = "chestPulse").value
-                        } else 1f
                         Surface(
-                            onClick = { if (chestUnlocked && !chestTaken) onClaimChest(unit.id) else if (!chestUnlocked) onLocked() },
+                            onClick = {
+                                if (chestUnlocked && !chestTaken) {
+                                    celebration = Celebration("🎁", "+20 💎", "Elmas sandığı açıldı!")
+                                    onClaimChest(unit.id)
+                                } else if (!chestUnlocked) onLocked()
+                            },
                             color = if (chestTaken) Panel2 else if (chestUnlocked) PinkAccent else Panel2,
                             shape = CircleShape,
                             shadowElevation = if (chestUnlocked && !chestTaken) 8.dp else 2.dp,
                             border = if (chestUnlocked && !chestTaken) BorderStroke(2.dp, Color(0xFFF5F1FF)) else null,
-                            modifier = Modifier.offset(x = chestOffset).size(52.dp).graphicsLayer { scaleX = chestPulse; scaleY = chestPulse }
+                            modifier = Modifier
+                                .offset(x = chestOffset)
+                                .size(52.dp)
+                                .then(if (chestUnlocked && !chestTaken) Modifier.wiggleForever() else Modifier)
+                                .pressScale()
                         ) {
                             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                                 if (chestTaken) Text("✓", color = Gold, fontSize = 20.sp, fontWeight = FontWeight.ExtraBold)
@@ -1408,6 +1448,9 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         }
         Spacer(Modifier.height(16.dp))
         } }
+    }
+    // Kutlama katmanı: sandık/görev ödülleri parçacık patlamasıyla kutlanır
+    CelebrationOverlay(celebration, onDismiss = { celebration = null })
     }
 }
 
@@ -1443,7 +1486,7 @@ private fun PracticeScreen(level: String, mistakeIds: Set<String>, skillStats: M
         if (reviewItems.isNotEmpty()) {
             Text("Tekrar etmen gerekenler  •  ${reviewItems.size}", color = OnBg, fontSize = 17.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 15.dp, bottom = 5.dp))
             reviewItems.forEach { (lesson, exerciseIndex, exercise) ->
-                Surface(onClick = { onReviewExercise(lesson.id, exerciseIndex) }, color = Color(0xFFF3E8FF), shape = RoundedCornerShape(15.dp), modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
+                Surface(onClick = { onReviewExercise(lesson.id, exerciseIndex) }, color = Color(0xFFF3E8FF), shape = RoundedCornerShape(15.dp), modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp).pressScale()) {
                     Row(Modifier.padding(13.dp), verticalAlignment = Alignment.CenterVertically) {
                         Icon(Icons.Default.Replay, null, tint = Gold)
                         Column(Modifier.weight(1f).padding(start = 10.dp)) {
@@ -1458,7 +1501,7 @@ private fun PracticeScreen(level: String, mistakeIds: Set<String>, skillStats: M
         }
         Spacer(Modifier.height(12.dp))
         visibleLessons.forEachIndexed { index, lesson ->
-            Surface(onClick = { onSelectLesson(lesson.id) }, color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(17.dp), modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp)) {
+            Surface(onClick = { onSelectLesson(lesson.id) }, color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(17.dp), modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp).pressScale()) {
                 Row(Modifier.padding(15.dp), verticalAlignment = Alignment.CenterVertically) {
                     Box(Modifier.size(38.dp).background(Panel2, CircleShape), contentAlignment = Alignment.Center) { Text("${index + 1}", color = Gold, fontWeight = FontWeight.Bold) }
                     Column(Modifier.weight(1f).padding(horizontal = 12.dp)) {
@@ -1491,14 +1534,15 @@ private fun ProgressScreen(level: String, completed: Int, progress: LearningProg
                     Text("$level öğrenme yolu", fontWeight = FontWeight.Bold)
                     Text("$percent%", color = Gold, fontWeight = FontWeight.Bold)
                 }
-                LinearProgressIndicator(progress = { percent / 100f }, modifier = Modifier.fillMaxWidth().padding(top = 13.dp).height(8.dp), color = Gold, trackColor = Panel2)
+                val percentAnim by animateFloatAsState(targetValue = percent / 100f, animationSpec = tween(750, easing = FastOutSlowInEasing), label = "pathPercent")
+                LinearProgressIndicator(progress = { percentAnim }, modifier = Modifier.fillMaxWidth().padding(top = 13.dp).height(8.dp), color = Gold, trackColor = Panel2)
                 Text("$done / $total ders tamamlandı", color = Muted, fontSize = 12.sp, modifier = Modifier.padding(top = 8.dp))
             }
         }
         Spacer(Modifier.height(12.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            StatCard("🔥", "${progress.streakDays} gün", "Çalışma serisi", Modifier.weight(1f))
-            StatCard("✦", "${progress.totalXp} XP", "Toplam deneyim", Modifier.weight(1f))
+            StatCard("🔥", "${progress.streakDays} gün", "Çalışma serisi", Modifier.weight(1f).staggerIn(0))
+            StatCard("✦", "${progress.totalXp} XP", "Toplam deneyim", Modifier.weight(1f).staggerIn(1))
         }
         Spacer(Modifier.height(18.dp))
         Text("Beceriler bu kursta", color = OnBg, fontSize = 18.sp, fontWeight = FontWeight.Bold)
@@ -1522,7 +1566,7 @@ private fun ProgressScreen(level: String, completed: Int, progress: LearningProg
 @Composable
 private fun LockedScreen(onBack: () -> Unit) {
     Column(Modifier.fillMaxSize().padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-        Icon(Icons.Default.Lock, null, tint = OnBg, modifier = Modifier.size(60.dp))
+        Icon(Icons.Default.Lock, null, tint = OnBg, modifier = Modifier.size(60.dp).popIn())
         Text("Bu ünite sıradaki adımda açılacak", color = OnBg, fontSize = 23.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 18.dp))
         Text("Önce mevcut üniteni tamamla; öğrenme programın adım adım ilerler.", color = OnBgSoft, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 10.dp))
         Spacer(Modifier.height(24.dp)); PrimaryButton("Ana sayfaya dön", onBack)
@@ -1540,7 +1584,7 @@ private fun StatCard(emoji: String, title: String, subtitle: String, modifier: M
 
 @Composable
 private fun NavItem(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String, active: Boolean, onClick: () -> Unit) {
-    Column(Modifier.clickable(onClick = onClick).padding(horizontal = 7.dp, vertical = 4.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(Modifier.pressScale().clickable(onClick = onClick).padding(horizontal = 7.dp, vertical = 4.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Icon(icon, null, tint = if (active) Gold else Muted)
         Text(text, color = if (active) Gold else Muted, fontSize = 10.sp, modifier = Modifier.padding(top = 3.dp))
     }

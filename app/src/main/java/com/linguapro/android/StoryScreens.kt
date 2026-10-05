@@ -16,6 +16,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import com.linguapro.android.ui.components.enterOnChange
+import com.linguapro.android.ui.components.popIn
+import com.linguapro.android.ui.components.pressScale
+import com.linguapro.android.ui.components.staggerIn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -60,7 +64,7 @@ fun StoriesListScreen(lang: String, doneIds: Set<String>, onOpen: (String) -> Un
     ) {
         Spacer(Modifier.height(14.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Surface(onClick = onBack, color = StPanel, shape = RoundedCornerShape(12.dp)) {
+            Surface(onClick = onBack, color = StPanel, shape = RoundedCornerShape(12.dp), modifier = Modifier.pressScale()) {
                 Text("←", color = StText, fontSize = 20.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
             }
             Text("📖 Hikâyeler", color = StText, fontSize = 22.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 12.dp))
@@ -71,9 +75,9 @@ fun StoriesListScreen(lang: String, doneIds: Set<String>, onOpen: (String) -> Un
                 Text("Bu dil için hikâyeler çok yakında!", color = StMuted, fontSize = 13.sp, modifier = Modifier.padding(16.dp))
             }
         }
-        stories.forEach { story ->
+        stories.forEachIndexed { i, story ->
             val done = story.id in doneIds
-            Surface(onClick = { onOpen(story.id) }, color = StPanel, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp)) {
+            Surface(onClick = { onOpen(story.id) }, color = StPanel, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp).staggerIn(i).pressScale()) {
                 Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
                     Text("📖", fontSize = 26.sp)
                     Column(Modifier.weight(1f).padding(start = 12.dp)) {
@@ -129,7 +133,7 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
     ) {
         Spacer(Modifier.height(14.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Surface(onClick = onBack, color = StPanel, shape = RoundedCornerShape(12.dp)) {
+            Surface(onClick = onBack, color = StPanel, shape = RoundedCornerShape(12.dp), modifier = Modifier.pressScale()) {
                 Text("←", color = StText, fontSize = 20.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
             }
             Column(Modifier.padding(start = 12.dp)) {
@@ -144,7 +148,7 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
             story.lines.take(revealed).forEachIndexed { i, line ->
                 val fromLeft = line.speaker == 0
                 Row(
-                    Modifier.fillMaxWidth().padding(vertical = 5.dp),
+                    Modifier.fillMaxWidth().padding(vertical = 5.dp).popIn(),
                     horizontalArrangement = if (fromLeft) Arrangement.Start else Arrangement.End,
                     verticalAlignment = Alignment.Bottom
                 ) {
@@ -172,7 +176,7 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
                 onClick = {
                     if (revealed < story.lines.size) revealed++ else questionIndex = 0
                 },
-                color = StGold, shape = RoundedCornerShape(15.dp), modifier = Modifier.fillMaxWidth()
+                color = StGold, shape = RoundedCornerShape(15.dp), modifier = Modifier.fillMaxWidth().pressScale()
             ) {
                 Text(
                     if (revealed < story.lines.size) "Devam  ▸" else "Sorulara geç  ▸",
@@ -184,7 +188,7 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
         } else {
             // --- Soru aşaması ---
             val question = story.questions[questionIndex]
-            Surface(color = StPanel, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth()) {
+            Surface(color = StPanel, shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth().enterOnChange(questionIndex)) {
                 Column(Modifier.padding(16.dp)) {
                     Text("ANLAMA SORUSU", color = StGold, fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.2.sp)
                     Text(question.prompt, color = StText, fontSize = 18.sp, fontWeight = FontWeight.Bold, lineHeight = 25.sp, modifier = Modifier.padding(top = 8.dp, bottom = 12.dp))
@@ -200,7 +204,7 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
                         Surface(
                             onClick = { if (!answered) { picked = oi; if (isCorrect) correctCount++ } },
                             color = bg, shape = RoundedCornerShape(13.dp),
-                            modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+                            modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp).pressScale()
                         ) {
                             Text(option, color = fg, fontSize = 14.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp))
                         }
@@ -217,7 +221,7 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
                             onFinished(correctCount, story.questions.size)
                         }
                     },
-                    color = StGold, shape = RoundedCornerShape(15.dp), modifier = Modifier.fillMaxWidth()
+                    color = StGold, shape = RoundedCornerShape(15.dp), modifier = Modifier.fillMaxWidth().pressScale()
                 ) {
                     Text(
                         if (questionIndex < story.questions.lastIndex) "Sonraki soru  ▸" else "Hikâyeyi bitir  🏁",

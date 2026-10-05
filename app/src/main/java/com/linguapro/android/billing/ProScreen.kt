@@ -18,6 +18,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.linguapro.android.ui.components.breathe
+import com.linguapro.android.ui.components.popIn
+import com.linguapro.android.ui.components.pressScale
+import com.linguapro.android.ui.components.staggerIn
 
 @Composable
 fun ProScreen(viewModel: ProViewModel, onBack: () -> Unit, onPractice: () -> Unit) {
@@ -35,7 +39,7 @@ internal fun ProScreenContent(state: ProBillingState, onBack: () -> Unit, onPrac
         Text("LINGUA PRO", color = Color(0xFFC6FF4A), fontSize = 12.sp, letterSpacing = 3.sp, fontWeight = FontWeight.Bold)
         Text("Zorlandığın konulara\nodaklan.", color = Color.White, fontSize = 32.sp, lineHeight = 38.sp, fontWeight = FontWeight.ExtraBold)
         Text("Sana özel pratik: hata defterindeki soruları ve güçlendirebileceğin becerileri kısa oturumlarda bir araya getir.", color = Color(0xFFCBBDE8), lineHeight = 22.sp)
-        Card(colors = CardDefaults.cardColors(containerColor = Color(0xFF342457))) {
+        Card(colors = CardDefaults.cardColors(containerColor = Color(0xFF342457)), modifier = Modifier.popIn(delayMillis = 250)) {
             Column(Modifier.padding(18.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Text("✓ Hata geçmişine göre kişisel pratik", color = Color.White)
                 Text("✓ Zayıf becerilere öncelik veren oturumlar", color = Color.White)
@@ -43,16 +47,16 @@ internal fun ProScreenContent(state: ProBillingState, onBack: () -> Unit, onPrac
             }
         }
         if (state.hasPro) {
-            Button(onClick = onPractice, modifier = Modifier.fillMaxWidth()) { Text("Kişisel pratiğime başla") }
+            Button(onClick = onPractice, modifier = Modifier.fillMaxWidth().pressScale()) { Text("Kişisel pratiğime başla") }
             Text("Pro aboneliğin aktif.", color = Color(0xFFC6FF4A))
         } else {
             if (state.loading) CircularProgressIndicator()
-            state.offers.forEach { offer ->
-                OutlinedCard(border = BorderStroke(1.dp, Color(0xFFC6FF4A)), colors = CardDefaults.cardColors(containerColor = Color(0xFF281A4A))) {
+            state.offers.forEachIndexed { offerIndex, offer ->
+                OutlinedCard(border = BorderStroke(1.dp, Color(0xFFC6FF4A)), colors = CardDefaults.cardColors(containerColor = Color(0xFF281A4A)), modifier = Modifier.staggerIn(offerIndex)) {
                     Column(Modifier.fillMaxWidth().padding(18.dp)) {
                         Text(offer.title, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp)
                         Text(offer.terms, color = Color(0xFFCBBDE8), modifier = Modifier.padding(vertical = 10.dp))
-                        Button(enabled = !state.purchasing && !state.loading, onClick = { onBuy(offer) }, modifier = Modifier.fillMaxWidth()) { Text("Google Play ile abone ol") }
+                        Button(enabled = !state.purchasing && !state.loading, onClick = { onBuy(offer) }, modifier = Modifier.fillMaxWidth().pressScale().then(if (!state.purchasing && !state.loading) Modifier.breathe(1f, 1.02f) else Modifier)) { Text("Google Play ile abone ol") }
                     }
                 }
             }
