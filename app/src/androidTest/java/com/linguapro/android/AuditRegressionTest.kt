@@ -23,6 +23,31 @@ import org.junit.runner.RunWith
 class AuditRegressionTest {
     private val context get() = ApplicationProvider.getApplicationContext<Context>()
 
+    @Test fun languageSkillsAreIsolatedAndAccountDeletionClearsEveryCourse() = runBlocking {
+        val uid = "audit-skills-${System.nanoTime()}"
+        val other = "$uid-other"
+        val database = Room.inMemoryDatabaseBuilder(context, LinguaDatabase::class.java).build()
+        try {
+            SkillProgressStore(context, uid, "EN").record(Skill.LISTENING, true)
+            SkillProgressStore(context, uid, "DE").record(Skill.LISTENING, false)
+            SkillProgressStore(context, other, "EN").record(Skill.LISTENING, true)
+            assertEquals(SkillTally(1, 1), SkillProgressStore(context, uid, "EN").read().getValue(Skill.LISTENING))
+            assertEquals(SkillTally(1, 0), SkillProgressStore(context, uid, "DE").read().getValue(Skill.LISTENING))
+            assertEquals(SkillTally(), SkillProgressStore(context, uid, "JA").read().getValue(Skill.LISTENING))
+            LocalAccountDataCleaner(context, database).clear(uid)
+            WorldCatalog.languages.forEach { language ->
+                assertTrue(SkillProgressStore(context, uid, language.code).read().values.all { it.attempts == 0 })
+            }
+            assertEquals(SkillTally(1, 1), SkillProgressStore(context, other, "EN").read().getValue(Skill.LISTENING))
+        } finally {
+            listOf(uid, other).forEach { learner -> WorldCatalog.languages.forEach { language ->
+                context.getSharedPreferences("skill_progress_v2_${learner}_${language.code}", Context.MODE_PRIVATE).edit().clear().commit()
+            } }
+            database.close()
+        }
+    }
+
+
     @Test fun lessonReturnPreservesStudySecondsAndConsumesExactlyOneFreeze() {
         val uid = "audit-progress-${System.nanoTime()}"
         val prefs = context.getSharedPreferences("learner_progress_v1_$uid", Context.MODE_PRIVATE)
@@ -105,3 +130,4 @@ class AuditRegressionTest {
         }
     }
 }
+
