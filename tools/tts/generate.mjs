@@ -20,9 +20,10 @@
  */
 
 import { createHash, createSign } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { mergeCatalog, cachedAudio, uploadedTo, recordUpload } from './resume.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 
@@ -284,8 +285,9 @@ async function main() {
         const voice = tv[gender];
         const key = audioKey(voice.name, e.text);
         const localFile = join(OUT_DIR, tag, `${key}.mp3`);
-        if (!FRESH && existsSync(localFile) && statSize(localFile) > 0) continue;
-        tasks.push({ tag, voice, text: e.text, key, localFile });
+        const objectPath = `audio/v1/${tag}/${key}.mp3`;
+        if (!FRESH && uploadedTo(localFile, BUCKET, objectPath)) continue;
+        tasks.push({ tag, voice, text: e.text, key, localFile, objectPath });
       }
     }
   }
@@ -310,10 +312,11 @@ async function main() {
     while (queue.length > 0) {
       const t = queue.shift();
       try {
-        const mp3 = await synthesize(t.voice, t.text);
-        await upload(`audio/v1/${t.tag}/${t.key}.mp3`, mp3, 'audio/mpeg', 'public,max-age=31536000,immutable', true);
+        const mp3 = (!FRESH && cachedAudio(t.localFile)) || await synthesize(t.voice, t.text);
+        await upload(t.objectPath, mp3, 'audio/mpeg', 'public,max-age=31536000,immutable', true);
         mkdirSync(dirname(t.localFile), { recursive: true });
         writeFileSync(t.localFile, mp3);
+        recordUpload(t.localFile, BUCKET, t.objectPath, mp3);
         done++;
       } catch (err) {
         failed++;
@@ -328,10 +331,16 @@ async function main() {
   await Promise.all(Array.from({ length: Math.max(1, Math.min(CONCURRENCY, 12)) }, worker));
 
   // Katalog
-  const catalogJson = JSON.stringify(
-    { version: 1, baseUrl: `https://storage.googleapis.com/${BUCKET}/audio/v1`, voices: catalogVoices },
-    null, 2
-  );
+  // Preserve already published languages during --langs updates. A read failure is fatal:
+  // never mistake an unavailable existing catalog for an empty one and erase it.
+  const catalogRes = await apiFetch(`https://storage.googleapis.com/${BUCKET}/audio/v1/catalog.json`, {
+    headers: { Authorization: `Bearer ${await getToken()}` },
+  }, 15_000);
+  let previousCatalog = null;
+  if (catalogRes.ok) previousCatalog = await catalogRes.json();
+  else if (catalogRes.status !== 404) throw new Error(`Mevcut katalog okunamadı (${catalogRes.status}); üzerine yazılmadı.`);
+  const catalogJson = JSON.stringify(mergeCatalog(previousCatalog,
+    { version: 1, baseUrl: `https://storage.googleapis.com/${BUCKET}/audio/v1`, voices: catalogVoices }), null, 2);
   if (failed === 0) {
     await upload('audio/v1/catalog.json', Buffer.from(catalogJson), 'application/json', 'public,max-age=3600', true);
     writeFileSync(join(OUT_DIR, 'catalog.json'), catalogJson);
@@ -353,14 +362,6 @@ async function main() {
       'docs/ses_plani.md içindeki alternatife bak.'
     );
     process.exitCode = 2;
-  }
-}
-
-function statSize(p) {
-  try {
-    return statSync(p).size;
-  } catch {
-    return 0;
   }
 }
 

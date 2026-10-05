@@ -842,7 +842,7 @@ private fun LinguaApp() {
                 } else {
                     StoryPlayerScreen(
                         story = story,
-                        soundOn = true,
+                        soundOn = coursePrefs.getBoolean("sound_on", true),
                         onFinished = { correct, total ->
                             if (story.id !in doneStories) {
                                 doneStories = doneStories + story.id

@@ -303,7 +303,7 @@ object DailyRefresh {
         val pool = weighted
         val calendar = java.util.Calendar.getInstance()
         val seed = calendar.get(java.util.Calendar.YEAR) * 1000L + calendar.get(java.util.Calendar.DAY_OF_YEAR)
-        val picks = if (pool.isEmpty()) emptyList() else pool.shuffled(kotlin.random.Random(seed)).take(10)
+        val picks = if (pool.isEmpty()) emptyList() else pool.shuffled(kotlin.random.Random(seed)).distinctBy { it.id }.take(10)
         return LearningLesson(
             "$lang-$level-REFRESH",
             "Günlük Tekrar",

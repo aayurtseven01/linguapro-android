@@ -15,7 +15,7 @@ object ExerciseMechanics {
 
     /** Kısa yazma hedefleri fiş dizme (cümle kurma) olarak oynanır. */
     fun isSentenceBuilder(exercise: LearningExercise): Boolean {
-        if (exercise.skill != Skill.WRITING || exercise.options.isNotEmpty()) return false
+        if (exercise.skill != Skill.WRITING || exercise.options.isNotEmpty() || exercise.writingRequirements != null) return false
         return builderTarget(exercise).size in 2..8
     }
 

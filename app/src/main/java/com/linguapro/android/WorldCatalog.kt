@@ -19,8 +19,10 @@ object WorldCatalog {
     )
 
     private fun withCheckpoint(unit: LearningUnit): LearningUnit {
-        val pool = unit.lessons.flatMap { it.exercises }
-        if (pool.isEmpty()) return unit
+        // Checkpoints use closed questions so every item contributes to the 80% pass score.
+        // Open production remains in the practice lessons, where it is reviewed without a score.
+        val pool = unit.lessons.flatMap { it.exercises }.filter { it.options.isNotEmpty() }
+        require(pool.size >= 5) { "${unit.id}: checkpoint requires five closed questions" }
         val quiz = pool.shuffled(kotlin.random.Random(unit.id.hashCode().toLong()))
             .take(5)
             .map { it.copy(id = "${it.id}-cp") }

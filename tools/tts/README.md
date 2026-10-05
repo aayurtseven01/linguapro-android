@@ -45,8 +45,8 @@ node tools/tts/generate.mjs --key tools/tts/anahtar.json --bucket KOVAM_IN_ADI
 
 - Dil başına 2 stüdyo sesi (♀+♂) otomatik seçilir; EN için en-US **ve** en-GB üretilir.
 - Adresler `sha256("ses|metin")` tabanlıdır → aynı metin ses değişmedikçe yeniden üretilmez.
-- Yarım kalırsa **tekrar çalıştır** — `out/` dizinindeki dosyalar atlanır (kaldığı yerden sürer).
-- Deneme modu: `--dry-run` (üretmeden planı göster). Tek dil: `--langs DE`.
+- Yarım kalırsa **tekrar çalıştır** — `out/` dizinindeki MP3 yeniden kullanılır. Yalnızca aynı kova ve nesne yoluna başarılı yükleme kaydı bulunan dosyalar atlanır; kova değişirse mevcut MP3 yeni kovaya yeniden yüklenir.
+- Deneme modu: `--dry-run` (üretmeden planı göster). Tek dil: `--langs DE`; mevcut katalogdaki diğer diller korunur. Katalog okuma hatası varsa üzerine yazılmaz.
 - Bitince `audio/v1/catalog.json` yüklenir; uygulama bunu görünce stüdyo sesine geçer.
 
 ## Maliyet

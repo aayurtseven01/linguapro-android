@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ main ]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   contents: write
 
@@ -77,6 +81,7 @@ jobs:
 
   device-tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 35
     strategy:
       fail-fast: false
       matrix:
@@ -102,6 +107,7 @@ jobs:
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android/sdk/ndk
           df -h /home/runner /usr/local/lib/android/sdk
       - uses: reactivecircus/android-emulator-runner@v2
+        timeout-minutes: 25
         with:
           api-level: ${{ matrix.api-level }}
           arch: x86_64
@@ -109,7 +115,7 @@ jobs:
           disk-size: 2048M
           disable-animations: true
           script: |
-            chmod +x gradlew && ./gradlew -Pandroid.injected.androidTest.leaveApksInstalledAfterRun=true connectedDebugAndroidTest
+            chmod +x gradlew && ./gradlew --no-daemon -Pandroid.injected.androidTest.leaveApksInstalledAfterRun=true connectedDebugAndroidTest
             mkdir -p app/build/ui-screenshots
             if [ "${{ matrix.api-level }}" -ge 26 ]; then for name in study-plan-top study-plan-bottom delete-confirmation pro-preview writing-task; do adb shell run-as com.linguapro.android cat files/qa-screenshots/$name.png > app/build/ui-screenshots/$name.png; done; fi
       - uses: actions/upload-artifact@v4
@@ -131,3 +137,5 @@ jobs:
           cache-dependency-path: functions/package-lock.json
       - run: npm ci --prefix functions --ignore-scripts
       - run: npm test --prefix functions && npm run check --prefix functions
+      - name: Test audio publishing and resume contracts
+        run: node --check tools/tts/generate.mjs && node --test tools/tts/resume.test.mjs

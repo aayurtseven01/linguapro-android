@@ -44,6 +44,25 @@ class WorldCatalogTest {
     }
 
     @Test
+    fun everyWorldCheckpointHasFiveAutomaticallyScoredQuestions() {
+        worldLangs.forEach { lang ->
+            CourseCatalog.levels.forEach { level ->
+                WorldCatalog.units(lang, level).forEach { unit ->
+                    val checkpoint = unit.lessons.last()
+                    assertEquals("${unit.id}: five scored checkpoint questions", 5, checkpoint.exercises.size)
+                    checkpoint.exercises.forEach { exercise ->
+                        assertTrue("${exercise.id}: checkpoint must have answer options", exercise.options.isNotEmpty())
+                        assertTrue("${exercise.id}: correct answer must be selectable",
+                            exercise.acceptedAnswers.any { it in exercise.options })
+                        assertTrue("${exercise.id}: open writing must remain in practice",
+                            exercise.writingRequirements == null)
+                    }
+                }
+            }
+        }
+    }
+
+    @Test
     fun englishDelegatesToTheFullCourseCatalog() {
         CourseCatalog.levels.forEach { level ->
             assertEquals(CourseCatalog.units(level), WorldCatalog.units("EN", level))
@@ -67,6 +86,20 @@ class WorldCatalogTest {
                 val refresh = DailyRefresh.lessonFor(lang, level)
                 assertEquals("$lang-$level-REFRESH", refresh.id)
                 assertEquals("$lang $level günlük tekrar 10 soru olmalı", 10, refresh.exercises.size)
+            }
+        }
+    }
+
+    @Test
+    fun focusedDailyRefreshNeverRepeatsAnExercise() {
+        (worldLangs + "EN").forEach { lang ->
+            CourseCatalog.levels.forEach { level ->
+                Skill.values().forEach { focus ->
+                    val questions = DailyRefresh.lessonFor(lang, level, focus).exercises
+                    assertEquals("$lang $level $focus: ten distinct questions", 10, questions.size)
+                    assertEquals("$lang $level $focus: no repeated exercise",
+                        questions.size, questions.map { it.id }.toSet().size)
+                }
             }
         }
     }
