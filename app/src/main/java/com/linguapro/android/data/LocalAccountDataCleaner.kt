@@ -19,7 +19,7 @@ class LocalAccountDataCleaner @Inject constructor(
             database.reviewCardDao().deleteForLearner(uid)
             database.pendingLessonEventDao().deleteForLearner(uid)
         }
-        listOf("learner_progress_v1_", "mistake_book_", "skill_progress_", "daily_quests_")
+        listOf("learner_progress_v1_", "mistake_book_", "skill_progress_", "daily_quests_", "gems_v1_")
             .forEach { prefix ->
                 check(context.getSharedPreferences(prefix + uid, Context.MODE_PRIVATE).edit().clear().commit())
             }
@@ -27,7 +27,8 @@ class LocalAccountDataCleaner @Inject constructor(
         val editor = prefs.edit()
         prefs.all.keys.filter {
             it.startsWith("level_${uid}_") || it.startsWith("completed_${uid}_") ||
-                it == "username_$uid" || it == "avatar_$uid"
+                it == "username_$uid" || it == "avatar_$uid" ||
+                it == "stories_done_$uid" || it == "doublexp_$uid"
         }.forEach(editor::remove)
         check(editor.commit())
     }

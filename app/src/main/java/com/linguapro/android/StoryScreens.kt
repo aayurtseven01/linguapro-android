@@ -121,6 +121,11 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
     val speechScope = rememberCoroutineScope()
     val remoteSpeech = remember { RemoteSpeechPlayer(context, speechScope) }
     DisposableEffect(Unit) { onDispose { remoteSpeech.release() } }
+    var remoteReady by remember(story.id) { mutableStateOf(false) }
+    LaunchedEffect(story.id) {
+        remoteSpeech.warmCatalog()
+        remoteReady = remoteSpeech.isRemoteAvailable(speechTag)
+    }
     val playLine: (StoryLine) -> Unit = { line ->
         if (soundOn) {
             remoteSpeech.speak(speechTag, line.text, line.speaker == 1) {
@@ -138,9 +143,16 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
     var correctCount by remember(story.id) { mutableIntStateOf(0) }
 
     // Yeni açılan repliği otomatik seslendir (stüdyo sesi önce, cihaz TTS yedek)
-    LaunchedEffect(revealed) {
-        if (questionIndex < 0) {
-            story.lines.getOrNull(revealed - 1)?.let { playLine(it) }
+    var lastAutoPlayed by remember(story.id) { mutableIntStateOf(-1) }
+    LaunchedEffect(story.id, revealed, questionIndex, soundOn, ttsReady, remoteReady) {
+        if (!soundOn || questionIndex >= 0) {
+            runCatching { tts.value?.stop() }
+            remoteSpeech.stop()
+        } else if ((ttsReady || remoteReady) && lastAutoPlayed != revealed) {
+            story.lines.getOrNull(revealed - 1)?.let {
+                lastAutoPlayed = revealed
+                playLine(it)
+            }
         }
     }
 
@@ -184,7 +196,7 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
                 ) {
                     if (fromLeft) AvatarView(storyCast[0], 46.dp)
                     Surface(
-                        onClick = { if (ttsReady || remoteSpeech.isRemoteAvailable(speechTag)) playLine(line) },
+                        onClick = { if (soundOn && (ttsReady || remoteReady)) playLine(line) },
                         color = if (fromLeft) StPanel else StPanel2,
                         shape = RoundedCornerShape(
                             topStart = 16.dp, topEnd = 16.dp,

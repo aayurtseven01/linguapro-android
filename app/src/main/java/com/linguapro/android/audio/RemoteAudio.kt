@@ -74,6 +74,10 @@ class AudioCache(private val dir: File, private val maxBytes: Long = DEFAULT_MAX
 
     fun get(key: String): File? = fileFor(key).takeIf { it.isFile }
 
+    fun remove(key: String) {
+        runCatching { fileFor(key).delete() }
+    }
+
     fun touch(key: String) {
         runCatching { get(key)?.setLastModified(System.currentTimeMillis()) }
     }

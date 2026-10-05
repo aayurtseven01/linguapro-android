@@ -131,3 +131,5 @@ jobs:
           cache-dependency-path: functions/package-lock.json
       - run: npm ci --prefix functions --ignore-scripts
       - run: npm test --prefix functions && npm run check --prefix functions
+      - name: Test audio publishing and resume contracts
+        run: node --check tools/tts/generate.mjs && node --test tools/tts/resume.test.mjs

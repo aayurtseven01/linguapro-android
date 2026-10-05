@@ -7,6 +7,20 @@ import org.junit.Test
 
 class ExerciseMechanicsTest {
 
+    @Test fun shortScenarioModelsRemainOpenWritingRatherThanScoredTiles() {
+        listOf("A1-U1", "A1-U10", "A1-U20").forEach { id ->
+            val task = CourseCatalog.units("A1").single { it.id == id }.lessons[1].exercises.single { it.skill == Skill.WRITING }
+            assertTrue(task.writingRequirements != null)
+            assertFalse(id, ExerciseMechanics.isSentenceBuilder(task))
+        }
+    }
+
+    @Test fun everyScenarioWithProductionCriteriaRemainsOpenWriting() {
+        val tasks = CourseCatalog.allLessons().flatMap { it.exercises }.filter { it.writingRequirements != null }
+        assertEquals(126, tasks.size)
+        tasks.forEach { assertFalse(it.id, ExerciseMechanics.isSentenceBuilder(it)) }
+    }
+
     private fun writing(id: String, answer: String) = LearningExercise(
         id, Skill.WRITING, "Cümleyi yaz", "İngilizcesi: test", "", listOf(), listOf(answer), "açıklama", null, answer
     )

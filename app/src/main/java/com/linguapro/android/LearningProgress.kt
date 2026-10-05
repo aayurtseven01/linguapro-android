@@ -70,7 +70,7 @@ class LearningProgressStore(context: Context, learnerKey: String) {
             .putInt(KEY_TOTAL_XP, prefs.getInt(KEY_TOTAL_XP, 0) + awardedXp)
             .putInt(KEY_STUDY_SECONDS, studySeconds)
             .apply()
-        return LearningProgress(streak, prefs.getInt(KEY_TOTAL_XP, 0), todayXp, today.toString(), studySeconds)
+        return read(today)
     }
 
     /** Gunluk gorev odulu gibi ders disi XP ekler; seri ve gunluk hedef sayaclarini da gunceller. */

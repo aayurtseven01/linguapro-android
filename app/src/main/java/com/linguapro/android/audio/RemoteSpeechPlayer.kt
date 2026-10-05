@@ -98,12 +98,14 @@ object RemoteVoiceCatalogStore {
  */
 class RemoteSpeechPlayer(
     private val context: Context,
-    private val scope: CoroutineScope
+    private val scope: CoroutineScope,
+    private val catalogProvider: (Context) -> RemoteVoiceCatalog? = RemoteVoiceCatalogStore::peek
 ) {
     private val cache = AudioCache(File(context.filesDir, "audio_cache"))
     private val missing = java.util.Collections.synchronizedSet(HashSet<String>())
     private val inFlight = java.util.Collections.synchronizedSet(HashSet<String>())
     private var job: Job? = null
+    private val failures = PlaybackFailureGate()
 
     @Volatile
     private var player: MediaPlayer? = null
@@ -120,11 +122,11 @@ class RemoteSpeechPlayer(
 
     /** Bu konuşma etiketi için stüdyo sesi kullanılabilir mi (cihaz TTS'si olmadan da ses düğmesi açılır). */
     fun isRemoteAvailable(speechTag: String): Boolean =
-        RemoteVoiceCatalogStore.peek(context)?.resolve(speechTag) != null
+        catalogProvider(context)?.resolve(speechTag) != null
 
     /** Dokunma anında anında çalması için metinleri arka planda indirir (yalnız önbellekte yoksa). */
     fun prefetch(speechTag: String, items: List<Pair<String, Boolean>>) {
-        val catalog = RemoteVoiceCatalogStore.peek(context) ?: return
+        val catalog = catalogProvider(context) ?: return
         scope.launch(Dispatchers.IO) {
             items.forEach { (text, female) ->
                 val resolved = catalog.resolve(speechTag) ?: return@forEach
@@ -156,7 +158,7 @@ class RemoteSpeechPlayer(
         fallback: () -> Unit
     ) {
         stop()
-        val catalog = RemoteVoiceCatalogStore.peek(context)
+        val catalog = catalogProvider(context)
         val resolved = catalog?.resolve(speechTag)
         if (catalog == null || resolved == null) {
             fallback(); return
@@ -165,6 +167,15 @@ class RemoteSpeechPlayer(
         val key = AudioKey.forVoice(voiceId, text)
         if (missing.contains(key)) {
             fallback(); return
+        }
+        val request = failures.begin()
+        val playbackFailed: () -> Unit = {
+            if (failures.tryFail(request)) {
+                cache.remove(key)
+                scope.launch(Dispatchers.Main.immediate) {
+                    if (failures.isCurrent(request)) fallback()
+                }
+            }
         }
         val cachedFile = cache.get(key)
         if (cachedFile != null) cache.touch(key)
@@ -184,13 +195,14 @@ class RemoteSpeechPlayer(
                 cache.get(key)
             }
             when {
-                file != null && isActive -> playFile(file, rate)
+                file != null && isActive -> playFile(file, rate, request, playbackFailed)
                 isActive -> withContext(Dispatchers.Main) { fallback() }
             }
         }
     }
 
     fun stop() {
+        failures.cancel()
         job?.cancel()
         job = null
         stopPlayback()
@@ -204,10 +216,13 @@ class RemoteSpeechPlayer(
         "${catalog.baseUrl}/$tag/$key.mp3"
 
     @Synchronized
-    private fun playFile(file: File, rate: Float) {
+    private fun playFile(file: File, rate: Float, request: Long, onFailure: () -> Unit) {
+        if (!failures.isCurrent(request)) return
         stopPlayback()
         runCatching {
-            MediaPlayer().apply {
+            val media = MediaPlayer()
+            player = media // Own it before prepare: a corrupt file must not leak the player.
+            media.apply {
                 setAudioAttributes(
                     AudioAttributes.Builder()
                         .setUsage(AudioAttributes.USAGE_MEDIA)
@@ -223,6 +238,7 @@ class RemoteSpeechPlayer(
                 setOnErrorListener { mp, _, _ ->
                     runCatching { mp.release() }
                     if (player === mp) player = null
+                    onFailure()
                     true
                 }
                 player = this
@@ -234,7 +250,7 @@ class RemoteSpeechPlayer(
                     }
                 }
             }
-        }.onFailure { stopPlayback() }
+        }.onFailure { stopPlayback(); onFailure() }
     }
 
     @Synchronized
