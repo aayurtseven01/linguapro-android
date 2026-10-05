@@ -91,6 +91,20 @@ class WorldCatalogTest {
     }
 
     @Test
+    fun focusedDailyRefreshNeverRepeatsAnExercise() {
+        (worldLangs + "EN").forEach { lang ->
+            CourseCatalog.levels.forEach { level ->
+                Skill.values().forEach { focus ->
+                    val questions = DailyRefresh.lessonFor(lang, level, focus).exercises
+                    assertEquals("$lang $level $focus: ten distinct questions", 10, questions.size)
+                    assertEquals("$lang $level $focus: no repeated exercise",
+                        questions.size, questions.map { it.id }.toSet().size)
+                }
+            }
+        }
+    }
+
+    @Test
     fun firstLessonOfEachWorldUnitCarriesTargetVocabulary() {
         worldLangs.forEach { lang ->
             CourseCatalog.levels.forEach { level ->
