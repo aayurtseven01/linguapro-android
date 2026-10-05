@@ -41,11 +41,11 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.CornerRadius
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.graphicsLayer
@@ -826,7 +826,7 @@ private fun ConfettiBurst(modifier: Modifier = Modifier) {
                 sx = (i * 37 % 100) / 100f,
                 rise = 0.45f + (i * 53 % 100) / 100f * 0.85f,
                 drift = ((i * 71 % 100) / 100f - 0.5f) * 0.55f,
-                size = 3.dp + (i * 29 % 100) / 100f * 3.dp,
+                size = 3.dp + 3.dp * ((i * 29 % 100) / 100f),
                 color = palette[i % palette.size],
                 ribbon = i % 3 == 0,
                 spin = (i * 13 % 360).toFloat()

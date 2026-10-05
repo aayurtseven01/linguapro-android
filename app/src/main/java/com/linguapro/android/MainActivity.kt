@@ -651,7 +651,7 @@ private fun LinguaApp() {
                                             android.widget.Toast.makeText(context, "🧊 Seri Dondurucu hazır!", android.widget.Toast.LENGTH_SHORT).show()
                                         } else android.widget.Toast.makeText(context, "Yetersiz elmas — 200 💎 gerekli.", android.widget.Toast.LENGTH_SHORT).show()
                                     },
-                                    color = Gold, shape = RoundedCornerShape(12.dp), modifier = Modifier.padding(top = 7.dp)
+                                    color = Gold, shape = RoundedCornerShape(12.dp)
                                 ) { Text("200 💎 — Satın al", color = Navy, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 12.dp, vertical = 7.dp)) }
                                 Spacer(Modifier.height(15.dp))
                                 Text("🎟️ Çifte XP Bileti", color = Gold, fontWeight = FontWeight.Bold, fontSize = 14.sp)
@@ -668,7 +668,7 @@ private fun LinguaApp() {
                                                 android.widget.Toast.makeText(context, "🎟️ Çifte XP hazır — hadi derse!", android.widget.Toast.LENGTH_SHORT).show()
                                             } else android.widget.Toast.makeText(context, "Yetersiz elmas — 150 💎 gerekli.", android.widget.Toast.LENGTH_SHORT).show()
                                         },
-                                        color = Gold, shape = RoundedCornerShape(12.dp), modifier = Modifier.padding(top = 7.dp)
+                                        color = Gold, shape = RoundedCornerShape(12.dp)
                                     ) { Text("150 💎 — Satın al", color = Navy, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 12.dp, vertical = 7.dp)) }
                                 }
                                 Spacer(Modifier.height(13.dp))
