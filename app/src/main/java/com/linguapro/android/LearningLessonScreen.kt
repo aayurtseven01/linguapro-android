@@ -300,6 +300,8 @@ fun LearningLessonScreen(
             }
         }
         if (items.isNotEmpty()) remoteSpeech.prefetch(courseSpeechTag, items)
+        // Duolingo tarzı: dinleme etkinliği ekrana geldiğinde soru sesi otomatik çalar
+        if (exercise.skill == Skill.LISTENING) playSpeech(modelText, charPitch, charRate)
     }
     val isBuilder = remember(exercise.id) { ExerciseMechanics.isSentenceBuilder(exercise) }
     val isDictation = remember(exercise.id) { ExerciseMechanics.isDictation(exercise) }
