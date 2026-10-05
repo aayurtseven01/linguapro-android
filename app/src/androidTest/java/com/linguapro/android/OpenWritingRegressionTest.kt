@@ -11,6 +11,23 @@ import org.junit.Test
 
 class OpenWritingRegressionTest {
     @get:Rule val compose = createComposeRule()
+    @Test fun incompleteWritingStaysEditableAndIsNotScored() {
+        val source = CourseCatalog.units("A1").first().lessons[1]
+        val writing = source.exercises.first { it.skill == Skill.WRITING }.copy(
+            options = emptyList(), writingRequirements = WritingRequirements(emptyList(), 4, 12)
+        )
+        val lesson = source.copy(exercises = listOf(writing), targetVocabulary = emptyList(), grammarFocus = null, stages = emptyList())
+        compose.setContent { LinguaTheme { Box(Modifier.fillMaxSize()) {
+            LearningLessonScreen(lesson, 0, {}, { _, _, _ -> error("Open writing must not be scored") }, { _, _ -> })
+        } } }
+        compose.onNode(hasSetTextAction()).performScrollTo().performTextInput("a")
+        compose.onNodeWithText("Yanıtı kontrol et").performScrollTo().performClick()
+        compose.onNodeWithText("Yanıtın kaydedildi").assertDoesNotExist()
+        compose.onNode(hasSetTextAction()).performScrollTo().performTextReplacement("I come from Türkiye.")
+        compose.onNodeWithText("Yanıtı kontrol et").performScrollTo().performClick()
+        compose.onNodeWithText("Yanıtın kaydedildi").performScrollTo().assertIsDisplayed()
+    }
+
     @Test fun allThreeShortScenarioTasksAcceptIndependentAnswersWithoutScoring() {
         fun lesson(id: String): LearningLesson {
             val source = CourseCatalog.units("A1").single { it.id == id }.lessons[1]
@@ -33,3 +50,4 @@ class OpenWritingRegressionTest {
         }
     }
 }
+
