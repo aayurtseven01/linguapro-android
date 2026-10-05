@@ -55,6 +55,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.linguapro.android.audio.RemoteSpeechPlayer
 import com.linguapro.android.ui.components.PopOnChange
 import com.linguapro.android.ui.components.breathe
 import com.linguapro.android.ui.components.enterOnChange
@@ -169,6 +170,29 @@ fun LearningLessonScreen(
         }
     }
 
+    // Stüdyo sesi (Faz S2): yerel önbellek → CDN → cihaz TTS sırası; katalog yoksa mevcut davranış korunur.
+    val speechScope = rememberCoroutineScope()
+    val remoteSpeech = remember { RemoteSpeechPlayer(context, speechScope) }
+    var remoteAudioReady by remember(courseSpeechTag) { mutableStateOf(false) }
+    DisposableEffect(Unit) {
+        onDispose { remoteSpeech.release() }
+    }
+    LaunchedEffect(courseSpeechTag) {
+        remoteSpeech.warmCatalog()
+        remoteAudioReady = remoteSpeech.isRemoteAvailable(courseSpeechTag)
+    }
+    val playSpeech: (String, Float, Float?) -> Unit = { text, pitch, rate ->
+        if (soundOn) {
+            remoteSpeech.speak(
+                courseSpeechTag, text, pitch >= 1f,
+                (speechRate * (rate ?: 1f)).coerceIn(0.5f, 2f)
+            ) { speak(tts.value, text, pitch, rate) }
+        } else {
+            runCatching { tts.value?.stop() }
+            remoteSpeech.stop()
+        }
+    }
+
     var isListening by remember { mutableStateOf(false) }
     var micLevel by remember { mutableFloatStateOf(0f) }
     val speechRecognizer = remember {
@@ -260,6 +284,23 @@ fun LearningLessonScreen(
     val castIndex = remember(exercise.id) { kotlin.math.abs(exercise.id.hashCode()) % lessonCast.size }
     val charPitch = castVoicePitch[castIndex]
     val charRate = castVoiceRate[castIndex]
+    // Stüdyo sesi ön-yükleme: bu etkinliğin ve sıradakinin sesi dokunma anına hazır olsun
+    LaunchedEffect(exercise.id, soundOn) {
+        if (!soundOn) return@LaunchedEffect
+        val items = ArrayList<Pair<String, Boolean>>()
+        if (exercise.skill == Skill.LISTENING || exercise.skill == Skill.SPEAKING) items.add(modelText to (charPitch >= 1f))
+        if (index.intValue == 0) lesson.targetVocabulary.take(5).forEach { items.add(it.termEn to true) }
+        lesson.exercises.getOrNull(index.intValue + 1)?.let { next ->
+            if (next.skill == Skill.LISTENING || next.skill == Skill.SPEAKING) {
+                val nextText = next.modelAudioText ?: next.acceptedAnswers.firstOrNull()
+                if (!nextText.isNullOrBlank()) {
+                    val nextPitch = castVoicePitch[kotlin.math.abs(next.id.hashCode()) % castVoicePitch.size]
+                    items.add(nextText to (nextPitch >= 1f))
+                }
+            }
+        }
+        if (items.isNotEmpty()) remoteSpeech.prefetch(courseSpeechTag, items)
+    }
     val isBuilder = remember(exercise.id) { ExerciseMechanics.isSentenceBuilder(exercise) }
     val isDictation = remember(exercise.id) { ExerciseMechanics.isDictation(exercise) }
     val builderTileWords = remember(exercise.id) { if (isBuilder) ExerciseMechanics.builderTiles(exercise) else emptyList() }
@@ -275,6 +316,7 @@ fun LearningLessonScreen(
             IconButton(onClick = {
                 soundOn = !soundOn
                 soundPrefs.edit().putBoolean("sound_on", soundOn).apply()
+                if (!soundOn) { runCatching { tts.value?.stop() }; remoteSpeech.stop() }
             }) {
                 Icon(if (soundOn) Icons.Default.VolumeUp else Icons.Default.VolumeOff, if (soundOn) "Sesleri kapat" else "Sesleri aç", tint = if (soundOn) LessonGold else LessonMuted)
             }
@@ -338,7 +380,7 @@ fun LearningLessonScreen(
                                 val picked = pickedLeft == word.id
                                 Surface(
                                     onClick = {
-                                        if (!done) { pickedLeft = word.id; speak(tts.value, word.termEn) }
+                                        if (!done) { pickedLeft = word.id; playSpeech(word.termEn, 1.0f, null) }
                                     },
                                     color = if (done) LessonGold else if (picked) Color(0xFF3E2B6E) else LessonPanel2,
                                     shape = RoundedCornerShape(12.dp),
@@ -416,15 +458,15 @@ fun LearningLessonScreen(
                         Row(Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
                             Icon(Icons.Default.VolumeUp, null, tint = LessonGold)
                             Text(
-                                if (ttsReady) "Önce sesi dinle; metin yanıtından sonra gösterilir."
+                                if (ttsReady || remoteAudioReady) "Önce sesi dinle; metin yanıtından sonra gösterilir."
                                 else "Cihazda bu dil için ses paketi yok — cümleyi okuyarak yanıtla: $modelText",
                                 color = LessonMuted, fontSize = 13.sp, modifier = Modifier.padding(start = 10.dp)
                             )
                         }
                     }
                     Spacer(Modifier.height(12.dp))
-                    OutlinedButton(onClick = { speak(tts.value, modelText, charPitch, charRate) }, enabled = ttsReady, modifier = Modifier.fillMaxWidth()) {
-                        Icon(Icons.Default.VolumeUp, null); Text(if (ttsReady) "$courseLangName sesi dinle" else "Ses hazırlanıyor…", modifier = Modifier.padding(start = 8.dp))
+                    OutlinedButton(onClick = { playSpeech(modelText, charPitch, charRate) }, enabled = ttsReady || remoteAudioReady, modifier = Modifier.fillMaxWidth()) {
+                        Icon(Icons.Default.VolumeUp, null); Text(if (ttsReady || remoteAudioReady) "$courseLangName sesi dinle" else "Ses hazırlanıyor…", modifier = Modifier.padding(start = 8.dp))
                     }
                     Spacer(Modifier.height(14.dp))
                 }
@@ -433,7 +475,7 @@ fun LearningLessonScreen(
                         Column(Modifier.fillMaxWidth().padding(14.dp)) {
                             Text("Örnek ifade", color = LessonGold, fontSize = 12.sp, fontWeight = FontWeight.Bold)
                             Text(modelText, fontSize = 18.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 7.dp))
-                            OutlinedButton(onClick = { speak(tts.value, modelText, charPitch, charRate) }, enabled = ttsReady, modifier = Modifier.padding(top = 8.dp)) {
+                            OutlinedButton(onClick = { playSpeech(modelText, charPitch, charRate) }, enabled = ttsReady || remoteAudioReady, modifier = Modifier.padding(top = 8.dp)) {
                                 Icon(Icons.Default.VolumeUp, null); Text("Örneği dinle", modifier = Modifier.padding(start = 7.dp))
                             }
                         }

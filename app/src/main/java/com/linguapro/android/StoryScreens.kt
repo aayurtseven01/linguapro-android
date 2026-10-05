@@ -16,6 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import com.linguapro.android.audio.RemoteSpeechPlayer
 import com.linguapro.android.ui.components.Celebration
 import com.linguapro.android.ui.components.CelebrationOverlay
 import com.linguapro.android.ui.components.enterOnChange
@@ -30,6 +31,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -115,16 +117,30 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
         if (ttsReady) runCatching { tts.value?.language = Locale.forLanguageTag(speechTag) }
     }
 
+    // Stüdyo sesi (Faz S2): önbellek → CDN → cihaz TTS; ses kapalıysa hiçbir şey çalınmaz.
+    val speechScope = rememberCoroutineScope()
+    val remoteSpeech = remember { RemoteSpeechPlayer(context, speechScope) }
+    DisposableEffect(Unit) { onDispose { remoteSpeech.release() } }
+    val playLine: (StoryLine) -> Unit = { line ->
+        if (soundOn) {
+            remoteSpeech.speak(speechTag, line.text, line.speaker == 1) {
+                runCatching { tts.value?.speak(line.text, TextToSpeech.QUEUE_FLUSH, null, "story-line") }
+            }
+        } else {
+            runCatching { tts.value?.stop() }
+            remoteSpeech.stop()
+        }
+    }
+
     var revealed by remember(story.id) { mutableIntStateOf(1) }
     var questionIndex by remember(story.id) { mutableIntStateOf(-1) } // -1: diyalog aşaması
     var picked by remember(story.id, questionIndex) { mutableIntStateOf(-1) }
     var correctCount by remember(story.id) { mutableIntStateOf(0) }
 
-    // Yeni açılan repliği otomatik seslendir
-    LaunchedEffect(revealed, ttsReady) {
-        if (ttsReady && questionIndex < 0) {
-            val line = story.lines.getOrNull(revealed - 1) ?: return@LaunchedEffect
-            runCatching { tts.value?.speak(line.text, TextToSpeech.QUEUE_FLUSH, null, "story-line") }
+    // Yeni açılan repliği otomatik seslendir (stüdyo sesi önce, cihaz TTS yedek)
+    LaunchedEffect(revealed) {
+        if (questionIndex < 0) {
+            story.lines.getOrNull(revealed - 1)?.let { playLine(it) }
         }
     }
 
@@ -168,7 +184,7 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
                 ) {
                     if (fromLeft) AvatarView(storyCast[0], 46.dp)
                     Surface(
-                        onClick = { if (ttsReady) runCatching { tts.value?.speak(line.text, TextToSpeech.QUEUE_FLUSH, null, "story-tap") } },
+                        onClick = { if (ttsReady || remoteSpeech.isRemoteAvailable(speechTag)) playLine(line) },
                         color = if (fromLeft) StPanel else StPanel2,
                         shape = RoundedCornerShape(
                             topStart = 16.dp, topEnd = 16.dp,
