@@ -49,13 +49,13 @@ import com.linguapro.android.data.BoardEntry
 import com.linguapro.android.data.FeedItem
 import com.linguapro.android.data.SocialRepository
 
-private val ScPanel = Color(0xFF281A4A)
-private val ScPanel2 = Color(0xFF342457)
-private val ScGold = Color(0xFFC6FF4A)
-private val ScPink = Color(0xFFFF5CA8)
-private val ScMuted = Color(0xFFA99BC9)
-private val ScText = Color(0xFFF5F1FF)
-private val ScNavy = Color(0xFF1A0E2E)
+private val ScPanel = Color(0xFF152238)
+private val ScPanel2 = Color(0xFF20314B)
+private val ScGold = Color(0xFF6DE8C1)
+private val ScPink = Color(0xFFB7A4FF)
+private val ScMuted = Color(0xFFA3B2C8)
+private val ScText = Color(0xFFF3F7FD)
+private val ScNavy = Color(0xFF0B1423)
 
 private fun timeAgo(millis: Long): String {
     if (millis <= 0L) return ""
@@ -121,7 +121,7 @@ fun SocialScreen(
 
     Column(
         Modifier.fillMaxSize()
-            .background(Brush.verticalGradient(listOf(Color(0xFF2E1660), Color(0xFF150A30))))
+            .background(Brush.verticalGradient(listOf(Color(0xFF14263D), Color(0xFF0B1423))))
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 18.dp)
     ) {
@@ -269,7 +269,7 @@ fun SocialScreen(
                     repeat(6) { SkeletonRow() }
                 } else board.forEachIndexed { i, entry ->
                     val mine = entry.uid == uid
-                    Surface(color = if (mine) Color(0xFF3E2B6E) else ScPanel, shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 6.dp).staggerIn(i)) {
+                    Surface(color = if (mine) Color(0xFF28465A) else ScPanel, shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 6.dp).staggerIn(i)) {
                         Row(Modifier.padding(horizontal = 12.dp, vertical = 9.dp), verticalAlignment = Alignment.CenterVertically) {
                             Text(
                                 when (i) { 0 -> "🥇"; 1 -> "🥈"; 2 -> "🥉"; else -> "${i + 1}" },
@@ -381,3 +381,4 @@ private fun SkeletonRow() {
         }
     }
 }
+

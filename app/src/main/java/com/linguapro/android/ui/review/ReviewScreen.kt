@@ -65,7 +65,7 @@ fun ReviewScreen(
             }
         } else {
             Text(stringResource(R.string.review_due_count, dueCards.size), color = Color(0xFFFFFFFF), style = MaterialTheme.typography.labelLarge)
-            Text(stringResource(R.string.review_instruction), color = Color(0xFFCBBDE8), style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(top = 8.dp, bottom = 14.dp))
+            Text(stringResource(R.string.review_instruction), color = Color(0xFFC3CEE0), style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(top = 8.dp, bottom = 14.dp))
             Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), modifier = Modifier.fillMaxWidth()) {
                 Column(Modifier.padding(22.dp)) {
                     Text(if (card.direction == "TR_TO_EN") stringResource(R.string.review_tr_to_en) else stringResource(R.string.review_en_to_tr), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.secondary)
@@ -88,7 +88,7 @@ fun ReviewScreen(
                     }
                 }
             }
-            Text(stringResource(R.string.review_feedback_note), color = Color(0xFFCBBDE8), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 14.dp))
+            Text(stringResource(R.string.review_feedback_note), color = Color(0xFFC3CEE0), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 14.dp))
         }
         Spacer(Modifier.height(24.dp))
     }
@@ -104,3 +104,4 @@ private fun GradeButton(label: String, modifier: Modifier = Modifier, onClick: (
 private fun ReviewEmptyPreview() {
     MaterialTheme { Surface { ReviewScreen(emptyList(), { _, _ -> }, {}) } }
 }
+

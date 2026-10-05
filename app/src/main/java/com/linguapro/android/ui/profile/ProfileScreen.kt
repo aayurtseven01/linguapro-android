@@ -32,8 +32,8 @@ internal fun ProfileScreen(name: String, email: String, level: String, completed
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
         BackRow("Profil", onBack)
         Spacer(Modifier.height(12.dp))
-        Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(22.dp), modifier = Modifier.fillMaxWidth()) {
-            Column(Modifier.padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+        Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(28.dp), modifier = Modifier.fillMaxWidth()) {
+            Column(Modifier.padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                 AvatarView(AvatarConfig.decode(avatarCode), 92.dp)
                 Text(name.ifBlank { "Öğrenci" }, fontSize = 21.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 10.dp))
                 if (username.isNotBlank()) Text("@$username", color = Gold, fontSize = 13.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 2.dp))
@@ -60,17 +60,18 @@ internal fun ProfileScreen(name: String, email: String, level: String, completed
         Spacer(Modifier.height(18.dp))
         Text("Hesap ve gizlilik", color = OnBg, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         Text("Ders kayıtların önce cihazına kaydedilir, bağlantı geldiğinde hesabınla eşitlenir. Çalışma serisi ve beceri özeti bu cihazda tutulur. Lig XP’si sunucuda ayrı hesaplanır.", color = OnBgSoft, fontSize = 12.sp, lineHeight = 18.sp, modifier = Modifier.padding(top = 7.dp, bottom = 15.dp))
-        OutlinedButton(onClick = onPro, modifier = Modifier.fillMaxWidth().pressScale()) { Text("Lingua Pro • kişisel pratik", color = Gold) }
+        ProfileAction(Icons.Default.AutoAwesome, "Lingua Pro • kişisel pratik", onPro)
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onEditAvatar, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth().pressScale()) { Text("Avatarını düzenle", color = OnBg) }
+        ProfileAction(Icons.Default.Face, "Avatarını düzenle", onEditAvatar)
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onSocial, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth().pressScale()) { Text("Topluluk: Bülten • Lig • Arkadaşlar", color = OnBg) }
+        ProfileAction(Icons.Default.Groups, "Topluluk: Bülten • Lig • Arkadaşlar", onSocial)
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onSettings, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth().pressScale()) { Text("Öğrenme ayarları", color = OnBg) }
+        ProfileAction(Icons.Default.Tune, "Öğrenme ayarları", onSettings)
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onSignOut, enabled = !deletionBusy, border = BorderStroke(1.dp, Color(0x99FFFFFF)), modifier = Modifier.fillMaxWidth().pressScale()) { Text("Oturumu kapat", color = OnBg) }
+        ProfileAction(Icons.Default.Logout, "Oturumu kapat", onSignOut, enabled = !deletionBusy)
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = { confirmDelete = true }, enabled = !deletionBusy, border = BorderStroke(1.dp, PinkAccent), modifier = Modifier.fillMaxWidth().pressScale()) { Text(if (deletionBusy) "Hesap siliniyor…" else "Hesabı ve verileri sil", color = PinkAccent) }
+        ProfileAction(Icons.Default.DeleteOutline, if (deletionBusy) "Hesap siliniyor…" else "Hesabı ve verileri sil",
+            { confirmDelete = true }, enabled = !deletionBusy, destructive = true)
         Spacer(Modifier.height(20.dp))
     }
     if (confirmDelete) {
@@ -93,5 +94,6 @@ internal fun ProfileScreen(name: String, email: String, level: String, completed
         )
     }
 }
+
 
 
