@@ -153,6 +153,19 @@ fun Modifier.breathe(minScale: Float = 1f, maxScale: Float = 1.04f, periodMs: In
     graphicsLayer { scaleX = s; scaleY = s }
 }
 
+/** Yumuşak süzülme: öğe yukarı-aşağı hafifçe salınır (avatar önizlemesi vb.). */
+fun Modifier.bob(amplitudeDp: Float = 3f, periodMs: Int = 2600): Modifier = composed {
+    val t = rememberInfiniteTransition(label = "bob")
+    val y by t.animateFloat(
+        initialValue = -amplitudeDp,
+        targetValue = amplitudeDp,
+        animationSpec = infiniteRepeatable(tween((periodMs / 2).coerceAtLeast(200), easing = FastOutSlowInEasing), RepeatMode.Reverse),
+        label = "bobY"
+    )
+    val dy = with(LocalDensity.current) { y.dp.toPx() }
+    graphicsLayer { translationY = dy }
+}
+
 /** Seri alevi: ölçek nabzı + hafif titreme. */
 fun Modifier.flameFlicker(): Modifier = composed {
     val t = rememberInfiniteTransition(label = "flame")

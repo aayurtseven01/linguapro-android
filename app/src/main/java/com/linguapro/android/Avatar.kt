@@ -4,6 +4,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -36,6 +38,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.linguapro.android.ui.components.PopOnChange
+import com.linguapro.android.ui.components.bob
+import com.linguapro.android.ui.components.breathe
+import com.linguapro.android.ui.components.popIn
 import com.linguapro.android.ui.components.pressScale
 
 /** Avatar yapılandırması: cinsiyet, ten, saç stili/rengi, göz rengi, gözlük, kıyafet. */
@@ -166,6 +171,7 @@ private fun OptionRow(label: String, options: List<String>, selected: Int, onSel
     Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         options.forEachIndexed { i, opt ->
             val chosen = i == selected
+            PopOnChange(chosen) {
             Surface(
                 onClick = { onSelect(i) },
                 color = if (chosen) EdGold else EdPanel2,
@@ -173,6 +179,7 @@ private fun OptionRow(label: String, options: List<String>, selected: Int, onSel
                 modifier = Modifier.pressScale()
             ) {
                 Text(opt, color = if (chosen) EdNavy else EdText, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 13.dp, vertical = 8.dp))
+            }
             }
         }
     }
@@ -183,13 +190,16 @@ private fun ColorRow(label: String, colors: List<Color>, selected: Int, onSelect
     Text(label, color = EdMuted, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 12.dp, bottom = 6.dp))
     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
         colors.forEachIndexed { i, c ->
+            val chosen = i == selected
+            PopOnChange(chosen) {
             Surface(
                 onClick = { onSelect(i) },
                 color = c,
                 shape = RoundedCornerShape(50),
-                border = androidx.compose.foundation.BorderStroke(if (i == selected) 3.dp else 1.dp, if (i == selected) EdGold else Color(0x33FFFFFF)),
+                border = androidx.compose.foundation.BorderStroke(if (chosen) 3.dp else 1.dp, if (chosen) EdGold else Color(0x33FFFFFF)),
                 modifier = Modifier.size(34.dp).pressScale()
             ) {}
+            }
         }
     }
 }
@@ -212,12 +222,16 @@ fun AvatarEditorScreen(initialCode: String, onSave: (String) -> Unit, onBack: ()
             Text("Avatarını Oluştur", color = EdText, fontSize = 21.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 12.dp))
         }
         Spacer(Modifier.height(14.dp))
-        Surface(color = EdPanel, shape = RoundedCornerShape(22.dp), modifier = Modifier.fillMaxWidth()) {
+        Surface(color = EdPanel, shape = RoundedCornerShape(22.dp), modifier = Modifier.fillMaxWidth().popIn()) {
             Column(Modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                PopOnChange(cfg) { AvatarView(cfg, 160.dp) }
+                // Işık halkası içinde süzülen canlı önizleme: avatar sahnede durur gibi
+                Box(contentAlignment = Alignment.Center) {
+                    Box(Modifier.size(170.dp).background(Brush.radialGradient(listOf(Color(0x2EC6FF4A), Color.Transparent)), CircleShape))
+                    PopOnChange(cfg) { AvatarView(cfg, 160.dp, Modifier.bob()) }
+                }
             }
         }
-        Surface(color = EdPanel, shape = RoundedCornerShape(22.dp), modifier = Modifier.fillMaxWidth().padding(top = 12.dp)) {
+        Surface(color = EdPanel, shape = RoundedCornerShape(22.dp), modifier = Modifier.fillMaxWidth().padding(top = 12.dp).popIn(delayMillis = 160)) {
             Column(Modifier.padding(16.dp)) {
                 OptionRow("Cinsiyet", listOf("Kadın", "Erkek"), cfg.gender) {
                     // Cinsiyete göre varsayılan saç stili önerisi; sonrasında serbestçe değiştirilebilir
@@ -232,9 +246,10 @@ fun AvatarEditorScreen(initialCode: String, onSave: (String) -> Unit, onBack: ()
             }
         }
         Spacer(Modifier.height(16.dp))
+        val dirty = cfg.encode() != initialCode
         Button(
             onClick = { onSave(cfg.encode()) },
-            modifier = Modifier.fillMaxWidth().height(52.dp).pressScale(),
+            modifier = Modifier.fillMaxWidth().height(52.dp).pressScale().then(if (dirty) Modifier.breathe(1f, 1.02f, 1300) else Modifier),
             shape = RoundedCornerShape(15.dp),
             colors = ButtonDefaults.buttonColors(containerColor = EdGold, contentColor = EdNavy)
         ) { Text("Kaydet", fontWeight = FontWeight.Bold, fontSize = 15.sp) }
