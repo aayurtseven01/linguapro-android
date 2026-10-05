@@ -36,8 +36,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.saveable.listSaver
-import androidx.compose.animation.Crossfade
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.togetherWith
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
@@ -354,6 +357,8 @@ private fun LinguaApp() {
     var gems by remember(courseUid) { mutableIntStateOf(gemStore.gems()) }
     var claimedChests by remember(courseUid) { mutableStateOf(gemStore.claimedChests()) }
     var showGemShop by remember { mutableStateOf(false) }
+    // Seviye atlama kutlaması: ders sonrası ana ekranda dev kutlama olarak belirir
+    var levelUpCelebration by remember { mutableStateOf<Celebration?>(null) }
     var selectedStoryId by rememberSaveable { mutableStateOf("") }
     var doneStories by remember(courseUid) {
         mutableStateOf(coursePrefs.getStringSet("stories_done_$courseUid", emptySet()).orEmpty().toSet())
@@ -624,7 +629,9 @@ private fun LinguaApp() {
                         activeLessonCountsTowardCourse = false
                         selectedExerciseIndex = 0
                         go(AppRoute.Lesson)
-                    }
+                    },
+                    levelUpCelebration = levelUpCelebration,
+                    onLevelUpShown = { levelUpCelebration = null }
                 )
                 if (showGemShop) {
                     AlertDialog(
@@ -636,6 +643,7 @@ private fun LinguaApp() {
                                 Text("🧊 Seri Dondurucu", color = Gold, fontWeight = FontWeight.Bold, fontSize = 14.sp)
                                 Text("Bir gün çalışamazsan serin bozulmaz. Sahip olduğun: ${learningProgress.streakFreezes}", color = Muted, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 2.dp))
                                 Surface(
+                                    modifier = Modifier.padding(top = 7.dp).pressScale(),
                                     onClick = {
                                         if (gemStore.spend(200)) {
                                             learningProgress = progressStore.addStreakFreeze()
@@ -651,6 +659,7 @@ private fun LinguaApp() {
                                 Text(if (doubleActive) "Aktif! Sıradaki dersin XP'si iki kat yazılacak." else "Sıradaki dersten iki kat XP kazan.", color = Muted, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 2.dp))
                                 if (!doubleActive) {
                                     Surface(
+                                        modifier = Modifier.padding(top = 7.dp).pressScale(),
                                         onClick = {
                                             if (gemStore.spend(150)) {
                                                 coursePrefs.edit().putBoolean("doublexp_$courseUid", true).apply()
@@ -782,7 +791,7 @@ private fun LinguaApp() {
                         // Seviye atlama kutlaması + bülten paylaşımı
                         val levelAfter = LevelSystem.levelFor(learningProgress.totalXp)
                         if (levelAfter > levelBefore) {
-                            android.widget.Toast.makeText(context, "🎉 Seviye $levelAfter oldun!", android.widget.Toast.LENGTH_LONG).show()
+                            levelUpCelebration = Celebration("🎉", "Seviye $levelAfter oldun!", "+15 💎 seviye ödülü kazandın!")
                             if (accountUid.isNotBlank() && username.isNotBlank()) social.postActivity(accountUid, username, avatarCode, "Seviye $levelAfter oldu! ✨") { }
                         }
                         if (activeLesson.id.endsWith("-CP") && (score ?: 0) >= 80 && accountUid.isNotBlank() && username.isNotBlank()) {
@@ -836,7 +845,6 @@ private fun LinguaApp() {
                                 }
                                 syncBoard()
                             }
-                            android.widget.Toast.makeText(context, "📖 Hikâye bitti: $correct/$total doğru  •  +10 XP +5 💎", android.widget.Toast.LENGTH_LONG).show()
                             go(AppRoute.Stories)
                         },
                         onBack = { go(AppRoute.Stories) }
@@ -889,7 +897,14 @@ private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
         LaunchedEffect(Unit) {
             while (true) { delay(1700); greetIndex = (greetIndex + 1) % greetings.size }
         }
-        Crossfade(targetState = greetings[greetIndex], animationSpec = tween(420), label = "greeting") { word ->
+        AnimatedContent(
+            targetState = greetings[greetIndex],
+            transitionSpec = {
+                (slideInVertically(tween(420)) { it / 3 } + fadeIn(tween(420))) togetherWith
+                    (slideOutVertically(tween(280)) { -it / 3 } + fadeOut(tween(240)))
+            },
+            label = "greeting"
+        ) { word ->
             Text(
                 word,
                 fontSize = 56.sp,
@@ -1074,14 +1089,17 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 }
 
 @Composable
-private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit, dailyWords: List<TargetVocabulary> = emptyList(), onDailyWords: () -> Unit = {}, dailyQuests: List<QuestUi> = emptyList(), onClaimQuest: (DailyQuest) -> Unit = {}, onSocial: () -> Unit = {}, gems: Int = 0, onOpenShop: () -> Unit = {}, chestsClaimed: Set<String> = emptySet(), onClaimChest: (String) -> Unit = {}, onStories: () -> Unit = {}, storiesDoneCount: Int = 0, pendingSyncCount: Int = 0, onPro: () -> Unit = {}, proActive: Boolean = false, dailyGoalMinutes: Int = 10) {
+private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit, dailyWords: List<TargetVocabulary> = emptyList(), onDailyWords: () -> Unit = {}, dailyQuests: List<QuestUi> = emptyList(), onClaimQuest: (DailyQuest) -> Unit = {}, onSocial: () -> Unit = {}, gems: Int = 0, onOpenShop: () -> Unit = {}, chestsClaimed: Set<String> = emptySet(), onClaimChest: (String) -> Unit = {}, onStories: () -> Unit = {}, storiesDoneCount: Int = 0, pendingSyncCount: Int = 0, onPro: () -> Unit = {}, proActive: Boolean = false, dailyGoalMinutes: Int = 10, levelUpCelebration: Celebration? = null, onLevelUpShown: () -> Unit = {}) {
     val langName = WorldCatalog.language(langCode).nameTr
     val moduleList = courseUnits
     val courseLessonCount = moduleList.sumOf { it.lessons.size }
     val lessonPointer = completed.coerceAtMost(courseLessonCount)
     val unitStartOffsets = run { var acc = 0; moduleList.map { u -> acc.also { acc += u.lessons.size } } }
-    // Ödül anları için ekran-orta kutlama katmanı (sandık, görev)
+    // Ödül anları için ekran-orta kutlama katmanı (sandık, görev, seviye atlama)
     var celebration by remember { mutableStateOf<Celebration?>(null) }
+    LaunchedEffect(levelUpCelebration) {
+        if (levelUpCelebration != null) { celebration = levelUpCelebration; onLevelUpShown() }
+    }
     val pathListState = rememberLazyListState()
     // Açılışta patika doğrudan sıradaki üniteye atlar: 500+ derslik yolda yerini kaybetme yok
     LaunchedEffect(moduleList, lessonPointer) {
@@ -1113,11 +1131,13 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         Row(Modifier.fillMaxWidth().staggerIn(1).horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             WorldCatalog.languages.forEach { lang ->
                 val chosen = lang.code == langCode
+                PopOnChange(chosen) {
                 Surface(onClick = { onSelectLanguage(lang.code) }, color = if (chosen) Panel else Color(0x33FFFFFF), shape = RoundedCornerShape(20.dp), modifier = Modifier.pressScale()) {
                     Row(Modifier.padding(horizontal = 12.dp, vertical = 7.dp), verticalAlignment = Alignment.CenterVertically) {
                         Text(lang.flag, fontSize = 15.sp)
                         Text(lang.nameTr, color = if (chosen) Gold else OnBg, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 6.dp))
                     }
+                }
                 }
             }
         }
@@ -1126,8 +1146,10 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
             Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 WorldCatalog.availableLevels(langCode).forEach { lv ->
                     val chosen = lv == level
+                    PopOnChange(chosen) {
                     Surface(onClick = { onSelectLevel(lv) }, color = if (chosen) Panel else Color(0x33FFFFFF), shape = RoundedCornerShape(20.dp), modifier = Modifier.pressScale()) {
                         Text(lv, color = if (chosen) Gold else OnBg, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 14.dp, vertical = 7.dp))
+                    }
                     }
                 }
             }
@@ -1277,8 +1299,8 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                         Text("her gün yenilenir", color = Muted, fontSize = 10.sp)
                     }
                     Text("Bugün öğren, yarın tekrarıyla pekiştir — kalıcı ezber.", color = Muted, fontSize = 12.sp, lineHeight = 16.sp, modifier = Modifier.padding(top = 3.dp))
-                    dailyWords.forEach { word ->
-                        Row(Modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                    dailyWords.forEachIndexed { wi, word ->
+                        Row(Modifier.fillMaxWidth().padding(top = 8.dp).staggerIn(wi), verticalAlignment = Alignment.CenterVertically) {
                             Text(word.emoji, fontSize = 15.sp)
                             Text(word.termEn, fontSize = 13.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(start = 8.dp))
                             Text(" • ${word.translationTr}", color = Muted, fontSize = 13.sp)

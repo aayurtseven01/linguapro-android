@@ -12,6 +12,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -41,16 +42,21 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.CornerRadius
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.linguapro.android.ui.components.PopOnChange
+import com.linguapro.android.ui.components.breathe
 import com.linguapro.android.ui.components.enterOnChange
 import com.linguapro.android.ui.components.popIn
 import com.linguapro.android.ui.components.pressScale
@@ -369,7 +375,7 @@ fun LearningLessonScreen(
                         }
                     }
                     if (matchedIds.size == matchPairs.size) {
-                        Text("Harika! Kelimeler hazır — şimdi derse geç. ✨", color = LessonGold, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 10.dp))
+                        Text("Harika! Kelimeler hazır — şimdi derse geç. ✨", color = LessonGold, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 10.dp).popIn())
                     } else {
                         Text("Soldaki kelimeye dokun (sesini duyarsın), sonra sağdaki anlamıyla eşle.", color = LessonMuted, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 10.dp))
                     }
@@ -537,6 +543,7 @@ fun LearningLessonScreen(
                                         }
                                     ),
                                     modifier = Modifier.weight(1f).height(96.dp).pressScale()
+                                        .then(if (chosen && submitted && result == true) Modifier.breathe(1f, 1.04f, 850) else Modifier)
                                 ) {
                                     Box(Modifier.fillMaxSize().padding(10.dp), contentAlignment = Alignment.Center) {
                                         Text(if (eliminated) "✕" else option, color = if (eliminated) Color(0x33F5F1FF) else LessonText, fontSize = 15.sp, lineHeight = 20.sp, textAlign = TextAlign.Center, fontWeight = if (chosen) FontWeight.Bold else FontWeight.Medium)
@@ -663,7 +670,10 @@ fun LearningLessonScreen(
             }
         }
         Spacer(Modifier.height(16.dp))
-        LessonButton(if (submitted && result == false) "Tekrar dene" else if (submitted && index.intValue == lesson.exercises.lastIndex) "Dersi tamamla" else if (submitted) "Sonraki etkinlik" else "Yanıtı kontrol et") {
+        LessonButton(
+            if (submitted && result == false) "Tekrar dene" else if (submitted && index.intValue == lesson.exercises.lastIndex) "Dersi tamamla" else if (submitted) "Sonraki etkinlik" else "Yanıtı kontrol et",
+            Modifier.then(if (submitted && result != false) Modifier.breathe(1f, 1.015f, 1300) else Modifier)
+        ) {
             if (submitted) {
                 if (result == false) {
                     selected = -1
@@ -807,19 +817,47 @@ fun skillLabel(skill: Skill): String = when (skill) {
 @Composable
 private fun ConfettiBurst(modifier: Modifier = Modifier) {
     val burst = remember { Animatable(0f) }
-    LaunchedEffect(Unit) { burst.animateTo(1f, tween(950)) }
+    LaunchedEffect(Unit) { burst.animateTo(1f, tween(1100, easing = FastOutSlowInEasing)) }
     val palette = listOf(Color(0xFFC6FF4A), Color(0xFFFF5CA8), Color(0xFF7DD3FC), Color(0xFFFFD166), Color(0xFFB791FF))
-    val seeds = remember { List(26) { i -> Triple((i * 37 % 100) / 100f, (i * 53 % 100) / 100f, palette[i % palette.size]) } }
+    // Deterministik tohumlar: her parçacığın konumu, hızı, boyutu ve dönüşü farklı
+    val seeds = remember {
+        List(30) { i ->
+            ConfettiSeed(
+                sx = (i * 37 % 100) / 100f,
+                rise = 0.45f + (i * 53 % 100) / 100f * 0.85f,
+                drift = ((i * 71 % 100) / 100f - 0.5f) * 0.55f,
+                size = 3.dp + (i * 29 % 100) / 100f * 3.dp,
+                color = palette[i % palette.size],
+                ribbon = i % 3 == 0,
+                spin = (i * 13 % 360).toFloat()
+            )
+        }
+    }
     Canvas(modifier) {
         val p = burst.value
         if (p >= 1f) return@Canvas
-        seeds.forEach { (sx, sv, color) ->
-            val x = size.width * sx
-            val y = size.height * (1f - p * (0.4f + 0.6f * sv))
-            drawCircle(color = color.copy(alpha = (1f - p).coerceIn(0f, 1f)), radius = 4.dp.toPx() * (0.5f + sv), center = Offset(x, y))
+        seeds.forEach { s ->
+            val x = size.width * s.sx + s.drift * p * size.width
+            val y = size.height * (1f - p * s.rise - 0.05f)
+            val alpha = (1f - p * p).coerceIn(0f, 1f)
+            val r = s.size.toPx()
+            if (s.ribbon) {
+                rotate(degrees = s.spin + p * 300f, pivot = Offset(x, y)) {
+                    drawRoundRect(
+                        color = s.color.copy(alpha = alpha),
+                        topLeft = Offset(x - r, y - r * 0.55f),
+                        size = Size(r * 2f, r * 1.1f),
+                        cornerRadius = CornerRadius(r * 0.35f)
+                    )
+                }
+            } else {
+                drawCircle(color = s.color.copy(alpha = alpha), radius = r * 0.6f, center = Offset(x, y))
+            }
         }
     }
 }
+
+private class ConfettiSeed(val sx: Float, val rise: Float, val drift: Float, val size: Dp, val color: Color, val ribbon: Boolean, val spin: Float)
 
 // ---- Pluck ses sentezleyici: AudioTrack ile üretilen kısa, yumuşak tonlar ----
 private const val SOUND_SAMPLE_RATE = 44100

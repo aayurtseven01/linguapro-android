@@ -20,6 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import com.linguapro.android.ui.components.pressScale
 
 @Composable
@@ -43,8 +46,9 @@ internal fun ProfileScreen(name: String, email: String, level: String, completed
                         Text("Lv $xpLevel", color = Navy, fontSize = 13.sp, fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(horizontal = 11.dp, vertical = 5.dp))
                     }
                     Column(Modifier.weight(1f).padding(start = 10.dp)) {
+                        val levelFill by animateFloatAsState(targetValue = (percent / 100f).coerceIn(0f, 1f), animationSpec = tween(700, easing = FastOutSlowInEasing), label = "levelFill")
                         Box(Modifier.fillMaxWidth().height(8.dp).background(Panel2, RoundedCornerShape(4.dp))) {
-                            Box(Modifier.fillMaxWidth((percent / 100f).coerceIn(0f, 1f)).height(8.dp).background(Gold, RoundedCornerShape(4.dp)))
+                            Box(Modifier.fillMaxWidth(levelFill).height(8.dp).background(Gold, RoundedCornerShape(4.dp)))
                         }
                         Text("$inLevel / $needed XP • sonraki seviyeye %${100 - percent}", color = Muted, fontSize = 10.sp, modifier = Modifier.padding(top = 3.dp))
                     }

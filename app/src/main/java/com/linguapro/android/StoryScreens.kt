@@ -16,10 +16,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import com.linguapro.android.ui.components.Celebration
+import com.linguapro.android.ui.components.CelebrationOverlay
 import com.linguapro.android.ui.components.enterOnChange
 import com.linguapro.android.ui.components.popIn
 import com.linguapro.android.ui.components.pressScale
 import com.linguapro.android.ui.components.staggerIn
+import kotlinx.coroutines.delay
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -125,6 +128,17 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
         }
     }
 
+    // Hikâye bitişinde: önce kutlamayı göster, sonra listeye dön.
+    // finishRequested ayrıdır: kutlama erken kapatılsa da akış iptal olmaz.
+    var celebration by remember { mutableStateOf<Celebration?>(null) }
+    var finishRequested by remember { mutableStateOf(false) }
+    LaunchedEffect(finishRequested) {
+        if (finishRequested) {
+            delay(1500)
+            onFinished(correctCount, story.questions.size)
+        }
+    }
+    Box(Modifier.fillMaxSize()) {
     Column(
         Modifier.fillMaxSize()
             .background(Brush.verticalGradient(listOf(Color(0xFF2E1660), Color(0xFF150A30))))
@@ -217,8 +231,9 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
                     onClick = {
                         if (questionIndex < story.questions.lastIndex) {
                             questionIndex++
-                        } else {
-                            onFinished(correctCount, story.questions.size)
+                        } else if (!finishRequested) {
+                            finishRequested = true
+                            celebration = Celebration("📖", "Hikâye tamam!", "$correctCount/${story.questions.size} doğru • +10 XP +5 💎")
                         }
                     },
                     color = StGold, shape = RoundedCornerShape(15.dp), modifier = Modifier.fillMaxWidth().pressScale()
@@ -232,6 +247,8 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
             }
         }
         Spacer(Modifier.height(24.dp))
+    }
+    CelebrationOverlay(celebration, onDismiss = { celebration = null })
     }
 }
 // STORYSCREENS-SON

@@ -11,6 +11,7 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import com.linguapro.android.ui.components.popIn
 import com.linguapro.android.ui.components.pressScale
+import com.linguapro.android.ui.components.shimmer
 import com.linguapro.android.ui.components.staggerIn
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,6 +24,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.OutlinedTextField
@@ -101,16 +103,20 @@ fun SocialScreen(
         }
     }
     var refresh by remember { mutableIntStateOf(0) }
+    var loadingBoard by remember { mutableStateOf(true) }
+    var loadingFeed by remember { mutableStateOf(true) }
 
     LaunchedEffect(refresh, uid) {
-        social.fetchTop { list, err -> board = list; if (err != null) statusMessage = err }
+        loadingBoard = true
+        social.fetchTop { list, err -> board = list; loadingBoard = false; if (err != null) statusMessage = err }
         if (uid.isNotBlank()) {
             social.loadIdentity(uid) { ownBoard = it }
             social.loadFriends(uid) { list, _ ->
                 friends = list
-                social.loadFeed(list.map { it.uid } + uid) { items, _ -> feed = items }
+                loadingFeed = true
+                social.loadFeed(list.map { it.uid } + uid) { items, _ -> feed = items; loadingFeed = false }
             }
-        }
+        } else loadingFeed = false
     }
 
     Column(
@@ -219,7 +225,9 @@ fun SocialScreen(
         when (activeTab) {
             // ---- Bülten ----
             0 -> {
-                if (feed.isEmpty()) {
+                if (loadingFeed && feed.isEmpty()) {
+                    repeat(4) { SkeletonRow() }
+                } else if (feed.isEmpty()) {
                     Surface(color = ScPanel, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth()) {
                         Text("Bülten boş. Arkadaş ekle; onların başarıları (seviye atlama, Checkpoint, günlük görevler) burada görünecek.", color = ScMuted, fontSize = 13.sp, lineHeight = 19.sp, modifier = Modifier.padding(16.dp))
                     }
@@ -257,7 +265,9 @@ fun SocialScreen(
                         Text(if (myRank >= 0) "#${myRank + 1}" else "#50+", color = ScPink, fontSize = 17.sp, fontWeight = FontWeight.Bold)
                     }
                 }
-                board.forEachIndexed { i, entry ->
+                if (loadingBoard && board.isEmpty()) {
+                    repeat(6) { SkeletonRow() }
+                } else board.forEachIndexed { i, entry ->
                     val mine = entry.uid == uid
                     Surface(color = if (mine) Color(0xFF3E2B6E) else ScPanel, shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 6.dp).staggerIn(i)) {
                         Row(Modifier.padding(horizontal = 12.dp, vertical = 9.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -275,7 +285,7 @@ fun SocialScreen(
                         }
                     }
                 }
-                if (board.isEmpty()) {
+                if (!loadingBoard && board.isEmpty()) {
                     Surface(color = ScPanel, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth()) {
                         Text("Lig henüz boş — ders tamamlayan ilk kişi ol!", color = ScMuted, fontSize = 13.sp, modifier = Modifier.padding(16.dp))
                     }
@@ -357,3 +367,17 @@ fun SocialScreen(
     }
 }
 
+
+/** Yüklenirken titrek ışıklı iskelet satır: veri gelene kadar boş görünüm yerine. */
+@Composable
+private fun SkeletonRow() {
+    Surface(color = ScPanel, shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 6.dp)) {
+        Row(Modifier.padding(horizontal = 12.dp, vertical = 9.dp), verticalAlignment = Alignment.CenterVertically) {
+            Box(Modifier.size(32.dp).background(ScPanel2, CircleShape).shimmer())
+            Column(Modifier.weight(1f).padding(start = 10.dp)) {
+                Box(Modifier.fillMaxWidth(0.45f).height(10.dp).background(ScPanel2, RoundedCornerShape(5.dp)).shimmer())
+                Box(Modifier.fillMaxWidth(0.3f).height(8.dp).padding(top = 5.dp).background(ScPanel2, RoundedCornerShape(4.dp)).shimmer())
+            }
+        }
+    }
+}

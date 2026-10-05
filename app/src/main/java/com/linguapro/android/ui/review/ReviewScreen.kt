@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import com.linguapro.android.R
 import com.linguapro.android.data.local.ReviewCardEntity
 import com.linguapro.android.domain.usecase.ReviewGrade
+import com.linguapro.android.ui.components.popIn
 import com.linguapro.android.ui.components.pressScale
 
 @Composable
@@ -71,16 +72,16 @@ fun ReviewScreen(
                     Text(card.frontText, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 16.dp, bottom = 18.dp))
                     OutlinedTextField(value = answer, onValueChange = { answer = it }, label = { Text(stringResource(R.string.review_answer_hint)) }, singleLine = true, modifier = Modifier.fillMaxWidth())
                     if (!revealed) {
-                        Button(onClick = { revealed = true }, modifier = Modifier.fillMaxWidth().padding(top = 14.dp)) { Text(stringResource(R.string.review_reveal)) }
+                        Button(onClick = { revealed = true }, modifier = Modifier.fillMaxWidth().padding(top = 14.dp).pressScale()) { Text(stringResource(R.string.review_reveal)) }
                     } else {
                         Text(stringResource(R.string.review_answer_label), style = MaterialTheme.typography.labelLarge, modifier = Modifier.padding(top = 16.dp))
-                        Text(card.backText, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 5.dp))
+                        Text(card.backText, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 5.dp).popIn())
                         Text(stringResource(R.string.review_grade_prompt), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 14.dp, bottom = 8.dp))
-                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth().popIn()) {
                             GradeButton(stringResource(R.string.review_again), Modifier.weight(1f)) { onGrade(card, ReviewGrade.AGAIN) }
                             GradeButton(stringResource(R.string.review_hard), Modifier.weight(1f)) { onGrade(card, ReviewGrade.HARD) }
                         }
-                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp).popIn(delayMillis = 90)) {
                             GradeButton(stringResource(R.string.review_good), Modifier.weight(1f)) { onGrade(card, ReviewGrade.GOOD) }
                             GradeButton(stringResource(R.string.review_easy), Modifier.weight(1f)) { onGrade(card, ReviewGrade.EASY) }
                         }

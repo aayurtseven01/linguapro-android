@@ -211,6 +211,35 @@ fun Modifier.shineSweep(intervalMs: Int = 3400, bandAlpha: Float = 0.20f): Modif
     }
 }
 
+/** Yükleme iskeletleri için süzülen ışık bandı. */
+fun Modifier.shimmer(): Modifier = composed {
+    val t = rememberInfiniteTransition(label = "shimmer")
+    val x by t.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(tween(1100, easing = LinearEasing)),
+        label = "shimmerX"
+    )
+    drawWithContent {
+        drawContent()
+        val w = size.width
+        val off = (x * 2f - 0.5f) * w
+        drawRect(
+            brush = Brush.linearGradient(
+                colors = listOf(
+                    Color.Transparent,
+                    Color.White.copy(alpha = 0.06f),
+                    Color.White.copy(alpha = 0.13f),
+                    Color.White.copy(alpha = 0.06f),
+                    Color.Transparent
+                ),
+                start = Offset(off - w * 0.35f, 0f),
+                end = Offset(off + w * 0.35f, size.height)
+            )
+        )
+    }
+}
+
 /** key değiştiğinde (yeni soru, yeni kart) içerik yumuşakça yeniden belirir. */
 fun Modifier.enterOnChange(key: Any?): Modifier = composed {
     val p = remember(key) { Animatable(0f) }
