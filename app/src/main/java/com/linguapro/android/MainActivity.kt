@@ -320,14 +320,14 @@ private fun LinguaApp() {
     var learningProgress by remember(accountUid) { mutableStateOf(progressStore.read()) }
     val mistakeBook = remember(context, accountUid) { MistakeBookStore(context, accountUid) }
     var mistakeIds by remember(accountUid) { mutableStateOf(mistakeBook.read()) }
-    val skillProgressStore = remember(context, accountUid) { SkillProgressStore(context, accountUid) }
-    var skillStats by remember(accountUid) { mutableStateOf(skillProgressStore.read()) }
     var level by rememberSaveable { mutableStateOf("A1") }
     var completed by rememberSaveable { mutableIntStateOf(0) }
     var completedByLevel by remember { mutableStateOf(emptyMap<String, Int>()) }
     // Çok dilli kurs durumu: seçilen eğitim dili ve dil başına seviye/ilerleme yerelde saklanır.
     val coursePrefs = remember(context) { context.getSharedPreferences("lingua_course", android.content.Context.MODE_PRIVATE) }
     var courseLang by rememberSaveable { mutableStateOf(coursePrefs.getString("courseLang", "EN") ?: "EN") }
+    val skillProgressStore = remember(context, accountUid, courseLang) { SkillProgressStore(context, accountUid, courseLang) }
+    var skillStats by remember(accountUid, courseLang) { mutableStateOf(skillProgressStore.read()) }
     // Dil ilerlemesi hesaba (uid) bağlıdır; oturum yoksa "local" altında tutulur. Eski anahtarlardan sorunsuz geçiş yapılır.
     val courseUid = accountUid.ifBlank { "local" }
     var langLevel by remember(courseLang, courseUid) {
@@ -1620,3 +1620,4 @@ private fun NavItem(icon: androidx.compose.ui.graphics.vector.ImageVector, text:
         Text(text, color = if (active) Gold else Muted, fontSize = 10.sp, modifier = Modifier.padding(top = 3.dp))
     }
 }
+
