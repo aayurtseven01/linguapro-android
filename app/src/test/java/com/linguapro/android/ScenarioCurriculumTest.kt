@@ -65,7 +65,7 @@ class ScenarioCurriculumTest {
         }
         assertTrue(medians.toString(), medians.zipWithNext().all { (a,b) -> b > a })
         File("build/reports/catalog/scenario-coverage.txt").apply {
-            parentFile.mkdirs()
+            parentFile?.mkdirs()
             writeText("English units revised: 126\nContextual teaching questions: 252\nNew unseen transfer questions delivered: 119\nPreviously authored unseen checkpoint questions retained: 35\nLevel passage median word counts: $medians\nAll 126 checkpoints contain five closed questions.\nStructural validation does not certify CEFR calibration or expert review.\n")
         }
     }

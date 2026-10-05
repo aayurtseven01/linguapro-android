@@ -7,8 +7,9 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class ClosedQuestionQualityTest {
+    private val packJson = Json { ignoreUnknownKeys = true }
     @Test fun everyClosedQuestionHasExactlyOneAcceptedChoice() {
-        val pack = Json { ignoreUnknownKeys = true }.decodeFromString<CourseContentPack>(File("src/main/assets/course_content_v1.json").readText())
+        val pack = packJson.decodeFromString<CourseContentPack>(File("src/main/assets/course_content_v1.json").readText())
         val lessons = CourseCatalog.allLessons() + WorldCatalog.allWorldLessons() + pack.units.flatMap { it.lessons }
         val problems = lessons.flatMap { it.exercises }.filter { it.options.isNotEmpty() }.mapNotNull { exercise ->
             val correctChoices = exercise.options.count { AnswerChecker.matchesClosed(it, exercise.acceptedAnswers) }

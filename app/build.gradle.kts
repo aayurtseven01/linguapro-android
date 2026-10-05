@@ -10,6 +10,7 @@ plugins {
 // Keep local/CI builds usable before the Firebase owner configuration is added.
 if (file("google-services.json").exists()) {
     apply(plugin = "com.google.gms.google-services")
+    apply(plugin = "com.google.firebase.crashlytics")
 }
 
 android {
@@ -76,6 +77,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-functions")
     implementation("com.google.firebase:firebase-appcheck-playintegrity")
+    implementation("com.google.firebase:firebase-crashlytics")
     debugImplementation("com.google.firebase:firebase-appcheck-debug")
     implementation("com.android.billingclient:billing-ktx:8.3.0")
     debugImplementation("androidx.compose.ui:ui-tooling")

@@ -10,8 +10,9 @@ import org.junit.Test
 
 /** The server's reward allowlist must follow the actual authored course ids. */
 class ServerCatalogExportTest {
+    private val packJson = Json { ignoreUnknownKeys = true }
     @Test fun exportCanonicalLessonIds() {
-        val pack = Json { ignoreUnknownKeys = true }.decodeFromString<CourseContentPack>(File("src/main/assets/course_content_v1.json").readText())
+        val pack = packJson.decodeFromString<CourseContentPack>(File("src/main/assets/course_content_v1.json").readText())
         val ids = (CourseCatalog.allLessons() + WorldCatalog.allWorldLessons() + pack.units.flatMap { it.lessons }).map { it.id }.distinct().sorted()
         assertTrue(ids.isNotEmpty())
         val folder = File("build/reports/catalog").apply { mkdirs() }

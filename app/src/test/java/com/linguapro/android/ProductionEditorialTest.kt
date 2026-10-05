@@ -8,6 +8,8 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class ProductionEditorialTest {
+    private val prettyJson = Json { prettyPrint = true }
+    private val packJson = Json { ignoreUnknownKeys = true }
     @Test fun everyScenarioHasATaskSizedOriginalWritingModel() {
         val scenarios = ScenarioCurriculum.allScenarios()
         assertEquals(scenarios.map { it.unitId }.toSet(), WritingModels.all().keys)
@@ -106,7 +108,7 @@ class ProductionEditorialTest {
     }
 
     @Test fun supplementalGrammarPromptsRemainAlignedAndAuditExportsAllEnglishLessons() {
-        val pack = Json { ignoreUnknownKeys = true }.decodeFromString<CourseContentPack>(File("src/main/assets/course_content_v1.json").readText())
+        val pack = packJson.decodeFromString<CourseContentPack>(File("src/main/assets/course_content_v1.json").readText())
         pack.units.flatMap { it.lessons }.forEach { lesson ->
             val task = lesson.exercises.single { it.skill == Skill.GRAMMAR }
             val grammar = lesson.grammarFocus!!
@@ -115,7 +117,7 @@ class ProductionEditorialTest {
         }
         val all = CourseCatalog.allLessons() + pack.units.flatMap { it.lessons }
         val folder = File("build/reports/catalog").apply { mkdirs() }
-        File(folder, "english-lesson-audit.json").writeText(Json { prettyPrint = true }.encodeToString(all))
+        File(folder, "english-lesson-audit.json").writeText(prettyJson.encodeToString(all))
         File(folder, "production-editorial.txt").writeText(buildString {
             appendLine("English lessons exported for editorial review (including checkpoints and supplemental pack): ${all.size}")
             appendLine("Independent task-sized writing models and checklists: ${WritingModels.all().size}")

@@ -9,11 +9,12 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class CoursePackTest {
+    private val packJson = Json { ignoreUnknownKeys = true }
     @Test
     fun packagedContentIsValidAndCoversTwoCompleteLessonsAtEveryLevel() {
         val asset = File("src/main/assets/course_content_v1.json")
         assertTrue("Course JSON asset must exist", asset.isFile)
-        val pack = Json { ignoreUnknownKeys = true }.decodeFromString<CourseContentPack>(asset.readText())
+        val pack = packJson.decodeFromString<CourseContentPack>(asset.readText())
 
         assertTrue(CoursePackValidator.errors(pack).joinToString("\n"), CoursePackValidator.errors(pack).isEmpty())
         val lessonsByLevel = pack.units.flatMap { unit ->

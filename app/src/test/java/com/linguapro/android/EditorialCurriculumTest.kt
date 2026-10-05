@@ -8,6 +8,7 @@ import kotlinx.serialization.json.Json
 import com.linguapro.android.data.content.CoursePackValidator
 
 class EditorialCurriculumTest {
+    private val packJson = Json { ignoreUnknownKeys = true }
     @Test fun everyWorldLanguageHasAnAuthoredIntroductoryScenario() {
         WorldCatalog.languages.filterNot { it.code == "EN" }.forEach { language ->
             val lesson = WorldCatalog.units(language.code, "A1").first().lessons.first()
@@ -27,7 +28,7 @@ class EditorialCurriculumTest {
     }
 
     @Test fun installedSupplementalPackStillMeetsItsSchemaAfterEditorialRevision() {
-        val original = Json { ignoreUnknownKeys = true }.decodeFromString<CourseContentPack>(
+        val original = packJson.decodeFromString<CourseContentPack>(
             File("src/main/assets/course_content_v1.json").readText())
         val revised = original.copy(units = original.units.map { ContentEditorialPolicy.revise(EditorialCurriculum.revise(it)) })
         assertTrue(CoursePackValidator.errors(revised).joinToString("\n"), CoursePackValidator.errors(revised).isEmpty())
@@ -58,7 +59,7 @@ class EditorialCurriculumTest {
         val teachingExercises = (CourseCatalog.allLessons() + WorldCatalog.allWorldLessons())
             .filterNot { it.id.endsWith("-CP") }.flatMap { it.exercises }
         val report = File("build/reports/catalog/content-quality.txt")
-        report.parentFile.mkdirs()
+        report.parentFile?.mkdirs()
         report.writeText(buildString {
             appendLine("Previously authored English foundation lessons: ${revised.size}")
             appendLine("Foundation teaching activities before full scenario revision: ${revised.sumOf { it.exercises.size }}")
