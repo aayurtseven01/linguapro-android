@@ -212,7 +212,7 @@ internal fun LinguaTheme(content: @Composable () -> Unit) {
         primary = Gold, onPrimary = Navy, primaryContainer = Panel2, onPrimaryContainer = OnBg,
         background = BgBottom, surface = Panel, outline = Muted.copy(alpha = 0.35f),
         onBackground = OnBg, onSurface = OnBg, secondary = PinkAccent, onSecondary = Navy,
-        surfaceVariant = Panel2, onSurfaceVariant = Muted
+        surfaceVariant = Panel2, onSurfaceVariant = Muted, error = ErrorCoral, onError = Navy
     ), typography = LinguaTypography, shapes = LinguaShapes, content = content)
 }
 
@@ -1191,7 +1191,7 @@ internal fun HomeScreen(name: String, level: String, langCode: String, onSelectL
             }
         }
         Spacer(Modifier.height(14.dp))
-        // Bento panosu: sıradaki ders (lime) + seri (pembe) + XP (cam) karoları
+        // Dashboard: one clear learning action followed by progress metrics.
         val nextLessonTitle = remember(courseUnits, completed) {
             val flat = courseUnits.flatMap { it.lessons }
             flat.getOrNull(completed.coerceAtLeast(0))?.title ?: flat.lastOrNull()?.title ?: "Yeni derse başla"

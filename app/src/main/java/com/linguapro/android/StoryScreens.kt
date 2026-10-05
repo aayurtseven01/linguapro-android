@@ -47,7 +47,7 @@ import java.util.Locale
 private val StPanel = Color(0xFF152238)
 private val StPanel2 = Color(0xFF20314B)
 private val StGold = Color(0xFF6DE8C1)
-private val StPink = Color(0xFFB7A4FF)
+private val StPink = ErrorCoral
 private val StMuted = Color(0xFFA3B2C8)
 private val StText = Color(0xFFF3F7FD)
 private val StNavy = Color(0xFF0B1423)

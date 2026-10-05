@@ -88,7 +88,7 @@ internal fun ProfileScreen(name: String, email: String, level: String, completed
                 }
             },
             confirmButton = {
-                TextButton(enabled = deletePassword.isNotBlank() && !deletionBusy, onClick = { val password = deletePassword; deletePassword = ""; confirmDelete = false; onDeleteAccount(password) }) { Text("Evet, kalıcı olarak sil", color = PinkAccent, fontWeight = FontWeight.Bold) }
+                TextButton(enabled = deletePassword.isNotBlank() && !deletionBusy, onClick = { val password = deletePassword; deletePassword = ""; confirmDelete = false; onDeleteAccount(password) }) { Text("Evet, kalıcı olarak sil", color = ErrorCoral, fontWeight = FontWeight.Bold) }
             },
             dismissButton = { TextButton(onClick = { confirmDelete = false; deletePassword = "" }) { Text("Vazgeç", color = OnBg) } }
         )

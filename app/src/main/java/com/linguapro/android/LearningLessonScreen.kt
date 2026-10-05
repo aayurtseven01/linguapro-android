@@ -71,7 +71,7 @@ private val LessonPanel2 = Panel2
 private val LessonGold = Gold
 private val LessonMuted = Muted
 private val LessonMint = Mint
-private val LessonPink = PinkAccent
+private val LessonPink = ErrorCoral
 private val LessonText = OnBg
 private val LessonCombo = Color(0xFFFFB020)
 

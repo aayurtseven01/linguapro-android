@@ -14,3 +14,5 @@ internal val OnBg = Color(0xFFF3F7FD)
 internal val OnBgSoft = Color(0xFFC3CEE0)
 internal val PinkAccent = Color(0xFFB7A4FF)
 
+
+internal val ErrorCoral = Color(0xFFFF9586)

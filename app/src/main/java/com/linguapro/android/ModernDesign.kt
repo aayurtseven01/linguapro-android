@@ -77,8 +77,8 @@ internal fun DashboardMetric(icon: androidx.compose.ui.graphics.vector.ImageVect
 internal fun ProfileAction(icon: androidx.compose.ui.graphics.vector.ImageVector, title: String, onClick: () -> Unit, enabled: Boolean = true, destructive: Boolean = false) {
     Surface(onClick = onClick, enabled = enabled, color = Panel, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth()) {
         Row(Modifier.heightIn(min = 62.dp).padding(horizontal = 16.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
-            Icon(icon, null, tint = if (destructive) PinkAccent else Gold, modifier = Modifier.size(22.dp))
-            Text(title, color = if (!enabled) Muted else if (destructive) PinkAccent else OnBg,
+            Icon(icon, null, tint = if (destructive) ErrorCoral else Gold, modifier = Modifier.size(22.dp))
+            Text(title, color = if (!enabled) Muted else if (destructive) ErrorCoral else OnBg,
                 style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f).padding(horizontal = 14.dp))
             Icon(Icons.Default.ChevronRight, null, tint = Muted, modifier = Modifier.size(18.dp))
         }
