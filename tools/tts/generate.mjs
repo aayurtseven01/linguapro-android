@@ -222,10 +222,8 @@ async function ensureBucket() {
     process.exit(2);
   }
   if (res.status === 403) {
-    console.error(
-      `UYARI: Anahtar kovayı göremedi (403) — roles/storage.objectAdmin yetkisi eksik olabilir.\n` +
-      'Kurulum komutları: tools/tts/README.md'
-    );
+    // objectAdmin rolü kova üst verisini okuyamaz — kova var olabilir; yükleme zaten hatayı yakalar.
+    console.log('Not: Anahtarın kova üst verisi okuma yetkisi yok (normal) — devam ediliyor.');
   }
 }
 

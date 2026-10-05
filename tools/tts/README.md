@@ -11,17 +11,22 @@ bulunmazsa her şey eskisi gibi cihaz TTS'siyle çalışır, hiçbir şey bozulm
 ## Bir kez yapılacak kurulum (GCP)
 
 ```bash
-# 0) Firebase Storage kovası henüz YOKSA önce aç (Console → Storage → "Get started" veya):
-gcloud storage buckets create gs://linguapro-ad8c7.appspot.com --project linguapro-ad8c7
+# 0) Kovayı Firebase Console'dan aç: linguapro-ad8c7 → sol menü Storage → "Get started"
+#    (gcloud ile .appspot.com adlı kova oluşturulamaz — Google alan adı doğrulaması ister)
+#    Oluşan kova adını not et:
+gcloud storage buckets list --project linguapro-ad8c7 --format="value(name)"
+
+# 0b) Sesler uygulama tarafından girişsiz indirilir — herkese okuma yetkisi ver:
+gcloud storage buckets add-iam-policy-binding gs://KOVAM_IN_ADI --member=allUsers --role=roles/storage.objectViewer
 
 # 1) Text-to-Speech API'yi etkinleştir (Console → API'ler → "Cloud Text-to-Speech API" veya):
 gcloud services enable texttospeech.googleapis.com --project linguapro-ad8c7
 
-# 2) Yalnız TTS + Storage yetkili servis hesabı ve anahtarı:
+# 2) Servis hesabı + anahtar.
+#    NOT: TTS için ek ROL gerekmez — Google'ın kendi kılavuzuna göre API etkin projede
+#    rol verilmemiş servis hesabı TTS çağırabilir (roles/cloudtexttospeech.user proje
+#    düzeyinde atanamıyor; bilinen GCP eksikliği).
 gcloud iam service-accounts create tts-writer --project linguapro-ad8c7
-gcloud projects add-iam-policy-binding linguapro-ad8c7 \
-  --member serviceAccount:tts-writer@linguapro-ad8c7.iam.gserviceaccount.com \
-  --role roles/cloudtexttospeech.user
 gcloud projects add-iam-policy-binding linguapro-ad8c7 \
   --member serviceAccount:tts-writer@linguapro-ad8c7.iam.gserviceaccount.com \
   --role roles/storage.objectAdmin

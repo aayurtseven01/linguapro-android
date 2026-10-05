@@ -46,7 +46,11 @@ object RemoteVoiceCatalogStore {
     private const val STALE_MS = 24L * 60 * 60 * 1000
     private const val RETRY_GAP_MS = 60L * 1000
 
-    const val CATALOG_URL = "https://storage.googleapis.com/linguapro-ad8c7.appspot.com/audio/v1/catalog.json"
+    // Firebase'in varsayılan kova adı sürüme göre değişir (appspot.com / firebasestorage.app) — ikisi de denenir.
+    private val CATALOG_URLS = listOf(
+        "https://storage.googleapis.com/linguapro-ad8c7.appspot.com/audio/v1/catalog.json",
+        "https://storage.googleapis.com/linguapro-ad8c7.firebasestorage.app/audio/v1/catalog.json"
+    )
 
     @Volatile
     private var cached: RemoteVoiceCatalog? = null
@@ -69,11 +73,15 @@ object RemoteVoiceCatalogStore {
         if (cached != null && System.currentTimeMillis() - fetchedAt < STALE_MS) return
         if (System.currentTimeMillis() - lastAttempt < RETRY_GAP_MS) return
         lastAttempt = System.currentTimeMillis()
-        val raw = withContext(Dispatchers.IO) { httpGet(CATALOG_URL, 5000) }
-        if (raw is HttpResult.Ok) {
-            RemoteVoiceCatalogParser.parse(String(raw.bytes, Charsets.UTF_8))?.let { catalog ->
+        val raw = withContext(Dispatchers.IO) {
+            CATALOG_URLS.firstNotNullOfOrNull { url ->
+                (httpGet(url, 5000) as? HttpResult.Ok)?.let { String(it.bytes, Charsets.UTF_8) }
+            }
+        }
+        if (raw != null) {
+            RemoteVoiceCatalogParser.parse(raw)?.let { catalog ->
                 prefs.edit()
-                    .putString(KEY_JSON, String(raw.bytes, Charsets.UTF_8))
+                    .putString(KEY_JSON, raw)
                     .putLong(KEY_FETCHED_AT, System.currentTimeMillis())
                     .apply()
                 cached = catalog
