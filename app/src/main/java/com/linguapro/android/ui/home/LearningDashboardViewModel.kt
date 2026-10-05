@@ -43,7 +43,7 @@ private data class LearnerContext(val learnerId: String = "guest", val level: St
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class LearningDashboardViewModel @Inject constructor(
-    @ApplicationContext private val context: Context,
+    @param:ApplicationContext private val context: Context,
     private val database: LinguaDatabase,
     private val accountDataCleaner: LocalAccountDataCleaner,
     private val learningRepository: LearningRepository,

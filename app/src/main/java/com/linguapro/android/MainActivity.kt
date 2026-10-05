@@ -31,6 +31,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.TrendingUp
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -115,12 +116,20 @@ class MainActivity : ComponentActivity() {
         return super.dispatchTouchEvent(ev)
     }
 
+    /** API 35 öncesi cihazlarda sistem çubuklarını şeffaf yapar; 35+ bu API yok sayılır (edge-to-edge zorunlu). */
+    @Suppress("DEPRECATION")
+    private fun clearSystemBarColorsLegacy() {
+        window.statusBarColor = android.graphics.Color.TRANSPARENT
+        window.navigationBarColor = android.graphics.Color.TRANSPARENT
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Tam ekran: içerik sistem çubuklarının arkasına uzanır, çubuklar şeffaftır.
         androidx.core.view.WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.statusBarColor = android.graphics.Color.TRANSPARENT
-        window.navigationBarColor = android.graphics.Color.TRANSPARENT
+        // Android 15+ (API 35) çubuk renklerini yok sayar ve edge-to-edge'i zorunlu kılar;
+        // eski sürümlerde şeffaflık yalnızca açık renk atamasıyla sağlanır.
+        if (android.os.Build.VERSION.SDK_INT < 35) clearSystemBarColorsLegacy()
         if (android.os.Build.VERSION.SDK_INT >= 29) {
             window.isNavigationBarContrastEnforced = false
         }
@@ -927,7 +936,7 @@ private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
         Spacer(Modifier.height(24.dp))
         FeatureLine(Icons.Default.School, "Sana özel öğrenme programı", index = 0)
         FeatureLine(Icons.Default.RecordVoiceOver, "Örnek sesle konuşma ve tekrar çalışması", index = 1)
-        FeatureLine(Icons.Default.TrendingUp, "A1’den C2’ye gelişim takibi", index = 2)
+        FeatureLine(Icons.AutoMirrored.Filled.TrendingUp, "A1’den C2’ye gelişim takibi", index = 2)
         Spacer(Modifier.height(24.dp))
         Box(Modifier.popIn(delayMillis = 480)) { PrimaryButton("Hemen Başla", onStart) }
         Spacer(Modifier.height(12.dp))

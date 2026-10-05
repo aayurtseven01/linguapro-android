@@ -30,12 +30,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Mic
-import androidx.compose.material.icons.filled.VolumeOff
-import androidx.compose.material.icons.filled.VolumeUp
+import androidx.compose.material.icons.automirrored.filled.VolumeOff
+import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -310,7 +310,7 @@ fun LearningLessonScreen(
 
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(20.dp)) {
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, "Geri", tint = LessonText) }
+            IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Geri", tint = LessonText) }
             Column(Modifier.weight(1f)) {
                 Text(lesson.title, color = LessonText, fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 Text("${lesson.id} • ${skillLabel(exercise.skill)}", color = Color(0xFFCBBDE8), fontSize = 12.sp)
@@ -320,7 +320,7 @@ fun LearningLessonScreen(
                 soundPrefs.edit().putBoolean("sound_on", soundOn).apply()
                 if (!soundOn) { runCatching { tts.value?.stop() }; remoteSpeech.stop() }
             }) {
-                Icon(if (soundOn) Icons.Default.VolumeUp else Icons.Default.VolumeOff, if (soundOn) "Sesleri kapat" else "Sesleri aç", tint = if (soundOn) LessonGold else LessonMuted)
+                Icon(if (soundOn) Icons.AutoMirrored.Filled.VolumeUp else Icons.AutoMirrored.Filled.VolumeOff, if (soundOn) "Sesleri kapat" else "Sesleri aç", tint = if (soundOn) LessonGold else LessonMuted)
             }
         }
         Text(lesson.canDo, color = Color(0xFFCBBDE8), fontSize = 13.sp, modifier = Modifier.padding(start = 6.dp, top = 3.dp, bottom = 14.dp))
@@ -458,7 +458,7 @@ fun LearningLessonScreen(
                 if (exercise.skill == Skill.LISTENING) {
                     Surface(color = LessonPanel2, shape = RoundedCornerShape(14.dp)) {
                         Row(Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
-                            Icon(Icons.Default.VolumeUp, null, tint = LessonGold)
+                            Icon(Icons.AutoMirrored.Filled.VolumeUp, null, tint = LessonGold)
                             Text(
                                 if (ttsReady || remoteAudioReady) "Önce sesi dinle; metin yanıtından sonra gösterilir."
                                 else "Cihazda bu dil için ses paketi yok — cümleyi okuyarak yanıtla: $modelText",
@@ -468,7 +468,7 @@ fun LearningLessonScreen(
                     }
                     Spacer(Modifier.height(12.dp))
                     OutlinedButton(onClick = { playSpeech(modelText, charPitch, charRate) }, enabled = ttsReady || remoteAudioReady, modifier = Modifier.fillMaxWidth()) {
-                        Icon(Icons.Default.VolumeUp, null); Text(if (ttsReady || remoteAudioReady) "$courseLangName sesi dinle" else "Ses hazırlanıyor…", modifier = Modifier.padding(start = 8.dp))
+                        Icon(Icons.AutoMirrored.Filled.VolumeUp, null); Text(if (ttsReady || remoteAudioReady) "$courseLangName sesi dinle" else "Ses hazırlanıyor…", modifier = Modifier.padding(start = 8.dp))
                     }
                     Spacer(Modifier.height(14.dp))
                 }
@@ -478,7 +478,7 @@ fun LearningLessonScreen(
                             Text("Örnek ifade", color = LessonGold, fontSize = 12.sp, fontWeight = FontWeight.Bold)
                             Text(modelText, fontSize = 18.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 7.dp))
                             OutlinedButton(onClick = { playSpeech(modelText, charPitch, charRate) }, enabled = ttsReady || remoteAudioReady, modifier = Modifier.padding(top = 8.dp)) {
-                                Icon(Icons.Default.VolumeUp, null); Text("Örneği dinle", modifier = Modifier.padding(start = 7.dp))
+                                Icon(Icons.AutoMirrored.Filled.VolumeUp, null); Text("Örneği dinle", modifier = Modifier.padding(start = 7.dp))
                             }
                         }
                     }

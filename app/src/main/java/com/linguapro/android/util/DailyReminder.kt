@@ -25,7 +25,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DailyReminderScheduler @Inject constructor(@ApplicationContext private val context: Context) {
+class DailyReminderScheduler @Inject constructor(@param:ApplicationContext private val context: Context) {
     fun schedule(settings: UserSettings) {
         val manager = WorkManager.getInstance(context)
         if (!settings.remindersEnabled) {

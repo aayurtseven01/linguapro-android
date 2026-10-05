@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import com.linguapro.android.ui.components.*
@@ -44,7 +45,7 @@ internal fun PlanScreen(plan: String, onPlan: (String) -> Unit, onBack: () -> Un
             }
         }
         Spacer(Modifier.height(10.dp))
-        FeatureLine(Icons.Default.MenuBook, "Seviyene uygun bir öğrenme yolu")
+        FeatureLine(Icons.AutoMirrored.Filled.MenuBook, "Seviyene uygun bir öğrenme yolu")
         FeatureLine(Icons.Default.Style, "Aralıklı tekrar ile kelime pratiği")
         FeatureLine(Icons.Default.Mic, "Dinleme, konuşma ve yazma etkinlikleri")
         Spacer(Modifier.height(20.dp))

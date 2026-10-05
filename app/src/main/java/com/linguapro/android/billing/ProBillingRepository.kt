@@ -42,7 +42,7 @@ data class ProBillingState(
 
 /** Play handles prices/payments; only the authenticated server entitlement grants access. */
 @Singleton
-class ProBillingRepository @Inject constructor(@ApplicationContext private val context: Context) {
+class ProBillingRepository @Inject constructor(@param:ApplicationContext private val context: Context) {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private val mutableState = MutableStateFlow(ProBillingState())
     val state: StateFlow<ProBillingState> = mutableState

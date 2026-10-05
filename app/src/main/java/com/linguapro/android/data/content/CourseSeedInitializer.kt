@@ -21,7 +21,7 @@ import kotlinx.serialization.encodeToString
 
 @Singleton
 class CourseSeedInitializer @Inject constructor(
-    @ApplicationContext private val context: Context,
+    @param:ApplicationContext private val context: Context,
     private val database: LinguaDatabase
 ) {
     private val json = Json {

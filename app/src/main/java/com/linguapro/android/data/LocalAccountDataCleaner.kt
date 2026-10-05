@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class LocalAccountDataCleaner @Inject constructor(
-    @ApplicationContext private val context: Context,
+    @param:ApplicationContext private val context: Context,
     private val database: LinguaDatabase
 ) {
     suspend fun clear(uid: String) = withContext(Dispatchers.IO) {
