@@ -18,9 +18,10 @@ object SkillProgressLogic {
             ?.key
 }
 
-class SkillProgressStore(context: Context, learnerKey: String) {
+/** Legacy mixed-language tallies cannot be attributed safely; start isolated v2 tallies. */
+class SkillProgressStore(context: Context, learnerKey: String, languageCode: String) {
     private val prefs = context.applicationContext.getSharedPreferences(
-        "skill_progress_${learnerKey.ifBlank { "guest" }}", Context.MODE_PRIVATE
+        "skill_progress_v2_${learnerKey.ifBlank { "guest" }}_${languageCode.uppercase(java.util.Locale.ROOT)}", Context.MODE_PRIVATE
     )
 
     fun read(): Map<Skill, SkillTally> = Skill.values().associateWith { skill ->
@@ -39,3 +40,4 @@ class SkillProgressStore(context: Context, learnerKey: String) {
         return read()
     }
 }
+
