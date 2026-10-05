@@ -5,6 +5,18 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class AnswerCheckerTest {
+    @Test fun rejectsJapaneseVoicingErrorsAndChangedTimes() {
+        assertFalse(AnswerChecker.matches("今、十時てす。", listOf("今、十時です。")))
+        assertFalse(AnswerChecker.matches("私は今日午後五時に駅に行きます", listOf("私は今日午後三時に駅に行きます")))
+        assertTrue(AnswerChecker.matches("今 十時です", listOf("今、十時です。")))
+    }
+
+    @Test fun preservesMeaningfulDiacriticsAndCanonicalEquivalence() {
+        assertFalse(AnswerChecker.matches("ou", listOf("où")))
+        assertTrue(AnswerChecker.matches("cafe\u0301", listOf("café")))
+        assertTrue(AnswerChecker.matches("我 喝 咖啡", listOf("我喝咖啡。")))
+    }
+
     @Test fun closedAnswersDoNotAcceptSimilarButIncorrectPlacesOrAccents() {
         assertFalse(AnswerChecker.matchesClosed("I live in Paris", listOf("I live in London")))
         assertFalse(AnswerChecker.matchesClosed("ou", listOf("où")))
@@ -38,8 +50,8 @@ class AnswerCheckerTest {
     }
 
     @Test
-    fun acceptsMinorCjkSpeechVariation() {
-        assertTrue(AnswerChecker.matches("我喝咖啡了", listOf("我喝咖啡。")))
+    fun rejectsUnlistedCjkSpeechVariation() {
+        assertFalse(AnswerChecker.matches("我喝咖啡了", listOf("我喝咖啡。")))
     }
 
     @Test
@@ -70,3 +82,4 @@ class AnswerCheckerTest {
         assertTrue(AnswerChecker.matches("We buy fruit at market", listOf("We buy fruit at the market.")))
     }
 }
+
