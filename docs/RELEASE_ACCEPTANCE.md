@@ -9,7 +9,7 @@ This branch is a review candidate. Passing source/Node checks alone does not aut
 - Use local calendar dates for daily words and quests; select daily words from the selected curriculum level.
 - Validate declared writing length while leaving semantic/grammar assessment ungraded.
 - Rotate personalized practice using recent session history; prioritize known mistakes.
-- Distinguish listening answered through a visible transcript from listening evidence; record such answers as reading.
+- Distinguish listening answered through a visible transcript from listening evidence; record such answers as reading. Typed model repetition records writing rather than speaking. Daily word sessions retain their start date across midnight.
 - Preserve offline study timestamps separately from server reward timestamps.
 - Require the server account-deletion path instead of direct profile deletion.
 - Reserve one current username per account and rate-limit fixed-template public activity.

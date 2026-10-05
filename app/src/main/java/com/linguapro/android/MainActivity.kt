@@ -379,11 +379,12 @@ private fun LinguaApp() {
         social.upsertBoard(accountUid, username, userName, LevelSystem.levelFor(learningProgress.totalXp), learningProgress.totalXp, avatarCode) { }
     }
     var activeLessonCountsTowardCourse by rememberSaveable { mutableStateOf(true) }
-    val activeLesson = remember(courseLang, effectiveLevel, completedForLevel, selectedLessonId, personalLessonJson, dashboardState.supplementalUnits) {
+    var dailyWordsSessionDay by rememberSaveable { mutableLongStateOf(DailyWords.todayEpochDay()) }
+    val activeLesson = remember(courseLang, effectiveLevel, completedForLevel, selectedLessonId, personalLessonJson, dailyWordsSessionDay, dashboardState.supplementalUnits) {
         if (selectedLessonId.endsWith("-PRO") && personalLessonJson.isNotBlank()) {
             runCatching { Json.decodeFromString<LearningLesson>(personalLessonJson) }.getOrNull()?.let { return@remember it }
         }
-        if (selectedLessonId.endsWith("-WORDS")) return@remember DailyWords.lessonFor(courseLang, level = effectiveLevel)
+        if (selectedLessonId.endsWith("-WORDS")) return@remember DailyWords.lessonFor(courseLang, dailyWordsSessionDay, level = effectiveLevel)
         if (selectedLessonId.endsWith("-REFRESH")) return@remember DailyRefresh.lessonFor(courseLang, effectiveLevel, SkillProgressLogic.weakest(skillStats))
         val staticLessons = WorldCatalog.units(courseLang, effectiveLevel).flatMap { it.lessons }
         val supplementalLessons = if (courseLang == "EN") dashboardState.supplementalUnits.flatMap { it.lessons } else emptyList()
@@ -639,6 +640,7 @@ private fun LinguaApp() {
                     },
                     dailyWords = remember(courseLang, effectiveLevel, today) { DailyWords.wordsFor(courseLang, today, effectiveLevel) },
                     onDailyWords = {
+                        dailyWordsSessionDay = DailyWords.todayEpochDay()
                         selectedLessonId = "$courseLang-WORDS"
                         activeLessonCountsTowardCourse = false
                         selectedExerciseIndex = 0

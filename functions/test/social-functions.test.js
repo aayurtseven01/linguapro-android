@@ -66,7 +66,7 @@ beforeEach(() => {
   records.set('leaderboard/alice', { uid: 'alice', username: 'alice_tr', avatar: 'g=1' });
   records.set('usernames/alice_tr', { uid: 'alice' });
 });
-const request = (data, uid = 'alice') => ({ auth: { uid }, data });
+const request = (data, uid = 'alice') => ({ auth: { uid }, data: { uid, ...data } });
 const fails = (promise, code) => assert.rejects(promise, (error) => error.code === code);
 
 test('claim rejects unauthenticated users and another learners reserved name', async () => {
@@ -105,5 +105,12 @@ test('activity requires an owned username and an allowed template', async () => 
   await fails(handlers.postActivity(request({ kind: 'free text' })), 'invalid-argument');
   records.set('usernames/alice_tr', { uid: 'bob' });
   await fails(handlers.postActivity(request({ kind: 'story' })), 'failed-precondition');
+  assert.equal(records.get('users/alice').activityCount, undefined);
+});
+
+test('stale account actions cannot mutate a newly signed-in account', async () => {
+  await fails(handlers.claimUsername(request({ uid: 'bob', username: 'new_name' })), 'permission-denied');
+  await fails(handlers.postActivity(request({ uid: 'bob', kind: 'story' })), 'permission-denied');
+  assert.equal(records.has('usernames/new_name'), false);
   assert.equal(records.get('users/alice').activityCount, undefined);
 });

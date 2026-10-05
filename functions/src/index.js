@@ -130,6 +130,7 @@ exports.awardStudyXp = onDocumentCreated('users/{uid}/lessonEvents/{eventId}', a
 exports.claimUsername = onCall({ enforceAppCheck: true }, async (request) => {
   if (!request.auth) throw new HttpsError('unauthenticated', 'Önce giriş yap.');
   const uid = request.auth.uid;
+  if (request.data?.uid !== uid) throw new HttpsError('permission-denied', 'Oturum değişti. İşlemi yeniden başlat.');
   const name = request.data?.username;
   if (!validUsername(name)) throw new HttpsError('invalid-argument', '3–20 karakter kullan: a-z, rakam, nokta ve alt çizgi.');
   const profileRef = db.collection('users').doc(uid);
@@ -160,6 +161,7 @@ exports.claimUsername = onCall({ enforceAppCheck: true }, async (request) => {
 exports.postActivity = onCall({ enforceAppCheck: true }, async (request) => {
   if (!request.auth) throw new HttpsError('unauthenticated', 'Önce giriş yap.');
   const uid = request.auth.uid;
+  if (request.data?.uid !== uid) throw new HttpsError('permission-denied', 'Oturum değişti. İşlemi yeniden başlat.');
   const kind = request.data?.kind;
   if (!activityText(kind, 1)) throw new HttpsError('invalid-argument', 'Geçersiz etkinlik türü.');
   const profileRef = db.collection('users').doc(uid);

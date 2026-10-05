@@ -81,5 +81,11 @@ class AnswerCheckerTest {
         // Konusma tanima kucuk kelime dusurebilir; sira korunuyorsa kabul edilir.
         assertTrue(AnswerChecker.matches("We buy fruit at market", listOf("We buy fruit at the market.")))
     }
+    @org.junit.Test
+    fun typographicApostrophesPreserveContractionsAndNegation() {
+        org.junit.Assert.assertTrue(AnswerChecker.matchesClosed("I’m ready", listOf("I'm ready")))
+        org.junit.Assert.assertTrue(AnswerChecker.matches("I don’t know", listOf("I don't know")))
+        org.junit.Assert.assertFalse(AnswerChecker.matches("I don’t know", listOf("I know")))
+    }
 }
 

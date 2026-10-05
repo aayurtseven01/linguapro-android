@@ -107,6 +107,8 @@ fun LearningLessonScreen(
     var result by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf<Boolean?>(null) }
     var speechText by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf("") }
     var speechMessage by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf("") }
+    val currentExerciseId by rememberUpdatedState(exercise?.id)
+    var audioUnavailableForExercise by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf(false) }
     var listeningTranscriptShown by rememberSaveable(lesson.id, index.intValue, attempt) { mutableStateOf(false) }
     var correctCount by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableIntStateOf(0) }
     var gradedCount by rememberSaveable(lesson.id, exerciseIndex, attempt) { mutableIntStateOf(0) }
@@ -192,10 +194,21 @@ fun LearningLessonScreen(
     }
     val playSpeech: (String, Float, Float?) -> Unit = { text, pitch, rate ->
         if (soundOn) {
+            val requestedExerciseId = exercise?.id
+            val isListeningModel = exercise?.skill == Skill.LISTENING &&
+                text == (exercise.modelAudioText ?: exercise.acceptedAnswers.firstOrNull().orEmpty())
             remoteSpeech.speak(
                 courseSpeechTag, text, pitch >= 1f,
                 (speechRate * (rate ?: 1f)).coerceIn(0.5f, 2f)
-            ) { speak(tts.value, text, pitch, rate) }
+            ) {
+                if (currentExerciseId == requestedExerciseId) {
+                    if (ttsReady) speak(tts.value, text, pitch, rate)
+                    else {
+                        if (isListeningModel) audioUnavailableForExercise = true
+                        speechMessage = "Bu metin için ses kullanılamıyor. Metni okuyarak çalışabilirsin."
+                    }
+                }
+            }
         } else {
             runCatching { tts.value?.stop() }
             remoteSpeech.stop()
@@ -290,7 +303,7 @@ fun LearningLessonScreen(
     val progress = (index.intValue + 1f) / lesson.exercises.size
     val modelText = exercise.modelAudioText ?: exercise.acceptedAnswers.firstOrNull().orEmpty()
     val listeningUsesText = exercise.skill == Skill.LISTENING &&
-        (!soundOn || (ttsInitialized && remoteCatalogInitialized && !ttsReady && !remoteAudioReady))
+        (!soundOn || audioUnavailableForExercise || (ttsInitialized && remoteCatalogInitialized && !ttsReady && !remoteAudioReady))
     LaunchedEffect(exercise.id, listeningUsesText) {
         if (listeningUsesText) listeningTranscriptShown = true
     }
@@ -493,6 +506,7 @@ fun LearningLessonScreen(
                     Surface(color = LessonPanel2, shape = RoundedCornerShape(18.dp)) {
                         Column(Modifier.fillMaxWidth().padding(14.dp)) {
                             Text("Örnek ifade", color = LessonGold, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                            Text("Sesli tekrar telaffuz puanı değildir. Yazarak yanıt verirsen sonuç yazma alıştırması olarak kaydedilir.", color = LessonMuted, fontSize = 12.sp, lineHeight = 17.sp)
                             Text(modelText, fontSize = 18.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 7.dp))
                             OutlinedButton(onClick = { playSpeech(modelText, charPitch, charRate) }, enabled = ttsReady || remoteAudioReady, modifier = Modifier.padding(top = 8.dp)) {
                                 Icon(Icons.AutoMirrored.Filled.VolumeUp, null); Text("Örneği dinle", modifier = Modifier.padding(start = 7.dp))
@@ -769,7 +783,11 @@ fun LearningLessonScreen(
                         else -> AnswerChecker.matchesClosed(typedAnswer, exercise.acceptedAnswers)
                     }
                     result = isCorrect
-                    val measuredSkill = if (exercise.skill == Skill.LISTENING && (listeningUsesText || listeningTranscriptShown)) Skill.READING else exercise.skill
+                    val measuredSkill = when {
+                        exercise.skill == Skill.LISTENING && (listeningUsesText || listeningTranscriptShown) -> Skill.READING
+                        exercise.skill == Skill.SPEAKING -> Skill.WRITING // This submit path checks typed model repetition; microphone results use the spoken path.
+                        else -> exercise.skill
+                    }
                     onExerciseResult(exercise.id, measuredSkill, isCorrect)
                     gradedCount++
                     if (isCorrect) correctCount++

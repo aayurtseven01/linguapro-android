@@ -11,6 +11,19 @@ import org.junit.Test
 
 class OpenWritingRegressionTest {
     @get:Rule val compose = createComposeRule()
+    @Test fun typedModelRepetitionDoesNotCreateSpeakingEvidence() {
+        val source = CourseCatalog.units("A1").first().lessons.first()
+        val item = source.exercises.first { it.skill == Skill.SPEAKING && it.options.isEmpty() }
+        val lesson = source.copy(exercises = listOf(item), targetVocabulary = emptyList(), grammarFocus = null, stages = emptyList())
+        var measured: Skill? = null
+        compose.setContent { LinguaTheme { Box(Modifier.fillMaxSize()) {
+            LearningLessonScreen(lesson, 0, {}, { _, skill, _ -> measured = skill }, { _, _ -> })
+        } } }
+        compose.onNode(hasSetTextAction()).performScrollTo().performTextInput(item.acceptedAnswers.first())
+        compose.onNodeWithText("Yanıtı kontrol et").performScrollTo().performClick()
+        compose.runOnIdle { org.junit.Assert.assertEquals(Skill.WRITING, measured) }
+    }
+
     @Test fun mutedListeningFallbackRecordsReadingInsteadOfListening() {
         val context = androidx.test.core.app.ApplicationProvider.getApplicationContext<android.content.Context>()
         val prefs = context.getSharedPreferences("lingua_course", android.content.Context.MODE_PRIVATE)

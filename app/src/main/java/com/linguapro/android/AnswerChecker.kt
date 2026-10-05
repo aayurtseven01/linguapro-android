@@ -8,12 +8,12 @@ object AnswerChecker {
     /** Closed questions must not accept a distractor through speech-recognition tolerance. */
     fun matchesClosed(response: String, accepted: List<String>): Boolean {
         fun key(value: String): String = Normalizer.normalize(value.lowercase(Locale.ROOT), Normalizer.Form.NFC)
-            .replace("'", "").replace(Regex("[^\\p{L}\\p{N}\\p{M}]+"), " ").trim()
+            .replace(Regex("['’ʼ]"), "").replace(Regex("[^\\p{L}\\p{N}\\p{M}]+"), " ").trim()
         val responseKey = key(response)
         return responseKey.isNotBlank() && accepted.any { key(it) == responseKey }
     }
     fun normalize(value: String): String = Normalizer.normalize(value.lowercase(Locale.ROOT), Normalizer.Form.NFC)
-        .replace("'", "")
+        .replace(Regex("['’ʼ]"), "")
         .replace(Regex("[^\\p{L}\\p{N}\\p{M}]+"), " ")
         .trim()
 

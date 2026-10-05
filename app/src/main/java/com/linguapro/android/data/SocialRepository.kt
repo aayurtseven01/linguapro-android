@@ -84,7 +84,7 @@ class SocialRepository {
         val key = username.lowercase().trim()
         if (!key.matches(Regex("[a-z0-9_.]{3,20}"))) return done("3–20 karakter kullan: a-z, rakam, nokta ve alt çizgi.")
         com.google.firebase.functions.FirebaseFunctions.getInstance().getHttpsCallable("claimUsername")
-            .call(mapOf("username" to key))
+            .call(mapOf("uid" to uid, "username" to key))
             .addOnSuccessListener { done(null) }
             .addOnFailureListener { done(it.localizedMessage ?: "Kullanıcı adı kaydedilemedi.") }
     }
@@ -135,7 +135,7 @@ class SocialRepository {
             else -> return done("Etkinlik türü desteklenmiyor.")
         }
         com.google.firebase.functions.FirebaseFunctions.getInstance().getHttpsCallable("postActivity")
-            .call(mapOf("kind" to kind))
+            .call(mapOf("uid" to uid, "kind" to kind))
             .addOnSuccessListener { done(null) }
             .addOnFailureListener { done(it.localizedMessage ?: "Paylaşım gönderilemedi.") }
     }
