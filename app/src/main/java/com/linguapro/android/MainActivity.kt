@@ -76,6 +76,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import com.linguapro.android.ui.auth.AuthViewModel
 import com.linguapro.android.ui.auth.AuthRequest
@@ -85,7 +86,7 @@ import com.linguapro.android.ui.home.LearningDashboardViewModel
 import com.linguapro.android.ui.settings.SettingsRoute
 import com.linguapro.android.ui.review.ReviewScreen
 
-// Tasarım 2 — "premium gece": koyu mor zemin, ışıklı lime ve pembe vurgular
+// Lingua Pro design system: midnight surfaces, mint actions, lavender highlights.
 private val termsSummary = """
     LinguaPro, İngilizce öğrenme ve pratik için sunulan bir eğitim aracıdır; resmî CEFR sertifikası veya profesyonel çeviri hizmeti sağlamaz. Alıştırma yanıtları ve otomatik değerlendirmeler öğrenme desteği içindir; her açık uçlu yanıta kesin doğruluk puanı verilmez.
 
@@ -208,10 +209,11 @@ private fun SplashVideoScreen(onFinished: () -> Unit) {
 @Composable
 internal fun LinguaTheme(content: @Composable () -> Unit) {
     MaterialTheme(colorScheme = darkColorScheme(
-        primary = Gold, onPrimary = Navy, background = BgBottom, surface = Panel,
-        onBackground = OnBg, onSurface = OnBg, secondary = PinkAccent,
-        surfaceVariant = Panel2, onSurfaceVariant = Muted
-    ), content = content)
+        primary = Gold, onPrimary = Navy, primaryContainer = Panel2, onPrimaryContainer = OnBg,
+        background = BgBottom, surface = Panel, outline = Muted.copy(alpha = 0.35f),
+        onBackground = OnBg, onSurface = OnBg, secondary = PinkAccent, onSecondary = Navy,
+        surfaceVariant = Panel2, onSurfaceVariant = Muted, error = ErrorCoral, onError = Navy
+    ), typography = LinguaTypography, shapes = LinguaShapes, content = content)
 }
 
 @Serializable
@@ -320,14 +322,14 @@ private fun LinguaApp() {
     var learningProgress by remember(accountUid) { mutableStateOf(progressStore.read()) }
     val mistakeBook = remember(context, accountUid) { MistakeBookStore(context, accountUid) }
     var mistakeIds by remember(accountUid) { mutableStateOf(mistakeBook.read()) }
-    val skillProgressStore = remember(context, accountUid) { SkillProgressStore(context, accountUid) }
-    var skillStats by remember(accountUid) { mutableStateOf(skillProgressStore.read()) }
     var level by rememberSaveable { mutableStateOf("A1") }
     var completed by rememberSaveable { mutableIntStateOf(0) }
     var completedByLevel by remember { mutableStateOf(emptyMap<String, Int>()) }
     // Çok dilli kurs durumu: seçilen eğitim dili ve dil başına seviye/ilerleme yerelde saklanır.
     val coursePrefs = remember(context) { context.getSharedPreferences("lingua_course", android.content.Context.MODE_PRIVATE) }
     var courseLang by rememberSaveable { mutableStateOf(coursePrefs.getString("courseLang", "EN") ?: "EN") }
+    val skillProgressStore = remember(context, accountUid, courseLang) { SkillProgressStore(context, accountUid, courseLang) }
+    var skillStats by remember(accountUid, courseLang) { mutableStateOf(skillProgressStore.read()) }
     // Dil ilerlemesi hesaba (uid) bağlıdır; oturum yoksa "local" altında tutulur. Eski anahtarlardan sorunsuz geçiş yapılır.
     val courseUid = accountUid.ifBlank { "local" }
     var langLevel by remember(courseLang, courseUid) {
@@ -377,11 +379,12 @@ private fun LinguaApp() {
         social.upsertBoard(accountUid, username, userName, LevelSystem.levelFor(learningProgress.totalXp), learningProgress.totalXp, avatarCode) { }
     }
     var activeLessonCountsTowardCourse by rememberSaveable { mutableStateOf(true) }
-    val activeLesson = remember(courseLang, effectiveLevel, completedForLevel, selectedLessonId, personalLessonJson, dashboardState.supplementalUnits) {
+    var dailyWordsSessionDay by rememberSaveable { mutableLongStateOf(DailyWords.todayEpochDay()) }
+    val activeLesson = remember(courseLang, effectiveLevel, completedForLevel, selectedLessonId, personalLessonJson, dailyWordsSessionDay, dashboardState.supplementalUnits) {
         if (selectedLessonId.endsWith("-PRO") && personalLessonJson.isNotBlank()) {
             runCatching { Json.decodeFromString<LearningLesson>(personalLessonJson) }.getOrNull()?.let { return@remember it }
         }
-        if (selectedLessonId.endsWith("-WORDS")) return@remember DailyWords.lessonFor(courseLang)
+        if (selectedLessonId.endsWith("-WORDS")) return@remember DailyWords.lessonFor(courseLang, dailyWordsSessionDay, level = effectiveLevel)
         if (selectedLessonId.endsWith("-REFRESH")) return@remember DailyRefresh.lessonFor(courseLang, effectiveLevel, SkillProgressLogic.weakest(skillStats))
         val staticLessons = WorldCatalog.units(courseLang, effectiveLevel).flatMap { it.lessons }
         val supplementalLessons = if (courseLang == "EN") dashboardState.supplementalUnits.flatMap { it.lessons } else emptyList()
@@ -406,7 +409,10 @@ private fun LinguaApp() {
     val startProPractice: () -> Unit = {
         if (!proViewModel.canUsePro()) go(AppRoute.Pro)
         else {
-            val personal = PersonalizedPractice.build(courseLang, effectiveLevel, courseUnits.flatMap { it.lessons }, mistakeIds, skillStats)
+            val history = PracticeHistoryStore(context, accountUid, courseLang, effectiveLevel)
+            val personal = PersonalizedPractice.build(courseLang, effectiveLevel, courseUnits.flatMap { it.lessons }, mistakeIds, skillStats,
+                recentExerciseIds = history.recentIds(), sessionSeed = history.seed())
+            history.rememberSession(personal.exercises.map { it.id })
             personalLessonJson = Json.encodeToString(personal)
             selectedLessonId = personal.id
             activeLessonCountsTowardCourse = false
@@ -632,8 +638,9 @@ private fun LinguaApp() {
                             gems = gemStore.add(20)
                         }
                     },
-                    dailyWords = remember(courseLang, today) { DailyWords.wordsFor(courseLang, today) },
+                    dailyWords = remember(courseLang, effectiveLevel, today) { DailyWords.wordsFor(courseLang, today, effectiveLevel) },
                     onDailyWords = {
+                        dailyWordsSessionDay = DailyWords.todayEpochDay()
                         selectedLessonId = "$courseLang-WORDS"
                         activeLessonCountsTowardCourse = false
                         selectedExerciseIndex = 0
@@ -830,6 +837,7 @@ private fun LinguaApp() {
             composable<AppRoute.Stories> {
                 StoriesListScreen(
                     lang = courseLang,
+                    initialLevel = effectiveLevel,
                     doneIds = doneStories,
                     onOpen = { sid -> selectedStoryId = sid; go(AppRoute.StoryPlayer) },
                     onBack = { go(AppRoute.Home) }
@@ -838,7 +846,7 @@ private fun LinguaApp() {
             composable<AppRoute.StoryPlayer> {
                 val story = StoryCatalog.byId(selectedStoryId)
                 if (story == null) {
-                    StoriesListScreen(courseLang, doneStories, { sid -> selectedStoryId = sid; go(AppRoute.StoryPlayer) }, { go(AppRoute.Home) })
+                    StoriesListScreen(courseLang, doneStories, { sid -> selectedStoryId = sid; go(AppRoute.StoryPlayer) }, { go(AppRoute.Home) }, initialLevel = effectiveLevel)
                 } else {
                     StoryPlayerScreen(
                         story = story,
@@ -1040,7 +1048,7 @@ private fun RegisterScreen(
                 },
                 confirmButton = { TextButton(onClick = { legalDialog = "" }) { Text("Kapat", color = Gold) } },
                 containerColor = Panel,
-                titleContentColor = Color(0xFFF5F1FF),
+                titleContentColor = Color(0xFFF3F7FD),
                 textContentColor = Muted
             )
         }
@@ -1080,7 +1088,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
                 Spacer(Modifier.height(20.dp))
                 q.answers.forEachIndexed { i, answer ->
                     val isSelected = selected == i
-                    Surface(onClick = { onSelect(i) }, color = if (isSelected) Color(0xFF3E2B6E) else Panel2, shape = RoundedCornerShape(14.dp), border = BorderStroke(if (isSelected) 2.dp else 1.dp, if (isSelected) Gold else Color(0x26FFFFFF)), modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp).pressScale()) {
+                    Surface(onClick = { onSelect(i) }, color = if (isSelected) Color(0xFF28465A) else Panel2, shape = RoundedCornerShape(14.dp), border = BorderStroke(if (isSelected) 2.dp else 1.dp, if (isSelected) Gold else Color(0x26FFFFFF)), modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp).pressScale()) {
                         Row(Modifier.padding(horizontal = 15.dp, vertical = 15.dp), verticalAlignment = Alignment.CenterVertically) {
                             Icon(if (isSelected) Icons.Default.RadioButtonChecked else Icons.Default.RadioButtonUnchecked, null, tint = if (isSelected) Gold else Muted)
                             Text(answer, fontSize = 16.sp, modifier = Modifier.padding(start = 14.dp))
@@ -1098,7 +1106,7 @@ private fun QuizScreen(index: Int, selected: Int, onSelect: (Int) -> Unit, onBac
 }
 
 @Composable
-private fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit, dailyWords: List<TargetVocabulary> = emptyList(), onDailyWords: () -> Unit = {}, dailyQuests: List<QuestUi> = emptyList(), onClaimQuest: (DailyQuest) -> Unit = {}, onSocial: () -> Unit = {}, gems: Int = 0, onOpenShop: () -> Unit = {}, chestsClaimed: Set<String> = emptySet(), onClaimChest: (String) -> Unit = {}, onStories: () -> Unit = {}, storiesDoneCount: Int = 0, pendingSyncCount: Int = 0, onPro: () -> Unit = {}, proActive: Boolean = false, dailyGoalMinutes: Int = 10, levelUpCelebration: Celebration? = null, onLevelUpShown: () -> Unit = {}) {
+internal fun HomeScreen(name: String, level: String, langCode: String, onSelectLanguage: (String) -> Unit, onSelectLevel: (String) -> Unit, completed: Int, progress: LearningProgress, skillStats: Map<Skill, SkillTally>, courseUnits: List<LearningUnit>, dueReviewCount: Int, onReview: () -> Unit, onStartLesson: () -> Unit, onLocked: () -> Unit, onPractice: () -> Unit, onProgress: () -> Unit, onProfile: () -> Unit, onDailyRefresh: () -> Unit, dailyWords: List<TargetVocabulary> = emptyList(), onDailyWords: () -> Unit = {}, dailyQuests: List<QuestUi> = emptyList(), onClaimQuest: (DailyQuest) -> Unit = {}, onSocial: () -> Unit = {}, gems: Int = 0, onOpenShop: () -> Unit = {}, chestsClaimed: Set<String> = emptySet(), onClaimChest: (String) -> Unit = {}, onStories: () -> Unit = {}, storiesDoneCount: Int = 0, pendingSyncCount: Int = 0, onPro: () -> Unit = {}, proActive: Boolean = false, dailyGoalMinutes: Int = 10, levelUpCelebration: Celebration? = null, onLevelUpShown: () -> Unit = {}) {
     val langName = WorldCatalog.language(langCode).nameTr
     val moduleList = courseUnits
     val courseLessonCount = moduleList.sumOf { it.lessons.size }
@@ -1126,11 +1134,11 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
     }
     Box(Modifier.fillMaxSize()) {
     // Patika artık LazyColumn: yüzlerce düğüm yalnızca ekrana girerken oluşturulur (düşük cihaz performansı).
-    LazyColumn(Modifier.fillMaxSize(), state = pathListState, contentPadding = PaddingValues(horizontal = 18.dp)) {
+    LazyColumn(Modifier.fillMaxSize().testTag("learning-path"), state = pathListState, contentPadding = PaddingValues(start = 20.dp, end = 20.dp, bottom = 110.dp)) {
         item { Column {
         Spacer(Modifier.height(14.dp))
         Row(Modifier.fillMaxWidth().staggerIn(0), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-            Column { Text("Merhaba, $name!", color = OnBg, fontSize = 26.sp, fontWeight = FontWeight.Bold); Text("$langName yolculuğuna devam et", color = OnBgSoft, fontSize = 13.sp) }
+            Column(Modifier.weight(1f)) { Text("LINGUA PRO", color = Gold, fontSize = 10.sp, letterSpacing = 2.sp, fontWeight = FontWeight.Bold); Text("Merhaba, ${name.ifBlank { "Öğrenci" }}", color = OnBg, fontSize = 23.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 4.dp)); Text("$langName yolculuğuna devam et", color = Muted, fontSize = 12.sp, modifier = Modifier.padding(top = 3.dp)) }
             Surface(onClick = onOpenShop, color = Color(0x33FFFFFF), shape = RoundedCornerShape(16.dp), modifier = Modifier.padding(end = 6.dp).pressScale()) {
                 PopOnChange(gems) { RollingNumber(gems, color = OnBg, fontSize = 13.sp, fontWeight = FontWeight.Bold, prefix = "💎 ") }
             }
@@ -1141,7 +1149,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
             WorldCatalog.languages.forEach { lang ->
                 val chosen = lang.code == langCode
                 PopOnChange(chosen) {
-                Surface(onClick = { onSelectLanguage(lang.code) }, color = if (chosen) Panel else Color(0x33FFFFFF), shape = RoundedCornerShape(20.dp), modifier = Modifier.pressScale()) {
+                Surface(onClick = { onSelectLanguage(lang.code) }, color = if (chosen) Gold.copy(alpha = 0.14f) else Panel, shape = RoundedCornerShape(20.dp), modifier = Modifier.pressScale()) {
                     Row(Modifier.padding(horizontal = 12.dp, vertical = 7.dp), verticalAlignment = Alignment.CenterVertically) {
                         Text(lang.flag, fontSize = 15.sp)
                         Text(lang.nameTr, color = if (chosen) Gold else OnBg, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 6.dp))
@@ -1156,7 +1164,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                 WorldCatalog.availableLevels(langCode).forEach { lv ->
                     val chosen = lv == level
                     PopOnChange(chosen) {
-                    Surface(onClick = { onSelectLevel(lv) }, color = if (chosen) Panel else Color(0x33FFFFFF), shape = RoundedCornerShape(20.dp), modifier = Modifier.pressScale()) {
+                    Surface(onClick = { onSelectLevel(lv) }, color = if (chosen) Gold.copy(alpha = 0.14f) else Panel, shape = RoundedCornerShape(20.dp), modifier = Modifier.pressScale()) {
                         Text(lv, color = if (chosen) Gold else OnBg, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 14.dp, vertical = 7.dp))
                     }
                     }
@@ -1168,7 +1176,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
             Spacer(Modifier.height(12.dp))
             Surface(color = Panel, shadowElevation = 2.dp, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth().popIn()) {
                 Column(Modifier.padding(16.dp)) {
-                    Text("🎉 $level seviyesini tamamladın!", color = Color(0xFFF5F1FF), fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    Text("🎉 $level seviyesini tamamladın!", color = Color(0xFFF3F7FD), fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     Text(
                         if (langCode == "EN") "Bilgini Günlük Tekrar ile taze tut; seviye testiyle üst seviyeye geçebilirsin."
                         else "Bilgini Günlük Tekrar ile taze tut veya bir üst seviyeye geç.",
@@ -1189,39 +1197,20 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
             }
         }
         Spacer(Modifier.height(14.dp))
-        // Bento panosu: sıradaki ders (lime) + seri (pembe) + XP (cam) karoları
+        // Dashboard: one clear learning action followed by progress metrics.
         val nextLessonTitle = remember(courseUnits, completed) {
             val flat = courseUnits.flatMap { it.lessons }
             flat.getOrNull(completed.coerceAtLeast(0))?.title ?: flat.lastOrNull()?.title ?: "Yeni derse başla"
         }
-        Row(Modifier.fillMaxWidth().height(168.dp).staggerIn(2), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Surface(onClick = onStartLesson, color = Gold, shape = RoundedCornerShape(26.dp), modifier = Modifier.weight(1.35f).fillMaxHeight().clip(RoundedCornerShape(26.dp)).pressScale().shineSweep()) {
-                Column(Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.SpaceBetween) {
-                    Text("SIRADAKİ DERS", color = Color(0x991A0E2E), fontSize = 10.sp, fontWeight = FontWeight.ExtraBold, letterSpacing = 1.5.sp)
-                    Text(nextLessonTitle, color = Navy, fontSize = 17.sp, fontWeight = FontWeight.ExtraBold, lineHeight = 22.sp, maxLines = 3)
-                    Text("▶  Başla", color = Navy, fontSize = 13.sp, fontWeight = FontWeight.Bold)
-                }
-            }
-            Column(Modifier.weight(1f).fillMaxHeight(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Surface(color = PinkAccent, shape = RoundedCornerShape(26.dp), modifier = Modifier.weight(1f).fillMaxWidth()) {
-                    Column(Modifier.fillMaxSize().padding(horizontal = 14.dp), verticalArrangement = Arrangement.Center) {
-                        Text(
-                            "🔥 ${progress.streakDays}", color = Color(0xFF330C20), fontSize = 19.sp, fontWeight = FontWeight.ExtraBold,
-                            modifier = if (progress.streakDays > 0) Modifier.flameFlicker() else Modifier
-                        )
-                        Text("gün seri", color = Color(0xB3330C20), fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                    }
-                }
-                Surface(color = Panel, shape = RoundedCornerShape(26.dp), modifier = Modifier.weight(1f).fillMaxWidth()) {
-                    Column(Modifier.fillMaxSize().padding(horizontal = 14.dp), verticalArrangement = Arrangement.Center) {
-                        Text("${progress.todayStudySeconds / 60}/$dailyGoalMinutes dk", color = Gold, fontSize = 16.sp, fontWeight = FontWeight.ExtraBold)
-                        Text(if (progress.studyGoalPercent(dailyGoalMinutes) >= 100) "hedef tamam!" else "günlük hedef", color = Muted, fontSize = 11.sp)
-                    }
-                }
-            }
+        DashboardHero(nextLessonTitle, level, langName, lessonPointer, courseLessonCount, onStartLesson)
+        Spacer(Modifier.height(12.dp))
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            DashboardMetric(Icons.Default.LocalFireDepartment, "${progress.streakDays} gün", "Çalışma serisi", Modifier.weight(1f))
+            DashboardMetric(Icons.Default.Timer, "${progress.todayStudySeconds / 60}/$dailyGoalMinutes dk", "Günlük hedef", Modifier.weight(1f))
+            DashboardMetric(Icons.Default.Bolt, "${progress.totalXp}", "Toplam XP", Modifier.weight(1f))
         }
         Spacer(Modifier.height(10.dp))
-        Surface(onClick = onDailyRefresh, color = Panel, border = BorderStroke(1.dp, Color(0x59C6FF4A)), shape = RoundedCornerShape(26.dp), modifier = Modifier.fillMaxWidth().staggerIn(3).pressScale()) {
+        Surface(onClick = onDailyRefresh, color = Panel, border = BorderStroke(1.dp, Color(0x596DE8C1)), shape = RoundedCornerShape(26.dp), modifier = Modifier.fillMaxWidth().staggerIn(3).pressScale()) {
             Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
                 Text("🔄", fontSize = 22.sp)
                 Column(Modifier.weight(1f).padding(start = 10.dp)) {
@@ -1235,7 +1224,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
             val storyTotal = StoryCatalog.storiesFor(langCode).size
             if (storyTotal > 0) {
                 Spacer(Modifier.height(12.dp))
-                Surface(onClick = onStories, color = Panel, border = BorderStroke(1.dp, Color(0x59FF5CA8)), shape = RoundedCornerShape(26.dp), modifier = Modifier.fillMaxWidth().staggerIn(4).pressScale()) {
+                Surface(onClick = onStories, color = Panel, border = BorderStroke(1.dp, Color(0x59B7A4FF)), shape = RoundedCornerShape(26.dp), modifier = Modifier.fillMaxWidth().staggerIn(4).pressScale()) {
                     Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
                         Text("📖", fontSize = 22.sp)
                         Column(Modifier.weight(1f).padding(start = 10.dp)) {
@@ -1323,7 +1312,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         }
         if (dueReviewCount > 0) {
             Spacer(Modifier.height(12.dp))
-            Surface(onClick = onReview, color = Color(0xFF342457), shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().staggerIn(7).pressScale()) {
+            Surface(onClick = onReview, color = Color(0xFF20314B), shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().staggerIn(7).pressScale()) {
                 Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
                     Icon(Icons.Default.Style, contentDescription = null, tint = Gold)
                     Column(Modifier.weight(1f).padding(start = 10.dp)) {
@@ -1337,7 +1326,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         val focusSkill = SkillProgressLogic.weakest(skillStats)
         if (focusSkill != null) {
             Spacer(Modifier.height(14.dp))
-            Surface(color = Color(0xFF342457), shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().staggerIn(8).pressScale().clickable(onClick = onPractice)) {
+            Surface(color = Color(0xFF20314B), shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().staggerIn(8).pressScale().clickable(onClick = onPractice)) {
                 Row(Modifier.padding(13.dp), verticalAlignment = Alignment.CenterVertically) {
                     Icon(Icons.Default.AutoAwesome, null, tint = Gold)
                     Column(Modifier.weight(1f).padding(start = 10.dp)) {
@@ -1376,7 +1365,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
             Surface(color = if (unitDone || unitCurrent) Gold else Panel, shape = RoundedCornerShape(18.dp), modifier = Modifier.fillMaxWidth()) {
                 Row(Modifier.padding(horizontal = 16.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
                     Column(Modifier.weight(1f)) {
-                        Text("${i + 1}. ÜNİTE", color = if (unitDone || unitCurrent) Color(0x991A0E2E) else Muted, fontSize = 10.sp, fontWeight = FontWeight.ExtraBold, letterSpacing = 1.5.sp)
+                        Text("${i + 1}. ÜNİTE", color = if (unitDone || unitCurrent) Color(0x990B1423) else Muted, fontSize = 10.sp, fontWeight = FontWeight.ExtraBold, letterSpacing = 1.5.sp)
                         Text(unit.title, color = if (unitDone || unitCurrent) Navy else OnBg, fontSize = 15.sp, fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(top = 2.dp))
                     }
                     if (unitDone) Text("✓", color = Navy, fontSize = 18.sp, fontWeight = FontWeight.ExtraBold)
@@ -1410,7 +1399,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                             color = if (nodeDone || nodeCurrent) Gold else Panel2,
                             shape = CircleShape,
                             shadowElevation = if (nodeCurrent) 8.dp else 2.dp,
-                            border = if (nodeCurrent) BorderStroke(3.dp, Color(0xFFF5F1FF)) else null,
+                            border = if (nodeCurrent) BorderStroke(3.dp, Color(0xFFF3F7FD)) else null,
                             modifier = Modifier
                                 .size(60.dp)
                                 .then(if (nodeCurrent) Modifier.nodeGlow() else Modifier)
@@ -1447,7 +1436,7 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
                             color = if (chestTaken) Panel2 else if (chestUnlocked) PinkAccent else Panel2,
                             shape = CircleShape,
                             shadowElevation = if (chestUnlocked && !chestTaken) 8.dp else 2.dp,
-                            border = if (chestUnlocked && !chestTaken) BorderStroke(2.dp, Color(0xFFF5F1FF)) else null,
+                            border = if (chestUnlocked && !chestTaken) BorderStroke(2.dp, Color(0xFFF3F7FD)) else null,
                             modifier = Modifier
                                 .offset(x = chestOffset)
                                 .size(52.dp)
@@ -1470,15 +1459,19 @@ private fun HomeScreen(name: String, level: String, langCode: String, onSelectLa
         Spacer(Modifier.height(14.dp))
         InfoCard("$level seviyesine özel programın hazır. Kısa derslerle her gün biraz daha ilerle.")
         Spacer(Modifier.height(20.dp))
-        Row(Modifier.fillMaxWidth().padding(horizontal = 22.dp).background(Color(0xE62A1B4D), RoundedCornerShape(30.dp)).border(1.dp, Color(0x2EFFFFFF), RoundedCornerShape(30.dp)).padding(vertical = 12.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
+        Spacer(Modifier.height(16.dp))
+        } }
+    }
+    Surface(color = Panel, shape = RoundedCornerShape(26.dp), shadowElevation = 8.dp,
+        border = BorderStroke(1.dp, Muted.copy(alpha = 0.15f)),
+        modifier = Modifier.align(Alignment.BottomCenter).fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp)) {
+        Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp, vertical = 8.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
             NavItem(Icons.Default.Home, "Ana Sayfa", true) { }
             NavItem(Icons.Default.Headphones, "Pratik", false, onPractice)
             NavItem(Icons.Default.Groups, "Topluluk", false, onSocial)
             NavItem(Icons.Default.BarChart, "İlerleme", false, onProgress)
             NavItem(Icons.Default.Person, "Profil", false, onProfile)
         }
-        Spacer(Modifier.height(16.dp))
-        } }
     }
     // Kutlama katmanı: sandık/görev ödülleri parçacık patlamasıyla kutlanır
     CelebrationOverlay(celebration, onDismiss = { celebration = null })
@@ -1507,7 +1500,7 @@ private fun PracticeScreen(level: String, mistakeIds: Set<String>, skillStats: M
         }
         recommendedSkill?.let { focus ->
             val tally = skillStats.getValue(focus)
-            Surface(color = Color(0xFF342457), shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+            Surface(color = Color(0xFF20314B), shape = RoundedCornerShape(14.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
                 Row(Modifier.padding(horizontal = 12.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
                     Text("Önerilen odak: ${skillLabel(focus)} • ${tally.accuracyPercent}% / ${tally.attempts} deneme", color = Muted, fontSize = 11.sp, modifier = Modifier.weight(1f))
                     TextButton(onClick = { selectedSkill = skillLabel(focus) }) { Text("Dersleri gör", color = Gold, fontSize = 11.sp) }
@@ -1615,8 +1608,9 @@ private fun StatCard(emoji: String, title: String, subtitle: String, modifier: M
 
 @Composable
 private fun NavItem(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String, active: Boolean, onClick: () -> Unit) {
-    Column(Modifier.pressScale().clickable(onClick = onClick).padding(horizontal = 7.dp, vertical = 4.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-        Icon(icon, null, tint = if (active) Gold else Muted)
-        Text(text, color = if (active) Gold else Muted, fontSize = 10.sp, modifier = Modifier.padding(top = 3.dp))
+    Column(Modifier.widthIn(min = 52.dp).heightIn(min = 52.dp).background(if (active) Gold.copy(alpha = 0.12f) else Color.Transparent, RoundedCornerShape(16.dp)).pressScale().clickable(onClick = onClick).padding(horizontal = 5.dp, vertical = 7.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+        Icon(icon, null, tint = if (active) Gold else Muted, modifier = Modifier.size(22.dp))
+        Text(text, color = if (active) Gold else Muted, fontSize = 10.sp, fontWeight = if (active) FontWeight.Bold else FontWeight.Medium, modifier = Modifier.padding(top = 4.dp))
     }
 }
+

@@ -36,14 +36,16 @@ SharedPreferences (XP/seri, kurs dili/seviye ilerlemesi — uid'ye bağlı anaht
 (profil, ders olayları, lig/bülten/arkadaş/kullanıcı adı koleksiyonları — kuralları `firestore.rules`,
 testleri `tests/firestore-rules`). TTS ders diline göre konuşur; konuşma tanıma sessiz SpeechRecognizer ile çalışır
 (telaffuz puanı değildir). Cevap denetimi: olumsuzluk uyuşmazlığı reddi + LCS tabanlı sıra duyarlı eşleşme +
-CJK için karakter-ikilisi benzerliği.
+CJK için karakterleri koruyan, yalnızca boşluk farkını tolere eden eşleşme. Japonca seslendirme işaretleri ve anlamlı aksanlar korunur.
 
-## Bilinen sınırlar / üretim öncesi yapılacaklar
+## Güncel düzeltme ve yayın durumu
 
-- Play Billing bağlı değil; plan ekranı bilgilendirme amaçlı, satın alma başlatmaz.
-- Lig XP'si istemci beyanıdır (kurallar tip/aralık doğrular); sunucu doğrulamalı XP artışı backlog'dadır.
-- Release imzalama/minify/çökme raporlama yapılandırılmadı (dağıtım debug APK).
-- Kurs içeriği Kotlin kaynaklarındadır; JSON'a taşıma backlog'dadır. Dünya dilleri müfredatı yapılandırılmış ve
-  otomatik bütünlük testlerinden geçmiş olsa da ana dili konuşan editör incelemesinden geçmemiştir.
-- UI testi ve cihaz üstü DB migration testi yoktur (birim + kural testleri CI'da).
-- `MainActivity.kt` büyüktür; ekran başına paket bölme planlanmaktadır.
+- Modern tasarım, dil bazında beceri kayıtları, seviye bazında günlük kelimeler, yerel günlük tarih, yazma uzunluğu kontrolü ve oturum geçmişine göre pratik rotasyonu inceleme dalındadır.
+- On dil için A2–C2’de beş ortak senaryonun 50 dil sürümü eklendi; her metinde sekiz replik, Türkçe çeviri ve dört gerekçeli anlama sorusu bulunur. A1 hikâyeleriyle birlikte kütüphane bütün seviyeleri kapsar. Bu kapsam, tüm müfredatın bağımsız CEFR doğrulaması değildir.
+- Açık yazma otomatik anlam/dilbilgisi puanı almaz; konuşma eşleştirmesi telaffuz veya serbest diyalog değerlendirmesi değildir.
+- Play Billing ve sunucu doğrulaması uygulanmıştır; canlı ödeme ancak `docs/COMMERCIAL_READINESS.md` içindeki sahibi tarafından yapılacak yapılandırma ve gerçek Play testlerinden sonra açılmalıdır.
+- Lig puanları sunucuda sınırlandırılır; istemcinin gerçekten bütün soruları yanıtladığı henüz sunucu tarafından kanıtlanmaz.
+- Çevrimdışı çalışma zamanı bulutta ayrı, güvenilmeyen geçmiş metadatası olarak korunur; ödüller güvenilir sunucu kabul zamanını kullanır.
+- Kullanıcı adı ve bülten yazımları App Check korumalı sunucu fonksiyonları üzerinden yürür. Aynı hesap için tek güncel ad ve günlük beş sabit mesaj sınırı vardır.
+- Android cihaz/derleme ve Firestore emülatör kontrolleri geçmeden, imzalı üretim paketi ve canlı ödeme senaryoları doğrulanmadan bu dal satışa hazır sayılmaz.
+- Ayrıntılı kabul ölçütleri ve kapanmamış işler: `docs/RELEASE_ACCEPTANCE.md`.

@@ -2,9 +2,22 @@ package com.linguapro.android
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertNotNull
 import org.junit.Test
 
 class WritingCoachTest {
+    @Test fun enforcesDeclaredLengthWithoutClaimingCorrectness() {
+        val requirements = WritingRequirements(emptyList(), minimumWords = 4, maximumWords = 6)
+        assertNotNull(WritingCoach.submissionError("a", requirements))
+        assertNotNull(WritingCoach.submissionError("--- !!!", requirements))
+        assertNotNull(WritingCoach.submissionError("I like coffee.", requirements))
+        assertNull(WritingCoach.submissionError("I really like coffee.", requirements))
+        assertNotNull(WritingCoach.submissionError("I really like drinking coffee every single day.", requirements))
+        assertNull(WritingCoach.submissionError("咖啡很好喝。"))
+        assertNull(WritingCoach.submissionError("I is very happy.", requirements))
+    }
+
     @Test fun `flags a few common transparent writing patterns`() {
         val feedback = WritingCoach.review("i is happy")
         assertTrue(feedback.suggestions.any { it.contains("büyük harfle") })
@@ -24,3 +37,4 @@ class WritingCoachTest {
         assertTrue(feedback.strengths.any { it.contains("örtüşüyor") })
     }
 }
+

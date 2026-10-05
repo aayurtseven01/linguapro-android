@@ -36,6 +36,10 @@ after(async () => {
   if (env) await env.cleanup();
 });
 
+async function trustedName(name, uid) {
+  await env.withSecurityRulesDisabled(async (ctx) => { await setDoc(doc(ctx.firestore(), `usernames/${name}`), { uid }); });
+}
+
 function profile(uid, overrides = {}) {
   return {
     uid,
@@ -130,18 +134,22 @@ test('course content is authenticated read-only', async () => {
   await assertFails(getDocs(collection(anonymous, 'courseContent')));
 });
 
-test('owner can delete own profile but strangers cannot', async () => {
+test('client profile deletion is denied; trusted server cleanup can delete', async () => {
   const alice = env.authenticatedContext('alice').firestore();
   await assertSucceeds(setDoc(doc(alice, 'users/alice'), profile('alice')));
   const mallory = env.authenticatedContext('mallory').firestore();
   await assertFails(deleteDoc(doc(mallory, 'users/alice')));
-  await assertSucceeds(deleteDoc(doc(alice, 'users/alice')));
+  await assertFails(deleteDoc(doc(alice, 'users/alice')));
+  await env.withSecurityRulesDisabled(async (ctx) => {
+    await deleteDoc(doc(ctx.firestore(), 'users/alice'));
+  });
+  await assertFails(getDoc(doc(mallory, 'users/alice')));
 });
 
 test('leaderboard: owner writes own entry, strangers cannot, signed-in users can read', async () => {
   const alice = env.authenticatedContext('alice').firestore();
   await assertSucceeds(setDoc(doc(alice, 'users/alice'), profile('alice')));
-  await assertSucceeds(setDoc(doc(alice, 'usernames/alice_tr'), { uid: 'alice' }));
+  await trustedName('alice_tr', 'alice');
   const entry = { uid: 'alice', username: 'alice_tr', displayName: 'Alice', avatar: 'g=0;t=1' };
   await assertSucceeds(setDoc(doc(alice, 'leaderboard/alice'), entry));
   await assertFails(updateDoc(doc(alice, 'leaderboard/alice'), { totalXp: 99999 }));
@@ -160,12 +168,15 @@ test('leaderboard: owner writes own entry, strangers cannot, signed-in users can
   await assertFails(getDoc(doc(anon, 'leaderboard/alice')));
 });
 
-test('activity: users post only as themselves and cannot edit posts', async () => {
+test('activity: client publishing is denied; server posts can be read and owners can hide them', async () => {
   const alice = env.authenticatedContext('alice').firestore();
   await assertSucceeds(setDoc(doc(alice, 'users/alice'), profile('alice')));
-  await assertSucceeds(setDoc(doc(alice, 'usernames/alice_tr'), { uid: 'alice' }));
+  await trustedName('alice_tr', 'alice');
   const item = doc(collection(alice, 'activity'));
-  await assertSucceeds(setDoc(item, { uid: 'alice', username: 'alice_tr', avatar: '', text: 'Seviye 3 oldu!', createdAt: 1700000000000 }));
+  await assertFails(setDoc(item, { uid: 'alice', username: 'alice_tr', avatar: '', text: 'free caption', createdAt: 1700000000000 }));
+  await env.withSecurityRulesDisabled(async (ctx) => {
+    await setDoc(doc(ctx.firestore(), item.path), { uid: 'alice', username: 'alice_tr', avatar: '', text: 'Bir hikâye çalışması tamamladı!', createdAt: 1700000000000 });
+  });
   await assertFails(setDoc(doc(collection(alice, 'activity')), { uid: 'bob', username: 'sahte', avatar: '', text: 'x', createdAt: 1 }));
   await assertFails(updateDoc(item, { text: 'degisti' }));
   const bob = env.authenticatedContext('bob').firestore();
@@ -192,7 +203,7 @@ test('reserved names cannot be impersonated in the leaderboard or activity feed'
   const alice = env.authenticatedContext('alice').firestore();
   const bob = env.authenticatedContext('bob').firestore();
   await assertSucceeds(setDoc(doc(alice, 'users/alice'), profile('alice')));
-  await assertSucceeds(setDoc(doc(alice, 'usernames/alice_tr'), { uid: 'alice' }));
+  await trustedName('alice_tr', 'alice');
   await assertFails(setDoc(doc(bob, 'leaderboard/bob'), { uid: 'bob', username: 'alice_tr', displayName: 'Fake', avatar: '' }));
   await assertFails(setDoc(doc(collection(bob, 'activity')), { uid: 'bob', username: 'alice_tr', avatar: '', text: 'Fake', createdAt: 1 }));
 });
@@ -213,14 +224,16 @@ test('friends: only the owner manages their own list', async () => {
   await assertFails(setDoc(doc(alice, 'users/alice/friends/bob'), { uid: 'bob', username: 'bob_tr', avatar: '', addedAt: 1 }));
 });
 
-test('usernames: first claim wins, cannot be overwritten, owner can release', async () => {
+test('usernames: client reservations and releases are denied; names remain readable', async () => {
   const alice = env.authenticatedContext('alice').firestore();
-  await assertSucceeds(setDoc(doc(alice, 'usernames/kaptan'), { uid: 'alice' }));
+  await assertFails(setDoc(doc(alice, 'usernames/kaptan'), { uid: 'alice' }));
+  await trustedName('kaptan', 'alice');
+  await assertSucceeds(getDoc(doc(alice, 'usernames/kaptan')));
   const bob = env.authenticatedContext('bob').firestore();
   await assertFails(setDoc(doc(bob, 'usernames/kaptan'), { uid: 'bob' }));
   await assertFails(setDoc(doc(alice, 'usernames/kaptan'), { uid: 'alice' })); // update de kapali
   await assertFails(deleteDoc(doc(bob, 'usernames/kaptan')));
-  await assertSucceeds(deleteDoc(doc(alice, 'usernames/kaptan')));
+  await assertFails(deleteDoc(doc(alice, 'usernames/kaptan')));
 });
 
 test('course completions are owner-scoped, bounded and immutable', async () => {
@@ -250,10 +263,28 @@ test('account deletion marker prevents new writes racing with server cleanup', a
 test('deleting accounts cannot recreate public activity or league entries', async () => {
   const alice = env.authenticatedContext('alice').firestore();
   await assertSucceeds(setDoc(doc(alice, 'users/alice'), profile('alice')));
-  await assertSucceeds(setDoc(doc(alice, 'usernames/alice_tr'), { uid: 'alice' }));
+  await trustedName('alice_tr', 'alice');
   await env.withSecurityRulesDisabled(async (ctx) => {
     await updateDoc(doc(ctx.firestore(), 'users/alice'), { deletionRequested: true });
   });
   await assertFails(setDoc(doc(alice, 'leaderboard/alice'), { uid: 'alice', username: 'alice_tr', displayName: 'Alice', avatar: '' }));
   await assertFails(setDoc(doc(collection(alice, 'activity')), { uid: 'alice', username: 'alice_tr', avatar: '', text: 'x', createdAt: 1 }));
+});
+
+
+test('offline study time is bounded metadata and cannot replace the trusted timestamp', async () => {
+  const alice = env.authenticatedContext('alice').firestore();
+  await assertSucceeds(setDoc(doc(alice, 'users/alice'), profile('alice')));
+  await assertSucceeds(setDoc(doc(alice, 'users/alice/lessonEvents/offline'), {
+    lessonId: 'A1-U1-L1', score: 75, completedAt: serverTimestamp(), clientCompletedAtEpochMillis: 1750000000000,
+  }));
+  await assertFails(setDoc(doc(alice, 'users/alice/lessonEvents/invalid-time'), {
+    lessonId: 'A1-U1-L1', completedAt: serverTimestamp(), clientCompletedAtEpochMillis: 'yesterday',
+  }));
+  await assertFails(setDoc(doc(alice, 'users/alice/lessonEvents/negative-time'), {
+    lessonId: 'A1-U1-L1', completedAt: serverTimestamp(), clientCompletedAtEpochMillis: -1,
+  }));
+  await assertFails(setDoc(doc(alice, 'users/alice/lessonEvents/untrusted-reward'), {
+    lessonId: 'A1-U1-L1', completedAt: new Date(1750000000000), clientCompletedAtEpochMillis: 1750000000000,
+  }));
 });

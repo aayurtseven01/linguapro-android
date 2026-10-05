@@ -5,6 +5,34 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class DailyWordsTest {
+    @Test fun dailyDateChangesAtLocalMidnightRatherThanUtcMidnight() {
+        val zone = java.time.ZoneId.of("Europe/Istanbul")
+        fun day(instant: String) = DailyWords.todayEpochDay(java.time.Clock.fixed(java.time.Instant.parse(instant), zone))
+        val before = day("2026-10-05T20:59:59Z")
+        val after = day("2026-10-05T21:00:00Z")
+        assertEquals(before + 1, after)
+        assertEquals(after, day("2026-10-05T23:59:59Z"))
+        assertEquals(after, day("2026-10-06T00:00:00Z"))
+    }
+
+
+    @Test fun selectedLevelDailyLessonsUseOnlyThatCurriculumsVocabulary() {
+        allLangs.forEach { lang -> CourseCatalog.levels.forEach { level ->
+            val allowed = WorldCatalog.units(lang, level).flatMap { unit ->
+                unit.lessons.flatMap { it.targetVocabulary }
+            }.map { it.termEn }.toSet()
+            assertTrue("$lang $level requires enough daily vocabulary", DailyWords.pool(lang, level).size >= 10)
+            val lesson = DailyWords.lessonFor(lang, 20_010L, level)
+            assertEquals(10, lesson.exercises.size)
+            assertTrue(lesson.targetVocabulary.all { it.termEn in allowed })
+            assertEquals(DailyWords.wordsFor(lang, 20_009L, level).map { it.termEn }.toSet(),
+                lesson.exercises.filter { it.id.contains("-r") }.map { it.acceptedAnswers.first() }.toSet())
+            lesson.exercises.forEach { item ->
+                assertEquals(3, item.options.toSet().size)
+                assertTrue(item.acceptedAnswers.first() in item.options)
+            }
+        } }
+    }
 
     private val allLangs = listOf("EN", "DE", "FR", "ES", "PT", "IT", "RU", "ZH", "JA", "KO")
 
@@ -79,3 +107,4 @@ class DailyWordsTest {
         assertEquals("Tekrar soruları dünün kelimelerinden gelmeli", yesterdayTerms, reviewAnswers)
     }
 }
+

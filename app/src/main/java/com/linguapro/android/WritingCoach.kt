@@ -4,6 +4,21 @@ data class WritingFeedback(val wordCount: Int, val strengths: List<String>, val 
 
 /** Lightweight transparent checks; this does not claim to grade grammar or CEFR writing proficiency. */
 object WritingCoach {
+    /** Task length only; passing this check says nothing about grammar or meaning. */
+    fun submissionError(response: String, requirements: WritingRequirements? = null): String? {
+        val text = response.trim()
+        if (text.isBlank()) return "Soruyu yanıtlayan bir metin yaz."
+        if (text.count { it.isLetter() } < 2) return "Soruyu yanıtlayan bir cümle yaz; tek harf veya işaret yeterli değil."
+        val count = text.split(Regex("\\s+")).count { token -> token.any { it.isLetterOrDigit() } }
+        requirements?.minimumWords?.let { minimum ->
+            if (count < minimum) return "Bu görev için en az $minimum kelime yazmalısın; şu an $count kelime var."
+        }
+        requirements?.maximumWords?.let { maximum ->
+            if (count > maximum) return "Bu görev için en fazla $maximum kelime yazmalısın; şu an $count kelime var."
+        }
+        return null
+    }
+
     private val terminalMarks = setOf('.', '!', '?', '。', '！', '？')
     private val inflectedVerbs = setOf("goes", "does", "has", "likes", "wants", "needs", "works", "plays", "speaks", "lives",
         "makes", "takes", "sends", "uses", "tries", "watches", "studies", "reads", "writes", "starts", "finishes",
@@ -41,3 +56,4 @@ object WritingCoach {
     private fun normalize(text: String) = java.text.Normalizer.normalize(text.lowercase(java.util.Locale.ROOT), java.text.Normalizer.Form.NFC)
         .replace(Regex("[^\\p{L}\\p{N}\\p{M}']+"), " ").trim().replace(Regex("\\s+"), " ")
 }
+

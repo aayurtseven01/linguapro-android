@@ -4,6 +4,19 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class PersonalizedPracticeTest {
+    @Test fun recentQuestionsRotateButMistakesKeepTheirPriority() {
+        val lessons = WorldCatalog.units("EN", "A1").flatMap { it.lessons }
+        val first = PersonalizedPractice.build("EN", "A1", lessons, emptySet(), emptyMap())
+        val recent = first.exercises.map { it.id }.toSet()
+        val next = PersonalizedPractice.build("EN", "A1", lessons, emptySet(), emptyMap(), recentExerciseIds = recent, sessionSeed = 1)
+        assertTrue(next.exercises.none { it.id in recent })
+        assertEquals(next, PersonalizedPractice.build("EN", "A1", lessons, emptySet(), emptyMap(), recentExerciseIds = recent, sessionSeed = 1))
+        val mistake = first.exercises.first().id
+        val retry = PersonalizedPractice.build("EN", "A1", lessons, setOf(mistake), emptyMap(), recentExerciseIds = recent, sessionSeed = 2)
+        assertEquals(mistake, retry.exercises.first().id)
+        assertEquals(8, retry.exercises.map { it.id }.toSet().size)
+    }
+
     @Test fun sessionPrioritizesMistakesWithoutDuplicatingExercises() {
         val lessons = WorldCatalog.units("EN", "A1").flatMap { it.lessons }
         val mistake = lessons.flatMap { it.exercises }.last()
@@ -24,3 +37,4 @@ class PersonalizedPracticeTest {
         }
     }
 }
+

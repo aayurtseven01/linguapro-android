@@ -19,10 +19,13 @@ class LocalAccountDataCleaner @Inject constructor(
             database.reviewCardDao().deleteForLearner(uid)
             database.pendingLessonEventDao().deleteForLearner(uid)
         }
-        listOf("learner_progress_v1_", "mistake_book_", "skill_progress_", "daily_quests_", "gems_v1_")
+        listOf("learner_progress_v1_", "mistake_book_", "skill_progress_", "daily_quests_", "gems_v1_", "practice_history_v1_")
             .forEach { prefix ->
                 check(context.getSharedPreferences(prefix + uid, Context.MODE_PRIVATE).edit().clear().commit())
             }
+        com.linguapro.android.WorldCatalog.languages.forEach { language ->
+            check(context.getSharedPreferences("skill_progress_v2_${uid}_${language.code}", Context.MODE_PRIVATE).edit().clear().commit())
+        }
         val prefs = context.getSharedPreferences("lingua_course", Context.MODE_PRIVATE)
         val editor = prefs.edit()
         prefs.all.keys.filter {
@@ -33,3 +36,4 @@ class LocalAccountDataCleaner @Inject constructor(
         check(editor.commit())
     }
 }
+

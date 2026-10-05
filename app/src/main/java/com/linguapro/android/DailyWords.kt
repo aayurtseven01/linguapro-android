@@ -10,12 +10,21 @@ package com.linguapro.android
  */
 object DailyWords {
 
-    fun todayEpochDay(): Long = System.currentTimeMillis() / 86_400_000L
+    fun todayEpochDay(clock: java.time.Clock = java.time.Clock.systemDefaultZone()): Long =
+        java.time.LocalDate.now(clock).toEpochDay()
 
     private val poolCache = HashMap<String, List<TargetVocabulary>>()
 
-    fun pool(lang: String): List<TargetVocabulary> = synchronized(poolCache) {
-        poolCache.getOrPut(lang) {
+    fun pool(lang: String, level: String? = null): List<TargetVocabulary> = synchronized(poolCache) {
+        if (level != null) require(level in CourseCatalog.levels) { "Unsupported course level: $level" }
+        poolCache.getOrPut("$lang:${level ?: "all"}") {
+            if (level != null) {
+                // Only use authored vocabulary from the selected curriculum level. Exam labels
+                // are not a verified CEFR mapping, so the mixed exam bank is excluded here.
+                return@getOrPut WorldCatalog.units(lang, level).flatMap { unit ->
+                    unit.lessons.flatMap { it.targetVocabulary }
+                }.distinctBy { it.termEn.lowercase(java.util.Locale.ROOT) }
+            }
             val curriculum = if (lang == "EN") englishBank
             else CourseCatalog.levels.flatMap { level ->
                 WorldCatalog.units(lang, level).flatMap { unit -> unit.lessons.flatMap { it.targetVocabulary } }
@@ -27,21 +36,22 @@ object DailyWords {
     }
 
     /** O günün 5 kelimesi. Aynı döngü içinde günler arası tekrar olmaz. */
-    fun wordsFor(lang: String, epochDay: Long): List<TargetVocabulary> {
-        val fullPool = pool(lang)
+    fun wordsFor(lang: String, epochDay: Long, level: String? = null): List<TargetVocabulary> {
+        val fullPool = pool(lang, level)
         if (fullPool.size < 10) return emptyList()
         val slotsPerCycle = fullPool.size / 5
         val cycle = epochDay / slotsPerCycle
         val slot = ((epochDay % slotsPerCycle + slotsPerCycle) % slotsPerCycle).toInt()
-        val shuffled = fullPool.shuffled(kotlin.random.Random(lang.hashCode() * 31L + cycle))
+        val seed = if (level == null) lang.hashCode() else "$lang:$level".hashCode()
+        val shuffled = fullPool.shuffled(kotlin.random.Random(seed * 31L + cycle))
         return shuffled.subList(slot * 5, slot * 5 + 5)
     }
 
     /** 10 soruluk günlük kelime dersi: bugünün 5 kelimesi + dünün 5 kelimesinin tekrarı. */
-    fun lessonFor(lang: String, epochDay: Long = todayEpochDay()): LearningLesson {
-        val today = wordsFor(lang, epochDay)
-        val yesterday = wordsFor(lang, epochDay - 1)
-        val fullPool = pool(lang)
+    fun lessonFor(lang: String, epochDay: Long = todayEpochDay(), level: String? = null): LearningLesson {
+        val today = wordsFor(lang, epochDay, level)
+        val yesterday = wordsFor(lang, epochDay - 1, level)
+        val fullPool = pool(lang, level)
         val random = kotlin.random.Random(lang.hashCode() * 1_000_003L + epochDay)
         fun meaningOptions(word: TargetVocabulary): List<String> {
             val wrong = fullPool.map { it.translationTr }.distinct().filter { it != word.translationTr }.shuffled(random).take(2)
@@ -54,14 +64,14 @@ object DailyWords {
         val exercises = buildList {
             today.forEachIndexed { i, word ->
                 add(LearningExercise(
-                    "wd-$lang-$epochDay-n$i", Skill.VOCABULARY, "Yeni kelime: doğru anlamı seç",
+                    "wd-$lang-${level ?: "all"}-$epochDay-n$i", Skill.VOCABULARY, "Yeni kelime: doğru anlamı seç",
                     "'${word.termEn}' ne demek?", "", meaningOptions(word), listOf(word.translationTr),
                     "${word.exampleEn} — ${word.exampleTr}", word.termEn
                 ))
             }
             yesterday.forEachIndexed { i, word ->
                 add(LearningExercise(
-                    "wd-$lang-$epochDay-r$i", Skill.VOCABULARY, "Dünün kelimesi: hatırlıyor musun?",
+                    "wd-$lang-${level ?: "all"}-$epochDay-r$i", Skill.VOCABULARY, "Dünün kelimesi: hatırlıyor musun?",
                     "'${word.translationTr}' karşılığı hangisi?", "", termOptions(word), listOf(word.termEn),
                     "${word.exampleEn} — ${word.exampleTr}", word.termEn
                 ))
@@ -199,3 +209,4 @@ object DailyWords {
         TargetVocabulary("enw120", "itinerary", "gezi planı", "ifade", "Our itinerary includes three cities.", "Gezi planımız üç şehri kapsıyor.")
     )
 }
+

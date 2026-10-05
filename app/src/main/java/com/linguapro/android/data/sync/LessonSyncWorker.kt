@@ -39,7 +39,8 @@ class LessonSyncWorker(context: Context, parameters: WorkerParameters) : Corouti
             for (event in batch) {
                 if (FirebaseAuth.getInstance().currentUser?.uid != uid) return Result.success()
                 val result = CompletableDeferred<String?>()
-                accounts.recordLesson(uid, event.lessonId, event.scorePercent, event.countsTowardCourse, event.id) {
+                accounts.recordLesson(uid, event.lessonId, event.scorePercent, event.countsTowardCourse, event.id,
+                    clientCompletedAtEpochMillis = event.createdAtEpochMillis) {
                     result.complete(it)
                 }
                 if (result.await() != null) return Result.retry()
@@ -60,3 +61,4 @@ class LessonSyncWorker(context: Context, parameters: WorkerParameters) : Corouti
         }
     }
 }
+

@@ -152,6 +152,7 @@ class FirebaseAccountRepository(context: Context) {
         score: Int?,
         countsTowardCourse: Boolean = true,
         eventId: String = UUID.randomUUID().toString(),
+        clientCompletedAtEpochMillis: Long? = null,
         callback: (String?) -> Unit
     ) {
         if (!isConfigured || currentUser()?.uid != uid) {
@@ -169,6 +170,10 @@ class FirebaseAccountRepository(context: Context) {
             val firstCompletion = countsTowardCourse && !transaction.get(completion).exists()
             val event = mutableMapOf<String, Any>("lessonId" to lessonId, "completedAt" to FieldValue.serverTimestamp())
             score?.let { event["score"] = it.coerceIn(0, 100) }
+            // Client study time is history metadata, never the trusted reward timestamp.
+            clientCompletedAtEpochMillis?.takeIf { it in 0L..253402300799999L }?.let {
+                event["clientCompletedAtEpochMillis"] = it
+            }
             transaction.set(attempt, event)
             val updates = mutableMapOf<String, Any>(
                 "lastStudiedAt" to FieldValue.serverTimestamp(),
@@ -225,4 +230,5 @@ data class AccountResult(
         fun Error(message: String, uid: String? = null, name: String = "", email: String = "") = AccountResult(uid, name, email, message)
     }
 }
+
 

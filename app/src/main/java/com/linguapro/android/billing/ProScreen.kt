@@ -18,6 +18,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.linguapro.android.*
+import com.linguapro.android.ui.components.*
 import com.linguapro.android.ui.components.breathe
 import com.linguapro.android.ui.components.popIn
 import com.linguapro.android.ui.components.pressScale
@@ -35,11 +37,11 @@ fun ProScreen(viewModel: ProViewModel, onBack: () -> Unit, onPractice: () -> Uni
 internal fun ProScreenContent(state: ProBillingState, onBack: () -> Unit, onPractice: () -> Unit, onBuy: (ProOffer) -> Unit, onRestore: () -> Unit) {
     val context = LocalContext.current
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(22.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
-        TextButton(onClick = onBack) { Text("← Geri") }
-        Text("LINGUA PRO", color = Color(0xFFC6FF4A), fontSize = 12.sp, letterSpacing = 3.sp, fontWeight = FontWeight.Bold)
-        Text("Zorlandığın konulara\nodaklan.", color = Color.White, fontSize = 32.sp, lineHeight = 38.sp, fontWeight = FontWeight.ExtraBold)
-        Text("Sana özel pratik: hata defterindeki soruları ve güçlendirebileceğin becerileri kısa oturumlarda bir araya getir.", color = Color(0xFFCBBDE8), lineHeight = 22.sp)
-        Card(colors = CardDefaults.cardColors(containerColor = Color(0xFF342457)), modifier = Modifier.popIn(delayMillis = 250)) {
+        BackRow("Lingua Pro", onBack)
+        Text("LINGUA PRO", color = Color(0xFF6DE8C1), fontSize = 12.sp, letterSpacing = 3.sp, fontWeight = FontWeight.Bold)
+        Text("Zorlandığın konulara\nodaklan.", color = Color.White, fontSize = 34.sp, lineHeight = 41.sp, fontWeight = FontWeight.ExtraBold)
+        Text("Sana özel pratik: hata defterindeki soruları ve güçlendirebileceğin becerileri kısa oturumlarda bir araya getir.", color = Color(0xFFC3CEE0), lineHeight = 22.sp)
+        Card(shape = RoundedCornerShape(26.dp), colors = CardDefaults.cardColors(containerColor = Panel), modifier = Modifier.fillMaxWidth().popIn(delayMillis = 250)) {
             Column(Modifier.padding(18.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Text("✓ Hata geçmişine göre kişisel pratik", color = Color.White)
                 Text("✓ Zayıf becerilere öncelik veren oturumlar", color = Color.White)
@@ -48,22 +50,22 @@ internal fun ProScreenContent(state: ProBillingState, onBack: () -> Unit, onPrac
         }
         if (state.hasPro) {
             Button(onClick = onPractice, modifier = Modifier.fillMaxWidth().pressScale()) { Text("Kişisel pratiğime başla") }
-            Text("Pro aboneliğin aktif.", color = Color(0xFFC6FF4A))
+            Text("Pro aboneliğin aktif.", color = Color(0xFF6DE8C1))
         } else {
             if (state.loading) CircularProgressIndicator()
             state.offers.forEachIndexed { offerIndex, offer ->
-                OutlinedCard(border = BorderStroke(1.dp, Color(0xFFC6FF4A)), colors = CardDefaults.cardColors(containerColor = Color(0xFF281A4A)), modifier = Modifier.staggerIn(offerIndex)) {
+                OutlinedCard(border = BorderStroke(1.dp, Color(0xFF6DE8C1)), colors = CardDefaults.cardColors(containerColor = Color(0xFF152238)), modifier = Modifier.staggerIn(offerIndex)) {
                     Column(Modifier.fillMaxWidth().padding(18.dp)) {
                         Text(offer.title, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                        Text(offer.terms, color = Color(0xFFCBBDE8), modifier = Modifier.padding(vertical = 10.dp))
+                        Text(offer.terms, color = Color(0xFFC3CEE0), modifier = Modifier.padding(vertical = 10.dp))
                         Button(enabled = !state.purchasing && !state.loading, onClick = { onBuy(offer) }, modifier = Modifier.fillMaxWidth().pressScale().then(if (!state.purchasing && !state.loading) Modifier.breathe(1f, 1.02f) else Modifier)) { Text("Google Play ile abone ol") }
                     }
                 }
             }
         }
-        state.message?.let { Text(it, color = Color(0xFFCBBDE8), lineHeight = 20.sp) }
+        state.message?.let { Text(it, color = Color(0xFFC3CEE0), lineHeight = 20.sp) }
         if (state.purchasing) { LinearProgressIndicator(Modifier.fillMaxWidth()); Text("Aboneliğin doğrulanıyor…", color = Color.White) }
-        Text("Abonelik, iptal edilmediği sürece yenilenir. Kesin fiyat ve koşulları onaylamadan önce Google Play ekranında görebilirsin.", color = Color(0xFFA99BC9), fontSize = 12.sp, lineHeight = 18.sp)
+        Text("Abonelik, iptal edilmediği sürece yenilenir. Kesin fiyat ve koşulları onaylamadan önce Google Play ekranında görebilirsin.", color = Color(0xFFA3B2C8), fontSize = 12.sp, lineHeight = 18.sp)
         OutlinedButton(onClick = onRestore, enabled = !state.loading && !state.purchasing, modifier = Modifier.fillMaxWidth()) { Text("Satın alımları geri yükle") }
         TextButton(onClick = {
             runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/account/subscriptions?package=com.linguapro.android"))) }
@@ -78,3 +80,4 @@ private tailrec fun Context.findActivity(): Activity? = when (this) {
     is ContextWrapper -> baseContext.findActivity()
     else -> null
 }
+

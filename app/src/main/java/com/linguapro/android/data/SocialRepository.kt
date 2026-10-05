@@ -83,18 +83,10 @@ class SocialRepository {
         val d = db() ?: return done("Çevrimiçi özellikler için Firebase gerekli.")
         val key = username.lowercase().trim()
         if (!key.matches(Regex("[a-z0-9_.]{3,20}"))) return done("3–20 karakter kullan: a-z, rakam, nokta ve alt çizgi.")
-        val ref = d.collection("usernames").document(key)
-        d.runTransaction { tx ->
-            val existing = tx.get(ref)
-            if (existing.exists() && existing.getString("uid") != uid) throw IllegalStateException("USERNAME_TAKEN")
-            if (!existing.exists()) tx.set(ref, mapOf("uid" to uid))
-            null
-        }
+        com.google.firebase.functions.FirebaseFunctions.getInstance().getHttpsCallable("claimUsername")
+            .call(mapOf("uid" to uid, "username" to key))
             .addOnSuccessListener { done(null) }
-            .addOnFailureListener {
-                android.util.Log.e("LinguaSocial", "claimUsername basarisiz", it)
-                done(if (it.message?.contains("USERNAME_TAKEN") == true) "Bu kullanıcı adı alınmış." else "Ad kaydedilemedi: ${it.message ?: "bilinmeyen hata"}")
-            }
+            .addOnFailureListener { done(it.localizedMessage ?: "Kullanıcı adı kaydedilemedi.") }
     }
 
     fun addFriend(uid: String, friend: BoardEntry, done: (String?) -> Unit) {
@@ -135,17 +127,15 @@ class SocialRepository {
     /** Bültene bir başarı gönderir (kendi adına). */
     fun postActivity(uid: String, username: String, avatar: String, text: String, done: (String?) -> Unit) {
         val d = db() ?: return done("Çevrimiçi özellikler için Firebase gerekli.")
-        val data = mapOf(
-            "uid" to uid,
-            "username" to username.lowercase().trim(),
-            "avatar" to avatar.take(120),
-            "text" to text.take(140),
-            "createdAt" to System.currentTimeMillis()
-        )
-        // Ters-zaman kimlik: varsayılan belge sıralaması "en yeni önce" olur; dizin gerekmeden
-        // limit(20) her zaman kullanıcının EN YENİ paylaşımlarını döndürür.
-        val reverseTimeId = "%019d-%s".format(Long.MAX_VALUE - System.currentTimeMillis(), uid.take(8))
-        d.collection("activity").document(reverseTimeId).set(data)
+        val kind = when {
+            text.contains("görev", ignoreCase = true) -> "quests"
+            text.startsWith("Seviye ") -> "level"
+            text.contains("Checkpoint") -> "checkpoint"
+            text.contains("hikâye") -> "story"
+            else -> return done("Etkinlik türü desteklenmiyor.")
+        }
+        com.google.firebase.functions.FirebaseFunctions.getInstance().getHttpsCallable("postActivity")
+            .call(mapOf("uid" to uid, "kind" to kind))
             .addOnSuccessListener { done(null) }
             .addOnFailureListener { done(it.localizedMessage ?: "Paylaşım gönderilemedi.") }
     }
@@ -199,3 +189,4 @@ class SocialRepository {
         )
     }
 }
+

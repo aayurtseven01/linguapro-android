@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.test.core.app.ApplicationProvider
@@ -49,6 +51,7 @@ class ProductFlowTest {
         compose.setContent { LinguaTheme { Box(Modifier.fillMaxSize().background(BgBottom)) {
             ProfileScreen("Test Öğrenci", "test@example.test", "A1", 0, LearningProgress(), "test_user", "", {}, {}, {}, {}, {}, { suppliedPassword = it })
         } } }
+        screenshot("profile-top")
         compose.onNodeWithText("Hesabı ve verileri sil").performScrollTo().performClick()
         compose.onNodeWithText("Evet, kalıcı olarak sil").assertIsNotEnabled()
         assertEquals(null, suppliedPassword)
@@ -95,6 +98,40 @@ class ProductFlowTest {
         org.junit.Assert.assertNull(completionScore)
     }
 
+    @Test fun modernDashboardKeepsNavigationReachableAlongTheLearningPath() {
+        var openedPractice = false
+        compose.setContent { LinguaTheme { Box(Modifier.fillMaxSize().background(BgBottom)) {
+            HomeScreen(name = "Test Öğrenci", level = "A1", langCode = "EN", onSelectLanguage = {}, onSelectLevel = {},
+                completed = 0, progress = LearningProgress(), skillStats = emptyMap(), courseUnits = CourseCatalog.units("A1"),
+                dueReviewCount = 0, onReview = {}, onStartLesson = {}, onLocked = {}, onPractice = { openedPractice = true },
+                onProgress = {}, onProfile = {}, onDailyRefresh = {})
+        } } }
+        compose.onNodeWithText("Öğrenmeye devam et").assertIsDisplayed()
+        screenshot("home-modern")
+        compose.onNodeWithTag("learning-path").performScrollToNode(hasText("A1 seviyesine özel programın hazır. Kısa derslerle her gün biraz daha ilerle."))
+        compose.onNodeWithText("Pratik").assertIsDisplayed().performClick()
+        assertEquals(true, openedPractice)
+    }
+
+    @Test fun modernDashboardSupportsLargerTextAndLongLearnerNames() {
+        var openedProfile = false
+        compose.setContent {
+            val density = LocalDensity.current
+            CompositionLocalProvider(LocalDensity provides Density(density.density, 1.3f)) {
+                LinguaTheme { Box(Modifier.fillMaxSize().background(BgBottom)) {
+                    HomeScreen(name = "Ahmet Anıl Yurtseven", level = "A1", langCode = "EN", onSelectLanguage = {}, onSelectLevel = {},
+                        completed = 0, progress = LearningProgress(), skillStats = emptyMap(), courseUnits = CourseCatalog.units("A1"),
+                        dueReviewCount = 0, onReview = {}, onStartLesson = {}, onLocked = {}, onPractice = {},
+                        onProgress = {}, onProfile = { openedProfile = true }, onDailyRefresh = {})
+                } }
+            }
+        }
+        compose.onNodeWithText("Öğrenmeye devam et").performScrollTo().assertIsDisplayed()
+        screenshot("home-large-font")
+        compose.onNodeWithText("Profil").assertIsDisplayed().performClick()
+        assertEquals(true, openedProfile)
+    }
+
     private fun screenshot(name: String) {
         // PixelCopy-backed capture is reliable on API 26+. API 24 still runs all behavior checks.
         if (Build.VERSION.SDK_INT < 26) return
@@ -110,3 +147,4 @@ class ProductFlowTest {
         target.outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
     }
 }
+
