@@ -49,6 +49,20 @@ node tools/tts/generate.mjs --key tools/tts/anahtar.json --bucket KOVAM_IN_ADI
 - Deneme modu: `--dry-run` (üretmeden planı göster). Tek dil: `--langs DE`; mevcut katalogdaki diğer diller korunur. Katalog okuma hatası varsa üzerine yazılmaz.
 - Bitince `audio/v1/catalog.json` yüklenir; uygulama bunu görünce stüdyo sesine geçer.
 
+### Otomatik kapanma (maliyet güvencesi)
+
+Google'da "kota dolunca hizmeti durdur" diye bir ayar yoktur; uygulama da çalışırken Google TTS'i hiç çağırmaz
+(sesler Storage'dan indirilir). Güvence için üretim **başarıyla bitince hizmeti otomatik kapatan** zincir:
+
+```bash
+node tools/tts/generate.mjs --key tools/tts/anahtar.json --bucket KOVAM_IN_ADI \
+  && gcloud services disable texttospeech.googleapis.com --project linguapro-ad8c7
+```
+
+(`&&` sayesinde yalnız başarılı üretimden sonra kapanır; hata olursa hizmet açık kalır ve tekrar denersin.
+Yeniden üretim gerektiğinde: `gcloud services enable texttospeech.googleapis.com --project linguapro-ad8c7`.)
+Hizmet kapalıyken uygulama her koşulda cihazın sistem TTS'sine döner — sessiz kalma durumu yoktur.
+
 ## Maliyet
 
 Neural2/WaveNet ailelerinde **aylık ilk 1.000.000 karakter ücretsiz**; bu katalog ~190 bin
