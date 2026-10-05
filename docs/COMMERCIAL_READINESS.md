@@ -58,3 +58,14 @@ Official implementation references:
 - https://firebase.google.com/docs/app-check/android/play-integrity-provider
 - https://firebase.google.com/docs/functions/callable
 - https://developer.android.com/google/play/requirements/target-sdk
+
+
+## Learning-integrity release additions
+
+Deploy the `claimUsername` and `postActivity` callables before the matching Firestore rules and Android version. Name reservation is now server-only; it keeps one current name, releases legacy aliases during a new claim, atomically updates any existing leaderboard name and applies a one-minute rename cooldown. Accounts with an unusually large legacy alias set require administrative cleanup. Existing names remain readable.
+
+Activity creation is now server-only. Captions use four fixed templates, identity comes from an owned leaderboard name, and each account can publish at most five items per UTC day. This reduces spam and prevents arbitrary captions; it is not a full moderation, reporting or user-blocking system. Publication claims are not independently verified learning outcomes. Older Android versions using direct writes cannot reserve names or publish posts after these rules are deployed; plan a coordinated app update.
+
+The lesson outbox uploads `clientCompletedAtEpochMillis` as optional bounded metadata. `completedAt` remains the server timestamp used for ranked rewards; client clock values must never control reward eligibility.
+
+Production release acceptance and owner-only blockers are listed in `RELEASE_ACCEPTANCE.md`. Do not publish from a failed or unexecuted Android/Firestore CI run.

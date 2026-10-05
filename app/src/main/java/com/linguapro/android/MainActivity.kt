@@ -835,6 +835,7 @@ private fun LinguaApp() {
             composable<AppRoute.Stories> {
                 StoriesListScreen(
                     lang = courseLang,
+                    initialLevel = effectiveLevel,
                     doneIds = doneStories,
                     onOpen = { sid -> selectedStoryId = sid; go(AppRoute.StoryPlayer) },
                     onBack = { go(AppRoute.Home) }
@@ -843,7 +844,7 @@ private fun LinguaApp() {
             composable<AppRoute.StoryPlayer> {
                 val story = StoryCatalog.byId(selectedStoryId)
                 if (story == null) {
-                    StoriesListScreen(courseLang, doneStories, { sid -> selectedStoryId = sid; go(AppRoute.StoryPlayer) }, { go(AppRoute.Home) })
+                    StoriesListScreen(courseLang, doneStories, { sid -> selectedStoryId = sid; go(AppRoute.StoryPlayer) }, { go(AppRoute.Home) }, initialLevel = effectiveLevel)
                 } else {
                     StoryPlayerScreen(
                         story = story,

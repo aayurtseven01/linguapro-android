@@ -4,7 +4,7 @@ package com.linguapro.android
 data class StoryLine(val speaker: Int, val text: String, val tr: String)
 
 /** Hikâye sonu anlama sorusu (Türkçe sorulur). */
-data class StoryQuestion(val prompt: String, val options: List<String>, val correct: Int)
+data class StoryQuestion(val prompt: String, val options: List<String>, val correct: Int, val explanationTr: String = "")
 
 /** Etkileşimli diyalog hikâyesi: oku → dinle → soruları yanıtla. */
 data class Story(
@@ -167,6 +167,7 @@ object StoryCatalog {
             StoryQuestion("Jimin ne istiyor?", listOf("kahve", "çay", "su"), 1),
             StoryQuestion("Deniz hangi ülkeden?", listOf("Kore", "Türkiye", "Amerika"), 1)
         ))
-    )
+    ) + StoryExpansion.stories
 }
 // STORIES-SON
+

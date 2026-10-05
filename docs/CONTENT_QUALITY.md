@@ -30,3 +30,12 @@ Independent language-editor review, learner trials, calibrated difficulty, profe
 - Writing checks no longer flag correct base forms such as “doesn't pass” and no longer equate unrelated non-Latin answers after stripping their characters. Unicode punctuation and canonical text normalization are supported.
 
 The full delivered English lesson catalog is exported as `english-lesson-audit.json`, alongside `production-editorial.txt`. Regression tests check model coverage and limits, vocabulary recall, editorial idempotence, inversion, supplemental alignment and Unicode feedback. Device tests verify that writing displays the source and criteria, reveals the model after submission, and accepts an alternative without creating a false accuracy score.
+
+
+## Parallel story expansion
+
+Five new fictional scenarios are supplied in all ten learning languages at A2, B1, B2, C1 and C2: a Sunday bus journey, a missing bag, a library-hours trial, a museum survey and contrasting municipal reports. These are fifty language versions of five scenarios, not fifty unrelated plots. Each version includes eight turns, Turkish translations and four comprehension questions with evidence feedback. Existing A1 stories remain available.
+
+English lengths are 115, 193, 214, 241 and 346 words respectively. Other languages use natural phrasing rather than enforcing identical word counts. Chinese and Japanese are checked by character length. Length and structural tests are not CEFR calibration or linguistic review. The original short world-course lessons have not all been replaced by these stories.
+
+The source is `content/story-expansion.json`; `tools/content/generate-stories.mjs` generates the shipped Kotlin bank and `--check` detects divergence. Node checks cover every language/level pair, IDs, translations, answer structure, feedback, extended-text bounds and TTS input limits. Android tests cover level filtering, optional translations and evidence feedback, but must execute successfully before release.

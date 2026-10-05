@@ -5,6 +5,17 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class StoryCatalogTest {
+    @Test fun allLanguagesHaveStoriesAtEveryLevelWithEvidenceFeedback() {
+        WorldCatalog.languages.forEach { language -> CourseCatalog.levels.forEach { level ->
+            val stories = StoryCatalog.storiesFor(language.code).filter { it.level == level }
+            assertTrue("${language.code} $level reading coverage", stories.isNotEmpty())
+            if (level != "A1") stories.forEach { story ->
+                assertTrue(story.questions.all { it.explanationTr.isNotBlank() })
+                assertTrue(story.lines.all { it.text.length < 4000 })
+            }
+        } }
+    }
+
 
     @Test
     fun everyLanguageHasAtLeastOneStoryWithValidStructure() {
@@ -40,3 +51,4 @@ class StoryCatalogTest {
         assertEquals(null, StoryCatalog.byId("XX-YOK"))
     }
 }
+

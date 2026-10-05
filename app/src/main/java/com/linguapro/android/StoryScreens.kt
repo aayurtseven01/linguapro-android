@@ -1,6 +1,7 @@
 package com.linguapro.android
 
 import android.speech.tts.TextToSpeech
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -16,6 +18,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import com.linguapro.android.audio.RemoteSpeechPlayer
 import com.linguapro.android.ui.components.Celebration
 import com.linguapro.android.ui.components.CelebrationOverlay
@@ -31,6 +34,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -59,8 +63,9 @@ private val storyCast = listOf(
 )
 
 @Composable
-fun StoriesListScreen(lang: String, doneIds: Set<String>, onOpen: (String) -> Unit, onBack: () -> Unit) {
-    val stories = StoryCatalog.storiesFor(lang)
+fun StoriesListScreen(lang: String, doneIds: Set<String>, onOpen: (String) -> Unit, onBack: () -> Unit, initialLevel: String? = null) {
+    var selectedLevel by rememberSaveable(lang, initialLevel) { mutableStateOf(initialLevel ?: "Tümü") }
+    val stories = StoryCatalog.storiesFor(lang).filter { selectedLevel == "Tümü" || it.level == selectedLevel }
     Column(
         Modifier.fillMaxSize()
             .background(Brush.verticalGradient(listOf(Color(0xFF14263D), Color(0xFF0B1423))))
@@ -75,6 +80,15 @@ fun StoriesListScreen(lang: String, doneIds: Set<String>, onOpen: (String) -> Un
             Text("📖 Hikâyeler", color = StText, fontSize = 22.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 12.dp))
         }
         Text("Kısa diyaloglar: oku, dinle, soruları yanıtla. Her hikâye +10 XP ve +5 💎 kazandırır.", color = StMuted, fontSize = 12.sp, lineHeight = 17.sp, modifier = Modifier.padding(top = 6.dp, bottom = 14.dp))
+        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(bottom = 14.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            (listOf("Tümü") + CourseCatalog.levels).forEach { level ->
+                Surface(onClick = { selectedLevel = level }, color = if (selectedLevel == level) StGold else StPanel,
+                    shape = RoundedCornerShape(14.dp), modifier = Modifier.heightIn(min = 48.dp)) {
+                    Text(level, color = if (selectedLevel == level) StNavy else StText,
+                        modifier = Modifier.padding(horizontal = 14.dp, vertical = 14.dp))
+                }
+            }
+        }
         if (stories.isEmpty()) {
             Surface(color = StPanel, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth()) {
                 Text("Bu dil için hikâyeler çok yakında!", color = StMuted, fontSize = 13.sp, modifier = Modifier.padding(16.dp))
@@ -104,17 +118,15 @@ fun StoriesListScreen(lang: String, doneIds: Set<String>, onOpen: (String) -> Un
 fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int, total: Int) -> Unit, onBack: () -> Unit) {
     val context = LocalContext.current
     val speechTag = remember(story.id) { WorldCatalog.speechTagForLesson("${story.lang}-A1-X", "en-US") }
-    var ttsReady by remember { mutableStateOf(false) }
-    val tts = remember { mutableStateOf<TextToSpeech?>(null) }
+    var ttsReady by remember(story.id) { mutableStateOf(false) }
+    val tts = remember(story.id) { mutableStateOf<TextToSpeech?>(null) }
     DisposableEffect(story.id) {
         val engine = TextToSpeech(context) { status ->
-            if (status == TextToSpeech.SUCCESS) ttsReady = true
+            ttsReady = status == TextToSpeech.SUCCESS &&
+                (tts.value?.setLanguage(Locale.forLanguageTag(speechTag)) ?: TextToSpeech.LANG_NOT_SUPPORTED) >= TextToSpeech.LANG_AVAILABLE
         }
         tts.value = engine
         onDispose { runCatching { engine.stop(); engine.shutdown() } }
-    }
-    LaunchedEffect(ttsReady) {
-        if (ttsReady) runCatching { tts.value?.language = Locale.forLanguageTag(speechTag) }
     }
 
     // Stüdyo sesi (Faz S2): önbellek → CDN → cihaz TTS; ses kapalıysa hiçbir şey çalınmaz.
@@ -126,10 +138,12 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
         remoteSpeech.warmCatalog()
         remoteReady = remoteSpeech.isRemoteAvailable(speechTag)
     }
+    var audioMessage by remember(story.id) { mutableStateOf("") }
     val playLine: (StoryLine) -> Unit = { line ->
         if (soundOn) {
             remoteSpeech.speak(speechTag, line.text, line.speaker == 1) {
-                runCatching { tts.value?.speak(line.text, TextToSpeech.QUEUE_FLUSH, null, "story-line") }
+                if (ttsReady) runCatching { tts.value?.speak(line.text, TextToSpeech.QUEUE_FLUSH, null, "story-line") }
+                else audioMessage = "Cihazda bu dil için ses kullanılamıyor. Metni okuyarak çalışabilirsin."
             }
         } else {
             runCatching { tts.value?.stop() }
@@ -137,10 +151,11 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
         }
     }
 
-    var revealed by remember(story.id) { mutableIntStateOf(1) }
-    var questionIndex by remember(story.id) { mutableIntStateOf(-1) } // -1: diyalog aşaması
-    var picked by remember(story.id, questionIndex) { mutableIntStateOf(-1) }
-    var correctCount by remember(story.id) { mutableIntStateOf(0) }
+    var showTranslation by rememberSaveable(story.id) { mutableStateOf(false) }
+    var revealed by rememberSaveable(story.id) { mutableIntStateOf(1) }
+    var questionIndex by rememberSaveable(story.id) { mutableIntStateOf(-1) } // -1: diyalog aşaması
+    var picked by rememberSaveable(story.id, questionIndex) { mutableIntStateOf(-1) }
+    var correctCount by rememberSaveable(story.id) { mutableIntStateOf(0) }
 
     // Yeni açılan repliği otomatik seslendir (stüdyo sesi önce, cihaz TTS yedek)
     var lastAutoPlayed by remember(story.id) { mutableIntStateOf(-1) }
@@ -207,7 +222,7 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
                     ) {
                         Column(Modifier.padding(horizontal = 13.dp, vertical = 9.dp)) {
                             Text(line.text, color = StText, fontSize = 15.sp, fontWeight = FontWeight.SemiBold, lineHeight = 21.sp)
-                            Text(line.tr, color = StMuted, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 3.dp))
+                            if (showTranslation) Text(line.tr, color = StMuted, fontSize = 11.sp, lineHeight = 15.sp, modifier = Modifier.padding(top = 3.dp))
                         }
                     }
                     if (!fromLeft) AvatarView(storyCast[1], 46.dp)
@@ -226,6 +241,10 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
                     modifier = Modifier.fillMaxWidth().padding(vertical = 14.dp)
                 )
             }
+            TextButton(onClick = { showTranslation = !showTranslation }) {
+                Text(if (showTranslation) "Türkçe çevirileri gizle" else "Türkçe çevirileri göster", color = StGold)
+            }
+            if (audioMessage.isNotBlank()) Text(audioMessage, color = StMuted, fontSize = 12.sp)
             Text("Balona dokunursan repliği tekrar duyarsın.", color = StMuted, fontSize = 11.sp, modifier = Modifier.padding(top = 8.dp))
         } else {
             // --- Soru aşaması ---
@@ -254,6 +273,10 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
                 }
             }
             if (picked >= 0) {
+                if (question.explanationTr.isNotBlank()) {
+                    Text(question.explanationTr, color = StText, fontSize = 13.sp, lineHeight = 19.sp,
+                        modifier = Modifier.padding(top = 12.dp))
+                }
                 Spacer(Modifier.height(14.dp))
                 Surface(
                     onClick = {
