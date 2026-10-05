@@ -11,6 +11,9 @@ bulunmazsa her şey eskisi gibi cihaz TTS'siyle çalışır, hiçbir şey bozulm
 ## Bir kez yapılacak kurulum (GCP)
 
 ```bash
+# 0) Firebase Storage kovası henüz YOKSA önce aç (Console → Storage → "Get started" veya):
+gcloud storage buckets create gs://linguapro-ad8c7.appspot.com --project linguapro-ad8c7
+
 # 1) Text-to-Speech API'yi etkinleştir (Console → API'ler → "Cloud Text-to-Speech API" veya):
 gcloud services enable texttospeech.googleapis.com --project linguapro-ad8c7
 

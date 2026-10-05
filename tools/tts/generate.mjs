@@ -79,6 +79,7 @@ if (!saKey.client_email || !saKey.private_key) {
   console.error('HATA: --key dosyası geçerli bir Google servis hesabı JSON anahtarı değil.');
   process.exit(1);
 }
+const PROJECT = saKey.project_id || 'linguapro-ad8c7';
 const b64url = (buf) => Buffer.from(buf).toString('base64url');
 let accessToken = null;
 let tokenExp = 0;
@@ -103,7 +104,13 @@ async function getToken() {
       assertion: `${input}.${signature}`,
     }),
   });
-  if (!res.ok) throw new Error(`Token alınamadı (${res.status}): ${await res.text()}`);
+  if (!res.ok) {
+    const body = await res.text();
+    if (/invalid_grant|invalid_signature|UNAUTHENTICATED/i.test(body)) {
+      throw new Error('Anahtar reddedildi: servis hesabı JSON anahtarı geçersiz veya silinmiş (yeniden üret).');
+    }
+    throw new Error(`Token alınamadı (${res.status}): ${body.slice(0, 300)}`);
+  }
   const j = await res.json();
   accessToken = j.access_token;
   tokenExp = Date.now() + (j.expires_in ?? 3600) * 1000;
@@ -185,14 +192,14 @@ async function upload(objectPath, bytes, contentType, cacheControl, publicRead) 
   };
   if (publicRead) headers['x-goog-acl'] = 'publicRead';
   let res = await withRetry(async () => apiFetch(url, { method: 'POST', headers, body: bytes }, 120_000));
-  if (publicRead && res.status === 400) {
+  if (publicRead && (res.status === 400 || res.status === 412)) {
     const body = await res.text();
-    if (/uniform|bucket[- ]level/i.test(body)) {
-      aclBlocked = true; // kova düzeyinde tek erişim: nesne ACL'ine izin yok
+    if (/uniform|bucket[- ]level|public\s*access\s*prevention/i.test(body)) {
+      aclBlocked = true; // kova genel erişim ACL'lerine izin vermiyor
       delete headers['x-goog-acl'];
       res = await withRetry(async () => apiFetch(url, { method: 'POST', headers, body: bytes }, 120_000));
     } else {
-      throw new Error(`Storage 400: ${body.slice(0, 300)}`);
+      throw new Error(`Storage ${res.status}: ${body.slice(0, 300)}`);
     }
   }
   if (!res.ok) throw new Error(`Storage ${res.status}: ${(await res.text()).slice(0, 300)}`);
@@ -200,6 +207,28 @@ async function upload(objectPath, bytes, contentType, cacheControl, publicRead) 
 }
 
 // ---------- Ana akış ----------
+async function ensureBucket() {
+  const res = await apiFetch(`https://storage.googleapis.com/storage/v1/b/${BUCKET}`, {
+    headers: { Authorization: `Bearer ${await getToken()}` },
+  }, 15_000);
+  if (res.status === 404) {
+    console.error(
+      `\nHATA: "${BUCKET}" kovası yok — Firebase Storage hiç açılmamış.\n` +
+      'Tek adımda aç (biri yeterli):\n' +
+      '  a) Firebase Console → Storage → "Get started" → üretim modu\n' +
+      `  b) gcloud storage buckets create gs://${BUCKET} --project=${PROJECT}\n` +
+      'Sonra bu scripti yeniden çalıştır.'
+    );
+    process.exit(2);
+  }
+  if (res.status === 403) {
+    console.error(
+      `UYARI: Anahtar kovayı göremedi (403) — roles/storage.objectAdmin yetkisi eksik olabilir.\n` +
+      'Kurulum komutları: tools/tts/README.md'
+    );
+  }
+}
+
 async function main() {
   console.log(`Kova: ${BUCKET}`);
   console.log(`Metinler: ${TEXTS_PATH}`);
@@ -213,9 +242,20 @@ async function main() {
   const voicesRes = await apiFetch('https://texttospeech.googleapis.com/v1/voices', {
     headers: { Authorization: `Bearer ${await getToken()}` },
   }, 30_000);
+  if (voicesRes.status === 403) {
+    console.error(
+      '\nHATA: Text-to-Speech API yetkisi yok (403). Muhtemelen API etkin değil:\n' +
+      `  gcloud services enable texttospeech.googleapis.com --project=${PROJECT}\n` +
+      "(veya Console → API'ler ve Hizmetler → 'Cloud Text-to-Speech API' → Etkinleştir)"
+    );
+    process.exit(2);
+  }
   if (!voicesRes.ok) throw new Error(`voices.list ${voicesRes.status}: ${(await voicesRes.text()).slice(0, 300)}`);
   const allVoices = (await voicesRes.json()).voices || [];
   console.log(`TTS ses havuzu: ${allVoices.length} ses (Neural2 → WaveNet önceliğiyle seçim)`);
+
+  // Kova ön kontrolü (yoksa binlerce hata yerine tek net mesaj)
+  await ensureBucket();
 
   // Etiket → ses çifti
   const tagVoices = {};
@@ -308,10 +348,11 @@ async function main() {
   console.log(`Bitti: ${done} üretildi, ${failed} hata, ${secs} sn.`);
   if (aclBlocked) {
     console.log(
-      '\nDİKKAT: Kova "uniform bucket-level access" açık olduğundan nesneler publicRead ACL alamadı.\n' +
-      'Uygulamanın seslere erişmesi için kovalama herkese okuma yetkisi ver:\n' +
+      '\nDİKKAT: Kova nesne ACL\'lerine izin vermiyor (uniform access / public access prevention).\n' +
+      'Uygulamanın seslere erişmesi için kovaya herkese okuma yetkisi ver:\n' +
       `  gcloud storage buckets add-iam-policy-binding gs://${BUCKET} --member=allUsers --role=roles/storage.objectViewer\n` +
-      '(Yalnız audio/ yolu için kısıtlamak istersen docs/ses_plani.md içindeki alternatife bak.)'
+      'Bu komut "public access prevention" hatası verirse kovayı Firebase Storage kurallarıyla kullanmak gerekir;\n' +
+      'docs/ses_plani.md içindeki alternatife bak.'
     );
     process.exitCode = 2;
   }

@@ -26,8 +26,10 @@ Storage'a konur; uygulama **yerel önbellek → CDN → cihaz TTS** sırasıyla 
   cihaz-TTS davranışına döner — altyapı tamamıyla geriye uyumlu.
 
 ### Kurulum ve üretim ( kullanıcı tarafı, tek seferlik )
-`tools/tts/README.md` içindeki kesin gcloud komutları: TTS API etkinleştirme +
+`tools/tts/README.md` içindeki kesin gcloud komutları: **(0)** Storage kovasını açma
+(Firebase Console → Storage → "Get started", henüz hiç açılmamışsa) + TTS API etkinleştirme +
 `tts-writer` servis hesabı + anahtar, sonra `node tools/tts/generate.mjs --key tools/tts/anahtar.json`.
+Script kova yokluğunu, API kapalılığını ve geçersiz anahtarı en başta yakalar ve net mesaj verir.
 Katalog Storage'a yazıldığı anda uygulama stüdyo seslerini otomatik kullanır (ekrana özel
 bayrak/yapılandırma gerekmez; katalog 24 saatte bir arka planda tazelenir).
 
