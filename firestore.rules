@@ -68,9 +68,13 @@ service cloud.firestore {
       match /lessonEvents/{eventId} {
         allow read: if signedInAs(userId);
         allow create: if activeAccount(userId)
-          && request.resource.data.keys().hasOnly(['lessonId', 'score', 'completedAt'])
+          && request.resource.data.keys().hasOnly(['lessonId', 'score', 'completedAt', 'clientCompletedAtEpochMillis'])
           && request.resource.data.keys().hasAll(['lessonId', 'completedAt'])
           && request.resource.data.completedAt == request.time
+          && (!('clientCompletedAtEpochMillis' in request.resource.data)
+            || (request.resource.data.clientCompletedAtEpochMillis is int
+              && request.resource.data.clientCompletedAtEpochMillis >= 0
+              && request.resource.data.clientCompletedAtEpochMillis <= 253402300799999))
           && request.resource.data.lessonId is string
           && request.resource.data.lessonId.size() > 0
           && (!('score' in request.resource.data)
@@ -86,10 +90,14 @@ service cloud.firestore {
       match /lessonCompletions/{lessonId} {
         allow read, delete: if signedInAs(userId);
         allow create: if activeAccount(userId)
-          && request.resource.data.keys().hasOnly(['lessonId', 'score', 'completedAt'])
+          && request.resource.data.keys().hasOnly(['lessonId', 'score', 'completedAt', 'clientCompletedAtEpochMillis'])
           && request.resource.data.keys().hasAll(['lessonId', 'completedAt'])
           && request.resource.data.lessonId == lessonId
           && request.resource.data.completedAt == request.time
+          && (!('clientCompletedAtEpochMillis' in request.resource.data)
+            || (request.resource.data.clientCompletedAtEpochMillis is int
+              && request.resource.data.clientCompletedAtEpochMillis >= 0
+              && request.resource.data.clientCompletedAtEpochMillis <= 253402300799999))
           && (!('score' in request.resource.data)
             || (request.resource.data.score is int && request.resource.data.score >= 0 && request.resource.data.score <= 100));
         allow update: if false;
@@ -147,19 +155,8 @@ service cloud.firestore {
     // Bulten: kullanici kendi adina kisa basari kaydi ekler; herkes okur, kimse duzenleyemez.
     match /activity/{itemId} {
       allow read: if request.auth != null;
-      allow create: if request.auth != null
-        && activeAccount(request.auth.uid)
-        && request.resource.data.uid == request.auth.uid
-        && request.resource.data.keys().hasOnly(['uid', 'username', 'avatar', 'text', 'createdAt'])
-        && request.resource.data.username is string
-        && request.resource.data.username.matches('[a-z0-9_.]{3,20}')
-        && get(/databases/$(database)/documents/usernames/$(request.resource.data.username)).data.uid == request.auth.uid
-        && request.resource.data.avatar is string
-        && request.resource.data.avatar.size() <= 120
-        && request.resource.data.text is string
-        && request.resource.data.text.size() > 0
-        && request.resource.data.text.size() <= 140
-        && request.resource.data.createdAt is int;
+      // Only the callable publishes fixed templates with a server timestamp and daily cap.
+      allow create: if false;
       allow update: if false;
       allow delete: if request.auth != null && resource.data.uid == request.auth.uid;
     }
@@ -167,12 +164,8 @@ service cloud.firestore {
     // Kullanici adi rezervasyonu: ilk alan kazanir; belge bir daha degistirilemez, sahibi silebilir.
     match /usernames/{name} {
       allow read: if request.auth != null;
-      allow create: if request.auth != null
-        && request.resource.data.keys().hasOnly(['uid'])
-        && request.resource.data.uid == request.auth.uid
-        && name.matches('[a-z0-9_.]{3,20}');
-      allow update: if false;
-      allow delete: if request.auth != null && resource.data.uid == request.auth.uid;
+      // The callable enforces one current name per learner and releases old aliases atomically.
+      allow create, update, delete: if false;
     }
 
     // Courses are versioned app content; never client-writable.

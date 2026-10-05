@@ -11,6 +11,25 @@ import org.junit.Test
 
 class OpenWritingRegressionTest {
     @get:Rule val compose = createComposeRule()
+    @Test fun mutedListeningFallbackRecordsReadingInsteadOfListening() {
+        val context = androidx.test.core.app.ApplicationProvider.getApplicationContext<android.content.Context>()
+        val prefs = context.getSharedPreferences("lingua_course", android.content.Context.MODE_PRIVATE)
+        val previous = prefs.getBoolean("sound_on", true)
+        prefs.edit().putBoolean("sound_on", false).commit()
+        try {
+            val source = CourseCatalog.units("A1").first().lessons.first()
+            val item = source.exercises.first { it.skill == Skill.LISTENING }
+            val lesson = source.copy(exercises = listOf(item), targetVocabulary = emptyList(), grammarFocus = null, stages = emptyList())
+            var measured: Skill? = null
+            compose.setContent { LinguaTheme { Box(Modifier.fillMaxSize()) {
+                LearningLessonScreen(lesson, 0, {}, { _, skill, _ -> measured = skill }, { _, _ -> })
+            } } }
+            compose.onNodeWithText(item.acceptedAnswers.first()).performScrollTo().performClick()
+            compose.onNodeWithText("Yanıtı kontrol et").performScrollTo().performClick()
+            compose.runOnIdle { org.junit.Assert.assertEquals(Skill.READING, measured) }
+        } finally { prefs.edit().putBoolean("sound_on", previous).commit() }
+    }
+
     @Test fun incompleteWritingStaysEditableAndIsNotScored() {
         val source = CourseCatalog.units("A1").first().lessons[1]
         val writing = source.exercises.first { it.skill == Skill.WRITING }.copy(

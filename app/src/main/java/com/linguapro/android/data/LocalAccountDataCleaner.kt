@@ -19,7 +19,7 @@ class LocalAccountDataCleaner @Inject constructor(
             database.reviewCardDao().deleteForLearner(uid)
             database.pendingLessonEventDao().deleteForLearner(uid)
         }
-        listOf("learner_progress_v1_", "mistake_book_", "skill_progress_", "daily_quests_", "gems_v1_")
+        listOf("learner_progress_v1_", "mistake_book_", "skill_progress_", "daily_quests_", "gems_v1_", "practice_history_v1_")
             .forEach { prefix ->
                 check(context.getSharedPreferences(prefix + uid, Context.MODE_PRIVATE).edit().clear().commit())
             }

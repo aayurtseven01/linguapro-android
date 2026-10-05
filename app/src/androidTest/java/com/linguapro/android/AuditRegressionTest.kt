@@ -31,6 +31,11 @@ class AuditRegressionTest {
             SkillProgressStore(context, uid, "EN").record(Skill.LISTENING, true)
             SkillProgressStore(context, uid, "DE").record(Skill.LISTENING, false)
             SkillProgressStore(context, other, "EN").record(Skill.LISTENING, true)
+            PracticeHistoryStore(context, uid, "EN", "A1").rememberSession(listOf("a1-item"))
+            PracticeHistoryStore(context, other, "EN", "A1").rememberSession(listOf("other-item"))
+            assertEquals(1L, PracticeHistoryStore(context, uid, "EN", "A1").seed())
+            assertTrue(PracticeHistoryStore(context, uid, "DE", "A1").recentIds().isEmpty())
+            assertTrue(PracticeHistoryStore(context, uid, "EN", "A2").recentIds().isEmpty())
             assertEquals(SkillTally(1, 1), SkillProgressStore(context, uid, "EN").read().getValue(Skill.LISTENING))
             assertEquals(SkillTally(1, 0), SkillProgressStore(context, uid, "DE").read().getValue(Skill.LISTENING))
             assertEquals(SkillTally(), SkillProgressStore(context, uid, "JA").read().getValue(Skill.LISTENING))
@@ -39,10 +44,13 @@ class AuditRegressionTest {
                 assertTrue(SkillProgressStore(context, uid, language.code).read().values.all { it.attempts == 0 })
             }
             assertEquals(SkillTally(1, 1), SkillProgressStore(context, other, "EN").read().getValue(Skill.LISTENING))
+            assertTrue(PracticeHistoryStore(context, uid, "EN", "A1").recentIds().isEmpty())
+            assertEquals(setOf("other-item"), PracticeHistoryStore(context, other, "EN", "A1").recentIds())
         } finally {
             listOf(uid, other).forEach { learner -> WorldCatalog.languages.forEach { language ->
                 context.getSharedPreferences("skill_progress_v2_${learner}_${language.code}", Context.MODE_PRIVATE).edit().clear().commit()
             } }
+            listOf(uid, other).forEach { learner -> context.getSharedPreferences("practice_history_v1_$learner", Context.MODE_PRIVATE).edit().clear().commit() }
             database.close()
         }
     }

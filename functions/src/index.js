@@ -10,6 +10,8 @@ const { setGlobalOptions } = require('firebase-functions/v2');
 const { GoogleAuth } = require('google-auth-library');
 const { DEFAULT_PRODUCTS, hash, weekKey, levelFor, studyAward, subscriptionEntitlement } = require('./domain');
 
+const { validUsername, activityAllowance, activityText } = require('./social-domain');
+
 initializeApp();
 setGlobalOptions({ region: 'us-central1', maxInstances: 10 });
 const db = getFirestore();
@@ -124,6 +126,67 @@ exports.awardStudyXp = onDocumentCreated('users/{uid}/lessonEvents/{eventId}', a
   });
 });
 
+// Names are reserved atomically: each learner has one current name, with a short change cooldown.
+exports.claimUsername = onCall({ enforceAppCheck: true }, async (request) => {
+  if (!request.auth) throw new HttpsError('unauthenticated', 'Önce giriş yap.');
+  const uid = request.auth.uid;
+  const name = request.data?.username;
+  if (!validUsername(name)) throw new HttpsError('invalid-argument', '3–20 karakter kullan: a-z, rakam, nokta ve alt çizgi.');
+  const profileRef = db.collection('users').doc(uid);
+  const ownerRef = db.collection('usernameOwners').doc(uid);
+  const nameRef = db.collection('usernames').doc(name);
+  const boardRef = db.collection('leaderboard').doc(uid);
+  await db.runTransaction(async (tx) => {
+    const profile = await tx.get(profileRef);
+    const owner = await tx.get(ownerRef);
+    const target = await tx.get(nameRef);
+    const priorNames = await tx.get(db.collection('usernames').where('uid', '==', uid).limit(100));
+    const board = await tx.get(boardRef);
+    if (!profile.exists || profile.get('deletionRequested')) throw new HttpsError('failed-precondition', 'Hesap kullanılamıyor.');
+    if (target.exists && target.get('uid') !== uid) throw new HttpsError('already-exists', 'Bu kullanıcı adı alınmış.');
+    if (priorNames.size >= 100) throw new HttpsError('resource-exhausted', 'Kullanıcı adı kayıtları için destek gerekli.');
+    if (owner.exists && owner.get('name') !== name && Date.now() - (owner.get('changedAtMillis') || 0) < 60000) {
+      throw new HttpsError('resource-exhausted', 'Kullanıcı adını değiştirmek için bir dakika bekle.');
+    }
+    priorNames.docs.filter((doc) => doc.id !== name).forEach((doc) => tx.delete(doc.ref));
+    tx.set(nameRef, { uid });
+    if (board.exists) tx.update(boardRef, { username: name });
+    if (!owner.exists || owner.get('name') !== name) tx.set(ownerRef, { uid, name, changedAtMillis: Date.now() });
+  });
+  return { username: name };
+});
+
+// At most five fixed-template posts per learner per UTC day; no arbitrary public captions.
+exports.postActivity = onCall({ enforceAppCheck: true }, async (request) => {
+  if (!request.auth) throw new HttpsError('unauthenticated', 'Önce giriş yap.');
+  const uid = request.auth.uid;
+  const kind = request.data?.kind;
+  if (!activityText(kind, 1)) throw new HttpsError('invalid-argument', 'Geçersiz etkinlik türü.');
+  const profileRef = db.collection('users').doc(uid);
+  const boardRef = db.collection('leaderboard').doc(uid);
+  await db.runTransaction(async (tx) => {
+    const profile = await tx.get(profileRef);
+    const board = await tx.get(boardRef);
+    const username = board.get('username');
+    if (!profile.exists || profile.get('deletionRequested') || !board.exists || !validUsername(username)) {
+      throw new HttpsError('failed-precondition', 'Paylaşım için etkin bir kullanıcı profili gerekli.');
+    }
+    const name = await tx.get(db.collection('usernames').doc(username));
+    if (!name.exists || name.get('uid') !== uid) throw new HttpsError('failed-precondition', 'Kullanıcı adı doğrulanamadı.');
+    const now = Date.now();
+    const day = new Date(now).toISOString().slice(0, 10);
+    const allowance = activityAllowance(day, profile.get('activityDay'), profile.get('activityCount'));
+    if (!allowance.allowed) throw new HttpsError('resource-exhausted', 'Bugünün paylaşım sınırına ulaştın.');
+    const id = `${(9223372036854775807n - BigInt(now)).toString().padStart(19, '0')}-${hash(`${uid}:${day}:${allowance.nextCount}`).slice(0, 16)}`;
+    tx.create(db.collection('activity').doc(id), {
+      uid, username, avatar: String(board.get('avatar') || '').slice(0, 120),
+      text: activityText(kind, levelFor(profile.get('verifiedXp') || 0)), createdAt: now,
+    });
+    tx.update(profileRef, { activityDay: day, activityCount: allowance.nextCount });
+  });
+  return { posted: true };
+});
+
 exports.deleteAccount = onCall({ enforceAppCheck: true }, async (request) => {
   if (!request.auth) throw new HttpsError('unauthenticated', 'Önce giriş yap.');
   if (!Number.isFinite(request.auth.token.auth_time) || Date.now() / 1000 - request.auth.token.auth_time > 300) {
@@ -134,6 +197,7 @@ exports.deleteAccount = onCall({ enforceAppCheck: true }, async (request) => {
   if (deleting.exists) await deleting.ref.update({ deletionRequested: true });
   // RTDN and XP triggers check profile existence; remove the profile tree before releasing identity.
   await db.recursiveDelete(db.collection('users').doc(uid));
+  await db.collection('usernameOwners').doc(uid).delete();
   async function deleteQuery(query) {
     while (true) {
       const docs = await query.limit(200).get();
@@ -152,3 +216,4 @@ exports.deleteAccount = onCall({ enforceAppCheck: true }, async (request) => {
   }
   return { deleted: true };
 });
+

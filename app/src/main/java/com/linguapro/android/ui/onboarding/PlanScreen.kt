@@ -32,14 +32,20 @@ internal fun PlanScreen(plan: String, onPlan: (String) -> Unit, onBack: () -> Un
         listOf(Triple("5", "Rahat başlangıç", "Günde 5 dakika • alışkanlık kazan"),
             Triple("10", "Dengeli ilerleme", "Günde 10 dakika • öğren ve pekiştir"),
             Triple("20", "Yoğun çalışma", "Günde 20 dakika • daha fazla pratik")).forEach { (minutes, title, detail) ->
-            Surface(onClick = { onPlan(minutes) }, color = if (plan == minutes) Panel2 else Panel,
+            Surface(onClick = { onPlan(minutes) }, color = if (plan == minutes) Gold.copy(alpha = 0.10f) else Panel,
                 border = BorderStroke(if (plan == minutes) 2.dp else 1.dp, if (plan == minutes) Gold else Panel2),
-                shape = RoundedCornerShape(20.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp).pressScale()) {
+                shape = RoundedCornerShape(24.dp), modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp).pressScale()) {
                 Row(Modifier.padding(18.dp), verticalAlignment = Alignment.CenterVertically) {
                     Icon(if (plan == minutes) Icons.Default.CheckCircle else Icons.Default.RadioButtonUnchecked, null, tint = if (plan == minutes) Gold else Muted)
-                    Column(Modifier.padding(start = 14.dp)) {
+                    Column(Modifier.weight(1f).padding(start = 14.dp)) {
                         Text(title, color = OnBg, fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                        Text(detail, color = OnBgSoft, fontSize = 12.sp, modifier = Modifier.padding(top = 5.dp))
+                        Text(detail, color = Muted, fontSize = 13.sp, lineHeight = 19.sp, modifier = Modifier.padding(top = 5.dp))
+                    }
+                    Surface(color = Panel2, shape = RoundedCornerShape(14.dp), modifier = Modifier.padding(start = 10.dp)) {
+                        Column(Modifier.padding(horizontal = 12.dp, vertical = 10.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(minutes, color = Gold, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                            Text("dk", color = Muted, fontSize = 11.sp)
+                        }
                     }
                 }
             }
@@ -54,4 +60,5 @@ internal fun PlanScreen(plan: String, onPlan: (String) -> Unit, onBack: () -> Un
         Spacer(Modifier.height(24.dp))
     }
 }
+
 

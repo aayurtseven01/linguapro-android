@@ -8,7 +8,7 @@ object WritingCoach {
     fun submissionError(response: String, requirements: WritingRequirements? = null): String? {
         val text = response.trim()
         if (text.isBlank()) return "Soruyu yanıtlayan bir metin yaz."
-        if (text.count { it.isLetter() } < 4) return "Soruyu yanıtlayan bir cümle yaz; tek harf veya işaret yeterli değil."
+        if (text.count { it.isLetter() } < 2) return "Soruyu yanıtlayan bir cümle yaz; tek harf veya işaret yeterli değil."
         val count = text.split(Regex("\\s+")).count { token -> token.any { it.isLetterOrDigit() } }
         requirements?.minimumWords?.let { minimum ->
             if (count < minimum) return "Bu görev için en az $minimum kelime yazmalısın; şu an $count kelime var."

@@ -44,13 +44,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.util.Locale
 
-private val StPanel = Color(0xFF281A4A)
-private val StPanel2 = Color(0xFF342457)
-private val StGold = Color(0xFFC6FF4A)
-private val StPink = Color(0xFFFF5CA8)
-private val StMuted = Color(0xFFA99BC9)
-private val StText = Color(0xFFF5F1FF)
-private val StNavy = Color(0xFF1A0E2E)
+private val StPanel = Color(0xFF152238)
+private val StPanel2 = Color(0xFF20314B)
+private val StGold = Color(0xFF6DE8C1)
+private val StPink = ErrorCoral
+private val StMuted = Color(0xFFA3B2C8)
+private val StText = Color(0xFFF3F7FD)
+private val StNavy = Color(0xFF0B1423)
 
 /** Hikâye karakterleri: ders kadrosundan iki tanıdık yüz. */
 private val storyCast = listOf(
@@ -63,7 +63,7 @@ fun StoriesListScreen(lang: String, doneIds: Set<String>, onOpen: (String) -> Un
     val stories = StoryCatalog.storiesFor(lang)
     Column(
         Modifier.fillMaxSize()
-            .background(Brush.verticalGradient(listOf(Color(0xFF2E1660), Color(0xFF150A30))))
+            .background(Brush.verticalGradient(listOf(Color(0xFF14263D), Color(0xFF0B1423))))
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 18.dp)
     ) {
@@ -169,7 +169,7 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
     Box(Modifier.fillMaxSize()) {
     Column(
         Modifier.fillMaxSize()
-            .background(Brush.verticalGradient(listOf(Color(0xFF2E1660), Color(0xFF150A30))))
+            .background(Brush.verticalGradient(listOf(Color(0xFF14263D), Color(0xFF0B1423))))
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 18.dp)
     ) {
@@ -280,3 +280,4 @@ fun StoryPlayerScreen(story: Story, soundOn: Boolean, onFinished: (correct: Int,
     }
 }
 // STORYSCREENS-SON
+
