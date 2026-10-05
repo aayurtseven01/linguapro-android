@@ -44,6 +44,25 @@ class WorldCatalogTest {
     }
 
     @Test
+    fun everyWorldCheckpointHasFiveAutomaticallyScoredQuestions() {
+        worldLangs.forEach { lang ->
+            CourseCatalog.levels.forEach { level ->
+                WorldCatalog.units(lang, level).forEach { unit ->
+                    val checkpoint = unit.lessons.last()
+                    assertEquals("${unit.id}: five scored checkpoint questions", 5, checkpoint.exercises.size)
+                    checkpoint.exercises.forEach { exercise ->
+                        assertTrue("${exercise.id}: checkpoint must have answer options", exercise.options.isNotEmpty())
+                        assertTrue("${exercise.id}: correct answer must be selectable",
+                            exercise.acceptedAnswers.any { it in exercise.options })
+                        assertTrue("${exercise.id}: open writing must remain in practice",
+                            exercise.writingRequirements == null)
+                    }
+                }
+            }
+        }
+    }
+
+    @Test
     fun englishDelegatesToTheFullCourseCatalog() {
         CourseCatalog.levels.forEach { level ->
             assertEquals(CourseCatalog.units(level), WorldCatalog.units("EN", level))
