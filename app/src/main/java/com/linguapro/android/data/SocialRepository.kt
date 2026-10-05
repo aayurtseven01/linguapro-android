@@ -91,7 +91,10 @@ class SocialRepository {
             null
         }
             .addOnSuccessListener { done(null) }
-            .addOnFailureListener { done(if (it.message?.contains("USERNAME_TAKEN") == true) "Bu kullanıcı adı alınmış." else "Ad kaydedilemedi. İnternet bağlantını kontrol edip tekrar dene.") }
+            .addOnFailureListener {
+                android.util.Log.e("LinguaSocial", "claimUsername basarisiz", it)
+                done(if (it.message?.contains("USERNAME_TAKEN") == true) "Bu kullanıcı adı alınmış." else "Ad kaydedilemedi: ${it.message ?: "bilinmeyen hata"}")
+            }
     }
 
     fun addFriend(uid: String, friend: BoardEntry, done: (String?) -> Unit) {

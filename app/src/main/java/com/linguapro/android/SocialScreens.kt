@@ -80,6 +80,16 @@ fun SocialScreen(
     var searchQuery by remember { mutableStateOf("") }
     var searchResults by remember { mutableStateOf<List<BoardEntry>>(emptyList()) }
     var nameDraft by remember { mutableStateOf(username) }
+    var savingName by remember { mutableStateOf(false) }
+    LaunchedEffect(savingName) {
+        if (savingName) {
+            kotlinx.coroutines.delay(12_000)
+            if (savingName) {
+                savingName = false
+                statusMessage = "Sunucuya ulaşılamadı (12 sn). İnternet/Wi-Fi'yi ve saat ayarını kontrol et; VPN varsa kapatıp dene."
+            }
+        }
+    }
     var refresh by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(refresh, uid) {
@@ -142,15 +152,20 @@ fun SocialScreen(
                     )
                     Surface(
                         onClick = {
-                            if (nameDraft.length >= 3) social.claimUsername(uid, nameDraft) { err ->
-                                if (err == null) { onSaveUsername(nameDraft); refresh++ } else statusMessage = err
+                            if (nameDraft.length >= 3 && !savingName) {
+                                savingName = true
+                                statusMessage = ""
+                                social.claimUsername(uid, nameDraft) { err ->
+                                    savingName = false
+                                    if (err == null) { onSaveUsername(nameDraft); refresh++ } else statusMessage = err
+                                }
                             }
                         },
-                        color = if (nameDraft.length >= 3) ScGold else ScPanel2,
+                        color = if (nameDraft.length >= 3 && !savingName) ScGold else ScPanel2,
                         shape = RoundedCornerShape(14.dp),
                         modifier = Modifier.padding(top = 12.dp)
                     ) {
-                        Text("Kaydet ve katıl", color = if (nameDraft.length >= 3) ScNavy else ScMuted, fontSize = 13.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 16.dp, vertical = 9.dp))
+                        Text(if (savingName) "Kaydediliyor…" else "Kaydet ve katıl", color = if (nameDraft.length >= 3 && !savingName) ScNavy else ScMuted, fontSize = 13.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 16.dp, vertical = 9.dp))
                     }
                     if (statusMessage.isNotBlank()) {
                         Text(statusMessage, color = ScPink, fontSize = 12.sp, lineHeight = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 10.dp))
