@@ -34,7 +34,7 @@ class AvatarConfigTest {
         assertEquals(4, cfg.hairStyle)
         assertEquals(4, cfg.hairColor)
         assertEquals(2, cfg.eyeColor)
-        assertTrue(cfg.glasses)
+        assertFalse(cfg.glasses) // yalnızca gl=1 gözlük açar; 5 == 1 değildir
         assertEquals(4, cfg.shirt)
         assertEquals(3, cfg.hat)
         assertEquals(2, cfg.facialHair)
