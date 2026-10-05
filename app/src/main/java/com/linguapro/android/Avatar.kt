@@ -43,7 +43,9 @@ import com.linguapro.android.ui.components.breathe
 import com.linguapro.android.ui.components.popIn
 import com.linguapro.android.ui.components.pressScale
 
-/** Avatar yapılandırması: cinsiyet, ten, saç stili/rengi, göz rengi, gözlük, kıyafet. */
+/** Avatar yapılandırması: cinsiyet, ten, saç stili/rengi, göz rengi, gözlük, kıyafet, şapka, sakal.
+ *  Yeni alanlar anahtar-değer çiftlerinin SONUNA eklenir: eski kodlar eksik anahtarları
+ *  varsayılanla çözer, eski uygulama sürümleri de yeni anahtarları yok sayar (iki yönlü uyum). */
 data class AvatarConfig(
     val gender: Int = 0,      // 0 kadın, 1 erkek
     val skin: Int = 1,        // 0-3 ten tonu
@@ -51,10 +53,12 @@ data class AvatarConfig(
     val hairColor: Int = 0,   // 0-4
     val eyeColor: Int = 0,    // 0-2
     val glasses: Boolean = false,
-    val shirt: Int = 0        // 0-4
+    val shirt: Int = 0,       // 0-4
+    val hat: Int = 0,         // 0 yok, 1 bere, 2 kasket, 3 taç
+    val facialHair: Int = 0   // 0 yok, 1 bıyık, 2 tam sakal
 ) {
     fun encode(): String =
-        "g=$gender;t=$skin;ss=$hairStyle;sr=$hairColor;gz=$eyeColor;gl=${if (glasses) 1 else 0};k=$shirt"
+        "g=$gender;t=$skin;ss=$hairStyle;sr=$hairColor;gz=$eyeColor;gl=${if (glasses) 1 else 0};k=$shirt;sp=$hat;sb=$facialHair"
 
     companion object {
         fun decode(code: String): AvatarConfig {
@@ -70,7 +74,9 @@ data class AvatarConfig(
                 hairColor = (map["sr"] ?: 0).coerceIn(0, 4),
                 eyeColor = (map["gz"] ?: 0).coerceIn(0, 2),
                 glasses = (map["gl"] ?: 0) == 1,
-                shirt = (map["k"] ?: 0).coerceIn(0, 4)
+                shirt = (map["k"] ?: 0).coerceIn(0, 4),
+                hat = (map["sp"] ?: 0).coerceIn(0, 3),
+                facialHair = (map["sb"] ?: 0).coerceIn(0, 2)
             )
         }
     }
@@ -135,6 +141,14 @@ fun AvatarView(config: AvatarConfig, size: Dp, modifier: Modifier = Modifier) {
             drawCircle(AvatarEyeColors[config.eyeColor], radius = w * 0.028f, center = Offset(w * x, w * 0.43f))
             drawCircle(dark, radius = w * 0.013f, center = Offset(w * x, w * 0.43f))
         }
+        // Bıyık / sakal (ağız bunların üstüne çizilir)
+        when (config.facialHair) {
+            1 -> drawRoundRect(hair, Offset(w * 0.415f, w * 0.475f), Size(w * 0.17f, w * 0.032f), androidx.compose.ui.geometry.CornerRadius(w * 0.016f))
+            2 -> {
+                drawArc(hair, 10f, 160f, true, Offset(w * 0.30f, w * 0.40f), Size(w * 0.40f, w * 0.34f))
+                drawRoundRect(hair, Offset(w * 0.415f, w * 0.475f), Size(w * 0.17f, w * 0.032f), androidx.compose.ui.geometry.CornerRadius(w * 0.016f))
+            }
+        }
         // Gülümseme
         drawArc(
             color = dark, startAngle = 25f, sweepAngle = 130f, useCenter = false,
@@ -152,6 +166,34 @@ fun AvatarView(config: AvatarConfig, size: Dp, modifier: Modifier = Modifier) {
                 drawCircle(dark, radius = w * 0.07f, center = Offset(w * x, w * 0.425f), style = Stroke(width = w * 0.014f))
             }
             drawRect(dark, Offset(w * 0.465f, w * 0.418f), Size(w * 0.07f, w * 0.012f))
+        }
+        // Şapkalar (saçın üstüne oturur)
+        when (config.hat) {
+            1 -> { // Bere + ponpon
+                drawArc(Color(0xFF7DD3FC), 180f, 180f, true, Offset(w * 0.225f, w * 0.125f), Size(w * 0.55f, w * 0.5f))
+                drawRoundRect(Color(0xFF7DD3FC), Offset(w * 0.215f, w * 0.335f), Size(w * 0.57f, w * 0.05f), androidx.compose.ui.geometry.CornerRadius(w * 0.02f))
+                drawCircle(Color(0xFFC6FF4A), radius = w * 0.045f, center = Offset(w * 0.5f, w * 0.105f))
+            }
+            2 -> { // Kasket + vizör
+                drawArc(Color(0xFFFF5CA8), 180f, 180f, true, Offset(w * 0.225f, w * 0.135f), Size(w * 0.55f, w * 0.48f))
+                drawOval(Color(0xFFFF5CA8), topLeft = Offset(w * 0.23f, w * 0.355f), size = Size(w * 0.54f, w * 0.085f))
+            }
+            3 -> { // Taç
+                val crown = androidx.compose.ui.graphics.Path().apply {
+                    moveTo(w * 0.375f, w * 0.19f)
+                    lineTo(w * 0.405f, w * 0.095f)
+                    lineTo(w * 0.455f, w * 0.165f)
+                    lineTo(w * 0.5f, w * 0.08f)
+                    lineTo(w * 0.545f, w * 0.165f)
+                    lineTo(w * 0.595f, w * 0.095f)
+                    lineTo(w * 0.625f, w * 0.19f)
+                    close()
+                }
+                drawPath(crown, Color(0xFFFFD166))
+                drawCircle(Color(0xFFFF5CA8), radius = w * 0.018f, center = Offset(w * 0.5f, w * 0.15f))
+                drawCircle(Color(0xFF7DD3FC), radius = w * 0.016f, center = Offset(w * 0.405f, w * 0.155f))
+                drawCircle(Color(0xFF7DD3FC), radius = w * 0.016f, center = Offset(w * 0.595f, w * 0.155f))
+            }
         }
     }
 }
@@ -229,6 +271,26 @@ fun AvatarEditorScreen(initialCode: String, onSave: (String) -> Unit, onBack: ()
                     Box(Modifier.size(170.dp).background(Brush.radialGradient(listOf(Color(0x2EC6FF4A), Color.Transparent)), CircleShape))
                     PopOnChange(cfg) { AvatarView(cfg, 160.dp, Modifier.bob()) }
                 }
+                // Rastgele avatar: cinsiyet seçimi korunur, gerisi zar
+                Surface(
+                    onClick = {
+                        cfg = AvatarConfig(
+                            gender = cfg.gender,
+                            skin = kotlin.random.Random.nextInt(AvatarSkinTones.size),
+                            hairStyle = kotlin.random.Random.nextInt(5),
+                            hairColor = kotlin.random.Random.nextInt(AvatarHairColors.size),
+                            eyeColor = kotlin.random.Random.nextInt(AvatarEyeColors.size),
+                            glasses = kotlin.random.Random.nextBoolean(),
+                            shirt = kotlin.random.Random.nextInt(AvatarShirtColors.size),
+                            hat = kotlin.random.Random.nextInt(4),
+                            facialHair = if (cfg.gender == 1) kotlin.random.Random.nextInt(3) else if (kotlin.random.Random.nextInt(5) == 0) 1 else 0
+                        )
+                    },
+                    color = EdPanel2, shape = RoundedCornerShape(14.dp),
+                    modifier = Modifier.padding(top = 12.dp).pressScale()
+                ) {
+                    Text("🎲 Rastgele avatar", color = EdGold, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp))
+                }
             }
         }
         Surface(color = EdPanel, shape = RoundedCornerShape(22.dp), modifier = Modifier.fillMaxWidth().padding(top = 12.dp).popIn(delayMillis = 160)) {
@@ -242,6 +304,8 @@ fun AvatarEditorScreen(initialCode: String, onSave: (String) -> Unit, onBack: ()
                 ColorRow("Saç rengi", AvatarHairColors, cfg.hairColor) { cfg = cfg.copy(hairColor = it) }
                 ColorRow("Göz rengi", AvatarEyeColors, cfg.eyeColor) { cfg = cfg.copy(eyeColor = it) }
                 OptionRow("Gözlük", listOf("Yok", "Var"), if (cfg.glasses) 1 else 0) { cfg = cfg.copy(glasses = it == 1) }
+                OptionRow("Şapka", listOf("Yok", "Bere", "Kasket", "Taç"), cfg.hat) { cfg = cfg.copy(hat = it) }
+                OptionRow("Sakal", listOf("Yok", "Bıyık", "Tam sakal"), cfg.facialHair) { cfg = cfg.copy(facialHair = it) }
                 ColorRow("Kıyafet", AvatarShirtColors, cfg.shirt) { cfg = cfg.copy(shirt = it) }
             }
         }
