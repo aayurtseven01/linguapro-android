@@ -130,12 +130,16 @@ test('course content is authenticated read-only', async () => {
   await assertFails(getDocs(collection(anonymous, 'courseContent')));
 });
 
-test('owner can delete own profile but strangers cannot', async () => {
+test('client profile deletion is denied; trusted server cleanup can delete', async () => {
   const alice = env.authenticatedContext('alice').firestore();
   await assertSucceeds(setDoc(doc(alice, 'users/alice'), profile('alice')));
   const mallory = env.authenticatedContext('mallory').firestore();
   await assertFails(deleteDoc(doc(mallory, 'users/alice')));
-  await assertSucceeds(deleteDoc(doc(alice, 'users/alice')));
+  await assertFails(deleteDoc(doc(alice, 'users/alice')));
+  await env.withSecurityRulesDisabled(async (ctx) => {
+    await deleteDoc(doc(ctx.firestore(), 'users/alice'));
+  });
+  await assertFails(getDoc(doc(mallory, 'users/alice')));
 });
 
 test('leaderboard: owner writes own entry, strangers cannot, signed-in users can read', async () => {
@@ -257,3 +261,4 @@ test('deleting accounts cannot recreate public activity or league entries', asyn
   await assertFails(setDoc(doc(alice, 'leaderboard/alice'), { uid: 'alice', username: 'alice_tr', displayName: 'Alice', avatar: '' }));
   await assertFails(setDoc(doc(collection(alice, 'activity')), { uid: 'alice', username: 'alice_tr', avatar: '', text: 'x', createdAt: 1 }));
 });
+
