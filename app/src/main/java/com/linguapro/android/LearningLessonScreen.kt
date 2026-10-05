@@ -766,10 +766,10 @@ private fun LessonCompletion(lesson: LearningLesson, correct: Int, graded: Int, 
         Spacer(Modifier.height(20.dp))
         val checkpointFailed = isCheckpoint && !checkpointPassed
         if (checkpointFailed && onRetry != null) {
-            LessonButton("Yeniden dene", onRetry, Modifier.popIn(delayMillis = 680))
+            LessonButton("Yeniden dene", Modifier.popIn(delayMillis = 680), onRetry)
             Spacer(Modifier.height(10.dp))
         }
-        LessonButton("Öğrenme yoluma dön", onContinue, Modifier.popIn(delayMillis = 780))
+        LessonButton("Öğrenme yoluma dön", Modifier.popIn(delayMillis = 780), onContinue)
     }
 }
 
@@ -900,7 +900,7 @@ private fun LessonColumn(content: @Composable ColumnScope.() -> Unit) {
 }
 
 @Composable
-private fun LessonButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+private fun LessonButton(label: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Button(onClick = onClick, modifier = modifier.fillMaxWidth().height(54.dp).pressScale(), shape = RoundedCornerShape(15.dp), colors = ButtonDefaults.buttonColors(containerColor = LessonGold, contentColor = LessonNavy)) {
         Text(label, fontWeight = FontWeight.Bold, fontSize = 15.sp)
     }
