@@ -381,7 +381,7 @@ private fun LinguaApp() {
         if (selectedLessonId.endsWith("-PRO") && personalLessonJson.isNotBlank()) {
             runCatching { Json.decodeFromString<LearningLesson>(personalLessonJson) }.getOrNull()?.let { return@remember it }
         }
-        if (selectedLessonId.endsWith("-WORDS")) return@remember DailyWords.lessonFor(courseLang)
+        if (selectedLessonId.endsWith("-WORDS")) return@remember DailyWords.lessonFor(courseLang, level = effectiveLevel)
         if (selectedLessonId.endsWith("-REFRESH")) return@remember DailyRefresh.lessonFor(courseLang, effectiveLevel, SkillProgressLogic.weakest(skillStats))
         val staticLessons = WorldCatalog.units(courseLang, effectiveLevel).flatMap { it.lessons }
         val supplementalLessons = if (courseLang == "EN") dashboardState.supplementalUnits.flatMap { it.lessons } else emptyList()
@@ -632,7 +632,7 @@ private fun LinguaApp() {
                             gems = gemStore.add(20)
                         }
                     },
-                    dailyWords = remember(courseLang, today) { DailyWords.wordsFor(courseLang, today) },
+                    dailyWords = remember(courseLang, effectiveLevel, today) { DailyWords.wordsFor(courseLang, today, effectiveLevel) },
                     onDailyWords = {
                         selectedLessonId = "$courseLang-WORDS"
                         activeLessonCountsTowardCourse = false
