@@ -61,8 +61,9 @@ service cloud.firestore {
           'skillMastery', 'onboardingComplete', 'lastStudiedAt', 'updatedAt'
         ])
         && validProfile(request.resource.data, userId);
-      // Hesap silme (Google Play zorunlulugu): kullanici yalnizca kendi profilini silebilir.
-      allow delete: if signedInAs(userId);
+      // Account deletion must use the reauthenticated callable, which removes all related data.
+      // Admin SDK cleanup bypasses these client rules.
+      allow delete: if false;
 
       match /lessonEvents/{eventId} {
         allow read: if signedInAs(userId);
@@ -185,3 +186,4 @@ service cloud.firestore {
     }
   }
 }
+
