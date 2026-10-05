@@ -40,7 +40,7 @@ aynı hesap açılıp JSON anahtar indirilebilir.)
 ## Üretim
 
 ```bash
-node tools/tts/generate.mjs --key tools/tts/anahtar.json
+node tools/tts/generate.mjs --key tools/tts/anahtar.json --bucket KOVAM_IN_ADI
 ```
 
 - Dil başına 2 stüdyo sesi (♀+♂) otomatik seçilir; EN için en-US **ve** en-GB üretilir.
