@@ -13,6 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -32,6 +34,37 @@ internal val LinguaShapes = Shapes(
     small = RoundedCornerShape(12.dp), medium = RoundedCornerShape(18.dp),
     large = RoundedCornerShape(24.dp), extraLarge = RoundedCornerShape(30.dp)
 )
+
+@Composable
+internal fun BrandLockup(modifier: Modifier = Modifier) {
+    Row(modifier = modifier.testTag("brand-lockup"), verticalAlignment = Alignment.CenterVertically) {
+        Box(
+            modifier = Modifier
+                .size(46.dp)
+                .background(Brush.linearGradient(listOf(Gold, PinkAccent)), RoundedCornerShape(15.dp)),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                "L", color = Navy, fontSize = 27.sp, lineHeight = 27.sp,
+                fontWeight = FontWeight.Black, textAlign = TextAlign.Center
+            )
+            Text(
+                "✦", color = Navy.copy(alpha = 0.72f), fontSize = 9.sp,
+                modifier = Modifier.align(Alignment.TopEnd).padding(top = 6.dp, end = 7.dp)
+            )
+        }
+        Column(Modifier.padding(start = 12.dp)) {
+            Text(
+                "LINGUA PRO", color = OnBg, fontSize = 20.sp, lineHeight = 23.sp,
+                fontWeight = FontWeight.Black, letterSpacing = 1.8.sp
+            )
+            Text(
+                "LANGUAGE LEARNING", color = Gold, fontSize = 9.sp, lineHeight = 13.sp,
+                fontWeight = FontWeight.Bold, letterSpacing = 1.6.sp
+            )
+        }
+    }
+}
 
 @Composable
 internal fun DashboardHero(title: String, level: String, language: String, completed: Int, total: Int, onStart: () -> Unit) {

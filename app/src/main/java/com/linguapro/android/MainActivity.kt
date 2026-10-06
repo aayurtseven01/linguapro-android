@@ -906,7 +906,7 @@ private fun LinguaApp() {
 private fun WelcomeScreen(onStart: () -> Unit, onLogin: () -> Unit) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(Modifier.height(30.dp))
-        Text("LINGUA PRO", color = OnBgSoft, fontSize = 15.sp, fontWeight = FontWeight.ExtraBold, letterSpacing = 5.sp)
+        BrandLockup()
         Spacer(Modifier.height(52.dp))
         // Çok dilli uygulama fikrini tipografiyle anlat: dev selamlama kelimesi dönüyor
         val greetings = remember { listOf("Hello", "Hallo", "Bonjour", "Hola", "Merhaba", "Ciao", "Olá", "Привет", "你好", "안녕") }
@@ -1138,7 +1138,11 @@ internal fun HomeScreen(name: String, level: String, langCode: String, onSelectL
         item { Column {
         Spacer(Modifier.height(14.dp))
         Row(Modifier.fillMaxWidth().staggerIn(0), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-            Column(Modifier.weight(1f)) { Text("LINGUA PRO", color = Gold, fontSize = 10.sp, letterSpacing = 2.sp, fontWeight = FontWeight.Bold); Text("Merhaba, ${name.ifBlank { "Öğrenci" }}", color = OnBg, fontSize = 23.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 4.dp)); Text("$langName yolculuğuna devam et", color = Muted, fontSize = 12.sp, modifier = Modifier.padding(top = 3.dp)) }
+            Column(Modifier.weight(1f)) {
+                BrandLockup()
+                Text("Merhaba, ${name.ifBlank { "Öğrenci" }}", color = OnBg, fontSize = 22.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 12.dp))
+                Text("$langName yolculuğuna devam et", color = Muted, fontSize = 12.sp, modifier = Modifier.padding(top = 3.dp))
+            }
             Surface(onClick = onOpenShop, color = Color(0x33FFFFFF), shape = RoundedCornerShape(16.dp), modifier = Modifier.padding(end = 6.dp).pressScale()) {
                 PopOnChange(gems) { RollingNumber(gems, color = OnBg, fontSize = 13.sp, fontWeight = FontWeight.Bold, prefix = "💎 ") }
             }
