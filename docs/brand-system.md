@@ -1,6 +1,6 @@
 # Lingua Pro brand system
 
-The app uses one shared visual language across the welcome flow, learning dashboard, avatar editor and splash screen.
+The app uses one shared visual language across the welcome flow, learning dashboard, avatar editor and splash screen. The bespectacled owl remains the primary mascot and must stay visible in prominent brand moments.
 
 | Token | Hex | Use |
 |---|---:|---|
@@ -14,4 +14,4 @@ The app uses one shared visual language across the welcome flow, learning dashbo
 
 ## Splash asset
 
-`app/src/main/res/raw/splash_logo.mp4` is a 720 × 1280, 30 fps, 3.4 second H.264 MP4 with a `yuv420p` pixel format and fast-start metadata. It has no audio track. The animation introduces the gradient L mark first, then the Lingua Pro wordmark and product descriptor. Its final frame matches the app background so the transition into Compose does not flash.
+`app/src/main/res/raw/splash_logo.mp4` is a 720 × 1280, 30 fps, 3.6 second H.264 MP4 with a `yuv420p` pixel format and fast-start metadata. It has no audio track. The animation introduces the existing owl mascot first, then the Lingua Pro wordmark and product descriptor. Its final frame matches the app background so the transition into Compose does not flash.
