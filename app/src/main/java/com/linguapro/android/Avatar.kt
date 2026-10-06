@@ -85,7 +85,7 @@ data class AvatarConfig(
 internal val AvatarSkinTones = listOf(Color(0xFFFFE0C2), Color(0xFFF2C49B), Color(0xFFC98D5E), Color(0xFF8D5A3A))
 internal val AvatarHairColors = listOf(Color(0xFF2B2119), Color(0xFF5C4027), Color(0xFFB4863C), Color(0xFF8C8C94), Color(0xFFB3466E))
 internal val AvatarEyeColors = listOf(Color(0xFF4A3426), Color(0xFF2E6E4E), Color(0xFF2C5E9E))
-internal val AvatarShirtColors = listOf(Color(0xFFC6FF4A), Color(0xFFFF5CA8), Color(0xFF7DD3FC), Color(0xFFB791FF), Color(0xFFFFD166))
+internal val AvatarShirtColors = listOf(Gold, PinkAccent, ErrorCoral, Color(0xFF7DD3FC), OnBgSoft)
 
 /** Parametrik çizilen avatar: hiç görsel varlık kullanmaz, her boyutta keskindir. */
 @Composable
@@ -200,12 +200,12 @@ fun AvatarView(config: AvatarConfig, size: Dp, modifier: Modifier = Modifier) {
 
 // --- Düzenleyici ---
 
-private val EdPanel = Color(0xFF281A4A)
-private val EdPanel2 = Color(0xFF342457)
-private val EdGold = Color(0xFFC6FF4A)
-private val EdMuted = Color(0xFFA99BC9)
-private val EdText = Color(0xFFF5F1FF)
-private val EdNavy = Color(0xFF1A0E2E)
+private val EdPanel = Panel
+private val EdPanel2 = Panel2
+private val EdGold = Gold
+private val EdMuted = Muted
+private val EdText = OnBg
+private val EdNavy = Navy
 
 @Composable
 private fun OptionRow(label: String, options: List<String>, selected: Int, onSelect: (Int) -> Unit) {
@@ -252,7 +252,7 @@ fun AvatarEditorScreen(initialCode: String, onSave: (String) -> Unit, onBack: ()
     var cfg by remember { mutableStateOf(AvatarConfig.decode(initialCode)) }
     Column(
         Modifier.fillMaxSize()
-            .background(Brush.verticalGradient(listOf(Color(0xFF2E1660), Color(0xFF150A30))))
+            .background(Brush.verticalGradient(listOf(BgTop, BgBottom)))
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 20.dp)
     ) {
@@ -268,7 +268,7 @@ fun AvatarEditorScreen(initialCode: String, onSave: (String) -> Unit, onBack: ()
             Column(Modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                 // Işık halkası içinde süzülen canlı önizleme: avatar sahnede durur gibi
                 Box(contentAlignment = Alignment.Center) {
-                    Box(Modifier.size(170.dp).background(Brush.radialGradient(listOf(Color(0x2EC6FF4A), Color.Transparent)), CircleShape))
+                    Box(Modifier.size(170.dp).background(Brush.radialGradient(listOf(Gold.copy(alpha = 0.18f), PinkAccent.copy(alpha = 0.08f), Color.Transparent)), CircleShape))
                     PopOnChange(cfg) { AvatarView(cfg, 160.dp, Modifier.bob()) }
                 }
                 // Rastgele avatar: cinsiyet seçimi korunur, gerisi zar
