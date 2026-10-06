@@ -14,4 +14,4 @@ The app uses one shared visual language across the welcome flow, learning dashbo
 
 ## Splash asset
 
-`app/src/main/res/raw/splash_logo.mp4` is a 720 × 1280, 30 fps, 3.6 second H.264 MP4 with a `yuv420p` pixel format and fast-start metadata. It has no audio track. The animation introduces the existing owl mascot first, then the Lingua Pro wordmark and product descriptor. Its final frame matches the app background so the transition into Compose does not flash.
+`app/src/main/res/raw/splash_logo.mp4` is a 720 × 1280, 24 fps, 6.875 second H.264/AAC MP4 with a `yuv420p` pixel format and fast-start metadata. It preserves the approved full-size animated owl, learning icons, Turkish product line and progress sequence. The former purple and lime treatment is mapped to the shared midnight, mint and lavender palette, and the ending fades into the app background.
