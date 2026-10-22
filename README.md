@@ -49,3 +49,30 @@ CJK için karakterleri koruyan, yalnızca boşluk farkını tolere eden eşleşm
 - Kullanıcı adı ve bülten yazımları App Check korumalı sunucu fonksiyonları üzerinden yürür. Aynı hesap için tek güncel ad ve günlük beş sabit mesaj sınırı vardır.
 - Android cihaz/derleme ve Firestore emülatör kontrolleri geçmeden, imzalı üretim paketi ve canlı ödeme senaryoları doğrulanmadan bu dal satışa hazır sayılmaz.
 - Ayrıntılı kabul ölçütleri ve kapanmamış işler: `docs/RELEASE_ACCEPTANCE.md`.
+
+- # LinguaPro Android
+
+A gamified language learning application with a Turkish interface, built with Kotlin + Jetpack Compose.
+Expanded A1–C2 curriculum for English; structured A1–C2 courses for German, French, Spanish, Portuguese, Italian,
+Russian, Chinese, Japanese, and Korean (10 learning languages).
+
+## Highlights
+
+- **Duolingo-style winding path:** each lesson is a node, Checkpoint trophies, pulsing current lesson; lazy rendering via LazyColumn.
+- **Gamification:** COMBO counter and "N in a row!" celebrations, daily quests + XP rewards, XP→level (Lv) system.
+- **Community:** XP league leaderboard, search/add friends by username (reserved unique names), Feed featuring friends' achievements.
+- **Avatar engine:** parametric (asset-free) avatar with gender/skin/hair/eye/glasses/outfit customization; used in profiles, leagues, the feed, and lesson characters.
+- **Lesson experience:** a cast of 6 characters presenting questions (speech bubbles), fill-in-the-blanks with word banks, 2×2 option grids, segmented progress, lime/pink feedback panels, confetti, synthesized "pluck" sounds and app-wide tap clicks (can be muted via 🔊), result ring + XP counter.
+- **Review systems:** Daily Review (10-question mix), 5 Words of the Day (learn → review the next day; pools aligned with Goethe/DELF–DALF/DELE/CAPLE/CILS/TORFL/HSK/JLPT/TOPIK/Oxford tiers, 240–286 words per language), SM-2 spaced repetition flashcards on the EN track.
+- **Placement test:** 18 questions (3 from each CEFR level), 2/3 passing threshold per level, placement up to C2; final prompt offering "start from assessed level / start from basics at A1".
+- **Checkpoint barrier:** unit-end exam requires at least 80% to advance; "Try again" triggers a completely reset retake.
+- **Account and data deletion (Google Play compliant):** in-app execution; Firestore profile + lesson history + league records + friends + feed posts + Authentication account are deleted in a cascaded chain.
+
+## Build
+
+Open with Android Studio and complete the Gradle sync. Requires **JDK 17** and **Android SDK 35**.
+minSdk 24, targetSdk 35, package name `com.linguapro.android`.
+
+```bash
+./gradlew assembleDebug
+# APK: app/build/outputs/apk/debug/app-debug.apk
